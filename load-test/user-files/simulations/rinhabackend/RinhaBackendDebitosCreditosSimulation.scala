@@ -35,25 +35,25 @@ class RinhaBackendDebitosCreditosSimulation
           .check(status.in(200, 422))
   )
 
-  val saldos = scenario("Saldos")
+  val saldos = scenario("Limite")
     .exec(
-      http("saldos")
-      .get(_ => s"/clientes/${randomClienteId()}/saldo")
-          .check(jmesPath("inconsistente").is("false"))
+      http("limite")
+      .get(_ => s"/clientes/${randomClienteId()}/consistencia-limite")
+          .check(jmesPath("consistente").is("true"))
   )
 
   setUp(
     creditos.inject(
-      rampUsersPerSec(1).to(100).during(20.seconds),
-      constantUsersPerSec(100).during(3.minutes)
+      rampUsersPerSec(1).to(150).during(20.seconds),
+      constantUsersPerSec(150).during(3.minutes)
     ),
     debitos.inject(
-      rampUsersPerSec(1).to(200).during(20.seconds),
-      constantUsersPerSec(200).during(3.minutes)
+      rampUsersPerSec(1).to(300).during(20.seconds),
+      constantUsersPerSec(300).during(3.minutes)
     ),
     saldos.inject(
-      rampUsersPerSec(1).to(20).during(20.seconds),
-      constantUsersPerSec(20).during(3.minutes)
+      rampUsersPerSec(1).to(10).during(20.seconds),
+      constantUsersPerSec(10).during(3.minutes)
     )
   ).protocols(httpProtocol)
 }
