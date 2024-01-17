@@ -141,7 +141,7 @@ A data/hora limite para fazer pull requests para sua submissão é até 2024-02-
 
 Note que você poderá fazer quantos pull requests desejar até essa data/hora limite!
 
-### [Arquitetura Mínima da API](#arquitetura)
+### <a name="arquitetura">Arquitetura Mínima da API</a>
 Por "API" aqui, me refiro a todos os serviços envolvidos para que o serviço que atenderá às requisições HTTP funcione, tais como o load balancer, banco de dados e o servidor HTTP (que também é referido como API algumas vezes nesse documento e isso pode causar alguma confusão por causa da ambiguidade do termo).
 
 A sua API precisa ter, no mínimo, os seguintes serviços:
@@ -162,7 +162,7 @@ flowchart TD
 
 **Nota**: Você pode usar componentes adicionais se quiser. Mas lembre-se de que as restrições de CPU e memória devem obedecer a regra de que a soma dos limites (que devem ser declarados para todos os serviços) não poderão ultrapassar 1.5 unidades de CPU e 550MB de memória! Use o bom senso e boa fé, não adicione um banco relacional e um redis, por exemplo, e use apenas o redis como armazenamento – afinal, a Rinha é apenas uma brincadeira que fomenta o aprendizado e não a competição desleal.
 
-### [Restrições de CPU/Memória](#restricoes)
+### <a name="restricoes">Restrições de CPU/Memória</a>
 Dentro do seu arquivo docker-compose.yml, você deverá limitar todos os serviços para que a soma deles não ultrapasse os seguintes limites:
 - `deploy.resources.limits.cpu` 1.5 – uma unidade e meia de CPU distribuída entre todos os seus serviços
 - `deploy.resources.limits.memory` 550MB – 550 mega bytes de memória distribuídos entre todos os seus serviços
