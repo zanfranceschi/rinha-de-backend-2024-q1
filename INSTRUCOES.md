@@ -7,6 +7,7 @@ Para participar você precisa desenolver uma API HTTP (não me chama isso de RES
 
 ### Transações
 **Requisição**
+
 `POST /clientes/[id]/transacoes`
 ```json
 {
@@ -24,6 +25,7 @@ Onde
 Todos os campos são obrigatórios.
 
 **Resposta**
+
 `HTTP 200 OK`
 ```json
 {
@@ -46,6 +48,7 @@ Se o atributo `[id]` da URL for de uma identificação não existe de cliente, a
 
 ## Extrato
 **Requisição**
+
 `GET /clientes/[id]/extrato`
 
 Onde
