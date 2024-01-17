@@ -2,6 +2,8 @@
 
 ![arte](./misc/arte.jpg)
 
+A Rinha de Backend é um desafio que tem como principal objetivo compartilhar conhecimento em formato de desafio! Esta é a segunda edição. Confira o repositório da primeira edição [aqui](https://github.com/zanfranceschi/rinha-de-backend-2023-q3) para entender mais sobre o espírito da coisa.
+
 ## O Que Precisa Ser Feito?
 
 Para participar você precisa desenolver uma API HTTP (não me chama isso de REST, pelo amor) com os seguintes endpoints:
