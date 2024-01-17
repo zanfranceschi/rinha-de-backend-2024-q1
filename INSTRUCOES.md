@@ -7,10 +7,8 @@ Para participar você precisa desenolver uma API HTTP (não me chama isso de RES
 
 ### Transações
 **Requisição**
+`POST /clientes/[id]/transacoes`
 ```json
-POST /clientes/[id]/transacoes
-Headers...
-
 {
     "valor": 1000,
     "tipo" : "c",
@@ -26,10 +24,8 @@ Onde
 Todos os campos são obrigatórios.
 
 **Resposta**
+`HTTP 200 OK`
 ```json
-HTTP 200 OK
-Headers ...
-
 {
     "limite" : 100000,
     "saldo" : -9098
@@ -56,10 +52,8 @@ Onde
 - `[id]` (na URL) deve ser um número inteiro representando a identificação do cliente.
 
 **Resposta**
+`HTTP 200 OK`
 ```json
-HTTP 200 OK
-Headers...
-
 {
   "saldo": {
     "total": -9098,
