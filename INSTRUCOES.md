@@ -55,6 +55,7 @@ Onde
 - `[id]` (na URL) deve ser um número inteiro representando a identificação do cliente.
 
 **Resposta**
+
 `HTTP 200 OK`
 ```json
 {
