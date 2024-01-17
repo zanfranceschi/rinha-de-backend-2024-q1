@@ -10,7 +10,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
 
-class RinhaBackendDebitosCreditosSimulation
+class RinhaBackendCrebitosSimulation
   extends Simulation {
 
   /*
@@ -39,7 +39,7 @@ class RinhaBackendDebitosCreditosSimulation
   
   def randomClienteId() = Random.between(1, 5 + 1)
   def randomValorTransacao() = Random.between(1, 10000 + 1)
-  def randomTipoTransacao() = Seq("c", "d")(Random.between(0, 1 + 1))
+  def randomTipoTransacao() = Seq("c", "d", "d")(Random.between(0, 2 + 1))
   def toInt(s: String): Option[Int] = {
     try {
       Some(s.toInt)
@@ -115,12 +115,12 @@ class RinhaBackendDebitosCreditosSimulation
 
   setUp(
     transacoes.inject(
-      rampUsersPerSec(1).to(150).during(20.seconds),
-      constantUsersPerSec(150).during(3.minutes)
+      rampUsersPerSec(1).to(200).during(20.seconds),
+      constantUsersPerSec(200).during(3.minutes)
     ),
     extratos.inject(
-      rampUsersPerSec(1).to(50).during(20.seconds),
-      constantUsersPerSec(50).during(3.minutes)
+      rampUsersPerSec(1).to(20).during(20.seconds),
+      constantUsersPerSec(20).during(3.minutes)
     )
   ).protocols(httpProtocol)
 }
