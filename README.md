@@ -116,7 +116,7 @@ Obs.: Não cadastre um cliente com id 6 especificamente, pois parte do teste é 
 Assim como na Rinha de Backend anterior, você precisará conteinerizar sua API e outros componentes usados no formato de *docker-compose*, obedever às [restrições de recursos de CPU e memória](#restricoes), [configuração mímina arquitetural](#arquitetura), e estrutura de artefatos e processo de entrega (o que, onde e quando suas coisas precisam ser entregues).
 
 ### Artefato, Processo e Data Limite de Entrega
-Para participar, basta fazer um pull request neste repositório incluindo um subdiretório em [entregas](./entregas) com os seguintes arquivos:
+Para participar, basta fazer um pull request neste repositório incluindo um subdiretório em [participantes](./participantes) com os seguintes arquivos:
 - `docker-compose.yml` - arquivo interpretável por `docker-compose` contendo a declaração dos serviços que compõe sua API respeitando as [restrições de CPU/memória](#restricoes) e [arquitetura mínima](#arquitetura).
 - `README.md` - incluindo pelo menos seu nome, tecnologias que usou, o link para o repositório do código fonte da sua API, e alguma forma de entrar em contato caso vença. Fiquei à vontade para incluir informações adicionais como link para site, etc.
 - Inclua aqui também quaisquer outros diretórios/arquivos necessários para que seus contêineres subam corretamente como, por exemplo, `nginx.conf`, `banco.sql`, etc.
@@ -130,7 +130,7 @@ Um erro comum na edição anterior da Rinha, foi o de imagens sendo declaradas c
 
 Um exemplo de submissão/pull request da Ana, poderia ter os seguintes arquivos:
 ```
-├─ entregas/
+├─ participantes/
 |  ├─ ana-01/
 |  |  ├─ docker-compose.yml
 |  |  ├─ nginx.config
