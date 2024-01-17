@@ -1,4 +1,6 @@
-# Instruções e Regras para Rinha de Backend - Segunda Edição: 2024/Q1 - Crébito: Controle de Concorrência
+# Rinha de Backend - 2024/Q1
+
+![arte](./misc/arte.jpg)
 
 ## O Que Precisa Ser Feito?
 
