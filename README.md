@@ -43,7 +43,7 @@ Onde
 *Obrigatoriamente, o http status code de requisições para transações bem sucedidas deve ser 200!*
 
 **Regras**
-Uma transação de débito **nunca** pode deixar o saldo do cliente menor que seu limite disponível. Por exemplo, um cliente com limite de 10000 (R\$ 10) nunca deverá ter o saldo menor que -10000 (R\$ -10). Nesse caso, um saldo de -10001 ou menor significa inconsistência na Rinha de Backend!
+Uma transação de débito **nunca** pode deixar o saldo do cliente menor que seu limite disponível. Por exemplo, um cliente com limite de 1000 (R\$ 10) nunca deverá ter o saldo menor que -1000 (R\$ -10). Nesse caso, um saldo de -1001 ou menor significa inconsistência na Rinha de Backend!
 
 Se uma requisição para débito for deixar o saldo inconsistente, a API deve retornar HTTP Status Code 422 sem completar a transação! O corpo da resposta nesse caso não será testado e você pode escolher como o representar.
 
