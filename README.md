@@ -1,6 +1,6 @@
 # Rinha de Backend - 2024/Q1
 
-A Rinha de Backend é um desafio que tem como principal objetivo compartilhar conhecimento em formato de desafio! Esta é a segunda edição. Confira o repositório da primeira edição [aqui](https://github.com/zanfranceschi/rinha-de-backend-2023-q3) para entender mais sobre o espírito da coisa.
+A Rinha de Backend é um desafio que tem como principal objetivo compartilhar conhecimento em formato de desafio! Esta é a segunda edição. Confira o [repositório da primeira edição](https://github.com/zanfranceschi/rinha-de-backend-2023-q3) para entender mais sobre o espírito da coisa.
 
 ![arte](./misc/arte.jpg)
 
@@ -296,7 +296,6 @@ BEGIN
     ('kid mais', 5000 * 100);
 END; $$
 ```
-
 
 `nginx.conf`
 ```config
