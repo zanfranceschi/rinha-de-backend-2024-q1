@@ -113,6 +113,11 @@ class RinhaBackendCrebitosSimulation
     )
   )
 
+  /*
+    A medida que as pessoas forem compartilhando os resultados
+    preliminares, os parâmetros dos testes podem ser alterados
+    para a versão final :)
+  */
   setUp(
     transacoes.inject(
       rampUsersPerSec(1).to(200).during(20.seconds),
