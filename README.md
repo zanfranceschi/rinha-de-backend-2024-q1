@@ -344,8 +344,8 @@ Fique à vontade para alterar a [simulação](./load-test/user-files/simulations
 
 De nada :)
 
-### O Warm Up
-Na edição anterior da Rinha, o teste começava poucos segundos após a subida dos contêineres e, devido as restrições de CPU e memória, nem todos os serviços estavam prontos para receber requisições. Nessa edição, antes do teste se iniciar, um script verifica se a API está respondendo corretamente (via `GET /clientes/1/extrato`) por até 40 segundos em intervalos de 2 segundos a cada tentativa. Por isso, certifique-se de que todos seus serviços não demorem mais do que 40 segundos para estarem aptos a receberem requisições!
+### Pré teste
+Na edição anterior da Rinha, o teste começava poucos segundos após a subida dos contêineres e, devido as restrições de CPU e memória, nem todos os serviços estavam prontos para receber requisições em tão pouco tempo. Nessa edição, antes do teste iniciar, um script verificará se a API está respondendo corretamente (via `GET /clientes/1/extrato`) por até 40 segundos em intervalos de 2 segundos a cada tentativa. Por isso, certifique-se de que todos seus serviços não demorem mais do que 40 segundos para estarem aptos a receberem requisições!
 
 
 #### Nota importante sobre o teste escrito!
