@@ -2,7 +2,7 @@
 
 #docker system prune -f
 
-RESULTS_WORKSPACE=$(pwd)/resultados/primeira-fase
+RESULTS_WORKSPACE=$(pwd)/resultados
 GATLING_BIN_DIR=$HOME/gatling/3.10.3/bin
 GATLING_WORKSPACE="$(pwd)/load-test/user-files"
 
@@ -40,6 +40,31 @@ stopApi() {
     popd
 }
 
+generateResults() {
+    echo "# Resultados da Rinha de Backend" > RESULTADOS.md
+    echo "" >> RESULTADOS.md
+    echo "| participante | p99 geral | requisições ok geral (%) | relatório completo |" >> RESULTADOS.md
+    echo "| --           | --        | --                       | --                 |" >> RESULTADOS.md
+
+    for diretorio in resultados/*/; do
+    (
+        participante=$(echo $diretorio | sed -e 's/resultados\///g' -e 's/\///g')
+        arquivoStats=$(find $diretorio -name stats.json)
+        reportFile=$(find $diretorio -name index.html)
+        reportDir=$(dirname $reportFile)
+
+        echo computando $participante
+        
+        p99All=$(cat $arquivoStats | jq .stats.percentiles4.ok)
+        totalAll=$(cat $arquivoStats | jq .stats.numberOfRequests.total)
+        okAll=$(cat $arquivoStats | jq .stats.numberOfRequests.ok)
+        nokAll=$(cat $arquivoStats | jq .stats.numberOfRequests.ko)
+        percentageOk=$(awk -v okAll=$okAll -v totalAll=$totalAll 'BEGIN {print (okAll / totalAll) * 100.00}')
+        echo "| [$participante](./participantes/$participante) | $p99All | $percentageOk% | [link]($reportDir) | " >> RESULTADOS.md
+    )
+    done
+}
+
 for diretorio in participantes/*/; do
 (
     participante=$(echo $diretorio | sed -e 's/participantes\///g' -e 's/\///g')
@@ -58,3 +83,5 @@ for diretorio in participantes/*/; do
     fi
 )
 done
+
+generateResults
