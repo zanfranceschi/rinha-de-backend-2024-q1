@@ -11,6 +11,7 @@
 Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
-- `clojure` para api com as libs `compojure` e `next.jdbc`.
+- `clojure` para api com as libs `compojure` e `next.jdbc`
+- [repositório da api](https://github.com/zanfranceschi/rinha-de-backend-2024-q1-poc)
 
 [@zanfranceschi](https://twitter.com/zanfranceschi) @ twitter
