@@ -60,7 +60,7 @@ generateResults() {
 
         echo computando $participante
         p99All=$(cat $arquivoStats | jq .stats.percentiles4.total)
-        p98All=$(cat $arquivoStats | jq .stats.percentiles3.total) # change gatling.conf to get different percentiles
+        p98All=$(cat $arquivoStats | jq .stats.percentiles3.total) # altere gatling.conf pra configurar percentis diferentes
         totalAll=$(cat $arquivoStats | jq .stats.numberOfRequests.total)
         okAll=$(cat $arquivoStats | jq .stats.numberOfRequests.ok)
         nokAll=$(cat $arquivoStats | jq .stats.numberOfRequests.ko)
