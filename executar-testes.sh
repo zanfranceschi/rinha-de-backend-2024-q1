@@ -83,7 +83,7 @@ for diretorio in participantes/*/; do
     testedFile="$RESULTS_WORKSPACE/$participante/testada"
 
     if test -f $testedFile; then
-        echo "Submissão '$participante' já testada - ignorando."
+        echo "submissão '$participante' já testada - ignorando"
     else
         startApi $participante
         startTest $participante
