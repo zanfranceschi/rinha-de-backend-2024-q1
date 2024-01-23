@@ -116,7 +116,7 @@ Para haver ênfase em concorrência durante o teste, poucos clientes devem ser c
 Obs.: Não cadastre um cliente com id 6 especificamente, pois parte do teste é verificar se o cliente de id 6 realmente não existe e API retorna HTTP 404!
 
 
-## Como Precisa Ser Feito e Entregue?
+## Como Fazer e Entregar?
 Assim como na Rinha de Backend anterior, você precisará conteinerizar sua API e outros componentes usados no formato de *docker-compose*, obedever às [restrições de recursos de CPU e memória](#restricoes), [configuração mímina arquitetural](#arquitetura), e estrutura de artefatos e processo de entrega (o que, onde e quando suas coisas precisam ser entregues).
 
 ### Artefato, Processo e Data Limite de Entrega
@@ -146,7 +146,7 @@ Um exemplo de submissão/pull request da Ana, poderia ter os seguintes arquivos:
 |  |  ├─ README.md
 ```
 
-A data/hora limite para fazer pull requests para sua submissão é até 2024-02-01T23:59:59.000-03:00. Após esse dia/hora, qualquer pull request será automaticamente rejeitado.
+A data/hora limite para fazer pull requests para sua submissão é até 2024-03-29T23:59:59.000-03:00. Após esse dia/hora, qualquer pull request será automaticamente rejeitado.
 
 Note que você poderá fazer quantos pull requests desejar até essa data/hora limite!
 
@@ -339,12 +339,12 @@ Aqui estão instruções rápidas para você poder executar os testes:
 1. Certifique-se de que tenha o JDK instalado
     (64bits OpenJDK LTS (Long Term Support) versions: 11, 17 e 21)
     https://gatling.io/docs/gatling/tutorials/installation/
-1. Configure o script `./load-test/run-test.sh` (ou `./load-test/run-test.ps1` se estiver no Windows)
+1. Configure o script `./executar-teste-local.sh` (ou `./executar-teste-local.ps1` se estiver no Windows)
 1. Suba sua API (ou load balancer) na porta 9999
-1. Execute `./load-test/run-test.sh` (ou `./load-test/run-test.ps1` se estiver no Windows)
+1. Execute `./executar-teste-local.sh` (ou `./executar-teste-local.ps1` se estiver no Windows)
 1. Agora é só aguardar o teste terminar e abrir o relatório
     O caminho do relatório é exibido ao término da simulação.
-    Os relatórios são salvos em `./load-test/user-files/results`.
+    Os resultados/relatórios são salvos em `./load-test/user-files/results`.
 
 Fique à vontade para alterar a [simulação](./load-test/user-files/simulations/rinhabackend/RinhaBackendCrebitosSimulation.scala) para testar diferentes aspectos e cenários. Não inclua essas alterações no pull request de submissão!
 

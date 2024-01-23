@@ -2,14 +2,15 @@
 
 #docker system prune -f
 
+# Não use este script para executar seus testes locais, suba sua API
+# na porta 9999 ou docker-compose e use `executar-teste-local.sh`
+
 RESULTS_WORKSPACE=$(pwd)/resultados
 GATLING_BIN_DIR=$HOME/gatling/3.10.3/bin
 GATLING_WORKSPACE="$(pwd)/load-test/user-files"
 
 runGatling() {
-    echo "$RESULTS_WORKSPACE/$1"
-    
-    sh $GATLING_BIN_DIR/gatling.sh -rm local -s RinhaBackendCrebitosCompeticaoSimulation \
+    sh $GATLING_BIN_DIR/gatling.sh -rm local -s RinhaBackendCrebitosSimulation \
         -rd "Rinha de Backend - 2024/Q1: Crébito" \
         -rf "$RESULTS_WORKSPACE/$1" \
         -sf "$GATLING_WORKSPACE/simulations"
@@ -19,7 +20,9 @@ startTest() {
     for i in {1..20}; do
         # 2 requests to wake the 2 api instances up :)
         curl --fail http://localhost:9999/clientes/1/extrato && \
+        echo "" && \
         curl --fail http://localhost:9999/clientes/1/extrato && \
+        echo "" && \
         runGatling $1 && \
         break || sleep 2;
     done
@@ -41,26 +44,32 @@ stopApi() {
 }
 
 generateResults() {
-    echo "# Resultados da Rinha de Backend" > RESULTADOS.md
-    echo "" >> RESULTADOS.md
-    echo "| participante | p99 geral | requisições ok geral (%) | relatório completo |" >> RESULTADOS.md
-    echo "| --           | --        | --                       | --                 |" >> RESULTADOS.md
+    echo "# Resultados da Rinha de Backend, Segunda Edição" > RESULTADOS.md
+    echo " " >> RESULTADOS.md
+    echo "| participante | p99 | p98 | requisições ok | extrato | transações | outros erros | relatório completo |" >> RESULTADOS.md
+    echo "| --           | --  | --  | --             | --      | --         | --           | --                 |" >> RESULTADOS.md
 
     for diretorio in resultados/*/; do
     (
+        echo "==============="
         participante=$(echo $diretorio | sed -e 's/resultados\///g' -e 's/\///g')
         arquivoStats=$(find $diretorio -name stats.json)
         reportFile=$(find $diretorio -name index.html)
+        simulationFile=$(find $diretorio -name simulation.log)
         reportDir=$(dirname $reportFile)
 
         echo computando $participante
-        
-        p99All=$(cat $arquivoStats | jq .stats.percentiles4.ok)
+        p99All=$(cat $arquivoStats | jq .stats.percentiles4.total)
+        p98All=$(cat $arquivoStats | jq .stats.percentiles3.total) # change gatling.conf to get different percentiles
         totalAll=$(cat $arquivoStats | jq .stats.numberOfRequests.total)
         okAll=$(cat $arquivoStats | jq .stats.numberOfRequests.ok)
         nokAll=$(cat $arquivoStats | jq .stats.numberOfRequests.ko)
         percentageOk=$(awk -v okAll=$okAll -v totalAll=$totalAll 'BEGIN {print (okAll / totalAll) * 100.00}')
-        echo "| [$participante](./participantes/$participante) | $p99All | $percentageOk% | [link]($reportDir) | " >> RESULTADOS.md
+        nokExtrato=$(grep $simulationFile -e 'jmesPath(saldo.total)' | wc -l)
+        nokTransacao=$(grep $simulationFile -e 'jmesPath(saldo)' | wc -l)
+        nokOther=$(bc <<< "$nokAll - ($nokExtrato + $nokTransacao)")
+        echo "| [$participante](./participantes/$participante) | ${p99All}ms | ${p98All}ms | ${percentageOk}% | $nokExtrato erros | $nokTransacao erros | $nokOther | [link]($reportDir) | " >> RESULTADOS.md
+        echo "ok"
     )
     done
 }

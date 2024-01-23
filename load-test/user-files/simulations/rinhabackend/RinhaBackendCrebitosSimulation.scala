@@ -13,33 +13,10 @@ import io.gatling.http.Predef._
 class RinhaBackendCrebitosSimulation
   extends Simulation {
 
-  /*
-    ATENÇÃO: Este não é o teste final da Rinha!!!
-
-      Essa simulação é apenas uma amostra do que será testado e serve
-      para facilitar que você teste sua API se não souber (ou quiser)
-      como fazê-lo. Fique à vontade para alterar e testar diferentes
-      aspectos.
-
-    
-    Como executar os testes/simulação:
-      1. Baixe o Gatling em https://gatling.io/open-source/
-      2. Certifique-se de que tenha o JDK instalado
-          (64bits OpenJDK LTS (Long Term Support) versions: 11, 17 e 21)
-          https://gatling.io/docs/gatling/tutorials/installation/
-      3. Configure o script run-test.sh (ou run-test.ps1 se estiver no Windows)
-      4. Suba sua API (ou load balancer) na porta 9999
-      5. Execute ./run-test.sh (ou run-test.ps1 se estiver no Windows)
-      6. Agora é só aguardar o teste terminar e abrir o relatório
-          O caminho do relatório é exibido ao término da simulação.
-          Os relatórios são salvos em './user-files/results'
-      
-      De nada :)
-  */
-  
   def randomClienteId() = Random.between(1, 5 + 1)
   def randomValorTransacao() = Random.between(1, 10000 + 1)
-  def randomTipoTransacao() = Seq("c", "d", "d")(Random.between(0, 2 + 1))
+  def randomDescricao() = Random.alphanumeric.take(10).mkString
+  def randomTipoTransacao() = Seq("c", "d", "d")(Random.between(0, 2 + 1)) // not used
   def toInt(s: String): Option[Int] = {
     try {
       Some(s.toInt)
@@ -47,8 +24,6 @@ class RinhaBackendCrebitosSimulation
       case e: Exception => None
     }
   }
-
-  val descricoes = Map("c" -> "crédito", "d" -> "débito")
 
   val validarConsistenciaSaldoLimite = (valor: Option[String], session: Session) => {
     /*
@@ -80,24 +55,50 @@ class RinhaBackendCrebitosSimulation
 
   val httpProtocol = http
     .baseUrl("http://localhost:9999")
-    .userAgentHeader("Agente do Caos - 2024 Q1")
+    .userAgentHeader("Agente do Caos - 2024/Q1")
 
-  val transacoes = scenario("Transações")
+  val debitos = scenario("Débitos")
     .exec {s =>
+      val descricao = randomDescricao()
       val cliente_id = randomClienteId()
       val valor = randomValorTransacao()
-      val tipo = randomTipoTransacao()
-      val descricao = descricoes.get(tipo)
-      val payload = s"""{"valor": ${valor}, "tipo": "${tipo}", "descricao": "${descricao}"}"""
+      val payload = s"""{"valor": ${valor}, "tipo": "d", "descricao": "${descricao}"}"""
       val session = s.setAll(Map("descricao" -> descricao, "cliente_id" -> cliente_id, "payload" -> payload))
       session
     }
     .exec(
-      http("transações")
+      http("débitos")
       .post(s => s"/clientes/${s("cliente_id").as[String]}/transacoes")
           .header("content-type", "application/json")
           .body(StringBody(s => s("payload").as[String]))
-          .check(status.in(200, 422))
+          .check(
+            status.in(200, 422),
+            status.saveAs("httpStatus"))
+          .checkIf(s => s("httpStatus").as[String] == "200") { jmesPath("limite").saveAs("limite") }
+          .checkIf(s => s("httpStatus").as[String] == "200") {
+            jmesPath("saldo").validate("ConsistenciaSaldoLimite - Transação", validarConsistenciaSaldoLimite)
+          }
+    )
+
+  val creditos = scenario("Créditos")
+    .exec {s =>
+      val descricao = randomDescricao()
+      val cliente_id = randomClienteId()
+      val valor = randomValorTransacao()
+      val payload = s"""{"valor": ${valor}, "tipo": "c", "descricao": "${descricao}"}"""
+      val session = s.setAll(Map("descricao" -> descricao, "cliente_id" -> cliente_id, "payload" -> payload))
+      session
+    }
+    .exec(
+      http("créditos")
+      .post(s => s"/clientes/${s("cliente_id").as[String]}/transacoes")
+          .header("content-type", "application/json")
+          .body(StringBody(s => s("payload").as[String]))
+          .check(
+            status.in(200),
+            jmesPath("limite").saveAs("limite"),
+            jmesPath("saldo").validate("ConsistenciaSaldoLimite - Transação", validarConsistenciaSaldoLimite)
+          )
     )
 
   val extratos = scenario("Extratos")
@@ -106,26 +107,58 @@ class RinhaBackendCrebitosSimulation
       .get(s => s"/clientes/${randomClienteId()}/extrato")
       .check(
         jmesPath("saldo.limite").saveAs("limite"),
-        jmesPath("saldo.total")
-          .validate(
-            "ConsistenciaSaldoLimite - Extratos",
-            validarConsistenciaSaldoLimite)
+        jmesPath("saldo.total").validate("ConsistenciaSaldoLimite - Extrato", validarConsistenciaSaldoLimite)
     )
   )
 
-  /*
-    A medida que as pessoas forem compartilhando os resultados
-    preliminares, os parâmetros dos testes podem ser alterados
-    para a versão final :)
+  val saldosIniciaisClientes = Array(
+    Map("id" -> 1, "limite" ->   1000 * 100),
+    Map("id" -> 2, "limite" ->    800 * 100),
+    Map("id" -> 3, "limite" ->  10000 * 100),
+    Map("id" -> 4, "limite" -> 100000 * 100),
+    Map("id" -> 5, "limite" ->   5000 * 100),
+  )
+
+  val criteriosClientes = scenario("Critérios Clientes")
+    .feed(saldosIniciaisClientes)
+    .exec(
+      http("critérios clientes")
+      .get("/clientes/#{id}/extrato")
+      .check(
+        status.is(200),
+        jmesPath("saldo.limite").ofType[String].is("#{limite}"),
+        jmesPath("saldo.total").ofType[String].is("0")
+      )
+    )
+    .exec(
+      http("critérios clientes não existente")
+      .get("/clientes/6/extrato")
+      .check(status.is(404))
+    )
+  
+  /* 
+    Separar créditos e débitos dá uma visão
+    melhor sobre como as duas operações se
+    comportam individualmente.
   */
   setUp(
-    transacoes.inject(
-      rampUsersPerSec(1).to(200).during(20.seconds),
-      constantUsersPerSec(200).during(3.minutes)
-    ),
-    extratos.inject(
-      rampUsersPerSec(1).to(20).during(20.seconds),
-      constantUsersPerSec(20).during(3.minutes)
+    criteriosClientes.inject(
+      atOnceUsers(1)
+    )
+    // Mais suave que isso, nem sei se tem.
+    .andThen(
+      debitos.inject(
+        rampUsersPerSec(1).to(220).during(1.minutes),
+        constantUsersPerSec(220).during(2.minutes)
+      ),
+      creditos.inject(
+        rampUsersPerSec(1).to(110).during(1.minutes),
+        constantUsersPerSec(110).during(2.minutes)
+      ),
+      extratos.inject(
+        rampUsersPerSec(1).to(10).during(1.minutes),
+        constantUsersPerSec(10).during(2.minutes)
+      )
     )
   ).protocols(httpProtocol)
 }

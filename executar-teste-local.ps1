@@ -1,5 +1,5 @@
 # Esse script é da edição anterior da Rinha.
-# Por favor, se você sabe como deixar esse script similar ao da
+# Por favor, se você souber como deixar esse script similar ao da
 # versão bash e se seu coração mandar, faça um pull request, tá?
 
 # Assumindo que o diretório do gatling esteja no mesmo nível que este script
