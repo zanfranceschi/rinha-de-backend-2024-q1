@@ -27,7 +27,7 @@ class RinhaBackendCrebitosSimulation
 
   val validarConsistenciaSaldoLimite = (valor: Option[String], session: Session) => {
     /*
-      Essa função é frágil porque depende de que haja uma entrada
+      Essa função é frágil porque depende que haja uma entrada
       chamada 'limite' com valor conversível para int na session
       e também que seja encadeada com com jmesPath("saldo") para
       que 'valor' seja o primeiro argumento da função validadora
@@ -57,7 +57,7 @@ class RinhaBackendCrebitosSimulation
     .baseUrl("http://localhost:9999")
     .userAgentHeader("Agente do Caos - 2024/Q1")
 
-  val debitos = scenario("Débitos")
+  val debitos = scenario("débitos")
     .exec {s =>
       val descricao = randomDescricao()
       val cliente_id = randomClienteId()
@@ -80,7 +80,7 @@ class RinhaBackendCrebitosSimulation
           }
     )
 
-  val creditos = scenario("Créditos")
+  val creditos = scenario("créditos")
     .exec {s =>
       val descricao = randomDescricao()
       val cliente_id = randomClienteId()
@@ -101,7 +101,7 @@ class RinhaBackendCrebitosSimulation
           )
     )
 
-  val extratos = scenario("Extratos")
+  val extratos = scenario("extratos")
     .exec(
       http("extratos")
       .get(s => s"/clientes/${randomClienteId()}/extrato")
@@ -119,10 +119,16 @@ class RinhaBackendCrebitosSimulation
     Map("id" -> 5, "limite" ->   5000 * 100),
   )
 
-  val criteriosClientes = scenario("Critérios Clientes")
+  val criteriosClientes = scenario("validações")
     .feed(saldosIniciaisClientes)
     .exec(
-      http("critérios clientes")
+      /*
+        Os valores de http(...) essão duplicados propositalmente
+        para que sejam agrupados no relatório e ocupem menos espaço.
+        O lado negativo é que, em caso de falha, pode não ser possível
+        saber sua causa exata.
+      */ 
+      http("validações")
       .get("/clientes/#{id}/extrato")
       .check(
         status.is(200),
@@ -131,11 +137,90 @@ class RinhaBackendCrebitosSimulation
       )
     )
     .exec(
-      http("critérios clientes não existente")
+      http("validações")
       .get("/clientes/6/extrato")
       .check(status.is(404))
     )
-  
+    .exec(
+      http("validações")
+      .post("/clientes/1/transacoes")
+          .header("content-type", "application/json")
+          .body(StringBody(s"""{"valor": 1, "tipo": "c", "descricao": "toma"}"""))
+          .check(
+            status.in(200),
+            jmesPath("limite").saveAs("limite"),
+            jmesPath("saldo").validate("ConsistenciaSaldoLimite - Transação", validarConsistenciaSaldoLimite)
+          )
+    )
+    .exec(
+      http("validações")
+      .post("/clientes/1/transacoes")
+          .header("content-type", "application/json")
+          .body(StringBody(s"""{"valor": 1, "tipo": "d", "descricao": "devolve"}"""))
+          .check(
+            status.in(200),
+            jmesPath("limite").saveAs("limite"),
+            jmesPath("saldo").validate("ConsistenciaSaldoLimite - Transação", validarConsistenciaSaldoLimite)
+          )
+    )
+    .exec(
+      http("validações")
+      .get("/clientes/1/extrato")
+      .check(
+        jmesPath("ultimas_transacoes[0].descricao").ofType[String].is("devolve"),
+        jmesPath("ultimas_transacoes[0].tipo").ofType[String].is("d"),
+        jmesPath("ultimas_transacoes[0].valor").ofType[Int].is("1"),
+        jmesPath("ultimas_transacoes[1].descricao").ofType[String].is("toma"),
+        jmesPath("ultimas_transacoes[1].tipo").ofType[String].is("c"),
+        jmesPath("ultimas_transacoes[1].valor").ofType[Int].is("1")
+    )
+  )
+  .exec(
+      http("validações")
+      .post("/clientes/1/transacoes")
+          .header("content-type", "application/json")
+          .body(StringBody(s"""{"valor": 1.0, "tipo": "d", "descricao": "devolve"}"""))
+          .check(
+            status.in(422)
+          )
+    )
+    .exec(
+      http("validações")
+      .post("/clientes/1/transacoes")
+          .header("content-type", "application/json")
+          .body(StringBody(s"""{"valor": 1, "tipo": "x", "descricao": "devolve"}"""))
+          .check(
+            status.in(422)
+          )
+    )
+    .exec(
+      http("validações")
+      .post("/clientes/1/transacoes")
+          .header("content-type", "application/json")
+          .body(StringBody(s"""{"valor": 1, "tipo": "c", "descricao": "123456789 e mais um pouco"}"""))
+          .check(
+            status.in(422)
+          )
+    )
+    .exec(
+      http("validações")
+      .post("/clientes/1/transacoes")
+          .header("content-type", "application/json")
+          .body(StringBody(s"""{"valor": 1, "tipo": "c", "descricao": ""}"""))
+          .check(
+            status.in(422)
+          )
+    )
+    .exec(
+      http("validações")
+      .post("/clientes/1/transacoes")
+          .header("content-type", "application/json")
+          .body(StringBody(s"""{"valor": 1, "tipo": "c", "descricao": null}"""))
+          .check(
+            status.in(422)
+          )
+    )
+
   /* 
     Separar créditos e débitos dá uma visão
     melhor sobre como as duas operações se

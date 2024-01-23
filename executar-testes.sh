@@ -17,6 +17,7 @@ runGatling() {
 }
 
 startTest() {
+    sleep 5
     for i in {1..20}; do
         # 2 requests to wake the 2 api instances up :)
         curl --fail http://localhost:9999/clientes/1/extrato && \
