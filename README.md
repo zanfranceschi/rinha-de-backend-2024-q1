@@ -125,7 +125,7 @@ Para participar, basta fazer um pull request neste repositório incluindo um sub
 - `README.md` - incluindo pelo menos seu nome, tecnologias que usou, o link para o repositório do código fonte da sua API, e alguma forma de entrar em contato caso vença. Fiquei à vontade para incluir informações adicionais como link para site, etc.
 - Inclua aqui também quaisquer outros diretórios/arquivos necessários para que seus contêineres subam corretamente como, por exemplo, `nginx.conf`, `banco.sql`, etc.
 
-[Aqui](./participantes/exemplo-submissao) tem um exemplo de submissão para te ajudar, caso queira.
+[Aqui](./participantes/exemplo) tem um exemplo de submissão para te ajudar, caso queira.
 
 **Importante!** É fundamental que todos os serviços declarados no `docker-compose.yml` estejam publicamente disponíveis! Caso contrário, não será possível executar os testes. Para isso, você pode criar uma conta em hub.docker.com para disponibilizar suas imagens. Essa imagens geralmente terão o formato \<user\>/\<imagem\>:\<tag\> – por exemplo, `zanfranceschi/rinha-api:latest`.
 

@@ -2,4 +2,4 @@
  
 | participante | p99 | p98 | requisições ok | extrato | transações | outros erros | relatório completo |
 | --           | --  | --  | --             | --      | --         | --           | --                 |
-| [exemplo-submissao](./participantes/exemplo-submissao) | 444ms | 271ms | 100% | 0 erros | 0 erros | 0 | [link](resultados/exemplo-submissao/rinhabackendcrebitoscompeticaosimulation-20240123022117012) | 
+| [exemplo](./participantes/exemplo) | 98ms | 74ms | 100% | 0 erros | 0 erros | 0 | [link](resultados/exemplo/rinhabackendcrebitossimulation-20240123050143402) | 
