@@ -6,7 +6,8 @@ services:
     hostname: api01
     environment:
       - DB_HOSTNAME=db
-      - USAR_DB_PROC=true
+      - USAR_DB_PROC=false
+      - FORCAR_INCONSISTENCIA=false
       - PORT=3000
     ports:
       - "3001:3000"
@@ -23,7 +24,8 @@ services:
     hostname: api02
     environment:
       - DB_HOSTNAME=db
-      - USAR_DB_PROC=true
+      - USAR_DB_PROC=false
+      - FORCAR_INCONSISTENCIA=false
       - PORT=3000
     ports:
       - "3002:3000"
@@ -53,7 +55,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096
     deploy:
       resources:
