@@ -8,6 +8,8 @@ O principal assunto dessa Rinha trata de controle de concorrência com o tema cr
 Se quiser entender mais sobre o espírito das Rinhas, confira o [repositório da primeira edição](https://github.com/zanfranceschi/rinha-de-backend-2023-q3).
 
 
+Ah!, e antes de continuar, é importante dizer que a [Cubos Academy](https://cubos.academy/) disponibilizou o cupom `RINHADEV` que te dá 20% de desconto **PARA QUALQUER CURSO**! Vai lá no site deles e dá uma olhada – têm muitos cursos bem legais!
+
 ## O Que Precisa Ser Feito?
 
 Para participar você precisa desenolver uma API HTTP (não me chama isso de REST, pelo amor) com os seguintes endpoints:
