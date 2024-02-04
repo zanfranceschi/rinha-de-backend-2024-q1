@@ -77,13 +77,13 @@ Onde
     {
       "valor": 10,
       "tipo": "c",
-      "descricao": "descicao",
+      "descricao": "descricao",
       "realizada_em": "2024-01-17T02:34:38.543030Z"
     },
     {
       "valor": 90000,
       "tipo": "d",
-      "descricao": "descicao",
+      "descricao": "descricao",
       "realizada_em": "2024-01-17T02:34:38.543030Z"
     }
   ]
