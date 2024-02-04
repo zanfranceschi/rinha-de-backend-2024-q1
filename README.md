@@ -264,7 +264,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ../script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
     deploy:
       resources:
         limits:
@@ -361,6 +361,6 @@ Na edição anterior da Rinha, o teste começava poucos segundos após a subida 
 A simulação contém um teste de lógica de saldo/limite que extrapola o que é comumente feito em testes de performance. O escrevi assim apenas por causa da natureza da Rinha de Backend. Evite fazer esse tipo de coisa em testes de performance, pois não é uma prática recomendada normalmente. Testes de lógica devem ficar junto ao código fonte em formato de testes de unidade ou integração!
 
 
-## Critério para Vencer A Rinha de Backend
+## Critérios para Vencer A Rinha de Backend
 
 Surpresa! :)
