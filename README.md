@@ -101,7 +101,7 @@ Onde
     - `realizada_em` deve ser a data/hora da realização da transação.
 
 **Regras**
-Se o atributo `[id]` da URL for de uma identificação não existe de cliente, a API deve retornar HTTP Status Code 404. O corpo da resposta nesse caso não será testado e você pode escolher como o representar. Já sabe o que acontece se sua API retornar algo na faixa 2XX, né? Agradecido.
+Se o atributo `[id]` da URL for de uma identificação não existente de cliente, a API deve retornar HTTP Status Code 404. O corpo da resposta nesse caso não será testado e você pode escolher como o representar. Já sabe o que acontece se sua API retornar algo na faixa 2XX, né? Agradecido.
 
 
 ## Cadastro Inicial de Clientes
