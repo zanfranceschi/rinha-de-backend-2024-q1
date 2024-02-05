@@ -12,7 +12,7 @@ Ah!, e antes de continuar, é importante dizer que a [Cubos Academy](https://cub
 
 ## O Que Precisa Ser Feito?
 
-Para participar você precisa desenolver uma API HTTP (não me chama isso de REST, pelo amor) com os seguintes endpoints:
+Para participar você precisa desenolver uma API HTTP com os seguintes endpoints:
 
 ### Transações
 **Requisição**
