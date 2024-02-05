@@ -179,7 +179,7 @@ class RinhaBackendCrebitosSimulation
       http("validações")
       .post("/clientes/1/transacoes")
           .header("content-type", "application/json")
-          .body(StringBody(s"""{"valor": 1.0, "tipo": "d", "descricao": "devolve"}"""))
+          .body(StringBody(s"""{"valor": 1.2, "tipo": "d", "descricao": "devolve"}"""))
           .check(status.in(422))
     )
     .exec(
