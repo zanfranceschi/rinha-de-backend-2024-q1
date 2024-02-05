@@ -7,7 +7,7 @@ public class Extrato {
 
     public Saldo saldo = new Saldo();
 
-    public List<Transacao> transacoes = new ArrayList<>();
+    public List<Transacao> ultimas_transacoes = new ArrayList<>();
     
 
 }
