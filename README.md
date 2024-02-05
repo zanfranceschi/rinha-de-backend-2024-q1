@@ -29,7 +29,7 @@ Onde
 - `[id]` (na URL) deve ser um número inteiro representando a identificação do cliente.
 - `valor` deve um número inteiro positivo que representa centavos (não vamos trabalhar com frações de centavos). Por exemplo, R$ 10 são 1000 centavos.
 - `tipo` deve ser apenas `c` para crédito ou `d` para débito.
-- `descricao` deve ser uma string de 1 a 10 caracteres.
+- `descricao` deve ser uma string de 1 a 10 caractéres.
 
 Todos os campos são obrigatórios.
 
