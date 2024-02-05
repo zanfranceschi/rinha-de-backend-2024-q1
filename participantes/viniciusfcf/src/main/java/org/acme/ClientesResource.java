@@ -40,14 +40,14 @@ public class ClientesResource {
             }
         }
 
-        Integer saldo = Cliente.find("select saldo from Cliente where id = ?1", id).project(Integer.class)
-                .firstResult();
+        
+        LimiteSaldo limiteSaldo = Cliente.find("select saldo from Cliente where id = ?1", id).project(LimiteSaldo.class)
+                .singleResult();
 
         t.realizada_em = LocalDateTime.now();
 
         t.persist();
-
-        LimiteSaldo limiteSaldo = new LimiteSaldo(cliente.limite, saldo);
+        limiteSaldo.limite = cliente.limite;
         return Response.ok().entity(limiteSaldo).build();
     }
 

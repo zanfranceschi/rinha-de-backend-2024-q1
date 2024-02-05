@@ -4,10 +4,10 @@ services:
   api01: &api
     # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
     # publicamente acessível! Ex.: hub.docker.com
-    image: ana/minha-api-matadora:latest
+    image: viniciusfcf/rinha-backend-2024q1:latest
     hostname: api01
     environment:
-      - DB_HOSTNAME=db
+      - TESTE=nao
     
     # Não é necessário expor qualquer porta além da porta do load balancer,
     # mas é comum as pessoas o fazerem para testaremsuas APIs e conectarem
@@ -27,7 +27,7 @@ services:
     <<: *api 
     hostname: api02
     environment:
-      - DB_HOSTNAME=db
+      - TESTE=nao
     ports:
       - "8082:8080"
  
@@ -57,7 +57,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./import.sql:/docker-entrypoint-initdb.d/script.sql
     deploy:
       resources:
         limits:
