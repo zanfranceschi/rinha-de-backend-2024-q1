@@ -2,6 +2,7 @@ package org.acme;
 
 import java.time.LocalDateTime;
 
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -17,16 +18,32 @@ public class ClientesResource {
     @POST
     @Path("/{id}/transacoes")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response debitar(@PathParam("id") Integer id, Transacao t) {
-        if(!existeCliente(id)) {
+    @Transactional
+    public Response debitarCreditar(@PathParam("id") Integer id, Transacao t) {
+        if (!existeCliente(id)) {
             throw new WebApplicationException(404);
         }
-        if(!t.ehValida()) {
+        if (!t.ehValida()) {
             throw new WebApplicationException(422);
         }
-        Integer limite = 1000;
-        Integer saldo = 0;
-        LimiteSaldo limiteSaldo = new LimiteSaldo(limite, saldo);
+        Cliente cliente = Cliente.findById(id);
+        t.cliente_id = id;
+        if (t.tipo.equals('c')) {
+            cliente.saldo += t.valor;
+        } else {
+            cliente.saldo -= t.valor;
+        }
+        t.realizada_em = LocalDateTime.now();
+        t.persist();
+        try {
+            cliente.persist();    
+            Cliente.flush();
+        } catch (Exception e) {
+            //aqui pode ser um saldocheck =]
+            throw new WebApplicationException(422);
+        }
+        
+        LimiteSaldo limiteSaldo = new LimiteSaldo(cliente.limite, cliente.saldo);
         return Response.ok().entity(limiteSaldo).build();
     }
 
@@ -34,15 +51,19 @@ public class ClientesResource {
     @Path("/{id}/extrato")
     @Produces(MediaType.APPLICATION_JSON)
     public Response extrato(@PathParam("id") Integer id) {
-        if(!existeCliente(id)) {
+        if (!existeCliente(id)) {
             throw new WebApplicationException(404);
         }
         Extrato extrato = new Extrato();
+        Cliente cliente = Cliente.findById(id);
         extrato.saldo.data_extrato = LocalDateTime.now();
+        extrato.saldo.total = cliente.saldo;
+        extrato.saldo.limite = cliente.limite;
+        extrato.transacoes = Transacao.find("order by id desc").page(0, 10).list();
         return Response.ok().entity(extrato).build();
     }
 
     private boolean existeCliente(Integer id) {
-        return id >= 1 && id <= 5;
+        return Cliente.findById(id) != null;
     }
 }
