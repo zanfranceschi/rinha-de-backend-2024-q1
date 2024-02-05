@@ -14,7 +14,7 @@ CREATE TABLE transactions
     client_id   INTEGER     NOT NULL,
     value       INTEGER     NOT NULL,
     operation   CHAR(1)     NOT NULL,
-    description VARCHAR(50) NOT NULL,
+    description VARCHAR(10) NOT NULL,
     created_at  TIMESTAMP   NOT NULL DEFAULT NOW(),
     CONSTRAINT fk_transactions_client_id
         FOREIGN KEY (client_id) REFERENCES clients (id)
