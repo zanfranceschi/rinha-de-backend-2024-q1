@@ -340,13 +340,7 @@ O ambiente (SO e versões de software) usado para teste será:
 Docker
 ``` 
 $ docker --version
-Docker version 24.0.5, build 24.0.5-0ubuntu1~23.04.1
-```
-
-Docker Compose
-``` 
-$ docker-compose --version
-docker-compose version 1.29.2, build unknown
+Docker version 25.0.2, build 29cf629
 ```
 
 Gatlng
