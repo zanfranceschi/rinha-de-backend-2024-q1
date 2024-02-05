@@ -14,6 +14,6 @@ Submissão feita com:
 -   `bun` para api com as libs `elysia` e `kysely`
 -   [repositório da api](https://github.com/lobomfz/rinha-backend-v2)
 
-100% success rate, 29ms mean response time
+100% success rate, 11ms mean response time
 
 [@lobomfz](https://twitter.com/lobomfz) @ twitter
