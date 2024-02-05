@@ -1,22 +1,16 @@
 package org.acme;
 
-import org.hibernate.annotations.Immutable;
-
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
 @RegisterForReflection
-@Immutable
-public class Cliente extends PanacheEntityBase {
+public class SaldoCliente extends PanacheEntityBase {
     
     @Id
-    @GeneratedValue
     public Integer id;
 
-    public Integer limite;
-
+    public Integer saldo;
 }

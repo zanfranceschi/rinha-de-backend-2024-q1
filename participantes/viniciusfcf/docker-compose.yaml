@@ -4,18 +4,14 @@ services:
   api01: &api
     # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
     # publicamente acessível! Ex.: hub.docker.com
-    image: viniciusfcf/rinha-backend-2024q1:latest
+    image: viniciusfcf/rinha-backend-2024q1-jvm:latest
     hostname: api01
+    network_mode: "host"
     environment:
-      - TESTE=nao
-    
-    # Não é necessário expor qualquer porta além da porta do load balancer,
-    # mas é comum as pessoas o fazerem para testaremsuas APIs e conectarem
-    # ao banco de dados na fase de desenvolvimento.
-    ports:
-      - "8081:8080"
+      - QUARKUS_HTTP_PORT=8081
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -26,21 +22,18 @@ services:
     # Essa sintaxe reusa o que foi declarado em 'api01'.
     <<: *api 
     hostname: api02
+    network_mode: "host"
     environment:
-      - TESTE=nao
-    ports:
-      - "8082:8080"
+      - QUARKUS_HTTP_PORT=8082
  
   nginx:
     image: nginx:latest
+    network_mode: "host"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - api01
       - api02
-    ports:
-        # Obrigatório expor/usar a porta 9999 no load balancer!
-      - "9999:9999" 
     deploy:
       resources:
         limits:
@@ -54,8 +47,8 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
-    ports:
-      - "5432:5432"
+    command: postgres -c 'max_connections=80' -c 'shared_buffers=512MB' -c 'effective_cache_size=512MB' -c 'checkpoint_timeout=1d' -c 'max_wal_size=500MB' -c 'full_page_writes=false'
+    network_mode: "host"
     volumes:
       - ./import.sql:/docker-entrypoint-initdb.d/script.sql
     deploy:
@@ -67,14 +60,11 @@ services:
           # um exemplo – distribua como quiser.
           cpus: "0.13"
           memory: "140MB"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
 
-# O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
-# A edição anterior se beneficiou do modo host pois o volume de requisições
-# era relativamente alto e a virtualização da rede se tornou um gargalo, mas
-# este modo é mais complexo de ser configurado. Fique à vontade para usar o
-# modo que quiser desde que não conflite com portas trivialmente usadas em um
-# SO.
-networks:
-  default:
-    driver: bridge
-    name: rinha-nginx-2024q1
+

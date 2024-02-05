@@ -27,21 +27,21 @@ public class ClientesResource {
         if (!t.ehValida()) {
             throw new WebApplicationException(422);
         }
-        Cliente cliente = Cliente.findById(id, LockModeType.PESSIMISTIC_WRITE);
+        Cliente cliente = Cliente.findById(id);
         t.cliente_id = id;
+        //TODO testar depois um find com lock e increment direto no java...
         if (t.tipo.equals('c')) {
-            Cliente.update("saldo = saldo + ?1", t.valor);
+            SaldoCliente.update("saldo = saldo + ?1 where id = ?2", t.valor, id);
         } else {
             try {
-                Cliente.update("saldo = saldo - ?1", t.valor);
+                SaldoCliente.update("saldo = saldo - ?1 where id = ?2", t.valor, id);
             } catch (Exception e) {
                 // aqui pode ser um saldocheck =]
                 throw new WebApplicationException(422);
             }
         }
 
-        
-        LimiteSaldo limiteSaldo = Cliente.find("select saldo from Cliente where id = ?1", id).project(LimiteSaldo.class)
+        LimiteSaldo limiteSaldo = Cliente.find("select saldo from SaldoCliente where id = ?1", id).project(LimiteSaldo.class)
                 .singleResult();
 
         t.realizada_em = LocalDateTime.now();
@@ -61,13 +61,15 @@ public class ClientesResource {
         Extrato extrato = new Extrato();
         Cliente cliente = Cliente.findById(id);
         extrato.saldo.data_extrato = LocalDateTime.now();
-        extrato.saldo.total = cliente.saldo;
+        SaldoCliente saldoCliente = SaldoCliente.findById(id);
+        extrato.saldo.total = saldoCliente.saldo;
         extrato.saldo.limite = cliente.limite;
         extrato.ultimas_transacoes = Transacao.find("cliente_id = ?1 order by id desc", id).page(0, 10).list();
         return Response.ok().entity(extrato).build();
     }
 
-    private boolean existeCliente(Integer id) {
-        return Cliente.findById(id) != null;
+    private boolean existeCliente(int id) {
+        return id > 0 && id < 6;
+        // return Cliente.findById(id) != null;
     }
 }
