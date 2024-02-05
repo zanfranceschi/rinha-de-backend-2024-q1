@@ -1,3 +1,5 @@
+\c dogfight
+
 CREATE TABLE clients
 (
     id            INT PRIMARY KEY,
