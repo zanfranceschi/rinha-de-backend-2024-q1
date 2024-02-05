@@ -1,17 +1,30 @@
-# Esse script é da edição anterior da Rinha.
-# Por favor, se você souber como deixar esse script similar ao da
-# versão bash e se seu coração mandar, faça um pull request, tá?
+# Use este script para executar testes locais
 
-# Assumindo que o diretório do gatling esteja no mesmo nível que este script
-$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+$RESULTS_WORKSPACE = "$(Get-Location)\load-test\user-files\results"
+$GATLING_BIN_DIR = "$env:USERPROFILE\gatling\3.10.3\bin"
+$GATLING_WORKSPACE = "$(Get-Location)\load-test\user-files"
 
-# Set the GATLING_HOME environment variable
-$Env:GATLING_HOME = Join-Path $ScriptDir "gatling"
+function Run-Gatling {
+    & "$GATLING_BIN_DIR/gatling.bat" -rm local -s RinhaBackendCrebitosSimulation `
+        -rd "Rinha de Backend - 2024/Q1: Crébito" `
+        -rf $RESULTS_WORKSPACE `
+        -sf "$GATLING_WORKSPACE/simulations"
+}
 
-$GatlingBinDir = Join-Path $Env:GATLING_HOME "bin"
-$Workspace = $ScriptDir
+function Start-Test {
+    for ($i = 1; $i -le 20; $i++) {
+        try {
+            # 2 requests to wake the 2 API instances up :)
+            Invoke-RestMethod -Uri "http://localhost:9999/clientes/1/extrato" -ErrorAction Stop
+            Write-Host ""
+            Invoke-RestMethod -Uri "http://localhost:9999/clientes/1/extrato" -ErrorAction Stop
+            Write-Host ""
+            Run-Gatling
+            break
+        } catch {
+            Start-Sleep -Seconds 2
+        }
+    }
+}
 
-& "$GatlingBinDir\gatling.bat" -rm local -s RinhaBackendCrebitosSimulation `
-    -rd "Rinha de Backend - 2024/Q1: Crébito" `
-    -rf "$Workspace\results" `
-    -sf "$Workspace\simulations"
+Start-Test
