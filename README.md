@@ -148,7 +148,7 @@ Um exemplo de submissão/pull request da Ana, poderia ter os seguintes arquivos:
 |  |  ├─ README.md
 ```
 
-A data/hora limite para fazer pull requests para sua submissão é até 2024-03-29T23:59:59.000-03:00. Após esse dia/hora, qualquer pull request será automaticamente rejeitado.
+A data/hora limite para fazer pull requests para sua submissão é até `2024-03-10T23:59:59-03:00`. Após esse dia/hora, qualquer pull request será automaticamente rejeitado.
 
 Note que você poderá fazer quantos pull requests desejar até essa data/hora limite!
 
