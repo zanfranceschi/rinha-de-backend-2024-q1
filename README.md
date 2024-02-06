@@ -119,7 +119,7 @@ Obs.: Não cadastre um cliente com o ID 6 especificamente, pois parte do teste �
 
 
 ## Como Fazer e Entregar?
-Assim como na Rinha de Backend anterior, você precisará conteinerizar sua API e outros componentes usados no formato de *docker-compose*, obedecer às [restrições de recursos de CPU e memória](#restricoes), [configuração mímina arquitetural](#arquitetura), e estrutura de artefatos e processo de entrega (o que, onde e quando suas coisas precisam ser entregues).
+Assim como na Rinha de Backend anterior, você precisará conteinerizar sua API e outros componentes usados no formato de *docker-compose*, obedecer às [restrições de recursos de CPU e memória](#restricoes), [configuração mínima arquitetural](#arquitetura), e estrutura de artefatos e processo de entrega (o que, onde e quando suas coisas precisam ser entregues).
 
 ### Artefato, Processo e Data Limite de Entrega
 Para participar, basta fazer um pull request neste repositório incluindo um subdiretório em [participantes](./participantes) com os seguintes arquivos:
@@ -158,7 +158,7 @@ Por "API" aqui, me refiro a todos os serviços envolvidos para que o serviço qu
 A sua API precisa ter, no mínimo, os seguintes serviços:
 - Um **load balancer** que faça a distribuição de tráfego usando o algoritmo round robin. Diferentemente da edição anterior, você não precisa usar o Nginx – pode escolher (ou até fazer) qualquer um como p.ex. o HAProxy. **O load balancer será o serviço que receberá as requisições do teste e ele precisa aceitar requisições na porta 9999**!
 - **2 instâncias de servidores web** que atenderão às requisições HTTP (distribuídas pelo load balancer).
-- Um banco de dados relacional ou não relacional (exceto bancos de dados que têm como principal caracterísitca o armazenamento de dados em memória, tal como Redis, por exemplo).
+- Um banco de dados relacional ou não relacional (exceto bancos de dados que têm como principal característica o armazenamento de dados em memória, tal como Redis, por exemplo).
 
 ```mermaid
 flowchart TD
@@ -217,7 +217,7 @@ services:
       - DB_HOSTNAME=db
     
     # Não é necessário expor qualquer porta além da porta do load balancer,
-    # mas é comum as pessoas o fazerem para testaremsuas APIs e conectarem
+    # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
     # ao banco de dados na fase de desenvolvimento.
     ports:
       - "8081:8080"
