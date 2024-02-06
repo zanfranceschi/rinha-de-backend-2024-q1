@@ -8,11 +8,11 @@ O principal assunto dessa Rinha trata de controle de concorrência com o tema cr
 Se quiser entender mais sobre o espírito das Rinhas, confira o [repositório da primeira edição](https://github.com/zanfranceschi/rinha-de-backend-2023-q3).
 
 
-Ah!, e antes de continuar, é importante dizer que a [Cubos Academy](https://cubos.academy/) disponibilizou o cupom `RINHADEV` que te dá 20% de desconto **PARA QUALQUER CURSO**! Vai lá no site deles e dá uma olhada – têm muitos cursos bem legais!
+Ah! E antes de continuar, é importante dizer que a [Cubos Academy](https://cubos.academy/) disponibilizou o cupom `RINHADEV` que te dá 20% de desconto **PARA QUALQUER CURSO**! Vai lá no site deles e dá uma olhada – têm muitos cursos bem legais!
 
 ## O Que Precisa Ser Feito?
 
-Para participar você precisa desenolver uma API HTTP (não me chama isso de REST, pelo amor) com os seguintes endpoints:
+Para participar você precisa desenvolver uma API HTTP com os seguintes endpoints:
 
 ### Transações
 **Requisição**
@@ -29,7 +29,7 @@ Onde
 - `[id]` (na URL) deve ser um número inteiro representando a identificação do cliente.
 - `valor` deve um número inteiro positivo que representa centavos (não vamos trabalhar com frações de centavos). Por exemplo, R$ 10 são 1000 centavos.
 - `tipo` deve ser apenas `c` para crédito ou `d` para débito.
-- `descricao` deve ser uma sting de 1 a 10 caractéres.
+- `descricao` deve ser uma string de 1 a 10 caractéres.
 
 Todos os campos são obrigatórios.
 
@@ -53,7 +53,7 @@ Uma transação de débito **nunca** pode deixar o saldo do cliente menor que se
 
 Se uma requisição para débito for deixar o saldo inconsistente, a API deve retornar HTTP Status Code 422 sem completar a transação! O corpo da resposta nesse caso não será testado e você pode escolher como o representar.
 
-Se o atributo `[id]` da URL for de uma identificação não existe de cliente, a API deve retornar HTTP Status Code 404. O corpo da resposta nesse caso não será testado e você pode escolher como o representar. Se a API retornar algo como HTTP 200 informando que o cliente não foi encontrado no corpo da resposta ou HTTP 204 sem corpo, ficarei extremamente deprimido e a Rinha será cancelada para sempre.
+Se o atributo `[id]` da URL for de uma identificação não existente de cliente, a API deve retornar HTTP Status Code 404. O corpo da resposta nesse caso não será testado e você pode escolher como o representar. Se a API retornar algo como HTTP 200 informando que o cliente não foi encontrado no corpo da resposta ou HTTP 204 sem corpo, ficarei extremamente deprimido e a Rinha será cancelada para sempre.
 
 ## Extrato
 **Requisição**
@@ -105,7 +105,7 @@ Se o atributo `[id]` da URL for de uma identificação não existente de cliente
 
 
 ## Cadastro Inicial de Clientes
-Para haver ênfase em concorrência durante o teste, poucos clientes devem ser cadastrados e testados. Por isso, apenas os cinco seguintes clientes com os seguintes ids, limites e saldos iniciais devem ser previamente cadastrados para o teste – isso é imprescindível!
+Para haver ênfase em concorrência durante o teste, poucos clientes devem ser cadastrados e testados. Por isso, apenas cinco clientes, com os seguintes IDs, limites e saldos iniciais, devem ser previamente cadastrados para o teste – isso é imprescindível!
 
 | id | limite | saldo inicial
 | - | - | -
@@ -115,23 +115,23 @@ Para haver ênfase em concorrência durante o teste, poucos clientes devem ser c
 | 4 | 10000000 | 0
 | 5 | 500000 | 0
 
-Obs.: Não cadastre um cliente com id 6 especificamente, pois parte do teste é verificar se o cliente de id 6 realmente não existe e API retorna HTTP 404!
+Obs.: Não cadastre um cliente com o ID 6 especificamente, pois parte do teste é verificar se o cliente com o ID 6 realmente não existe e a API retorna HTTP 404!
 
 
 ## Como Fazer e Entregar?
-Assim como na Rinha de Backend anterior, você precisará conteinerizar sua API e outros componentes usados no formato de *docker-compose*, obedever às [restrições de recursos de CPU e memória](#restricoes), [configuração mímina arquitetural](#arquitetura), e estrutura de artefatos e processo de entrega (o que, onde e quando suas coisas precisam ser entregues).
+Assim como na Rinha de Backend anterior, você precisará conteinerizar sua API e outros componentes usados no formato de *docker-compose*, obedecer às [restrições de recursos de CPU e memória](#restricoes), [configuração mímina arquitetural](#arquitetura), e estrutura de artefatos e processo de entrega (o que, onde e quando suas coisas precisam ser entregues).
 
 ### Artefato, Processo e Data Limite de Entrega
 Para participar, basta fazer um pull request neste repositório incluindo um subdiretório em [participantes](./participantes) com os seguintes arquivos:
 - `docker-compose.yml` - arquivo interpretável por `docker-compose` contendo a declaração dos serviços que compõe sua API respeitando as [restrições de CPU/memória](#restricoes) e [arquitetura mínima](#arquitetura).
-- `README.md` - incluindo pelo menos seu nome, tecnologias que usou, o link para o repositório do código fonte da sua API, e alguma forma de entrar em contato caso vença. Fiquei à vontade para incluir informações adicionais como link para site, etc.
+- `README.md` - incluindo pelo menos seu nome, tecnologias que usou, o link para o repositório do código fonte da sua API, e alguma forma de entrar em contato caso vença. Fique à vontade para incluir informações adicionais como link para site, etc.
 - Inclua aqui também quaisquer outros diretórios/arquivos necessários para que seus contêineres subam corretamente como, por exemplo, `nginx.conf`, `banco.sql`, etc.
 
 [Aqui](./participantes/exemplo) tem um exemplo de submissão para te ajudar, caso queira.
 
 **Importante!** É fundamental que todos os serviços declarados no `docker-compose.yml` estejam publicamente disponíveis! Caso contrário, não será possível executar os testes. Para isso, você pode criar uma conta em hub.docker.com para disponibilizar suas imagens. Essa imagens geralmente terão o formato \<user\>/\<imagem\>:\<tag\> – por exemplo, `zanfranceschi/rinha-api:latest`.
 
-Um erro comum na edição anterior da Rinha, foi o de imagens sendo declaradas como se existem localmente – isso pode ser verdade para quem as construiu (fez o build localmente), mas não será para o servidor que executará os testes!
+Um erro comum na edição anterior da Rinha foi a declaração de imagens como se estivessem presentes localmente. Isso pode ser verdade para quem as construiu (realizou o build localmente), mas não será verdadeiro para o servidor que executará os testes!
 
 
 **Importante!** É obrigatório deixar o repositório contendo o código fonte da sua API publicamente acessível e informado no arquivo `README.md` entregue na submissão. Afinal, a Rinha de Backend tem como principal objetivo compartilhar conhecimento!
@@ -148,7 +148,7 @@ Um exemplo de submissão/pull request da Ana, poderia ter os seguintes arquivos:
 |  |  ├─ README.md
 ```
 
-A data/hora limite para fazer pull requests para sua submissão é até 2024-03-29T23:59:59.000-03:00. Após esse dia/hora, qualquer pull request será automaticamente rejeitado.
+A data/hora limite para fazer pull requests para sua submissão é até `2024-03-10T23:59:59-03:00`. Após esse dia/hora, qualquer pull request será automaticamente rejeitado.
 
 Note que você poderá fazer quantos pull requests desejar até essa data/hora limite!
 
@@ -171,7 +171,7 @@ flowchart TD
     end
 ```
 
-**Nota**: Você pode usar componentes adicionais se quiser. Mas lembre-se de que as restrições de CPU e memória devem obedecer a regra de que a soma dos limites (que devem ser declarados para todos os serviços) não poderão ultrapassar 1.5 unidades de CPU e 550MB de memória! Use o bom senso e boa fé, não adicione um banco relacional e um Redis, por exemplo, e use apenas o Redis como armazenamento – afinal, a Rinha é apenas uma brincadeira que fomenta o aprendizado e não a competição desleal.
+**Nota**: Você pode usar componentes adicionais se quiser. Mas lembre-se de que as restrições de CPU e memória devem obedecer a regra de que a soma dos limites (que devem ser declarados para todos os serviços) não poderá ultrapassar 1.5 unidades de CPU e 550MB de memória! Use o bom senso e boa fé, não adicione um banco relacional e um Redis, por exemplo, e use apenas o Redis como armazenamento – afinal, a Rinha é apenas uma brincadeira que fomenta o aprendizado e não a competição desleal.
 
 ### <a name="restricoes">Restrições de CPU/Memória</a>
 Dentro do seu arquivo docker-compose.yml, você deverá limitar todos os serviços para que a soma deles não ultrapasse os seguintes limites:
@@ -333,6 +333,94 @@ http {
 
 ## Ferramenta de Teste
 Como na edição anterior, a ferramenta Gatling será usada novamente para realizar o teste de performance. Pode fazer muita diferença você executar os testes durante a fase de desenvolvimento para detectar possíveis problemas e gargalos. O teste está disponível nesse repositório em [load-test](./load-test).
+
+## Ambiente de Teste
+O ambiente (SO e versões de software) usado para teste será:
+
+Docker
+``` 
+$ docker --version
+Docker version 25.0.2, build 29cf629
+```
+
+Gatlng
+``` 
+# gatling versão 3.10.3
+$ java --version
+openjdk 21.0.1 2023-10-17
+OpenJDK Runtime Environment (build 21.0.1+12-Ubuntu-223.04)
+OpenJDK 64-Bit Server VM (build 21.0.1+12-Ubuntu-223.04, mixed mode, sharing)
+
+```
+
+CPU
+``` 
+$ lscpu                          
+Architecture:            x86_64
+  CPU op-mode(s):        32-bit, 64-bit
+  Address sizes:         39 bits physical, 48 bits virtual
+  Byte Order:            Little Endian
+CPU(s):                  4
+  On-line CPU(s) list:   0-3
+Vendor ID:               GenuineIntel
+  Model name:            Intel(R) Core(TM) i7-6500U CPU @ 2.50GHz
+    CPU family:          6
+    Model:               78
+    Thread(s) per core:  2
+    Core(s) per socket:  2
+    Socket(s):           1
+    Stepping:            3
+    CPU(s) scaling MHz:  94%
+    CPU max MHz:         3100,0000
+    CPU min MHz:         400,0000
+    BogoMIPS:            5199,98
+    Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss 
+                         ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_
+                         tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1
+                          sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault
+                          epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust 
+                         bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm
+                          ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp md_clear flush_l1d arch_capabilities
+Virtualisation features: 
+  Virtualisation:        VT-x
+Caches (sum of all):     
+  L1d:                   64 KiB (2 instances)
+  L1i:                   64 KiB (2 instances)
+  L2:                    512 KiB (2 instances)
+  L3:                    4 MiB (1 instance)
+NUMA:                    
+  NUMA node(s):          1
+  NUMA node0 CPU(s):     0-3
+Vulnerabilities:         
+  Gather data sampling:  Not affected
+  Itlb multihit:         KVM: Mitigation: VMX disabled
+  L1tf:                  Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+  Mds:                   Mitigation; Clear CPU buffers; SMT vulnerable
+  Meltdown:              Mitigation; PTI
+  Mmio stale data:       Mitigation; Clear CPU buffers; SMT vulnerable
+  Retbleed:              Mitigation; IBRS
+  Spec rstack overflow:  Not affected
+  Spec store bypass:     Mitigation; Speculative Store Bypass disabled via prctl
+  Spectre v1:            Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+  Spectre v2:            Mitigation; IBRS, IBPB conditional, STIBP conditional, RSB filling, PBRSB-eIBRS Not affected
+  Srbds:                 Mitigation; Microcode
+  Tsx async abort:       Not affected
+
+```
+
+Memória
+```
+$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       4,4Gi       8,7Gi       754Mi       3,4Gi        11Gi
+Swap:          2,0Gi          0B       2,0Gi
+```
+
+SO (Ubuntu 23.04)
+```
+$ uname -a
+Linux 6.2.0-39-generic #40-Ubuntu SMP PREEMPT_DYNAMIC Tue Nov 14 14:18:00 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+```
 
 ### Para executar os testes
 Aqui estão instruções rápidas para você poder executar os testes:
