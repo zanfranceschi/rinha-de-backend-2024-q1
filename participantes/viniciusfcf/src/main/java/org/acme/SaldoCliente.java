@@ -12,7 +12,7 @@ public class SaldoCliente extends PanacheEntityBase {
     @Id
     public Integer id;
 
-    public Integer saldo;
+    public int saldo;
 
-    public Integer limite;
+    public int limite;
 }

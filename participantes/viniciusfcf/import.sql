@@ -1,16 +1,13 @@
 CREATE TABLE public.cliente (
 	id SERIAL PRIMARY KEY,
-	limite INTEGER NOT NULL
+	limite INTEGER NOT NULL -- poderia ter tirado, n tirei por preguiça
 );
 
 CREATE TABLE public.saldocliente (
-	id INTEGER PRIMARY KEY NOT NULL,
+	id INTEGER PRIMARY KEY NOT NULL, -- id do cliente
 	-- Dupliquei, é a vida.
 	limite INTEGER NOT NULL,
-  	saldo INTEGER NOT NULL,
-    CONSTRAINT saldo_check CHECK (-(saldo) <= limite),
-	CONSTRAINT fk_clientes_id
-		FOREIGN KEY (id) REFERENCES cliente(id)
+  	saldo INTEGER NOT NULL
 );
 
 CREATE TABLE public.transacao (
@@ -20,8 +17,9 @@ CREATE TABLE public.transacao (
 	tipo CHAR(1) NOT NULL,
 	descricao VARCHAR(10) NOT NULL,
 	realizada_em TIMESTAMP NOT NULL,
-	CONSTRAINT fk_clientes_transacoes_id
-		FOREIGN KEY (cliente_id) REFERENCES cliente(id)
+	-- Dupliquei, é a vida.
+	limite INTEGER NOT NULL,
+  	saldo INTEGER NOT NULL
 );
 
 

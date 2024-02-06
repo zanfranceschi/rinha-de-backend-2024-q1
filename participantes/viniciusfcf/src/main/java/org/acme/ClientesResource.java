@@ -9,7 +9,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -20,32 +20,36 @@ public class ClientesResource {
     @Path("/{id}/transacoes")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response debitarCreditar(@PathParam("id") Integer id, TransacaoEntrada te) {
+    public Response debitarCreditar(@PathParam("id") Integer id, TransacaoEntrada te,
+            @QueryParam("sleep1") boolean sleep1) throws InterruptedException {
         if (!existeCliente(id)) {
-            throw new WebApplicationException(404);
+            return Response.status(404).build();
         }
         if (!te.ehValida()) {
-            throw new WebApplicationException(422);
+            return Response.status(422).build();
         }
-        // TODO testar depois um find com lock e increment direto no java...
-        if (te.tipo.equals("c")) {
-            SaldoCliente.update("saldo = saldo + ?1 where id = ?2", Integer.parseInt(te.valor), id);
-        } else {
-            try {
-                SaldoCliente.update("saldo = saldo - ?1 where id = ?2", Integer.parseInt(te.valor), id);
-            } catch (Exception e) {
-                // aqui pode ser um saldocheck =]
-                throw new WebApplicationException(422);
-            }
-        }
-
-        LimiteSaldo limiteSaldo = Cliente.find("select saldo, limite from SaldoCliente where id = ?1", id)
-                .project(LimiteSaldo.class)
-                .singleResult();
-
         te.cliente_id = id;
+
         Transacao t = Transacao.of(te);
+        SaldoCliente saldoCliente = SaldoCliente.findById(id, LockModeType.PESSIMISTIC_WRITE);
+        // TODO testar depois um find com lock e increment direto no java...
+        int valor = Integer.parseInt(te.valor);
+        if (te.tipo.equals("c")) {
+            saldoCliente.saldo += valor;
+        } else {
+            if (saldoCliente.saldo - valor < -saldoCliente.limite) {
+                return Response.status(422).build();
+            }
+            saldoCliente.saldo -= valor;
+        }
+        saldoCliente.persist();
+        t.limite = saldoCliente.limite;
+        t.saldo = saldoCliente.saldo;
         t.persist();
+        LimiteSaldo limiteSaldo = new LimiteSaldo(saldoCliente.saldo, saldoCliente.limite);
+        if (sleep1) {
+            Thread.sleep(10000);
+        }
         return Response.ok().entity(limiteSaldo).build();
     }
 
@@ -54,14 +58,21 @@ public class ClientesResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response extrato(@PathParam("id") Integer id) {
         if (!existeCliente(id)) {
-            throw new WebApplicationException(404);
+            return Response.status(404).build();
         }
         Extrato extrato = new Extrato();
         extrato.saldo.data_extrato = LocalDateTime.now();
-        SaldoCliente saldoCliente = SaldoCliente.findById(id);
-        extrato.saldo.total = saldoCliente.saldo;
-        extrato.saldo.limite = saldoCliente.limite;
         extrato.ultimas_transacoes = Transacao.find("cliente_id = ?1 order by id desc", id).page(0, 10).list();
+        if (extrato.ultimas_transacoes.size() > 0) {
+            Transacao ultimaTransacao = extrato.ultimas_transacoes.get(0);
+            extrato.saldo.total = ultimaTransacao.saldo;
+            extrato.saldo.limite = ultimaTransacao.limite;
+        } else {
+            SaldoCliente saldoCliente = SaldoCliente.findById(id);
+            extrato.saldo.total = saldoCliente.saldo;
+            extrato.saldo.limite = saldoCliente.limite;
+        }
+
         return Response.ok().entity(extrato).build();
     }
 
