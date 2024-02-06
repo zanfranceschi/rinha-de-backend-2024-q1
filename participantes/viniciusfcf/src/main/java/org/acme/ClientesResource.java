@@ -2,6 +2,7 @@ package org.acme;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.LockModeType;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -26,10 +27,8 @@ public class ClientesResource {
         if (!te.ehValida()) {
             throw new WebApplicationException(422);
         }
-        Cliente cliente = Cliente.findById(id);
-        te.cliente_id = id;
         // TODO testar depois um find com lock e increment direto no java...
-        if (te.tipo.equals('c')) {
+        if (te.tipo.equals("c")) {
             SaldoCliente.update("saldo = saldo + ?1 where id = ?2", Integer.parseInt(te.valor), id);
         } else {
             try {
@@ -40,14 +39,13 @@ public class ClientesResource {
             }
         }
 
-        LimiteSaldo limiteSaldo = Cliente.find("select saldo from SaldoCliente where id = ?1", id)
+        LimiteSaldo limiteSaldo = Cliente.find("select saldo, limite from SaldoCliente where id = ?1", id)
                 .project(LimiteSaldo.class)
                 .singleResult();
 
         te.cliente_id = id;
         Transacao t = Transacao.of(te);
         t.persist();
-        limiteSaldo.limite = cliente.limite;
         return Response.ok().entity(limiteSaldo).build();
     }
 
@@ -59,11 +57,10 @@ public class ClientesResource {
             throw new WebApplicationException(404);
         }
         Extrato extrato = new Extrato();
-        Cliente cliente = Cliente.findById(id);
         extrato.saldo.data_extrato = LocalDateTime.now();
         SaldoCliente saldoCliente = SaldoCliente.findById(id);
         extrato.saldo.total = saldoCliente.saldo;
-        extrato.saldo.limite = cliente.limite;
+        extrato.saldo.limite = saldoCliente.limite;
         extrato.ultimas_transacoes = Transacao.find("cliente_id = ?1 order by id desc", id).page(0, 10).list();
         return Response.ok().entity(extrato).build();
     }

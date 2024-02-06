@@ -1,29 +1,18 @@
 package org.acme;
 
-import java.time.LocalDateTime;
-
-import org.hibernate.annotations.Immutable;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @RegisterForReflection
 public class TransacaoEntrada {
 
-    public Integer id;
-
     public String valor;
 
+    @JsonIgnore
     public Integer cliente_id;
 
-    public Character tipo;
+    public String tipo;
 
     public String descricao;
 
@@ -33,7 +22,8 @@ public class TransacaoEntrada {
                 && descricao != null
                 && valorEhInteger()
                 && Integer.parseInt(valor) > 0
-                && (tipo.equals('c') || tipo.equals('d'))
+                && tipo.length() == 1
+                && (tipo.charAt(0)  == 'c' || tipo.charAt(0) == 'd')
                 && descricao.length() > 0
                 && descricao.length() <= 10;
     }

@@ -13,4 +13,6 @@ public class SaldoCliente extends PanacheEntityBase {
     public Integer id;
 
     public Integer saldo;
+
+    public Integer limite;
 }

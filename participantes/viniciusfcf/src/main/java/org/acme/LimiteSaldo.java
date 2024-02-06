@@ -12,7 +12,7 @@ public class LimiteSaldo {
         this.saldo = saldo;
     }
 
-    public LimiteSaldo(Integer limite, Integer saldo) {
+    public LimiteSaldo(Integer saldo, Integer limite) {
         this.limite = limite;
         this.saldo = saldo;
     }

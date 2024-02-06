@@ -3,7 +3,6 @@ package org.acme;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.runtime.annotations.RegisterForReflection;
@@ -33,7 +32,7 @@ public class Transacao extends PanacheEntityBase {
 
     public static Transacao of(TransacaoEntrada te) {
         Transacao t = new Transacao();
-        t.tipo = te.tipo;
+        t.tipo = te.tipo.charAt(0);
         t.cliente_id = te.cliente_id;
         t.descricao = te.descricao;
         t.realizada_em = LocalDateTime.now();
