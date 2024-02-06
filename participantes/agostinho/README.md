@@ -30,3 +30,12 @@ $ docker compose up -d
 Como o critério de avaliação é um mistério que só será desvendado na live da rinha, compartilho aqui um print clássico de como está a app neste momento (6/Fev/2024) só pra não perder o costume:
 
 <img width="1032" alt="Screenshot 2024-02-06 at 01 07 14" src="https://github.com/leandronsp/rinha-de-backend-2024-q1/assets/385640/7459d89c-6277-4d03-a387-324a8b5766ac">
+
+## Outras participações
+
+O autor também participou da primeira edição da rinha com duas submissões, sendo uma em Ruby e outra em Bash (pelo meme):
+
+* [leandronsp/rinha-backend-ruby](https://github.com/leandronsp/rinha-backend-ruby)
+* [leandronsp/rinha-backend-bash](https://github.com/leandronsp/rinha-backend-bash)
+
+A versão Ruby ficou em 20º lugar (not too bad), ao passo que a versão Bash se deleitou na última posição das submissões que funcionaram, conquistando o tão sonhado 51º lugar (not too bad too).
