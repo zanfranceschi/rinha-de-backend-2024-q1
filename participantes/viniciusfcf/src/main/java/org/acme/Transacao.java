@@ -18,12 +18,10 @@ public class Transacao extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     public Integer id;
 
     public Integer valor;
 
-    @JsonIgnore
     public Integer cliente_id;
 
     public Character tipo;
@@ -33,14 +31,14 @@ public class Transacao extends PanacheEntityBase {
     @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'")
     public LocalDateTime realizada_em;
 
-    public boolean ehValida() {
-        return valor != null
-                && tipo != null
-                && descricao != null
-                && valor > 0
-                && (tipo.equals('c') || tipo.equals('d'))
-                && descricao.length() > 0
-                && descricao.length() <= 10;
+    public static Transacao of(TransacaoEntrada te) {
+        Transacao t = new Transacao();
+        t.tipo = te.tipo;
+        t.cliente_id = te.cliente_id;
+        t.descricao = te.descricao;
+        t.realizada_em = LocalDateTime.now();
+        t.valor = Integer.valueOf(te.valor);
+        return t;
     }
 
 }

@@ -1,4 +1,4 @@
-version: "3.5"
+version: "3.6"
 
 services:
   api01: &api
@@ -15,14 +15,18 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.6"
-          memory: "200MB"
+          cpus: "0.4"
+          memory: "500MB"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 1000000
+        hard: 1000000
 
   api02:
     # Essa sintaxe reusa o que foi declarado em 'api01'.
     <<: *api 
     hostname: api02
-    network_mode: "host"
     environment:
       - QUARKUS_HTTP_PORT=8082
  
@@ -37,8 +41,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.17"
-          memory: "10MB"
+          cpus: "0.2"
+          memory: "50MB"
 
   db:
     image: postgres:latest
@@ -47,7 +51,7 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
-    command: postgres -c 'max_connections=80' -c 'shared_buffers=512MB' -c 'effective_cache_size=512MB' -c 'checkpoint_timeout=1d' -c 'max_wal_size=500MB' -c 'full_page_writes=false'
+    command: postgres -c 'max_connections=80' -c 'shared_buffers=256MB' -c 'effective_cache_size=128MB' -c 'checkpoint_timeout=1d' -c 'max_wal_size=128MB' -c 'full_page_writes=false'
     network_mode: "host"
     volumes:
       - ./import.sql:/docker-entrypoint-initdb.d/script.sql
@@ -58,8 +62,8 @@ services:
           # aqui declarados é de 1.5 unidades de CPU e 550MB
           # de memória. A distribuição feita aqui é apenas
           # um exemplo – distribua como quiser.
-          cpus: "0.13"
-          memory: "140MB"
+          cpus: "0.5"
+          memory: "300MB"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
       interval: 5s

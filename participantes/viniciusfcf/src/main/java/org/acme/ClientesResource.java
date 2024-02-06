@@ -2,7 +2,6 @@ package org.acme;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.LockModeType;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -20,32 +19,33 @@ public class ClientesResource {
     @Path("/{id}/transacoes")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response debitarCreditar(@PathParam("id") Integer id, Transacao t) {
+    public Response debitarCreditar(@PathParam("id") Integer id, TransacaoEntrada te) {
         if (!existeCliente(id)) {
             throw new WebApplicationException(404);
         }
-        if (!t.ehValida()) {
+        if (!te.ehValida()) {
             throw new WebApplicationException(422);
         }
         Cliente cliente = Cliente.findById(id);
-        t.cliente_id = id;
-        //TODO testar depois um find com lock e increment direto no java...
-        if (t.tipo.equals('c')) {
-            SaldoCliente.update("saldo = saldo + ?1 where id = ?2", t.valor, id);
+        te.cliente_id = id;
+        // TODO testar depois um find com lock e increment direto no java...
+        if (te.tipo.equals('c')) {
+            SaldoCliente.update("saldo = saldo + ?1 where id = ?2", Integer.parseInt(te.valor), id);
         } else {
             try {
-                SaldoCliente.update("saldo = saldo - ?1 where id = ?2", t.valor, id);
+                SaldoCliente.update("saldo = saldo - ?1 where id = ?2", Integer.parseInt(te.valor), id);
             } catch (Exception e) {
                 // aqui pode ser um saldocheck =]
                 throw new WebApplicationException(422);
             }
         }
 
-        LimiteSaldo limiteSaldo = Cliente.find("select saldo from SaldoCliente where id = ?1", id).project(LimiteSaldo.class)
+        LimiteSaldo limiteSaldo = Cliente.find("select saldo from SaldoCliente where id = ?1", id)
+                .project(LimiteSaldo.class)
                 .singleResult();
 
-        t.realizada_em = LocalDateTime.now();
-
+        te.cliente_id = id;
+        Transacao t = Transacao.of(te);
         t.persist();
         limiteSaldo.limite = cliente.limite;
         return Response.ok().entity(limiteSaldo).build();
