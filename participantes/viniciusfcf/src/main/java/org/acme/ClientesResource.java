@@ -56,7 +56,8 @@ public class ClientesResource {
     @GET
     @Path("/{id}/extrato")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response extrato(@PathParam("id") Integer id) {
+    public Response extrato(@PathParam("id") Integer id,
+    @QueryParam("sleep1") boolean sleep1) throws InterruptedException {
         if (!existeCliente(id)) {
             return Response.status(404).build();
         }
@@ -72,7 +73,9 @@ public class ClientesResource {
             extrato.saldo.total = saldoCliente.saldo;
             extrato.saldo.limite = saldoCliente.limite;
         }
-
+        if (sleep1) {
+            Thread.sleep(10000);
+        }
         return Response.ok().entity(extrato).build();
     }
 
