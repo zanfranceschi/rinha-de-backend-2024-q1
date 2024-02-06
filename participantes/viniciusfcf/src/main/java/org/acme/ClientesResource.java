@@ -9,7 +9,6 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -20,8 +19,7 @@ public class ClientesResource {
     @Path("/{id}/transacoes")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response debitarCreditar(@PathParam("id") Integer id, TransacaoEntrada te,
-            @QueryParam("sleep1") boolean sleep1) throws InterruptedException {
+    public Response debitarCreditar(@PathParam("id") Integer id, TransacaoEntrada te) {
         if (!existeCliente(id)) {
             return Response.status(404).build();
         }
@@ -47,17 +45,13 @@ public class ClientesResource {
         t.saldo = saldoCliente.saldo;
         t.persist();
         LimiteSaldo limiteSaldo = new LimiteSaldo(saldoCliente.saldo, saldoCliente.limite);
-        if (sleep1) {
-            Thread.sleep(10000);
-        }
         return Response.ok().entity(limiteSaldo).build();
     }
 
     @GET
     @Path("/{id}/extrato")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response extrato(@PathParam("id") Integer id,
-    @QueryParam("sleep1") boolean sleep1) throws InterruptedException {
+    public Response extrato(@PathParam("id") Integer id) {
         if (!existeCliente(id)) {
             return Response.status(404).build();
         }
@@ -72,9 +66,6 @@ public class ClientesResource {
             SaldoCliente saldoCliente = SaldoCliente.findById(id);
             extrato.saldo.total = saldoCliente.saldo;
             extrato.saldo.limite = saldoCliente.limite;
-        }
-        if (sleep1) {
-            Thread.sleep(10000);
         }
         return Response.ok().entity(extrato).build();
     }
