@@ -13,7 +13,7 @@ Autor:
 - [Repositório](https://github.com/zebaroni/rinha-backend-2024-q1)
 
 Resultados:
-- Mean Request Time: **2ms**
-- Max Request Time: **18ms**
+- mean: **2ms**
+- max: **18ms**
 
-![Test Screenshot](/test-ss.png)
+![Test Screenshot](https://raw.githubusercontent.com/zebaroni/rinha-backend-2024-q1/master/test-ss.png)
