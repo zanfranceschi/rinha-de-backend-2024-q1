@@ -3,7 +3,7 @@
 ### EuFountai
 
 Github: [@eletroswing](https://github.com/eletroswing) <br />
-Repositório: [https://github.com/eletroswing/rinha-backend-2024](https://github.com/eletroswing/rinha-backend-2024)
+Repositório: [https://github.com/eletroswing/rinha-de-backend-2024-http](https://github.com/eletroswing/rinha-de-backend-2024-http)
 
 
 ### Stack: Node puro com PG
