@@ -343,7 +343,7 @@ $ docker --version
 Docker version 25.0.2, build 29cf629
 ```
 
-Gatlng
+Gatling
 ``` 
 # gatling versão 3.10.3
 $ java --version
