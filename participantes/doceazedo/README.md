@@ -1,5 +1,5 @@
 <h1 align="center">Rinha de Backend - 2024/Q1</h1>
-<p align="center">✨🧡 — <i><b>SvelteKit Editon</b></i> — 🧡✨</p>
+<p align="center">✨🧡 — <i><b>SvelteKit Edition</b></i> — 🧡✨</p>
 
 > [!NOTE]  
 > **O repositório com o código-fonte está disponível [aqui](https://github.com/doceazedo/rinha-de-backend-2024-q1/tree/main/participantes/doceazedo).**
