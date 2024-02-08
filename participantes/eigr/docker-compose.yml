@@ -1,0 +1,98 @@
+version: "3.5"
+
+services:
+  api01:
+    &api
+    image: eigr/spawn-rinha-backend-ex:1.1.1
+    restart: always
+    hostname: api01
+    environment:
+      - NODE_COOKIE=cookie-9ce3712b0c3ee21b582c30f942c0d4da-HLuZyQzy+nt0p0r/PVVFTp2tqfLom5igrdmwkYSuO+Q=
+      - POD_NAMESPACE=spawn-rinha
+      - PROXY_ACTOR_SYSTEM_NAME=spawn-rinha
+      - PROXY_CLUSTER_STRATEGY=gossip
+      - PROXY_DATABASE_NAME=eigr-functions-db
+      - PROXY_DATABASE_HOST=db
+      - PROXY_DATABASE_PORT=3306
+      - PROXY_DATABASE_POOL_SIZE=15
+      - PROXY_DATABASE_SECRET=admin
+      - PROXY_DATABASE_TYPE=mariadb
+      - PROXY_DATABASE_USERNAME=admin
+      - PROXY_HTTP_ACCEPTORS_SIZE=300
+      - PROXY_HTTP_PORT=9090
+      - SPAWN_STATESTORE_KEY=3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE=
+    ports:
+      - "3001:9090"
+    depends_on:
+      - db
+    volumes:
+      - /tmp:/app/.cache/bakeware/:rw
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - NODE_COOKIE=cookie-9ce3712b0c3ee21b582c30f942c0d4da-HLuZyQzy+nt0p0r/PVVFTp2tqfLom5igrdmwkYSuO+Q=
+      - POD_NAMESPACE=spawn-rinha
+      - PROXY_ACTOR_SYSTEM_NAME=spawn-rinha
+      - PROXY_CLUSTER_STRATEGY=gossip
+      - PROXY_DATABASE_NAME=eigr-functions-db
+      - PROXY_DATABASE_HOST=db
+      - PROXY_DATABASE_PORT=3306
+      - PROXY_DATABASE_POOL_SIZE=15
+      - PROXY_DATABASE_SECRET=admin
+      - PROXY_DATABASE_TYPE=mariadb
+      - PROXY_DATABASE_USERNAME=admin
+      - PROXY_HTTP_ACCEPTORS_SIZE=300
+      - PROXY_HTTP_PORT=9091
+      - SPAWN_STATESTORE_KEY=3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE=
+    ports:
+      - "3002:9090"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "10MB"
+
+  db:
+    image: mariadb
+    hostname: db
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: eigr-functions-db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    volumes:
+      - mariadb:/var/lib/mysql
+    ports:
+      - "3309:3306"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.13"
+          memory: "140MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
+
+volumes:
+  mysql:
+  postgres:
+  mariadb:
