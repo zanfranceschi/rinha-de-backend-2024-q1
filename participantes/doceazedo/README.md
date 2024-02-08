@@ -15,9 +15,9 @@ Isso acontece:
 
 E isso aqui acontece:
 
-![](https://i.imgur.com/DIDChpi.png)
+![](https://i.imgur.com/XffIUTj.png)
 
-_100% de taxa de sucesso e uma média de 13ms de tempo de resposta!_ ✨
+_100% de taxa de sucesso e uma média de 5ms de tempo de resposta!_ ✨
 
 ## Instruções
 
