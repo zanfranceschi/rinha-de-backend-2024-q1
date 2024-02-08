@@ -7,13 +7,15 @@ services:
     expose:
       - "9999"
     restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://dogfight_user:dogfight_pass@db:5432/dogfight
     depends_on:
       - db
     deploy:
       resources:
         limits:
-          cpus: '0.15'
-          memory: "100MB"
+          cpus: '0.10'
+          memory: "50MB"
 
   api02:
     <<: *api
@@ -34,7 +36,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.20"
+          cpus: "0.15"
           memory: "50MB"
 
   db:
@@ -51,5 +53,5 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: "300MB"
+          cpus: '1.15'
+          memory: "400MB"
