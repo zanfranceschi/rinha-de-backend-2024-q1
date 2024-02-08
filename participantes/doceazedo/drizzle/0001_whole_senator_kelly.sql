@@ -1,0 +1,1 @@
+ALTER TABLE "transacoes" ALTER COLUMN "descricao" SET DATA TYPE varchar(10);
