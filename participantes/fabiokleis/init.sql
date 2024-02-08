@@ -1,10 +1,10 @@
-CREATE UNLOGGED TABLE clientes (
+CREATE TABLE clientes (
 	id SERIAL PRIMARY KEY,
 	nome VARCHAR(50) NOT NULL,
 	limite INTEGER NOT NULL
 );
 
-CREATE UNLOGGED TABLE transacoes (
+CREATE TABLE transacoes (
 	id SERIAL PRIMARY KEY,
 	cliente_id INTEGER NOT NULL,
 	valor INTEGER NOT NULL,
@@ -15,7 +15,7 @@ CREATE UNLOGGED TABLE transacoes (
 		FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
 
-CREATE UNLOGGED TABLE saldos (
+CREATE TABLE saldos (
 	id SERIAL PRIMARY KEY,
 	cliente_id INTEGER NOT NULL,
 	valor INTEGER NOT NULL,
@@ -25,14 +25,13 @@ CREATE UNLOGGED TABLE saldos (
 
 DO $$
 BEGIN
-	INSERT INTO clientes (nome, limite)
-	VALUES
-		('o barato sai caro', 1000 * 100),
-		('zan corp ltda', 800 * 100),
-		('les cruders', 10000 * 100),
-		('padaria joia de cocaia', 100000 * 100),
-		('kid mais', 5000 * 100);
-	
+        INSERT INTO clientes (nome, limite)
+        VALUES ('Cleiton Rasta', 80000),
+               ('Alonzo Church', 100000),
+               ('Marcos Valle', 1000000),
+               ('Vinicius de Moraes', 500000),
+               ('Jose Raul Capablanca', 10000000);
+	       
 	INSERT INTO saldos (cliente_id, valor)
 		SELECT id, 0 FROM clientes;
 END;

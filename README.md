@@ -119,7 +119,9 @@ Obs.: Não cadastre um cliente com o ID 6 especificamente, pois parte do teste �
 
 
 ## Como Fazer e Entregar?
-Assim como na Rinha de Backend anterior, você precisará conteinerizar sua API e outros componentes usados no formato de *docker-compose*, obedecer às [restrições de recursos de CPU e memória](#restricoes), [configuração mímina arquitetural](#arquitetura), e estrutura de artefatos e processo de entrega (o que, onde e quando suas coisas precisam ser entregues).
+Assim como na Rinha de Backend anterior, você precisará conteinerizar sua API e outros componentes usados no formato de *docker-compose*, obedecer às [restrições de recursos de CPU e memória](#restricoes), [configuração mínima arquitetural](#arquitetura), e estrutura de artefatos e processo de entrega (o que, onde e quando suas coisas precisam ser entregues).
+
+Você pode fazer a submissão de forma individual, dupla de 2, dupla de 3 ou até dupla de 50 pessoas. Não tem limite. E você e/ou seu grupo pode fazer mais de uma submissão desde que a API seja diferente. 
 
 ### Artefato, Processo e Data Limite de Entrega
 Para participar, basta fazer um pull request neste repositório incluindo um subdiretório em [participantes](./participantes) com os seguintes arquivos:
@@ -158,7 +160,7 @@ Por "API" aqui, me refiro a todos os serviços envolvidos para que o serviço qu
 A sua API precisa ter, no mínimo, os seguintes serviços:
 - Um **load balancer** que faça a distribuição de tráfego usando o algoritmo round robin. Diferentemente da edição anterior, você não precisa usar o Nginx – pode escolher (ou até fazer) qualquer um como p.ex. o HAProxy. **O load balancer será o serviço que receberá as requisições do teste e ele precisa aceitar requisições na porta 9999**!
 - **2 instâncias de servidores web** que atenderão às requisições HTTP (distribuídas pelo load balancer).
-- Um banco de dados relacional ou não relacional (exceto bancos de dados que têm como principal caracterísitca o armazenamento de dados em memória, tal como Redis, por exemplo).
+- Um banco de dados relacional ou não relacional (exceto bancos de dados que têm como principal característica o armazenamento de dados em memória, tal como Redis, por exemplo).
 
 ```mermaid
 flowchart TD
@@ -217,7 +219,7 @@ services:
       - DB_HOSTNAME=db
     
     # Não é necessário expor qualquer porta além da porta do load balancer,
-    # mas é comum as pessoas o fazerem para testaremsuas APIs e conectarem
+    # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
     # ao banco de dados na fase de desenvolvimento.
     ports:
       - "8081:8080"
@@ -334,93 +336,14 @@ http {
 ## Ferramenta de Teste
 Como na edição anterior, a ferramenta Gatling será usada novamente para realizar o teste de performance. Pode fazer muita diferença você executar os testes durante a fase de desenvolvimento para detectar possíveis problemas e gargalos. O teste está disponível nesse repositório em [load-test](./load-test).
 
-## Ambiente de Teste
-O ambiente (SO e versões de software) usado para teste será:
+## Ambiente de Testes
+Para saber os detalhes sobre o ambiente (SO e versões de software) acesse [Especificações do Ambiente de Testes](./SPECTESTENV.md).
 
-Docker
-``` 
-$ docker --version
-Docker version 25.0.2, build 29cf629
-```
+Note que o ambiente em que os testes serão executados é Linux x64. Portanto, se seu ambiente de desenvolvimento possui outra arquitetura, você precisará fazer o build do docker da seguinte forma:
+`$ docker buildx build --platform linux/amd64`
 
-Gatlng
-``` 
-# gatling versão 3.10.3
-$ java --version
-openjdk 21.0.1 2023-10-17
-OpenJDK Runtime Environment (build 21.0.1+12-Ubuntu-223.04)
-OpenJDK 64-Bit Server VM (build 21.0.1+12-Ubuntu-223.04, mixed mode, sharing)
-
-```
-
-CPU
-``` 
-$ lscpu                          
-Architecture:            x86_64
-  CPU op-mode(s):        32-bit, 64-bit
-  Address sizes:         39 bits physical, 48 bits virtual
-  Byte Order:            Little Endian
-CPU(s):                  4
-  On-line CPU(s) list:   0-3
-Vendor ID:               GenuineIntel
-  Model name:            Intel(R) Core(TM) i7-6500U CPU @ 2.50GHz
-    CPU family:          6
-    Model:               78
-    Thread(s) per core:  2
-    Core(s) per socket:  2
-    Socket(s):           1
-    Stepping:            3
-    CPU(s) scaling MHz:  94%
-    CPU max MHz:         3100,0000
-    CPU min MHz:         400,0000
-    BogoMIPS:            5199,98
-    Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss 
-                         ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_
-                         tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1
-                          sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault
-                          epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust 
-                         bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm
-                          ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp md_clear flush_l1d arch_capabilities
-Virtualisation features: 
-  Virtualisation:        VT-x
-Caches (sum of all):     
-  L1d:                   64 KiB (2 instances)
-  L1i:                   64 KiB (2 instances)
-  L2:                    512 KiB (2 instances)
-  L3:                    4 MiB (1 instance)
-NUMA:                    
-  NUMA node(s):          1
-  NUMA node0 CPU(s):     0-3
-Vulnerabilities:         
-  Gather data sampling:  Not affected
-  Itlb multihit:         KVM: Mitigation: VMX disabled
-  L1tf:                  Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
-  Mds:                   Mitigation; Clear CPU buffers; SMT vulnerable
-  Meltdown:              Mitigation; PTI
-  Mmio stale data:       Mitigation; Clear CPU buffers; SMT vulnerable
-  Retbleed:              Mitigation; IBRS
-  Spec rstack overflow:  Not affected
-  Spec store bypass:     Mitigation; Speculative Store Bypass disabled via prctl
-  Spectre v1:            Mitigation; usercopy/swapgs barriers and __user pointer sanitization
-  Spectre v2:            Mitigation; IBRS, IBPB conditional, STIBP conditional, RSB filling, PBRSB-eIBRS Not affected
-  Srbds:                 Mitigation; Microcode
-  Tsx async abort:       Not affected
-
-```
-
-Memória
-```
-$ free -h
-               total        used        free      shared  buff/cache   available
-Mem:            15Gi       4,4Gi       8,7Gi       754Mi       3,4Gi        11Gi
-Swap:          2,0Gi          0B       2,0Gi
-```
-
-SO (Ubuntu 23.04)
-```
-$ uname -a
-Linux 6.2.0-39-generic #40-Ubuntu SMP PREEMPT_DYNAMIC Tue Nov 14 14:18:00 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-```
+Por exemplo:
+`$ docker buildx build --platform linux/amd64 -t ana/minha-api-matadora:latest .`
 
 ### Para executar os testes
 Aqui estão instruções rápidas para você poder executar os testes:
@@ -452,3 +375,8 @@ A simulação contém um teste de lógica de saldo/limite que extrapola o que é
 ## Critérios para Vencer A Rinha de Backend
 
 Surpresa! :)
+
+
+## Acompanhamento do Status das Execuções dos Testes
+
+[Link do status parcial da Rinha de Backend](./STATUS-TESTES.md).
