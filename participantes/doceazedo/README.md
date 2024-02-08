@@ -6,7 +6,7 @@
 
 Você já pensou o que aconteceria se um dev frontend participasse de uma rinha de backend?
 
-Isso acontece:
+Ele mete uma stack dessas:
 
 - 🧡 [**SvelteKit**](https://kit.svelte.dev): Framework para aplicações Svelte (tal qual o Next é para o React) que, por acaso, serve muito bem pra fazer APIs (em teoria).
 - 💚 [**Drizzle**](https://orm.drizzle.team): ORM para TypeScript
@@ -32,4 +32,5 @@ $ docker-compose up
 ## Autor
 
 - Doce — Twitter: [@doceazedo911](https://twitter.com/doceazedo911) ✦ Site: [doceazedo.com](https://doceazedo.com)
-  [![](https://discord-invite.doceazedo.com/vEGRe2kq8B.svg)](https://discord.gg/vEGRe2kq8B)
+
+[![](https://discord-invite.doceazedo.com/vEGRe2kq8B.svg)](https://discord.gg/vEGRe2kq8B)
