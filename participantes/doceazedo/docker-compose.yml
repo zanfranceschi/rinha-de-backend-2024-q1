@@ -1,0 +1,53 @@
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "50MB"
+
+  postgres:
+    image: postgres:16.1-alpine
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: "postgres"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./postgresql.conf:/etc/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+  api01: &api01
+    image: doceazedo/rinha-de-backend-2024-q1:latest
+    environment:
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      DB_USER: "postgres"
+      DB_PASSWORD: "123456"
+      DB_DATABASE: "postgres"
+    depends_on:
+      - postgres
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "150MB"
+
+  api02:
+    <<: *api01
+
+volumes:
+  postgres:
