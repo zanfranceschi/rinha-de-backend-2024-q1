@@ -2,8 +2,7 @@ version: "3.5"
 
 services:
     api01: &api
-        image: frankapp
-        build: .
+        image: leoralph/rinha-backend-q1-2024:latest
         depends_on:
             db:
                 condition: service_healthy
@@ -44,7 +43,6 @@ services:
             - ./init.sql:/docker-entrypoint-initdb.d/init.sql
             - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
         command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
-        # network_mode: host
         healthcheck:
             test: ["CMD-SHELL", "pg_isready"]
             interval: 5s
