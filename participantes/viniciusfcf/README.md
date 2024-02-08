@@ -4,19 +4,20 @@
 
 Github: [@viniciusfcf](https://github.com/viniciusfcf)
 Twitter: [@viniciusfcf](https://twitter.com/viniciusfcf)
-Repositório: [https://github.com/viniciusfcf/rinha-de-backend-2024-q1/](https://github.com/viniciusfcf/rinha-de-backend-2024-q1)
+Repositório (branch viniciusfcf): [https://github.com/viniciusfcf/rinha-de-backend-2024-q1/tree/viniciusfcf](https://github.com/viniciusfcf/rinha-de-backend-2024-q1/tree/viniciusfcf)
 
 
-### Stack: Quarkus com Postgres
-- Quarkus 🚀
-- Postgres
+### Stack:
+- Quarkus 3.7.1 🚀
+- Mandrel ([Graal](https://github.com/graalvm/mandrel))
+- Postgres 16.1
 - Nginx
 
-### COmo subir
-- Executar: `docker compose down`
+### Como subir
+- Executar: `docker compose up`
 
-### Como apagar os rastros dos containers
-- Após cada execução, é necessário chamar `docker compose down --volumes` para remove ro volume criado pelo Postgres
+### Como verificar dados do build da aplicação
+- acessar: http://localhost:9999/q/info
 
 ### O que esperar?
  - Na minha máquina rodou 99%. 
