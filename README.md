@@ -375,3 +375,8 @@ A simulação contém um teste de lógica de saldo/limite que extrapola o que é
 ## Critérios para Vencer A Rinha de Backend
 
 Surpresa! :)
+
+
+## Acompanhamento do Status das Execuções dos Testes
+
+[Link do status parcial da Rinha de Backend](./STATUS-TESTES.md).
