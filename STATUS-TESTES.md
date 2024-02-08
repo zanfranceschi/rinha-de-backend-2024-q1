@@ -1,6 +1,6 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
-Atualizada em **qui 08 fev 2024 20:00:33 -03**.
+Atualizada em **qui 08 fev 2024 20:07:51 -03**.
  
 | participante | status |
 | --           | --     |
@@ -11,7 +11,7 @@ Atualizada em **qui 08 fev 2024 20:00:33 -03**.
 | [exemplo](./participantes/exemplo) | ok |
 | [fabiokleis](./participantes/fabiokleis) | falha - [logs](./participantes/fabiokleis/docker-compose.logs) |
 | [gasparbarancelli](./participantes/gasparbarancelli) | ok |
-| [gmrms](./participantes/gmrms) | falha - [logs](./participantes/gmrms/docker-compose.logs) |
+| [gmrms](./participantes/gmrms) | ok |
 | [itujo](./participantes/itujo) | ok |
 | [josebaroni](./participantes/josebaroni) | ok |
 | [lazaronixon](./participantes/lazaronixon) | ok |
