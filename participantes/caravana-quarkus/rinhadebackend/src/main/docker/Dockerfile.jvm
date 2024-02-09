@@ -1,0 +1,41 @@
+####
+# docker build -f src/main/docker/Dockerfile.jvm --no-cache --progress=plain -t caravanacloud/rinhadebackend:latest .
+# docker run -i --rm -p 9999:9999 --network=host --env-file ./.env.local caravanacloud/rinhadebackend:latest
+# docker login --username=caravanacloud 
+# docker push caravanacloud/rinhadebackend:latest
+###
+
+### BUILD STAGE ###
+FROM caravanacloud/ubi-java:J21F39 as build
+
+ARG USERNAME=container-user
+
+# User level
+USER $USERNAME
+
+RUN mkdir -p "/home/$USERNAME/quarkus-app"
+WORKDIR "/home/$USERNAME/quarkus-app"
+COPY --chown=$USERNAME . .
+
+ENV PATH="${PATH}:/home/$USERNAME/.sdkman/candidates/maven/current/bin/"
+ARG MVN_XOPTS="-fn -B -ntp -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
+RUN mvn $MVN_XOPTS install
+
+
+### RUNTIME STAGE ###
+FROM caravanacloud/ubi-java:J21F39
+
+# Create user
+ARG USERNAME=container-user
+USER $USERNAME
+
+ARG CP_FROM="/home/container-user/quarkus-app/target/quarkus-app"
+ARG CP_TO=$CP_FROM
+RUN mkdir -p "$CP_TO"
+
+COPY --from=build --chown=$USERNAME $CP_FROM $CP_TO
+
+RUN ls -liah "$CP_TO/quarkus-run.jar"
+
+EXPOSE 9990
+ENTRYPOINT java -jar /home/container-user/quarkus-app/target/quarkus-app/quarkus-run.jar
