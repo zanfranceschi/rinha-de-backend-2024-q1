@@ -1,11 +1,12 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
-Atualizada em **sex 09 fev 2024 13:43:07 -03**.
+Atualizada em **sex 09 fev 2024 14:30:08 -03**.
  
 | participante | status |
 | --           | --     |
 | [agostinho](./participantes/agostinho) | ok |
 | [aysion_nodejs](./participantes/aysion_nodejs) | falha - [logs](./participantes/aysion_nodejs/docker-compose.logs) |
+| [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) |
 | [doceazedo](./participantes/doceazedo) | falha - [logs](./participantes/doceazedo/docker-compose.logs) |
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) |
 | [eu_fountai](./participantes/eu_fountai) | ok |
@@ -14,6 +15,7 @@ Atualizada em **sex 09 fev 2024 13:43:07 -03**.
 | [gasparbarancelli](./participantes/gasparbarancelli) | ok |
 | [giovannibassi](./participantes/giovannibassi) | ok |
 | [gmrms](./participantes/gmrms) | ok |
+| [hiroshimorowaka](./participantes/hiroshimorowaka) | ok |
 | [itujo](./participantes/itujo) | ok |
 | [josebaroni](./participantes/josebaroni) | ok |
 | [lazaronixon](./participantes/lazaronixon) | falha - [logs](./participantes/lazaronixon/docker-compose.logs) |
@@ -25,6 +27,7 @@ Atualizada em **sex 09 fev 2024 13:43:07 -03**.
 | [mateuscolvr](./participantes/mateuscolvr) | ok |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | ok |
 | [murilochianfa](./participantes/murilochianfa) | falha - [logs](./participantes/murilochianfa/docker-compose.logs) |
+| [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) |
 | [olukkas](./participantes/olukkas) | ok |
 | [omurilo](./participantes/omurilo) | ok |
 | [rodrigocaldeira](./participantes/rodrigocaldeira) | ok |
@@ -32,5 +35,5 @@ Atualizada em **sex 09 fev 2024 13:43:07 -03**.
 | [samueljansem](./participantes/samueljansem) | falha - [logs](./participantes/samueljansem/docker-compose.logs) |
 | [taciossbr](./participantes/taciossbr) | ok |
 | [thiagosantana](./participantes/thiagosantana) | falha - [logs](./participantes/thiagosantana/docker-compose.logs) |
-| [viniciusfcf](./participantes/viniciusfcf) | ok |
+| [viniciusfcf](./participantes/viniciusfcf) | falha - [logs](./participantes/viniciusfcf/docker-compose.logs) |
 | [williansugiyama](./participantes/williansugiyama) | falha - [logs](./participantes/williansugiyama/docker-compose.logs) |
