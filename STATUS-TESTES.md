@@ -1,6 +1,6 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
-Atualizada em **qui 08 fev 2024 20:07:51 -03**.
+Atualizada em **qui 08 fev 2024 22:20:31 -03**.
  
 | participante | status |
 | --           | --     |
@@ -15,9 +15,11 @@ Atualizada em **qui 08 fev 2024 20:07:51 -03**.
 | [itujo](./participantes/itujo) | ok |
 | [josebaroni](./participantes/josebaroni) | ok |
 | [lazaronixon](./participantes/lazaronixon) | ok |
+| [leoralph](./participantes/leoralph) | ok |
 | [lobomfz](./participantes/lobomfz) | ok |
 | [lpicanco](./participantes/lpicanco) | ok |
-| [mateuscolvr](./participantes/mateuscolvr) | falha - [logs](./participantes/mateuscolvr/docker-compose.logs) |
+| [mateuscolvr](./participantes/mateuscolvr) | ok |
+| [olukkas](./participantes/olukkas) | ok |
 | [rodrigocaldeira](./participantes/rodrigocaldeira) | ok |
 | [samueljansem](./participantes/samueljansem) | falha - [logs](./participantes/samueljansem/docker-compose.logs) |
 | [thiagosantana](./participantes/thiagosantana) | falha - [logs](./participantes/thiagosantana/docker-compose.logs) |
