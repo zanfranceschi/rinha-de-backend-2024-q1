@@ -2,6 +2,7 @@
 ### Minhas redes
 - https://twitter.com/rvnsxm
 - https://www.linkedin.com/in/lucas-hsm/
+- https://github.com/ZillaZ
 
 ### Repositório
 - https://github.com/ZillaZ/rinha-backend2024q1
