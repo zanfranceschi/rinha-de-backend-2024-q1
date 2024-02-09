@@ -9,7 +9,7 @@
 
 ## Stack
 
-Chegamos com muita tradição e alegria em um ambiente old-school usando:
+Chegamos com muita tradição e alegria em um ambiente usando:
 
 - `Nginx` como load balancer
 - `Mongodb` como banco de dados
