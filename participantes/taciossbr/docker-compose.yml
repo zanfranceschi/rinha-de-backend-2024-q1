@@ -1,0 +1,66 @@
+version: '3.1'
+
+services:
+    db:
+        image: postgres:16.1
+        restart: always
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_USER: rinha
+            POSTGRES_PASSWORD: rinha
+        volumes:
+            - ./init_clientes.sql:/docker-entrypoint-initdb.d/init_clientes.sql:ro
+            - ./postgres.conf:/docker-entrypoint-initdb.d/postgres.conf
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.7'
+                    memory: '240MB'
+
+    api01: &api
+        image: ghcr.io/taciossbr/rinha_back_2024_q1_python:1.0
+        hostname: api01
+        environment:
+            - DATABASE_URL=postgres://rinha:rinha@db:5432/rinha
+        ports:
+            - '8081:8080'
+        depends_on:
+            - db
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.35'
+                    memory: '135MB'
+        command: gunicorn --threads=2 --bind 0.0.0.0:8080 app:app
+
+    api02:
+        <<: *api
+        hostname: api02
+        environment:
+            - DATABASE_URL=postgres://rinha:rinha@db:5432/rinha
+        ports:
+            - '8082:8080'
+
+    nginx:
+        image: nginx:latest
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+        depends_on:
+            - api01
+            - api02
+        ports:
+            - '9999:9999'
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.1'
+                    memory: '40MB'
+volumes:
+    pg_data: {}
+    pg_admin: {}
+
+networks:
+    default:
+        driver: bridge
+        name: rinha-nginx-2024q1-python
