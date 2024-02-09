@@ -1,0 +1,49 @@
+version: '3.5'
+
+services:
+  api01: &api
+    image: ghcr.io/molvrr/combattant:latest
+    environment:
+      - EIO_BACKEND=posix
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "50mb"
+
+  api02:
+    <<: *api
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "110MB"
+
+  db:
+    command: postgres -c 'max_connections=30'
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=combattant
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "340MB"
