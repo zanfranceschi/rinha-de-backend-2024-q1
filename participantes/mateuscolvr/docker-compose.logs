@@ -1,59 +1,11 @@
- api02 Pulling 
- api01 Pulling 
- 49babbfa2cff Pulling fs layer 
- 49babbfa2cff Pulling fs layer 
- 49babbfa2cff Downloading [>                                                  ]  315.1kB/29.92MB
- 49babbfa2cff Downloading [>                                                  ]  315.1kB/29.92MB
- 49babbfa2cff Downloading [=======>                                           ]  4.357MB/29.92MB
- 49babbfa2cff Downloading [=======>                                           ]  4.357MB/29.92MB
- 49babbfa2cff Downloading [==============>                                    ]  8.405MB/29.92MB
- 49babbfa2cff Downloading [==============>                                    ]  8.405MB/29.92MB
- 49babbfa2cff Downloading [=====================>                             ]  12.74MB/29.92MB
- 49babbfa2cff Downloading [=====================>                             ]  12.74MB/29.92MB
- 49babbfa2cff Downloading [============================>                      ]  17.07MB/29.92MB
- 49babbfa2cff Downloading [============================>                      ]  17.07MB/29.92MB
- 49babbfa2cff Downloading [===================================>               ]  21.06MB/29.92MB
- 49babbfa2cff Downloading [===================================>               ]  21.06MB/29.92MB
- 49babbfa2cff Downloading [==========================================>        ]  25.41MB/29.92MB
- 49babbfa2cff Downloading [==========================================>        ]  25.41MB/29.92MB
- 49babbfa2cff Downloading [============================================>      ]  26.34MB/29.92MB
- 49babbfa2cff Downloading [============================================>      ]  26.34MB/29.92MB
- 49babbfa2cff Verifying Checksum 
- 49babbfa2cff Download complete 
- 49babbfa2cff Verifying Checksum 
- 49babbfa2cff Download complete 
- 49babbfa2cff Extracting [>                                                  ]  327.7kB/29.92MB
- 49babbfa2cff Extracting [>                                                  ]  327.7kB/29.92MB
- 49babbfa2cff Extracting [=========>                                         ]  5.898MB/29.92MB
- 49babbfa2cff Extracting [=========>                                         ]  5.898MB/29.92MB
- 49babbfa2cff Extracting [================>                                  ]   9.83MB/29.92MB
- 49babbfa2cff Extracting [================>                                  ]   9.83MB/29.92MB
- 49babbfa2cff Extracting [======================>                            ]  13.43MB/29.92MB
- 49babbfa2cff Extracting [======================>                            ]  13.43MB/29.92MB
- 49babbfa2cff Extracting [=============================>                     ]  17.69MB/29.92MB
- 49babbfa2cff Extracting [=============================>                     ]  17.69MB/29.92MB
- 49babbfa2cff Extracting [===================================>               ]  20.97MB/29.92MB
- 49babbfa2cff Extracting [===================================>               ]  20.97MB/29.92MB
- 49babbfa2cff Extracting [======================================>            ]  22.94MB/29.92MB
- 49babbfa2cff Extracting [======================================>            ]  22.94MB/29.92MB
- 49babbfa2cff Extracting [=======================================>           ]  23.59MB/29.92MB
- 49babbfa2cff Extracting [=======================================>           ]  23.59MB/29.92MB
- 49babbfa2cff Extracting [=============================================>     ]  27.53MB/29.92MB
- 49babbfa2cff Extracting [=============================================>     ]  27.53MB/29.92MB
- 49babbfa2cff Extracting [==================================================>]  29.92MB/29.92MB
- 49babbfa2cff Extracting [==================================================>]  29.92MB/29.92MB
- 49babbfa2cff Pull complete 
- 49babbfa2cff Pull complete 
- api02 Pulled 
- api01 Pulled 
  Network mateuscolvr_default  Creating
  Network mateuscolvr_default  Created
  Container mateuscolvr-db-1  Creating
  Container mateuscolvr-db-1  Created
  Container mateuscolvr-api02-1  Creating
  Container mateuscolvr-api01-1  Creating
- Container mateuscolvr-api01-1  Created
  Container mateuscolvr-api02-1  Created
+ Container mateuscolvr-api01-1  Created
  Container mateuscolvr-nginx-1  Creating
  Container mateuscolvr-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -73,8 +25,8 @@ db-1     | selecting default max_connections ... 100
 db-1     | selecting default shared_buffers ... 128MB
 db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
-api02-1  | Fatal error: exception Unix.Unix_error(Unix.EPERM, "io_uring_queue_init", "")
-api01-1  | Fatal error: exception Unix.Unix_error(Unix.EPERM, "io_uring_queue_init", "")
+api01-1  | combattant: [INFO] Server listening on tcp:0.0.0.0:8080
+api02-1  | combattant: [INFO] Server listening on tcp:0.0.0.0:8080
 db-1     | running bootstrap script ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
@@ -85,12 +37,14 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1  | 2024/02/08 22:50:43 [emerg] 1#1: host not found in upstream "api01:8080" in /etc/nginx/nginx.conf:10
-nginx-1  | nginx: [emerg] host not found in upstream "api01:8080" in /etc/nginx/nginx.conf:10
 db-1     | performing post-bootstrap initialization ... ok
-api02-1 exited with code 2
-api01-1 exited with code 2
-nginx-1 exited with code 1
+api01-1  | combattant: [ERROR] Exception while handling request: Invalid_argument("result is Error _").
+api01-1  |   
+api01-1  | combattant: [WARNING] Error handler called with error: Invalid_argument("result is Error _"); Request: GET /clientes/1/extrato HTTP/1.0
+api01-1  |   Host: api
+api01-1  |   Connection: close
+api01-1  |   User-Agent: curl/7.88.1
+api01-1  |   Accept: */*
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
@@ -100,10 +54,10 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | waiting for server to start....2024-02-08 22:50:45.011 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-08 22:50:45.014 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-08 22:50:45.025 UTC [51] LOG:  database system was shut down at 2024-02-08 22:50:44 UTC
-db-1     | 2024-02-08 22:50:45.035 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-09 01:11:19.830 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-09 01:11:19.833 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-09 01:11:19.841 UTC [51] LOG:  database system was shut down at 2024-02-09 01:11:18 UTC
+db-1     | 2024-02-09 01:11:19.889 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -119,29 +73,36 @@ db-1     | CREATE INDEX
 db-1     | DO
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-08 22:50:45.751 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-02-08 22:50:46.047 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-08 22:50:46.050 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-08 22:50:46.051 UTC [49] LOG:  shutting down
-db-1     | 2024-02-08 22:50:46.061 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-08 22:50:46.630 UTC [49] LOG:  checkpoint complete: wrote 950 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.210 s, sync=0.027 s, total=0.580 s; sync files=312, longest=0.004 s, average=0.001 s; distance=4320 kB, estimate=4320 kB; lsn=0/1922BE0, redo lsn=0/1922BE0
-db-1     | 2024-02-08 22:50:46.639 UTC [48] LOG:  database system is shut down
+db-1     | 2024-02-09 01:11:20.566 UTC [48] LOG:  received fast shutdown request
+db-1     | waiting for server to shut down....2024-02-09 01:11:20.577 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-09 01:11:20.579 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-09 01:11:20.580 UTC [49] LOG:  shutting down
+db-1     | 2024-02-09 01:11:20.595 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-09 01:11:20.840 UTC [49] LOG:  checkpoint complete: wrote 950 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.185 s, sync=0.032 s, total=0.260 s; sync files=312, longest=0.009 s, average=0.001 s; distance=4320 kB, estimate=4320 kB; lsn=0/1922BE0, redo lsn=0/1922BE0
+db-1     | 2024-02-09 01:11:20.848 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-08 22:50:46.738 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-08 22:50:46.739 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-08 22:50:46.739 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-08 22:50:46.763 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-08 22:50:46.789 UTC [66] LOG:  database system was shut down at 2024-02-08 22:50:46 UTC
-db-1     | 2024-02-08 22:50:46.815 UTC [1] LOG:  database system is ready to accept connections
-db-1     | 2024-02-08 22:51:20.106 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-08 22:51:20.108 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-08 22:51:20.113 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-02-08 22:51:20.113 UTC [64] LOG:  shutting down
-db-1     | 2024-02-08 22:51:20.115 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-08 22:51:20.135 UTC [64] LOG:  checkpoint complete: wrote 40 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.005 s, total=0.022 s; sync files=10, longest=0.003 s, average=0.001 s; distance=227 kB, estimate=227 kB; lsn=0/195BBA0, redo lsn=0/195BBA0
-db-1     | 2024-02-08 22:51:20.140 UTC [1] LOG:  database system is shut down
+db-1     | 2024-02-09 01:11:20.908 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-09 01:11:20.908 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-09 01:11:20.908 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-09 01:11:20.922 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-09 01:11:20.943 UTC [66] LOG:  database system was shut down at 2024-02-09 01:11:20 UTC
+db-1     | 2024-02-09 01:11:20.953 UTC [1] LOG:  database system is ready to accept connections
+api01-1  | combattant: [INFO] Não encontrei o cliente 6
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api01-1 exited with code 0
+api02-1 exited with code 0
+api02-1 exited with code 137
+api01-1 exited with code 137
+db-1     | 2024-02-09 01:15:47.999 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-09 01:15:48.001 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-09 01:15:48.004 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-02-09 01:15:48.004 UTC [64] LOG:  shutting down
+db-1     | 2024-02-09 01:15:48.006 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-09 01:15:48.069 UTC [64] LOG:  checkpoint complete: wrote 672 buffers (4.1%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.045 s, sync=0.009 s, total=0.065 s; sync files=31, longest=0.005 s, average=0.001 s; distance=18526 kB, estimate=18526 kB; lsn=0/2B3A578, redo lsn=0/2B3A578
+db-1     | 2024-02-09 01:15:48.078 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0

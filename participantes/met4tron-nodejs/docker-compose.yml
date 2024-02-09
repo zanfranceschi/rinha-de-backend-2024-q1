@@ -1,0 +1,70 @@
+version: "3.5"
+services:
+  api1: &api
+    image: met4tron/rinha-nodejs-q1-2024:latest
+    hostname: api01
+    networks:
+      - rinha-network
+    environment:
+      HTTP_PORT: 3000
+      POOL_SIZE: 20
+      DB_HOST: database
+    depends_on:
+      - db
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "125MB"
+
+  api2:
+    <<: *api
+    hostname: api02
+    environment:
+      HTTP_PORT: 3001
+      POOL_SIZE: 20
+      DB_HOST: database
+
+  nginx: # Load Balancer
+    image: nginx:latest
+    networks:
+      - rinha-network
+    ports:
+      - 9999:9999
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+  db: # Banco de dados
+    image: postgres
+    hostname: database
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    networks:
+      - rinha-network
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: rinha_db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "250MB"
+networks:
+  rinha-network:
+    driver: bridge
