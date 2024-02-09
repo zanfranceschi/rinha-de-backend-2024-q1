@@ -1,6 +1,6 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
-Atualizada em **qui 08 fev 2024 23:21:20 -03**.
+Atualizada em **qui 08 fev 2024 23:33:27 -03**.
  
 | participante | status |
 | --           | --     |
@@ -20,6 +20,7 @@ Atualizada em **qui 08 fev 2024 23:21:20 -03**.
 | [lobomfz](./participantes/lobomfz) | ok |
 | [lpicanco](./participantes/lpicanco) | ok |
 | [mateuscolvr](./participantes/mateuscolvr) | ok |
+| [met4tron-nodejs](./participantes/met4tron-nodejs) | ok |
 | [olukkas](./participantes/olukkas) | ok |
 | [rodrigocaldeira](./participantes/rodrigocaldeira) | ok |
 | [samluiz](./participantes/samluiz) | ok |
