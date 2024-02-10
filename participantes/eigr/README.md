@@ -2,17 +2,12 @@
 
 ## Eigr Spawn
 
-<!-- MDOC !-->
-
-![Sepp](images/sepp-elixir-254-400.png#gh-light-mode-only)
-![Sepp](images/sepp-elixir-254-400.png#gh-dark-mode-only)
-
 Submissão feita com:
 
-- `nginx` como load balancer
-- `postgres` como banco de dados
-- `elixir` para api com a lib `spawn`
-- [repositório da api](https://github.com/eigr-labs/spawn-rinha-backend)
+- `HA Proxy` como load balancer
+- `Mnesia Distribuído` como banco de dados (disc_copies)
+- `Elixir` para API com a lib `Spawn`
+- [Repositório da API](https://github.com/eigr-labs/spawn-rinha-backend)
 
 [eigr](https://eigr.io)
 [spawn](https://github.com/eigr/spawn)

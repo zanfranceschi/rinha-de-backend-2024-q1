@@ -3,61 +3,57 @@ version: "3.5"
 services:
   api01:
     &api
-    image: eigr/spawn-rinha-backend-ex:1.1.1
+    image: eigr/spawn-rinha-backend-ex:1.3.0
     restart: always
     hostname: api01
     environment:
+      - ACTORS_GLOBAL_BACKPRESSURE_ENABLED=false
       - NODE_COOKIE=cookie-9ce3712b0c3ee21b582c30f942c0d4da-HLuZyQzy+nt0p0r/PVVFTp2tqfLom5igrdmwkYSuO+Q=
       - POD_NAMESPACE=spawn-rinha
+      - POD_IP=api01
       - PROXY_ACTOR_SYSTEM_NAME=spawn-rinha
       - PROXY_CLUSTER_STRATEGY=gossip
-      - PROXY_DATABASE_NAME=eigr-functions-db
-      - PROXY_DATABASE_HOST=db
-      - PROXY_DATABASE_PORT=3306
-      - PROXY_DATABASE_POOL_SIZE=15
-      - PROXY_DATABASE_SECRET=admin
-      - PROXY_DATABASE_TYPE=mariadb
-      - PROXY_DATABASE_USERNAME=admin
-      - PROXY_HTTP_ACCEPTORS_SIZE=300
+      - PROXY_DATABASE_TYPE=native
+      - PROXY_DATABASE_DATA_DIR=data_1
+      - PROXY_HTTP_ACCEPTORS_SIZE=3500
       - PROXY_HTTP_PORT=9090
       - SPAWN_STATESTORE_KEY=3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE=
     ports:
       - "3001:9090"
-    depends_on:
-      - db
     volumes:
+      - data_1:/app/data/:rw
       - /tmp:/app/.cache/bakeware/:rw
     deploy:
       resources:
         limits:
-          cpus: "0.6"
-          memory: "200MB"
+          cpus: "0.675"
+          memory: "265MB"
 
   api02:
     <<: *api
     hostname: api02
     environment:
+      - ACTORS_GLOBAL_BACKPRESSURE_ENABLED=false
       - NODE_COOKIE=cookie-9ce3712b0c3ee21b582c30f942c0d4da-HLuZyQzy+nt0p0r/PVVFTp2tqfLom5igrdmwkYSuO+Q=
       - POD_NAMESPACE=spawn-rinha
+      - POD_IP=api02
       - PROXY_ACTOR_SYSTEM_NAME=spawn-rinha
       - PROXY_CLUSTER_STRATEGY=gossip
-      - PROXY_DATABASE_NAME=eigr-functions-db
-      - PROXY_DATABASE_HOST=db
-      - PROXY_DATABASE_PORT=3306
-      - PROXY_DATABASE_POOL_SIZE=15
-      - PROXY_DATABASE_SECRET=admin
-      - PROXY_DATABASE_TYPE=mariadb
-      - PROXY_DATABASE_USERNAME=admin
-      - PROXY_HTTP_ACCEPTORS_SIZE=300
+      - PROXY_DATABASE_TYPE=native
+      - PROXY_DATABASE_DATA_DIR=data_2
+      - PROXY_HTTP_ACCEPTORS_SIZE=3500
       - PROXY_HTTP_PORT=9091
       - SPAWN_STATESTORE_KEY=3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE=
     ports:
-      - "3002:9090"
-
-  nginx:
-    image: nginx:latest
+      - "3002:9091"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - data_2:/app/data/:rw
+      - /tmp:/app/.cache/bakeware/:rw
+
+  haproxy:
+    image: haproxy:3.0-dev2-alpine
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
     depends_on:
       - api01
       - api02
@@ -66,33 +62,14 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.17"
-          memory: "10MB"
-
-  db:
-    image: mariadb
-    hostname: db
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: eigr-functions-db
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-    volumes:
-      - mariadb:/var/lib/mysql
-    ports:
-      - "3309:3306"
-    deploy:
-      resources:
-        limits:
-          cpus: "0.13"
-          memory: "140MB"
+          cpus: "0.15"
+          memory: "20MB"
 
 networks:
   default:
     driver: bridge
-    name: rinha-nginx-2024q1
+    name: rinha-spawn-2024q1
 
 volumes:
-  mysql:
-  postgres:
-  mariadb:
+  data_1:
+  data_2:
