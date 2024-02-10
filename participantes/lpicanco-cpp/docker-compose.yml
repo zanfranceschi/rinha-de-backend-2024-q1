@@ -2,13 +2,15 @@ version: "3.5"
 
 services:
   api01: &api
-    image: ghcr.io/lpicanco/backend-dogfight-rust-24-q1:latest
+    image: ghcr.io/lpicanco/backend-dogfight-cpp-24-q1:latest
     hostname: api01
-    expose:
-      - "9999"
     restart: unless-stopped
     environment:
-      DATABASE_URL: postgres://dogfight_user:dogfight_pass@db:5432/dogfight
+      DATABASE_HOST: db
+      DATABASE_NAME: dogfight
+      DATABASE_USER: dogfight_user
+      DATABASE_PORT: 5432
+      DATABASE_PASSWORD: dogfight_pass
     depends_on:
       - db
     deploy:
@@ -20,9 +22,6 @@ services:
   api02:
     <<: *api
     hostname: api02
-    ports:
-      - "3002:3000"
-
   nginx:
     image: nginx:latest
     volumes:
