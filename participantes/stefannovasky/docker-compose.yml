@@ -56,7 +56,7 @@ services:
       resources:
         limits:
           cpus: "0.1"
-          memory: "100MB"
+          memory: "50MB"
     networks:
       - rinha-network
 
@@ -67,7 +67,7 @@ services:
       resources:
         limits:
           cpus: "0.6"
-          memory: "250MB"
+          memory: "300MB"
     ports:
       - "5432:5432"
     volumes:
@@ -78,7 +78,7 @@ services:
       POSTGRES_DB: rinha-db
 
     # se quer apelar, use: postgres -c 'max_connections=400' -c 'fsync=off' -c 'synchronous_commit=off' -c 'checkpoint_timeout=1d' -c 'full_page_writes=false'
-    command: postgres -c 'max_connections=400'
+    command: postgres -c 'max_connections=400' -c 'checkpoint_timeout=600'
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U root -d rinha-db" ]
       interval: 5s

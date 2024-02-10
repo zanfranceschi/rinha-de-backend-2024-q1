@@ -16,7 +16,7 @@ CREATE UNLOGGED TABLE transacoes (
 		FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
 
-CREATE INDEX ix_transacoes_cliente_id ON transacoes (cliente_id);
+CREATE INDEX ix_transacoes_cliente_id_realizada_em ON transacoes (cliente_id, realizada_em DESC);
 
 CREATE TYPE resultado_transacao as (cliente_novo_saldo integer, cliente_limite integer);
 
@@ -24,7 +24,7 @@ CREATE FUNCTION debito(cliente_id INTEGER, valor_transacao INTEGER, descricao_tr
 RETURNS SETOF resultado_transacao
 LANGUAGE plpgsql
 AS $BODY$
-	DECLARE cliente_novo_saldo INTEGER;
+  DECLARE cliente_novo_saldo INTEGER;
   DECLARE cliente_limite INTEGER;
 BEGIN
 	SELECT
@@ -53,7 +53,7 @@ CREATE FUNCTION credito(cliente_id INTEGER, valor_transacao INTEGER, descricao_t
 RETURNS SETOF resultado_transacao
 LANGUAGE plpgsql
 AS $BODY$
-	DECLARE cliente_novo_saldo INTEGER;
+  DECLARE cliente_novo_saldo INTEGER;
   DECLARE cliente_limite INTEGER;
 BEGIN
 	UPDATE clientes
