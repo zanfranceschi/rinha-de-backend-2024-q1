@@ -15,9 +15,7 @@ CREATE UNLOGGED TABLE transactions
     amount      INTEGER     NOT NULL,
     operation   CHAR(1)     NOT NULL,
     description VARCHAR(10) NOT NULL,
-    created_at  TIMESTAMP   NOT NULL DEFAULT NOW(),
-    CONSTRAINT fk_transactions_client_id
-        FOREIGN KEY (client_id) REFERENCES clients (id)
+    created_at  TIMESTAMP   NOT NULL DEFAULT NOW()
 );
 
 ALTER TABLE transactions SET (autovacuum_enabled = false);
@@ -47,7 +45,7 @@ DECLARE
     _account_new_balance integer;
 BEGIN
 
-IF _client_id IS NULL OR _client_id <> _client_id::INTEGER THEN
+IF _client_id IS NULL THEN
     RAISE sqlstate 'PT422';
 END IF;
 
@@ -67,17 +65,15 @@ IF _description IS NULL OR LENGTH(_description) < 1 OR LENGTH(_description) > 10
 END IF;
 
 
-IF NOT EXISTS (SELECT id FROM clients WHERE id = _client_id) THEN
+IF _client_id > 5 THEN
     RAISE sqlstate 'PT404';
 END IF;
 
-SELECT account_limit, balance INTO _account_limit, _account_balance FROM clients WHERE id = _client_id FOR UPDATE;
+SELECT account_limit, balance INTO _account_limit, _account_balance FROM clients WHERE id = _client_id;
 
 IF _operation = 'c' THEN
     _account_new_balance := _account_balance + _amount;
-END IF;
-
-IF _operation = 'd' THEN
+ELSIF _operation = 'd' THEN
     _account_new_balance := _account_balance - _amount;
 END IF;
 
@@ -85,8 +81,8 @@ IF (_account_limit + _account_new_balance) < 0 THEN
     RAISE sqlstate 'PT422';
 END IF;
 
-INSERT INTO transactions(client_id,amount,operation,description) values (_client_id,_amount,_operation,_description);
 UPDATE clients SET balance = _account_new_balance WHERE id = _client_id;
+INSERT INTO transactions(client_id,amount,operation,description) values (_client_id,_amount,_operation,_description);
 
 RETURN jsonb_build_object('limite', _account_limit, 'saldo', _account_new_balance);
 END;
@@ -103,7 +99,7 @@ _last_transactions JSON;
 _res JSON;
 BEGIN
 
-IF NOT EXISTS (SELECT id FROM clients WHERE ID = _client_ID) THEN
+IF _client_id > 5 THEN
     RAISE sqlstate 'PT404';
 END IF;
 

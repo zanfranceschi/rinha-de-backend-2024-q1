@@ -12,14 +12,14 @@ services:
     environment:
       PGRST_DB_URI: postgres://rinha:rinha@db:5432/rinha
       PGRST_DB_ANON_ROLE: web_anon
-      PGRST_DB_POOL_ACQUISITION_TIMEOUT: 60
+      PGRST_DB_POOL: 2000
     depends_on:
       - db
     deploy:
       resources:
         limits:
-          cpus: "0.2"
-          memory: "125MB"
+          cpus: "0.4"
+          memory: "130MB"
 
   api02:
     <<: *api
@@ -46,8 +46,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.9'
-          memory: "270MB"
+          cpus: '0.5'
+          memory: "250MB"
 
   nginx:
     image: openresty/openresty:alpine
@@ -63,7 +63,7 @@ services:
       resources:
         limits:
           cpus: '0.2'
-          memory: '30MB'
+          memory: '40MB'
 
 networks:
   default:
