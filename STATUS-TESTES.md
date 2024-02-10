@@ -1,6 +1,6 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
-Atualizada em **sex 09 fev 2024 16:30:10 -03**.
+Atualizada **sex 09 fev 2024 19:42:35 -03** com **36** submissões.
  
 | participante | status |
 | --           | --     |
@@ -21,7 +21,8 @@ Atualizada em **sex 09 fev 2024 16:30:10 -03**.
 | [josebaroni](./participantes/josebaroni) | ok |
 | [lazaronixon](./participantes/lazaronixon) | falha - [logs](./participantes/lazaronixon/docker-compose.logs) |
 | [leoralph](./participantes/leoralph) | ok |
-| [lobomfz](./participantes/lobomfz) | ok |
+| [lobomfz](./participantes/lobomfz) | falha - [logs](./participantes/lobomfz/docker-compose.logs) |
+| [lobomfz-rust](./participantes/lobomfz-rust) | falha - [logs](./participantes/lobomfz-rust/docker-compose.logs) |
 | [lpicanco](./participantes/lpicanco) | ok |
 | [lsfratel](./participantes/lsfratel) | ok |
 | [lucas-hsm](./participantes/lucas-hsm) | ok |
@@ -31,10 +32,11 @@ Atualizada em **sex 09 fev 2024 16:30:10 -03**.
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) |
 | [olukkas](./participantes/olukkas) | ok |
 | [omurilo](./participantes/omurilo) | ok |
+| [reonardoleis](./participantes/reonardoleis) | ok |
 | [rodrigocaldeira](./participantes/rodrigocaldeira) | ok |
 | [samluiz](./participantes/samluiz) | ok |
 | [samueljansem](./participantes/samueljansem) | falha - [logs](./participantes/samueljansem/docker-compose.logs) |
 | [taciossbr](./participantes/taciossbr) | ok |
 | [thiagosantana](./participantes/thiagosantana) | falha - [logs](./participantes/thiagosantana/docker-compose.logs) |
-| [viniciusfcf](./participantes/viniciusfcf) | falha - [logs](./participantes/viniciusfcf/docker-compose.logs) |
+| [viniciusfcf](./participantes/viniciusfcf) | ok |
 | [williansugiyama](./participantes/williansugiyama) | falha - [logs](./participantes/williansugiyama/docker-compose.logs) |
