@@ -1,0 +1,14 @@
+{
+	auto_https off
+  admin off
+}
+
+:8000
+
+reverse_proxy deno-api-1:8080 deno-api-2:8080 {
+	lb_try_duration 6s
+  lb_policy round_robin
+  transport http {
+      dial_timeout 10s
+  }
+}
