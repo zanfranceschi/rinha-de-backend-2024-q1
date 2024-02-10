@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  api_01: &api
+    image: aysion/rinha_de_backend_2024_q1-bun
+    restart: unless-stopped
+    hostname: api_01
+    environment:
+      - PORT=8080
+    volumes:
+      - db_data:/home/bun/app/data
+    deploy:
+      resources:
+        limits:
+          cpus: "1.15"
+          memory: "250MB"
+  api_02:
+    <<: *api
+    hostname: api_02
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api_01
+      - api_02
+    ports:
+      - 9999:9999
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
+
+volumes:
+  db_data:
