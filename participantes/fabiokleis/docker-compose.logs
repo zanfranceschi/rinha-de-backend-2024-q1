@@ -34,21 +34,25 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-api01-1  | Exec: /rel/erts-14.2.1/bin/erlexec -noinput +Bd -boot /rel/releases/0.1.0/start -mode embedded -boot_var SYSTEM_LIB_DIR /rel/lib -config /rel/releases/0.1.0/sys.config -args_file /rel/releases/0.1.0/vm.args -- foreground
-api01-1  | Root: /rel
-api01-1  | /rel
+nginx-1  | 2024/02/10 01:39:19 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.4:6969/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/10 01:39:19 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.3:6969/clientes/1/extrato", host: "localhost:9999"
 api02-1  | Exec: /rel/erts-14.2.1/bin/erlexec -noinput +Bd -boot /rel/releases/0.1.0/start -mode embedded -boot_var SYSTEM_LIB_DIR /rel/lib -config /rel/releases/0.1.0/sys.config -args_file /rel/releases/0.1.0/vm.args -- foreground
 api02-1  | Root: /rel
 api02-1  | /rel
+api01-1  | Exec: /rel/erts-14.2.1/bin/erlexec -noinput +Bd -boot /rel/releases/0.1.0/start -mode embedded -boot_var SYSTEM_LIB_DIR /rel/lib -config /rel/releases/0.1.0/sys.config -args_file /rel/releases/0.1.0/vm.args -- foreground
+api01-1  | Root: /rel
+api01-1  | /rel
+nginx-1  | 2024/02/10 01:39:21 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 db-1     | running bootstrap script ... ok
-nginx-1  | 2024/02/09 16:17:09 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.64.3:6969/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/09 16:17:09 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.64.4:6969/clientes/1/extrato", host: "localhost:9999"
-api01-1  | default: #{user => "admin",host => "db",password => "123",pool_size => 25,
-api01-1  |            database => "rinha"}
-api02-1  | default: #{user => "admin",host => "db",password => "123",pool_size => 25,
+api02-1  | default: #{user => "admin",host => "db",password => "123",pool_size => 20,
 api02-1  |            database => "rinha"}
-nginx-1  | 2024/02/09 16:17:11 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1  | default: #{user => "admin",host => "db",password => "123",pool_size => 20,
+api01-1  |            database => "rinha"}
+nginx-1  | 2024/02/10 01:39:23 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 db-1     | performing post-bootstrap initialization ... ok
+nginx-1  | 2024/02/10 01:39:25 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -56,15 +60,13 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-09 16:17:12.898 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-09 16:17:12.904 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-09 16:17:12.914 UTC [51] LOG:  database system was shut down at 2024-02-09 16:17:12 UTC
-db-1     | 2024-02-09 16:17:12.999 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-10 01:39:26.396 UTC [49] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-10 01:39:26.410 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-10 01:39:26.439 UTC [52] LOG:  database system was shut down at 2024-02-10 01:39:25 UTC
+db-1     | 2024-02-10 01:39:26.493 UTC [49] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
-nginx-1  | 2024/02/09 16:17:13 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/10 01:39:27 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 db-1     | CREATE DATABASE
 db-1     | 
 db-1     | 
@@ -75,44 +77,43 @@ db-1     | CREATE TABLE
 db-1     | DO
 db-1     | 
 db-1     | 
-db-1     | 2024-02-09 16:17:14.606 UTC [48] LOG:  received fast shutdown request
-db-1     | waiting for server to shut down....2024-02-09 16:17:14.700 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-09 16:17:14.703 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-09 16:17:14.793 UTC [49] LOG:  shutting down
-db-1     | 2024-02-09 16:17:14.800 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-09 16:17:14.942 UTC [49] LOG:  checkpoint complete: wrote 944 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.107 s, sync=0.027 s, total=0.149 s; sync files=310, longest=0.004 s, average=0.001 s; distance=4313 kB, estimate=4313 kB; lsn=0/19211D8, redo lsn=0/19211D8
-db-1     | 2024-02-09 16:17:14.994 UTC [48] LOG:  database system is shut down
+db-1     | 2024-02-10 01:39:28.202 UTC [49] LOG:  received fast shutdown request
+db-1     | waiting for server to shut down....2024-02-10 01:39:28.211 UTC [49] LOG:  aborting any active transactions
+db-1     | 2024-02-10 01:39:28.294 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+db-1     | 2024-02-10 01:39:28.294 UTC [50] LOG:  shutting down
+db-1     | 2024-02-10 01:39:28.310 UTC [50] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-10 01:39:28.673 UTC [50] LOG:  checkpoint complete: wrote 944 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.292 s, sync=0.042 s, total=0.379 s; sync files=310, longest=0.014 s, average=0.001 s; distance=4313 kB, estimate=4313 kB; lsn=0/19211D8, redo lsn=0/19211D8
+db-1     | 2024-02-10 01:39:28.696 UTC [49] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-09 16:17:15.199 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-09 16:17:15.200 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-09 16:17:15.200 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-09 16:17:15.214 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-09 16:17:15.293 UTC [66] LOG:  database system was shut down at 2024-02-09 16:17:14 UTC
-nginx-1  | 2024/02/09 16:17:15 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-db-1     | 2024-02-09 16:17:15.312 UTC [1] LOG:  database system is ready to accept connections
-nginx-1  | 2024/02/09 16:17:17 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/09 16:17:19 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-1     | 2024-02-10 01:39:28.902 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-10 01:39:28.902 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-10 01:39:28.902 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-10 01:39:28.929 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-10 01:39:28.993 UTC [67] LOG:  database system was shut down at 2024-02-10 01:39:28 UTC
+db-1     | 2024-02-10 01:39:29.004 UTC [68] FATAL:  the database system is starting up
+db-1     | 2024-02-10 01:39:29.017 UTC [1] LOG:  database system is ready to accept connections
+nginx-1  | 2024/02/10 01:39:29 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api01-1  | =INFO REPORT==== 9-Feb-2024::16:17:50.156513 ===
+api01-1  | =INFO REPORT==== 10-Feb-2024::01:40:03.048309 ===
 api01-1  | SIGTERM received - shutting down
 api01-1  | 
-api02-1  | =INFO REPORT==== 9-Feb-2024::16:17:50.157581 ===
+api02-1  | =INFO REPORT==== 10-Feb-2024::01:40:03.050182 ===
 api02-1  | SIGTERM received - shutting down
 api02-1  | 
-api02-1 exited with code 0
-api02-1 exited with code 0
 api01-1 exited with code 0
 api01-1 exited with code 0
-db-1     | 2024-02-09 16:17:51.674 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-09 16:17:51.677 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-09 16:17:51.680 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-02-09 16:17:51.694 UTC [64] LOG:  shutting down
-db-1     | 2024-02-09 16:17:51.696 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-09 16:17:51.726 UTC [64] LOG:  checkpoint complete: wrote 34 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.012 s, sync=0.010 s, total=0.032 s; sync files=15, longest=0.007 s, average=0.001 s; distance=132 kB, estimate=132 kB; lsn=0/1942388, redo lsn=0/1942388
-db-1     | 2024-02-09 16:17:51.733 UTC [1] LOG:  database system is shut down
+api02-1 exited with code 0
+api02-1 exited with code 0
+db-1     | 2024-02-10 01:40:04.570 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-10 01:40:04.572 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-10 01:40:04.578 UTC [1] LOG:  background worker "logical replication launcher" (PID 71) exited with exit code 1
+db-1     | 2024-02-10 01:40:04.593 UTC [65] LOG:  shutting down
+db-1     | 2024-02-10 01:40:04.605 UTC [65] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-10 01:40:04.657 UTC [65] LOG:  checkpoint complete: wrote 42 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.033 s, sync=0.010 s, total=0.064 s; sync files=15, longest=0.008 s, average=0.001 s; distance=191 kB, estimate=191 kB; lsn=0/1951118, redo lsn=0/1951118
+db-1     | 2024-02-10 01:40:04.694 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0
