@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  api01: &api
+    image: ghcr.io/mateus4k/rinha2024q1:latest
+    environment:
+      DB_HOST: 'db'
+      DB_POOL: '60'
+    depends_on:
+      - db
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: '60MB'
+
+  api02:
+    <<: *api
+    hostname: api02
+
+  haproxy:
+    image: haproxy:2.9-alpine
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - 9999:9999
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '30MB'
+
+  db:
+    image: postgres:16-alpine
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - 5432:5432
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: '400MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha

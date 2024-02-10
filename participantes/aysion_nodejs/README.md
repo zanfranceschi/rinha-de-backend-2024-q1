@@ -12,4 +12,4 @@ Submissão feita com:
 - `mariaDB` como banco de dados
 - `nodeJS` para api com a lib `mysql2`
 - [repositório da api](https://github.com/aysion/rinha_de_backend_2024_q1-nodejs)
-[@aysiondenosfero](https://twitter.com/aysiondenosfero) @ twitter
+- [@aysiondenosfero](https://twitter.com/aysiondenosfero) @ twitter

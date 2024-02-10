@@ -1,0 +1,87 @@
+version: '3.9'
+name: 'rinha-giovannibassi'
+
+services:
+  api1: &api
+    image: giggio/rinhabackend-2401:240209_1709
+    hostname: api1
+    container_name: rinhaapi1
+    environment:
+      - ConnectionStrings__Rinha=Host=db;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=2000;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+    depends_on:
+      db:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '80MB'
+    networks:
+      - app-network
+    volumes:
+      - app1:/tmp
+
+  api2:
+    <<: *api
+    hostname: api2
+    container_name: rinhaapi2
+    volumes:
+      - app2:/tmp
+
+  envoy:
+    image: envoyproxy/envoy:v1.29-latest
+    container_name: rinhaproxy
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '134MB'
+
+  db:
+    image: postgres:latest
+    container_name: rinhadb
+    command: 'postgres -c max_connections=1000 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off'
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/ddl.sql:/docker-entrypoint-initdb.d/01-ddl.sql:ro
+      - ./sql/criartransacao.sql:/docker-entrypoint-initdb.d/11-criartransacao.sql:ro
+      - ./sql/resetdb.sql:/docker-entrypoint-initdb.d/21-resetdb.sql:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '256MB'
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "rinha"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+networks:
+  app-network:
+volumes:
+  app1:
+  app2:
+
