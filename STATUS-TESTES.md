@@ -1,6 +1,6 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
-Atualizada **sex 09 fev 2024 19:42:35 -03** com **36** submissões.
+Atualizada **sex 09 fev 2024 22:02:48 -03** com **36** submissões.
  
 | participante | status |
 | --           | --     |
@@ -28,7 +28,7 @@ Atualizada **sex 09 fev 2024 19:42:35 -03** com **36** submissões.
 | [lucas-hsm](./participantes/lucas-hsm) | ok |
 | [mateuscolvr](./participantes/mateuscolvr) | ok |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | ok |
-| [murilochianfa](./participantes/murilochianfa) | falha - [logs](./participantes/murilochianfa/docker-compose.logs) |
+| [murilochianfa](./participantes/murilochianfa) | ok |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) |
 | [olukkas](./participantes/olukkas) | ok |
 | [omurilo](./participantes/omurilo) | ok |
