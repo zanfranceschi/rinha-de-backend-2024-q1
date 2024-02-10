@@ -15,7 +15,7 @@
 ## Implementação
 
 Implementação bastante duvidosa, na minha máquina funciona :D
--  [repositório](https://github.com/stefannovasky/rinha-de-backendson)
+-  [repositório](https://github.com/stefannovasky/rinha-de-backend-csharp)
 
 ## Autor
 
