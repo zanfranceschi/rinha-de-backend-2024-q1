@@ -1,0 +1,73 @@
+version: '3.4'
+
+services:
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - api01
+      - api02
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "10MB"
+    network_mode: "host"
+  api01: &api01
+    hostname: api01
+    image: node:18.13.0
+    environment:
+      - DATABASE_URL=postgresql://rinha:2024@localhost:5432/database
+      - PORT=3002
+    depends_on:
+      - database
+    command: sh -c "yarn global add typescript && cd /app && yarn && npx prisma generate && yarn run start"
+    volumes:
+      - ./prisma/:/app/prisma
+      - ./src/:/app/src
+      - ./package.json:/app/package.json
+      - ./yarn.lock:/app/yarn.lock
+      - ./tsconfig.json:/app/tsconfig.json
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+    network_mode: "host"
+  api02:
+    <<: *api01
+    hostname: api02
+    image: node:18.13.0
+    environment:
+      - DATABASE_URL=postgresql://rinha:2024@localhost:5432/database
+      - PORT=3001
+    depends_on:
+      - database
+    command: sh -c "yarn global add typescript && cd /app && yarn && npx prisma generate && yarn run start"
+    volumes:
+      - ./prisma/:/app/prisma
+      - ./src/:/app/src
+      - ./package.json:/app/package.json
+      - ./yarn.lock:/app/yarn.lock
+      - ./tsconfig.json:/app/tsconfig.json
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+    network_mode: "host"
+  database:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=2024
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=database
+    volumes:
+      - ./database/script.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.13"
+          memory: "140MB"
+    network_mode: "host"
