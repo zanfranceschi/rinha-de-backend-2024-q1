@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **dom 11 fev 2024 01:10:25 -03** com **60** submissões.
+Atualizada **dom 11 fev 2024 01:42:48 -03** com **60** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -35,7 +35,7 @@ Atualizada **dom 11 fev 2024 01:10:25 -03** com **60** submissões.
 | [josebaroni](./participantes/josebaroni) | ok | 4 |
 | [josebaroni-postgrest](./participantes/josebaroni-postgrest) | ok | 25218 |
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 9211 |
-| [lazaronixon](./participantes/lazaronixon) | ok | 398 |
+| [lazaronixon](./participantes/lazaronixon) | ok | 8 |
 | [leoralph](./participantes/leoralph) | ok | 5 |
 | [lobomfz](./participantes/lobomfz) | falha - [logs](./participantes/lobomfz/docker-compose.logs) | -- |
 | [lobomfz-rust](./participantes/lobomfz-rust) | falha - [logs](./participantes/lobomfz-rust/docker-compose.logs) | -- |
@@ -62,5 +62,5 @@ Atualizada **dom 11 fev 2024 01:10:25 -03** com **60** submissões.
 | [taciossbr](./participantes/taciossbr) | ok | 102 |
 | [thiagosantana](./participantes/thiagosantana) | falha - [logs](./participantes/thiagosantana/docker-compose.logs) | -- |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 4 |
-| [vkobinski](./participantes/vkobinski) | ok | 29 |
+| [vkobinski](./participantes/vkobinski) | ok | 7 |
 | [williansugiyama](./participantes/williansugiyama) | falha - [logs](./participantes/williansugiyama/docker-compose.logs) | -- |
