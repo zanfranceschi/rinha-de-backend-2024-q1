@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **dom 11 fev 2024 01:42:48 -03** com **60** submissões.
+Atualizada **dom 11 fev 2024 01:52:44 -03** com **60** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -22,7 +22,7 @@ Atualizada **dom 11 fev 2024 01:42:48 -03** com **60** submissões.
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) | -- |
 | [eu_fountai](./participantes/eu_fountai) | ok | 27 |
 | [exemplo](./participantes/exemplo) | ok | 7 |
-| [fabiokleis](./participantes/fabiokleis) | ok | 243 |
+| [fabiokleis](./participantes/fabiokleis) | ok | 218 |
 | [gasparbarancelli](./participantes/gasparbarancelli) | ok | 7 |
 | [gasparbarancelli-h2-database](./participantes/gasparbarancelli-h2-database) | ok | 8 |
 | [giovannibassi](./participantes/giovannibassi) | ok | 4 |
