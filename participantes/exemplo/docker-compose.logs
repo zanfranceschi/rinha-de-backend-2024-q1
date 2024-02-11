@@ -25,20 +25,19 @@ db-1     | selecting default max_connections ... 100
 db-1     | selecting default shared_buffers ... 128MB
 db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
+db-1     | running bootstrap script ... ok
+db-1     | performing post-bootstrap initialization ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-db-1     | running bootstrap script ... ok
 nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
 nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
 nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1  | 2024/02/11 00:31:21 [error] 28#28: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.4:3000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/11 00:31:21 [error] 28#28: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.3:3000/clientes/1/extrato", host: "localhost:9999"
-db-1     | performing post-bootstrap initialization ... ok
-nginx-1  | 2024/02/11 00:31:23 [error] 28#28: *4 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -46,16 +45,14 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-11 00:31:24.428 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-11 00:31:24.437 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-11 00:31:24.492 UTC [51] LOG:  database system was shut down at 2024-02-11 00:31:23 UTC
-db-1     | 2024-02-11 00:31:24.513 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-11 06:06:03.339 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-11 06:06:03.340 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-11 06:06:03.345 UTC [51] LOG:  database system was shut down at 2024-02-11 06:06:03 UTC
+db-1     | 2024-02-11 06:06:03.353 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
-api01-1  | 2024-02-11 00:31:25.309:INFO::main: Logging initialized @6348ms
-api02-1  | 2024-02-11 00:31:25.312:INFO::main: Logging initialized @6418ms
+nginx-1  | 2024/02/11 06:06:03 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.4:3000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/11 06:06:03 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.3:3000/clientes/1/extrato", host: "localhost:9999"
 db-1     | CREATE DATABASE
 db-1     | 
 db-1     | 
@@ -64,437 +61,66 @@ db-1     | CREATE TABLE
 db-1     | CREATE TABLE
 db-1     | CREATE TABLE
 db-1     | DO
+db-1     | CREATE FUNCTION
+db-1     | CREATE FUNCTION
 db-1     | 
 db-1     | 
-db-1     | 2024-02-11 00:31:25.643 UTC [48] LOG:  received fast shutdown request
-db-1     | waiting for server to shut down....2024-02-11 00:31:25.645 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-11 00:31:25.697 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-11 00:31:25.702 UTC [49] LOG:  shutting down
-db-1     | 2024-02-11 00:31:25.708 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-11 00:31:25.871 UTC [49] LOG:  checkpoint complete: wrote 946 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.113 s, sync=0.041 s, total=0.169 s; sync files=319, longest=0.005 s, average=0.001 s; distance=4311 kB, estimate=4311 kB; lsn=0/19209A8, redo lsn=0/19209A8
-db-1     | 2024-02-11 00:31:25.879 UTC [48] LOG:  database system is shut down
+db-1     | 2024-02-11 06:06:03.710 UTC [48] LOG:  received fast shutdown request
+db-1     | 2024-02-11 06:06:03.710 UTC [48] LOG:  aborting any active transactions
+db-1     | waiting for server to shut down....2024-02-11 06:06:03.716 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-11 06:06:03.719 UTC [49] LOG:  shutting down
+db-1     | 2024-02-11 06:06:03.719 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-11 06:06:03.732 UTC [49] LOG:  checkpoint complete: wrote 946 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.013 s, sync=0.001 s, total=0.013 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4314 kB, estimate=4314 kB; lsn=0/19212F8, redo lsn=0/19212F8
+db-1     | 2024-02-11 06:06:03.744 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-11 00:31:25.982 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-nginx-1  | 2024/02/11 00:31:25 [error] 28#28: *5 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-db-1     | 2024-02-11 00:31:25.996 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-11 00:31:25.996 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-11 00:31:26.014 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-11 00:31:26.024 UTC [66] LOG:  database system was shut down at 2024-02-11 00:31:25 UTC
-db-1     | 2024-02-11 00:31:26.034 UTC [1] LOG:  database system is ready to accept connections
-nginx-1  | 2024/02/11 00:31:27 [error] 28#28: *6 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/11 00:31:30 [error] 28#28: *7 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/11 00:31:32 [error] 28#28: *8 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.3:3000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/11 00:31:32 [error] 28#28: *8 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.4:3000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/11 00:31:34 [error] 28#28: *11 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/11 00:31:36 [error] 28#28: *12 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/11 00:31:38 [error] 28#28: *13 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | Feb 11, 2024 12:31:38 AM com.mchange.v2.log.MLog 
-api01-1  | INFO: MLog clients using java 1.4+ standard logging.
-api02-1  | Feb 11, 2024 12:31:38 AM com.mchange.v2.log.MLog 
+db-1     | 2024-02-11 06:06:03.856 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-11 06:06:03.859 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-11 06:06:03.859 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-11 06:06:03.859 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-11 06:06:03.863 UTC [66] LOG:  database system was shut down at 2024-02-11 06:06:03 UTC
+db-1     | 2024-02-11 06:06:03.873 UTC [1] LOG:  database system is ready to accept connections
+api01-1  | 2024-02-11 06:06:04.358:INFO::main: Logging initialized @2627ms
+api02-1  | 2024-02-11 06:06:04.399:INFO::main: Logging initialized @2663ms
+nginx-1  | 2024/02/11 06:06:05 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/11 06:06:07 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | Feb 11, 2024 6:06:08 AM com.mchange.v2.log.MLog 
 api02-1  | INFO: MLog clients using java 1.4+ standard logging.
-api02-1  | Feb 11, 2024 12:31:39 AM com.mchange.v2.c3p0.C3P0Registry 
-api02-1  | INFO: Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
-api01-1  | Feb 11, 2024 12:31:39 AM com.mchange.v2.c3p0.C3P0Registry 
+api01-1  | Feb 11, 2024 6:06:09 AM com.mchange.v2.log.MLog 
+api01-1  | INFO: MLog clients using java 1.4+ standard logging.
+api01-1  | Feb 11, 2024 6:06:09 AM com.mchange.v2.c3p0.C3P0Registry 
 api01-1  | INFO: Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
-api02-1  | 2024-02-11 00:31:39.917:INFO:oejs.Server:main: jetty-9.2.z-SNAPSHOT
-api01-1  | 2024-02-11 00:31:40.005:INFO:oejs.Server:main: jetty-9.2.z-SNAPSHOT
-nginx-1  | 2024/02/11 00:31:40 [error] 28#28: *14 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-02-11 00:31:40.098:INFO:oejs.ServerConnector:main: Started ServerConnector@4420eb3a{HTTP/1.1}{0.0.0.0:3000}
-api02-1  | 2024-02-11 00:31:40.099:INFO:oejs.Server:main: Started @21205ms
-api02-1  | Started server on port 3000
-api01-1  | 2024-02-11 00:31:40.106:INFO:oejs.ServerConnector:main: Started ServerConnector@4420eb3a{HTTP/1.1}{0.0.0.0:3000}
-api01-1  | 2024-02-11 00:31:40.106:INFO:oejs.Server:main: Started @21145ms
+api02-1  | Feb 11, 2024 6:06:09 AM com.mchange.v2.c3p0.C3P0Registry 
+api02-1  | INFO: Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
+api01-1  | 2024-02-11 06:06:09.449:INFO:oejs.Server:main: jetty-9.2.z-SNAPSHOT
+nginx-1  | 2024/02/11 06:06:09 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1  | 2024-02-11 06:06:09.508:INFO:oejs.ServerConnector:main: Started ServerConnector@5776a9f8{HTTP/1.1}{0.0.0.0:3000}
+api01-1  | 2024-02-11 06:06:09.508:INFO:oejs.Server:main: Started @7777ms
 api01-1  | Started server on port 3000
-nginx-1  | 2024/02/11 00:31:42 [error] 28#28: *15 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | Feb 11, 2024 12:31:44 AM com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource 
-api02-1  | INFO: Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1hge41vb115i2wxn179lljg|2b5a04b0, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hge41vb115i2wxn179lljg|2b5a04b0, idleConnectionTestPeriod -> 800, initialPoolSize -> 15, jdbcUrl -> jdbc:postgresql://db:5432/rinha?ApplicationName=rinha-web-server, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 3600, maxIdleTime -> 1800, maxIdleTimeExcessConnections -> 120, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
-api01-1  | Feb 11, 2024 12:31:47 AM com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource 
-api01-1  | INFO: Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1hge41wb115i2wul2lxf4z|4a3404fa, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hge41wb115i2wul2lxf4z|4a3404fa, idleConnectionTestPeriod -> 800, initialPoolSize -> 15, jdbcUrl -> jdbc:postgresql://db:5432/rinha?ApplicationName=rinha-web-server, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 3600, maxIdleTime -> 1800, maxIdleTimeExcessConnections -> 120, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
-db-1     | 2024-02-11 00:31:59.034 UTC [99] ERROR:  function creditar(integer, integer, character varying) does not exist at character 47
-db-1     | 2024-02-11 00:31:59.034 UTC [99] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
-db-1     | 2024-02-11 00:31:59.034 UTC [99] STATEMENT:  select novo_saldo, possui_erro, mensagem from creditar($1, $2, $3)
-api01-1  | 2024-02-11 00:31:59.038:WARN:oejs.HttpChannel:qtp809960622-21: /clientes/1/transacoes
-api01-1  | org.postgresql.util.PSQLException: ERROR: function creditar(integer, integer, character varying) does not exist|  Hint: No function matches the given name and argument types. You might need to add explicit type casts.|  Position: 47
-api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713)
-api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401)
-api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368)
-api01-1  | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
-api01-1  | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
-api01-1  | 	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190)
-api01-1  | 	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:177)
-api01-1  | 	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.execute(NewProxyPreparedStatement.java:67)
-api01-1  | 	at next.jdbc.result_set$stmt__GT_result_set.invokeStatic(result_set.clj:667)
-api01-1  | 	at next.jdbc.result_set$stmt__GT_result_set.invoke(result_set.clj:662)
-api01-1  | 	at next.jdbc.result_set$fn__5904.invokeStatic(result_set.clj:925)
-api01-1  | 	at next.jdbc.result_set$fn__5904.invoke(result_set.clj:855)
-api01-1  | 	at next.jdbc.protocols$fn__5005$G__4983__5014.invoke(protocols.clj:34)
-api01-1  | 	at next.jdbc.result_set$fn__5935.invokeStatic(result_set.clj:1019)
-api01-1  | 	at next.jdbc.result_set$fn__5935.invoke(result_set.clj:855)
-api01-1  | 	at next.jdbc.protocols$fn__5005$G__4983__5014.invoke(protocols.clj:34)
-api01-1  | 	at next.jdbc$execute_one_BANG_.invokeStatic(jdbc.clj:273)
-api01-1  | 	at next.jdbc$execute_one_BANG_.invoke(jdbc.clj:260)
-api01-1  | 	at rinha_2024q1_crebito.http_handlers$transacionar_proc_BANG__STAR_.invokeStatic(http_handlers.clj:110)
-api01-1  | 	at rinha_2024q1_crebito.http_handlers$transacionar_proc_BANG__STAR_.invoke(http_handlers.clj:96)
-api01-1  | 	at rinha_2024q1_crebito.http_handlers$find_cliente_handler_wrapper$fn__7906.invoke(http_handlers.clj:161)
-api01-1  | 	at compojure.response$fn__430.invokeStatic(response.clj:47)
-api01-1  | 	at compojure.response$fn__430.invoke(response.clj:35)
-api01-1  | 	at compojure.response$fn__380$G__375__387.invoke(response.clj:7)
-api01-1  | 	at compojure.core$wrap_response$fn__1983.invoke(core.clj:158)
-api01-1  | 	at compojure.core$wrap_route_middleware$fn__1967.invoke(core.clj:128)
-api01-1  | 	at compojure.core$wrap_route_info$fn__1972.invoke(core.clj:137)
-api01-1  | 	at compojure.core$wrap_route_matches$fn__1976.invoke(core.clj:146)
-api01-1  | 	at compojure.core$routing$fn__1991.invoke(core.clj:185)
-api01-1  | 	at clojure.core$some.invokeStatic(core.clj:2701)
-api01-1  | 	at clojure.core$some.invoke(core.clj:2692)
-api01-1  | 	at compojure.core$routing.invokeStatic(core.clj:185)
-api01-1  | 	at compojure.core$routing.doInvoke(core.clj:182)
-api01-1  | 	at clojure.lang.RestFn.applyTo(RestFn.java:139)
-api01-1  | 	at clojure.core$apply.invokeStatic(core.clj:667)
-api01-1  | 	at clojure.core$apply.invoke(core.clj:660)
-api01-1  | 	at compojure.core$routes$fn__1995.invoke(core.clj:192)
-api01-1  | 	at rinha_2024q1_crebito.middlewares$wrap_db$fn__7926.invoke(middlewares.clj:14)
-api01-1  | 	at rinha_2024q1_crebito.middlewares$wrap_clientes$fn__7929.invoke(middlewares.clj:19)
-api01-1  | 	at ring.middleware.json$wrap_json_body$fn__4307.invoke(json.clj:60)
-api01-1  | 	at ring.middleware.json$wrap_json_response$fn__4358.invoke(json.clj:143)
-api01-1  | 	at ring.middleware.flash$wrap_flash$fn__2114.invoke(flash.clj:39)
-api01-1  | 	at ring.middleware.session$wrap_session$fn__3066.invoke(session.clj:108)
-api01-1  | 	at ring.middleware.keyword_params$wrap_keyword_params$fn__3100.invoke(keyword_params.clj:36)
-api01-1  | 	at ring.middleware.nested_params$wrap_nested_params$fn__3150.invoke(nested_params.clj:89)
-api01-1  | 	at ring.middleware.multipart_params$wrap_multipart_params$fn__3374.invoke(multipart_params.clj:172)
-api01-1  | 	at ring.middleware.params$wrap_params$fn__3390.invoke(params.clj:67)
-api01-1  | 	at ring.middleware.cookies$wrap_cookies$fn__2975.invoke(cookies.clj:175)
-api01-1  | 	at ring.middleware.absolute_redirects$wrap_absolute_redirects$fn__3478.invoke(absolute_redirects.clj:47)
-api01-1  | 	at ring.middleware.resource$wrap_resource$fn__3398.invoke(resource.clj:37)
-api01-1  | 	at ring.middleware.content_type$wrap_content_type$fn__3442.invoke(content_type.clj:34)
-api01-1  | 	at ring.middleware.default_charset$wrap_default_charset$fn__3458.invoke(default_charset.clj:31)
-api01-1  | 	at ring.middleware.not_modified$wrap_not_modified$fn__3431.invoke(not_modified.clj:53)
-api01-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api01-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api01-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api01-1  | 	at clojure.lang.Var.invoke(Var.java:384)
-api01-1  | 	at ring.adapter.jetty$proxy_handler$fn__106.invoke(jetty.clj:25)
-api01-1  | 	at ring.adapter.jetty.proxy$org.eclipse.jetty.server.handler.AbstractHandler$ff19274a.handle(Unknown Source)
-api01-1  | 	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
-api01-1  | 	at org.eclipse.jetty.server.Server.handle(Server.java:499)
-api01-1  | 	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:311)
-api01-1  | 	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:258)
-api01-1  | 	at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:544)
-api01-1  | 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)
-api01-1  | 	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)
-api01-1  | 	at java.base/java.lang.Thread.run(Thread.java:1575)
-db-1     | 2024-02-11 00:31:59.080 UTC [91] ERROR:  function debitar(integer, integer, character varying) does not exist at character 47
-db-1     | 2024-02-11 00:31:59.080 UTC [91] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
-db-1     | 2024-02-11 00:31:59.080 UTC [91] STATEMENT:  select novo_saldo, possui_erro, mensagem from debitar($1, $2, $3)
-api02-1  | 2024-02-11 00:31:59.084:WARN:oejs.HttpChannel:qtp2111326114-22: /clientes/1/transacoes
-api02-1  | org.postgresql.util.PSQLException: ERROR: function debitar(integer, integer, character varying) does not exist|  Hint: No function matches the given name and argument types. You might need to add explicit type casts.|  Position: 47
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713)
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401)
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368)
-api02-1  | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
-api02-1  | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
-api02-1  | 	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190)
-api02-1  | 	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:177)
-api02-1  | 	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.execute(NewProxyPreparedStatement.java:67)
-api02-1  | 	at next.jdbc.result_set$stmt__GT_result_set.invokeStatic(result_set.clj:667)
-api02-1  | 	at next.jdbc.result_set$stmt__GT_result_set.invoke(result_set.clj:662)
-api02-1  | 	at next.jdbc.result_set$fn__5904.invokeStatic(result_set.clj:925)
-api02-1  | 	at next.jdbc.result_set$fn__5904.invoke(result_set.clj:855)
-api02-1  | 	at next.jdbc.protocols$fn__5005$G__4983__5014.invoke(protocols.clj:34)
-api02-1  | 	at next.jdbc.result_set$fn__5935.invokeStatic(result_set.clj:1019)
-api02-1  | 	at next.jdbc.result_set$fn__5935.invoke(result_set.clj:855)
-api02-1  | 	at next.jdbc.protocols$fn__5005$G__4983__5014.invoke(protocols.clj:34)
-api02-1  | 	at next.jdbc$execute_one_BANG_.invokeStatic(jdbc.clj:273)
-api02-1  | 	at next.jdbc$execute_one_BANG_.invoke(jdbc.clj:260)
-api02-1  | 	at rinha_2024q1_crebito.http_handlers$transacionar_proc_BANG__STAR_.invokeStatic(http_handlers.clj:110)
-api02-1  | 	at rinha_2024q1_crebito.http_handlers$transacionar_proc_BANG__STAR_.invoke(http_handlers.clj:96)
-api02-1  | 	at rinha_2024q1_crebito.http_handlers$find_cliente_handler_wrapper$fn__7906.invoke(http_handlers.clj:161)
-api02-1  | 	at compojure.response$fn__430.invokeStatic(response.clj:47)
-api02-1  | 	at compojure.response$fn__430.invoke(response.clj:35)
-api02-1  | 	at compojure.response$fn__380$G__375__387.invoke(response.clj:7)
-api02-1  | 	at compojure.core$wrap_response$fn__1983.invoke(core.clj:158)
-api02-1  | 	at compojure.core$wrap_route_middleware$fn__1967.invoke(core.clj:128)
-api02-1  | 	at compojure.core$wrap_route_info$fn__1972.invoke(core.clj:137)
-api02-1  | 	at compojure.core$wrap_route_matches$fn__1976.invoke(core.clj:146)
-api02-1  | 	at compojure.core$routing$fn__1991.invoke(core.clj:185)
-api02-1  | 	at clojure.core$some.invokeStatic(core.clj:2701)
-api02-1  | 	at clojure.core$some.invoke(core.clj:2692)
-api02-1  | 	at compojure.core$routing.invokeStatic(core.clj:185)
-api02-1  | 	at compojure.core$routing.doInvoke(core.clj:182)
-api02-1  | 	at clojure.lang.RestFn.applyTo(RestFn.java:139)
-api02-1  | 	at clojure.core$apply.invokeStatic(core.clj:667)
-api02-1  | 	at clojure.core$apply.invoke(core.clj:660)
-api02-1  | 	at compojure.core$routes$fn__1995.invoke(core.clj:192)
-api02-1  | 	at rinha_2024q1_crebito.middlewares$wrap_db$fn__7926.invoke(middlewares.clj:14)
-api02-1  | 	at rinha_2024q1_crebito.middlewares$wrap_clientes$fn__7929.invoke(middlewares.clj:19)
-api02-1  | 	at ring.middleware.json$wrap_json_body$fn__4307.invoke(json.clj:60)
-api02-1  | 	at ring.middleware.json$wrap_json_response$fn__4358.invoke(json.clj:143)
-api02-1  | 	at ring.middleware.flash$wrap_flash$fn__2114.invoke(flash.clj:39)
-api02-1  | 	at ring.middleware.session$wrap_session$fn__3066.invoke(session.clj:108)
-api02-1  | 	at ring.middleware.keyword_params$wrap_keyword_params$fn__3100.invoke(keyword_params.clj:36)
-api02-1  | 	at ring.middleware.nested_params$wrap_nested_params$fn__3150.invoke(nested_params.clj:89)
-api02-1  | 	at ring.middleware.multipart_params$wrap_multipart_params$fn__3374.invoke(multipart_params.clj:172)
-api02-1  | 	at ring.middleware.params$wrap_params$fn__3390.invoke(params.clj:67)
-api02-1  | 	at ring.middleware.cookies$wrap_cookies$fn__2975.invoke(cookies.clj:175)
-api02-1  | 	at ring.middleware.absolute_redirects$wrap_absolute_redirects$fn__3478.invoke(absolute_redirects.clj:47)
-api02-1  | 	at ring.middleware.resource$wrap_resource$fn__3398.invoke(resource.clj:37)
-api02-1  | 	at ring.middleware.content_type$wrap_content_type$fn__3442.invoke(content_type.clj:34)
-api02-1  | 	at ring.middleware.default_charset$wrap_default_charset$fn__3458.invoke(default_charset.clj:31)
-api02-1  | 	at ring.middleware.not_modified$wrap_not_modified$fn__3431.invoke(not_modified.clj:53)
-api02-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api02-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api02-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api02-1  | 	at clojure.lang.Var.invoke(Var.java:384)
-api02-1  | 	at ring.adapter.jetty$proxy_handler$fn__106.invoke(jetty.clj:25)
-api02-1  | 	at ring.adapter.jetty.proxy$org.eclipse.jetty.server.handler.AbstractHandler$ff19274a.handle(Unknown Source)
-api02-1  | 	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
-api02-1  | 	at org.eclipse.jetty.server.Server.handle(Server.java:499)
-api02-1  | 	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:311)
-api02-1  | 	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:258)
-api02-1  | 	at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:544)
-api02-1  | 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)
-api02-1  | 	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)
-api02-1  | 	at java.base/java.lang.Thread.run(Thread.java:1575)
-api01-1  | 2024-02-11 00:31:59.888:WARN:oejs.HttpChannel:qtp809960622-18: /clientes/3/transacoes
-api01-1  | org.postgresql.util.PSQLException: ERROR: function creditar(integer, integer, character varying) does not exist|  Hint: No function matches the given name and argument types. You might need to add explicit type casts.|  Position: 47
-api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713)
-api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401)
-api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368)
-api01-1  | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
-api01-1  | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
-api01-1  | 	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190)
-api01-1  | 	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:177)
-api01-1  | 	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.execute(NewProxyPreparedStatement.java:67)
-api01-1  | 	at next.jdbc.result_set$stmt__GT_result_set.invokeStatic(result_set.clj:667)
-api01-1  | 	at next.jdbc.result_set$stmt__GT_result_set.invoke(result_set.clj:662)
-api01-1  | 	at next.jdbc.result_set$fn__5904.invokeStatic(result_set.clj:925)
-api01-1  | 	at next.jdbc.result_set$fn__5904.invoke(result_set.clj:855)
-api01-1  | 	at next.jdbc.protocols$fn__5005$G__4983__5014.invoke(protocols.clj:34)
-api01-1  | 	at next.jdbc.result_set$fn__5935.invokeStatic(result_set.clj:1019)
-api01-1  | 	at next.jdbc.result_set$fn__5935.invoke(result_set.clj:855)
-api01-1  | 	at next.jdbc.protocols$fn__5005$G__4983__5014.invoke(protocols.clj:34)
-api01-1  | 	at next.jdbc$execute_one_BANG_.invokeStatic(jdbc.clj:273)
-api01-1  | 	at next.jdbc$execute_one_BANG_.invoke(jdbc.clj:260)
-api01-1  | 	at rinha_2024q1_crebito.http_handlers$transacionar_proc_BANG__STAR_.invokeStatic(http_handlers.clj:110)
-api01-1  | 	at rinha_2024q1_crebito.http_handlers$transacionar_proc_BANG__STAR_.invoke(http_handlers.clj:96)
-api01-1  | 	at rinha_2024q1_crebito.http_handlers$find_cliente_handler_wrapper$fn__7906.invoke(http_handlers.clj:161)
-api01-1  | 	at compojure.response$fn__430.invokeStatic(response.clj:47)
-api01-1  | 	at compojure.response$fn__430.invoke(response.clj:35)
-api01-1  | 	at compojure.response$fn__380$G__375__387.invoke(response.clj:7)
-api01-1  | 	at compojure.core$wrap_response$fn__1983.invoke(core.clj:158)
-api01-1  | 	at compojure.core$wrap_route_middleware$fn__1967.invoke(core.clj:128)
-api01-1  | 	at compojure.core$wrap_route_info$fn__1972.invoke(core.clj:137)
-api01-1  | 	at compojure.core$wrap_route_matches$fn__1976.invoke(core.clj:146)
-api01-1  | 	at compojure.core$routing$fn__1991.invoke(core.clj:185)
-api01-1  | 	at clojure.core$some.invokeStatic(core.clj:2701)
-api01-1  | 	at clojure.core$some.invoke(core.clj:2692)
-api01-1  | 	at compojure.core$routing.invokeStatic(core.clj:185)
-api01-1  | 	at compojure.core$routing.doInvoke(core.clj:182)
-api01-1  | 	at clojure.lang.RestFn.applyTo(RestFn.java:139)
-api01-1  | 	at clojure.core$apply.invokeStatic(core.clj:667)
-api01-1  | 	at clojure.core$apply.invoke(core.clj:660)
-api01-1  | 	at compojure.core$routes$fn__1995.invoke(core.clj:192)
-api01-1  | 	at rinha_2024q1_crebito.middlewares$wrap_db$fn__7926.invoke(middlewares.clj:14)
-api01-1  | 	at rinha_2024q1_crebito.middlewares$wrap_clientes$fn__7929.invoke(middlewares.clj:19)
-api01-1  | 	at ring.middleware.json$wrap_json_body$fn__4307.invoke(json.clj:60)
-api01-1  | 	at ring.middleware.json$wrap_json_response$fn__4358.invoke(json.clj:143)
-api01-1  | 	at ring.middleware.flash$wrap_flash$fn__2114.invoke(flash.clj:39)
-api01-1  | 	at ring.middleware.session$wrap_session$fn__3066.invoke(session.clj:108)
-api01-1  | 	at ring.middleware.keyword_params$wrap_keyword_params$fn__3100.invoke(keyword_params.clj:36)
-api01-1  | 	at ring.middleware.nested_params$wrap_nested_params$fn__3150.invoke(nested_params.clj:89)
-api01-1  | 	at ring.middleware.multipart_params$wrap_multipart_params$fn__3374.invoke(multipart_params.clj:172)
-api01-1  | 	at ring.middleware.params$wrap_params$fn__3390.invoke(params.clj:67)
-api01-1  | 	at ring.middleware.cookies$wrap_cookies$fn__2975.invoke(cookies.clj:175)
-api01-1  | 	at ring.middleware.absolute_redirects$wrap_absolute_redirects$fn__3478.invoke(absolute_redirects.clj:47)
-api01-1  | 	at ring.middleware.resource$wrap_resource$fn__3398.invoke(resource.clj:37)
-api01-1  | 	at ring.middleware.content_type$wrap_content_type$fn__3442.invoke(content_type.clj:34)
-api01-1  | 	at ring.middleware.default_charset$wrap_default_charset$fn__3458.invoke(default_charset.clj:31)
-api01-1  | 	at ring.middleware.not_modified$wrap_not_modified$fn__3431.invoke(not_modified.clj:53)
-api01-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api01-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api01-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api01-1  | 	at clojure.lang.Var.invoke(Var.java:384)
-api01-1  | 	at ring.adapter.jetty$proxy_handler$fn__106.invoke(jetty.clj:25)
-api01-1  | 	at ring.adapter.jetty.proxy$org.eclipse.jetty.server.handler.AbstractHandler$ff19274a.handle(Unknown Source)
-api01-1  | 	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
-api01-1  | 	at org.eclipse.jetty.server.Server.handle(Server.java:499)
-api01-1  | 	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:311)
-api01-1  | 	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:258)
-api01-1  | 	at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:544)
-api01-1  | 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)
-api01-1  | 	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)
-api01-1  | 	at java.base/java.lang.Thread.run(Thread.java:1575)
-db-1     | 2024-02-11 00:31:59.884 UTC [99] ERROR:  function creditar(integer, integer, character varying) does not exist at character 47
-db-1     | 2024-02-11 00:31:59.884 UTC [99] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
-db-1     | 2024-02-11 00:31:59.884 UTC [99] STATEMENT:  select novo_saldo, possui_erro, mensagem from creditar($1, $2, $3)
-db-1     | 2024-02-11 00:31:59.885 UTC [91] ERROR:  function debitar(integer, integer, character varying) does not exist at character 47
-db-1     | 2024-02-11 00:31:59.885 UTC [91] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
-db-1     | 2024-02-11 00:31:59.885 UTC [91] STATEMENT:  select novo_saldo, possui_erro, mensagem from debitar($1, $2, $3)
-api02-1  | 2024-02-11 00:31:59.886:WARN:oejs.HttpChannel:qtp2111326114-20: /clientes/2/transacoes
-api02-1  | org.postgresql.util.PSQLException: ERROR: function debitar(integer, integer, character varying) does not exist|  Hint: No function matches the given name and argument types. You might need to add explicit type casts.|  Position: 47
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713)
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401)
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368)
-api02-1  | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
-api02-1  | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
-api02-1  | 	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190)
-api02-1  | 	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:177)
-api02-1  | 	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.execute(NewProxyPreparedStatement.java:67)
-api02-1  | 	at next.jdbc.result_set$stmt__GT_result_set.invokeStatic(result_set.clj:667)
-api02-1  | 	at next.jdbc.result_set$stmt__GT_result_set.invoke(result_set.clj:662)
-api02-1  | 	at next.jdbc.result_set$fn__5904.invokeStatic(result_set.clj:925)
-api02-1  | 	at next.jdbc.result_set$fn__5904.invoke(result_set.clj:855)
-api02-1  | 	at next.jdbc.protocols$fn__5005$G__4983__5014.invoke(protocols.clj:34)
-api02-1  | 	at next.jdbc.result_set$fn__5935.invokeStatic(result_set.clj:1019)
-api02-1  | 	at next.jdbc.result_set$fn__5935.invoke(result_set.clj:855)
-api02-1  | 	at next.jdbc.protocols$fn__5005$G__4983__5014.invoke(protocols.clj:34)
-api02-1  | 	at next.jdbc$execute_one_BANG_.invokeStatic(jdbc.clj:273)
-api02-1  | 	at next.jdbc$execute_one_BANG_.invoke(jdbc.clj:260)
-api02-1  | 	at rinha_2024q1_crebito.http_handlers$transacionar_proc_BANG__STAR_.invokeStatic(http_handlers.clj:110)
-api02-1  | 	at rinha_2024q1_crebito.http_handlers$transacionar_proc_BANG__STAR_.invoke(http_handlers.clj:96)
-api02-1  | 	at rinha_2024q1_crebito.http_handlers$find_cliente_handler_wrapper$fn__7906.invoke(http_handlers.clj:161)
-api02-1  | 	at compojure.response$fn__430.invokeStatic(response.clj:47)
-api02-1  | 	at compojure.response$fn__430.invoke(response.clj:35)
-api02-1  | 	at compojure.response$fn__380$G__375__387.invoke(response.clj:7)
-api02-1  | 	at compojure.core$wrap_response$fn__1983.invoke(core.clj:158)
-api02-1  | 	at compojure.core$wrap_route_middleware$fn__1967.invoke(core.clj:128)
-api02-1  | 	at compojure.core$wrap_route_info$fn__1972.invoke(core.clj:137)
-api02-1  | 	at compojure.core$wrap_route_matches$fn__1976.invoke(core.clj:146)
-api02-1  | 	at compojure.core$routing$fn__1991.invoke(core.clj:185)
-api02-1  | 	at clojure.core$some.invokeStatic(core.clj:2701)
-api02-1  | 	at clojure.core$some.invoke(core.clj:2692)
-api02-1  | 	at compojure.core$routing.invokeStatic(core.clj:185)
-api02-1  | 	at compojure.core$routing.doInvoke(core.clj:182)
-api02-1  | 	at clojure.lang.RestFn.applyTo(RestFn.java:139)
-api02-1  | 	at clojure.core$apply.invokeStatic(core.clj:667)
-api02-1  | 	at clojure.core$apply.invoke(core.clj:660)
-api02-1  | 	at compojure.core$routes$fn__1995.invoke(core.clj:192)
-api02-1  | 	at rinha_2024q1_crebito.middlewares$wrap_db$fn__7926.invoke(middlewares.clj:14)
-api02-1  | 	at rinha_2024q1_crebito.middlewares$wrap_clientes$fn__7929.invoke(middlewares.clj:19)
-api02-1  | 	at ring.middleware.json$wrap_json_body$fn__4307.invoke(json.clj:60)
-api02-1  | 	at ring.middleware.json$wrap_json_response$fn__4358.invoke(json.clj:143)
-api02-1  | 	at ring.middleware.flash$wrap_flash$fn__2114.invoke(flash.clj:39)
-api02-1  | 	at ring.middleware.session$wrap_session$fn__3066.invoke(session.clj:108)
-api02-1  | 	at ring.middleware.keyword_params$wrap_keyword_params$fn__3100.invoke(keyword_params.clj:36)
-api02-1  | 	at ring.middleware.nested_params$wrap_nested_params$fn__3150.invoke(nested_params.clj:89)
-api02-1  | 	at ring.middleware.multipart_params$wrap_multipart_params$fn__3374.invoke(multipart_params.clj:172)
-api02-1  | 	at ring.middleware.params$wrap_params$fn__3390.invoke(params.clj:67)
-api02-1  | 	at ring.middleware.cookies$wrap_cookies$fn__2975.invoke(cookies.clj:175)
-api02-1  | 	at ring.middleware.absolute_redirects$wrap_absolute_redirects$fn__3478.invoke(absolute_redirects.clj:47)
-api02-1  | 	at ring.middleware.resource$wrap_resource$fn__3398.invoke(resource.clj:37)
-api02-1  | 	at ring.middleware.content_type$wrap_content_type$fn__3442.invoke(content_type.clj:34)
-api02-1  | 	at ring.middleware.default_charset$wrap_default_charset$fn__3458.invoke(default_charset.clj:31)
-api02-1  | 	at ring.middleware.not_modified$wrap_not_modified$fn__3431.invoke(not_modified.clj:53)
-api02-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api02-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api02-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api02-1  | 	at clojure.lang.Var.invoke(Var.java:384)
-api02-1  | 	at ring.adapter.jetty$proxy_handler$fn__106.invoke(jetty.clj:25)
-api02-1  | 	at ring.adapter.jetty.proxy$org.eclipse.jetty.server.handler.AbstractHandler$ff19274a.handle(Unknown Source)
-api02-1  | 	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
-api02-1  | 	at org.eclipse.jetty.server.Server.handle(Server.java:499)
-api02-1  | 	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:311)
-api02-1  | 	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:258)
-api02-1  | 	at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:544)
-api02-1  | 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)
-api02-1  | 	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)
-api02-1  | 	at java.base/java.lang.Thread.run(Thread.java:1575)
-db-1     | 2024-02-11 00:32:00.863 UTC [99] ERROR:  function debitar(integer, integer, character varying) does not exist at character 47
-db-1     | 2024-02-11 00:32:00.863 UTC [99] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
-db-1     | 2024-02-11 00:32:00.863 UTC [99] STATEMENT:  select novo_saldo, possui_erro, mensagem from debitar($1, $2, $3)
-api01-1  | 2024-02-11 00:32:00.864:WARN:oejs.HttpChannel:qtp809960622-20: /clientes/2/transacoes
-api01-1  | org.postgresql.util.PSQLException: ERROR: function debitar(integer, integer, character varying) does not exist|  Hint: No function matches the given name and argument types. You might need to add explicit type casts.|  Position: 47
-api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713)
-api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401)
-api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368)
-api01-1  | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
-api01-1  | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
-api01-1  | 	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190)
-api01-1  | 	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:177)
-api01-1  | 	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.execute(NewProxyPreparedStatement.java:67)
-api01-1  | 	at next.jdbc.result_set$stmt__GT_result_set.invokeStatic(result_set.clj:667)
-api01-1  | 	at next.jdbc.result_set$stmt__GT_result_set.invoke(result_set.clj:662)
-api01-1  | 	at next.jdbc.result_set$fn__5904.invokeStatic(result_set.clj:925)
-api01-1  | 	at next.jdbc.result_set$fn__5904.invoke(result_set.clj:855)
-api01-1  | 	at next.jdbc.protocols$fn__5005$G__4983__5014.invoke(protocols.clj:34)
-api01-1  | 	at next.jdbc.result_set$fn__5935.invokeStatic(result_set.clj:1019)
-api01-1  | 	at next.jdbc.result_set$fn__5935.invoke(result_set.clj:855)
-api01-1  | 	at next.jdbc.protocols$fn__5005$G__4983__5014.invoke(protocols.clj:34)
-api01-1  | 	at next.jdbc$execute_one_BANG_.invokeStatic(jdbc.clj:273)
-api01-1  | 	at next.jdbc$execute_one_BANG_.invoke(jdbc.clj:260)
-api01-1  | 	at rinha_2024q1_crebito.http_handlers$transacionar_proc_BANG__STAR_.invokeStatic(http_handlers.clj:110)
-api01-1  | 	at rinha_2024q1_crebito.http_handlers$transacionar_proc_BANG__STAR_.invoke(http_handlers.clj:96)
-api01-1  | 	at rinha_2024q1_crebito.http_handlers$find_cliente_handler_wrapper$fn__7906.invoke(http_handlers.clj:161)
-api01-1  | 	at compojure.response$fn__430.invokeStatic(response.clj:47)
-api01-1  | 	at compojure.response$fn__430.invoke(response.clj:35)
-api01-1  | 	at compojure.response$fn__380$G__375__387.invoke(response.clj:7)
-api01-1  | 	at compojure.core$wrap_response$fn__1983.invoke(core.clj:158)
-api01-1  | 	at compojure.core$wrap_route_middleware$fn__1967.invoke(core.clj:128)
-api01-1  | 	at compojure.core$wrap_route_info$fn__1972.invoke(core.clj:137)
-api01-1  | 	at compojure.core$wrap_route_matches$fn__1976.invoke(core.clj:146)
-api01-1  | 	at compojure.core$routing$fn__1991.invoke(core.clj:185)
-api01-1  | 	at clojure.core$some.invokeStatic(core.clj:2701)
-api01-1  | 	at clojure.core$some.invoke(core.clj:2692)
-api01-1  | 	at compojure.core$routing.invokeStatic(core.clj:185)
-api01-1  | 	at compojure.core$routing.doInvoke(core.clj:182)
-api01-1  | 	at clojure.lang.RestFn.applyTo(RestFn.java:139)
-api01-1  | 	at clojure.core$apply.invokeStatic(core.clj:667)
-api01-1  | 	at clojure.core$apply.invoke(core.clj:660)
-api01-1  | 	at compojure.core$routes$fn__1995.invoke(core.clj:192)
-api01-1  | 	at rinha_2024q1_crebito.middlewares$wrap_db$fn__7926.invoke(middlewares.clj:14)
-api01-1  | 	at rinha_2024q1_crebito.middlewares$wrap_clientes$fn__7929.invoke(middlewares.clj:19)
-api01-1  | 	at ring.middleware.json$wrap_json_body$fn__4307.invoke(json.clj:60)
-api01-1  | 	at ring.middleware.json$wrap_json_response$fn__4358.invoke(json.clj:143)
-api01-1  | 	at ring.middleware.flash$wrap_flash$fn__2114.invoke(flash.clj:39)
-api01-1  | 	at ring.middleware.session$wrap_session$fn__3066.invoke(session.clj:108)
-api01-1  | 	at ring.middleware.keyword_params$wrap_keyword_params$fn__3100.invoke(keyword_params.clj:36)
-api01-1  | 	at ring.middleware.nested_params$wrap_nested_params$fn__3150.invoke(nested_params.clj:89)
-api01-1  | 	at ring.middleware.multipart_params$wrap_multipart_params$fn__3374.invoke(multipart_params.clj:172)
-api01-1  | 	at ring.middleware.params$wrap_params$fn__3390.invoke(params.clj:67)
-api01-1  | 	at ring.middleware.cookies$wrap_cookies$fn__2975.invoke(cookies.clj:175)
-api01-1  | 	at ring.middleware.absolute_redirects$wrap_absolute_redirects$fn__3478.invoke(absolute_redirects.clj:47)
-api01-1  | 	at ring.middleware.resource$wrap_resource$fn__3398.invoke(resource.clj:37)
-api01-1  | 	at ring.middleware.content_type$wrap_content_type$fn__3442.invoke(content_type.clj:34)
-api01-1  | 	at ring.middleware.default_charset$wrap_default_charset$fn__3458.invoke(default_charset.clj:31)
-api01-1  | 	at ring.middleware.not_modified$wrap_not_modified$fn__3431.invoke(not_modified.clj:53)
-api01-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api01-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api01-1  | 	at ring.middleware.x_headers$wrap_x_header$fn__2085.invoke(x_headers.clj:22)
-api01-1  | 	at clojure.lang.Var.invoke(Var.java:384)
-api01-1  | 	at ring.adapter.jetty$proxy_handler$fn__106.invoke(jetty.clj:25)
-api01-1  | 	at ring.adapter.jetty.proxy$org.eclipse.jetty.server.handler.AbstractHandler$ff19274a.handle(Unknown Source)
-api01-1  | 	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
-api01-1  | 	at org.eclipse.jetty.server.Server.handle(Server.java:499)
-api01-1  | 	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:311)
-api01-1  | 	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:258)
-api01-1  | 	at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:544)
-api01-1  | 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)
-api01-1  | 	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)
-api01-1  | 	at java.base/java.lang.Thread.run(Thread.java:1575)
-db-1     | 2024-02-11 00:32:00.869 UTC [91] ERROR:  function creditar(integer, integer, character varying) does not exist at character 47
-db-1     | 2024-02-11 00:32:00.869 UTC [91] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
-db-1     | 2024-02-11 00:32:00.869 UTC [91] STATEMENT:  select novo_saldo, possui_erro, mensagem from creditar($1, $2, $3)
-api02-1  | 2024-02-11 00:32:00.870:WARN:oejs.HttpChannel:qtp2111326114-21: /clientes/1/transacoes
-api02-1  | org.postgresql.util.PSQLException: ERROR: function creditar(integer, integer, character varying) does not exist|  Hint: No function matches the given name and argument types. You might need to add explicit type casts.|  Position: 47
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713)
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401)
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368)
-api02-1  | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
-api02-1  | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
-api02-1  | 	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190)
-api02-1  | 	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:177)
-api02-1  | 	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.execute(NewProxyPreparedStatement.java:67)
-api02-1  | 	at next.jdbc.result_set$stmt__GT_result_set.invokeStatic(result_set.clj:667)
-api02-1  | 	at next.jdbc.result_set$stmt__GT_result_set.invoke(result_set.clj:662)
-api02-1  | 	at next.jdbc.result_set$fn__5904.invokeStatic(result_set.clj:925)
-api02-1  | 	at next.jdbc.result_set$fn__5904.invoke(result_set.clj:855)
-api02-1  | 	at next.jdbc.protocols$fn__5005$G__4983__5014.invoke(protocols.clj:34)
-api02-1  | 	at next.jdbc.result_set$fn__5935.invokeStatic(result_set.clj:1019)
-api02-1  | 	at next.jdbc.result_set$fn__5935.invoke(result_set.clj:855)
-api02-1  | 	at next.jdbc.protocols$fn__5005$G__4983__5014.invoke(protocols.clj:34)
-api02-1  | 	at next.jdbc$execute_one_BANG_.invokeStatic(jdbc.clj:273)
-api02-1  | 	at next.jdbc$execute_one_BANG_.invoke(jdbc.clj:260)
-api02-1  | 	at rinha_2024q1_crebito.http_handlers$transacionar_proc_BANG__STAR_.invokeStatic(http_handlers.clj:110)
+api02-1  | 2024-02-11 06:06:09.537:INFO:oejs.Server:main: jetty-9.2.z-SNAPSHOT
+api02-1  | 2024-02-11 06:06:09.591:INFO:oejs.ServerConnector:main: Started ServerConnector@60377eb8{HTTP/1.1}{0.0.0.0:3000}
+api02-1  | 2024-02-11 06:06:09.592:INFO:oejs.Server:main: Started @7856ms
+api02-1  | Started server on port 3000
+nginx-1  | 2024/02/11 06:06:11 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/11 06:06:13 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | Feb 11, 2024 6:06:15 AM com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource 
+api02-1  | INFO: Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1br8av7b115u13a714bqw7m|4a3404fa, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1br8av7b115u13a714bqw7m|4a3404fa, idleConnectionTestPeriod -> 800, initialPoolSize -> 13, jdbcUrl -> jdbc:postgresql://db:5432/rinha?ApplicationName=rinha-web-server, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 3600, maxIdleTime -> 1800, maxIdleTimeExcessConnections -> 120, maxPoolSize -> 13, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+api01-1  | Feb 11, 2024 6:06:16 AM com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource 
+api01-1  | INFO: Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1br8av8b115u138zfi37g5|2b5a04b0, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1br8av8b115u138zfi37g5|2b5a04b0, idleConnectionTestPeriod -> 800, initialPoolSize -> 13, jdbcUrl -> jdbc:postgresql://db:5432/rinha?ApplicationName=rinha-web-server, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 3600, maxIdleTime -> 1800, maxIdleTimeExcessConnections -> 120, maxPoolSize -> 13, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api02-1 exited with code 0
+api02-1 exited with code 143
+api01-1 exited with code 0
+api01-1 exited with code 143
+db-1     | 2024-02-11 06:10:32.400 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-11 06:10:32.400 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-11 06:10:32.403 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-02-11 06:10:32.403 UTC [64] LOG:  shutting down
+db-1     | 2024-02-11 06:10:32.404 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-11 06:10:32.408 UTC [64] LOG:  checkpoint complete: wrote 610 buffers (3.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.001 s, total=0.005 s; sync files=0, longest=0.000 s, average=0.000 s; distance=1927 kB, estimate=1927 kB; lsn=0/1B03178, redo lsn=0/1B03178
+db-1     | 2024-02-11 06:10:32.415 UTC [1] LOG:  database system is shut down
+db-1 exited with code 0
