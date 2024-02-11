@@ -152,7 +152,7 @@ class RinhaBackendCrebitosSimulation
   val validarExtratoAposRequisicoesParalelas = (saldoEsperado: Int, tipo: String) => scenario(s"""Validação do Extrato ${converterTipoParaTexto(tipo)}""")
     .exec(
       http(s"""Validação do Extrato ${converterTipoParaTexto(tipo)}""")
-      .get("/clientes/1/extrato")
+      .get(s"""/clientes/${REQ_PARALELA_ID_CLIENTE}/extrato""")
       .check(
         jmesPath("saldo.total").validate("ConsistenciaSaldoLimite - Extrato", validarSaldoAposRequisicoesParalelas(saldoEsperado)),
         jsonPath("$.ultimas_transacoes[*]").count.is(REQ_PARALELA_NUM_REQUISICOES)
