@@ -13,7 +13,8 @@ Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `java` para api 
-- `activej` como framework
+- `activej` (framework hipster tddb mtmtmt massa q ngm conhece)
+
 - [repositório da api](https://github.com/ThusSpokeBieu/rinha-crebito-activej/)
 
 [@ThusSpokeBieu](https://twitter.com/thusspokebieu) @ twitter
