@@ -1,0 +1,69 @@
+version: "3.8"
+
+services:
+  web01:
+    image: andrepiske/rinha-de-backend-2024-q1-v001:r1-amd
+    command:
+    - bundle
+    - exec
+    - ruby
+    - /app/server.rb
+    environment:
+    - DB_RESET=1
+    - RUBY_YJIT_ENABLE=1
+    expose:
+    - "8080"
+    depends_on:
+    - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.27"
+          memory: "60MB"
+  web02:
+    image: andrepiske/rinha-de-backend-2024-q1-v001:r1-amd
+    command:
+    - bundle
+    - exec
+    - ruby
+    - /app/server.rb
+    environment:
+    - RUBY_YJIT_ENABLE=1
+    expose:
+    - "8080"
+    depends_on:
+    - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.27"
+          memory: "60MB"
+  lb:
+    image: traefik:v2.11
+    volumes:
+    - ./traefik-dynamic:/traefik-dynamic
+    - ./traefik.yml:/etc/traefik/traefik.yml
+    ports:
+    - "9999:9999"
+    depends_on:
+    - web01
+    - web02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.39"
+          memory: "60MB"
+  db:
+    image: mongo:7.0.5
+    expose:
+    - "27017"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.57"
+          memory: "370MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-2024q1

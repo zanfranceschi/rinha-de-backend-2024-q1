@@ -1,0 +1,15 @@
+{
+	# Disable admin API
+	admin off
+}
+
+:9999 
+reverse_proxy {
+	transport http {
+                tls
+                tls_insecure_skip_verify
+        }
+	to https://api01:8085 https://api02:8085
+	lb_policy round_robin
+	lb_retries 2
+}

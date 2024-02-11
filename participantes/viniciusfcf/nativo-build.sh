@@ -1,2 +1,0 @@
-./mvnw clean package -DskipTests -Dnative -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true
-docker build -f src/main/docker/Dockerfile.native-micro -t viniciusfcf/rinha-backend-2024q1:latest .

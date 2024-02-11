@@ -121,6 +121,8 @@ Obs.: Não cadastre um cliente com o ID 6 especificamente, pois parte do teste �
 ## Como Fazer e Entregar?
 Assim como na Rinha de Backend anterior, você precisará conteinerizar sua API e outros componentes usados no formato de *docker-compose*, obedecer às [restrições de recursos de CPU e memória](#restricoes), [configuração mínima arquitetural](#arquitetura), e estrutura de artefatos e processo de entrega (o que, onde e quando suas coisas precisam ser entregues).
 
+Você pode fazer a submissão de forma individual, dupla de 2, dupla de 3 ou até dupla de 50 pessoas. Não tem limite. E você e/ou seu grupo pode fazer mais de uma submissão desde que a API seja diferente. 
+
 ### Artefato, Processo e Data Limite de Entrega
 Para participar, basta fazer um pull request neste repositório incluindo um subdiretório em [participantes](./participantes) com os seguintes arquivos:
 - `docker-compose.yml` - arquivo interpretável por `docker-compose` contendo a declaração dos serviços que compõe sua API respeitando as [restrições de CPU/memória](#restricoes) e [arquitetura mínima](#arquitetura).
@@ -373,3 +375,8 @@ A simulação contém um teste de lógica de saldo/limite que extrapola o que é
 ## Critérios para Vencer A Rinha de Backend
 
 Surpresa! :)
+
+
+## Acompanhamento do Status das Execuções dos Testes
+
+[Link do status parcial da Rinha de Backend](./STATUS-TESTES.md).
