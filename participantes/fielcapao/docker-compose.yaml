@@ -1,0 +1,70 @@
+version: '3.5'
+services:
+  api01: &api
+    image: fielcapao/rinha-backend-2024q1-javaslow-spring:latest
+    container_name: rinha_backend_1
+    environment:
+      - SERVER_PORT=8080
+      - SPRING_CASSANDRA_CONTACT_POINTS=cassandra
+      - SPRING_CASSANDRA_LOCAL_DATACENTER=datacenter1
+      - SPRING_CASSANDRA_KEYSPACE_NAME=rinha
+      - SPRING_THREADS_VIRTUAL_ENABLED=true
+    depends_on:
+      - cassandra
+    restart: on-failure
+    healthcheck:
+      test: "curl --fail --silent localhost:8080/actuator/health | grep UP || exit 1"
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 2s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "60MB"
+
+  api02:
+    <<: *api
+    container_name: rinha_backend_2
+
+  cassandra:
+    image: 'cassandra:3.11.16'#2.1.20
+    container_name: rinha_cassandra
+    environment:
+      - HEAP_NEWSIZE=128M
+      - MAX_HEAP_SIZE=400M
+    volumes:
+      - ./db-init.sh:/db-init.sh
+      - ./schema.cql:/tmp/schema.cql
+    command: "sh /db-init.sh"
+    healthcheck:
+      test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
+#    ports:
+#      - '9042:9042'
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "400MB"
+
+  nginx:
+    image: nginx:latest
+    container_name: rinha_nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - '9999:9999'
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "30MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
