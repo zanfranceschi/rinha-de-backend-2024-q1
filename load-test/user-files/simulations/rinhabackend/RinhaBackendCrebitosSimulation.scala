@@ -179,8 +179,8 @@ class RinhaBackendCrebitosSimulation
             status.saveAs("httpStatus"))
     )
     
-  val debitoParalelo = transacoesParalelas("Requisições de Débito Paralelas", DEBITO)
-  val creditoParalelo = transacoesParalelas("Requisições de Crédito Paralelas", CREDITO)
+  val debitoParalelo = transacoesParalelas("Requisições Paralelas de Débito", DEBITO)
+  val creditoParalelo = transacoesParalelas("Requisições Paralelas de Crédito", CREDITO)
 
   val saldosIniciaisClientes = Array(
     Map("id" -> 1, "limite" ->   1000 * 100),
