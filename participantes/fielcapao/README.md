@@ -7,7 +7,7 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Spring_Boot.svg" alt="logo spring boot 3" width="200" height="auto">
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Cassandra_logo.svg" alt="logo cassandra" width="200" height="auto">
 
-## Francisco Zanfranceschi
+## Rodrigo Rodrigues
 Submissão feita com:
 - `nginx` como load balancer
 - `cassandra` como banco de dados
