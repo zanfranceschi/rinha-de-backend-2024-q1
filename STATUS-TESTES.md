@@ -1,16 +1,19 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **dom 11 fev 2024 00:24:25 -03** com **55** submissões.
+Atualizada **dom 11 fev 2024 01:10:25 -03** com **60** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
 | [agostinho](./participantes/agostinho) | ok | 8 |
+| [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | falha - [logs](./participantes/arrudaricardo-01/docker-compose.logs) | -- |
 | [avalonbits](./participantes/avalonbits) | ok | 8587 |
 | [aysion_bun](./participantes/aysion_bun) | ok | 2 |
 | [aysion_nodejs](./participantes/aysion_nodejs) | ok | 2428 |
+| [bbonagura9](./participantes/bbonagura9) | ok | 229 |
 | [bcaua](./participantes/bcaua) | ok | 15309 |
+| [cadu](./participantes/cadu) | ok | 4 |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 3 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [diego-coronel](./participantes/diego-coronel) | falha - [logs](./participantes/diego-coronel/docker-compose.logs) | -- |
@@ -19,13 +22,14 @@ Atualizada **dom 11 fev 2024 00:24:25 -03** com **55** submissões.
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) | -- |
 | [eu_fountai](./participantes/eu_fountai) | ok | 27 |
 | [exemplo](./participantes/exemplo) | ok | 7 |
-| [fabiokleis](./participantes/fabiokleis) | ok | 1840 |
+| [fabiokleis](./participantes/fabiokleis) | ok | 243 |
 | [gasparbarancelli](./participantes/gasparbarancelli) | ok | 7 |
 | [gasparbarancelli-h2-database](./participantes/gasparbarancelli-h2-database) | ok | 8 |
 | [giovannibassi](./participantes/giovannibassi) | ok | 4 |
 | [gmrms](./participantes/gmrms) | ok | 7 |
 | [halexv](./participantes/halexv) | ok | 2100 |
 | [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 5 |
+| [isadora-souza](./participantes/isadora-souza) | ok | 6 |
 | [itujo](./participantes/itujo) | ok | 6 |
 | [jojodev](./participantes/jojodev) | falha - [logs](./participantes/jojodev/docker-compose.logs) | -- |
 | [josebaroni](./participantes/josebaroni) | ok | 4 |
