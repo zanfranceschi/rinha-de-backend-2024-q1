@@ -11,7 +11,7 @@ Submissão feita com:
 - `postgres` como banco de dados
 - `quakus` como framework web
 - `kotlin` como linguagem de programação
-- [Repositório da api com os fontes](https://github.com/ElixiremFoco/rinha-backend-2024-q1)
+- [Repositório da api com os fontes](https://github.com/DiegoCoronel/rinha-backend-01-2024)
 
 ## Rede Social
 [DiegoCoronel](https://twitter.com/DiegoCoronelC) no twitter
