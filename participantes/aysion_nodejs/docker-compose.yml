@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  api_01: &api
+    image: aysion/rinha_de_backend_2024_q1-nodejs
+    restart: unless-stopped
+    hostname: api_01
+    environment:
+      - PORT=8080
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "120MB"
+  api_02:
+    <<: *api
+    hostname: api_02
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api_01
+      - api_02
+    ports:
+      - 9999:9999
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "10MB"
+  db:
+    image: mariadb:11
+    restart: unless-stopped
+    hostname: db
+    environment:
+      - MARIADB_ROOT_PASSWORD=adminPass
+      - MARIADB_DATABASE=rinha
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "300MB"
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

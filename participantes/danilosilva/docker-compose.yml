@@ -1,0 +1,68 @@
+version: "3.5"
+services:
+
+  api01: &api
+    image: daniloos/crebito-rinha:latest
+    hostname: api01
+    environment:
+      - APIPORT=80
+      - MONGO_CONNECTION=mongodb://root:MyPassword123!@mongodb:27017
+      - MONGO_DATABASE=Crebito
+    networks:
+      - crebito-network
+    depends_on:
+      - mongodb
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "165MB"
+  
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - APIPORT=80
+      - MONGO_CONNECTION=mongodb://root:MyPassword123!@mongodb:27017
+      - MONGO_DATABASE=Crebito
+
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: MyPassword123!
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    ports:
+      - 27017:27017
+    networks:
+      - crebito-network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.55"
+          memory: "200MB"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "9999:9999"
+    networks:
+      - crebito-network
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "20MB"
+
+networks:
+  crebito-network:
+    driver: bridge

@@ -1,0 +1,61 @@
+version: '3.5'
+services:
+  api01: &app
+    image: hiroshimorowaka/rinha-backend-2024:latest
+    hostname: api01
+    network_mode: host
+    environment:
+      - DATABASE_URL=postgres://docker:docker@localhost:5432/rinha
+      - DB_POOL=35
+      - CREATE_TABLE=true
+      - HTTP_PORT=8081
+    expose:
+      - "8080"
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '150MB'
+
+  api02:
+    <<: *app
+    hostname: api02
+    environment:
+      - CREATE_TABLE=false
+      - HTTP_PORT=8082
+
+  postgres:
+    image: postgres:16.1-alpine3.19
+    network_mode: host
+    command: postgres -c 'max_connections=300' -c 'log_error_verbosity=terse'
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=rinha
+    ports:
+      - 5432:5432
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '200MB'
+
+  nginx:
+    
+    image: nginx:1.25.3-alpine
+    network_mode: host
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - 9999:9999
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '50MB'
+        

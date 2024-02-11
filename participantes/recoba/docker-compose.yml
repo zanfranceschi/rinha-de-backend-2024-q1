@@ -1,0 +1,93 @@
+version: '3.5'
+services:
+  api1:
+    image: thalesmaciel/recoba
+    hostname: api1
+    depends_on:
+      db:
+        condition: service_healthy
+    expose:
+      - "80"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: password
+      DB_NAME: postgres
+      DB_SSLMODE: disable
+      PORT: 80
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: '100MB'
+    networks:
+      - backend
+
+  api2:
+    image: thalesmaciel/recoba
+    hostname: api2
+    depends_on:
+      db:
+        condition: service_healthy
+    expose:
+      - "80"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: password
+      DB_NAME: postgres
+      DB_SSLMODE: disable
+      PORT: 80
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: '100MB'
+    networks:
+      - backend
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: '50MB'
+    networks:
+      - backend
+
+  db:
+    image: postgres:15
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '0.80'
+          memory: '300MB'
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
+
