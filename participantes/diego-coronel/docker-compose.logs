@@ -1,0 +1,385 @@
+ Network diego-coronel_default  Creating
+ Network diego-coronel_default  Created
+ Container postgres  Creating
+ Container postgres  Created
+ Container api2  Creating
+ Container api1  Creating
+ Container api1  Created
+ Container api2  Created
+ Container nginx  Creating
+ Container nginx  Created
+Attaching to api1, api2, nginx, postgres
+postgres  | The files belonging to this database system will be owned by user "postgres".
+postgres  | This user must also own the server process.
+postgres  | 
+postgres  | The database cluster will be initialized with locale "en_US.utf8".
+postgres  | The default database encoding has accordingly been set to "UTF8".
+postgres  | The default text search configuration will be set to "english".
+postgres  | 
+postgres  | Data page checksums are disabled.
+postgres  | 
+postgres  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres  | creating subdirectories ... ok
+postgres  | selecting dynamic shared memory implementation ... posix
+postgres  | selecting default max_connections ... 100
+postgres  | selecting default shared_buffers ... 128MB
+postgres  | selecting default time zone ... Etc/UTC
+postgres  | creating configuration files ... ok
+postgres  | running bootstrap script ... ok
+api2      | __  ____  __  _____   ___  __ ____  ______ 
+api2      |  --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
+api2      |  -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
+api2      | --\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
+api2      | 2024-02-11 00:25:44,014 WARN  [io.agr.pool] (agroal-11) Datasource '<default>': Connection to postgres:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+api2      | 2024-02-11 00:25:44,020 ERROR [io.qua.run.Application] (main) Failed to start application (with profile [prod]): java.lang.RuntimeException: Failed to start quarkus
+api2      | 	at io.quarkus.runner.ApplicationImpl.doStart(Unknown Source)
+api2      | 	at io.quarkus.runtime.Application.start(Application.java:101)
+api2      | 	at io.quarkus.runtime.ApplicationLifecycleManager.run(ApplicationLifecycleManager.java:111)
+api2      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:71)
+api2      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:44)
+api2      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:124)
+api2      | 	at io.quarkus.runner.GeneratedMain.main(Unknown Source)
+api2      | Caused by: java.lang.IllegalStateException: Error starting Liquibase
+api2      | 	at io.quarkus.liquibase.runtime.LiquibaseRecorder.doStartActions(LiquibaseRecorder.java:90)
+api2      | 	at io.quarkus.deployment.steps.LiquibaseProcessor$startLiquibase1744275855.deploy_0(Unknown Source)
+api2      | 	at io.quarkus.deployment.steps.LiquibaseProcessor$startLiquibase1744275855.deploy(Unknown Source)
+api2      | 	... 7 more
+api2      | Caused by: java.lang.IllegalStateException: org.postgresql.util.PSQLException: Connection to postgres:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+api2      | 	at io.quarkus.liquibase.LiquibaseFactory.createLiquibase(LiquibaseFactory.java:60)
+api2      | 	at io.quarkus.liquibase.LiquibaseFactory_1d48OwssPZoQytD2p8kGRAP54yY_Synthetic_ClientProxy.createLiquibase(Unknown Source)
+api2      | 	at io.quarkus.liquibase.runtime.LiquibaseRecorder.doStartActions(LiquibaseRecorder.java:69)
+api2      | 	... 9 more
+api2      | Caused by: org.postgresql.util.PSQLException: Connection to postgres:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+api2      | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:342)
+api2      | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+api2      | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263)
+api2      | 	at org.postgresql.Driver.makeConnection(Driver.java:444)
+api2      | 	at org.postgresql.Driver.connect(Driver.java:297)
+api2      | 	at io.agroal.pool.ConnectionFactory.createConnection(ConnectionFactory.java:226)
+api2      | 	at io.agroal.pool.ConnectionPool$CreateConnectionTask.call(ConnectionPool.java:536)
+api2      | 	at io.agroal.pool.ConnectionPool$CreateConnectionTask.call(ConnectionPool.java:517)
+api2      | 	at java.base@21.0.2/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+api2      | 	at io.agroal.pool.util.PriorityScheduledExecutor.beforeExecute(PriorityScheduledExecutor.java:75)
+api2      | 	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+api2      | 	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+api2      | 	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+api2      | 	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+api2      | 	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+api2      | 	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+api2      | Caused by: java.net.ConnectException: Connection refused
+api2      | 	at java.base@21.0.2/sun.nio.ch.Net.pollConnect(Native Method)
+api2      | 	at java.base@21.0.2/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+api2      | 	at java.base@21.0.2/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+api2      | 	at java.base@21.0.2/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+api2      | 	at java.base@21.0.2/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+api2      | 	at java.base@21.0.2/java.net.Socket.connect(Socket.java:751)
+api2      | 	at org.postgresql.core.PGStream.createSocket(PGStream.java:243)
+api2      | 	at org.postgresql.core.PGStream.<init>(PGStream.java:98)
+api2      | 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:132)
+api2      | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258)
+api2      | 	... 15 more
+api2      | 
+api1      | __  ____  __  _____   ___  __ ____  ______ 
+api1      |  --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
+api1      |  -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
+api1      | --\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
+api1      | 2024-02-11 00:25:44,030 WARN  [io.agr.pool] (agroal-11) Datasource '<default>': Connection to postgres:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+api1      | 2024-02-11 00:25:44,032 ERROR [io.qua.run.Application] (main) Failed to start application (with profile [prod]): java.lang.RuntimeException: Failed to start quarkus
+api1      | 	at io.quarkus.runner.ApplicationImpl.doStart(Unknown Source)
+api1      | 	at io.quarkus.runtime.Application.start(Application.java:101)
+api1      | 	at io.quarkus.runtime.ApplicationLifecycleManager.run(ApplicationLifecycleManager.java:111)
+api1      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:71)
+api1      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:44)
+api1      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:124)
+api1      | 	at io.quarkus.runner.GeneratedMain.main(Unknown Source)
+api1      | Caused by: java.lang.IllegalStateException: Error starting Liquibase
+api1      | 	at io.quarkus.liquibase.runtime.LiquibaseRecorder.doStartActions(LiquibaseRecorder.java:90)
+api1      | 	at io.quarkus.deployment.steps.LiquibaseProcessor$startLiquibase1744275855.deploy_0(Unknown Source)
+api1      | 	at io.quarkus.deployment.steps.LiquibaseProcessor$startLiquibase1744275855.deploy(Unknown Source)
+api1      | 	... 7 more
+api1      | Caused by: java.lang.IllegalStateException: org.postgresql.util.PSQLException: Connection to postgres:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+api1      | 	at io.quarkus.liquibase.LiquibaseFactory.createLiquibase(LiquibaseFactory.java:60)
+api1      | 	at io.quarkus.liquibase.LiquibaseFactory_1d48OwssPZoQytD2p8kGRAP54yY_Synthetic_ClientProxy.createLiquibase(Unknown Source)
+api1      | 	at io.quarkus.liquibase.runtime.LiquibaseRecorder.doStartActions(LiquibaseRecorder.java:69)
+api1      | 	... 9 more
+api1      | Caused by: org.postgresql.util.PSQLException: Connection to postgres:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+api1      | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:342)
+api1      | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+api1      | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263)
+api1      | 	at org.postgresql.Driver.makeConnection(Driver.java:444)
+api1      | 	at org.postgresql.Driver.connect(Driver.java:297)
+api1      | 	at io.agroal.pool.ConnectionFactory.createConnection(ConnectionFactory.java:226)
+api1      | 	at io.agroal.pool.ConnectionPool$CreateConnectionTask.call(ConnectionPool.java:536)
+api1      | 	at io.agroal.pool.ConnectionPool$CreateConnectionTask.call(ConnectionPool.java:517)
+api1      | 	at java.base@21.0.2/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+api1      | 	at io.agroal.pool.util.PriorityScheduledExecutor.beforeExecute(PriorityScheduledExecutor.java:75)
+api1      | 	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+api1      | 	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+api1      | 	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+api1      | 	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+api1      | 	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+api1      | 	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+api1      | Caused by: java.net.ConnectException: Connection refused
+api1      | 	at java.base@21.0.2/sun.nio.ch.Net.pollConnect(Native Method)
+api1      | 	at java.base@21.0.2/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+api1      | 	at java.base@21.0.2/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+api1      | 	at java.base@21.0.2/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+api1      | 	at java.base@21.0.2/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+api1      | 	at java.base@21.0.2/java.net.Socket.connect(Socket.java:751)
+api1      | 	at org.postgresql.core.PGStream.createSocket(PGStream.java:243)
+api1      | 	at org.postgresql.core.PGStream.<init>(PGStream.java:98)
+api1      | 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:132)
+api1      | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258)
+api1      | 	... 15 more
+api1      | 
+postgres  | performing post-bootstrap initialization ... ok
+nginx     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx     | /docker-entrypoint.sh: Configuration complete; ready for start up
+nginx     | 2024/02/11 00:25:44 [emerg] 1#1: host not found in upstream "api1:8080" in /etc/nginx/nginx.conf:11
+nginx     | nginx: [emerg] host not found in upstream "api1:8080" in /etc/nginx/nginx.conf:11
+postgres  | syncing data to disk ... ok
+postgres  | 
+postgres  | 
+postgres  | Success. You can now start the database server using:
+postgres  | 
+postgres  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres  | 
+postgres  | initdb: warning: enabling "trust" authentication for local connections
+postgres  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres  | waiting for server to start....2024-02-11 00:25:45.482 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-02-11 00:25:45.491 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-02-11 00:25:45.505 UTC [51] LOG:  database system was shut down at 2024-02-11 00:25:44 UTC
+postgres  | 2024-02-11 00:25:45.527 UTC [48] LOG:  database system is ready to accept connections
+postgres  |  done
+postgres  | server started
+postgres  | CREATE DATABASE
+postgres  | 
+postgres  | 
+postgres  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres  | 
+postgres  | 2024-02-11 00:25:45.823 UTC [48] LOG:  received fast shutdown request
+postgres  | waiting for server to shut down....2024-02-11 00:25:45.827 UTC [48] LOG:  aborting any active transactions
+postgres  | 2024-02-11 00:25:45.830 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres  | 2024-02-11 00:25:45.830 UTC [49] LOG:  shutting down
+postgres  | 2024-02-11 00:25:45.842 UTC [49] LOG:  checkpoint starting: shutdown immediate
+api2 exited with code 0
+api1 exited with code 0
+nginx exited with code 1
+api1      | 2024-02-11 00:25:45,919 ERROR [io.qua.run.Application] (main) Failed to start application (with profile [prod]): java.lang.RuntimeException: Failed to start quarkus
+api1      | 	at io.quarkus.runner.ApplicationImpl.doStart(Unknown Source)
+api1      | 	at io.quarkus.runtime.Application.start(Application.java:101)
+api1      | 	at io.quarkus.runtime.ApplicationLifecycleManager.run(ApplicationLifecycleManager.java:111)
+api1      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:71)
+api1      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:44)
+api1      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:124)
+api1      | 	at io.quarkus.runner.GeneratedMain.main(Unknown Source)
+api1      | Caused by: java.lang.IllegalStateException: Error starting Liquibase
+api1      | 	at io.quarkus.liquibase.runtime.LiquibaseRecorder.doStartActions(LiquibaseRecorder.java:90)
+api1      | 	at io.quarkus.deployment.steps.LiquibaseProcessor$startLiquibase1744275855.deploy_0(Unknown Source)
+api1      | 	at io.quarkus.deployment.steps.LiquibaseProcessor$startLiquibase1744275855.deploy(Unknown Source)
+api1      | 	... 7 more
+api1      | Caused by: java.lang.IllegalStateException: org.postgresql.util.PSQLException: Connection to postgres:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+api1      | 	at io.quarkus.liquibase.LiquibaseFactory.createLiquibase(LiquibaseFactory.java:60)
+api1      | 	at io.quarkus.liquibase.LiquibaseFactory_1d48OwssPZoQytD2p8kGRAP54yY_Synthetic_ClientProxy.createLiquibase(Unknown Source)
+api1      | 	at io.quarkus.liquibase.runtime.LiquibaseRecorder.doStartActions(LiquibaseRecorder.java:69)
+api1      | 	... 9 more
+api1      | Caused by: org.postgresql.util.PSQLException: Connection to postgres:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+api1      | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:342)
+api1      | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+api1      | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263)
+api1      | 	at org.postgresql.Driver.makeConnection(Driver.java:444)
+api1      | 	at org.postgresql.Driver.connect(Driver.java:297)
+api1      | 	at io.agroal.pool.ConnectionFactory.createConnection(ConnectionFactory.java:226)
+api1      | 	at io.agroal.pool.ConnectionPool$CreateConnectionTask.call(ConnectionPool.java:536)
+api1      | 	at io.agroal.pool.ConnectionPool$CreateConnectionTask.call(ConnectionPool.java:517)
+api1      | 	at java.base@21.0.2/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+api1      | 	at io.agroal.pool.util.PriorityScheduledExecutor.beforeExecute(PriorityScheduledExecutor.java:75)
+api1      | 	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+api1      | 	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+api1      | 	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+api1      | 	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+api1      | 	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+api1      | 	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+api1      | Caused by: java.net.ConnectException: Connection refused
+api1      | 	at java.base@21.0.2/sun.nio.ch.Net.pollConnect(Native Method)
+api1      | 	at java.base@21.0.2/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+api1      | 	at java.base@21.0.2/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+api1      | 	at java.base@21.0.2/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+api1      | 	at java.base@21.0.2/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+api1      | 	at java.base@21.0.2/java.net.Socket.connect(Socket.java:751)
+api1      | 	at org.postgresql.core.PGStream.createSocket(PGStream.java:243)
+api1      | 	at org.postgresql.core.PGStream.<init>(PGStream.java:98)
+api1      | 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:132)
+api1      | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258)
+api1      | 	... 15 more
+api1      | 
+postgres  | 2024-02-11 00:25:45.942 UTC [49] LOG:  checkpoint complete: wrote 923 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.059 s, sync=0.034 s, total=0.112 s; sync files=301, longest=0.008 s, average=0.001 s; distance=4257 kB, estimate=4257 kB; lsn=0/1913078, redo lsn=0/1913078
+postgres  | 2024-02-11 00:25:45.950 UTC [48] LOG:  database system is shut down
+postgres  |  done
+postgres  | server stopped
+postgres  | 
+postgres  | PostgreSQL init process complete; ready for start up.
+postgres  | 
+postgres  | 2024-02-11 00:25:46.066 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-02-11 00:25:46.066 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres  | 2024-02-11 00:25:46.066 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres  | 2024-02-11 00:25:46.072 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-02-11 00:25:46.081 UTC [64] LOG:  database system was shut down at 2024-02-11 00:25:45 UTC
+postgres  | 2024-02-11 00:25:46.088 UTC [1] LOG:  database system is ready to accept connections
+api2 exited with code 0
+postgres  | 2024-02-11 00:25:47.093 UTC [68] ERROR:  relation "public.databasechangeloglock" does not exist at character 22
+postgres  | 2024-02-11 00:25:47.093 UTC [68] STATEMENT:  SELECT COUNT(*) FROM public.databasechangeloglock
+api1 exited with code 0
+api2      | 2024-02-11 00:25:47,123 INFO  [liq.lockservice] (main) Successfully acquired change log lock
+api2      | 2024-02-11 00:25:47,124 INFO  [liq.servicelocator] (main) Cannot load service: java.util.ServiceConfigurationError: liquibase.command.CommandStep: Provider liquibase.command.core.StartH2CommandStep not found
+api2      | 	at java.base@21.0.2/java.util.ServiceLoader.fail(ServiceLoader.java:593)
+api2      | 	at java.base@21.0.2/java.util.ServiceLoader$LazyClassPathLookupIterator.nextProviderClass(ServiceLoader.java:1219)
+api2      | 	at java.base@21.0.2/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNextService(ServiceLoader.java:1228)
+api2      | 	at java.base@21.0.2/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNext(ServiceLoader.java:1273)
+api2      | 	at java.base@21.0.2/java.util.ServiceLoader$2.hasNext(ServiceLoader.java:1309)
+api2      | 	at java.base@21.0.2/java.util.ServiceLoader$3.hasNext(ServiceLoader.java:1393)
+api2      | 	at liquibase.servicelocator.StandardServiceLocator.findInstances(StandardServiceLocator.java:22)
+api2      | 	at liquibase.command.CommandFactory.findAllInstances(CommandFactory.java:243)
+api2      | 	at liquibase.command.CommandFactory.computePipelineForCommandDefinition(CommandFactory.java:71)
+api2      | 	at liquibase.command.CommandFactory.getCommandDefinition(CommandFactory.java:50)
+api2      | 	at liquibase.command.CommandScope.<init>(CommandScope.java:63)
+api2      | 	at liquibase.Liquibase.lambda$validate$25(Liquibase.java:1348)
+api2      | 	at liquibase.Scope.lambda$child$0(Scope.java:186)
+api2      | 	at liquibase.Scope.child(Scope.java:195)
+api2      | 	at liquibase.Scope.child(Scope.java:185)
+api2      | 	at liquibase.Scope.child(Scope.java:164)
+api2      | 	at liquibase.Liquibase.runInScope(Liquibase.java:1419)
+api2      | 	at liquibase.Liquibase.validate(Liquibase.java:1347)
+api2      | 	at io.quarkus.liquibase.runtime.LiquibaseRecorder.doStartActions(LiquibaseRecorder.java:79)
+api2      | 	at io.quarkus.deployment.steps.LiquibaseProcessor$startLiquibase1744275855.deploy_0(Unknown Source)
+api2      | 	at io.quarkus.deployment.steps.LiquibaseProcessor$startLiquibase1744275855.deploy(Unknown Source)
+api2      | 	at io.quarkus.runner.ApplicationImpl.doStart(Unknown Source)
+api2      | 	at io.quarkus.runtime.Application.start(Application.java:101)
+api2      | 	at io.quarkus.runtime.ApplicationLifecycleManager.run(ApplicationLifecycleManager.java:111)
+api2      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:71)
+api2      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:44)
+api2      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:124)
+api2      | 	at io.quarkus.runner.GeneratedMain.main(Unknown Source)
+api2      | 
+api1      | __  ____  __  _____   ___  __ ____  ______ 
+api1      |  --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
+api1      |  -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
+api1      | --\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
+api1      | 2024-02-11 00:25:47,191 INFO  [liq.database] (main) Set default schema name to public
+api1      | 2024-02-11 00:25:47,197 INFO  [liq.lockservice] (main) Waiting for changelog lock....
+api2      | 2024-02-11 00:25:47,203 INFO  [liq.changelog] (main) Creating database history table with name: public.databasechangelog
+api2      | 2024-02-11 00:25:47,239 INFO  [liq.changelog] (main) Reading from public.databasechangelog
+api2      | No validation errors found.
+api2      | 2024-02-11 00:25:47,247 INFO  [liq.command] (main) Command execution complete
+api2      | 2024-02-11 00:25:47,262 INFO  [liq.changelog] (main) Reading from public.databasechangelog
+api2      | 2024-02-11 00:25:47,293 INFO  [liq.command] (main) Using deploymentId: 7611147293
+api2      | 2024-02-11 00:25:47,294 INFO  [liq.changelog] (main) Reading from public.databasechangelog
+api2      | Running Changeset: db/changeLog.xml::1::quarkus
+api2      | 2024-02-11 00:25:47,326 INFO  [liq.changelog] (main) Table cliente created
+api2      | 2024-02-11 00:25:47,328 INFO  [liq.changelog] (main) Table transacao created
+api2      | 2024-02-11 00:25:47,339 INFO  [liq.changelog] (main) Index id_cliente_idx created
+api2      | 2024-02-11 00:25:47,361 INFO  [liq.changelog] (main) Index realizada_em_idx created
+api2      | 2024-02-11 00:25:47,363 INFO  [liq.changelog] (main) Custom SQL executed
+api2      | 2024-02-11 00:25:47,377 INFO  [liq.changelog] (main) ChangeSet db/changeLog.xml::1::quarkus ran successfully in 81ms
+api2      | 
+api2      | UPDATE SUMMARY
+api2      | Run:                          1
+api2      | Previously run:               0
+api2      | Filtered out:                 0
+api2      | -------------------------------
+api2      | Total change sets:            1
+api2      | 
+api2      | 2024-02-11 00:25:47,381 INFO  [liq.util] (main) UPDATE SUMMARY
+api2      | 2024-02-11 00:25:47,381 INFO  [liq.util] (main) Run:                          1
+api2      | 2024-02-11 00:25:47,381 INFO  [liq.util] (main) Previously run:               0
+api2      | 2024-02-11 00:25:47,381 INFO  [liq.util] (main) Filtered out:                 0
+api2      | 2024-02-11 00:25:47,382 INFO  [liq.util] (main) -------------------------------
+api2      | 2024-02-11 00:25:47,382 INFO  [liq.util] (main) Total change sets:            1
+api2      | 2024-02-11 00:25:47,382 INFO  [liq.util] (main) Update summary generated
+api2      | 2024-02-11 00:25:47,382 INFO  [liq.command] (main) Update command completed successfully.
+api2      | Liquibase: Update has been successful. Rows affected: 6
+api2      | 2024-02-11 00:25:47,384 INFO  [liq.lockservice] (main) Successfully released change log lock
+api2      | 2024-02-11 00:25:47,384 INFO  [liq.command] (main) Command execution complete
+api2      | 2024-02-11 00:25:47,386 INFO  [liq.lockservice] (main) Successfully released change log lock
+api2      | 2024-02-11 00:25:47,400 INFO  [io.quarkus] (main) rinha-2024 1.0-SNAPSHOT native (powered by Quarkus 3.7.2) started in 0.416s. Listening on: http://0.0.0.0:8080
+api2      | 2024-02-11 00:25:47,400 INFO  [io.quarkus] (main) Profile prod activated. 
+api2      | 2024-02-11 00:25:47,400 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, jdbc-postgresql, kotlin, liquibase, narayana-jta, resteasy, resteasy-jackson, smallrye-context-propagation, vertx]
+api1      | 2024-02-11 00:25:57,210 INFO  [liq.lockservice] (main) Successfully acquired change log lock
+api1      | 2024-02-11 00:25:57,212 INFO  [liq.servicelocator] (main) Cannot load service: java.util.ServiceConfigurationError: liquibase.command.CommandStep: Provider liquibase.command.core.StartH2CommandStep not found
+api1      | 	at java.base@21.0.2/java.util.ServiceLoader.fail(ServiceLoader.java:593)
+api1      | 	at java.base@21.0.2/java.util.ServiceLoader$LazyClassPathLookupIterator.nextProviderClass(ServiceLoader.java:1219)
+api1      | 	at java.base@21.0.2/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNextService(ServiceLoader.java:1228)
+api1      | 	at java.base@21.0.2/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNext(ServiceLoader.java:1273)
+api1      | 	at java.base@21.0.2/java.util.ServiceLoader$2.hasNext(ServiceLoader.java:1309)
+api1      | 	at java.base@21.0.2/java.util.ServiceLoader$3.hasNext(ServiceLoader.java:1393)
+api1      | 	at liquibase.servicelocator.StandardServiceLocator.findInstances(StandardServiceLocator.java:22)
+api1      | 	at liquibase.command.CommandFactory.findAllInstances(CommandFactory.java:243)
+api1      | 	at liquibase.command.CommandFactory.computePipelineForCommandDefinition(CommandFactory.java:71)
+api1      | 	at liquibase.command.CommandFactory.getCommandDefinition(CommandFactory.java:50)
+api1      | 	at liquibase.command.CommandScope.<init>(CommandScope.java:63)
+api1      | 	at liquibase.Liquibase.lambda$validate$25(Liquibase.java:1348)
+api1      | 	at liquibase.Scope.lambda$child$0(Scope.java:186)
+api1      | 	at liquibase.Scope.child(Scope.java:195)
+api1      | 	at liquibase.Scope.child(Scope.java:185)
+api1      | 	at liquibase.Scope.child(Scope.java:164)
+api1      | 	at liquibase.Liquibase.runInScope(Liquibase.java:1419)
+api1      | 	at liquibase.Liquibase.validate(Liquibase.java:1347)
+api1      | 	at io.quarkus.liquibase.runtime.LiquibaseRecorder.doStartActions(LiquibaseRecorder.java:79)
+api1      | 	at io.quarkus.deployment.steps.LiquibaseProcessor$startLiquibase1744275855.deploy_0(Unknown Source)
+api1      | 	at io.quarkus.deployment.steps.LiquibaseProcessor$startLiquibase1744275855.deploy(Unknown Source)
+api1      | 	at io.quarkus.runner.ApplicationImpl.doStart(Unknown Source)
+api1      | 	at io.quarkus.runtime.Application.start(Application.java:101)
+api1      | 	at io.quarkus.runtime.ApplicationLifecycleManager.run(ApplicationLifecycleManager.java:111)
+api1      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:71)
+api1      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:44)
+api1      | 	at io.quarkus.runtime.Quarkus.run(Quarkus.java:124)
+api1      | 	at io.quarkus.runner.GeneratedMain.main(Unknown Source)
+api1      | 
+api1      | 2024-02-11 00:25:57,297 INFO  [liq.changelog] (main) Reading from public.databasechangelog
+api1      | No validation errors found.
+api1      | 2024-02-11 00:25:57,299 INFO  [liq.command] (main) Command execution complete
+api1      | 2024-02-11 00:25:57,313 INFO  [liq.changelog] (main) Reading from public.databasechangelog
+api1      | Database is up to date, no changesets to execute
+api1      | 2024-02-11 00:25:57,317 INFO  [liq.changelog] (main) Reading from public.databasechangelog
+api1      | 
+api1      | UPDATE SUMMARY
+api1      | Run:                          0
+api1      | Previously run:               1
+api1      | Filtered out:                 0
+api1      | -------------------------------
+api1      | Total change sets:            1
+api1      | 
+api1      | 2024-02-11 00:25:57,318 INFO  [liq.util] (main) UPDATE SUMMARY
+api1      | 2024-02-11 00:25:57,318 INFO  [liq.util] (main) Run:                          0
+api1      | 2024-02-11 00:25:57,318 INFO  [liq.util] (main) Previously run:               1
+api1      | 2024-02-11 00:25:57,318 INFO  [liq.util] (main) Filtered out:                 0
+api1      | 2024-02-11 00:25:57,318 INFO  [liq.util] (main) -------------------------------
+api1      | 2024-02-11 00:25:57,318 INFO  [liq.util] (main) Total change sets:            1
+api1      | 2024-02-11 00:25:57,318 INFO  [liq.util] (main) Update summary generated
+api1      | 2024-02-11 00:25:57,324 INFO  [liq.lockservice] (main) Successfully released change log lock
+api1      | 2024-02-11 00:25:57,324 INFO  [liq.command] (main) Command execution complete
+api1      | 2024-02-11 00:25:57,329 INFO  [liq.lockservice] (main) Successfully released change log lock
+api1      | 2024-02-11 00:25:57,331 INFO  [io.quarkus] (main) rinha-2024 1.0-SNAPSHOT native (powered by Quarkus 3.7.2) started in 10.276s. Listening on: http://0.0.0.0:8080
+api1      | 2024-02-11 00:25:57,331 INFO  [io.quarkus] (main) Profile prod activated. 
+api1      | 2024-02-11 00:25:57,331 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, jdbc-postgresql, kotlin, liquibase, narayana-jta, resteasy, resteasy-jackson, smallrye-context-propagation, vertx]
+api2      | 2024-02-11 00:26:26,128 INFO  [io.quarkus] (main) rinha-2024 stopped in 0.002s
+api1      | 2024-02-11 00:26:26,147 INFO  [io.quarkus] (Shutdown thread) rinha-2024 stopped in 0.001s
+api2 exited with code 0
+api2 exited with code 143
+api1 exited with code 0
+api1 exited with code 143
+postgres  | 2024-02-11 00:26:26.571 UTC [1] LOG:  received fast shutdown request
+postgres  | 2024-02-11 00:26:26.573 UTC [1] LOG:  aborting any active transactions
+postgres  | 2024-02-11 00:26:26.576 UTC [1] LOG:  background worker "logical replication launcher" (PID 67) exited with exit code 1
+postgres  | 2024-02-11 00:26:26.578 UTC [62] LOG:  shutting down
+postgres  | 2024-02-11 00:26:26.580 UTC [62] LOG:  checkpoint starting: shutdown immediate
+postgres  | 2024-02-11 00:26:26.621 UTC [62] LOG:  checkpoint complete: wrote 78 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.025 s, sync=0.008 s, total=0.043 s; sync files=54, longest=0.003 s, average=0.001 s; distance=234 kB, estimate=234 kB; lsn=0/194DB40, redo lsn=0/194DB40
+postgres  | 2024-02-11 00:26:26.627 UTC [1] LOG:  database system is shut down
+postgres exited with code 0
