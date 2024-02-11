@@ -46,13 +46,13 @@ make composer-restart
 - ---
 # :wrench: Testes
 
-<img src="./docs/Gatling-20240210-1750.png" alt="Gatling" style="width: 100%;"/>
+<img src="https://bucket.neonlab.dev/static/Gatling-Test.png" alt="Gatling" style="width: 100%;"/>
 
 
 - ---
 
 <p align="center">
-    <img height="256"   src="https://github.com/cat-milk/Anime-Girls-Holding-Programming-Books/blob/master/Go/Rei_Learning_Go.png?raw=true">
+    <img height="256" src="https://github.com/cat-milk/Anime-Girls-Holding-Programming-Books/blob/master/Go/Rei_Learning_Go.png?raw=true">
     <br>
     <b>Fim, por enquanto...</b>
 </p>
