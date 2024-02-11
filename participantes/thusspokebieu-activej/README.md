@@ -13,9 +13,9 @@ Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `java` para api 
-- `activej` (framework hipster tddb mtmtmt massa q ngm conhece)
+- [activej](https://activej.io/) (framework hipster tddb mtmtmt massa q ngm conhece)
 
 - [repositório da api](https://github.com/ThusSpokeBieu/rinha-crebito-activej/)
 
 [@ThusSpokeBieu](https://twitter.com/thusspokebieu) @ twitter
-[@gmessiasc](https://www.linkedin.com/in/gmessiasc/) @ LinkedIn
+[@gmessiasc](https://www.linkedin.com/in/gmessiasc/) @ Gabriel Messias Costa | LinkeDin
