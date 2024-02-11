@@ -9,21 +9,11 @@ services:
     network_mode: host
     stdin_open: false
     tty: false
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100k"
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "healthy"]
-      interval: 5s
-      timeout: 5s
-      retries: 15
-      start_period: 60s
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "300MB"
+          cpus: "0.6"
+          memory: "400MB"
 
   app-northbound: &app
     image: murilochianfa/rinha-crebito-cpp-app:latest
@@ -41,8 +31,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.35"
-          memory: "100MB"
+          cpus: "0.3"
+          memory: "50MB"
 
   app-southbound:
     <<: *app
