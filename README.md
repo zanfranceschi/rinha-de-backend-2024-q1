@@ -346,18 +346,26 @@ Por exemplo:
 `$ docker buildx build --platform linux/amd64 -t ana/minha-api-matadora:latest .`
 
 ### Para executar os testes
-Aqui estão instruções rápidas para você poder executar os testes:
+
+Para executar os testes localmente você precisa ter o Java (JDK) acima da versão 11, preferencialmente as LTS (11, 17, 21), além de ter configurado o JAVA_HOME nas suas variáveis de ambiente.
+
+Caso você não saiba como fazer isso, esse [artigo](https://www.devmedia.com.br/instalacao-e-configuracao-do-pacote-java-jdk/23749) pode ajudar.
+
+Agora com o Java instalado seguiremos as instruções abaixo:
 
 1. Baixe o Gatling em https://gatling.io/open-source/
-1. Certifique-se de que tenha o JDK instalado
-    (64bits OpenJDK LTS (Long Term Support) versions: 11, 17 e 21)
-    https://gatling.io/docs/gatling/tutorials/installation/
-1. Configure o script `./executar-teste-local.sh` (ou `./executar-teste-local.ps1` se estiver no Windows)
-1. Suba sua API (ou load balancer) na porta 9999
-1. Execute `./executar-teste-local.sh` (ou `./executar-teste-local.ps1` se estiver no Windows)
-1. Agora é só aguardar o teste terminar e abrir o relatório
-    O caminho do relatório é exibido ao término da simulação.
-    Os resultados/relatórios são salvos em `./load-test/user-files/results`.
+2. Extraia o arquivo na pasta que você conseguir lembrar onde ele está, e agora você deverá inserí-lo nas suas variáveis de ambiente com o nome de ```GATLING_HOME```
+   - O endereço da pasta deve ser até a raiz, não até o ```/bin```
+   - O script do gatling de execução local irá se basear no seguinte caminho ```$HOME/gatling/3.10.3/bin```
+   - Fique livre para modificá-lo, busque pela variável ```GATLING_BIN_DIR``` no respectivo script.
+3. Há dois scripts de execução, um em Bash e o outro em Powershell (Windows), usuários de Windows também podem utilizar o script em Bash através do Git Bash, inserindo o ```sh``` antes do nome do arquivo, ou WSL
+4. Realize as modificações que achar necessário, os principais locais que você pode querer alterar são:
+   - ```RESULTS_WORKSPACE```: Onde os arquivos com o resultado do teste serão inseridos
+   - ```GATLING_WORKSPACE```: Workspace de execução do script e onde está a classe responsável por testar a API.
+   - ```GATLING_BIN_DIR```: Local onde é esperado que esteja os binários do Gatling.
+5. Suba sua API (ou load balancer) na porta 9999, caso deseje uma porta diferente precisará ser feito a modificação na variável ```httpProtocol``` da classe de testes, nos testes oficiais será utilizada a 9999.
+6. Execute ```./executar-teste-local.sh``` (Bash) ou ```./executar-teste-local.ps1``` (PowerShell/Windows)
+7. Agora é só aguardar a execução dos testes e abrir o relatório que deverá estar onde foi configurado, conforme explicado no passo 4.
 
 Fique à vontade para alterar a [simulação](./load-test/user-files/simulations/rinhabackend/RinhaBackendCrebitosSimulation.scala) para testar diferentes aspectos e cenários. Não inclua essas alterações no pull request de submissão!
 
