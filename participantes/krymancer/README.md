@@ -9,4 +9,4 @@ Submissão feita com:
 - `dotnet` para api com as libs `entity framework`
 - [repositório da api](https://github.com/Krymancer/rinha-de-backend-2024-q1-dotnet/)
 
-[@zanfranceschi](https://twitter.com/joaodocodigo) @ twitter
+[@joaodocodigo](https://twitter.com/joaodocodigo) @ twitter
