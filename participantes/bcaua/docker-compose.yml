@@ -2,19 +2,17 @@ version: "3.5"
 
 services:
   api01: &api
-    image: bcaua/api:latest
+    image: bcaua/api
     container_name: api01
     environment:
       - ASPNETCORE_URLS=http://+:3000
     depends_on:
       - db
-    networks:
-      - default
     deploy:
       resources:
         limits:
-          cpus: "0.2"
-          memory: "50MB"
+          cpus: "0.25"
+          memory: "90MB"
 
 
   api02:
@@ -31,13 +29,11 @@ services:
       - api02
     ports:
       - "9999:9999"
-    networks:
-      - default
     deploy:
       resources:
         limits:
           cpus: "0.2"
-          memory: "30MB"
+          memory: "70MB"
     
   db:
     image: postgres:latest
@@ -48,16 +44,14 @@ services:
       - POSTGRES_DB=rinha
     ports:
       - "5432:5432"
-    networks:
-      - default
     volumes:
       - ./script.sql:/docker-entrypoint-initdb.d/script.sql
       - ./postgres.conf:/docker-entrypoint-initdb.d/postgres.conf
     deploy:
       resources:
         limits:
-          cpus: "0.9"
-          memory: "420MB"
+          cpus: "0.8"
+          memory: "300MB"
 
 networks:
   default:
