@@ -1,0 +1,75 @@
+version: '3.5'
+
+networks:
+  fiber-network:
+    name: fiber-network
+
+services:
+  fiber-api-1: # API - Instance 01
+    image: mvellasco/rinha-fiber-api
+    restart: always
+    depends_on:
+      - db
+    expose:
+      - "8000"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '200MB'
+    networks:
+      fiber-network:
+        aliases:
+          - fiber-api-proxy-1
+
+  fiber-api-2: # API - Instance 02
+    image: mvellasco/rinha-fiber-api
+    restart: always
+    depends_on:
+      - db
+    expose:
+      - "8000"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '200MB'
+    networks:
+      fiber-network:
+        aliases:
+          - fiber-api-proxy-2
+
+  nginx: # Load Balancer
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:z
+    depends_on:
+      - fiber-api-1
+      - fiber-api-2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '25MB'
+    networks:
+      fiber-network:
+        aliases:
+          - nginx-proxy
+
+  db: # database
+    image:  postgres:15.3-bullseye
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '125MB'
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=banco
+    networks:
+      fiber-network:
+        aliases:
+          - db-proxy

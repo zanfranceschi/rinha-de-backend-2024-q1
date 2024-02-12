@@ -1,0 +1,72 @@
+version: "3.5"
+services:
+  db:
+    container_name: mongo
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=123
+      - MONGO_INITDB_DATABASE=rinha
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./.setup-config/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "300MB"
+
+  api01: &api
+    image: registry.geff.ws/rinha2024q1/grinha-http2:v0.0.2
+    container_name: api01
+    depends_on:
+      - db    
+    environment:
+      - DB_MAX_POOL_SIZE=150 #default 100
+      - DB_MIN_POOL_SIZE=0 # default 0
+      - DB_MAX_CONNECTIONS=3 # default 2
+      - DB_COMPRESSORS="" # default is empty, without compression  = possible: "zstd,zlib,snappy"
+      - DB_ZLIB_COMPRESS_LEVEL=-1 # -1 to 9 - default -1 = 1 FAST / 9 SLOW
+      - DB_ZSTD_COMPRESS_LEVEL=-1 # 1 TO 20 - default 6
+      - DB_PORT=27017
+      - DB_HOST=mongo
+      - DB_NAME=rinha
+      - DB_USER=admin
+      - DB_PASSWORD=123
+      - SERVER_HOST=localhost
+      - SERVER_PORT=8085
+      - GIN_MODE=release
+   
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50mb"
+
+  api02:
+    <<: *api
+    container_name: api02
+
+         
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    volumes:
+      - ./.setup-config/Caddyfile:/etc/caddy/Caddyfile:ro
+    depends_on:
+      - api01
+      - api02
+      - db
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "150MB"      
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-network          
