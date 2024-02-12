@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS transacoes (
     descricao VARCHAR(1024),
     realizada_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE INDEX transacoes_realizada_em_idx ON transacoes(realizada_em DESC);
+CREATE INDEX CONCURRENTLY transacoes_realizada_em_idx ON transacoes(cliente_id, realizada_em DESC);
 CREATE FUNCTION updateClienteSaldoOnTransactionInsert() RETURNS trigger AS $updateClienteSaldoOnTransactionInsert$
     BEGIN 
         LOCK TABLE clientes IN ROW EXCLUSIVE MODE;
