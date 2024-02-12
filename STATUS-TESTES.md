@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **seg 12 fev 2024 14:16:15 -03** com **87** submissões.
+Atualizada **seg 12 fev 2024 14:44:12 -03** com **88** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -14,6 +14,7 @@ Atualizada **seg 12 fev 2024 14:16:15 -03** com **87** submissões.
 | [bbonagura9](./participantes/bbonagura9) | ok | 175 |
 | [bcaua](./participantes/bcaua) | ok | 39 |
 | [bgskurono](./participantes/bgskurono) | ok | 5 |
+| [bine-php-road-runner](./participantes/bine-php-road-runner) | ok | 75 |
 | [bine-php-swoole](./participantes/bine-php-swoole) | ok | 63 |
 | [bine-reactphp](./participantes/bine-reactphp) | ok | 66 |
 | [breno5g](./participantes/breno5g) | ok | 6 |
@@ -65,7 +66,7 @@ Atualizada **seg 12 fev 2024 14:16:15 -03** com **87** submissões.
 | [lsfratel](./participantes/lsfratel) | ok | 6 |
 | [lubien-phoenixqlite](./participantes/lubien-phoenixqlite) | ok | 3 |
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 5 |
-| [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
+| [macgarcia](./participantes/macgarcia) | ok | 2 |
 | [mateus4k](./participantes/mateus4k) | ok | 8 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 34 |
 | [maxwell](./participantes/maxwell) | ok | 139 |
