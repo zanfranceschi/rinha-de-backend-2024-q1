@@ -21,3 +21,10 @@ https://github.com/ThusSpokeBieu/rinha-crebito-activej/
 [@ThusSpokeBieu](https://twitter.com/thusspokebieu) @ twitter
 
 [@gmessiasc](https://www.linkedin.com/in/gmessiasc/) @ Gabriel Messias Costa | LinkedIn
+
+## Como rodar: 
+
+docker compose up 
+
+A api vai avisar que está se alongando e vai avisar quando estiver pronta pra receber requisição com um console log bacana.
+
