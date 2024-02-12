@@ -1,0 +1,78 @@
+version: "3.6"
+
+services:
+  api01: &api
+    image: 442494/rinha-backend-2024q1-native:latest
+    network_mode: host
+    environment:
+      - QUARKUS_HTTP_PORT=8081
+      - DATABASE_URL=jdbc:postgresql://localhost:5432/rinhadb?loggerLevel=OFF
+      - DATABASE_USERNAME=rinha
+      - DATABASE_PASSWORD=rinha123
+      # - QUARKUS_DATASOURCE_JDBC_MAX_SIZE=150
+      # - QUARKUS_DATASOURCE_JDBC_MIN_SIZE=20
+      # - QUARKUS_DATASOURCE_JDBC_INITIAL_SIZE=50
+    depends_on:
+      db-postgresql:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "100MB"
+
+  api02:
+    <<: *api 
+    environment:
+      - QUARKUS_HTTP_PORT=8082
+ 
+  nginx:
+    image: nginx:latest
+    network_mode: host
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+  db-postgresql:
+    image: postgres:16.1
+    environment:
+      - POSTGRES_DB=rinhadb
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha123
+    network_mode: host
+    hostname: db-postgresql
+    volumes:
+      - ./import.sql:/docker-entrypoint-initdb.d/script.sql
+    command: postgres -c 'max_connections=300' -c 'fsync=off' -c 'synchronous_commit=off' -c 'checkpoint_timeout=1d' -c 'full_page_writes=false'
+    deploy:
+      resources:
+        limits:
+          cpus: "0.9"
+          memory: "300MB"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+  
+  # pgadmin:
+  #   container_name: pgadmin
+  #   hostname: pgadmin
+  #   image: dpage/pgadmin4:7.6
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+  #     - PGADMIN_DEFAULT_PASSWORD=admin
+  #     - PGADMIN_LISTEN_PORT=5050
+  #   ports:
+  #     - "5050:80"
+  #   depends_on:
+  #     - db-postgresql
+  #   network_mode: "host"
