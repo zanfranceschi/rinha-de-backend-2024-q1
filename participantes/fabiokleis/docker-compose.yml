@@ -19,7 +19,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.2"
+          cpus: "0.35"
           memory: "90MB"
 
   api02:
@@ -44,7 +44,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.1"
+          cpus: "0.2"
           memory: "40MB"
 
   db:
@@ -58,7 +58,7 @@ services:
       - "5432:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro,z
-    command: 'postgres -c max_connections=1000 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off'
+    command: 'postgres -c max_connections=1000 -c shared_buffers=64MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c checkpoint_timeout=1d'
     #command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096
     deploy:
       resources:
@@ -67,7 +67,7 @@ services:
           # aqui declarados é de 1.5 unidades de CPU e 550MB
           # de memória. A distribuição feita aqui é apenas
           # um exemplo – distribua como quiser.
-          cpus: "1"
+          cpus: "0.6"
           memory: "330MB"
 
 # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
