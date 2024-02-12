@@ -1,0 +1,500 @@
+ Network rinha-net  Creating
+ Network rinha-net  Created
+ Container olukkas-db-1  Creating
+ Container olukkas-db-1  Created
+ Container olukkas-app2-1  Creating
+ Container olukkas-app1-1  Creating
+ Container olukkas-app1-1  Created
+ Container olukkas-app2-1  Created
+ Container olukkas-nginx-1  Creating
+ Container olukkas-nginx-1  Created
+Attaching to app1-1, app2-1, db-1, nginx-1
+db-1     | The files belonging to this database system will be owned by user "postgres".
+db-1     | This user must also own the server process.
+db-1     | 
+db-1     | The database cluster will be initialized with locale "en_US.utf8".
+db-1     | The default database encoding has accordingly been set to "UTF8".
+db-1     | The default text search configuration will be set to "english".
+db-1     | 
+db-1     | Data page checksums are disabled.
+db-1     | 
+db-1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1     | creating subdirectories ... ok
+db-1     | selecting default max_connections ... 100
+db-1     | selecting default shared_buffers ... 128MB
+db-1     | selecting default timezone ... Etc/UTC
+db-1     | selecting dynamic shared memory implementation ... posix
+db-1     | creating configuration files ... ok
+app2-1   | listening on port: 3000
+app1-1   | listening on port: 3000
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db-1     | creating template1 database in /var/lib/postgresql/data/base/1 ... ok
+db-1     | initializing pg_authid ... ok
+db-1     | setting password ... ok
+db-1     | initializing dependencies ... ok
+db-1     | creating system views ... ok
+db-1     | loading system objects' descriptions ... ok
+db-1     | creating collations ... ok
+db-1     | creating conversions ... ok
+db-1     | creating dictionaries ... ok
+db-1     | setting privileges on built-in objects ... ok
+db-1     | creating information schema ... ok
+db-1     | loading PL/pgSQL server-side language ... ok
+db-1     | vacuuming database template1 ... ok
+db-1     | copying template1 to template0 ... ok
+db-1     | copying template1 to postgres ... ok
+app1-1   | 2024/02/12 00:32:29 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:52538 - 500 57B in 964.315µs
+db-1     | 
+db-1     | WARNING: enabling "trust" authentication for local connections
+db-1     | You can change this by editing pg_hba.conf or using the option -A, or
+db-1     | --auth-local and --auth-host, the next time you run initdb.
+db-1     | syncing data to disk ... ok
+db-1     | 
+db-1     | Success. You can now start the database server using:
+db-1     | 
+db-1     |     postgres -D /var/lib/postgresql/data
+db-1     | or
+db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1     | 
+db-1     | waiting for server to start....LOG:  database system was shut down at 2024-02-12 00:32:28 UTC
+db-1     | LOG:  MultiXact member wraparound protections are now enabled
+db-1     | LOG:  autovacuum launcher started
+db-1     | LOG:  database system is ready to accept connections
+db-1     |  done
+db-1     | server started
+app2-1   | 2024/02/12 00:32:31 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:56926 - 500 57B in 836.594µs
+db-1     | CREATE DATABASE
+db-1     | 
+db-1     | 
+db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+db-1     | CREATE TABLE
+db-1     | CREATE TABLE
+db-1     | INSERT 0 5
+db-1     | 
+db-1     | 
+db-1     | LOG:  received fast shutdown request
+db-1     | LOG:  aborting any active transactions
+db-1     | LOG:  autovacuum launcher shutting down
+db-1     | waiting for server to shut down....LOG:  shutting down
+db-1     | LOG:  database system is shut down
+db-1     |  done
+db-1     | server stopped
+db-1     | 
+db-1     | PostgreSQL init process complete; ready for start up.
+db-1     | 
+db-1     | LOG:  database system was shut down at 2024-02-12 00:32:31 UTC
+db-1     | LOG:  MultiXact member wraparound protections are now enabled
+db-1     | LOG:  autovacuum launcher started
+db-1     | LOG:  database system is ready to accept connections
+app1-1   | 2024/02/12 00:32:33 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:52552 - 200 112B in 7.526958ms
+app2-1   | 2024/02/12 00:32:33 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:56942 - 200 112B in 6.431657ms
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40260 - 422 19B in 769.794µs
+app2-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:47930 - 422 19B in 870.855µs
+app2-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:47944 - 422 19B in 567.214µs
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40274 - 422 19B in 1.252549ms
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40290 - 422 19B in 9.344826ms
+app2-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:47956 - 422 19B in 4.874232ms
+app2-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:47982 - 422 19B in 5.703914ms
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40316 - 422 19B in 6.598168ms
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40302 - 422 19B in 9.841716ms
+app2-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:47968 - 422 19B in 11.740506ms
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40362 - 422 19B in 8.105174ms
+app2-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48006 - 422 19B in 6.41824ms
+app2-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48032 - 422 19B in 8.687996ms
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40318 - 422 19B in 17.028198ms
+app2-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:47998 - 422 19B in 17.811376ms
+app2-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48000 - 422 19B in 21.03395ms
+app2-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48040 - 422 19B in 25.835553ms
+app2-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48044 - 422 19B in 27.943549ms
+app2-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48016 - 422 19B in 33.443178ms
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40374 - 422 19B in 33.046105ms
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40352 - 422 19B in 37.749327ms
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40390 - 422 19B in 35.023826ms
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40358 - 422 19B in 38.821207ms
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40336 - 422 19B in 40.705164ms
+app1-1   | 2024/02/12 00:32:40 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40320 - 422 19B in 83.135902ms
+app2-1   | 2024/02/12 00:32:41 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:48054 - 200 112B in 1.259427ms
+app1-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40408 - 200 28B in 293.007219ms
+app2-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48072 - 200 28B in 406.806176ms
+app2-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48156 - 200 28B in 403.788699ms
+app1-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40466 - 200 28B in 419.809865ms
+app1-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40426 - 200 28B in 439.407909ms
+app1-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40494 - 200 28B in 432.552228ms
+app2-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48166 - 200 28B in 458.611825ms
+app2-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48100 - 200 28B in 476.208379ms
+app1-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40480 - 200 28B in 472.759603ms
+app1-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40464 - 200 28B in 500.835534ms
+app2-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48176 - 200 28B in 499.243865ms
+app1-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40432 - 200 28B in 533.834941ms
+app2-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48172 - 200 28B in 539.077064ms
+app2-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48128 - 200 28B in 556.421568ms
+app1-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40462 - 200 28B in 566.19307ms
+app1-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40450 - 200 28B in 586.270007ms
+app1-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40416 - 200 28B in 607.000805ms
+app1-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40394 - 200 28B in 627.078152ms
+app1-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40442 - 200 28B in 627.384552ms
+app2-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48058 - 200 28B in 654.26578ms
+app2-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48082 - 200 28B in 659.778066ms
+app2-1   | 2024/02/12 00:32:42 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48116 - 200 28B in 665.500795ms
+app1-1   | 2024/02/12 00:32:43 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40428 - 200 28B in 681.001387ms
+app2-1   | 2024/02/12 00:32:43 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48142 - 200 28B in 692.649282ms
+app2-1   | 2024/02/12 00:32:43 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48096 - 200 28B in 709.59941ms
+app2-1   | 2024/02/12 00:32:43 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:48178 - 200 1029B in 1.473777ms
+app1-1   | 2024/02/12 00:32:44 "GET http://api/clientes/6/extrato HTTP/1.0" from 192.168.240.5:40504 - 404 27B in 496.789µs
+app1-1   | 2024/02/12 00:32:44 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:40528 - 200 1029B in 2.580061ms
+app2-1   | 2024/02/12 00:32:44 "GET http://api/clientes/3/extrato HTTP/1.0" from 192.168.240.5:48194 - 200 112B in 2.089968ms
+app2-1   | 2024/02/12 00:32:44 "GET http://api/clientes/2/extrato HTTP/1.0" from 192.168.240.5:48202 - 200 111B in 3.574131ms
+app1-1   | 2024/02/12 00:32:44 "GET http://api/clientes/5/extrato HTTP/1.0" from 192.168.240.5:40512 - 200 112B in 9.647654ms
+app2-1   | 2024/02/12 00:32:44 "GET http://api/clientes/4/extrato HTTP/1.0" from 192.168.240.5:48208 - 200 114B in 7.690812ms
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:40534 - 200 29B in 37.536965ms
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:40546 - 200 30B in 48.842953ms
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:40548 - 200 28B in 45.883027ms
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:48230 - 200 27B in 46.487083ms
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48224 - 200 28B in 49.519799ms
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:48240 - 200 29B in 21.8313ms
+app1-1   | 2024/02/12 00:32:44 "GET http://api/clientes/3/extrato HTTP/1.0" from 192.168.240.5:40566 - 200 286B in 5.298352ms
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:48258 - 200 28B in 18.439027ms
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40552 - 200 28B in 21.682947ms
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:40556 - 200 27B in 20.664264ms
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:48250 - 200 30B in 24.437586ms
+app1-1   | 2024/02/12 00:32:44 "GET http://api/clientes/5/extrato HTTP/1.0" from 192.168.240.5:40582 - 200 286B in 1.252119ms
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:40584 - 400 85B in 606.669µs
+app2-1   | 2024/02/12 00:32:44 "GET http://api/clientes/2/extrato HTTP/1.0" from 192.168.240.5:48268 - 200 285B in 6.068125ms
+app2-1   | 2024/02/12 00:32:44 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:48300 - 200 1021B in 1.811275ms
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:40594 - 400 85B in 616.558µs
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:48314 - 400 85B in 534.428µs
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:40610 - 400 32B in 525.675µs
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:48326 - 400 32B in 1.608165ms
+app2-1   | 2024/02/12 00:32:44 "GET http://api/clientes/4/extrato HTTP/1.0" from 192.168.240.5:48284 - 200 288B in 14.427511ms
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40616 - 400 85B in 2.524671ms
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:48332 - 400 63B in 634.391µs
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:48348 - 400 63B in 519.505µs
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:40622 - 400 32B in 816.74µs
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:48352 - 400 43B in 530.862µs
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40634 - 400 32B in 1.913251ms
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:40638 - 400 43B in 852.24µs
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:48356 - 400 63B in 1.211586ms
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40646 - 400 63B in 1.131672ms
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:40660 - 400 43B in 2.167005ms
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:48364 - 400 85B in 507.81µs
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:48358 - 400 43B in 1.058066ms
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:40668 - 400 43B in 691.045µs
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:48368 - 400 32B in 585.303µs
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40678 - 400 43B in 625.75µs
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:48382 - 400 43B in 531.577µs
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:40692 - 400 43B in 548.181µs
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:48394 - 400 63B in 543.284µs
+app1-1   | 2024/02/12 00:32:44 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:40694 - 400 43B in 510.785µs
+app2-1   | 2024/02/12 00:32:44 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:48404 - 400 43B in 535.807µs
+app1-1   | 2024/02/12 00:32:45 "GET http://api/clientes/3/extrato HTTP/1.0" from 192.168.240.5:40708 - 200 286B in 2.063269ms
+app1-1   | 2024/02/12 00:32:45 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:40716 - 422 19B in 601.403µs
+app2-1   | 2024/02/12 00:32:45 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:48410 - 200 33B in 26.274821ms
+app2-1   | 2024/02/12 00:32:46 "GET http://api/clientes/4/extrato HTTP/1.0" from 192.168.240.5:48422 - 200 387B in 1.679126ms
+app2-1   | 2024/02/12 00:32:46 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:48428 - 422 19B in 598.43µs
+app1-1   | 2024/02/12 00:32:46 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:40732 - 200 30B in 28.788811ms
+app1-1   | 2024/02/12 00:32:46 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:40738 - 200 31B in 24.873157ms
+app1-1   | 2024/02/12 00:32:46 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:40744 - 200 34B in 44.186397ms
+app2-1   | 2024/02/12 00:32:46 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48432 - 200 31B in 44.477292ms
+app2-1   | 2024/02/12 00:32:47 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41004 - 422 19B in 535.572µs
+app1-1   | 2024/02/12 00:32:47 "GET http://api/clientes/2/extrato HTTP/1.0" from 192.168.240.5:42232 - 200 481B in 1.198192ms
+app2-1   | 2024/02/12 00:32:47 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41006 - 422 19B in 492.196µs
+app2-1   | 2024/02/12 00:32:47 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41014 - 422 19B in 418.382µs
+app1-1   | 2024/02/12 00:32:47 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42240 - 200 32B in 301.431135ms
+app2-1   | 2024/02/12 00:32:47 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41016 - 422 19B in 480.586µs
+app1-1   | 2024/02/12 00:32:47 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42246 - 200 32B in 101.963037ms
+app2-1   | 2024/02/12 00:32:47 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41032 - 422 19B in 495.663µs
+app1-1   | 2024/02/12 00:32:47 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:42262 - 200 30B in 28.499659ms
+app1-1   | 2024/02/12 00:32:47 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42268 - 200 31B in 23.160698ms
+app2-1   | 2024/02/12 00:32:48 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41036 - 200 33B in 34.613397ms
+app1-1   | 2024/02/12 00:32:48 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42276 - 422 19B in 395.242µs
+app1-1   | 2024/02/12 00:32:48 "GET http://api/clientes/2/extrato HTTP/1.0" from 192.168.240.5:42288 - 200 576B in 1.081088ms
+app2-1   | 2024/02/12 00:32:48 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41042 - 200 31B in 33.402874ms
+app2-1   | 2024/02/12 00:32:48 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41058 - 200 34B in 46.420885ms
+app1-1   | 2024/02/12 00:32:48 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42302 - 200 33B in 36.811752ms
+app2-1   | 2024/02/12 00:32:48 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41066 - 200 32B in 21.345104ms
+app1-1   | 2024/02/12 00:32:48 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42308 - 422 19B in 416.843µs
+app2-1   | 2024/02/12 00:32:48 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41076 - 422 19B in 511.936µs
+app1-1   | 2024/02/12 00:32:48 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42318 - 200 33B in 34.441937ms
+app2-1   | 2024/02/12 00:32:48 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41090 - 422 19B in 534.979µs
+app1-1   | 2024/02/12 00:32:49 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42330 - 200 33B in 37.951686ms
+app2-1   | 2024/02/12 00:32:49 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41098 - 200 31B in 16.160113ms
+app1-1   | 2024/02/12 00:32:49 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42342 - 200 32B in 17.304446ms
+app2-1   | 2024/02/12 00:32:49 "GET http://api/clientes/2/extrato HTTP/1.0" from 192.168.240.5:41104 - 200 673B in 1.244296ms
+app2-1   | 2024/02/12 00:32:49 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41116 - 200 33B in 30.274973ms
+app1-1   | 2024/02/12 00:32:49 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42348 - 200 34B in 47.042046ms
+app1-1   | 2024/02/12 00:32:49 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:42360 - 422 19B in 433.377µs
+app2-1   | 2024/02/12 00:32:49 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41120 - 200 34B in 16.199523ms
+app1-1   | 2024/02/12 00:32:49 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42372 - 422 19B in 518.545µs
+app2-1   | 2024/02/12 00:32:49 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41130 - 422 19B in 554.766µs
+app1-1   | 2024/02/12 00:32:49 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42388 - 200 31B in 31.259112ms
+app2-1   | 2024/02/12 00:32:49 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41140 - 200 31B in 10.80325ms
+app1-1   | 2024/02/12 00:32:49 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:42396 - 422 19B in 547.633µs
+app2-1   | 2024/02/12 00:32:49 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41142 - 200 31B in 29.634129ms
+app1-1   | 2024/02/12 00:32:49 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42406 - 200 34B in 17.088204ms
+app2-1   | 2024/02/12 00:32:50 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41152 - 200 31B in 29.776461ms
+app1-1   | 2024/02/12 00:32:50 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42410 - 200 34B in 19.125363ms
+app2-1   | 2024/02/12 00:32:50 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41158 - 422 19B in 475.015µs
+app1-1   | 2024/02/12 00:32:50 "GET http://api/clientes/5/extrato HTTP/1.0" from 192.168.240.5:42428 - 200 577B in 1.17436ms
+app1-1   | 2024/02/12 00:32:50 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:42416 - 200 30B in 28.601407ms
+app2-1   | 2024/02/12 00:32:50 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41170 - 200 34B in 35.265216ms
+app2-1   | 2024/02/12 00:32:50 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41172 - 200 31B in 39.360261ms
+app2-1   | 2024/02/12 00:32:50 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41176 - 422 19B in 540.707µs
+app1-1   | 2024/02/12 00:32:50 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42438 - 200 34B in 18.230889ms
+app1-1   | 2024/02/12 00:32:50 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42446 - 422 19B in 536.636µs
+app1-1   | 2024/02/12 00:32:50 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42462 - 422 19B in 439.282µs
+app2-1   | 2024/02/12 00:32:50 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41184 - 200 31B in 35.909441ms
+app2-1   | 2024/02/12 00:32:50 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41190 - 200 34B in 31.389575ms
+app1-1   | 2024/02/12 00:32:50 "GET http://api/clientes/5/extrato HTTP/1.0" from 192.168.240.5:42464 - 200 673B in 976.593µs
+app2-1   | 2024/02/12 00:32:50 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41196 - 200 32B in 16.640742ms
+app1-1   | 2024/02/12 00:32:50 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42476 - 422 19B in 428.194µs
+app2-1   | 2024/02/12 00:32:50 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41210 - 422 19B in 489.514µs
+app1-1   | 2024/02/12 00:32:50 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42492 - 200 34B in 18.149111ms
+app2-1   | 2024/02/12 00:32:51 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41212 - 422 19B in 516.247µs
+app1-1   | 2024/02/12 00:32:51 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42508 - 200 34B in 24.809228ms
+app2-1   | 2024/02/12 00:32:51 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41222 - 200 34B in 20.549096ms
+app1-1   | 2024/02/12 00:32:51 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42520 - 200 32B in 27.146641ms
+app2-1   | 2024/02/12 00:32:51 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:41234 - 200 1044B in 1.160244ms
+app1-1   | 2024/02/12 00:32:51 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:42536 - 200 30B in 19.334457ms
+app2-1   | 2024/02/12 00:32:51 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41240 - 200 34B in 31.110039ms
+app1-1   | 2024/02/12 00:32:51 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42546 - 200 34B in 20.108253ms
+app2-1   | 2024/02/12 00:32:51 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41250 - 200 32B in 27.919783ms
+app1-1   | 2024/02/12 00:32:51 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42562 - 200 32B in 28.457109ms
+app2-1   | 2024/02/12 00:32:51 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41256 - 422 19B in 421.201µs
+app2-1   | 2024/02/12 00:32:51 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41258 - 422 19B in 489.353µs
+app1-1   | 2024/02/12 00:32:51 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42572 - 200 33B in 34.510251ms
+app1-1   | 2024/02/12 00:32:51 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42582 - 422 19B in 522.996µs
+app2-1   | 2024/02/12 00:32:51 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41272 - 200 33B in 25.369865ms
+app1-1   | 2024/02/12 00:32:51 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42586 - 422 19B in 447.874µs
+app2-1   | 2024/02/12 00:32:51 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41286 - 422 19B in 453.561µs
+app1-1   | 2024/02/12 00:32:51 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:42590 - 200 30B in 19.567909ms
+app2-1   | 2024/02/12 00:32:51 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41296 - 200 33B in 24.080491ms
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42602 - 200 34B in 11.869168ms
+app2-1   | 2024/02/12 00:32:52 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41300 - 200 33B in 4.559287ms
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42604 - 200 34B in 24.056783ms
+app2-1   | 2024/02/12 00:32:52 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41310 - 200 34B in 5.625509ms
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42608 - 200 31B in 5.601963ms
+app2-1   | 2024/02/12 00:32:52 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41316 - 200 33B in 10.220049ms
+app2-1   | 2024/02/12 00:32:52 "GET http://api/clientes/3/extrato HTTP/1.0" from 192.168.240.5:41330 - 200 1072B in 979.343µs
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42612 - 200 33B in 23.127809ms
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42618 - 200 33B in 24.151486ms
+app2-1   | 2024/02/12 00:32:52 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41344 - 422 19B in 449.089µs
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:42630 - 200 31B in 72.874968ms
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42646 - 422 19B in 503.702µs
+app2-1   | 2024/02/12 00:32:52 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41356 - 200 31B in 69.295016ms
+app2-1   | 2024/02/12 00:32:52 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41368 - 200 31B in 14.268713ms
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42662 - 422 19B in 415.325µs
+app2-1   | 2024/02/12 00:32:52 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41382 - 422 19B in 511.497µs
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42668 - 200 33B in 12.792564ms
+app2-1   | 2024/02/12 00:32:52 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41390 - 422 19B in 508.826µs
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42680 - 200 30B in 16.544486ms
+app2-1   | 2024/02/12 00:32:52 "GET http://api/clientes/5/extrato HTTP/1.0" from 192.168.240.5:41402 - 200 957B in 967.819µs
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42686 - 200 31B in 17.346073ms
+app2-1   | 2024/02/12 00:32:52 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41410 - 422 19B in 492.421µs
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42696 - 200 33B in 17.161218ms
+app2-1   | 2024/02/12 00:32:52 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41422 - 200 34B in 5.669934ms
+app1-1   | 2024/02/12 00:32:52 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42708 - 200 33B in 11.199413ms
+app2-1   | 2024/02/12 00:32:53 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41426 - 200 33B in 14.294589ms
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:42710 - 200 31B in 5.886245ms
+app2-1   | 2024/02/12 00:32:53 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41438 - 200 30B in 14.219097ms
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42716 - 200 33B in 11.088259ms
+app2-1   | 2024/02/12 00:32:53 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41448 - 200 31B in 6.97678ms
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:42722 - 200 31B in 14.378351ms
+app2-1   | 2024/02/12 00:32:53 "GET http://api/clientes/5/extrato HTTP/1.0" from 192.168.240.5:41450 - 200 957B in 1.10267ms
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42736 - 200 31B in 6.031137ms
+app2-1   | 2024/02/12 00:32:53 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41456 - 200 32B in 8.508773ms
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:42748 - 200 30B in 16.200212ms
+app2-1   | 2024/02/12 00:32:53 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41462 - 200 31B in 13.096788ms
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42764 - 200 31B in 33.077069ms
+app2-1   | 2024/02/12 00:32:53 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41474 - 200 32B in 10.183292ms
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42768 - 200 31B in 23.654331ms
+app2-1   | 2024/02/12 00:32:53 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41482 - 200 33B in 30.709427ms
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:42774 - 200 31B in 15.48845ms
+app2-1   | 2024/02/12 00:32:53 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41498 - 200 34B in 21.243465ms
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42776 - 200 31B in 29.774072ms
+app2-1   | 2024/02/12 00:32:53 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41500 - 422 19B in 485.442µs
+app2-1   | 2024/02/12 00:32:53 "GET http://api/clientes/2/extrato HTTP/1.0" from 192.168.240.5:41506 - 200 1072B in 844.095µs
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42790 - 200 32B in 21.959403ms
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42802 - 200 31B in 29.353579ms
+app2-1   | 2024/02/12 00:32:53 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41512 - 200 30B in 19.772626ms
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42818 - 200 32B in 32.582604ms
+app2-1   | 2024/02/12 00:32:53 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41516 - 200 30B in 45.51527ms
+app1-1   | 2024/02/12 00:32:53 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42832 - 422 19B in 535.645µs
+app2-1   | 2024/02/12 00:32:54 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41530 - 200 30B in 24.933267ms
+app1-1   | 2024/02/12 00:32:54 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42836 - 200 31B in 38.101196ms
+app2-1   | 2024/02/12 00:32:54 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41540 - 422 19B in 398.283µs
+app1-1   | 2024/02/12 00:32:54 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42846 - 200 29B in 21.689058ms
+app2-1   | 2024/02/12 00:32:54 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41550 - 200 33B in 32.843807ms
+app1-1   | 2024/02/12 00:32:54 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42850 - 200 31B in 14.466565ms
+app2-1   | 2024/02/12 00:32:54 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:41562 - 200 1069B in 967.568µs
+app1-1   | 2024/02/12 00:32:54 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42858 - 422 19B in 735.636µs
+app1-1   | 2024/02/12 00:32:54 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42872 - 422 19B in 429.783µs
+app2-1   | 2024/02/12 00:32:54 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41574 - 200 34B in 52.172169ms
+app2-1   | 2024/02/12 00:32:54 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41586 - 200 31B in 12.326814ms
+app1-1   | 2024/02/12 00:32:54 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42878 - 200 34B in 20.827648ms
+app2-1   | 2024/02/12 00:32:54 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41592 - 200 30B in 15.261423ms
+app2-1   | 2024/02/12 00:32:54 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41608 - 422 19B in 562.538µs
+app1-1   | 2024/02/12 00:32:54 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42890 - 200 31B in 23.165036ms
+app1-1   | 2024/02/12 00:32:54 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42904 - 200 33B in 15.620911ms
+app1-1   | 2024/02/12 00:32:54 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42906 - 422 19B in 528.578µs
+app2-1   | 2024/02/12 00:32:54 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41620 - 200 31B in 21.199384ms
+app2-1   | 2024/02/12 00:32:54 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41636 - 422 19B in 390.806µs
+app1-1   | 2024/02/12 00:32:54 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42908 - 200 32B in 21.320189ms
+app2-1   | 2024/02/12 00:32:54 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41642 - 422 19B in 444.214µs
+app1-1   | 2024/02/12 00:32:54 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42910 - 422 19B in 431.977µs
+app2-1   | 2024/02/12 00:32:54 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41658 - 200 32B in 29.343804ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42922 - 200 31B in 278.326104ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:42968 - 422 19B in 450.107µs
+app2-1   | 2024/02/12 00:32:55 "GET http://api/clientes/5/extrato HTTP/1.0" from 192.168.240.5:41702 - 200 1070B in 10.190773ms
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41660 - 200 33B in 488.794795ms
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41686 - 200 31B in 237.246221ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42928 - 200 32B in 477.978075ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:42964 - 200 30B in 279.219148ms
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41672 - 200 33B in 456.406272ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42934 - 200 31B in 416.297852ms
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41712 - 200 32B in 96.396823ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42948 - 200 33B in 371.809667ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:42996 - 200 31B in 70.534025ms
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41724 - 200 30B in 20.062171ms
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41674 - 200 32B in 419.8781ms
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41676 - 200 33B in 339.622957ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:42984 - 200 31B in 193.704095ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:42988 - 200 32B in 149.727487ms
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41734 - 422 19B in 625.753µs
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41700 - 200 32B in 260.810962ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:43006 - 200 34B in 72.887764ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:43016 - 422 19B in 536.694µs
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41744 - 200 31B in 16.196924ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:43024 - 422 19B in 537.617µs
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41754 - 422 19B in 542.681µs
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:43026 - 200 30B in 21.716844ms
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41760 - 200 33B in 11.197094ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:43032 - 200 31B in 20.968749ms
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41776 - 200 32B in 28.758625ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:43038 - 200 29B in 25.726015ms
+app2-1   | 2024/02/12 00:32:55 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:41802 - 200 1072B in 1.094267ms
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41786 - 200 33B in 12.354916ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:43050 - 200 32B in 20.971517ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:43060 - 200 32B in 13.582498ms
+app1-1   | 2024/02/12 00:32:55 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:43062 - 422 19B in 408.182µs
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41812 - 200 30B in 9.870707ms
+app2-1   | 2024/02/12 00:32:55 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41826 - 200 32B in 15.947837ms
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41834 - 422 19B in 342.95µs
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:43074 - 200 30B in 4.467892ms
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:43076 - 422 19B in 500.25µs
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41848 - 422 19B in 467.011µs
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:43092 - 200 31B in 4.623466ms
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41850 - 422 19B in 416.691µs
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:43100 - 422 19B in 602.396µs
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41864 - 200 32B in 9.36317ms
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:43110 - 200 33B in 9.728635ms
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41868 - 422 19B in 587.475µs
+app1-1   | 2024/02/12 00:32:56 "GET http://api/clientes/3/extrato HTTP/1.0" from 192.168.240.5:43112 - 200 1069B in 2.483241ms
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:41872 - 200 31B in 12.994416ms
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:43114 - 422 19B in 507.49µs
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:43120 - 422 19B in 537.295µs
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41884 - 200 33B in 39.483422ms
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41894 - 200 33B in 2.532946ms
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:43122 - 200 33B in 14.463224ms
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41896 - 422 19B in 495.941µs
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:43138 - 422 19B in 404.84µs
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:41898 - 200 33B in 15.336456ms
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:43144 - 422 19B in 495.81µs
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41906 - 422 19B in 504.011µs
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:43154 - 200 33B in 40.420897ms
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41908 - 200 32B in 10.698216ms
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:43168 - 422 19B in 435.527µs
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41910 - 200 31B in 14.916169ms
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:43184 - 200 32B in 16.290961ms
+app2-1   | 2024/02/12 00:32:56 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:41918 - 200 1072B in 1.152192ms
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:41920 - 200 31B in 14.789212ms
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:43198 - 200 32B in 16.289359ms
+app1-1   | 2024/02/12 00:32:56 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:43200 - 200 31B in 10.10378ms
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41934 - 422 19B in 525.17µs
+app2-1   | 2024/02/12 00:32:56 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:41946 - 422 19B in 436.154µs
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:41928 - 200 32B in 142.489883ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:43212 - 200 32B in 149.368927ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:43208 - 200 33B in 225.132589ms
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:48864 - 422 19B in 436.126µs
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:34368 - 200 30B in 105.163231ms
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:48866 - 200 32B in 79.700624ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:34362 - 200 31B in 215.281942ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:34376 - 200 33B in 110.674478ms
+app1-1   | 2024/02/12 00:32:57 "GET http://api/clientes/4/extrato HTTP/1.0" from 192.168.240.5:34392 - 200 1074B in 1.618776ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:34400 - 422 19B in 403.942µs
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:48868 - 200 31B in 130.987219ms
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:48876 - 200 33B in 96.106511ms
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:48862 - 200 32B in 346.305807ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:34378 - 200 32B in 186.515143ms
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:48886 - 200 30B in 98.171515ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:34386 - 200 31B in 149.20079ms
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:48888 - 200 32B in 20.76782ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:34406 - 200 30B in 23.675582ms
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:48902 - 200 33B in 12.61186ms
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:48906 - 200 30B in 11.250895ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:34416 - 200 32B in 15.561369ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:34430 - 200 31B in 15.954456ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:34444 - 422 19B in 402.995µs
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:48912 - 200 33B in 18.805983ms
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:48922 - 200 34B in 11.497803ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:34450 - 422 19B in 402.722µs
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:48936 - 200 31B in 25.743646ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:34454 - 200 30B in 12.650364ms
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:48942 - 200 32B in 11.722199ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:34470 - 200 29B in 14.585853ms
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:48954 - 422 19B in 439.56µs
+app2-1   | 2024/02/12 00:32:57 "GET http://api/clientes/2/extrato HTTP/1.0" from 192.168.240.5:48966 - 200 1071B in 1.030305ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:34492 - 422 19B in 513.601µs
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:34476 - 200 31B in 6.996787ms
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:48968 - 422 19B in 554.646µs
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:48974 - 422 19B in 398.352µs
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:34494 - 200 30B in 18.703244ms
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:34500 - 422 19B in 538.846µs
+app1-1   | 2024/02/12 00:32:57 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:34506 - 422 19B in 381.141µs
+app2-1   | 2024/02/12 00:32:57 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:48986 - 200 33B in 13.119286ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:49000 - 200 31B in 29.203522ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:49002 - 422 19B in 390.723µs
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:34520 - 200 31B in 4.806131ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:34530 - 422 19B in 578.304µs
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:49016 - 200 30B in 15.820078ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:34546 - 200 31B in 18.214332ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:49028 - 422 19B in 490.393µs
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:34556 - 200 33B in 12.709189ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:49032 - 200 31B in 15.165636ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:34566 - 422 19B in 558.61µs
+app2-1   | 2024/02/12 00:32:58 "GET http://api/clientes/3/extrato HTTP/1.0" from 192.168.240.5:49044 - 200 1068B in 1.361255ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:34578 - 200 31B in 12.222533ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:49048 - 200 30B in 15.183231ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:34582 - 422 19B in 474.595µs
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:34596 - 422 19B in 522.575µs
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:49064 - 200 32B in 21.72792ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:49074 - 200 29B in 13.1557ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:34612 - 200 30B in 5.330692ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:49082 - 200 33B in 4.230733ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:34618 - 200 31B in 18.013415ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:49098 - 200 30B in 7.661982ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:34628 - 200 33B in 18.038433ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:49112 - 200 33B in 12.700114ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:34644 - 200 30B in 10.530799ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:49122 - 200 30B in 12.470286ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:49128 - 422 19B in 465.208µs
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:34650 - 200 32B in 15.425785ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/5/transacoes HTTP/1.0" from 192.168.240.5:34658 - 422 19B in 521.595µs
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:49142 - 200 31B in 14.501694ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/4/transacoes HTTP/1.0" from 192.168.240.5:34674 - 200 34B in 7.277314ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:49150 - 200 31B in 12.804704ms
+app2-1   | 2024/02/12 00:32:58 "GET http://api/clientes/1/extrato HTTP/1.0" from 192.168.240.5:49166 - 200 1067B in 872.897µs
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:34684 - 200 31B in 4.561998ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:34690 - 200 32B in 4.163461ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/3/transacoes HTTP/1.0" from 192.168.240.5:49182 - 200 32B in 12.438149ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/1/transacoes HTTP/1.0" from 192.168.240.5:34704 - 200 31B in 4.856204ms
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:49194 - 200 30B in 12.991896ms
+app1-1   | 2024/02/12 00:32:58 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:34706 - 422 19B in 513.054µs
+app2-1   | 2024/02/12 00:32:58 "POST http://api/clientes/2/transacoes HTTP/1.0" from 192.168.240.5:49210 - 200 29B in 15.528729ms
