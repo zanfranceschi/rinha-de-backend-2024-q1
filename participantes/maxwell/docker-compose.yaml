@@ -12,12 +12,11 @@ services:
       - db
     expose:
       - 8080
-    # network_mode: "host"
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: '10MB'
+          cpus: '0.20'
+          memory: '6MB'
 
   api02:
     <<: *api
@@ -38,12 +37,11 @@ services:
       - 5432
     ports:
       - "5433:5432"
-    # network_mode: "host"
     deploy:
       resources:
         limits:
-          cpus: '1.30'
-          memory: '440MB' 
+          cpus: '0.90'
+          memory: '448MB'
          
   nginx:
     image: nginx:latest
@@ -54,9 +52,8 @@ services:
       - api02  
     ports:
       - "9999:9999"
-    # network_mode: "host"
     deploy:
       resources:
         limits:
-          cpus: '0.10'
+          cpus: '0.20'
           memory: '90MB'

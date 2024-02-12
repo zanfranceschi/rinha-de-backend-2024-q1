@@ -27,11 +27,3 @@ insert into cliente(id, limite, saldo) values(3, 1000000, 0);
 insert into cliente(id, limite, saldo) values(4, 10000000, 0);
 insert into cliente(id, limite, saldo) values(5, 500000, 0);
 
-
-select c.saldo, c.limite, r.credito - s.debito from 
-cliente c, 
-(select sum(valor) as credito from transacao where tipo = 'c' and id_cliente = 1) r, 
-(select sum(valor) as debito from transacao where tipo = 'd' and id_cliente = 1) s
-where c.id = 1;
-
-
