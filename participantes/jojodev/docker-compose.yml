@@ -1,10 +1,10 @@
 services:
   db:
-    image: mysql:8.0
+    image: mysql:latest
     hostname: db
     environment:
-      MYSQL_DATABASE: 'banco'
-      MYSQL_ROOT_PASSWORD: '123456'
+      - MYSQL_DATABASE=banco
+      - MYSQL_ROOT_PASSWORD=123456
     ports:
       - 3306:3306
     volumes:
@@ -13,7 +13,7 @@ services:
       resources:
         limits:
           cpus: "0.13"
-          memory: "200MB"
+          memory: "240MB"
     networks:
       - default
     
@@ -31,8 +31,7 @@ services:
       resources:
         limits:
           cpus: "0.6"
-          memory: "180MB"
-
+          memory: "160MB"
     networks:
       - default
 
@@ -44,6 +43,8 @@ services:
       - PORT=3306
     ports:
       - 5001:5000
+    depends_on:
+      - db
     networks:
       - default
 
