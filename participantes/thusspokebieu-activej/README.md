@@ -28,3 +28,8 @@ docker compose up
 
 A api vai avisar que está se alongando e vai avisar quando estiver pronta pra receber requisição com um console log bacana.
 
+## Créditos:
+
+Peguei várias ideias legais de configurações de infra de vários repositórios, em especial: 
+- https://github.com/rafaelpadovezi/rinha-2
+- https://github.com/viniciusfonseca/rinha-backend-rust-2
