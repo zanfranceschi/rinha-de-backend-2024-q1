@@ -4,7 +4,7 @@ name: 'rinha-gabrielmagalhaes'
 services:
 
   api01: &api
-    image: k4gero/quarkus-rinha-back-2024-q1:1.0.6
+    image: k4gero/quarkus-rinha-back-2024-q1:1.0.7
     hostname: api01
     environment:
       - PORT=8081
@@ -16,7 +16,7 @@ services:
       resources:
         limits:
           cpus: '0.4'
-          memory: '125MB'
+          memory: '140MB'
 
   api02: 
     <<: *api
@@ -39,7 +39,7 @@ services:
       resources:
         limits:
           cpus: "0.2"
-          memory: "50MB"
+          memory: "20MB"
 
   db:
     image: postgres:latest
@@ -52,7 +52,7 @@ services:
       - "5432:5432"
     volumes:
       - ./sql/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
-    command: ["postgres", "-c", "logging_collector=false", "-c", "max_connections=30"]
+    command: ["postgres", "-c", "logging_collector=false", "-c", "max_connections=1000"]
     deploy:
       resources:
         limits:
