@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **dom 11 fev 2024 23:29:45 -03** com **74** submissões.
+Atualizada **seg 12 fev 2024 00:03:25 -03** com **78** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -23,6 +23,7 @@ Atualizada **dom 11 fev 2024 23:29:45 -03** com **74** submissões.
 | [diego-coronel](./participantes/diego-coronel) | ok | 4 |
 | [direisc](./participantes/direisc) | ok | 3398 |
 | [doceazedo](./participantes/doceazedo) | falha - [logs](./participantes/doceazedo/docker-compose.logs) | -- |
+| [dscamargo](./participantes/dscamargo) | ok | 4 |
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 6979 |
 | [eigr](./participantes/eigr) | ok | 43 |
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) | -- |
@@ -47,14 +48,16 @@ Atualizada **dom 11 fev 2024 23:29:45 -03** com **74** submissões.
 | [josebaroni](./participantes/josebaroni) | ok | 4 |
 | [josebaroni-postgrest](./participantes/josebaroni-postgrest) | ok | 5 |
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 9060 |
+| [kalelMartinho_fastapi](./participantes/kalelMartinho_fastapi) | ok | 13 |
 | [lazaronixon](./participantes/lazaronixon) | ok | 9 |
 | [leoralph](./participantes/leoralph) | ok | 5 |
 | [lobomfz](./participantes/lobomfz) | ok | 94 |
 | [lobomfz-rust](./participantes/lobomfz-rust) | ok | 137 |
 | [lpicanco](./participantes/lpicanco) | ok | 5 |
 | [lpicanco-cpp](./participantes/lpicanco-cpp) | ok | 4 |
-| [lsfratel](./participantes/lsfratel) | falha - [logs](./participantes/lsfratel/docker-compose.logs) | -- |
+| [lsfratel](./participantes/lsfratel) | ok | 6 |
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 5 |
+| [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
 | [mateus4k](./participantes/mateus4k) | ok | 8 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 34 |
 | [maxwell](./participantes/maxwell) | ok | 139 |
@@ -64,6 +67,7 @@ Atualizada **dom 11 fev 2024 23:29:45 -03** com **74** submissões.
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
 | [olukkas](./participantes/olukkas) | ok | 3 |
 | [omurilo](./participantes/omurilo) | ok | 3 |
+| [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 1 |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 8 |
 | [recoba](./participantes/recoba) | ok | 5 |
 | [reonardoleis](./participantes/reonardoleis) | ok | 5 |
