@@ -11,14 +11,14 @@ services:
       - RUST_ENV=prod
       - RUST_LOG=info
       - TARGET_NAME=rinha
-      - DATABASE_POOL_MAX_SIZE=8
+      - DATABASE_POOL_MAX_SIZE=192
       - SERVER_PORT=80
       - SERVER_HOST=0.0.0.0
       # - LOGGER_OUTPUT=stdout
     deploy:
       resources:
         limits:
-          cpus: '0.3'
+          cpus: '0.4'
           memory: '32MB'
   api2:
     # API - Instancia 02
@@ -37,11 +37,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
+          cpus: '0.2'
           memory: '128MB'
   db:
     # Banco de dados
-    image: postgres:15.4-alpine3.18
+    image: postgres:16.1-alpine3.19
     hostname: db
     environment:
       POSTGRES_PASSWORD: root
@@ -56,7 +56,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.75'
+          cpus: '0.5'
           memory: '358MB'
 networks:
   default:
