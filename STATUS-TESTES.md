@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **seg 12 fev 2024 19:47:24 -03** com **90** submissões.
+Atualizada **seg 12 fev 2024 20:51:46 -03** com **94** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -17,6 +17,7 @@ Atualizada **seg 12 fev 2024 19:47:24 -03** com **90** submissões.
 | [bine-php-road-runner](./participantes/bine-php-road-runner) | ok | 75 |
 | [bine-php-swoole](./participantes/bine-php-swoole) | ok | 63 |
 | [bine-reactphp](./participantes/bine-reactphp) | ok | 66 |
+| [boaglio](./participantes/boaglio) | ok | 5 |
 | [breno5g](./participantes/breno5g) | ok | 6 |
 | [buemura](./participantes/buemura) | ok | 5 |
 | [bun-saulofelipe](./participantes/bun-saulofelipe) | ok | 2170 |
@@ -48,8 +49,10 @@ Atualizada **seg 12 fev 2024 19:47:24 -03** com **90** submissões.
 | [gwoliveira-no-db-lock](./participantes/gwoliveira-no-db-lock) | ok | 7153 |
 | [halexv](./participantes/halexv) | ok | 2263 |
 | [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 401 |
+| [ilosamart](./participantes/ilosamart) | ok | 3866 |
 | [isadora-souza](./participantes/isadora-souza) | ok | 7 |
 | [itujo](./participantes/itujo) | ok | 7 |
+| [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 7 |
 | [jojodev](./participantes/jojodev) | falha - [logs](./participantes/jojodev/docker-compose.logs) | -- |
 | [josebaroni](./participantes/josebaroni) | ok | 4 |
 | [josebaroni-postgrest](./participantes/josebaroni-postgrest) | ok | 5 |
@@ -61,8 +64,8 @@ Atualizada **seg 12 fev 2024 19:47:24 -03** com **90** submissões.
 | [leoralph](./participantes/leoralph) | ok | 5 |
 | [lobomfz](./participantes/lobomfz) | ok | 94 |
 | [lobomfz-rust](./participantes/lobomfz-rust) | ok | 137 |
-| [lpicanco](./participantes/lpicanco) | ok | 5 |
-| [lpicanco-cpp](./participantes/lpicanco-cpp) | ok | 4 |
+| [lpicanco](./participantes/lpicanco) | ok | 2 |
+| [lpicanco-cpp](./participantes/lpicanco-cpp) | ok | 2 |
 | [lsfratel](./participantes/lsfratel) | ok | 6 |
 | [lubien-phoenixqlite](./participantes/lubien-phoenixqlite) | ok | 3 |
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 5 |
@@ -72,12 +75,13 @@ Atualizada **seg 12 fev 2024 19:47:24 -03** com **90** submissões.
 | [maxwell](./participantes/maxwell) | ok | 139 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | ok | 8122 |
 | [murilochianfa](./participantes/murilochianfa) | ok | 2 |
-| [mvellasco](./participantes/mvellasco) | ok | 2651 |
+| [mvellasco](./participantes/mvellasco) | falha - [logs](./participantes/mvellasco/docker-compose.logs) | -- |
 | [nicolasmmb](./participantes/nicolasmmb) | falha - [logs](./participantes/nicolasmmb/docker-compose.logs) | -- |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
 | [oloko64](./participantes/oloko64) | ok | 1 |
 | [olukkas](./participantes/olukkas) | ok | 3 |
 | [omurilo](./participantes/omurilo) | ok | 3 |
+| [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 4 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 1 |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 8 |
 | [recoba](./participantes/recoba) | ok | 5 |
