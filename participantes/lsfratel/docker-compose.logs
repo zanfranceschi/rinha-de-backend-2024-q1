@@ -6,8 +6,8 @@
  Container lsfratel-api02-1  Creating
  Container lsfratel-api01-1  Creating
  Container lsfratel-api02-1  Created
- Container lsfratel-api01-1  Created
  Container lsfratel-lighttpd-1  Created
+ Container lsfratel-api01-1  Created
 Attaching to api01-1, api02-1, db-1, lighttpd-1
 db-1        | The files belonging to this database system will be owned by user "postgres".
 db-1        | This user must also own the server process.
@@ -36,10 +36,10 @@ db-1        |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1        | 
 db-1        | initdb: warning: enabling "trust" authentication for local connections
 db-1        | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1        | waiting for server to start....2024-02-11 23:55:58.927 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1        | 2024-02-11 23:55:58.930 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1        | 2024-02-11 23:55:58.937 UTC [51] LOG:  database system was shut down at 2024-02-11 23:55:58 UTC
-db-1        | 2024-02-11 23:55:58.944 UTC [48] LOG:  database system is ready to accept connections
+db-1        | waiting for server to start....2024-02-12 02:51:24.636 UTC [49] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1        | 2024-02-12 02:51:24.643 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1        | 2024-02-12 02:51:24.664 UTC [52] LOG:  database system was shut down at 2024-02-12 02:51:24 UTC
+db-1        | 2024-02-12 02:51:24.673 UTC [49] LOG:  database system is ready to accept connections
 db-1        |  done
 db-1        | server started
 db-1        | CREATE DATABASE
@@ -51,179 +51,49 @@ db-1        | CREATE TABLE
 db-1        | DO
 db-1        | 
 db-1        | 
-db-1        | waiting for server to shut down...2024-02-11 23:55:59.399 UTC [48] LOG:  received fast shutdown request
-db-1        | .2024-02-11 23:55:59.409 UTC [48] LOG:  aborting any active transactions
-db-1        | 2024-02-11 23:55:59.412 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1        | 2024-02-11 23:55:59.412 UTC [49] LOG:  shutting down
-db-1        | 2024-02-11 23:55:59.414 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1        | 2024-02-11 23:55:59.555 UTC [49] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.098 s, sync=0.035 s, total=0.144 s; sync files=313, longest=0.006 s, average=0.001 s; distance=4295 kB, estimate=4295 kB; lsn=0/191C738, redo lsn=0/191C738
-db-1        | 2024-02-11 23:55:59.564 UTC [48] LOG:  database system is shut down
+db-1        | waiting for server to shut down...2024-02-12 02:51:25.123 UTC [49] LOG:  received fast shutdown request
+db-1        | .2024-02-12 02:51:25.131 UTC [49] LOG:  aborting any active transactions
+db-1        | 2024-02-12 02:51:25.134 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+db-1        | 2024-02-12 02:51:25.136 UTC [50] LOG:  shutting down
+db-1        | 2024-02-12 02:51:25.143 UTC [50] LOG:  checkpoint starting: shutdown immediate
+db-1        | 2024-02-12 02:51:25.504 UTC [50] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.279 s, sync=0.060 s, total=0.369 s; sync files=313, longest=0.015 s, average=0.001 s; distance=4295 kB, estimate=4295 kB; lsn=0/191C738, redo lsn=0/191C738
+db-1        | 2024-02-12 02:51:25.513 UTC [49] LOG:  database system is shut down
 db-1        |  done
 db-1        | server stopped
 db-1        | 
 db-1        | PostgreSQL init process complete; ready for start up.
 db-1        | 
-db-1        | 2024-02-11 23:55:59.637 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1        | 2024-02-11 23:55:59.637 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1        | 2024-02-11 23:55:59.637 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1        | 2024-02-11 23:55:59.642 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1        | 2024-02-11 23:55:59.650 UTC [66] LOG:  database system was shut down at 2024-02-11 23:55:59 UTC
-db-1        | 2024-02-11 23:55:59.657 UTC [1] LOG:  database system is ready to accept connections
-api02-1     | The current machine does not support all of the following CPU features that are required by the image: [CX8, CMOV, FXSR, HT, MMX, AMD_3DNOW_PREFETCH, SSE, SSE2, SSE3, SSSE3, SSE4A, SSE4_1, SSE4_2, POPCNT, LZCNT, TSC, TSCINV_BIT, AVX, AVX2, AES, ERMS, CLMUL, BMI1, BMI2, ADX, SHA, FMA, VZEROUPPER, FLUSH, FLUSHOPT, RDTSCP, RDPID, FSRM, F16C, PKU, OSPKE, CET_SS].
-api02-1     | Please rebuild the executable with an appropriate setting of the -march option.
-api01-1     | The current machine does not support all of the following CPU features that are required by the image: [CX8, CMOV, FXSR, HT, MMX, AMD_3DNOW_PREFETCH, SSE, SSE2, SSE3, SSSE3, SSE4A, SSE4_1, SSE4_2, POPCNT, LZCNT, TSC, TSCINV_BIT, AVX, AVX2, AES, ERMS, CLMUL, BMI1, BMI2, ADX, SHA, FMA, VZEROUPPER, FLUSH, FLUSHOPT, RDTSCP, RDPID, FSRM, F16C, PKU, OSPKE, CET_SS].
-api01-1     | Please rebuild the executable with an appropriate setting of the -march option.
-lighttpd-1  | 2024-02-11 23:56:07: (server.c.1933) server started (lighttpd/1.4.73)
-api01-1 exited with code 1
-api02-1 exited with code 1
-lighttpd-1  | 2024-02-11 23:56:10: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:12: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:56:13: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:16: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:56:17: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:19: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:56:20: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:22: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:56:23: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:25: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:56:26: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:28: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:56:31: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:33: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:56:34: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:36: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:56:37: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:39: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:56:40: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:42: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:56:43: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:45: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:56:46: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:48: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:56:51: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:53: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:56:54: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:56:56: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:56:57: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:00: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:57:01: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:03: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:57:04: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:06: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:57:07: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:09: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:57:12: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:14: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:57:15: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:17: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:57:18: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:20: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:57:21: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:23: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:57:24: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:26: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:57:27: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:29: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:57:32: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:34: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:57:35: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:37: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:57:38: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:40: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:57:41: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:43: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:57:44: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:47: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:57:48: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:50: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:57:53: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:55: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:57:56: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:57:58: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:57:59: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:01: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:58:02: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:04: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:58:05: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:07: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:58:08: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:10: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:58:13: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:15: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:58:16: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:18: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:58:19: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:21: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:58:22: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:24: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:58:25: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:27: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:58:28: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:31: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:58:34: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:36: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:58:37: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:37: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:37: (gw_backend.c.1007) all handlers for /clientes/1/extrato? on  are down.
-lighttpd-1  | 2024-02-11 23:58:39: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:58:39: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:58:44: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:46: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:58:47: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:47: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:47: (gw_backend.c.1007) all handlers for /clientes/1/extrato? on  are down.
-lighttpd-1  | 2024-02-11 23:58:49: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:58:49: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:58:54: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:56: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:58:57: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:57: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:58:57: (gw_backend.c.1007) all handlers for /clientes/1/extrato? on  are down.
-lighttpd-1  | 2024-02-11 23:58:59: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:58:59: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:59:04: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:06: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:59:07: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:09: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:59:10: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:12: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:59:13: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:15: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:59:16: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:18: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:59:19: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:21: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:59:24: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:27: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:59:28: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:30: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:59:31: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:33: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:59:34: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:36: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:59:37: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:39: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:59:40: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:42: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:59:45: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:47: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:59:48: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:50: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:59:51: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:53: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-11 23:59:54: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:56: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.3:3000 192.168.128.3 3000 
-lighttpd-1  | 2024-02-11 23:59:57: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.4:3000: Host is unreachable
-lighttpd-1  | 2024-02-11 23:59:59: (gw_backend.c.358) gw-server re-enabled: tcp:192.168.128.4:3000 192.168.128.4 3000 
-lighttpd-1  | 2024-02-12 00:00:00: (gw_backend.c.281) establishing connection failed: socket: tcp:192.168.128.3:3000: Host is unreachable
-lighttpd-1  | 2024-02-12 00:00:02: (server.c.2332) server stopped by UID = 0 PID = 0
+db-1        | 2024-02-12 02:51:25.578 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1        | 2024-02-12 02:51:25.578 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1        | 2024-02-12 02:51:25.578 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1        | 2024-02-12 02:51:25.597 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1        | 2024-02-12 02:51:25.617 UTC [67] LOG:  database system was shut down at 2024-02-12 02:51:25 UTC
+db-1        | 2024-02-12 02:51:25.627 UTC [1] LOG:  database system is ready to accept connections
+api02-1     | 2024-02-11 23:51:35.405 [DefaultDispatcher-worker-2] INFO  Application - Autoreload is disabled because the development mode is off.
+api01-1     | 2024-02-11 23:51:35.405 [DefaultDispatcher-worker-2] INFO  Application - Autoreload is disabled because the development mode is off.
+api02-1     | 2024-02-11 23:51:35.409 [DefaultDispatcher-worker-2] INFO  Application - Application started in 0.005 seconds.
+api01-1     | 2024-02-11 23:51:35.409 [DefaultDispatcher-worker-2] INFO  Application - Application started in 0.005 seconds.
+api01-1     | 2024-02-11 23:51:35.409 [DefaultDispatcher-worker-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+api02-1     | 2024-02-11 23:51:35.410 [DefaultDispatcher-worker-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+lighttpd-1  | 2024-02-12 02:51:35: (server.c.1933) server started (lighttpd/1.4.73)
+api02-1     | 2024-02-11 23:51:35.433 [DefaultDispatcher-worker-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4e464b36
+api02-1     | 2024-02-11 23:51:35.434 [DefaultDispatcher-worker-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+api01-1     | 2024-02-11 23:51:35.436 [DefaultDispatcher-worker-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@23955c49
+api01-1     | 2024-02-11 23:51:35.436 [DefaultDispatcher-worker-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+api02-1     | 2024-02-11 23:51:35.436 [DefaultDispatcher-worker-1] INFO  Application - Responding at http://0.0.0.0:3000
+api01-1     | 2024-02-11 23:51:35.438 [DefaultDispatcher-worker-2] INFO  Application - Responding at http://0.0.0.0:3000
+lighttpd-1  | 2024-02-12 02:55:53: (server.c.2332) server stopped by UID = 0 PID = 0
 lighttpd-1 exited with code 0
 lighttpd-1 exited with code 0
-db-1        | 2024-02-12 00:00:03.423 UTC [1] LOG:  received fast shutdown request
-db-1        | 2024-02-12 00:00:03.425 UTC [1] LOG:  aborting any active transactions
-db-1        | 2024-02-12 00:00:03.429 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1        | 2024-02-12 00:00:03.431 UTC [64] LOG:  shutting down
-db-1        | 2024-02-12 00:00:03.434 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1        | 2024-02-12 00:00:03.455 UTC [64] LOG:  checkpoint complete: wrote 46 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.006 s, total=0.024 s; sync files=13, longest=0.004 s, average=0.001 s; distance=260 kB, estimate=260 kB; lsn=0/195DB20, redo lsn=0/195DB20
-db-1        | 2024-02-12 00:00:03.462 UTC [1] LOG:  database system is shut down
+api01-1 exited with code 0
+api01-1 exited with code 143
+api02-1 exited with code 0
+api02-1 exited with code 143
+db-1        | 2024-02-12 02:55:54.847 UTC [1] LOG:  received fast shutdown request
+db-1        | 2024-02-12 02:55:54.849 UTC [1] LOG:  aborting any active transactions
+db-1        | 2024-02-12 02:55:54.852 UTC [1] LOG:  background worker "logical replication launcher" (PID 70) exited with exit code 1
+db-1        | 2024-02-12 02:55:54.855 UTC [65] LOG:  shutting down
+db-1        | 2024-02-12 02:55:54.857 UTC [65] LOG:  checkpoint starting: shutdown immediate
+db-1        | 2024-02-12 02:55:54.913 UTC [65] LOG:  checkpoint complete: wrote 658 buffers (4.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.036 s, sync=0.013 s, total=0.058 s; sync files=31, longest=0.008 s, average=0.001 s; distance=2105 kB, estimate=2105 kB; lsn=0/1B2ABE0, redo lsn=0/1B2ABE0
+db-1        | 2024-02-12 02:55:54.919 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0
