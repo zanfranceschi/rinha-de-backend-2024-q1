@@ -7,3 +7,4 @@
 - [Nginx](https://www.nginx.com/)
 
 ### [Repositório](https://github.com/dscamargo/rinha-backend-2024-q1-golang)
+### [Linkedin](https://www.linkedin.com/in/douglas-simon-camargo/)
