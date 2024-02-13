@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **seg 12 fev 2024 23:39:49 -03** com **100** submissões.
+Atualizada **ter 13 fev 2024 00:05:13 -03** com **102** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -56,10 +56,11 @@ Atualizada **seg 12 fev 2024 23:39:49 -03** com **100** submissões.
 | [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 401 |
 | [ilosamart](./participantes/ilosamart) | ok | 3866 |
 | [isadora-souza](./participantes/isadora-souza) | ok | 7 |
-| [italopussi](./participantes/italopussi) | ok | 3867 |
+| [italopussi](./participantes/italopussi) | ok | 2174 |
 | [itujo](./participantes/itujo) | ok | 7 |
 | [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 7 |
 | [jojodev](./participantes/jojodev) | falha - [logs](./participantes/jojodev/docker-compose.logs) | -- |
+| [jonattas_bunjs](./participantes/jonattas_bunjs) | ok | 59 |
 | [josebaroni](./participantes/josebaroni) | ok | 4 |
 | [josebaroni-postgrest](./participantes/josebaroni-postgrest) | ok | 5 |
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 9060 |
@@ -76,12 +77,13 @@ Atualizada **seg 12 fev 2024 23:39:49 -03** com **100** submissões.
 | [lubien-phoenixqlite](./participantes/lubien-phoenixqlite) | ok | 3 |
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 5 |
 | [macgarcia](./participantes/macgarcia) | ok | 2 |
+| [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 10 |
 | [mateus4k](./participantes/mateus4k) | ok | 8 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 34 |
 | [maxwell](./participantes/maxwell) | ok | 139 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | ok | 8122 |
 | [murilochianfa](./participantes/murilochianfa) | ok | 2 |
-| [mvellasco](./participantes/mvellasco) | falha - [logs](./participantes/mvellasco/docker-compose.logs) | -- |
+| [mvellasco](./participantes/mvellasco) | ok | 2200 |
 | [nicolasmmb](./participantes/nicolasmmb) | falha - [logs](./participantes/nicolasmmb/docker-compose.logs) | -- |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
 | [oloko64](./participantes/oloko64) | ok | 1 |
