@@ -352,6 +352,9 @@ Aqui estão instruções rápidas para você poder executar os testes:
 1. Certifique-se de que tenha o JDK instalado
     (64bits OpenJDK LTS (Long Term Support) versions: 11, 17 e 21)
     https://gatling.io/docs/gatling/tutorials/installation/
+1. Certifique-se de configurar a variável de ambiente GATLING_HOME para o diretório da instalação do Gatling.
+    Para se certificar de que a variável está correta, os seguinte caminhos precisam ser válidos:
+      `$GATLING_HOME/bin/gatling.sh` no Linux e `%GATLING_HOME%\bin\gatling.bat` no Windows.
 1. Configure o script `./executar-teste-local.sh` (ou `./executar-teste-local.ps1` se estiver no Windows)
 1. Suba sua API (ou load balancer) na porta 9999
 1. Execute `./executar-teste-local.sh` (ou `./executar-teste-local.ps1` se estiver no Windows)

@@ -5,7 +5,7 @@ services:
     image: postgres:16-alpine3.19
     #                     Max. connection                Increasing memory usage    Realy on SO to write    Do not wait for write      Accepting data           Checkpoint for wal
     #                     allowed to the max             for shared buffers         on wal                  on wall                    corruption               in 1 day
-    command: 'postgres -c max_connections=4096        -c shared_buffers=64MB    -c fsync=off            -c synchronous_commit=off  -c full_page_writes=off -c checkpoint_timeout=1d'
+    command: 'postgres -c max_connections=300        -c shared_buffers=64MB    -c fsync=off            -c synchronous_commit=off  -c full_page_writes=off -c checkpoint_timeout=1d'
     volumes:
       - ./init.pgsql:/docker-entrypoint-initdb.d/init.sql
     environment:
@@ -22,12 +22,12 @@ services:
         limits:
           cpus: "0.8"
           memory: "480MB"
+    networks:
+      - rinha
 
   api1: &api
     restart: always
-    image: fmarkson/rinha-backend-q1-2024:r1
-    sysctls:
-      - net.core.somaxconn=131072
+    image: fmarkson/rinha-backend-q1-2024:r2
     security_opt:
       # By default, Docker team do not allow Linux's io_uring because some vunerabilites
       # was found in the past.
@@ -42,15 +42,18 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    ulimits:
-      nofile:
-        soft: 100000000
-        hard: 100000000
     deploy:
       resources:
         limits:
           cpus: "0.25"
           memory: "10MB" # 10 MB is enough :)
+    networks:
+      - rinha
+    healthcheck:
+      test: curl -s "http://localhost:9999/clientes/1/extrato"
+      interval: 10s
+      timeout: 10s
+      retries: 1000
 
   api2:
     <<: *api
@@ -60,8 +63,10 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api1
-      - api2
+      api1:
+        condition: service_healthy
+      api2:
+        condition: service_healthy
     ports:
       - "9999:9999"
     deploy:
@@ -69,3 +74,8 @@ services:
         limits:
           cpus: "0.2"
           memory: "50MB"
+    networks:
+      - rinha
+
+networks:
+  rinha:

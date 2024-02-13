@@ -5,21 +5,23 @@ services:
     image: engylemure/rinha-de-backend-2024-q1:latest
     hostname: api01
     depends_on:
-      - db
-    expose:
-      - "80"
+      db:
+        condition: service_healthy
     env_file: ./env
     environment:
       - RUST_ENV=prod
       - RUST_LOG=info
       - TARGET_NAME=rinha
-      - DATABASE_POOL_MAX_SIZE=8
+      - DATABASE_POOL_MAX_SIZE=64
+      - DATABASE_POOL_MIN_SIZE=24
+      - SERVER_PORT=80
+      - SERVER_HOST=0.0.0.0
       # - LOGGER_OUTPUT=stdout
     deploy:
       resources:
         limits:
-          cpus: '0.20'
-          memory: '50MB'
+          cpus: '0.15'
+          memory: '32MB'
   api2:
     # API - Instancia 02
     <<: *api
@@ -30,19 +32,26 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api1
-      - api2
+      api1:
+        condition: service_started
+      api2:
+        condition: service_started
     ports:
       - "9999:9999"
     deploy:
       resources:
         limits:
-          cpus: '0.25'
-          memory: '125MB'
+          cpus: '0.15'
+          memory: '64MB'
   db:
     # Banco de dados
-    image: postgres:15.4-alpine3.18
+    image: postgres:16.1
     hostname: db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
     environment:
       POSTGRES_PASSWORD: root
       POSTGRES_USER: root
@@ -56,9 +65,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.85'
-          memory: '275MB'
+          cpus: '1.05'
+          memory: '422MB'
 networks:
   default:
     driver: bridge
-    name: rinha

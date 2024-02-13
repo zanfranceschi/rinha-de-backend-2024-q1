@@ -1,0 +1,64 @@
+services:
+  api01: &api
+    image: cassiogangrel/rinha_e2:1.0.0
+    hostname: api01
+    depends_on:
+      - postgres
+    restart: on-failure
+    environment: 
+      - PORT=8080
+      - DB_HOST=postgres
+      - DB_POOL_SIZE=15
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - wget --quiet --tries=1 --spider http://localhost:8080/q/health ||
+          exit 1
+      interval: 15s
+      timeout: 15s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "170MB"
+  api02:
+    <<: *api
+    depends_on:
+      - api01
+      - postgres
+
+  postgres:
+    image: postgres
+    volumes:
+      - ./my-postgres.conf:/etc/postgresql/postgresql.conf
+    environment:
+      - POSTGRES_DB=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.70"
+          memory: "200MB"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: on-failure
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "10MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
