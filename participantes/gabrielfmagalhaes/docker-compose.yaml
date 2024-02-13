@@ -4,10 +4,12 @@ name: 'rinha-gabrielmagalhaes'
 services:
 
   api01: &api
-    image: k4gero/quarkus-rinha-back-2024-q1:1.0.7
+    image: k4gero/quarkus-rinha-back-2024-q1:1.0.10
     hostname: api01
     environment:
       - PORT=8081
+      - MAX_CONNECTIONS=10
+      - MAX_EVENT_LOOP=10
     ports:
       - "8081:8080"
     depends_on:
@@ -21,8 +23,13 @@ services:
   api02: 
     <<: *api
     hostname: api02
+    depends_on:
+      - db
+      - api01
     environment:
       - PORT=8082
+      - MAX_CONNECTIONS=10
+      - MAX_EVENT_LOOP=10
     ports:
       - "8082:8080"
      
@@ -51,7 +58,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./sql/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
     command: ["postgres", "-c", "logging_collector=false", "-c", "max_connections=1000"]
     deploy:
       resources:
