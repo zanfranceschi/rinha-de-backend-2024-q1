@@ -1,0 +1,79 @@
+version: '3.7'
+services:
+  mongodb_container:
+    image: mongo:latest
+    container_name: mongodb_container
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+    volumes:
+      # - ./mongo-init/:/docker-entrypoint-initdb.d/:ro
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - database
+  application1: 
+    image: betamedina/rinha:latest
+    container_name: application1
+    networks:
+      - database
+    depends_on:
+      - mongodb_container
+    environment:
+      - env=production
+      - PORT=:8000
+      - MONGO_CONNECTION_STRING=mongodb://root:root@mongodb_container:27017/secrets?authSource=admin&connectTimeoutMS=30000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "150MB"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+  application2:
+    image: betamedina/rinha:latest
+    container_name: application2
+    networks:
+      - database
+    depends_on:
+      - mongodb_container
+    environment:
+      - env=production
+      - PORT=:8000
+      - MONGO_CONNECTION_STRING=mongodb://root:root@mongodb_container:27017/secrets?authSource=admin&connectTimeoutMS=30000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "150MB"
+  
+  nginx:
+    image: nginx
+    container_name: nginx
+    hostname: api
+    networks:
+      - database
+    volumes:
+      - ./nginx/:/etc/nginx/
+    depends_on:
+      - application1
+      - application2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+
+
+volumes:
+  mongodb_data_container:
+
+networks:
+  database:
