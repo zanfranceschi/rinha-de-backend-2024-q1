@@ -6,7 +6,7 @@ Submissão feita com:
 
 - `HA Proxy` como load balancer
 - `Mnesia Distribuído` como banco de dados (disc_copies)
-- `Elixir` para API com a lib `Spawn`
+- `Elixir`, `Plug` sem Phoenix e `Spawn SDK`
 - [Repositório da API](https://github.com/eigr-labs/spawn-rinha-backend)
 
 [eigr](https://eigr.io)
