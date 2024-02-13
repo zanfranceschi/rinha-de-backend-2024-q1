@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **seg 12 fev 2024 22:43:47 -03** com **98** submissões.
+Atualizada **seg 12 fev 2024 22:55:47 -03** com **100** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -15,6 +15,7 @@ Atualizada **seg 12 fev 2024 22:43:47 -03** com **98** submissões.
 | [bbonagura9](./participantes/bbonagura9) | ok | 32 |
 | [bcaua](./participantes/bcaua) | ok | 15652 |
 | [bgskurono](./participantes/bgskurono) | ok | 5 |
+| [bine-golang](./participantes/bine-golang) | ok | 85 |
 | [bine-php-road-runner](./participantes/bine-php-road-runner) | ok | 75 |
 | [bine-php-swoole](./participantes/bine-php-swoole) | ok | 63 |
 | [bine-reactphp](./participantes/bine-reactphp) | ok | 66 |
@@ -26,6 +27,7 @@ Atualizada **seg 12 fev 2024 22:43:47 -03** com **98** submissões.
 | [cadu](./participantes/cadu) | ok | 3 |
 | [caravanacloud](./participantes/caravanacloud) | falha - [logs](./participantes/caravanacloud/docker-compose.logs) | -- |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 3 |
+| [danielwisky](./participantes/danielwisky) | falha - [logs](./participantes/danielwisky/docker-compose.logs) | -- |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [diego-coronel](./participantes/diego-coronel) | ok | 2 |
 | [direisc](./participantes/direisc) | ok | 3398 |
