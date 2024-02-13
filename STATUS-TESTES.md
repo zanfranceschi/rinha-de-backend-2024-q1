@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **seg 12 fev 2024 22:32:52 -03** com **98** submissões.
+Atualizada **seg 12 fev 2024 22:43:47 -03** com **98** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -98,7 +98,7 @@ Atualizada **seg 12 fev 2024 22:32:52 -03** com **98** submissões.
 | [taciossbr](./participantes/taciossbr) | ok | 137 |
 | [thiagosantana](./participantes/thiagosantana) | falha - [logs](./participantes/thiagosantana/docker-compose.logs) | -- |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | falha - [logs](./participantes/thusspokebieu-activej/docker-compose.logs) | -- |
-| [viniciusfcf](./participantes/viniciusfcf) | falha - [logs](./participantes/viniciusfcf/docker-compose.logs) | -- |
+| [viniciusfcf](./participantes/viniciusfcf) | ok | 3 |
 | [vkobinski](./participantes/vkobinski) | falha - [logs](./participantes/vkobinski/docker-compose.logs) | -- |
 | [williansugiyama](./participantes/williansugiyama) | falha - [logs](./participantes/williansugiyama/docker-compose.logs) | -- |
 | [yMarceloMaia](./participantes/yMarceloMaia) | ok | 1117 |
