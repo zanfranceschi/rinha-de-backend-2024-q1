@@ -25,6 +25,8 @@ CREATE TABLE saldos (
         FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
 
+CREATE UNIQUE INDEX idx_saldos_cliente_id ON saldos (cliente_id) include (valor);
+
 DO $$
 BEGIN
     INSERT INTO clientes (nome, limite)
