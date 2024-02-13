@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **seg 12 fev 2024 21:40:42 -03** com **96** submissões.
+Atualizada **seg 12 fev 2024 21:52:03 -03** com **97** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -53,6 +53,7 @@ Atualizada **seg 12 fev 2024 21:40:42 -03** com **96** submissões.
 | [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 401 |
 | [ilosamart](./participantes/ilosamart) | ok | 3866 |
 | [isadora-souza](./participantes/isadora-souza) | ok | 7 |
+| [italopussi](./participantes/italopussi) | ok | 3867 |
 | [itujo](./participantes/itujo) | ok | 7 |
 | [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 7 |
 | [jojodev](./participantes/jojodev) | falha - [logs](./participantes/jojodev/docker-compose.logs) | -- |
