@@ -22,34 +22,3 @@ INSERT INTO clientes (nome, limite) VALUES
     ('les cruders', 10000 * 100),
     ('padaria joia de cocaia', 100000 * 100),
     ('kid mais', 5000 * 100);
-
-
--- CREATE OR REPLACE FUNCTION update_saldo()
--- RETURNS TRIGGER AS $$
--- BEGIN
--- -- Calculate the new saldo first
--- DECLARE
--- new_saldo INTEGER;
--- BEGIN
--- SELECT saldo + NEW.valor INTO new_saldo
--- FROM clientes
--- WHERE id = NEW.cliente_id;
---
--- -- Check if the new saldo exceeds the limite
--- IF new_saldo < -(SELECT limite FROM clientes WHERE id = NEW.cliente_id) THEN
--- RAISE EXCEPTION 'New saldo exceeds the limit';
--- END IF;
---
--- -- Update the saldo
--- UPDATE clientes SET saldo = new_saldo
--- WHERE id = NEW.cliente_id;
--- END;
--- RETURN NEW;
--- END;
--- $$ LANGUAGE plpgsql;
---
---
--- CREATE TRIGGER saldo_update_trigger
--- AFTER INSERT ON transacoes
--- FOR EACH ROW
--- EXECUTE FUNCTION update_saldo();
