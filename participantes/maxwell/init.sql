@@ -10,7 +10,7 @@ create table cliente (
 );
 
 create table transacao (
-    id uuid constraint pk_transacao primary key,
+    id serial constraint pk_transacao primary key,
     id_cliente integer references cliente(id),
     valor integer not null,
     tipo char not null,

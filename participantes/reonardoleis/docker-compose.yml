@@ -8,7 +8,7 @@ services:
       DB_PASSWORD: postgres
       DB_NAME: banky
       MANAGER_ADDR: manager:65000
-    image: rxonvrdo/banky
+    image: rxonvrdo/banky:latest
     entrypoint: /bin/sh -c
     command: -c "./app http"
     hostname: api1
@@ -20,7 +20,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.25'
+          cpus: '0.35'
           memory: '112MB'
 
   api2:
@@ -31,7 +31,7 @@ services:
       DB_PASSWORD: postgres
       DB_NAME: banky
       MANAGER_ADDR: manager:65000
-    image: rxonvrdo/banky
+    image: rxonvrdo/banky:latest
     entrypoint: /bin/sh -c
     command: -c "./app http"
     hostname: api2
@@ -43,7 +43,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.25'
+          cpus: '0.35'
           memory: '113MB'
 
   manager:
@@ -55,7 +55,7 @@ services:
       DB_PASSWORD: postgres
       DB_NAME: banky
       CACHE_DURATION_SECONDS: 3600
-    image: rxonvrdo/banky
+    image: rxonvrdo/banky:latest
     entrypoint: /bin/sh -c
     command: -c "./app tcp"
     hostname: manager
@@ -68,7 +68,7 @@ services:
       resources:
         limits:
           cpus: '0.6'
-          memory: '170MB'
+          memory: '145MB'
 
   nginx:
     image: nginx:latest
@@ -82,8 +82,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.2'
-          memory: '35MB'
+          cpus: '0.1'
+          memory: '80MB'
   db:
    healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
@@ -98,7 +98,7 @@ services:
    deploy:
       resources:
         limits:
-          cpus: '0.2'
-          memory: '120MB'
+          cpus: '0.1'
+          memory: '100MB'
    volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql

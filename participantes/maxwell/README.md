@@ -1,24 +1,24 @@
 # Rinha de Backend - 2024/Q1
 
-# Stack
+## Autor
+
+Maxwell Monteiro
+maxwell.monteiro@gmail.com
+
+## Stack
 
 - PostgreSQL
 - NGINX
 - C
 
-# Autor
+## Repositório
 
-**Maxwell Monteiro**
-maxwell.monteiro@gmail.com
+https://github.com/maxwellmonteiro/crinha-2024
 
-# Como Executar
+## Excecução
 
 **Pré-requisitos:** docker e docker-compose
 
 ```console
 docker-compose up
 ```
-
-# Repositório
-
-https://github.com/maxwellmonteiro/crinha-2024
