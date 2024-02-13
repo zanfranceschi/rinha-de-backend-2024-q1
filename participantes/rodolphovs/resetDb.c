@@ -21,7 +21,7 @@ const int userInitialLimits[] = {100000, 80000, 1000000, 10000000, 500000};
 const int numberInitialUsers = sizeof(userInitialLimits) / sizeof(int);
 
 int main() {
-    system("mkdir data");
+    system("mkdir -p data");
     int resetDbResult = initDb();
     raiseIfError(resetDbResult);
     return SUCCESS;
