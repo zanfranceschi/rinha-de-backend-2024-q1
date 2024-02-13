@@ -44,6 +44,8 @@ docker-compose  up  -d
 
 - [PostgreSQL](https://www.postgresql.org/)
 
+- [NGINX](https://www.nginx.com/)
+
 ---
 
 ##### Isadora Moysés de Souza
