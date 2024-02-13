@@ -1,10 +1,11 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **seg 12 fev 2024 22:09:45 -03** com **97** submissões.
+Atualizada **seg 12 fev 2024 22:26:25 -03** com **98** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
+| [acerola](./participantes/acerola) | ok | 1679 |
 | [agostinho](./participantes/agostinho) | ok | 6 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | falha - [logs](./participantes/arrudaricardo-01/docker-compose.logs) | -- |
@@ -33,7 +34,7 @@ Atualizada **seg 12 fev 2024 22:09:45 -03** com **97** submissões.
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 6979 |
 | [eigr](./participantes/eigr) | ok | 21 |
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) | -- |
-| [engylemure](./participantes/engylemure) | falha - [logs](./participantes/engylemure/docker-compose.logs) | -- |
+| [engylemure](./participantes/engylemure) | ok | 5 |
 | [eu_fountai](./participantes/eu_fountai) | ok | 5 |
 | [exemplo](./participantes/exemplo) | ok | 5 |
 | [fabiokleis](./participantes/fabiokleis) | ok | 7 |
@@ -98,7 +99,7 @@ Atualizada **seg 12 fev 2024 22:09:45 -03** com **97** submissões.
 | [thiagosantana](./participantes/thiagosantana) | falha - [logs](./participantes/thiagosantana/docker-compose.logs) | -- |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | falha - [logs](./participantes/thusspokebieu-activej/docker-compose.logs) | -- |
 | [viniciusfcf](./participantes/viniciusfcf) | falha - [logs](./participantes/viniciusfcf/docker-compose.logs) | -- |
-| [vkobinski](./participantes/vkobinski) | ok | 6 |
+| [vkobinski](./participantes/vkobinski) | falha - [logs](./participantes/vkobinski/docker-compose.logs) | -- |
 | [williansugiyama](./participantes/williansugiyama) | falha - [logs](./participantes/williansugiyama/docker-compose.logs) | -- |
 | [yMarceloMaia](./participantes/yMarceloMaia) | ok | 1117 |
 | [zsantana](./participantes/zsantana) | ok | 3 |
