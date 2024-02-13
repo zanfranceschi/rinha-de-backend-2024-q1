@@ -29,14 +29,24 @@ CREATE TABLE transacao (
             REFERENCES cliente(cliente_id)
 );
 
-INSERT INTO cliente DEFAULT VALUES;
-INSERT INTO cliente DEFAULT VALUES;
-INSERT INTO cliente DEFAULT VALUES;
-INSERT INTO cliente DEFAULT VALUES;
-INSERT INTO cliente DEFAULT VALUES;
+DO $$
+BEGIN
+  INSERT INTO cliente (cliente_id)
+  VALUES
+    (1),
+    (2),
+    (3),
+    (4),
+    (5);
+END; $$;
 
-INSERT INTO saldo (cliente_id, limite, total) VALUES (1, 100000, 0);
-INSERT INTO saldo (cliente_id, limite, total) VALUES (2, 80000, 0);
-INSERT INTO saldo (cliente_id, limite, total) VALUES (3, 1000000, 0);
-INSERT INTO saldo (cliente_id, limite, total) VALUES (4, 10000000, 0);
-INSERT INTO saldo (cliente_id, limite, total) VALUES (5, 500000, 0);
+DO $$
+BEGIN
+  INSERT INTO saldo (cliente_id, limite, total)
+  VALUES
+    (1, 100000, 0),
+    (2, 80000, 0),
+    (3, 1000000, 0),
+    (4, 10000000, 0),
+    (5, 500000, 0);
+END; $$
