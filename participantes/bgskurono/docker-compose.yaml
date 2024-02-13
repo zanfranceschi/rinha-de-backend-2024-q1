@@ -2,32 +2,35 @@ version: "3.6"
 
 services:
   api01: &api
-    image: bgskurono/rinha-gogin:latest
+    image: bgskurono/rinha-gogin:1.1
     hostname: api01
     environment:
-      - DB_HOSTNAME=db
-      - PORT=3000
+      - DB_HOSTNAME=127.0.0.1
+      - PORT=3001
       - POOL_MAX=5
       - POOL_MIN=5
     ports:
-      - "3001:3000"
+      - "3001:3001"
+    network_mode: host
     depends_on:
       db:
         condition: service_healthy
     deploy:
       resources:
         limits:
-          cpus: "0.2"
+          cpus: "0.18"
           memory: "150MB"
 
   api02:
     <<: *api
     hostname: api02
     environment:
-      - DB_HOSTNAME=db
-      - PORT=3000
+      - DB_HOSTNAME=127.0.0.1
+      - PORT=3002
+      - POOL_MAX=5
+      - POOL_MIN=5
     ports:
-      - "3002:3000"
+      - "3002:3002"
 
   nginx:
     image: nginx:1.25.3
@@ -38,10 +41,11 @@ services:
       - api02
     ports:
       - "9999:9999"
+    network_mode: host
     deploy:
       resources:
         limits:
-          cpus: "0.15"
+          cpus: "0.24"
           memory: "20MB"
 
   db:
@@ -56,10 +60,11 @@ services:
     volumes:
       - ./import.sql:/docker-entrypoint-initdb.d/script.sql
     command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096
+    network_mode: host
     deploy:
       resources:
         limits:
-          cpus: "0.95"
+          cpus: "0.90"
           memory: "230MB"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]

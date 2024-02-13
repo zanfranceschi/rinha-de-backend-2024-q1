@@ -13,3 +13,8 @@ Rinha de Backend 2024/Q1
 ## Repositório
 
 * https://github.com/brunogs/rinha-de-backend-2
+
+## Contatos
+
+[Twitter](https://twitter.com/btuttin) |
+[Linkedin](https://www.linkedin.com/in/bruno-gomes-silva/)
