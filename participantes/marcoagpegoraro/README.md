@@ -10,7 +10,17 @@ Fala aew, meu nome é Marco, esse é meu PR para a rinha de backend 2024 q1, fiz
   - `db.pg` (https://modules.vlang.io/db.pg.html)
 - `Nginx`
 - `PostgreSQL`
+  - `PLPGSQL`
 
 ## Repositorio:
 
 https://github.com/marcoagpegoraro/rinha-de-backend-2024-q1-marcoagpegoraro
+
+## Minhas redes sociais:
+
+Blog: https://marcoagpegoraro.com.br
+Portfolio: https://marcoagpegoraro.github.io
+LinkedIn: https://www.linkedin.com/in/marco-antonio-goncalves
+GitHub: https://github.com/marcoagpegoraro
+Medium: https://medium.com/@tete5423
+Youtube: https://www.youtube.com/@marcoagpegoraro
