@@ -6,7 +6,11 @@
 - PostgreSQL 16
 - Go
 - Gin
-- Gorm
+- SQLc
+
+## Resultado
+
+![gatling results](./gatling-result.png)
 
 ## Repositório
 
