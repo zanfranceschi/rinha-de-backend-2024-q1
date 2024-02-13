@@ -48,6 +48,8 @@ docker-compose  up  -d
 
 ##### Isadora Moysés de Souza
 
+##### [Repositório no github](https://github.com/isadoramsouza/rinha-backend-go-2024-q1)
+
 ##### [Linkedin](https://br.linkedin.com/in/isadora-souza?original_referer=https%3A%2F%2Fwww.google.com%2F)
 
 ##### [Twitter](https://twitter.com/isadoraamsouza)
