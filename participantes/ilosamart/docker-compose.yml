@@ -16,18 +16,19 @@ services:
     command: postgres -c max_connections=300
 
   app:
-    image: ghcr.io/ilosamart/docker-registry/rinhaapp:1.0.0
+    image: ghcr.io/ilosamart/docker-registry/rinhaapp:1.1.0
     depends_on: 
       - db
     environment:
       SQLALCHEMY_DATABASE_URL: postgresql+asyncpg://postgres:postgres@db:5432/rinha
+      WEB_CONCURRENCY: 4
     deploy:
       replicas: 2
       resources:
         limits:
           cpus: "0.4"
           memory: "200MB"
-    command: /app/.venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000
+    command: /app/.venv/bin/uvicorn --host 0.0.0.0 --port 8000 --log-level error --no-access-log --loop uvloop --http h11 --interface asgi3 main:app
 
   nginx:
     image: nginx:1.25.3
@@ -42,6 +43,3 @@ services:
         limits:
           cpus: "0.2"
           memory: "20MB"
-
-networks:
-  backend: {}
