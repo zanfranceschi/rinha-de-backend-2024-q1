@@ -2,11 +2,14 @@ version: '3.9'
 
 services:
   api01: &api
-    container_name: server-api-01
+    container_name: svc-01
     image: nicolasmmb/a-go-rinha:latest
-    # platform: linux/x86_64
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    #   target: final
     depends_on:
-      database: 
+      db: 
           condition: service_healthy
     deploy:
       resources:
@@ -16,7 +19,7 @@ services:
     environment:
       SERVER_PORT: 9999
       SERVER_ADDR: 0.0.0.0
-      DB_HOST: database
+      DB_HOST: db
       DB_PORT: 5432
       DB_USER: rinha
       DB_PASS: rinha
@@ -29,12 +32,12 @@ services:
       start_period: 1s
 
   api02:
-    container_name: server-api-02
+    container_name: svc-02
     <<: *api
 
 
-  database:
-    container_name: server-database
+  db:
+    container_name: svc-db
     image: postgres:16.1-alpine
     hostname: database
     command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
@@ -51,7 +54,7 @@ services:
       resources:
         limits:
           cpus: '0.55'
-          memory: '256MB'
+          memory: '450MB'
     environment:
       POSTGRES_DB: rinha
       POSTGRES_USER: rinha
@@ -60,12 +63,12 @@ services:
       - "5432:5432"
 
   nginx: 
-    container_name: server-nginx
+    container_name: svc-lb
     image: nginx:latest
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      database:
+      db:
         condition: service_healthy
       api01:
         condition: service_healthy
