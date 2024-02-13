@@ -24,26 +24,27 @@ CREATE FUNCTION debito(cliente_id INTEGER, valor_transacao INTEGER, descricao_tr
 RETURNS SETOF resultado_transacao
 LANGUAGE plpgsql
 AS $BODY$
-  DECLARE cliente_novo_saldo INTEGER;
-  DECLARE cliente_limite INTEGER;
+	DECLARE cliente_novo_saldo INTEGER;
+	DECLARE cliente_limite INTEGER;
 BEGIN
 	SELECT
 		saldo - valor_transacao,
 		limite
 	INTO cliente_novo_saldo, cliente_limite
 	FROM clientes
-	WHERE id = cliente_id;
+	WHERE id = cliente_id
+	FOR UPDATE;
 
 	IF cliente_novo_saldo < (-cliente_limite) THEN RETURN; END IF;
+
+	INSERT INTO transacoes (cliente_id, valor, tipo, descricao)
+	VALUES (cliente_id, valor_transacao, 'd', descricao_transacao);
 
 	UPDATE clientes
 	SET saldo = cliente_novo_saldo
 	WHERE id = cliente_id
 	returning saldo, limite
 	INTO cliente_novo_saldo, cliente_limite;
-
-	INSERT INTO transacoes (cliente_id, valor, tipo, descricao)
-	VALUES (cliente_id, valor_transacao, 'd', descricao_transacao);
 
 	RETURN query SELECT cliente_novo_saldo, cliente_limite;
 END;
@@ -53,16 +54,16 @@ CREATE FUNCTION credito(cliente_id INTEGER, valor_transacao INTEGER, descricao_t
 RETURNS SETOF resultado_transacao
 LANGUAGE plpgsql
 AS $BODY$
-  DECLARE cliente_novo_saldo INTEGER;
-  DECLARE cliente_limite INTEGER;
+	DECLARE cliente_novo_saldo INTEGER;
+	DECLARE cliente_limite INTEGER;
 BEGIN
+	INSERT INTO transacoes (cliente_id, valor, tipo, descricao)
+	VALUES (cliente_id, valor_transacao, 'c', descricao_transacao);
+
 	UPDATE clientes
 	SET saldo = saldo + valor_transacao
 	WHERE id = cliente_id
 	returning saldo, limite INTO cliente_novo_saldo, cliente_limite;
-
-	INSERT INTO transacoes (cliente_id, valor, tipo, descricao)
-	VALUES (cliente_id, valor_transacao, 'c', descricao_transacao);
 
 	RETURN query SELECT cliente_novo_saldo, cliente_limite;
 END;

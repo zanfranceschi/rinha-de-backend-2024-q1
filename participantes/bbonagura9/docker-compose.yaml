@@ -9,6 +9,7 @@ services:
       POSTGRES_DB: transacoes
     volumes:
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     deploy:
       resources:
         limits:
@@ -17,8 +18,8 @@ services:
   api1: &api
     image: bbonagura9/rdb-24q1-api:latest
     environment:
-      DB_ENGINE: POSTGRES
-      DB_DSN: host=postgres user=transacoes password=transacoes sslmode=disable
+      DB_ENGINE: postgres
+      DB_DSN: host=postgres user=transacoes password=transacoes sslmode=disable pool_max_conns=100
       GIN_MODE: release
       GOMAXPROCS: 1
     depends_on:
