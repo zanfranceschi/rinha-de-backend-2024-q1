@@ -11,7 +11,7 @@ services:
     restart: always
     depends_on:
       fiber-db:
-        condition: service_completed_successfuly
+        condition: service_healthy
     expose:
       - "8000"
     deploy:
@@ -30,7 +30,7 @@ services:
     restart: always
     depends_on:
       fiber-db:
-        condition: service_completed_successfuly
+        condition: service_healthy
     expose:
       - "8000"
     deploy:
@@ -72,9 +72,16 @@ services:
         limits:
           cpus: '0.4'
           memory: '125MB'
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "banco"]
+      interval: 10s
+      timeout: 60s
+      retries: 5
+      start_period: 20s
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=banco
+      - PGUSER=postgres
     networks:
       fiber-network:
         aliases:
