@@ -10,7 +10,8 @@ services:
     container_name: fiber-api-1
     restart: always
     depends_on:
-      - fiber-db
+      fiber-db:
+        condition: service_healthy
     expose:
       - "8000"
     deploy:
@@ -28,7 +29,8 @@ services:
     container_name: fiber-api-2
     restart: always
     depends_on:
-      - fiber-db
+      fiber-db:
+        condition: service_healthy
     expose:
       - "8000"
     deploy:
@@ -41,7 +43,7 @@ services:
         aliases:
           - fiber-api-proxy-2
 
-  nginx: # Load Balancer
+  fiber-nginx: # Load Balancer
     image: nginx:latest
     container_name: fiber-nginx
     restart: always
@@ -55,24 +57,31 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.2'
+          cpus: '0.1'
           memory: '25MB'
     networks:
       fiber-network:
         aliases:
           - nginx-proxy
 
-  db: # database
+  fiber-db: # database
     image:  postgres:15.3-bullseye
     container_name: fiber-db
     deploy:
       resources:
         limits:
-          cpus: '0.3'
+          cpus: '0.4'
           memory: '125MB'
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "banco"]
+      interval: 10s
+      timeout: 60s
+      retries: 5
+      start_period: 20s
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=banco
+      - PGUSER=postgres
     networks:
       fiber-network:
         aliases:

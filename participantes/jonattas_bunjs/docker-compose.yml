@@ -1,0 +1,60 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: jonmoraes/rinha-api:latest
+    restart: unless-stopped
+    hostname: api01
+    environment:
+      - DB_HOSTNAME=db
+      - HTTP_PORT=3002
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "150MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - HTTP_PORT=3003
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "10MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
