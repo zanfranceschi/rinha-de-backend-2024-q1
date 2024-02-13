@@ -7,11 +7,12 @@ services:
     command: ./rinha
     environment:
       PORT: 8080
-      DB_CONNECTION_STR: "user=rinha password=rinha dbname=rinha host=db port=5432"
+      DB_CONNECTION_STR: "user=rinha password=rinha dbname=rinha host=localhost port=5432"
     depends_on: 
       - db
     expose:
       - 8080
+    network_mode: "host"    
     deploy:
       resources:
         limits:
@@ -20,14 +21,14 @@ services:
 
   api02:
     <<: *api
-    hostname: api02       
-
+    hostname: api02
+  
   db:
-    image: postgres:15
+    image: postgres:16
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
-    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf    
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
     hostname: db
     environment:
       - POSTGRES_USER=rinha
@@ -35,23 +36,21 @@ services:
       - POSTGRES_DB=rinha
     expose:
       - 5432
-    ports:
-      - "5433:5432"
+    network_mode: "host"    
     deploy:
       resources:
         limits:
           cpus: '0.90'
-          memory: '448MB'
+          memory: '448MB' 
          
   nginx:
-    image: nginx:latest
+    image: nginx:1.25.3
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - api01
       - api02  
-    ports:
-      - "9999:9999"
+    network_mode: "host"    
     deploy:
       resources:
         limits:
