@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **seg 12 fev 2024 21:13:02 -03** com **95** submissões.
+Atualizada **seg 12 fev 2024 21:40:42 -03** com **96** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -23,6 +23,7 @@ Atualizada **seg 12 fev 2024 21:13:02 -03** com **95** submissões.
 | [bun-saulofelipe](./participantes/bun-saulofelipe) | ok | 2170 |
 | [cacambito](./participantes/cacambito) | falha - [logs](./participantes/cacambito/docker-compose.logs) | -- |
 | [cadu](./participantes/cadu) | ok | 3 |
+| [caravanacloud](./participantes/caravanacloud) | falha - [logs](./participantes/caravanacloud/docker-compose.logs) | -- |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 3 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [diego-coronel](./participantes/diego-coronel) | ok | 2 |
@@ -95,7 +96,7 @@ Atualizada **seg 12 fev 2024 21:13:02 -03** com **95** submissões.
 | [taciossbr](./participantes/taciossbr) | ok | 137 |
 | [thiagosantana](./participantes/thiagosantana) | falha - [logs](./participantes/thiagosantana/docker-compose.logs) | -- |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | falha - [logs](./participantes/thusspokebieu-activej/docker-compose.logs) | -- |
-| [viniciusfcf](./participantes/viniciusfcf) | ok | 4 |
+| [viniciusfcf](./participantes/viniciusfcf) | falha - [logs](./participantes/viniciusfcf/docker-compose.logs) | -- |
 | [vkobinski](./participantes/vkobinski) | ok | 6 |
 | [williansugiyama](./participantes/williansugiyama) | falha - [logs](./participantes/williansugiyama/docker-compose.logs) | -- |
 | [yMarceloMaia](./participantes/yMarceloMaia) | ok | 1117 |
