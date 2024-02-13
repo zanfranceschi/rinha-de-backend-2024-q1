@@ -16,6 +16,11 @@ services:
           memory: "240MB"
     networks:
       - default
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
     
   api01: &api
     image: jordanacavalcante/api-rinha:latest
@@ -26,7 +31,8 @@ services:
     ports:
       - 5000:5000
     depends_on:
-      - db
+      db: 
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -44,7 +50,8 @@ services:
     ports:
       - 5001:5000
     depends_on:
-      - db
+      db: 
+        condition: service_healthy
     networks:
       - default
 
