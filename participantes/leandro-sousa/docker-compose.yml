@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  service-01: &service
+    image: public.ecr.aws/v6n3t6k2/rinha-backend-v2:latest
+    environment:
+      - APP_PORT=8000
+      - DATABASE_INIT_SCRIPT_PATH=/app/init.sql
+      - DATABASE_CONNECTION_STRING=/var/database/rinha-backend.db
+    expose:
+      - "8000:8000"
+    hostname: service-01
+    volumes:
+      - database:/var/database
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: '100MB'
+
+  service-02:
+    <<: *service
+    hostname: service-02
+
+  load-balancer:
+    image: haproxy:alpine
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - service-01
+      - service-02
+    hostname: load-balancer
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '100MB'
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  database:

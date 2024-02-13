@@ -4,13 +4,14 @@ services:
   api01: &api
     # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
     # publicamente acessível! Ex.: hub.docker.com
-    image: viniciusfcf/rinha-backend-2024q1:v3
+    image: viniciusfcf/rinha-backend-2024q1:v4
     network_mode: host
     environment:
       - QUARKUS_HTTP_PORT=8081
       - QUARKUS_DATASOURCE_JDBC_MAX_SIZE=3
       - QUARKUS_DATASOURCE_JDBC_MIN_SIZE=3
       - QUARKUS_DATASOURCE_JDBC_INITIAL_SIZE=3
+      - QUARKUS_HIBERNATE_ORM_LOG_SQL=false
     depends_on:
       db:
         condition: service_healthy
@@ -42,7 +43,7 @@ services:
 
   db:
     image: postgres:16.1
-    command: postgres -c 'max_connections=15'
+    command: postgres -c 'max_connections=15' -c 'fsync=off' -c 'synchronous_commit=off' -c 'checkpoint_timeout=1d' -c 'full_page_writes=false'
     environment:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin

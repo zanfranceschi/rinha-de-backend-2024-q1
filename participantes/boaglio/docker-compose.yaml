@@ -1,0 +1,72 @@
+version: '3.9'
+name: 'rinha-de-backend-2'
+
+#  1.5 CPUs =   0.6 MongoDB +   2 x     0.45 Spring Boot +     0.2 NGinx
+#  550MB = 240MB MongoDB + 2 x 140MB Spring Boot + 30MB NGinx
+
+services:
+  spring-api1: &api
+#    image: docker.io/library/curva-de-rio:0.0.1-SNAPSHOT  # com GraalVM
+    image: docker.io/boaglio/curva-de-rio:latest  # sem GraalVM
+    hostname: spring-api1
+    environment:
+      - SERVER_PORT=8080
+      - MONGO_URI=mongodb://db:27017/rinhadb?socketTimeoutMS=360000&connectTimeoutMS=360000&maxPoolSize=10&minPoolSize=5
+    depends_on:
+      - db
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.45'
+          memory: '140MB'
+    networks:
+      - app-network
+
+  spring-api2:
+    <<: *api
+    hostname: spring-api2
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - spring-api1
+      - spring-api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '30MB'
+    networks:
+      - app-network
+
+  db:
+    image: mongo:7-jammy
+    hostname: db
+    volumes:
+      - ./docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '240MB'
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+
+networks:
+  app-network:

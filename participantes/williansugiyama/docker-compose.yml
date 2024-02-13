@@ -48,10 +48,11 @@ services:
             - POSTGRES_USER=admin
             - POSTGRES_DB=rinha
         ports:
-            - "5432:5432"
-        command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096
+            - "5434:5432"
+        command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
         volumes:
             - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+            - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
         deploy:
             resources:
                 limits:
