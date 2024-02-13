@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **seg 12 fev 2024 21:58:29 -03** com **97** submissões.
+Atualizada **seg 12 fev 2024 22:09:45 -03** com **97** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -11,7 +11,7 @@ Atualizada **seg 12 fev 2024 21:58:29 -03** com **97** submissões.
 | [avalonbits](./participantes/avalonbits) | ok | 6283 |
 | [aysion_bun](./participantes/aysion_bun) | ok | 2 |
 | [aysion_nodejs](./participantes/aysion_nodejs) | ok | 1899 |
-| [bbonagura9](./participantes/bbonagura9) | ok | 175 |
+| [bbonagura9](./participantes/bbonagura9) | ok | 32 |
 | [bcaua](./participantes/bcaua) | ok | 15652 |
 | [bgskurono](./participantes/bgskurono) | ok | 5 |
 | [bine-php-road-runner](./participantes/bine-php-road-runner) | ok | 75 |
