@@ -10,7 +10,7 @@
 
 ## Resultado
 
-![gatling results](./gatling-result.png)
+![gatling results](./participantes/bbonagura9/gatling-result.png)
 
 ## Repositório
 
