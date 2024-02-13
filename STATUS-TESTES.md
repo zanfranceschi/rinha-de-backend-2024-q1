@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **seg 12 fev 2024 20:51:46 -03** com **94** submissões.
+Atualizada **seg 12 fev 2024 21:03:40 -03** com **95** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -46,6 +46,7 @@ Atualizada **seg 12 fev 2024 20:51:46 -03** com **94** submissões.
 | [geraldojrcg-elixir](./participantes/geraldojrcg-elixir) | ok | 83 |
 | [giovannibassi](./participantes/giovannibassi) | ok | 4 |
 | [gmrms](./participantes/gmrms) | ok | 6 |
+| [gustavoramos00](./participantes/gustavoramos00) | ok | 103 |
 | [gwoliveira-no-db-lock](./participantes/gwoliveira-no-db-lock) | ok | 7153 |
 | [halexv](./participantes/halexv) | ok | 2263 |
 | [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 401 |
