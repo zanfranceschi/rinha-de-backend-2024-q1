@@ -1,0 +1,57 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: edimarlnx/rinha-de-backend-2024-q1-edimarlnx:latest
+    hostname: api01
+    environment:
+      - DB_URI=postgres://postgres:postgres@db:5432/rinha-backend?sslmode=disable
+      - GIN_MODE=release
+    ports:
+      - "8080"
+    depends_on:
+      - db
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "100MB"
+  api02:
+    <<: *api
+    hostname: api02
+
+  lb:
+    image: haproxy:latest
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:80"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "100MB"
+
+  db:
+    image: postgres:12-alpine
+    hostname: db
+    environment:
+      - POSTGRES_DB=rinha-backend
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "55432:5432"
+    volumes:
+      - ./initdb.d:/docker-entrypoint-initdb.d
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "250MB"
+networks:
+  default:
+    driver: bridge
+    name: rinha-2024q1
