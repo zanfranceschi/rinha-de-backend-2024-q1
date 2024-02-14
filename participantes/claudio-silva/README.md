@@ -14,4 +14,4 @@ Submissão feita com:
 - `java` para api com spring webflux e spring native
 - [Repositório da api](https://github.com/Claudio-code/rinha-de-backend-2024-webflux)
 
-[@cerfdotdev](https://twitter.com/Kraudiokode) @ twitter
+[@Kraudiokode](https://twitter.com/Kraudiokode) @ twitter
