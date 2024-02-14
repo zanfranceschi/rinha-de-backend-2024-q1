@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **qua 14 fev 2024 14:13:20 -03** com **137** submissões.
+Atualizada **qua 14 fev 2024 14:38:20 -03** com **141** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -23,10 +23,12 @@ Atualizada **qua 14 fev 2024 14:13:20 -03** com **137** submissões.
 | [bine-reactphp](./participantes/bine-reactphp) | ok | 66 |
 | [boaglio](./participantes/boaglio) | ok | 5 |
 | [breno5g](./participantes/breno5g) | ok | 6 |
+| [brilvio](./participantes/brilvio) | ok | 4 |
 | [buemura](./participantes/buemura) | ok | 5 |
 | [bun-saulofelipe](./participantes/bun-saulofelipe) | ok | 2170 |
 | [cacambito](./participantes/cacambito) | falha - [logs](./participantes/cacambito/docker-compose.logs) | -- |
 | [cadu](./participantes/cadu) | ok | 3 |
+| [cairocampos98](./participantes/cairocampos98) | ok | 14 |
 | [caravanacloud](./participantes/caravanacloud) | ok | 4 |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 3 |
 | [claudio-silva](./participantes/claudio-silva) | ok | 102 |
@@ -48,13 +50,14 @@ Atualizada **qua 14 fev 2024 14:13:20 -03** com **137** submissões.
 | [eu_fountai](./participantes/eu_fountai) | ok | 5 |
 | [exemplo](./participantes/exemplo) | ok | 5 |
 | [fabiokleis](./participantes/fabiokleis) | ok | 7 |
+| [Fabricio-net8](./participantes/Fabricio-net8) | ok | 5 |
 | [felipemarkson](./participantes/felipemarkson) | ok | 7 |
 | [fielcapao](./participantes/fielcapao) | ok | 31 |
 | [flpStrri](./participantes/flpStrri) | ok | 3 |
 | [fraidev](./participantes/fraidev) | ok | 1 |
 | [gabrielfmagalhaes](./participantes/gabrielfmagalhaes) | ok | 12 |
 | [gabrielluciano-vertx](./participantes/gabrielluciano-vertx) | ok | 1 |
-| [gasparbarancelli](./participantes/gasparbarancelli) | ok | 7 |
+| [gasparbarancelli](./participantes/gasparbarancelli) | ok | 3 |
 | [gasparbarancelli-h2-database](./participantes/gasparbarancelli-h2-database) | ok | 12 |
 | [gavageovanni](./participantes/gavageovanni) | ok | 4 |
 | [geffersonFerraz-http2](./participantes/geffersonFerraz-http2) | ok | 3 |
@@ -125,6 +128,7 @@ Atualizada **qua 14 fev 2024 14:13:20 -03** com **137** submissões.
 | [recoba](./participantes/recoba) | ok | 5 |
 | [reonardoleis](./participantes/reonardoleis) | ok | 5 |
 | [rhsobr-bun](./participantes/rhsobr-bun) | falha - [logs](./participantes/rhsobr-bun/docker-compose.logs) | -- |
+| [rizzo-nodejs](./participantes/rizzo-nodejs) | falha - [logs](./participantes/rizzo-nodejs/docker-compose.logs) | -- |
 | [rodolphovs](./participantes/rodolphovs) | ok | 1 |
 | [rodrigocaldeira](./participantes/rodrigocaldeira) | ok | 459 |
 | [ronaldo_scardini](./participantes/ronaldo_scardini) | ok | 4 |
