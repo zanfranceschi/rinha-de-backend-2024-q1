@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **ter 13 fev 2024 23:01:48 -03** com **125** submissões.
+Atualizada **ter 13 fev 2024 23:30:38 -03** com **125** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -62,7 +62,7 @@ Atualizada **ter 13 fev 2024 23:01:48 -03** com **125** submissões.
 | [gustavoramos00](./participantes/gustavoramos00) | ok | 144 |
 | [gwoliveira-no-db-lock](./participantes/gwoliveira-no-db-lock) | ok | 7153 |
 | [halexv](./participantes/halexv) | ok | 2263 |
-| [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 401 |
+| [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 10 |
 | [ilosamart](./participantes/ilosamart) | ok | 1 |
 | [impedro29-performance](./participantes/impedro29-performance) | falha - [logs](./participantes/impedro29-performance/docker-compose.logs) | -- |
 | [isadora-souza](./participantes/isadora-souza) | ok | 7 |
