@@ -7,6 +7,6 @@ Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `go` para api
-- [repositório da api](https://github.com/ygorcarmo/rinha-de-backend-2024-q1)
+- [repositório da api](https://github.com/ygorcarmo/transactions-poc)
 
 [@zanfranceschi](https://twitter.com/zanfranceschi) @ twitter
