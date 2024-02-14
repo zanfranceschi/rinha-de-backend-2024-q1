@@ -1,0 +1,75 @@
+services:
+  api01: &api
+    image: ghcr.io/cleitinif/rinha-de-backend-2024-q1:latest
+    hostname: api01
+    networks:
+      - rinha
+    environment:
+      - DB_HOST=db
+      - DB_USER=admin
+      - DB_PASSWORD=123
+      - DB_DATABASE=database
+      - DB_PORT=5432
+      - DB_MIN_CONNECTIONS=5
+      - DB_MAX_CONNECTIONS=20
+      - DB_MAX_CONN_IDLE_TIME=10000
+      - DB_MAX_CONN_LIFETIME=0
+      - GO_ENV=production
+      - GIN_MODE=release
+    expose:
+      - "8080"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "100MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+
+  haproxy:
+    image: haproxy:2.9.4
+    hostname: haproxy
+    networks:
+      - rinha
+    ports:
+      - "9999:80"
+    volumes:
+      - ./volumes/haproxy/init/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "130MB"
+    depends_on:
+      - api01
+      - api02
+
+  db:
+    image: postgres:16.1-alpine3.19
+    hostname: db
+    networks:
+      - rinha
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=database
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./volumes/postgres/init/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./volumes/postgres/init/postgresql.conf:/etc/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.70"
+          memory: "220MB"
+
+networks:
+  rinha:
+    driver: bridge
+    name: rinha-nginx

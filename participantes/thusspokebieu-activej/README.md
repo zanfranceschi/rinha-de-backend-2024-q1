@@ -31,5 +31,9 @@ A api vai avisar que está se alongando e vai avisar quando estiver pronta pra r
 ## Créditos:
 
 Peguei várias ideias legais de configurações de infra de vários repositórios, em especial: 
+
 - https://github.com/rafaelpadovezi/rinha-2
+
 - https://github.com/viniciusfonseca/rinha-backend-rust-2
+
+- https://github.com/gabrielluciano/rinha-backend-2024-q1-vertx
