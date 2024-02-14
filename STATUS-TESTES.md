@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **qua 14 fev 2024 02:09:29 -03** com **128** submissões.
+Atualizada **qua 14 fev 2024 02:34:17 -03** com **130** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -36,6 +36,7 @@ Atualizada **qua 14 fev 2024 02:09:29 -03** com **128** submissões.
 | [doceazedo](./participantes/doceazedo) | falha - [logs](./participantes/doceazedo/docker-compose.logs) | -- |
 | [dowingows-phalcon-php](./participantes/dowingows-phalcon-php) | ok | 5 |
 | [dscamargo](./participantes/dscamargo) | ok | 4 |
+| [edimarlnx](./participantes/edimarlnx) | ok | 5 |
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 6979 |
 | [edubarbieri](./participantes/edubarbieri) | ok | 2 |
 | [eigr](./participantes/eigr) | ok | 21 |
@@ -110,6 +111,7 @@ Atualizada **qua 14 fev 2024 02:09:29 -03** com **128** submissões.
 | [olukkas](./participantes/olukkas) | ok | 3 |
 | [omurilo](./participantes/omurilo) | ok | 3 |
 | [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 4 |
+| [paulohenriqu](./participantes/paulohenriqu) | ok | 6 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 1 |
 | [ramondelemos](./participantes/ramondelemos) | falha - [logs](./participantes/ramondelemos/docker-compose.logs) | -- |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 9 |
