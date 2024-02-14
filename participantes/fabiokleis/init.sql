@@ -26,11 +26,11 @@ CREATE TABLE saldos (
 DO $$
 BEGIN
         INSERT INTO clientes (nome, limite)
-        VALUES ('Cleiton Rasta', 80000),
-               ('Alonzo Church', 100000),
-               ('Marcos Valle', 1000000),
-               ('Vinicius de Moraes', 500000),
-               ('Jose Raul Capablanca', 10000000);
+        VALUES ('Cleiton Rasta', 1000 * 100),
+               ('Alonzo Church', 800 * 100),
+               ('Marcos Valle', 10000 * 100),
+               ('Vinicius de Moraes', 100000 * 100),
+               ('Jose Raul Capablanca', 5000 * 100);
 	       
 	INSERT INTO saldos (cliente_id, valor)
 		SELECT id, 0 FROM clientes;

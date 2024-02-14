@@ -1,0 +1,92 @@
+version: "3.5"
+
+services:
+  api1: &api
+    image: rhsobr/rinha-de-backend-2024-q1:1.0.2-alpine
+    hostname: api1
+    environment:
+      - API_PORT=3000
+      - DB_HOST=db
+      - DB_USERNAME=admin
+      - DB_PASSWORD=admin
+      - DB_DATABASE=rinha
+      - DB_CONNECTION_STRING=postgres://admin:admin@db:5432/rinha
+      - DB_MAX_RW_CONNECTIONS=3
+      - DB_MAX_RO_CONNECTIONS=3
+      - PGIDLE_TIMEOUT=60
+      - DB_STATEMENT_TIMEOUT=1000
+      - DB_LOCK_TIMEOUT=1000
+      - DB_IDLE_IN_TRANSACTION_SESSION_TIMEOUT=10000
+      - DO_NOT_TRACK=1
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: curl --fail http://localhost:3000/healthcheck || exit 1
+      interval: 3s
+      timeout: 10s
+      retries: 20
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 200MB
+    networks:
+      - app_network 
+
+  api2:
+    <<: *api
+    hostname: api2
+
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: nginx
+    tty: true
+    volumes:
+      - ./configs/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 9999:9999
+    expose:
+      - "9999"
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '8MB'
+    networks:
+      - app_network 
+
+  db:
+    image: postgres:16-alpine
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - 5432:5432
+    volumes:
+      - ./configs/database/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+      - ./configs/database/functions.sql:/docker-entrypoint-initdb.d/functions.sql
+      - ./configs/database/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+    command: postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=off
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready']
+      interval: 3s
+      timeout: 5s
+      retries: 10
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 128MB
+    networks:
+      - app_network 
+
+networks:
+  app_network:
+    driver: bridge

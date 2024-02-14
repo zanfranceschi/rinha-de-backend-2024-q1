@@ -14,15 +14,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.25"
+          cpus: "0.4"
           memory: "125MB"
     logging:
       driver: none
-    ulimits:
-      nproc: 65535
-      nofile:
-        soft: 1000000
-        hard: 1000000
 
   api2:
     container_name: api2
@@ -38,15 +33,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.25"
+          cpus: "0.4"
           memory: "125MB"
     logging:
       driver: none
-    ulimits:
-      nproc: 65535
-      nofile:
-        soft: 1000000
-        hard: 1000000
 
   envoy:
     container_name: envoy
@@ -79,13 +69,13 @@ services:
     command: ["postgres", "-c", "logging_collector=false", "-c", "max_connections=30"]
     volumes:
       - ./import.sql:/docker-entrypoint-initdb.d/script.sql
-    logging:
-      driver: none
     deploy:
       resources:
         limits:
-          cpus: "0.8"
+          cpus: "0.5"
           memory: "200MB"
+    logging:
+      driver: none
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
       interval: 5s

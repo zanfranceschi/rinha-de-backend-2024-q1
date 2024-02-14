@@ -1,0 +1,73 @@
+version: "3.5"
+services:
+  db:
+    container_name: mongo
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=123
+      - MONGO_INITDB_DATABASE=rinha
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./.setup-config/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "400MB"
+
+  api01: &api
+    image: registry.geff.ws/rinha2024q1/grinha-http3:v0.0.2
+    container_name: api01
+    depends_on:
+      - db    
+    environment:
+      - DB_MAX_POOL_SIZE=150 #default 100
+      - DB_MIN_POOL_SIZE=0 # default 0
+      - DB_MAX_CONNECTIONS=3 # default 2
+      - DB_COMPRESSORS="" # default is empty, without compression  = possible: "zstd,zlib,snappy"
+      - DB_ZLIB_COMPRESS_LEVEL=-1 # -1 to 9 - default -1 = 1 FAST / 9 SLOW
+      - DB_ZSTD_COMPRESS_LEVEL=-1 # 1 TO 20 - default 6
+      - DB_PORT=27017
+      - DB_HOST=mongo
+      - DB_NAME=rinha
+      - DB_USER=admin
+      - DB_PASSWORD=123
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=8085
+      - ENABLE_LOG=false
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "50mb"
+
+  api02:
+    <<: *api
+    container_name: api02
+  
+
+  lb:
+    image: registry.geff.ws/rinha2024q1/lb-http-2-quic:v0.0.3
+    container_name: lb
+    depends_on:
+      - api01
+      - api02    
+      - db
+    environment:
+      - SEND_UPSTREAM=https://api01:8085,https://api02:8085
+      - LISTEN_PORT=9999
+      - QUIC=true
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-network          

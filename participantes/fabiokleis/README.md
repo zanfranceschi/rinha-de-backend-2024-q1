@@ -11,7 +11,7 @@
 Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
-- `erlang` para api com as libs `cowboy` e `epgsql`
+- `erlang` para api com as libs `cowboy` e `pgo`
 - [repositório da api](https://github.com/fabiokleis/rinha-de-backend-2024)
 
 [@fabiokleis](https://twitter.com/FabioKleis) @ twitter

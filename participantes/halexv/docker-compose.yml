@@ -1,0 +1,84 @@
+version: '3.4'
+services:
+  app1: &app
+    image: halexv/rinha-de-backend-2024-q1-app
+    hostname: app1
+    environment:
+      POSTGRES_URL: 'postgres://postgres:12345678@localhost:5432/postgres'
+      DB_POOL: 40
+      APP_PORT: '8080'
+      CLUSTER: true
+      CLUSTER_WORKERS: 4
+    # expose:
+    #   - '8080'
+    # ports:
+    #   - 9999:9999
+    network_mode: host
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '190MB'
+  app2:
+    <<: *app
+    hostname: app2
+    command: npm run start:prod
+    environment:
+      POSTGRES_URL: 'postgres://postgres:12345678@localhost:5432/postgres'
+      DB_POOL: 40
+      APP_PORT: '8081'
+      CLUSTER: true
+      CLUSTER_WORKERS: 4
+
+  postgres:
+    image: postgres
+    command: postgres -c 'max_connections=450' -c 'log_error_verbosity=terse' -c 'config_file=/etc/postgresql/postgresql.conf' -c 'client_min_messages=error'
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+    network_mode: host
+    # ports:
+    #   - 5432:5432
+    volumes:
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -d postgres -U postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 2s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.55'
+          memory: '150MB'
+
+  nginx: # Load Balancer
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app1
+      - app2
+    network_mode: host
+    # ports:
+    #   - '9999:9999'
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: '20MB'

@@ -9,8 +9,8 @@ services:
         deploy:
             resources:
                 limits:
-                    cpus: "0.5"
-                    memory: "150MB"
+                    cpus: "0.4"
+                    memory: "120MB"
 
     api02:
         <<: *api
@@ -27,8 +27,8 @@ services:
         deploy:
             resources:
                 limits:
-                    cpus: "0.1"
-                    memory: "50MB"
+                    cpus: "0.2"
+                    memory: "30MB"
 
     db:
         image: postgres
@@ -41,8 +41,8 @@ services:
             - "5432:5432"
         volumes:
             - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-            - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
-        command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+            - ./postgresql.conf:/etc/postgresql/postgresql.conf
+        command: postgres -c config_file=/etc/postgresql/postgresql.conf
         healthcheck:
             test: ["CMD-SHELL", "pg_isready"]
             interval: 5s
@@ -52,5 +52,5 @@ services:
         deploy:
             resources:
                 limits:
-                    cpus: "0.4"
-                    memory: "200MB"
+                    cpus: "0.5"
+                    memory: "280MB"

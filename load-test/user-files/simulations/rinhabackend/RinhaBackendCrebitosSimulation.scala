@@ -111,6 +111,27 @@ class RinhaBackendCrebitosSimulation
     )
   )
 
+  val validacaConcorrentesNumRequests = 25
+  val validacaoTransacoesConcorrentes = (tipo: String) =>
+    scenario(s"validação concorrência transações - ${tipo}")
+    .exec(
+      http("validações")
+      .post(s"/clientes/1/transacoes")
+          .header("content-type", "application/json")
+          .body(StringBody(s"""{"valor": 1, "tipo": "${tipo}", "descricao": "validacao"}"""))
+          .check(status.is(200))
+    )
+  
+  val validacaoTransacoesConcorrentesSaldo = (saldoEsperado: Int) =>
+    scenario(s"validação concorrência saldo - ${saldoEsperado}")
+    .exec(
+      http("validações")
+      .get(s"/clientes/1/extrato")
+      .check(
+        jmesPath("saldo.total").ofType[Int].is(saldoEsperado)
+      )
+    )
+
   val saldosIniciaisClientes = Array(
     Map("id" -> 1, "limite" ->   1000 * 100),
     Map("id" -> 2, "limite" ->    800 * 100),
@@ -118,6 +139,13 @@ class RinhaBackendCrebitosSimulation
     Map("id" -> 4, "limite" -> 100000 * 100),
     Map("id" -> 5, "limite" ->   5000 * 100),
   )
+
+  val criterioClienteNaoEcontrado = scenario("validação HTTP 404")
+    .exec(
+      http("validações")
+      .get("/clientes/6/extrato")
+      .check(status.is(404))
+    )
 
   val criteriosClientes = scenario("validações")
     .feed(saldosIniciaisClientes)
@@ -138,12 +166,7 @@ class RinhaBackendCrebitosSimulation
     )
     .exec(
       http("validações")
-      .get("/clientes/6/extrato")
-      .check(status.is(404))
-    )
-    .exec(
-      http("validações")
-      .post("/clientes/1/transacoes")
+      .post("/clientes/#{id}/transacoes")
           .header("content-type", "application/json")
           .body(StringBody(s"""{"valor": 1, "tipo": "c", "descricao": "toma"}"""))
           .check(
@@ -154,7 +177,7 @@ class RinhaBackendCrebitosSimulation
     )
     .exec(
       http("validações")
-      .post("/clientes/1/transacoes")
+      .post("/clientes/#{id}/transacoes")
           .header("content-type", "application/json")
           .body(StringBody(s"""{"valor": 1, "tipo": "d", "descricao": "devolve"}"""))
           .check(
@@ -165,7 +188,7 @@ class RinhaBackendCrebitosSimulation
     )
     .exec(
       http("validações")
-      .get("/clientes/1/extrato")
+      .get("/clientes/#{id}/extrato")
       .check(
         jmesPath("ultimas_transacoes[0].descricao").ofType[String].is("devolve"),
         jmesPath("ultimas_transacoes[0].tipo").ofType[String].is("d"),
@@ -177,35 +200,35 @@ class RinhaBackendCrebitosSimulation
   )
   .exec(
       http("validações")
-      .post("/clientes/1/transacoes")
+      .post("/clientes/#{id}/transacoes")
           .header("content-type", "application/json")
           .body(StringBody(s"""{"valor": 1.2, "tipo": "d", "descricao": "devolve"}"""))
           .check(status.in(422))
     )
     .exec(
       http("validações")
-      .post("/clientes/1/transacoes")
+      .post("/clientes/#{id}/transacoes")
           .header("content-type", "application/json")
           .body(StringBody(s"""{"valor": 1, "tipo": "x", "descricao": "devolve"}"""))
           .check(status.in(422))
     )
     .exec(
       http("validações")
-      .post("/clientes/1/transacoes")
+      .post("/clientes/#{id}/transacoes")
           .header("content-type", "application/json")
           .body(StringBody(s"""{"valor": 1, "tipo": "c", "descricao": "123456789 e mais um pouco"}"""))
           .check(status.in(422))
     )
     .exec(
       http("validações")
-      .post("/clientes/1/transacoes")
+      .post("/clientes/#{id}/transacoes")
           .header("content-type", "application/json")
           .body(StringBody(s"""{"valor": 1, "tipo": "c", "descricao": ""}"""))
           .check(status.in(422))
     )
     .exec(
       http("validações")
-      .post("/clientes/1/transacoes")
+      .post("/clientes/#{id}/transacoes")
           .header("content-type", "application/json")
           .body(StringBody(s"""{"valor": 1, "tipo": "c", "descricao": null}"""))
           .check(status.in(422))
@@ -217,20 +240,39 @@ class RinhaBackendCrebitosSimulation
     comportam individualmente.
   */
   setUp(
-    criteriosClientes.inject(
-      atOnceUsers(1)
+    validacaoTransacoesConcorrentes("d").inject(
+      atOnceUsers(validacaConcorrentesNumRequests)
     ).andThen(
-      debitos.inject(
-        rampUsersPerSec(1).to(220).during(2.minutes),
-        constantUsersPerSec(220).during(2.minutes)
+      validacaoTransacoesConcorrentesSaldo(validacaConcorrentesNumRequests * -1).inject(
+        atOnceUsers(1)
+      )
+    ).andThen(
+      validacaoTransacoesConcorrentes("c").inject(
+        atOnceUsers(validacaConcorrentesNumRequests)
+      ).andThen(
+        validacaoTransacoesConcorrentesSaldo(0).inject(
+          atOnceUsers(1)
+        )
+      )
+    ).andThen(
+      criteriosClientes.inject(
+        atOnceUsers(saldosIniciaisClientes.length)
       ),
-      creditos.inject(
-        rampUsersPerSec(1).to(110).during(2.minutes),
-        constantUsersPerSec(110).during(2.minutes)
-      ),
-      extratos.inject(
-        rampUsersPerSec(1).to(10).during(2.minutes),
-        constantUsersPerSec(10).during(2.minutes)
+      criterioClienteNaoEcontrado.inject(
+        atOnceUsers(1)
+      ).andThen(
+        debitos.inject(
+          rampUsersPerSec(1).to(220).during(2.minutes),
+          constantUsersPerSec(220).during(2.minutes)
+        ),
+        creditos.inject(
+          rampUsersPerSec(1).to(110).during(2.minutes),
+          constantUsersPerSec(110).during(2.minutes)
+        ),
+        extratos.inject(
+          rampUsersPerSec(1).to(10).during(2.minutes),
+          constantUsersPerSec(10).during(2.minutes)
+        )
       )
     )
   ).protocols(httpProtocol)
