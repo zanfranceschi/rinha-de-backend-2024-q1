@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **qua 14 fev 2024 15:04:36 -03** com **141** submissões.
+Atualizada **qua 14 fev 2024 16:36:24 -03** com **142** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -100,6 +100,7 @@ Atualizada **qua 14 fev 2024 15:04:36 -03** com **141** submissões.
 | [lsfratel](./participantes/lsfratel) | ok | 6 |
 | [lsfratel-python](./participantes/lsfratel-python) | ok | 6 |
 | [lubien-phoenixqlite](./participantes/lubien-phoenixqlite) | ok | 3 |
+| [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | falha - [logs](./participantes/lucasew-go-tigerbeetle/docker-compose.logs) | -- |
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 5 |
 | [lucianovilela](./participantes/lucianovilela) | falha - [logs](./participantes/lucianovilela/docker-compose.logs) | -- |
 | [luizfrra](./participantes/luizfrra) | ok | 68 |
