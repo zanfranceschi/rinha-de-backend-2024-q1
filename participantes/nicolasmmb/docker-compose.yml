@@ -1,0 +1,84 @@
+version: '3.9'
+
+services:
+  api01: &api
+    container_name: svc-01
+    image: nicolasmmb/a-go-rinha:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    #   target: final
+    depends_on:
+      db: 
+          condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '32MB'
+    environment:
+      SERVER_PORT: 9999
+      SERVER_ADDR: 0.0.0.0
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: rinha
+      DB_PASS: rinha
+      DB_NAME: rinha
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:9999/ping"]
+      interval: 3s
+      timeout: 500ms
+      retries: 15
+      start_period: 1s
+
+  api02:
+    container_name: svc-02
+    <<: *api
+
+
+  db:
+    container_name: svc-db
+    image: postgres:16.1-alpine
+    hostname: database
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    volumes:
+      - ./config/init.v2.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./config/postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 25
+      start_period: 3s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.55'
+          memory: '450MB'
+    environment:
+      POSTGRES_DB: rinha
+      POSTGRES_USER: rinha
+      POSTGRES_PASSWORD: rinha
+    ports:
+      - "5432:5432"
+
+  nginx: 
+    container_name: svc-lb
+    image: nginx:latest
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      db:
+        condition: service_healthy
+      api01:
+        condition: service_healthy
+      api02:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0.35'
+          memory: '32MB'
+    ports:
+      - "9999:9999"
+    

@@ -40,37 +40,28 @@ DECLARE
 BEGIN
 	result.efetuado := false;
 
-	IF pg_try_advisory_lock(uclient_id) THEN
-		SELECT c.limite as limite, s.valor as total
-		INTO climite, ctotal
-		FROM clientes c 
-		JOIN saldos s on c.id = s.cliente_id 
-		WHERE c.id = uclient_id;
-		
-		IF utipo = 'd' THEN
-			novo_saldo := ctotal - uvalor;
-			IF novo_saldo < -climite THEN
-				result.efetuado := true;
-			END IF;
-		ELSE
-			novo_saldo := ctotal + uvalor;
-		END IF;
-
-		IF result.efetuado = false THEN
-			UPDATE saldos SET valor = novo_saldo WHERE cliente_id = uclient_id;
-			INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES (uclient_id, uvalor, utipo, udescricao);
-		END IF;
-		PERFORM pg_advisory_unlock(uclient_id);
-    END IF;
-	
 	SELECT c.limite as limite, s.valor as total
 	INTO climite, ctotal
 	FROM clientes c 
 	JOIN saldos s on c.id = s.cliente_id 
-	WHERE c.id = uclient_id;
+	WHERE c.id = uclient_id FOR UPDATE;
+	
+	IF utipo = 'd' THEN
+		novo_saldo := ctotal - uvalor;
+		IF novo_saldo < -climite THEN
+			result.efetuado := true;
+		END IF;
+	ELSE
+		novo_saldo := ctotal + uvalor;
+	END IF;
+
+	IF result.efetuado = false THEN
+		UPDATE saldos SET valor = novo_saldo WHERE cliente_id = uclient_id;
+		INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES (uclient_id, uvalor, utipo, udescricao);
+	END IF;
 
 	result.limite := climite;
-    result.saldo := ctotal;
+    result.saldo := novo_saldo;
     RETURN result;
 END;
 $$ LANGUAGE plpgsql;
