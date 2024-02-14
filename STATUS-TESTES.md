@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **qua 14 fev 2024 18:14:06 -03** com **148** submissões.
+Atualizada **qua 14 fev 2024 19:38:27 -03** com **153** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -33,10 +33,12 @@ Atualizada **qua 14 fev 2024 18:14:06 -03** com **148** submissões.
 | [cairocampos98](./participantes/cairocampos98) | ok | 14 |
 | [caravanacloud](./participantes/caravanacloud) | ok | 4 |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 3 |
+| [cesar-rodrigues](./participantes/cesar-rodrigues) | falha - [logs](./participantes/cesar-rodrigues/docker-compose.logs) | -- |
 | [claudio-silva](./participantes/claudio-silva) | ok | 102 |
 | [cleitinif](./participantes/cleitinif) | ok | 5 |
 | [danielwisky](./participantes/danielwisky) | ok | 1507 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
+| [deno-cassiogangrel](./participantes/deno-cassiogangrel) | ok | 4 |
 | [devkemc-node](./participantes/devkemc-node) | ok | 20939 |
 | [diego-coronel](./participantes/diego-coronel) | ok | 2 |
 | [direisc](./participantes/direisc) | ok | 3398 |
@@ -49,6 +51,7 @@ Atualizada **qua 14 fev 2024 18:14:06 -03** com **148** submissões.
 | [eigr](./participantes/eigr) | ok | 21 |
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) | -- |
 | [engylemure](./participantes/engylemure) | ok | 5 |
+| [erickmarx](./participantes/erickmarx) | ok | 3 |
 | [eu_fountai](./participantes/eu_fountai) | ok | 5 |
 | [exemplo](./participantes/exemplo) | ok | 5 |
 | [fabiokleis](./participantes/fabiokleis) | ok | 7 |
@@ -79,6 +82,7 @@ Atualizada **qua 14 fev 2024 18:14:06 -03** com **148** submissões.
 | [ilosamart](./participantes/ilosamart) | ok | 1 |
 | [impedro29-performance](./participantes/impedro29-performance) | falha - [logs](./participantes/impedro29-performance/docker-compose.logs) | -- |
 | [isadora-souza](./participantes/isadora-souza) | ok | 7 |
+| [italobbarros](./participantes/italobbarros) | ok | 808 |
 | [italopussi](./participantes/italopussi) | ok | 2174 |
 | [itujo](./participantes/itujo) | ok | 7 |
 | [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 7 |
@@ -138,6 +142,7 @@ Atualizada **qua 14 fev 2024 18:14:06 -03** com **148** submissões.
 | [rizzo-nodejs](./participantes/rizzo-nodejs) | falha - [logs](./participantes/rizzo-nodejs/docker-compose.logs) | -- |
 | [rodolphovs](./participantes/rodolphovs) | ok | 1 |
 | [rodrigocaldeira](./participantes/rodrigocaldeira) | ok | 459 |
+| [rodrigocaldeira-c](./participantes/rodrigocaldeira-c) | falha - [logs](./participantes/rodrigocaldeira-c/docker-compose.logs) | -- |
 | [ronaldo_scardini](./participantes/ronaldo_scardini) | ok | 4 |
 | [samluiz](./participantes/samluiz) | ok | 4 |
 | [samueljansem](./participantes/samueljansem) | falha - [logs](./participantes/samueljansem/docker-compose.logs) | -- |
