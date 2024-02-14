@@ -1,13 +1,4 @@
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
+CREATE TYPE tipo_transacao AS ENUM ('c', 'd');
 
 CREATE TABLE IF NOT EXISTS clientes (
 	id SERIAL PRIMARY KEY,
@@ -15,13 +6,14 @@ CREATE TABLE IF NOT EXISTS clientes (
   saldo INTEGER NOT NULL
 );
 
-CREATE INDEX idx_clientes ON clientes USING HASH(id);
+CREATE INDEX idx_clientes ON clientes USING btree(id);
+CLUSTER clientes USING idx_clientes; 
 
 CREATE TABLE IF NOT EXISTS transacoes (
 	id SERIAL PRIMARY KEY,
 	cliente_id INTEGER NOT NULL,
 	valor INTEGER NOT NULL,
-	tipo CHAR(1) NOT NULL,
+	tipo tipo_transacao NOT NULL,
 	descricao VARCHAR(10) NOT NULL,
 	realizada_em TIMESTAMP NOT NULL DEFAULT NOW(),
 	CONSTRAINT fk_clientes_transacoes_id
@@ -29,7 +21,8 @@ CREATE TABLE IF NOT EXISTS transacoes (
     ON DELETE CASCADE
 );
 
-CREATE INDEX idx_transacao ON transacoes USING btree(cliente_id);
+CREATE INDEX idx_transacoes_cliente_id ON transacoes USING btree(cliente_id);
+CLUSTER transacoes USING idx_transacoes_cliente_id;
 
 DO $$
 BEGIN
@@ -64,7 +57,8 @@ BEGIN
     FROM
         clientes c
     WHERE
-        c.id = _cliente_id;
+        c.id = _cliente_id
+    LIMIT 1;
 
     SELECT
         CASE
@@ -101,10 +95,11 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+
 CREATE OR REPLACE FUNCTION transacao(
     _cliente_id INTEGER,
     _valor INTEGER,
-    _tipo CHAR,
+    _tipo tipo_transacao,
     _descricao VARCHAR(10),
     OUT codigo_erro SMALLINT,
     OUT resultado JSON
