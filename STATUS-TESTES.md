@@ -1,13 +1,15 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **qua 14 fev 2024 16:36:24 -03** com **142** submissões.
+Atualizada **qua 14 fev 2024 18:14:06 -03** com **148** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
 | [acerola](./participantes/acerola) | ok | 1642 |
 | [agostinho](./participantes/agostinho) | ok | 6 |
+| [agpsl](./participantes/agpsl) | ok | 6 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
+| [antoniogdelrio](./participantes/antoniogdelrio) | ok | 10 |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | falha - [logs](./participantes/arrudaricardo-01/docker-compose.logs) | -- |
 | [avalonbits](./participantes/avalonbits) | ok | 6283 |
 | [avinho](./participantes/avinho) | falha - [logs](./participantes/avinho/docker-compose.logs) | -- |
@@ -65,6 +67,7 @@ Atualizada **qua 14 fev 2024 16:36:24 -03** com **142** submissões.
 | [geraldojrcg-elixir](./participantes/geraldojrcg-elixir) | ok | 6 |
 | [gilmardealcantara](./participantes/gilmardealcantara) | ok | 332 |
 | [giovannibassi](./participantes/giovannibassi) | ok | 4 |
+| [giovannibassi-nonpooled](./participantes/giovannibassi-nonpooled) | ok | 4 |
 | [giovannibassi-vb](./participantes/giovannibassi-vb) | ok | 4 |
 | [gmrms](./participantes/gmrms) | ok | 6 |
 | [gustavoramos00](./participantes/gustavoramos00) | ok | 144 |
@@ -110,13 +113,16 @@ Atualizada **qua 14 fev 2024 16:36:24 -03** com **142** submissões.
 | [marincor](./participantes/marincor) | ok | 14545 |
 | [mateus4k](./participantes/mateus4k) | ok | 8 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 34 |
+| [matheuslao](./participantes/matheuslao) | ok | 11930 |
 | [matheusleal](./participantes/matheusleal) | ok | 8 |
 | [maxwell](./participantes/maxwell) | ok | 139 |
-| [met4tron-nodejs](./participantes/met4tron-nodejs) | ok | 8122 |
+| [met4tron-nodejs](./participantes/met4tron-nodejs) | ok | 6 |
 | [murilochianfa](./participantes/murilochianfa) | ok | 2 |
 | [mvellasco](./participantes/mvellasco) | ok | 2200 |
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
+| [newton](./participantes/newton) | ok | 1649 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 4 |
+| [nielsonrolim-ror](./participantes/nielsonrolim-ror) | ok | 2614 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
 | [oloko64](./participantes/oloko64) | ok | 1 |
 | [olukkas](./participantes/olukkas) | ok | 3 |
