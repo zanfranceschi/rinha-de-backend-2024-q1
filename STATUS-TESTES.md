@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **qua 14 fev 2024 00:30:43 -03** com **126** submissões.
+Atualizada **qua 14 fev 2024 01:23:26 -03** com **128** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -62,6 +62,7 @@ Atualizada **qua 14 fev 2024 00:30:43 -03** com **126** submissões.
 | [gustavoramos00](./participantes/gustavoramos00) | ok | 144 |
 | [gwoliveira-no-db-lock](./participantes/gwoliveira-no-db-lock) | ok | 7153 |
 | [halexv](./participantes/halexv) | ok | 2263 |
+| [heitor-ps](./participantes/heitor-ps) | ok | 7 |
 | [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 10 |
 | [ilosamart](./participantes/ilosamart) | ok | 1 |
 | [impedro29-performance](./participantes/impedro29-performance) | falha - [logs](./participantes/impedro29-performance/docker-compose.logs) | -- |
@@ -129,5 +130,6 @@ Atualizada **qua 14 fev 2024 00:30:43 -03** com **126** submissões.
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 7 |
 | [vkobinski](./participantes/vkobinski) | falha - [logs](./participantes/vkobinski/docker-compose.logs) | -- |
 | [williansugiyama](./participantes/williansugiyama) | ok | 9 |
+| [ygorcarmo](./participantes/ygorcarmo) | falha - [logs](./participantes/ygorcarmo/docker-compose.logs) | -- |
 | [yMarceloMaia](./participantes/yMarceloMaia) | ok | 1117 |
 | [zsantana](./participantes/zsantana) | ok | 3 |
