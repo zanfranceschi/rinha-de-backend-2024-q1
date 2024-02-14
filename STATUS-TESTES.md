@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **qua 14 fev 2024 14:38:20 -03** com **141** submissões.
+Atualizada **qua 14 fev 2024 14:56:53 -03** com **141** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -115,7 +115,7 @@ Atualizada **qua 14 fev 2024 14:38:20 -03** com **141** submissões.
 | [murilochianfa](./participantes/murilochianfa) | ok | 2 |
 | [mvellasco](./participantes/mvellasco) | ok | 2200 |
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
-| [nicolasmmb](./participantes/nicolasmmb) | ok | 5 |
+| [nicolasmmb](./participantes/nicolasmmb) | ok | 4 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
 | [oloko64](./participantes/oloko64) | ok | 1 |
 | [olukkas](./participantes/olukkas) | ok | 3 |
