@@ -17,4 +17,5 @@ Submissão feita com:
 
 ## Testes
 ![Resultado](https://raw.githubusercontent.com/agpsl/rinha/main/img/resultado_testes.png)
+
 [@agpsl](https://github.com/agpsl) @ github
