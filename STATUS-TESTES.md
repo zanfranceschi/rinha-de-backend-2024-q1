@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **qua 14 fev 2024 17:58:07 -03** com **145** submissões.
+Atualizada **qua 14 fev 2024 18:14:06 -03** com **148** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -9,6 +9,7 @@ Atualizada **qua 14 fev 2024 17:58:07 -03** com **145** submissões.
 | [agostinho](./participantes/agostinho) | ok | 6 |
 | [agpsl](./participantes/agpsl) | ok | 6 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
+| [antoniogdelrio](./participantes/antoniogdelrio) | ok | 10 |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | falha - [logs](./participantes/arrudaricardo-01/docker-compose.logs) | -- |
 | [avalonbits](./participantes/avalonbits) | ok | 6283 |
 | [avinho](./participantes/avinho) | falha - [logs](./participantes/avinho/docker-compose.logs) | -- |
@@ -66,6 +67,7 @@ Atualizada **qua 14 fev 2024 17:58:07 -03** com **145** submissões.
 | [geraldojrcg-elixir](./participantes/geraldojrcg-elixir) | ok | 6 |
 | [gilmardealcantara](./participantes/gilmardealcantara) | ok | 332 |
 | [giovannibassi](./participantes/giovannibassi) | ok | 4 |
+| [giovannibassi-nonpooled](./participantes/giovannibassi-nonpooled) | ok | 4 |
 | [giovannibassi-vb](./participantes/giovannibassi-vb) | ok | 4 |
 | [gmrms](./participantes/gmrms) | ok | 6 |
 | [gustavoramos00](./participantes/gustavoramos00) | ok | 144 |
@@ -120,6 +122,7 @@ Atualizada **qua 14 fev 2024 17:58:07 -03** com **145** submissões.
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
 | [newton](./participantes/newton) | ok | 1649 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 4 |
+| [nielsonrolim-ror](./participantes/nielsonrolim-ror) | ok | 2614 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
 | [oloko64](./participantes/oloko64) | ok | 1 |
 | [olukkas](./participantes/olukkas) | ok | 3 |
