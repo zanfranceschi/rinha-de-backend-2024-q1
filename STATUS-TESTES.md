@@ -1,11 +1,11 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **ter 13 fev 2024 22:27:33 -03** com **125** submissões.
+Atualizada **ter 13 fev 2024 23:00:38 -03** com **125** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
-| [acerola](./participantes/acerola) | ok | 1679 |
+| [acerola](./participantes/acerola) | ok | 1642 |
 | [agostinho](./participantes/agostinho) | ok | 6 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | falha - [logs](./participantes/arrudaricardo-01/docker-compose.logs) | -- |
