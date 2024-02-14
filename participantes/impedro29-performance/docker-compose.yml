@@ -1,0 +1,55 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: impedr029/rinha-2024-api:0.1
+    hostname: api01
+    environment:
+      - DB_ADDRESS=db:4001
+      - PORT=3000
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.55"
+          memory: "200MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "3002:3000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "10MB"
+
+  db:
+    image: impedr029/rinha-2024-db:0.1
+    hostname: db
+    environment:
+      - PORT=4001
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "140MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-ivonet-2024q1

@@ -1,0 +1,81 @@
+version: '3.8'
+services:
+  postgres:
+    restart: always
+    image: postgres:16-alpine3.19
+    #                     Max. connection                Increasing memory usage    Realy on SO to write    Do not wait for write      Accepting data           Checkpoint for wal
+    #                     allowed to the max             for shared buffers         on wal                  on wall                    corruption               in 1 day
+    command: 'postgres -c max_connections=300        -c shared_buffers=64MB    -c fsync=off            -c synchronous_commit=off  -c full_page_writes=off -c checkpoint_timeout=1d'
+    volumes:
+      - ./init.pgsql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_USER: user_user
+      POSTGRES_PASSWORD: user_pwd
+      POSTGRES_DB: user_db
+    healthcheck:
+      test: pg_isready -d user_db -U user_user
+      interval: 10s
+      timeout: 1s
+      retries: 1000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "480MB"
+    networks:
+      - rinha
+
+  api1: &api
+    restart: always
+    image: fmarkson/rinha-backend-q1-2024:r2
+    security_opt:
+      # By default, Docker team do not allow Linux's io_uring because some vunerabilites
+      # was found in the past.
+      # See (https://github.com/moby/moby/pull/46762) for more information.
+      # However, it is safe to use in a webserver enviroment since if some one can
+      # access your server to run another process inside this container, you had been
+      # pwned anyway. I felt that Docker team was over conservative in this decision.
+      # Docker is a development and sysadmin tool and should had an easiest way to
+      # enable Linux's io_uring.
+      - seccomp:io_uring_seccomp.json 
+    hostname: api01
+    depends_on:
+      postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "10MB" # 10 MB is enough :)
+    networks:
+      - rinha
+    healthcheck:
+      test: curl -s "http://localhost:9999/clientes/1/extrato"
+      interval: 10s
+      timeout: 10s
+      retries: 1000
+
+  api2:
+    <<: *api
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      api1:
+        condition: service_healthy
+      api2:
+        condition: service_healthy
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+    networks:
+      - rinha
+
+networks:
+  rinha:

@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - sockets:/fastapi/tmp/sockets
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+       limits:
+          cpus: "0.1"
+          memory: "50MB"
+          
+
+  api01: &api
+    image: kalelmartinho/rinha-2024q1-fastapi:latest
+
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_MIN_SIZE: 5
+      DB_MAX_SIZE: 10
+      TESTING: false
+      KEEPALIVE: 1
+      BIND: unix:/fastapi/tmp/sockets/api01.sock
+
+    volumes:
+      - sockets:/fastapi/tmp/sockets
+    deploy:
+       resources:
+         limits:
+            cpus: "0.5"
+            memory: "150MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      DB_HOST: db
+      DB_MIN_SIZE: 5
+      DB_MAX_SIZE: 10
+      TESTING: false
+      BIND: unix:/fastapi/tmp/sockets/api02.sock
+      KEEPALIVE: 1
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./migration.sql:/docker-entrypoint-initdb.d/migration.sql
+    command: ["-c", "shared_buffers=128MB", "-c", "synchronous_commit=off", "-c", "fsync=off", "-c", "full_page_writes=off"]
+    deploy:
+      resources:
+         limits:
+           cpus: "0.4"
+           memory: "200MB"
+
+
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres-d postgres" ]
+      interval: 3s
+      timeout: 1s
+      retries: 5
+
+volumes:
+  sockets:
+        
+

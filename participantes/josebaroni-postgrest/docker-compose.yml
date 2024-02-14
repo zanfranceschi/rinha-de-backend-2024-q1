@@ -1,0 +1,71 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: postgrest/postgrest
+    hostname: api01
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    networks:
+      - default
+    environment:
+      PGRST_DB_URI: postgres://rinha:rinha@db:5432/rinha
+      PGRST_DB_ANON_ROLE: web_anon
+      PGRST_DB_POOL: 2000
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "130MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "3002:3000"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    restart: unless-stopped
+    networks:
+      - default
+    environment:
+      POSTGRES_DB: rinha
+      POSTGRES_USER: rinha
+      POSTGRES_PASSWORD: rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./config/database/schema.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./config/database/postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: "250MB"
+
+  nginx:
+    image: openresty/openresty:alpine
+    container_name: nginx
+    volumes:
+      - ./config/nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+    ports:
+      - "9999:9999"
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '40MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-network

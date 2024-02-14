@@ -1,0 +1,88 @@
+version: '3.5'
+
+networks:
+  fiber-network:
+    name: fiber-network
+
+services:
+  fiber-api-1: # API - Instance 01
+    image: mvellasco/rinha-fiber-api
+    container_name: fiber-api-1
+    restart: always
+    depends_on:
+      fiber-db:
+        condition: service_healthy
+    expose:
+      - "8000"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '200MB'
+    networks:
+      fiber-network:
+        aliases:
+          - fiber-api-proxy-1
+
+  fiber-api-2: # API - Instance 02
+    image: mvellasco/rinha-fiber-api
+    container_name: fiber-api-2
+    restart: always
+    depends_on:
+      fiber-db:
+        condition: service_healthy
+    expose:
+      - "8000"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '200MB'
+    networks:
+      fiber-network:
+        aliases:
+          - fiber-api-proxy-2
+
+  fiber-nginx: # Load Balancer
+    image: nginx:latest
+    container_name: fiber-nginx
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:z
+    depends_on:
+      - fiber-api-1
+      - fiber-api-2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '25MB'
+    networks:
+      fiber-network:
+        aliases:
+          - nginx-proxy
+
+  fiber-db: # database
+    image:  postgres:15.3-bullseye
+    container_name: fiber-db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '125MB'
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "banco"]
+      interval: 10s
+      timeout: 60s
+      retries: 5
+      start_period: 20s
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=banco
+      - PGUSER=postgres
+    networks:
+      fiber-network:
+        aliases:
+          - db-proxy

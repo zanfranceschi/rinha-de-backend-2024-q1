@@ -1,0 +1,56 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: ghcr.io/lpicanco/backend-dogfight-cpp-24-q1:latest
+    hostname: api01
+    restart: unless-stopped
+    environment:
+      DATABASE_HOST: db
+      DATABASE_NAME: dogfight
+      DATABASE_USER: dogfight_user
+      DATABASE_PORT: 5432
+      DATABASE_PASSWORD: dogfight_pass
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: "50MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+  nginx:
+    image: nginx:1.25.3
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: unless-stopped
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "50MB"
+
+  db:
+    image: postgres:16.1
+    hostname: db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: dogfight
+      POSTGRES_USER: dogfight_user
+      POSTGRES_PASSWORD: dogfight_pass
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c synchronous_commit=off -c max_connections=300 -c max_wal_size=4096 -c checkpoint_timeout=600
+    deploy:
+      resources:
+        limits:
+          cpus: '1.15'
+          memory: "400MB"

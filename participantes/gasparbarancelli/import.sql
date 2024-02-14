@@ -1,20 +1,18 @@
 CREATE TABLE public.CLIENTE (
-      ID SERIAL PRIMARY KEY,
-      LIMITE INT,
-      SALDO INT DEFAULT 0
+                                ID SERIAL PRIMARY KEY,
+                                LIMITE INT,
+                                SALDO INT DEFAULT 0
 ) WITH (autovacuum_enabled = false);
 
 CREATE TABLE public.TRANSACAO (
-      ID SERIAL PRIMARY KEY,
-      CLIENTE_ID INT NOT NULL,
-      VALOR INT NOT NULL,
-      TIPO CHAR(1) CHECK (TIPO IN ('d', 'c')) NOT NULL,
-      DESCRICAO VARCHAR(10) NOT NULL,
-      DATA TIMESTAMP NOT NULL,
-      FOREIGN KEY (CLIENTE_ID) REFERENCES public.CLIENTE(ID)
+                                  ID SERIAL PRIMARY KEY,
+                                  CLIENTE_ID INT NOT NULL,
+                                  VALOR INT NOT NULL,
+                                  TIPO CHAR(1) NOT NULL,
+                                  DESCRICAO VARCHAR(10) NOT NULL,
+                                  DATA TIMESTAMP NOT NULL,
+                                  FOREIGN KEY (CLIENTE_ID) REFERENCES public.CLIENTE(ID)
 ) WITH (autovacuum_enabled = false);
-
-CREATE INDEX TRANSACAO_DATA_IDX ON TRANSACAO (DATA DESC);
 
 INSERT INTO public.CLIENTE (ID, LIMITE)
 VALUES (1, 100000),
