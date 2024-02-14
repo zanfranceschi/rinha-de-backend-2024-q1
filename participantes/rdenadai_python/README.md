@@ -22,13 +22,15 @@
 	</table>
 </div>
 
+[**Repositório**](https://github.com/rdenadai/rinha-de-backend-2024-q1/tree/rdenadai_python/participantes/rdenadai_python)
+
 - Application:
   - Python 3.12.2
     - starlette
     - pydantic
     - orjson
     - asyncpg
-    - uvicorn && gunicorn
+    - uvicorn & gunicorn
 - Database
   - PostgreSQL 16.1
 

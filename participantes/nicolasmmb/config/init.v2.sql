@@ -21,5 +21,5 @@ END;
 $$; 
 
 CREATE INDEX idx_compound_cliente_id_realizado_em ON transacoes (cliente_id, realizada_em);
-
-CREATE INDEX idx_cliente_id ON transacoes (cliente_id);
+CREATE INDEX idx_transacoes_cliente_id ON transacoes (cliente_id);
+CREATE INDEX idx_clientes_id ON clientes (id);

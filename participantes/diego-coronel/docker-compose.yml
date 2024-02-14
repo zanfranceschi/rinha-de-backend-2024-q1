@@ -1,8 +1,7 @@
 services:
   api1: &api
-    image: diegocoronel/diego-coronel:rinha-backend-01-2024
+    image: diegocoronel/diego-coronel:rinha-backend-01-2024-T2
     container_name: api1
-    restart: always
     environment:
       - quarkus.datasource.jdbc.url=jdbc:postgresql://postgres:5432/rinha-de-backend-2024
     depends_on:
@@ -10,7 +9,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.3'
+          cpus: '0.35'
           memory: '150MB'
 
   api2:
@@ -25,7 +24,8 @@ services:
       - POSTGRES_USER=rinha
       - POSTGRES_PASSWORD=backend
     volumes:
-      - ./config/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
     deploy:
       resources:
         limits:
@@ -45,5 +45,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.2'
+          cpus: '0.1'
           memory: '50MB'
+

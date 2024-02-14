@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  api1: &app1
+    image: oloko64/rinha-rust-2024-q1:latest
+    hostname: api1
+    network_mode: host
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgres://rinha:rinha@localhost:5432/rinha
+      MAX_CONNECTIONS: 10
+    depends_on:
+      - db
+    expose:
+      - "3000"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "60MB"
+
+  api2:
+    <<: *app1
+    hostname: api2
+    environment:
+      PORT: 3001
+      DATABASE_URL: postgres://rinha:rinha@localhost:5432/rinha
+      MAX_CONNECTIONS: 10
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "120MB"
+
+  db:
+    image: postgres:16
+    volumes:
+      - ./001_init_rinha.sql:/docker-entrypoint-initdb.d/001_init_rinha.sql
+    command: postgres -c log_min_messages=FATAL -c max_connections=50 -c shared_buffers=128MB -c fsync=off -c synchronous_commit=off -c checkpoint_timeout=1d -c full_page_writes=false
+    network_mode: host
+    environment:
+      POSTGRES_USER: rinha
+      POSTGRES_PASSWORD: rinha
+      POSTGRES_DB: rinha
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "310MB"

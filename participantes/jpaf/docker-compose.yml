@@ -1,0 +1,74 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: jpaf/rinha-backend-2024-q1:latest
+    hostname: api01
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8081:8080"
+    networks:
+      - rinha
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "80MB"
+
+  api02:
+    <<: *api 
+    hostname: api02
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8082:8080"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    networks:
+      - rinha 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "134MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    networks:
+      - rinha
+    volumes:
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: 'postgres -c max_connections=1000 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off'
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "256MB"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "db", "-p", "5432", "-q"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+networks:
+    rinha:
