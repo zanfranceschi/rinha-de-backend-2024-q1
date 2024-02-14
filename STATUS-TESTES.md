@@ -1,12 +1,13 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **qua 14 fev 2024 16:58:47 -03** com **143** submissões.
+Atualizada **qua 14 fev 2024 17:58:07 -03** com **145** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
 | [acerola](./participantes/acerola) | ok | 1642 |
 | [agostinho](./participantes/agostinho) | ok | 6 |
+| [agpsl](./participantes/agpsl) | ok | 6 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | falha - [logs](./participantes/arrudaricardo-01/docker-compose.logs) | -- |
 | [avalonbits](./participantes/avalonbits) | ok | 6283 |
@@ -113,10 +114,11 @@ Atualizada **qua 14 fev 2024 16:58:47 -03** com **143** submissões.
 | [matheuslao](./participantes/matheuslao) | ok | 11930 |
 | [matheusleal](./participantes/matheusleal) | ok | 8 |
 | [maxwell](./participantes/maxwell) | ok | 139 |
-| [met4tron-nodejs](./participantes/met4tron-nodejs) | ok | 8122 |
+| [met4tron-nodejs](./participantes/met4tron-nodejs) | ok | 6 |
 | [murilochianfa](./participantes/murilochianfa) | ok | 2 |
 | [mvellasco](./participantes/mvellasco) | ok | 2200 |
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
+| [newton](./participantes/newton) | ok | 1649 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 4 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
 | [oloko64](./participantes/oloko64) | ok | 1 |
