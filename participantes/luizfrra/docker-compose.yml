@@ -1,0 +1,63 @@
+# exemplo de parte de configuração de um serviço dentro do um arquivo docker-compose.yml
+version: "3.5"
+
+services:
+
+  api01: &api
+    image: srpoe/rinha-back
+    hostname: api01
+    environment:
+      - DB_HOST=db
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "200MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "8082:8080"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "10MB"
+
+  db:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    command: -c fsync=off -c full_page_writes=off -c work_mem=24MB -c synchronous_commit=off
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "140MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
+

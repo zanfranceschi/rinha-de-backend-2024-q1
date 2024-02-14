@@ -1,0 +1,64 @@
+version: '3.7'
+services:
+
+  rinha1:
+    container_name: rinha1
+    hostname: rinha1
+    image: jpcairesf/rinha-2024-q1-java:latest
+    pull_policy: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "120MB"
+
+  rinha2:
+    container_name: rinha2
+    hostname: rinha2
+    image: jpcairesf/rinha-2024-q1-java:latest
+    pull_policy: always
+    ports:
+      - "8082:8080"
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "120MB"
+
+  postgres:
+    container_name: postgres
+    image: postgres:16.1-alpine
+    environment:
+      POSTGRES_DB: rinha
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "300MB"
+
+  nginx:
+    image: nginx:1.25.3-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - rinha1
+      - rinha2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "10MB"
