@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **ter 13 fev 2024 21:16:41 -03** com **120** submissões.
+Atualizada **ter 13 fev 2024 22:27:33 -03** com **125** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -74,6 +74,7 @@ Atualizada **ter 13 fev 2024 21:16:41 -03** com **120** submissões.
 | [josebaroni](./participantes/josebaroni) | ok | 4 |
 | [josebaroni-postgrest](./participantes/josebaroni-postgrest) | ok | 5 |
 | [jpaf](./participantes/jpaf) | falha - [logs](./participantes/jpaf/docker-compose.logs) | -- |
+| [jpcairesf-java](./participantes/jpcairesf-java) | falha - [logs](./participantes/jpcairesf-java/docker-compose.logs) | -- |
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 9060 |
 | [kalelMartinho_fastapi](./participantes/kalelMartinho_fastapi) | ok | 13 |
 | [kiro-tagama](./participantes/kiro-tagama) | ok | 60000 |
@@ -90,10 +91,13 @@ Atualizada **ter 13 fev 2024 21:16:41 -03** com **120** submissões.
 | [lubien-phoenixqlite](./participantes/lubien-phoenixqlite) | ok | 3 |
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 5 |
 | [lucianovilela](./participantes/lucianovilela) | falha - [logs](./participantes/lucianovilela/docker-compose.logs) | -- |
+| [luizfrra](./participantes/luizfrra) | ok | 68 |
 | [macgarcia](./participantes/macgarcia) | ok | 2 |
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 10 |
+| [marincor](./participantes/marincor) | ok | 14545 |
 | [mateus4k](./participantes/mateus4k) | ok | 8 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 34 |
+| [matheusleal](./participantes/matheusleal) | ok | 8 |
 | [maxwell](./participantes/maxwell) | ok | 139 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | ok | 8122 |
 | [murilochianfa](./participantes/murilochianfa) | ok | 2 |
@@ -105,11 +109,12 @@ Atualizada **ter 13 fev 2024 21:16:41 -03** com **120** submissões.
 | [omurilo](./participantes/omurilo) | ok | 3 |
 | [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 4 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 1 |
+| [ramondelemos](./participantes/ramondelemos) | falha - [logs](./participantes/ramondelemos/docker-compose.logs) | -- |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 9 |
 | [recoba](./participantes/recoba) | ok | 5 |
 | [reonardoleis](./participantes/reonardoleis) | ok | 5 |
 | [rhsobr-bun](./participantes/rhsobr-bun) | falha - [logs](./participantes/rhsobr-bun/docker-compose.logs) | -- |
-| [rodolphovs](./participantes/rodolphovs) | falha - [logs](./participantes/rodolphovs/docker-compose.logs) | -- |
+| [rodolphovs](./participantes/rodolphovs) | ok | 1 |
 | [rodrigocaldeira](./participantes/rodrigocaldeira) | ok | 459 |
 | [ronaldo_scardini](./participantes/ronaldo_scardini) | ok | 4 |
 | [samluiz](./participantes/samluiz) | ok | 4 |
