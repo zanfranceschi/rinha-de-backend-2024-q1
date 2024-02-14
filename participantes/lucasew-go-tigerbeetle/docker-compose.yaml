@@ -1,6 +1,6 @@
 services:
   loadbalancer:
-    image: nginx
+    image: nginx:latest
     ports:
       - "9999:9999"
     volumes:
@@ -14,7 +14,7 @@ services:
           cpus: "0.2"
           memory: "50MB"
   db:
-    image: ghcr.io/lucasew/playground/rinha202401-tigerbeetle
+    image: ghcr.io/lucasew/playground/rinha202401-tigerbeetle:latest
     # build:
     #   dockerfile: ./Dockerfile.tigerbeetle-lowram
     entrypoint: /tigerbeetle-start.sh
@@ -31,7 +31,7 @@ services:
     - ./data:/data
     - ./tigerbeetle-start.sh:/tigerbeetle-start.sh
   backend1:
-    image: ghcr.io/lucasew/playground/rinha202401-backend
+    image: ghcr.io/lucasew/playground/rinha202401-backend:latest
     restart: always
     environment:
       - "TB_ADDRESS=db:3000"
@@ -50,7 +50,7 @@ services:
       - db
 
   backend2:
-    image: ghcr.io/lucasew/playground/rinha202401-backend
+    image: ghcr.io/lucasew/playground/rinha202401-backend:latest
     restart: always
     environment:
       - "TB_ADDRESS=db:3000"
