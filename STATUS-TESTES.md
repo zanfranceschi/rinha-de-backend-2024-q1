@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **qua 14 fev 2024 16:36:24 -03** com **142** submissões.
+Atualizada **qua 14 fev 2024 16:58:47 -03** com **143** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -110,6 +110,7 @@ Atualizada **qua 14 fev 2024 16:36:24 -03** com **142** submissões.
 | [marincor](./participantes/marincor) | ok | 14545 |
 | [mateus4k](./participantes/mateus4k) | ok | 8 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 34 |
+| [matheuslao](./participantes/matheuslao) | ok | 11930 |
 | [matheusleal](./participantes/matheusleal) | ok | 8 |
 | [maxwell](./participantes/maxwell) | ok | 139 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | ok | 8122 |
