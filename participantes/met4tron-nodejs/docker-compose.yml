@@ -7,27 +7,22 @@ services:
       - rinha-network
     environment:
       HTTP_PORT: 3000
-      POOL_SIZE: 20
+      POOL_SIZE: 10
       DB_HOST: database
     depends_on:
       - db
-    ulimits:
-      nproc: 1000000
-      nofile:
-        soft: 1000000
-        hard: 1000000
     deploy:
       resources:
         limits:
-          cpus: "0.25"
-          memory: "125MB"
+          cpus: "0.2"
+          memory: "100MB"
 
   api2:
     <<: *api
     hostname: api02
     environment:
       HTTP_PORT: 3001
-      POOL_SIZE: 20
+      POOL_SIZE: 10
       DB_HOST: database
 
   nginx: # Load Balancer
@@ -48,7 +43,7 @@ services:
           memory: "50MB"
 
   db: # Banco de dados
-    image: postgres
+    image: postgres:15
     hostname: database
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -63,8 +58,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.8"
-          memory: "250MB"
+          cpus: "0.9"
+          memory: "300MB"
 networks:
   rinha-network:
     driver: bridge
