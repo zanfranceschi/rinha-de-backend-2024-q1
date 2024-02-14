@@ -8,6 +8,8 @@ services:
       - HOSTNAME=0.0.0.0
       - PORT=8081
     network_mode: host
+    volumes: 
+       - pg-volume:/var/run/postgresql
     depends_on:
       db:
          condition: service_healthy
@@ -21,7 +23,7 @@ services:
       start_period: 2s
       interval: 2s
       timeout: 5s
-      retries: 5
+      retries: 15
 
   api02:
     <<: *api 
@@ -38,7 +40,7 @@ services:
       start_period: 2s
       interval: 2s
       timeout: 5s
-      retries: 5
+      retries: 15
 
 
   db:
@@ -52,6 +54,7 @@ services:
     volumes:
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pg-volume:/var/run/postgresql
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready" ]
       interval: 10m
@@ -82,3 +85,5 @@ services:
           cpus: "0.2"
           memory: "50MB"
 
+volumes:
+  pg-volume: 
