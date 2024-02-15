@@ -1,0 +1,43 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: lazaronixon/rinha-de-backend-2
+    hostname: api01
+    environment:
+      - WEB_CONCURRENCY=0
+      - RAILS_MAX_THREADS=5
+      - RAILS_LOG_LEVEL=warn
+      - RAILS_MASTER_KEY=e06d20a258ff5ebf58ec20aac1eeeaea
+    volumes:
+      - storage:/rails/storage
+      - sockets:/rails/tmp/sockets
+    deploy:
+      resources:
+        limits:
+          cpus: "0.65"
+          memory: "250MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - sockets:/rails/tmp/sockets
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+volumes:
+  storage:
+  sockets:

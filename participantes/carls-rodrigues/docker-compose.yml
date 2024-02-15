@@ -1,0 +1,60 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: cerfdotdev/rinha-rust:latest
+    hostname: api01
+    depends_on:
+      - db
+    networks:
+      - rinha-network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    networks:
+      - rinha-network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: "rinha"
+      POSTGRES_USER: "rinha"
+      POSTGRES_PASSWORD: "rinha"
+    ports:
+      - "5432:5432"
+    networks:
+      - rinha-network
+    volumes:
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c max_connections=50 -c shared_buffers=128MB -c fsync=off -c synchronous_commit=off -c checkpoint_timeout=1d -c full_page_writes=false
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: 400MB
+      restart_policy:
+        condition: on-failure
+
+networks:
+  rinha-network:

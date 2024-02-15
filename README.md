@@ -1,6 +1,6 @@
 # Rinha de Backend - 2024/Q1
 
-A Rinha de Backend é um desafio que tem como principal objetivo compartilhar conhecimento em formato de desafio! Esta é a segunda edição. A data limite para enviar sua submissão é `2024-03-10T23:59:59-03:00` e em `2024-03-14T19:00:00-03:00` os resultados serão anunciados [numa live](https://www.youtube.com/watch?v=2OonGBGcl5k) no YouTube.
+A Rinha de Backend é um desafio que tem como principal objetivo compartilhar conhecimento em formato de desafio! Esta é a segunda edição. A data limite para enviar sua submissão é **10 de Março de 2024 às 23:59:59** e em **14 de Março de 2024 às 19:00** os resultados serão anunciados [numa live](https://www.youtube.com/watch?v=2OonGBGcl5k) no YouTube.
 
 O principal assunto dessa Rinha trata de controle de concorrência com o tema créditos e débitos (crébitos) e foi inspirado pelos colegas [@lucascs](https://twitter.com/lucascs) e [@kmyokoyama](https://twitter.com/kmyokoyama), [nesse](https://twitter.com/lucascs/status/1744014270331769000) e [nesse](https://twitter.com/kmyokoyama/status/1744018208082760133) comentário [dessa](https://twitter.com/zanfranceschi/status/1743876243815059738) tweet.
 
@@ -27,9 +27,9 @@ Para participar você precisa desenvolver uma API HTTP com os seguintes endpoint
 ```
 Onde
 - `[id]` (na URL) deve ser um número inteiro representando a identificação do cliente.
-- `valor` deve um número inteiro positivo que representa centavos (não vamos trabalhar com frações de centavos). Por exemplo, R$ 10 são 1000 centavos.
+- `valor` deve ser um número inteiro positivo que representa centavos (não vamos trabalhar com frações de centavos). Por exemplo, R$ 10 são 1000 centavos.
 - `tipo` deve ser apenas `c` para crédito ou `d` para débito.
-- `descricao` deve ser uma string de 1 a 10 caractéres.
+- `descricao` deve ser uma string de 1 a 10 caracteres.
 
 Todos os campos são obrigatórios.
 
@@ -120,6 +120,8 @@ Obs.: Não cadastre um cliente com o ID 6 especificamente, pois parte do teste �
 
 ## Como Fazer e Entregar?
 Assim como na Rinha de Backend anterior, você precisará conteinerizar sua API e outros componentes usados no formato de *docker-compose*, obedecer às [restrições de recursos de CPU e memória](#restricoes), [configuração mínima arquitetural](#arquitetura), e estrutura de artefatos e processo de entrega (o que, onde e quando suas coisas precisam ser entregues).
+
+Você pode fazer a submissão de forma individual, dupla de 2, dupla de 3 ou até dupla de 50 pessoas. Não tem limite. E você e/ou seu grupo pode fazer mais de uma submissão desde que a API seja diferente. 
 
 ### Artefato, Processo e Data Limite de Entrega
 Para participar, basta fazer um pull request neste repositório incluindo um subdiretório em [participantes](./participantes) com os seguintes arquivos:
@@ -334,93 +336,14 @@ http {
 ## Ferramenta de Teste
 Como na edição anterior, a ferramenta Gatling será usada novamente para realizar o teste de performance. Pode fazer muita diferença você executar os testes durante a fase de desenvolvimento para detectar possíveis problemas e gargalos. O teste está disponível nesse repositório em [load-test](./load-test).
 
-## Ambiente de Teste
-O ambiente (SO e versões de software) usado para teste será:
+## Ambiente de Testes
+Para saber os detalhes sobre o ambiente (SO e versões de software) acesse [Especificações do Ambiente de Testes](./SPECTESTENV.md).
 
-Docker
-``` 
-$ docker --version
-Docker version 25.0.2, build 29cf629
-```
+Note que o ambiente em que os testes serão executados é Linux x64. Portanto, se seu ambiente de desenvolvimento possui outra arquitetura, você precisará fazer o build do docker da seguinte forma:
+`$ docker buildx build --platform linux/amd64`
 
-Gatlng
-``` 
-# gatling versão 3.10.3
-$ java --version
-openjdk 21.0.1 2023-10-17
-OpenJDK Runtime Environment (build 21.0.1+12-Ubuntu-223.04)
-OpenJDK 64-Bit Server VM (build 21.0.1+12-Ubuntu-223.04, mixed mode, sharing)
-
-```
-
-CPU
-``` 
-$ lscpu                          
-Architecture:            x86_64
-  CPU op-mode(s):        32-bit, 64-bit
-  Address sizes:         39 bits physical, 48 bits virtual
-  Byte Order:            Little Endian
-CPU(s):                  4
-  On-line CPU(s) list:   0-3
-Vendor ID:               GenuineIntel
-  Model name:            Intel(R) Core(TM) i7-6500U CPU @ 2.50GHz
-    CPU family:          6
-    Model:               78
-    Thread(s) per core:  2
-    Core(s) per socket:  2
-    Socket(s):           1
-    Stepping:            3
-    CPU(s) scaling MHz:  94%
-    CPU max MHz:         3100,0000
-    CPU min MHz:         400,0000
-    BogoMIPS:            5199,98
-    Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss 
-                         ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_
-                         tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1
-                          sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault
-                          epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust 
-                         bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm
-                          ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp md_clear flush_l1d arch_capabilities
-Virtualisation features: 
-  Virtualisation:        VT-x
-Caches (sum of all):     
-  L1d:                   64 KiB (2 instances)
-  L1i:                   64 KiB (2 instances)
-  L2:                    512 KiB (2 instances)
-  L3:                    4 MiB (1 instance)
-NUMA:                    
-  NUMA node(s):          1
-  NUMA node0 CPU(s):     0-3
-Vulnerabilities:         
-  Gather data sampling:  Not affected
-  Itlb multihit:         KVM: Mitigation: VMX disabled
-  L1tf:                  Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
-  Mds:                   Mitigation; Clear CPU buffers; SMT vulnerable
-  Meltdown:              Mitigation; PTI
-  Mmio stale data:       Mitigation; Clear CPU buffers; SMT vulnerable
-  Retbleed:              Mitigation; IBRS
-  Spec rstack overflow:  Not affected
-  Spec store bypass:     Mitigation; Speculative Store Bypass disabled via prctl
-  Spectre v1:            Mitigation; usercopy/swapgs barriers and __user pointer sanitization
-  Spectre v2:            Mitigation; IBRS, IBPB conditional, STIBP conditional, RSB filling, PBRSB-eIBRS Not affected
-  Srbds:                 Mitigation; Microcode
-  Tsx async abort:       Not affected
-
-```
-
-Memória
-```
-$ free -h
-               total        used        free      shared  buff/cache   available
-Mem:            15Gi       4,4Gi       8,7Gi       754Mi       3,4Gi        11Gi
-Swap:          2,0Gi          0B       2,0Gi
-```
-
-SO (Ubuntu 23.04)
-```
-$ uname -a
-Linux 6.2.0-39-generic #40-Ubuntu SMP PREEMPT_DYNAMIC Tue Nov 14 14:18:00 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-```
+Por exemplo:
+`$ docker buildx build --platform linux/amd64 -t ana/minha-api-matadora:latest .`
 
 ### Para executar os testes
 Aqui estão instruções rápidas para você poder executar os testes:
@@ -429,6 +352,9 @@ Aqui estão instruções rápidas para você poder executar os testes:
 1. Certifique-se de que tenha o JDK instalado
     (64bits OpenJDK LTS (Long Term Support) versions: 11, 17 e 21)
     https://gatling.io/docs/gatling/tutorials/installation/
+1. Certifique-se de configurar a variável de ambiente GATLING_HOME para o diretório da instalação do Gatling.
+    Para se certificar de que a variável está correta, os seguinte caminhos precisam ser válidos:
+      `$GATLING_HOME/bin/gatling.sh` no Linux e `%GATLING_HOME%\bin\gatling.bat` no Windows.
 1. Configure o script `./executar-teste-local.sh` (ou `./executar-teste-local.ps1` se estiver no Windows)
 1. Suba sua API (ou load balancer) na porta 9999
 1. Execute `./executar-teste-local.sh` (ou `./executar-teste-local.ps1` se estiver no Windows)
@@ -452,3 +378,8 @@ A simulação contém um teste de lógica de saldo/limite que extrapola o que é
 ## Critérios para Vencer A Rinha de Backend
 
 Surpresa! :)
+
+
+## Acompanhamento do Status das Execuções dos Testes
+
+[Link do status parcial da Rinha de Backend](./STATUS-TESTES.md).

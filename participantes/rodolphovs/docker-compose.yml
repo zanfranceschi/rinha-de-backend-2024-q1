@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  api1: &app1
+    command: "./rinha-backend-2024 3000"
+    image: rodolphovs/rinha-c-2024-q1:latest
+    hostname: api1
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "125MB"
+    volumes:
+      - ./data:/app/data
+
+  api2:
+    <<: *app1
+    command: "./rinha-backend-2024 3001"
+    hostname: api2
+    volumes:
+      - ./data:/app/data
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro      
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: "300MB"

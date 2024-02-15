@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  server_01: &api
+    image: saulofelipe/rinha-api
+    # build: .
+    hostname: server_01
+    ports:
+      - 4001:3000
+    deploy:
+      resources:
+        limits:
+          cpus: "1.2"
+          memory: "267MB"
+    volumes:
+      - db_volume:/app/database:rw
+    environment:
+      - PRODUCTION=true
+
+  server_02:
+    <<: *api
+    hostname: server_02
+    ports:
+      - 4002:3000
+    depends_on:
+      - server_01
+    environment:
+      - CUSTOM_TRIGGER=true
+      - PRODUCTION=true
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - server_02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "15MB"
+
+volumes:
+  db_volume:

@@ -1,0 +1,69 @@
+version: "3.8"
+
+services:
+  api01: &api
+    image: thiagosousa/rinha-api:latest
+    hostname: api01
+    environment:
+      - MONGO_URI=mongodb://username:password@mongodb:27017
+      - MONGO_DB=rinha
+    ports:
+      - "8080:8080"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "175MB"
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - MONGO_URI=mongodb://username:password@mongodb:27017
+      - MONGO_DB=rinha
+      - PORT=8081
+    depends_on:
+      - api01
+    ports:
+      - "8081:8081"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "15MB"
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: unless-stopped
+    command: --quiet --logpath /dev/null
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: username
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    ports:
+      - 27017:27017
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "185MB"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 5s

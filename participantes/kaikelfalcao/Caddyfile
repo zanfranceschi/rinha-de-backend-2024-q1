@@ -1,0 +1,23 @@
+{
+	{$CADDY_GLOBAL_OPTIONS}
+
+	frankenphp
+	order php_server before file_server
+}
+
+{$CADDY_EXTRA_CONFIG}
+
+localhost {
+	root * app/public/
+
+	{$CADDY_SERVER_EXTRA_DIRECTIVES}
+
+	@indexFiles file {
+		try_files {path} index.php
+		split_path .php
+	}
+	rewrite @indexFiles {http.matchers.file.relative}
+
+	encode zstd gzip
+	php_server
+}

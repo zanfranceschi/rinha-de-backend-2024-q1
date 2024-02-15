@@ -1,0 +1,62 @@
+version: "3.9"
+services:
+  database:
+    image: murilochianfa/rinha-crebito-cpp-database:latest
+    container_name: rinha-database
+    hostname: database
+    restart: unless-stopped
+    pull_policy: always
+    network_mode: host
+    stdin_open: false
+    tty: false
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "400MB"
+
+  app-northbound: &app
+    image: murilochianfa/rinha-crebito-cpp-app:latest
+    container_name: rinha-app-northbound
+    hostname: app-northbound
+    restart: unless-stopped
+    pull_policy: always
+    environment:
+      - API_PORT=8848
+    network_mode: host
+    depends_on:
+      - database
+    stdin_open: false
+    tty: false
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+
+  app-southbound:
+    <<: *app
+    container_name: rinha-app-southbound
+    hostname: api-southbound
+    environment:
+      - API_PORT=8849
+
+  loadbalancer:
+    image: murilochianfa/rinha-crebito-cpp-loadbalancer:latest
+    container_name: rinha-loadbalancer
+    hostname: loadbalancer
+    restart: unless-stopped
+    pull_policy: always
+    network_mode: host
+    depends_on:
+      - app-northbound
+      - app-southbound
+    stdin_open: false
+    tty: false
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+
+

@@ -1,0 +1,65 @@
+version: "3.8"
+
+services:
+  postgres:
+    container_name: rinha-pg
+    image: postgres
+    hostname: db-rinha
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: rinha
+      PG_DATA: /data/postgres
+    volumes:
+      - ./data/pg:/data/postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "180MB"
+  api01: &api
+    image: orizzo/rinha-backend:latest
+    hostname: api01
+    environment:
+      - DATABASE_URL=postgresql://postgres:docker@db-rinha:5432/rinha?schema=public
+      - PORT=3000
+    depends_on:
+      - postgres
+    ports:
+      - "8080:3000"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "100MB"
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "8081:3000"
+  api03:
+    <<: *api
+    hostname: api03
+    ports:
+      - "8082:3000"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+      - api03
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "20MB"
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

@@ -1,0 +1,73 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: ghcr.io/elixiremfoco/rinha-backend-2024-q1:latest
+    hostname: api01
+    environment:
+      - PHX_HOST=api01
+      - SECRET_KEY_BASE="HScbRLB0u8vOQAMWLC2DFHdrpnMKcGEs"
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/rinha
+    
+    ports:
+      - "4000:4000"
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+  api02:
+    <<: *api 
+    hostname: api02
+    environment:
+      - PORT=4001
+      - PHX_HOST=api02
+      - SECRET_KEY_BASE="ZufWuBc1xg3ssETNHHB14bZ1PKM1mruC"
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/rinha
+    ports:
+      - "4001:4001"
+ 
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "10MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.13"
+          memory: "140MB"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d rinha" ]
+      interval: 3s
+      timeout: 1s
+      retries: 2
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
+

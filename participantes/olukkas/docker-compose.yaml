@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  app1: &api1
+    image: olukkas/rinha-app:latest
+    hostname: app1
+    environment:
+      - DNS_DB=dbname=rinha sslmode=disable user=postgres password=root host=db
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "150MB"
+
+  app2:
+    <<: *api1
+    hostname: app2
+    ports:
+      - "3001:3000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app1
+      - app2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+
+  db:
+    image: postgres:9.4
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+networks:
+  default:
+    driver: bridge
+    # noinspection ComposeUnknownKeys
+    name: rinha-net
