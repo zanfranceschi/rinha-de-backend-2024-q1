@@ -10,5 +10,6 @@
 ### Submissão e Ferramentas feitas com:
 - nginx como load balancer;
 - mariadb como banco de dados;
+- gin-gonic para subir as api's;
 - golang como linguagem principal;
 - [repositório da api](https://github.com/whyakari/rinha-de-backend-v2).
