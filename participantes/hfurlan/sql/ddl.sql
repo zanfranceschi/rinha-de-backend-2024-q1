@@ -19,7 +19,7 @@ create table clientes (
 
 create unlogged table saldos (
     cliente_id int not null,
-    saldo numeric not null constraint saldo_valido check (saldo > (limite * -1)),
+    saldo numeric not null constraint saldo_valido check (saldo >= (limite * -1)),
     limite numeric not null,
     primary key(cliente_id)
 );
