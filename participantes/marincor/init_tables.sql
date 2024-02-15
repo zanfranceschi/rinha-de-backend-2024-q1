@@ -6,7 +6,7 @@ CREATE TYPE "tipo_transacao" AS ENUM ('c', 'd');
 
 CREATE TABLE IF NOT EXISTS clientes (
     "id" SERIAL NOT NULL,
-    "saldo" INTEGER NOT NULL,
+    "saldo" INTEGER NOT NULL CHECK (saldo >= -"limite"),
     "limite" INTEGER NOT NULL,
     CONSTRAINT "clientes_pkey" PRIMARY KEY ("id")
 );
