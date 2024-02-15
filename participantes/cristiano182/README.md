@@ -16,22 +16,6 @@ load balance listen on localhost:9999
 $ docker compose up
 ```
 
-- run performance test
-```
-sh stress.sh
-```
-
-
-#### ENVIRONMENTS (required)
-```
-PORT=3000
-POSTGRES_URL=postgres://admin:123@localhost:5432/rinha
-IS_PRIMARY_NODE=true
-UV_THREADPOOL_SIZE=2
-POSTGRES_MAX_POOL=100
-POSTGRES_MIN_POOL=30
-```
-
 
 ##### STACK
 - NodeJS (runtime)
