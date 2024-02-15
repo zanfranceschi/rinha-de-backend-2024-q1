@@ -18,7 +18,7 @@ services:
       resources:
         limits:
           cpus: "0.6"
-          memory: "50MB"
+          memory: "100MB"
     ulimits:
       nproc: 65535
       nofile:
@@ -72,15 +72,15 @@ services:
       resources:
         limits:
           cpus: "0.2"
-          memory: "400MB"
+          memory: "300MB"
     command: postgres -c max_connections=100 -c effective_io_concurrency=100
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres -d rinha_backend" ]
-      interval: 3s
-      timeout: 1s
-      retries: 10
+      interval: 5s
+      timeout: 6s
+      retries: 5
 
 networks:
   default:
