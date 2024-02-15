@@ -20,28 +20,30 @@ services:
           cpus: "0.2"
           memory: "180MB"
   api01: &api
-    image: rinha-backend:latest
+    image: orizzo/rinha-backend:latest
     hostname: api01
     environment:
       - DATABASE_URL=postgresql://postgres:docker@db-rinha:5432/rinha?schema=public
       - PORT=3000
-    ports:
-      - "8080:3000"
-    build:
-      context: .
     depends_on:
       - postgres
+    ports:
+      - "8080:3000"
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "150MB"
+          cpus: "0.4"
+          memory: "100MB"
   api02:
     <<: *api
     hostname: api02
     ports:
       - "8081:3000"
-
+  api03:
+    <<: *api
+    hostname: api03
+    ports:
+      - "8082:3000"
   nginx:
     image: nginx:latest
     volumes:
@@ -49,6 +51,7 @@ services:
     depends_on:
       - api01
       - api02
+      - api03
     ports:
       - "9999:9999"
     deploy:
