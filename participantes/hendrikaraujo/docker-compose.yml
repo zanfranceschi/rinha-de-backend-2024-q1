@@ -1,0 +1,94 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: jhendrik/rinha-backend-golang-2024:latest
+    hostname: api01
+    container_name: rinha-api1
+    environment:
+      - RINHA_BACKEND_PORT=8080
+      - RINHA_BACKEND_TIME_ZONE=-3
+      - RINHA_BACKEND_DB_HOST=db
+      - RINHA_BACKEND_DB_PORT=5432
+      - RINHA_BACKEND_DB_USER=admin
+      - RINHA_BACKEND_DB_PASS=123
+      - RINHA_BACKEND_DB_DBNAME=rinha
+      - RINHA_BACKEND_DB_APPLICATION="Rinha API"
+    ports:
+      - "3001:8080"
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "100MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    container_name: rinha-api2
+    environment:
+      - RINHA_BACKEND_PORT=8081
+      - RINHA_BACKEND_TIME_ZONE=-3
+      - RINHA_BACKEND_DB_HOST=db
+      - RINHA_BACKEND_DB_PORT=5432
+      - RINHA_BACKEND_DB_USER=admin
+      - RINHA_BACKEND_DB_PASS=123
+      - RINHA_BACKEND_DB_DBNAME=rinha
+      - RINHA_BACKEND_DB_APPLICATION="Rinha API"
+    ports:
+      - "3002:8081"
+        
+  haproxy:
+    image: haproxy:lts-alpine
+    container_name: rinha-loadbalance
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "30MB"
+
+  db:
+    image: postgres:latest
+    container_name: rinha-db
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c max_connections=1000 -c synchronous_commit=off -c full_page_writes=off
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "320MB"
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "rinha"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-2024
