@@ -1,22 +1,22 @@
 -- clients
 CREATE UNLOGGED TABLE clients (
   id bigserial NOT NULL,
-	account_limit numeric(38) NOT NULL,
-	balance numeric(38) NOT NULL,
-	last_modified_date timestamp NOT NULL,
-	CONSTRAINT clients_pkey PRIMARY KEY (id)
+  account_limit numeric(38) NOT NULL,
+  balance numeric(38) NOT NULL,
+  last_modified_date timestamp NOT NULL,
+  CONSTRAINT clients_pkey PRIMARY KEY (id)
 );
 
 -- transactions
 CREATE UNLOGGED TABLE transactions (
   id bigserial NOT NULL,
-	transaction_type char(1) NOT NULL,
-	value numeric(38) NOT NULL,
-	client_id int8 NOT NULL,
-	description varchar(10) NOT NULL,
+  transaction_type char(1) NOT NULL,
+  value numeric(38) NOT NULL,
+  client_id int8 NOT NULL,
+  description varchar(10) NOT NULL,
   created_at timestamp NOT NULL,
-	CONSTRAINT transactions_pkey PRIMARY KEY (id),
-	CONSTRAINT fk_transactions_clients FOREIGN KEY (client_id) REFERENCES clients(id)
+  CONSTRAINT transactions_pkey PRIMARY KEY (id),
+  CONSTRAINT fk_transactions_clients FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 
 CREATE INDEX idx_transactions_client_id_created_at ON transactions (client_id, created_at DESC);
