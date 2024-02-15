@@ -10,7 +10,7 @@ CREATE UNLOGGED TABLE clients (
 -- transactions
 CREATE UNLOGGED TABLE transactions (
   id bigserial NOT NULL,
-  transaction_type char(1) NOT NULL,
+  transaction_type bpchar(1) NOT NULL,
   value numeric(38) NOT NULL,
   client_id int8 NOT NULL,
   description varchar(10) NOT NULL,
