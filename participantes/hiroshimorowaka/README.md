@@ -2,6 +2,20 @@
 
 # Hiroshi Morowaka
 
+Essa versão da API tem um pequeno bugzinho que PODE ocorrer na hora de inicializar o container  
+Pode ser que o container da API suba antes do postgres estar pronto pra receber conexões (apesar do depends_on)   
+Então SE acontecer de dar algum erro na hora de subir, só derrubar os containers das APIs e subir de novo sem resetar o postgres
+
+Se aparecer "tabelas criadas" ta funfando perfeito
+
+Pra apagar os dados do banco sem precisar resetar o container, use: 
+```bash
+curl http://localhost:9999/deletedb
+```
+
+Irá RESETAR as tabelas (apesar do nome);
+
+
 ### Essa aplicação foi feita com:
 - Bun (Runtime Javascript)
 - Fastify (Framework WEB)

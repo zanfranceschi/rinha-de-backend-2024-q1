@@ -1,6 +1,6 @@
 # Rinha de Backend - 2024/Q1
 
-A Rinha de Backend é um desafio que tem como principal objetivo compartilhar conhecimento em formato de desafio! Esta é a segunda edição. A data limite para enviar sua submissão é `2024-03-10T23:59:59-03:00` e em `2024-03-14T19:00:00-03:00` os resultados serão anunciados [numa live](https://www.youtube.com/watch?v=2OonGBGcl5k) no YouTube.
+A Rinha de Backend é um desafio que tem como principal objetivo compartilhar conhecimento em formato de desafio! Esta é a segunda edição. A data limite para enviar sua submissão é **10 de Março de 2024 às 23:59:59** e em **14 de Março de 2024 às 19:00** os resultados serão anunciados [numa live](https://www.youtube.com/watch?v=2OonGBGcl5k) no YouTube.
 
 O principal assunto dessa Rinha trata de controle de concorrência com o tema créditos e débitos (crébitos) e foi inspirado pelos colegas [@lucascs](https://twitter.com/lucascs) e [@kmyokoyama](https://twitter.com/kmyokoyama), [nesse](https://twitter.com/lucascs/status/1744014270331769000) e [nesse](https://twitter.com/kmyokoyama/status/1744018208082760133) comentário [dessa](https://twitter.com/zanfranceschi/status/1743876243815059738) tweet.
 
@@ -27,9 +27,9 @@ Para participar você precisa desenvolver uma API HTTP com os seguintes endpoint
 ```
 Onde
 - `[id]` (na URL) deve ser um número inteiro representando a identificação do cliente.
-- `valor` deve um número inteiro positivo que representa centavos (não vamos trabalhar com frações de centavos). Por exemplo, R$ 10 são 1000 centavos.
+- `valor` deve ser um número inteiro positivo que representa centavos (não vamos trabalhar com frações de centavos). Por exemplo, R$ 10 são 1000 centavos.
 - `tipo` deve ser apenas `c` para crédito ou `d` para débito.
-- `descricao` deve ser uma string de 1 a 10 caractéres.
+- `descricao` deve ser uma string de 1 a 10 caracteres.
 
 Todos os campos são obrigatórios.
 
@@ -383,3 +383,21 @@ Surpresa! :)
 ## Acompanhamento do Status das Execuções dos Testes
 
 [Link do status parcial da Rinha de Backend](./STATUS-TESTES.md).
+ 
+ 
+https://github.com/zanfranceschi/rinha-de-backend-2024-q1
+ 
+ 
+https://github.com/zanfranceschi/rinha-de-backend-2024-q1
+ 
+ 
+https://github.com/zanfranceschi/rinha-de-backend-2024-q1
+ 
+ 
+https://github.com/zanfranceschi/rinha-de-backend-2024-q1
+ 
+ 
+https://github.com/zanfranceschi/rinha-de-backend-2024-q1
+ 
+ 
+https://github.com/zanfranceschi/rinha-de-backend-2024-q1

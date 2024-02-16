@@ -1,0 +1,75 @@
+version: "3"
+
+
+networks:
+  default:
+    driver: bridge
+    name: rinha2024q1
+
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - rinha-backend-1
+      - rinha-backend-2
+    ports:
+        # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "180MB"
+
+  rinha-backend-1: 
+    image: italobbarros/rinha-backend-2024-q1:latest
+    container_name: rinha-backend-2024-q1-1
+    environment:
+      - DB_HOSTNAME=db
+      - API_SERVER_LISTEN=0.0.0.0:8081
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "140MB"
+
+  rinha-backend-2:
+    image: italobbarros/rinha-backend-2024-q1:latest
+    container_name: rinha-backend-2024-q1-2
+    environment:
+      - DB_HOSTNAME=db
+      - API_SERVER_LISTEN=0.0.0.0:8082
+    depends_on:
+      - rinha-backend-1
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "140MB"
+
+  db:
+    image: postgres:16.2-alpine3.19
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./sql/script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./sql/postgresql.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'
+    deploy:
+      resources:
+        limits:
+          # Note que a soma de todos os limites dos serviços
+          # aqui declarados é de 1.5 unidades de CPU e 550MB
+          # de memória. A distribuição feita aqui é apenas
+          # um exemplo – distribua como quiser.
+          cpus: "0.45"
+          memory: "90MB"
+

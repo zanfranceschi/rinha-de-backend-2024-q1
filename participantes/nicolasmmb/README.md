@@ -48,7 +48,6 @@ make composer-restart
 
 <img src="https://bucket.neonlab.dev/static/Gatling-Test.png" alt="Gatling" style="width: 100%;"/>
 
-
 - ---
 
 <p align="center">

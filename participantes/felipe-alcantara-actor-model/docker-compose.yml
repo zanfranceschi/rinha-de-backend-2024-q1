@@ -1,0 +1,64 @@
+version: "3.8"
+
+services:
+  web01:
+    image: felipealcantara/rinha-de-backend-2024:latest
+    environment:
+      GIN_MODE: release
+      APP_PORT: "8080"
+    expose:
+    - "8080"
+    depends_on:
+    - db
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "120MB"
+  web02:
+    image: felipealcantara/rinha-de-backend-2024:latest
+    environment:
+      GIN_MODE: release
+      APP_PORT: "8081"
+    expose:
+    - "8081"
+    network_mode: host
+    depends_on:
+    - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "120MB"
+
+  lb:
+    image: felipealcantara/rinha-de-backend-2024-lb:latest
+    environment:
+      APP_PORT: 9999
+      APP_MAX_CONNS_PER_HOST: 100
+      APP_MAX_IDLE_CONNS: 4
+      APP_MAX_IDLE_CONNS_PER_HOST: 2
+      APP_IDLE_CONN_TIMEOUT_SECONDS: 30
+    expose:
+    - "9999"
+    depends_on:
+    - web01
+    - web02
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "170MB"
+
+  db:
+    image: mongo:7.0.5
+    expose:
+    - "27017"
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "140MB"

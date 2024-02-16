@@ -1,0 +1,62 @@
+version: '3.5'
+
+services:
+  rinhadebackend:
+    &api
+    hostname: api01
+    image: vyctor17/rinhadebackend
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: RinhaDeBackEnd/Dockerfile
+    environment:
+      - DB_HOSTNAME=Host=db;Database=rinha;Username=admin;Password=123;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=100;
+      - REDIS_HOSTNAME=redis
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "140MB"
+
+  rinhadebackend02:
+    <<: *api 
+    hostname: api02
+    depends_on:
+       - rinhadebackend
+       - db
+
+  nginx:
+    image: nginx:latest
+    volumes:
+     - ./nginx-conf/default.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - rinhadebackend
+      - rinhadebackend02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "50MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.85"
+          memory: "220MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

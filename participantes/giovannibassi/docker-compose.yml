@@ -3,7 +3,7 @@ name: 'rinha-giovannibassi'
 
 services:
   api1: &api
-    image: giggio/rinhabackend-2401:240209_1709
+    image: giggio/rinhabackend-2401:240214_1732
     hostname: api1
     container_name: rinhaapi1
     environment:
@@ -53,7 +53,7 @@ services:
   db:
     image: postgres:latest
     container_name: rinhadb
-    command: 'postgres -c max_connections=1000 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off'
+    command: 'postgres -c max_connections=300 -c shared_buffers=96MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=16MB'
     hostname: db
     environment:
       - POSTGRES_PASSWORD=rinha
@@ -65,6 +65,8 @@ services:
       - ./sql/ddl.sql:/docker-entrypoint-initdb.d/01-ddl.sql:ro
       - ./sql/criartransacao.sql:/docker-entrypoint-initdb.d/11-criartransacao.sql:ro
       - ./sql/resetdb.sql:/docker-entrypoint-initdb.d/21-resetdb.sql:ro
+      - type: tmpfs
+        target: /var/lib/postgresql/data
     deploy:
       resources:
         limits:
@@ -84,4 +86,3 @@ networks:
 volumes:
   app1:
   app2:
-

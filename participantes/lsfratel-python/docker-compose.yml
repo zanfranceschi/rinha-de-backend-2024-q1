@@ -1,0 +1,61 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: lsfratel/rinha-2024-q1:python
+    hostname: api01
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DATABASE_URL=postgres://postgres:postgres@db/rinha-2024-q1
+      - PORT=3000
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "175MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+
+  lighttpd:
+    image: jitesoft/lighttpd
+    volumes:
+      - ./lighttpd.conf:/etc/lighttpd/lighttpd.conf
+    ports:
+      - "9999:9999"
+    depends_on:
+      api01:
+        condition: service_started
+      api02:
+        condition: service_started
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: '30MB'
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinha-2024-q1
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres.conf:/etc/postgresql/postgresql.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "190MB"

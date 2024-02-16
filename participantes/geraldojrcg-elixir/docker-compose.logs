@@ -2,8 +2,8 @@
  Network geraldojrcg-elixir_default  Created
  Container geraldojrcg-elixir-database-1  Creating
  Container geraldojrcg-elixir-database-1  Created
- Container geraldojrcg-elixir-api2-1  Creating
  Container geraldojrcg-elixir-api1-1  Creating
+ Container geraldojrcg-elixir-api2-1  Creating
  Container geraldojrcg-elixir-api1-1  Created
  Container geraldojrcg-elixir-api2-1  Created
  Container geraldojrcg-elixir-nginx-1  Creating
@@ -25,8 +25,8 @@ database-1  | selecting default max_connections ... 100
 database-1  | selecting default shared_buffers ... 128MB
 database-1  | selecting default time zone ... Etc/UTC
 database-1  | creating configuration files ... ok
-api2-1      | Starting application
 database-1  | running bootstrap script ... ok
+api2-1      | Starting application
 api1-1      | Starting application
 database-1  | performing post-bootstrap initialization ... ok
 nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
@@ -38,8 +38,6 @@ nginx-1     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-reso
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
-database-1  | initdb: warning: enabling "trust" authentication for local connections
-database-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 database-1  | syncing data to disk ... ok
 database-1  | 
 database-1  | 
@@ -47,10 +45,12 @@ database-1  | Success. You can now start the database server using:
 database-1  | 
 database-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 database-1  | 
-database-1  | waiting for server to start....2024-02-12 16:47:59.461 GMT [49] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-database-1  | 2024-02-12 16:47:59.464 GMT [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-database-1  | 2024-02-12 16:47:59.476 GMT [52] LOG:  database system was shut down at 2024-02-12 16:47:58 GMT
-database-1  | 2024-02-12 16:47:59.486 GMT [49] LOG:  database system is ready to accept connections
+database-1  | initdb: warning: enabling "trust" authentication for local connections
+database-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+database-1  | waiting for server to start....2024-02-16 08:05:17.102 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+database-1  | 2024-02-16 08:05:17.107 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+database-1  | 2024-02-16 08:05:17.118 GMT [51] LOG:  database system was shut down at 2024-02-16 08:05:15 GMT
+database-1  | 2024-02-16 08:05:17.133 GMT [48] LOG:  database system is ready to accept connections
 database-1  |  done
 database-1  | server started
 database-1  | CREATE DATABASE
@@ -62,86 +62,33 @@ database-1  | CREATE TABLE
 database-1  | DO
 database-1  | 
 database-1  | 
-database-1  | waiting for server to shut down....2024-02-12 16:47:59.768 GMT [49] LOG:  received fast shutdown request
-database-1  | 2024-02-12 16:47:59.771 GMT [49] LOG:  aborting any active transactions
-database-1  | 2024-02-12 16:47:59.773 GMT [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-database-1  | 2024-02-12 16:47:59.774 GMT [50] LOG:  shutting down
-database-1  | 2024-02-12 16:47:59.803 GMT [50] LOG:  checkpoint starting: shutdown immediate
-database-1  | 2024-02-12 16:47:59.967 GMT [50] LOG:  checkpoint complete: wrote 938 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.131 s, sync=0.027 s, total=0.194 s; sync files=307, longest=0.004 s, average=0.001 s; distance=4291 kB, estimate=4291 kB; lsn=0/191B780, redo lsn=0/191B780
-database-1  | 2024-02-12 16:47:59.975 GMT [49] LOG:  database system is shut down
+database-1  | waiting for server to shut down...2024-02-16 08:05:17.347 GMT [48] LOG:  received fast shutdown request
+database-1  | .2024-02-16 08:05:17.350 GMT [48] LOG:  aborting any active transactions
+database-1  | 2024-02-16 08:05:17.352 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+database-1  | 2024-02-16 08:05:17.352 GMT [49] LOG:  shutting down
+database-1  | 2024-02-16 08:05:17.355 GMT [49] LOG:  checkpoint starting: shutdown immediate
+database-1  | 2024-02-16 08:05:17.865 GMT [49] LOG:  checkpoint complete: wrote 938 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.307 s, sync=0.189 s, total=0.514 s; sync files=307, longest=0.163 s, average=0.001 s; distance=4291 kB, estimate=4291 kB; lsn=0/191B780, redo lsn=0/191B780
+database-1  | 2024-02-16 08:05:17.869 GMT [48] LOG:  database system is shut down
 database-1  |  done
 database-1  | server stopped
 database-1  | 
 database-1  | PostgreSQL init process complete; ready for start up.
 database-1  | 
-database-1  | 2024-02-12 16:48:00.114 GMT [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-database-1  | 2024-02-12 16:48:00.115 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-database-1  | 2024-02-12 16:48:00.115 GMT [1] LOG:  listening on IPv6 address "::", port 5432
-database-1  | 2024-02-12 16:48:00.120 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-database-1  | 2024-02-12 16:48:00.130 GMT [67] LOG:  database system was shut down at 2024-02-12 16:47:59 GMT
-database-1  | 2024-02-12 16:48:00.137 GMT [1] LOG:  database system is ready to accept connections
-nginx-1     | 2024/02/12 16:48:01 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.4:3000/clientes/1/extrato", host: "localhost:9999"
-nginx-1     | 2024/02/12 16:48:01 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.3:3000/clientes/1/extrato", host: "localhost:9999"
-nginx-1     | 2024/02/12 16:48:03 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1     | 2024/02/12 16:48:05 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api1-1      | 13:48:06.816 [info] Running RinhaBackendWeb.Endpoint with cowboy 2.10.0 at :::3000 (http)
-api1-1      | 13:48:06.820 [info] Access RinhaBackendWeb.Endpoint at https://api1
-api2-1      | 13:48:06.879 [info] Running RinhaBackendWeb.Endpoint with cowboy 2.10.0 at :::3000 (http)
-api2-1      | 13:48:06.880 [info] Access RinhaBackendWeb.Endpoint at https://api2
-nginx-1     | 2024/02/12 16:48:07 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1     | 2024/02/12 16:48:09 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1     | 2024/02/12 16:48:11 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+database-1  | 2024-02-16 08:05:17.972 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+database-1  | 2024-02-16 08:05:17.972 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+database-1  | 2024-02-16 08:05:17.972 GMT [1] LOG:  listening on IPv6 address "::", port 5432
+database-1  | 2024-02-16 08:05:17.982 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+database-1  | 2024-02-16 08:05:17.991 GMT [66] LOG:  database system was shut down at 2024-02-16 08:05:17 GMT
+database-1  | 2024-02-16 08:05:17.999 GMT [1] LOG:  database system is ready to accept connections
+api2-1 exited with code 137
+api1-1 exited with code 137
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api1-1      | 13:52:30.151 [notice] SIGTERM received - shutting down
-api1-1      | 
-api2-1      | 13:52:30.153 [notice] SIGTERM received - shutting down
-api2-1      | 
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1472.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1473.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1475.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1477.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1476.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1474.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1471.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1479.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1481.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1480.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1483.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1484.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1482.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1486.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.164 [info] Postgrex.Protocol (#PID<0.1485.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.165 [info] Postgrex.Protocol (#PID<0.1478.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.165 [info] Postgrex.Protocol (#PID<0.1468.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api2-1      | 13:52:30.165 [info] Postgrex.Protocol (#PID<0.1467.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.169 [info] Postgrex.Protocol (#PID<0.1471.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.169 [info] Postgrex.Protocol (#PID<0.1467.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.169 [info] Postgrex.Protocol (#PID<0.1474.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.169 [info] Postgrex.Protocol (#PID<0.1476.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1478.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1479.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1477.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1475.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1481.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1482.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1484.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1483.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1486.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1485.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1480.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1473.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.171 [info] Postgrex.Protocol (#PID<0.1468.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1      | 13:52:30.172 [info] Postgrex.Protocol (#PID<0.1472.0>) missed message: {:EXIT, #PID<0.1603.0>, :shutdown}
-api1-1 exited with code 0
-api1-1 exited with code 0
-api2-1 exited with code 0
-api2-1 exited with code 0
-database-1  | 2024-02-12 16:52:32.112 GMT [1] LOG:  received fast shutdown request
-database-1  | 2024-02-12 16:52:32.114 GMT [1] LOG:  aborting any active transactions
-database-1  | 2024-02-12 16:52:32.117 GMT [1] LOG:  background worker "logical replication launcher" (PID 70) exited with exit code 1
-database-1  | 2024-02-12 16:52:32.117 GMT [65] LOG:  shutting down
-database-1  | 2024-02-12 16:52:32.119 GMT [65] LOG:  checkpoint starting: shutdown immediate
-database-1  | 2024-02-12 16:52:32.189 GMT [65] LOG:  checkpoint complete: wrote 712 buffers (4.3%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.041 s, sync=0.019 s, total=0.072 s; sync files=35, longest=0.008 s, average=0.001 s; distance=23029 kB, estimate=23029 kB; lsn=0/2F98C10, redo lsn=0/2F98C10
-database-1  | 2024-02-12 16:52:32.196 GMT [1] LOG:  database system is shut down
+database-1  | 2024-02-16 08:07:39.434 GMT [1] LOG:  received fast shutdown request
+database-1  | 2024-02-16 08:07:39.438 GMT [1] LOG:  aborting any active transactions
+database-1  | 2024-02-16 08:07:39.440 GMT [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+database-1  | 2024-02-16 08:07:39.440 GMT [64] LOG:  shutting down
+database-1  | 2024-02-16 08:07:39.443 GMT [64] LOG:  checkpoint starting: shutdown immediate
+database-1  | 2024-02-16 08:07:39.491 GMT [64] LOG:  checkpoint complete: wrote 46 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.021 s, total=0.051 s; sync files=13, longest=0.007 s, average=0.002 s; distance=261 kB, estimate=261 kB; lsn=0/195CB80, redo lsn=0/195CB80
+database-1  | 2024-02-16 08:07:39.494 GMT [1] LOG:  database system is shut down
 database-1 exited with code 0
