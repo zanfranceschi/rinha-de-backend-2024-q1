@@ -2,7 +2,7 @@
 
 [my_way](https://github.com/v1t4o/my_way) é a minha versão ruby com sinatrinha para a rinha do backend 2ª edição.
 
-<img src="https://github.com/v1t4o/my_way/assets/myway.png" width="700" height="450"/> 
+<img src="https://github.com/v1t4o/my_way/blob/main/assets/myway.png" width="700" height="450"/> 
 
 ## Stack
 
