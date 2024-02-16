@@ -21,6 +21,8 @@ static_resources:
                             timeout: 0s
                 http_filters:
                   - name: envoy.filters.http.router
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
 
   clusters:
     - name: api
@@ -33,7 +35,7 @@ static_resources:
           - lb_endpoints:
               - endpoint:
                   address:
-                    socket_address: { address: api1, port_value: 8081 }
+                    socket_address: { address: localhost, port_value: 8081 }
               - endpoint:
                   address:
-                    socket_address: { address: api2, port_value: 8082 }
+                    socket_address: { address: localhost, port_value: 8082 }
