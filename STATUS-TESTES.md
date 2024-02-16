@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Feb 16 21:25:54 UTC 2024** com **187** submissões.
+Atualizada **Fri Feb 16 21:55:20 UTC 2024** com **188** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -65,6 +65,7 @@ Atualizada **Fri Feb 16 21:25:54 UTC 2024** com **187** submissões.
 | [eu_fountai](./participantes/eu_fountai) | ok | 2 |
 | [exemplo](./participantes/exemplo) | ok | 2 |
 | [fabiokleis](./participantes/fabiokleis) | ok | 3 |
+| [fabionaspolini-sync](./participantes/fabionaspolini-sync) | ok | 2 |
 | [fabionaspolini](./participantes/fabionaspolini) | ok | 2 |
 | [felipe-alcantara-actor-model](./participantes/felipe-alcantara-actor-model) | ok | 1 |
 | [felipemarkson](./participantes/felipemarkson) | ok | 3 |
