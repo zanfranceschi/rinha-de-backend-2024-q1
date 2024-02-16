@@ -10,8 +10,6 @@ services:
       - DB=rinha
       - PASSWORDDB=123
       - PORT=9000
-    ports:
-      - "9000:9000"
     network_mode: host
     depends_on:
       - db
@@ -31,9 +29,6 @@ services:
       - DB=rinha
       - PASSWORDDB=123
       - PORT=9001
-    ports:
-      - "9001:9001"
-    network_mode: host
 
   nginx:
     image: nginx:latest
@@ -42,8 +37,7 @@ services:
     depends_on:
       - api01
       - api02
-    ports:
-      - "9999:9999"
+    network_mode: host
     deploy:
       resources:
         limits:
@@ -57,8 +51,6 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
-    ports:
-      - "5432:5432"
     network_mode: host
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
