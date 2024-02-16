@@ -14,7 +14,7 @@ Submissão feita com:
 - `dotnet 8` para API com:
   - Libraries `Dapper.AOT` e `Npgsql`
   - Build Native AOT, isso gera binário nativo (runtime sem máquina virtual .NET, não é JIT)
-  - Esta versão utiliza async/await
+  - Esta versão não utiliza async/await, aparentemente o burst teste não é tão pesado. Quero validar se haverá diferença de tempos nessa abordagem.
 - [repositório da api](https://github.com/fabionaspolini/rinha-de-backend-2024-q1-csharp)
 
 [@fabionaspolini](https://twitter.com/fabionaspolini) @ twitter
