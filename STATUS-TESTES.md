@@ -1,12 +1,12 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Feb 16 17:48:24 UTC 2024** com **186** submissões.
+Atualizada **Fri Feb 16 17:59:38 UTC 2024** com **186** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
 | [1garo](./participantes/1garo) | ok | 6 |
-| [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 6 |
+| [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 5 |
 | [Fabricio-net8](./participantes/Fabricio-net8) | ok | 2 |
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
 | [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 3 |
