@@ -14,6 +14,6 @@ Submissão feita com:
 - `dotnet 8` para API com:
   - Libraries `Dapper.AOT` e `Npgsql`
   - Build Native AOT execução em runtime de código nativo (sem máquina virtual .NET, não é JIT)
-- [repositório da api](https://github.com/fabionaspolini/rinha-de-backend-2024-q1)
+- [repositório da api](https://github.com/fabionaspolini/rinha-de-backend-2024-q1-csharp)
 
 [@fabionaspolini](https://twitter.com/fabionaspolini) @ twitter
