@@ -3,9 +3,9 @@
  Container bgskurono-db-1  Created
  Container bgskurono-api02-1  Creating
  Container bgskurono-api01-1  Creating
- api01 Published ports are discarded when using host network mode 
  api02 Published ports are discarded when using host network mode 
  Container bgskurono-api02-1  Created
+ api01 Published ports are discarded when using host network mode 
  Container bgskurono-api01-1  Created
  Container bgskurono-nginx-1  Creating
  nginx Published ports are discarded when using host network mode 
@@ -29,6 +29,8 @@ db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
 db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -36,13 +38,7 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-13 19:44:26.107 UTC [48] LOG:  starting PostgreSQL 15.5 (Debian 15.5-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-13 19:44:26.118 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-13 19:44:26.158 UTC [51] LOG:  database system was shut down at 2024-02-13 19:44:25 UTC
-db-1     | 2024-02-13 19:44:26.172 UTC [48] LOG:  database system is ready to accept connections
-db-1     |  done
+db-1     | waiting for server to start.... done
 db-1     | server started
 db-1     | CREATE DATABASE
 db-1     | 
@@ -50,33 +46,14 @@ db-1     |
 db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
 db-1     | CREATE TABLE
 db-1     | CREATE TABLE
-db-1     | CREATE INDEX
-db-1     | CREATE TABLE
-db-1     | CREATE INDEX
 db-1     | DO
-db-1     | CREATE FUNCTION
-db-1     | CREATE FUNCTION
 db-1     | 
 db-1     | 
-db-1     | 2024-02-13 19:44:26.652 UTC [48] LOG:  received fast shutdown request
-db-1     | waiting for server to shut down....2024-02-13 19:44:26.662 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-13 19:44:26.664 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-13 19:44:26.665 UTC [49] LOG:  shutting down
-db-1     | 2024-02-13 19:44:26.673 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-13 19:44:27.039 UTC [49] LOG:  checkpoint complete: wrote 939 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.296 s, sync=0.035 s, total=0.375 s; sync files=312, longest=0.012 s, average=0.001 s; distance=4283 kB, estimate=4283 kB
-db-1     | 2024-02-13 19:44:27.047 UTC [48] LOG:  database system is shut down
-db-1     |  done
+db-1     | waiting for server to shut down.... done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-13 19:44:27.093 UTC [1] LOG:  starting PostgreSQL 15.5 (Debian 15.5-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-13 19:44:27.094 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-13 19:44:27.094 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-13 19:44:27.103 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-13 19:44:27.111 UTC [66] LOG:  database system was shut down at 2024-02-13 19:44:27 UTC
-db-1     | 2024-02-13 19:44:27.118 UTC [1] LOG:  database system is ready to accept connections
-db-1     | 2024-02-13 19:44:29.323 UTC [78] FATAL:  role "root" does not exist
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -86,68 +63,10 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-db-1     | 2024-02-13 19:44:34.465 UTC [106] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:44:39.625 UTC [114] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:44:44.736 UTC [123] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:44:49.860 UTC [131] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:44:54.971 UTC [139] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:45:00.079 UTC [147] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:45:05.202 UTC [156] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:45:10.327 UTC [165] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:45:15.454 UTC [172] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:45:20.572 UTC [181] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:45:25.694 UTC [189] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:45:30.810 UTC [197] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:45:35.933 UTC [205] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:45:41.067 UTC [213] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:45:46.179 UTC [221] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:45:51.297 UTC [230] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:45:56.426 UTC [237] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:46:01.544 UTC [245] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:46:06.674 UTC [253] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:46:11.798 UTC [262] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:46:16.929 UTC [270] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:46:22.071 UTC [278] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:46:27.207 UTC [287] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:46:32.337 UTC [295] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:46:37.461 UTC [303] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:46:42.592 UTC [311] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:46:47.737 UTC [320] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:46:52.860 UTC [328] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:46:57.994 UTC [336] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:47:03.124 UTC [344] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:47:08.255 UTC [353] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:47:13.394 UTC [361] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:47:18.518 UTC [369] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:47:23.649 UTC [377] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:47:28.780 UTC [386] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:47:33.922 UTC [394] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:47:39.052 UTC [402] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:47:44.176 UTC [409] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:47:49.320 UTC [418] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:47:54.448 UTC [426] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:47:59.589 UTC [434] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:48:04.716 UTC [442] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:48:09.828 UTC [452] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:48:14.957 UTC [460] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:48:20.094 UTC [468] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:48:25.229 UTC [476] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:48:30.362 UTC [485] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:48:35.503 UTC [492] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:48:40.634 UTC [500] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:48:45.759 UTC [508] FATAL:  role "root" does not exist
-db-1     | 2024-02-13 19:48:50.937 UTC [516] FATAL:  role "root" does not exist
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api01-1 exited with code 0
 api02-1 exited with code 0
 api02-1 exited with code 2
+api01-1 exited with code 0
 api01-1 exited with code 2
-db-1     | 2024-02-13 19:48:52.641 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-13 19:48:52.649 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-13 19:48:52.652 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-02-13 19:48:52.652 UTC [64] LOG:  shutting down
-db-1     | 2024-02-13 19:48:52.659 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-13 19:48:52.934 UTC [64] LOG:  checkpoint complete: wrote 1123 buffers (6.9%); 0 WAL file(s) added, 0 removed, 2 recycled; write=0.182 s, sync=0.052 s, total=0.282 s; sync files=34, longest=0.029 s, average=0.002 s; distance=29870 kB, estimate=29870 kB
-db-1     | 2024-02-13 19:48:52.941 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0

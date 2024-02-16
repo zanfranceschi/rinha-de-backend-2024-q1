@@ -1,24 +1,54 @@
-version: "3.5"
+version: "3.9"
 name: 'rinha-gabrielmagalhaes'
 
 services:
-
-  api01: &api
-    image: k4gero/quarkus-rinha-back-2024-q1:1.0.10
-    hostname: api01
+  db:
+    image: postgres:latest
+    hostname: db
     environment:
-      - PORT=8081
-      - MAX_CONNECTIONS=10
-      - MAX_EVENT_LOOP=10
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
     ports:
-      - "8081:8080"
-    depends_on:
-      - db
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    command: ["postgres", "-c", "logging_collector=false", "-c", "max_connections=30"]
     deploy:
       resources:
         limits:
-          cpus: '0.4'
-          memory: '140MB'
+          cpus: '0.7'
+          memory: '320MB'
+    healthcheck:
+      test: ["CMD-SHELL", "psql -h localhost -U admin -d rinha -c 'SELECT 1;'"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    networks:
+      - rinha
+
+  api01: &api
+    image: k4gero/quarkus-rinha-back-2024-q1:latest
+    hostname: api01
+    environment:
+      - PORT=8081
+      - MAX_CONNECTIONS=15
+      - DB_URL=postgresql://db:5432/rinha
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+    ports:
+      - "8081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0.35'
+          memory: '80MB'
+    networks:
+      - rinha
 
   api02: 
     <<: *api
@@ -28,10 +58,14 @@ services:
       - api01
     environment:
       - PORT=8082
-      - MAX_CONNECTIONS=10
-      - MAX_EVENT_LOOP=10
+      - MAX_CONNECTIONS=15
+      - DB_URL=postgresql://db:5432/rinha
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
     ports:
       - "8082:8080"
+    networks:
+      - rinha
      
   nginx:
     image: nginx:latest
@@ -45,34 +79,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.2"
-          memory: "20MB"
-
-  db:
-    image: postgres:latest
-    hostname: db
-    environment:
-      - POSTGRES_PASSWORD=123
-      - POSTGRES_USER=admin
-      - POSTGRES_DB=rinha
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
-    command: ["postgres", "-c", "logging_collector=false", "-c", "max_connections=1000"]
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: '250MB'
-    healthcheck:
-      test: ["CMD-SHELL", "psql -h localhost -U admin -d rinha -c 'SELECT 1;'"]
-      interval: 5s
-      timeout: 5s
-      retries: 20
-      start_period: 10s
+          cpus: "0.1"
+          memory: "70MB"
+    networks:
+      - rinha
 
 networks:
-  default:
+  rinha:
     driver: bridge
-    name: rinha-nginx-2024q1

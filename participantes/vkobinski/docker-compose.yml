@@ -4,11 +4,8 @@ services:
   api01: &api
     # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
     # publicamente acessível! Ex.: hub.docker.com
-    image: vkobinski/rinha:latest
+    image: vkobinski/rinha
     hostname: api01
-    build:
-      context: .
-      dockerfile: ./Dockerfile
     environment:
       - DB_HOSTNAME=rinha
       - DATABASE_URL=postgres://rinha:rinha@db/rinha
@@ -25,7 +22,7 @@ services:
       resources:
         limits:
           cpus: "0.25"
-          memory: "100MB"
+          memory: "50MB"
 
   api02:
     # Essa sintaxe reusa o que foi declarado em 'api01'.
@@ -50,7 +47,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.3"
+          cpus: "0.2"
           memory: "50MB"
 
   db:
@@ -72,7 +69,7 @@ services:
           # aqui declarados é de 1.5 unidades de CPU e 550MB
           # de memória. A distribuição feita aqui é apenas
           # um exemplo – distribua como quiser.
-          cpus: "0.7"
+          cpus: "0.8"
           memory: "300MB"
 
 # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
