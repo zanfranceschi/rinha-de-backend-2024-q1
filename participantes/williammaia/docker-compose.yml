@@ -6,20 +6,20 @@ services:
     hostname: api01
     restart: unless-stopped
     environment:
-      DATABASE_URL: postgres://api01:api01_pass@db:5432/dogfight?sslmode=disable&pool_min_conns=3
+      DATABASE_URL: postgres://api01:api01_pass@db:5432/rinha_db?sslmode=disable&pool_min_conns=3
     depends_on:
       - db
     deploy:
       resources:
         limits:
           cpus: '0.2'
-          memory: "100MB"
+          memory: "75MB"
 
   api02:
     <<: *api
     hostname: api02
     environment:
-      DATABASE_URL: postgres://api02:api02_pass@db:5432/dogfight?sslmode=disable&pool_min_conns=3
+      DATABASE_URL: postgres://api02:api02_pass@db:5432/rinha_db?sslmode=disable&pool_min_conns=3
 
   nginx:
     image: nginx:latest
@@ -35,7 +35,7 @@ services:
       resources:
         limits:
           cpus: "0.2"
-          memory: "90MB"
+          memory: "50MB"
 
   db:
     image: postgres:latest
@@ -43,25 +43,14 @@ services:
     restart: unless-stopped
     command: postgres -S 8192
     environment:
-      POSTGRES_DB: dogfight
-      POSTGRES_USER: dogfight_user
-      POSTGRES_PASSWORD: dogfight_pass
+      POSTGRES_DB: rinha_db
+      POSTGRES_USER: rinha_user
+      POSTGRES_PASSWORD: rinha_pass
     volumes:
       - ./schema.sql:/docker-entrypoint-initdb.d/init.sql
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: "260MB"
+          cpus: '0.9'
+          memory: "350MB"
 
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    ports:
-      - 5050:80
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
-      - PGADMIN_DEFAULT_PASSWORD=admin
-  
-  alpine:
-    image: alpine
-    tty: true
