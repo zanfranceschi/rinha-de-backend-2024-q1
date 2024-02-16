@@ -13,12 +13,12 @@ services:
       - "5432:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
-    command: ["postgres", "-c", "logging_collector=false", "-c", "max_connections=30"]
+    command: ["postgres", "-c", "logging_collector=false", "-c", "max_connections=1000"]
     deploy:
       resources:
         limits:
-          cpus: '0.7'
-          memory: '320MB'
+          cpus: '0.5'
+          memory: '250MB'
     healthcheck:
       test: ["CMD-SHELL", "psql -h localhost -U admin -d rinha -c 'SELECT 1;'"]
       interval: 5s
@@ -37,6 +37,7 @@ services:
       - DB_URL=postgresql://db:5432/rinha
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
+      - EVENT_LOOP_SIZE=4
     ports:
       - "8081:8080"
     depends_on:
@@ -45,8 +46,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.35'
-          memory: '80MB'
+          cpus: '0.4'
+          memory: '125MB'
     networks:
       - rinha
 
@@ -62,6 +63,7 @@ services:
       - DB_URL=postgresql://db:5432/rinha
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
+      - EVENT_LOOP_SIZE=4
     ports:
       - "8082:8080"
     networks:
@@ -79,8 +81,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.1"
-          memory: "70MB"
+          cpus: "0.2"
+          memory: "50MB"
     networks:
       - rinha
 
