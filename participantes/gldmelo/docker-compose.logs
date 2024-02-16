@@ -35,15 +35,6 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-api01-1  | info: Microsoft.Hosting.Lifetime[14]
-api01-1  |       Now listening on: http://[::]:8080
-api01-1  | info: Microsoft.Hosting.Lifetime[0]
-api01-1  |       Application started. Press Ctrl+C to shut down.
-api01-1  | info: Microsoft.Hosting.Lifetime[0]
-api01-1  |       Hosting environment: Production
-api01-1  | info: Microsoft.Hosting.Lifetime[0]
-api01-1  |       Content root path: /app
-db-1     | performing post-bootstrap initialization ... ok
 api02-1  | info: Microsoft.Hosting.Lifetime[14]
 api02-1  |       Now listening on: http://[::]:8080
 api02-1  | info: Microsoft.Hosting.Lifetime[0]
@@ -52,6 +43,15 @@ api02-1  | info: Microsoft.Hosting.Lifetime[0]
 api02-1  |       Hosting environment: Production
 api02-1  | info: Microsoft.Hosting.Lifetime[0]
 api02-1  |       Content root path: /app
+db-1     | performing post-bootstrap initialization ... ok
+api01-1  | info: Microsoft.Hosting.Lifetime[14]
+api01-1  |       Now listening on: http://[::]:8080
+api01-1  | info: Microsoft.Hosting.Lifetime[0]
+api01-1  |       Application started. Press Ctrl+C to shut down.
+api01-1  | info: Microsoft.Hosting.Lifetime[0]
+api01-1  |       Hosting environment: Production
+api01-1  | info: Microsoft.Hosting.Lifetime[0]
+api01-1  |       Content root path: /app
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -61,10 +61,10 @@ db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-15 22:19:26.026 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-15 22:19:26.030 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-15 22:19:26.044 UTC [52] LOG:  database system was shut down at 2024-02-15 22:19:25 UTC
-db-1     | 2024-02-15 22:19:26.057 UTC [49] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-16 08:30:41.686 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-16 08:30:41.690 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-16 08:30:41.700 UTC [51] LOG:  database system was shut down at 2024-02-16 08:30:40 UTC
+db-1     | 2024-02-16 08:30:41.709 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -80,31 +80,28 @@ db-1     |
 db-1     | 
 db-1     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/postgresql.conf
 db-1     | 
-db-1     | 2024-02-15 22:19:26.378 UTC [49] LOG:  received fast shutdown request
-db-1     | waiting for server to shut down....2024-02-15 22:19:26.387 UTC [49] LOG:  aborting any active transactions
-db-1     | 2024-02-15 22:19:26.397 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-db-1     | 2024-02-15 22:19:26.397 UTC [50] LOG:  shutting down
-db-1     | 2024-02-15 22:19:26.404 UTC [50] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-15 22:19:26.709 UTC [50] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.224 s, sync=0.062 s, total=0.312 s; sync files=313, longest=0.011 s, average=0.001 s; distance=4299 kB, estimate=4299 kB; lsn=0/191D9A8, redo lsn=0/191D9A8
-db-1     | 2024-02-15 22:19:26.717 UTC [49] LOG:  database system is shut down
+db-1     | waiting for server to shut down....2024-02-16 08:30:41.933 UTC [48] LOG:  received fast shutdown request
+db-1     | 2024-02-16 08:30:41.938 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-16 08:30:41.940 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-16 08:30:41.941 UTC [49] LOG:  shutting down
+db-1     | 2024-02-16 08:30:41.944 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-16 08:30:42.460 UTC [49] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.254 s, sync=0.246 s, total=0.520 s; sync files=313, longest=0.167 s, average=0.001 s; distance=4299 kB, estimate=4299 kB; lsn=0/191D9A8, redo lsn=0/191D9A8
+db-1     | 2024-02-16 08:30:42.465 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-15 22:19:26.814 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-15 22:19:26.814 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-15 22:19:26.814 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-15 22:19:26.819 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-15 22:19:26.826 UTC [67] LOG:  database system was shut down at 2024-02-15 22:19:26 UTC
-db-1     | 2024-02-15 22:19:26.833 UTC [1] LOG:  database system is ready to accept connections
+db-1     | 2024-02-16 08:30:42.557 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-16 08:30:42.557 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-16 08:30:42.557 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-16 08:30:42.564 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-16 08:30:42.571 UTC [66] LOG:  database system was shut down at 2024-02-16 08:30:42 UTC
+db-1     | 2024-02-16 08:30:42.578 UTC [1] LOG:  database system is ready to accept connections
 api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73C", Request id "0HN1EEGM3M73C:00000001": An unhandled exception was thrown by the application.
+api01-1  |       Connection id "0HN1EP68H6AJP", Request id "0HN1EP68H6AJP:00000001": An unhandled exception was thrown by the application.
 api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api01-1  |        ---> System.TimeoutException: The operation has timed out.
 api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -120,12 +117,9 @@ api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PK", Request id "0HN1EEGMUM4PK:00000001": An unhandled exception was thrown by the application.
+api02-1  |       Connection id "0HN1EP6DNEOHN", Request id "0HN1EP6DNEOHN:00000001": An unhandled exception was thrown by the application.
 api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api02-1  |        ---> System.TimeoutException: The operation has timed out.
 api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -141,12 +135,9 @@ api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73D", Request id "0HN1EEGM3M73D:00000001": An unhandled exception was thrown by the application.
+api01-1  |       Connection id "0HN1EP68H6AJQ", Request id "0HN1EP68H6AJQ:00000001": An unhandled exception was thrown by the application.
 api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api01-1  |        ---> System.TimeoutException: The operation has timed out.
 api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -162,12 +153,9 @@ api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PL", Request id "0HN1EEGMUM4PL:00000001": An unhandled exception was thrown by the application.
+api02-1  |       Connection id "0HN1EP6DNEOHO", Request id "0HN1EP6DNEOHO:00000001": An unhandled exception was thrown by the application.
 api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api02-1  |        ---> System.TimeoutException: The operation has timed out.
 api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -183,12 +171,9 @@ api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73E", Request id "0HN1EEGM3M73E:00000001": An unhandled exception was thrown by the application.
+api01-1  |       Connection id "0HN1EP68H6AJR", Request id "0HN1EP68H6AJR:00000001": An unhandled exception was thrown by the application.
 api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api01-1  |        ---> System.TimeoutException: The operation has timed out.
 api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -204,12 +189,9 @@ api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PM", Request id "0HN1EEGMUM4PM:00000001": An unhandled exception was thrown by the application.
+api02-1  |       Connection id "0HN1EP6DNEOHP", Request id "0HN1EP6DNEOHP:00000001": An unhandled exception was thrown by the application.
 api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api02-1  |        ---> System.TimeoutException: The operation has timed out.
 api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -225,12 +207,9 @@ api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73F", Request id "0HN1EEGM3M73F:00000001": An unhandled exception was thrown by the application.
+api01-1  |       Connection id "0HN1EP68H6AJS", Request id "0HN1EP68H6AJS:00000001": An unhandled exception was thrown by the application.
 api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api01-1  |        ---> System.TimeoutException: The operation has timed out.
 api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -246,12 +225,9 @@ api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PN", Request id "0HN1EEGMUM4PN:00000001": An unhandled exception was thrown by the application.
+api02-1  |       Connection id "0HN1EP6DNEOHQ", Request id "0HN1EP6DNEOHQ:00000001": An unhandled exception was thrown by the application.
 api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api02-1  |        ---> System.TimeoutException: The operation has timed out.
 api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -267,12 +243,9 @@ api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73G", Request id "0HN1EEGM3M73G:00000001": An unhandled exception was thrown by the application.
+api01-1  |       Connection id "0HN1EP68H6AJT", Request id "0HN1EP68H6AJT:00000001": An unhandled exception was thrown by the application.
 api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api01-1  |        ---> System.TimeoutException: The operation has timed out.
 api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -288,12 +261,9 @@ api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PO", Request id "0HN1EEGMUM4PO:00000001": An unhandled exception was thrown by the application.
+api02-1  |       Connection id "0HN1EP6DNEOHR", Request id "0HN1EP6DNEOHR:00000001": An unhandled exception was thrown by the application.
 api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api02-1  |        ---> System.TimeoutException: The operation has timed out.
 api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -309,12 +279,9 @@ api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73H", Request id "0HN1EEGM3M73H:00000001": An unhandled exception was thrown by the application.
+api01-1  |       Connection id "0HN1EP68H6AJU", Request id "0HN1EP68H6AJU:00000001": An unhandled exception was thrown by the application.
 api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api01-1  |        ---> System.TimeoutException: The operation has timed out.
 api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -330,12 +297,9 @@ api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PP", Request id "0HN1EEGMUM4PP:00000001": An unhandled exception was thrown by the application.
+api02-1  |       Connection id "0HN1EP6DNEOHS", Request id "0HN1EP6DNEOHS:00000001": An unhandled exception was thrown by the application.
 api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api02-1  |        ---> System.TimeoutException: The operation has timed out.
 api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -351,12 +315,9 @@ api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73I", Request id "0HN1EEGM3M73I:00000001": An unhandled exception was thrown by the application.
+api01-1  |       Connection id "0HN1EP68H6AJV", Request id "0HN1EP68H6AJV:00000001": An unhandled exception was thrown by the application.
 api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api01-1  |        ---> System.TimeoutException: The operation has timed out.
 api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -372,12 +333,9 @@ api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PQ", Request id "0HN1EEGMUM4PQ:00000001": An unhandled exception was thrown by the application.
+api02-1  |       Connection id "0HN1EP6DNEOHT", Request id "0HN1EP6DNEOHT:00000001": An unhandled exception was thrown by the application.
 api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api02-1  |        ---> System.TimeoutException: The operation has timed out.
 api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -393,12 +351,9 @@ api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73J", Request id "0HN1EEGM3M73J:00000001": An unhandled exception was thrown by the application.
+api01-1  |       Connection id "0HN1EP68H6AK0", Request id "0HN1EP68H6AK0:00000001": An unhandled exception was thrown by the application.
 api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api01-1  |        ---> System.TimeoutException: The operation has timed out.
 api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -414,12 +369,9 @@ api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PR", Request id "0HN1EEGMUM4PR:00000001": An unhandled exception was thrown by the application.
+api02-1  |       Connection id "0HN1EP6DNEOHU", Request id "0HN1EP6DNEOHU:00000001": An unhandled exception was thrown by the application.
 api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api02-1  |        ---> System.TimeoutException: The operation has timed out.
 api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -435,12 +387,9 @@ api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73K", Request id "0HN1EEGM3M73K:00000001": An unhandled exception was thrown by the application.
+api01-1  |       Connection id "0HN1EP68H6AK1", Request id "0HN1EP68H6AK1:00000001": An unhandled exception was thrown by the application.
 api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api01-1  |        ---> System.TimeoutException: The operation has timed out.
 api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -455,13 +404,12 @@ api01-1  |       --- End of stack trace from previous location ---
 api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
 api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+db-1     | 2024-02-16 08:35:42.666 UTC [64] LOG:  checkpoint starting: time
+db-1     | 2024-02-16 08:35:47.015 UTC [64] LOG:  checkpoint complete: wrote 46 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.316 s, sync=0.016 s, total=4.349 s; sync files=13, longest=0.010 s, average=0.002 s; distance=261 kB, estimate=261 kB; lsn=0/195EDE0, redo lsn=0/195EDA8
 api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PS", Request id "0HN1EEGMUM4PS:00000001": An unhandled exception was thrown by the application.
+api02-1  |       Connection id "0HN1EP6DNEOHV", Request id "0HN1EP6DNEOHV:00000001": An unhandled exception was thrown by the application.
 api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api02-1  |        ---> System.TimeoutException: The operation has timed out.
 api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -477,12 +425,9 @@ api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73L", Request id "0HN1EEGM3M73L:00000001": An unhandled exception was thrown by the application.
+api01-1  |       Connection id "0HN1EP68H6AK2", Request id "0HN1EP68H6AK2:00000001": An unhandled exception was thrown by the application.
 api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+api01-1  |        ---> System.TimeoutException: The operation has timed out.
 api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
 api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
@@ -498,3 +443,38 @@ api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteT
 api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
 api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
+api02-1  |       Connection id "0HN1EP6DNEOI0", Request id "0HN1EP6DNEOI0:00000001": An unhandled exception was thrown by the application.
+api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
+api02-1  |        ---> System.TimeoutException: The operation has timed out.
+api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+api02-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+api02-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+api02-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+api02-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+api02-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+api02-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+api02-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
+api02-1  |       --- End of stack trace from previous location ---
+api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api02-1  | info: Microsoft.Hosting.Lifetime[0]
+api02-1  |       Application is shutting down...
+api01-1  | info: Microsoft.Hosting.Lifetime[0]
+api01-1  |       Application is shutting down...
+api02-1 exited with code 0
+api02-1 exited with code 0
+api01-1 exited with code 0
+api01-1 exited with code 0
+db-1     | 2024-02-16 08:36:26.194 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-16 08:36:26.198 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-16 08:36:26.200 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-02-16 08:36:26.201 UTC [64] LOG:  shutting down
+db-1     | 2024-02-16 08:36:26.207 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-16 08:36:26.228 UTC [64] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.028 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=234 kB; lsn=0/195EE90, redo lsn=0/195EE90
+db-1     | 2024-02-16 08:36:26.231 UTC [1] LOG:  database system is shut down
+db-1 exited with code 0

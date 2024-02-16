@@ -7,7 +7,7 @@ Rinha de Backend 2024/Q1
 
 * Golang 1.22
 * Gin
-* Postgresql 15.5
+* Postgresql 16.2
 * nginx 1.25.3
 
 ## Repositório
