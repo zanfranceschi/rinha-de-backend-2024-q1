@@ -2,12 +2,12 @@
  Network h4ad_default  Created
  Container h4ad-db-1  Creating
  Container h4ad-redis-1  Creating
- Container h4ad-db-1  Created
  Container h4ad-redis-1  Created
+ Container h4ad-db-1  Created
  Container h4ad-api2-1  Creating
  Container h4ad-api1-1  Creating
- Container h4ad-api2-1  Created
  Container h4ad-api1-1  Created
+ Container h4ad-api2-1  Created
  Container h4ad-nginx-1  Creating
  Container h4ad-nginx-1  Created
 Attaching to api1-1, api2-1, db-1, nginx-1, redis-1
@@ -25,31 +25,31 @@ db-1     | creating subdirectories ... ok
 db-1     | selecting dynamic shared memory implementation ... posix
 db-1     | selecting default max_connections ... 100
 db-1     | selecting default shared_buffers ... 128MB
+redis-1  | 1:C 16 Feb 2024 08:59:47.921 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+redis-1  | 1:C 16 Feb 2024 08:59:47.921 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1  | 1:C 16 Feb 2024 08:59:47.921 * Redis version=7.2.4, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-1  | 1:C 16 Feb 2024 08:59:47.921 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis-1  | 1:M 16 Feb 2024 08:59:47.922 * monotonic clock: POSIX clock_gettime
+redis-1  | 1:M 16 Feb 2024 08:59:47.922 * Running mode=standalone, port=6379.
+redis-1  | 1:M 16 Feb 2024 08:59:47.923 * Server initialized
+redis-1  | 1:M 16 Feb 2024 08:59:47.923 * Ready to accept connections tcp
 db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
-redis-1  | 1:C 16 Feb 2024 00:55:09.494 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
-redis-1  | 1:C 16 Feb 2024 00:55:09.494 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
-redis-1  | 1:C 16 Feb 2024 00:55:09.494 * Redis version=7.2.4, bits=64, commit=00000000, modified=0, pid=1, just started
-redis-1  | 1:C 16 Feb 2024 00:55:09.494 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
-redis-1  | 1:M 16 Feb 2024 00:55:09.495 * monotonic clock: POSIX clock_gettime
-redis-1  | 1:M 16 Feb 2024 00:55:09.496 * Running mode=standalone, port=6379.
-redis-1  | 1:M 16 Feb 2024 00:55:09.497 * Server initialized
-redis-1  | 1:M 16 Feb 2024 00:55:09.497 * Ready to accept connections tcp
 db-1     | running bootstrap script ... ok
-db-1     | performing post-bootstrap initialization ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+db-1     | performing post-bootstrap initialization ... ok
+api2-1   | Server running at http://localhost:3000/
+api1-1   | Server running at http://localhost:3000/
 nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
 nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
 nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1  | 2024/02/16 00:55:11 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/nginx.conf:68
+nginx-1  | 2024/02/16 08:59:49 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/nginx.conf:68
 nginx-1  | nginx: [warn] the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/nginx.conf:68
-api2-1   | Server running at http://localhost:3000/
-api1-1   | Server running at http://localhost:3000/
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -59,10 +59,10 @@ db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-16 00:55:11.428 UTC [49] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 00:55:11.429 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 00:55:11.431 UTC [52] LOG:  database system was shut down at 2024-02-16 00:55:10 UTC
-db-1     | 2024-02-16 00:55:11.436 UTC [49] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-16 08:59:49.334 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-16 08:59:49.334 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-16 08:59:49.336 UTC [51] LOG:  database system was shut down at 2024-02-16 08:59:48 UTC
+db-1     | 2024-02-16 08:59:49.339 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -91,407 +91,407 @@ db-1     | INSERT 0 1
 db-1     | CREATE PROCEDURE
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-16 00:55:11.735 UTC [49] LOG:  received fast shutdown request
-db-1     | .2024-02-16 00:55:11.735 UTC [49] LOG:  aborting any active transactions
-db-1     | 2024-02-16 00:55:11.738 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-db-1     | 2024-02-16 00:55:11.739 UTC [50] LOG:  shutting down
-db-1     | 2024-02-16 00:55:11.739 UTC [50] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 00:55:11.748 UTC [50] LOG:  checkpoint complete: wrote 929 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.001 s, total=0.010 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4278 kB, estimate=4278 kB; lsn=0/1918230, redo lsn=0/1918230
-db-1     | 2024-02-16 00:55:11.796 UTC [49] LOG:  database system is shut down
+db-1     | waiting for server to shut down....2024-02-16 08:59:49.553 UTC [48] LOG:  received fast shutdown request
+db-1     | 2024-02-16 08:59:49.553 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-16 08:59:49.554 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-16 08:59:49.555 UTC [49] LOG:  shutting down
+db-1     | 2024-02-16 08:59:49.555 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-16 08:59:49.560 UTC [49] LOG:  checkpoint complete: wrote 929 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4278 kB, estimate=4278 kB; lsn=0/1918230, redo lsn=0/1918230
+db-1     | 2024-02-16 08:59:49.565 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-16 00:55:11.864 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 00:55:11.864 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 00:55:11.864 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 00:55:11.865 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 00:55:11.867 UTC [67] LOG:  database system was shut down at 2024-02-16 00:55:11 UTC
-db-1     | 2024-02-16 00:55:11.872 UTC [1] LOG:  database system is ready to accept connections
-db-1     | 2024-02-16 00:55:35.697 UTC [91] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:35.697 UTC [91] DETAIL:  Failing row contains (2, 80000, -82150).
-db-1     | 2024-02-16 00:55:35.697 UTC [91] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 08:59:49.670 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-16 08:59:49.670 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-16 08:59:49.670 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-16 08:59:49.670 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-16 08:59:49.672 UTC [66] LOG:  database system was shut down at 2024-02-16 08:59:49 UTC
+db-1     | 2024-02-16 08:59:49.675 UTC [1] LOG:  database system is ready to accept connections
+db-1     | 2024-02-16 09:00:10.935 UTC [71] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:10.935 UTC [71] DETAIL:  Failing row contains (1, 100000, -101460).
+db-1     | 2024-02-16 09:00:10.935 UTC [71] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:35.697 UTC [91] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:36.680 UTC [102] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:36.680 UTC [102] DETAIL:  Failing row contains (2, 80000, -83250).
-db-1     | 2024-02-16 00:55:36.680 UTC [102] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:10.935 UTC [71] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:11.304 UTC [90] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:11.304 UTC [90] DETAIL:  Failing row contains (1, 100000, -108695).
+db-1     | 2024-02-16 09:00:11.304 UTC [90] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:36.680 UTC [102] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:36.862 UTC [89] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:36.862 UTC [89] DETAIL:  Failing row contains (2, 80000, -80211).
-db-1     | 2024-02-16 00:55:36.862 UTC [89] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:11.304 UTC [90] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:11.357 UTC [82] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:11.357 UTC [82] DETAIL:  Failing row contains (1, 100000, -107946).
+db-1     | 2024-02-16 09:00:11.357 UTC [82] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:36.862 UTC [89] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:36.956 UTC [97] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:36.956 UTC [97] DETAIL:  Failing row contains (2, 80000, -88234).
-db-1     | 2024-02-16 00:55:36.956 UTC [97] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:11.357 UTC [82] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:11.757 UTC [81] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:11.757 UTC [81] DETAIL:  Failing row contains (1, 100000, -109115).
+db-1     | 2024-02-16 09:00:11.757 UTC [81] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:36.956 UTC [97] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:37.181 UTC [93] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:37.181 UTC [93] DETAIL:  Failing row contains (2, 80000, -86986).
-db-1     | 2024-02-16 00:55:37.181 UTC [93] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:11.757 UTC [81] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:12.307 UTC [88] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:12.307 UTC [88] DETAIL:  Failing row contains (1, 100000, -101322).
+db-1     | 2024-02-16 09:00:12.307 UTC [88] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:37.181 UTC [93] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:37.363 UTC [101] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:37.363 UTC [101] DETAIL:  Failing row contains (2, 80000, -88475).
-db-1     | 2024-02-16 00:55:37.363 UTC [101] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:12.307 UTC [88] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:12.446 UTC [102] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:12.446 UTC [102] DETAIL:  Failing row contains (1, 100000, -100800).
+db-1     | 2024-02-16 09:00:12.446 UTC [102] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:37.363 UTC [101] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:37.409 UTC [96] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:37.409 UTC [96] DETAIL:  Failing row contains (2, 80000, -85673).
-db-1     | 2024-02-16 00:55:37.409 UTC [96] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:12.446 UTC [102] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:12.674 UTC [93] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:12.674 UTC [93] DETAIL:  Failing row contains (1, 100000, -100026).
+db-1     | 2024-02-16 09:00:12.674 UTC [93] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:37.409 UTC [96] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:37.454 UTC [71] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:37.454 UTC [71] DETAIL:  Failing row contains (2, 80000, -81224).
-db-1     | 2024-02-16 00:55:37.454 UTC [71] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:12.674 UTC [93] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:13.772 UTC [83] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:13.772 UTC [83] DETAIL:  Failing row contains (2, 80000, -84339).
+db-1     | 2024-02-16 09:00:13.772 UTC [83] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:37.454 UTC [71] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:37.593 UTC [102] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:37.593 UTC [102] DETAIL:  Failing row contains (2, 80000, -80550).
-db-1     | 2024-02-16 00:55:37.593 UTC [102] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:13.772 UTC [83] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:13.939 UTC [91] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:13.939 UTC [91] DETAIL:  Failing row contains (2, 80000, -82709).
+db-1     | 2024-02-16 09:00:13.939 UTC [91] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:37.593 UTC [102] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:38.090 UTC [101] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:38.090 UTC [101] DETAIL:  Failing row contains (2, 80000, -82981).
-db-1     | 2024-02-16 00:55:38.090 UTC [101] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:13.939 UTC [91] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:14.064 UTC [92] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:14.064 UTC [92] DETAIL:  Failing row contains (2, 80000, -85815).
+db-1     | 2024-02-16 09:00:14.064 UTC [92] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:38.090 UTC [101] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:38.131 UTC [98] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:38.131 UTC [98] DETAIL:  Failing row contains (2, 80000, -80754).
-db-1     | 2024-02-16 00:55:38.131 UTC [98] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:14.064 UTC [92] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:14.231 UTC [83] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:14.231 UTC [83] DETAIL:  Failing row contains (2, 80000, -86794).
+db-1     | 2024-02-16 09:00:14.231 UTC [83] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:38.131 UTC [98] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:38.340 UTC [92] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:38.340 UTC [92] DETAIL:  Failing row contains (2, 80000, -85951).
-db-1     | 2024-02-16 00:55:38.340 UTC [92] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:14.231 UTC [83] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:14.396 UTC [103] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:14.396 UTC [103] DETAIL:  Failing row contains (2, 80000, -85138).
+db-1     | 2024-02-16 09:00:14.396 UTC [103] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:38.340 UTC [92] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:38.669 UTC [101] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:38.669 UTC [101] DETAIL:  Failing row contains (2, 80000, -82860).
-db-1     | 2024-02-16 00:55:38.669 UTC [101] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:14.396 UTC [103] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:14.716 UTC [89] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:14.716 UTC [89] DETAIL:  Failing row contains (2, 80000, -85568).
+db-1     | 2024-02-16 09:00:14.716 UTC [89] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:38.669 UTC [101] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:38.750 UTC [97] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:38.750 UTC [97] DETAIL:  Failing row contains (2, 80000, -88155).
-db-1     | 2024-02-16 00:55:38.750 UTC [97] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:14.716 UTC [89] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:14.836 UTC [81] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:14.836 UTC [81] DETAIL:  Failing row contains (2, 80000, -85300).
+db-1     | 2024-02-16 09:00:14.836 UTC [81] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:38.750 UTC [97] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:39.550 UTC [89] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:39.550 UTC [89] DETAIL:  Failing row contains (2, 80000, -81149).
-db-1     | 2024-02-16 00:55:39.550 UTC [89] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:14.836 UTC [81] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:15.075 UTC [93] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:15.075 UTC [93] DETAIL:  Failing row contains (2, 80000, -82717).
+db-1     | 2024-02-16 09:00:15.075 UTC [93] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:39.550 UTC [89] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:40.091 UTC [92] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:40.091 UTC [92] DETAIL:  Failing row contains (2, 80000, -86722).
-db-1     | 2024-02-16 00:55:40.091 UTC [92] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:15.075 UTC [93] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:15.196 UTC [88] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:15.196 UTC [88] DETAIL:  Failing row contains (2, 80000, -81562).
+db-1     | 2024-02-16 09:00:15.196 UTC [88] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:40.091 UTC [92] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:40.412 UTC [101] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:40.412 UTC [101] DETAIL:  Failing row contains (2, 80000, -82329).
-db-1     | 2024-02-16 00:55:40.412 UTC [101] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:15.196 UTC [88] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:15.276 UTC [86] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:15.276 UTC [86] DETAIL:  Failing row contains (2, 80000, -85497).
+db-1     | 2024-02-16 09:00:15.276 UTC [86] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:40.412 UTC [101] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:40.518 UTC [99] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:40.518 UTC [99] DETAIL:  Failing row contains (2, 80000, -87034).
-db-1     | 2024-02-16 00:55:40.518 UTC [99] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:15.276 UTC [86] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:15.463 UTC [82] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:15.463 UTC [82] DETAIL:  Failing row contains (2, 80000, -85712).
+db-1     | 2024-02-16 09:00:15.463 UTC [82] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:40.518 UTC [99] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:41.002 UTC [93] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:41.002 UTC [93] DETAIL:  Failing row contains (2, 80000, -80659).
-db-1     | 2024-02-16 00:55:41.002 UTC [93] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:15.463 UTC [82] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:15.570 UTC [91] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:15.570 UTC [91] DETAIL:  Failing row contains (2, 80000, -83458).
+db-1     | 2024-02-16 09:00:15.570 UTC [91] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:41.002 UTC [93] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:41.038 UTC [71] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:41.038 UTC [71] DETAIL:  Failing row contains (2, 80000, -81484).
-db-1     | 2024-02-16 00:55:41.038 UTC [71] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:15.570 UTC [91] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:15.606 UTC [88] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:15.606 UTC [88] DETAIL:  Failing row contains (2, 80000, -87161).
+db-1     | 2024-02-16 09:00:15.606 UTC [88] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:41.038 UTC [71] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:41.210 UTC [99] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:41.210 UTC [99] DETAIL:  Failing row contains (2, 80000, -83623).
-db-1     | 2024-02-16 00:55:41.210 UTC [99] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:15.606 UTC [88] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:15.748 UTC [90] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:15.748 UTC [90] DETAIL:  Failing row contains (2, 80000, -86172).
+db-1     | 2024-02-16 09:00:15.748 UTC [90] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:41.210 UTC [99] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:41.348 UTC [93] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:41.348 UTC [93] DETAIL:  Failing row contains (2, 80000, -83198).
-db-1     | 2024-02-16 00:55:41.348 UTC [93] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:15.748 UTC [90] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:15.856 UTC [83] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:15.856 UTC [83] DETAIL:  Failing row contains (2, 80000, -80936).
+db-1     | 2024-02-16 09:00:15.856 UTC [83] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:41.348 UTC [93] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:41.383 UTC [72] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:41.383 UTC [72] DETAIL:  Failing row contains (2, 80000, -82285).
-db-1     | 2024-02-16 00:55:41.383 UTC [72] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:15.856 UTC [83] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:15.927 UTC [102] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:15.927 UTC [102] DETAIL:  Failing row contains (2, 80000, -80834).
+db-1     | 2024-02-16 09:00:15.927 UTC [102] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:41.383 UTC [72] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:41.486 UTC [101] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:41.486 UTC [101] DETAIL:  Failing row contains (2, 80000, -81114).
-db-1     | 2024-02-16 00:55:41.486 UTC [101] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:15.927 UTC [102] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:16.391 UTC [83] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:16.391 UTC [83] DETAIL:  Failing row contains (2, 80000, -81215).
+db-1     | 2024-02-16 09:00:16.391 UTC [83] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:41.486 UTC [101] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:41.752 UTC [98] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:41.752 UTC [98] DETAIL:  Failing row contains (2, 80000, -81897).
-db-1     | 2024-02-16 00:55:41.752 UTC [98] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:16.391 UTC [83] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:16.460 UTC [91] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:16.460 UTC [91] DETAIL:  Failing row contains (2, 80000, -88463).
+db-1     | 2024-02-16 09:00:16.460 UTC [91] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:41.752 UTC [98] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:42.740 UTC [89] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:42.740 UTC [89] DETAIL:  Failing row contains (1, 100000, -100687).
-db-1     | 2024-02-16 00:55:42.740 UTC [89] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:16.460 UTC [91] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:16.873 UTC [93] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:16.873 UTC [93] DETAIL:  Failing row contains (2, 80000, -85295).
+db-1     | 2024-02-16 09:00:16.873 UTC [93] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:42.740 UTC [89] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:42.923 UTC [100] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:42.923 UTC [100] DETAIL:  Failing row contains (1, 100000, -102985).
-db-1     | 2024-02-16 00:55:42.923 UTC [100] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:16.873 UTC [93] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:17.219 UTC [104] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:17.219 UTC [104] DETAIL:  Failing row contains (2, 80000, -81720).
+db-1     | 2024-02-16 09:00:17.219 UTC [104] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:42.923 UTC [100] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:43.932 UTC [102] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:43.932 UTC [102] DETAIL:  Failing row contains (2, 80000, -86691).
-db-1     | 2024-02-16 00:55:43.932 UTC [102] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:17.219 UTC [104] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:17.252 UTC [105] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:17.252 UTC [105] DETAIL:  Failing row contains (2, 80000, -80547).
+db-1     | 2024-02-16 09:00:17.252 UTC [105] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:43.932 UTC [102] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:44.161 UTC [97] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:44.161 UTC [97] DETAIL:  Failing row contains (2, 80000, -84310).
-db-1     | 2024-02-16 00:55:44.161 UTC [97] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:17.252 UTC [105] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:17.581 UTC [104] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:17.581 UTC [104] DETAIL:  Failing row contains (2, 80000, -83448).
+db-1     | 2024-02-16 09:00:17.581 UTC [104] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:44.161 UTC [97] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:44.418 UTC [97] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:44.418 UTC [97] DETAIL:  Failing row contains (2, 80000, -80736).
-db-1     | 2024-02-16 00:55:44.418 UTC [97] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:17.581 UTC [104] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:17.775 UTC [89] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:17.775 UTC [89] DETAIL:  Failing row contains (2, 80000, -81272).
+db-1     | 2024-02-16 09:00:17.775 UTC [89] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:44.418 UTC [97] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:44.447 UTC [101] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:44.447 UTC [101] DETAIL:  Failing row contains (1, 100000, -100805).
-db-1     | 2024-02-16 00:55:44.447 UTC [101] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:17.775 UTC [89] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:18.292 UTC [81] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:18.292 UTC [81] DETAIL:  Failing row contains (2, 80000, -82208).
+db-1     | 2024-02-16 09:00:18.292 UTC [81] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:44.447 UTC [101] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:44.474 UTC [95] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:44.474 UTC [95] DETAIL:  Failing row contains (2, 80000, -84983).
-db-1     | 2024-02-16 00:55:44.474 UTC [95] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:18.292 UTC [81] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:18.386 UTC [90] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:18.386 UTC [90] DETAIL:  Failing row contains (2, 80000, -81561).
+db-1     | 2024-02-16 09:00:18.386 UTC [90] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:44.474 UTC [95] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:44.600 UTC [100] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:44.600 UTC [100] DETAIL:  Failing row contains (1, 100000, -100979).
-db-1     | 2024-02-16 00:55:44.600 UTC [100] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:18.386 UTC [90] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:18.901 UTC [93] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:18.901 UTC [93] DETAIL:  Failing row contains (2, 80000, -84733).
+db-1     | 2024-02-16 09:00:18.901 UTC [93] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:44.600 UTC [100] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:44.724 UTC [72] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:44.724 UTC [72] DETAIL:  Failing row contains (1, 100000, -103779).
-db-1     | 2024-02-16 00:55:44.724 UTC [72] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:18.901 UTC [93] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:19.384 UTC [80] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:19.384 UTC [80] DETAIL:  Failing row contains (2, 80000, -82221).
+db-1     | 2024-02-16 09:00:19.384 UTC [80] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:44.724 UTC [72] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:44.778 UTC [101] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:44.778 UTC [101] DETAIL:  Failing row contains (2, 80000, -83053).
-db-1     | 2024-02-16 00:55:44.778 UTC [101] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:19.384 UTC [80] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:19.441 UTC [92] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:19.441 UTC [92] DETAIL:  Failing row contains (2, 80000, -82047).
+db-1     | 2024-02-16 09:00:19.441 UTC [92] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:44.778 UTC [101] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:44.832 UTC [94] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:44.832 UTC [94] DETAIL:  Failing row contains (1, 100000, -100513).
-db-1     | 2024-02-16 00:55:44.832 UTC [94] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:19.441 UTC [92] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:19.727 UTC [104] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:19.727 UTC [104] DETAIL:  Failing row contains (2, 80000, -80598).
+db-1     | 2024-02-16 09:00:19.727 UTC [104] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:44.832 UTC [94] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:44.995 UTC [98] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:44.995 UTC [98] DETAIL:  Failing row contains (2, 80000, -85288).
-db-1     | 2024-02-16 00:55:44.995 UTC [98] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:19.727 UTC [104] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:20.070 UTC [80] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:20.070 UTC [80] DETAIL:  Failing row contains (1, 100000, -102947).
+db-1     | 2024-02-16 09:00:20.070 UTC [80] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:44.995 UTC [98] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:45.318 UTC [90] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:45.318 UTC [90] DETAIL:  Failing row contains (2, 80000, -83298).
-db-1     | 2024-02-16 00:55:45.318 UTC [90] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:20.070 UTC [80] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:20.098 UTC [104] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:20.098 UTC [104] DETAIL:  Failing row contains (1, 100000, -107883).
+db-1     | 2024-02-16 09:00:20.098 UTC [104] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
 db-1     | 	            WHERE id = id_pessoa
 db-1     | 	            RETURNING saldo, limite"
 db-1     | 	PL/pgSQL function salvar_transacao(integer,character varying,integer,character varying,character varying) line 15 at SQL statement
-db-1     | 2024-02-16 00:55:45.318 UTC [90] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
-db-1     | 2024-02-16 00:55:45.344 UTC [101] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
-db-1     | 2024-02-16 00:55:45.344 UTC [101] DETAIL:  Failing row contains (2, 80000, -80097).
-db-1     | 2024-02-16 00:55:45.344 UTC [101] CONTEXT:  SQL statement "UPDATE pessoas
+db-1     | 2024-02-16 09:00:20.098 UTC [104] STATEMENT:  CALL SALVAR_TRANSACAO($1, $2, $3, $4, '0'::varchar);
+db-1     | 2024-02-16 09:00:20.327 UTC [85] ERROR:  new row for relation "pessoas" violates check constraint "pessoas_check"
+db-1     | 2024-02-16 09:00:20.327 UTC [85] DETAIL:  Failing row contains (2, 80000, -85636).
+db-1     | 2024-02-16 09:00:20.327 UTC [85] CONTEXT:  SQL statement "UPDATE pessoas
 db-1     | 	            SET
 db-1     | 	                saldo = saldo - valor,
 db-1     | 	                limite = limite
