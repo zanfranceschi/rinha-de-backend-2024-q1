@@ -13,7 +13,7 @@ Submissão feita com:
 - `postgres 16` como banco de dados
 - `dotnet 8` para API com:
   - Libraries `Dapper.AOT` e `Npgsql`
-  - Build Native AOT execução em runtime de código nativo (sem máquina virtual .NET, não é JIT)
+  - Build Native AOT, isso gera binário nativo (runtime sem máquina virtual .NET, não é JIT)
 - [repositório da api](https://github.com/fabionaspolini/rinha-de-backend-2024-q1-csharp)
 
 [@fabionaspolini](https://twitter.com/fabionaspolini) @ twitter
