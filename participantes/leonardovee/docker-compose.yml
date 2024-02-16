@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  api1:
+    image: leonardovee/rinha-de-backend-2024-q1 
+    hostname: api1
+    build:
+      context: .
+    depends_on:
+      - db
+    expose:
+      - "80"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+
+  api2:
+    image: leonardovee/rinha-de-backend-2024-q1 
+    hostname: api2
+    build:
+      context: .
+    depends_on:
+      - db
+    expose:
+      - "80"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+
+  haproxy:
+    container_name: haproxy
+    ports:
+      - 9999:80
+    image: haproxytech/haproxy-alpine
+    volumes:
+      - ./haproxy.cfg:/etc/haproxy/haproxy.cfg
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '50MB'
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '400MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
