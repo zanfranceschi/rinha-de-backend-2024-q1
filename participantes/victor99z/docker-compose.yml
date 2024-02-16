@@ -1,0 +1,68 @@
+version: "3.5"
+
+services:
+  api01: &api
+  # Minha magestosa imagem aqui
+    image: vbrnds/go-rinha:latest
+    hostname: api01
+    ports:
+      - "3001:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "100MB"
+  api02:
+  # *api é um alias para a configuração do serviço api01
+    <<: *api
+    hostname: api02
+    ports:
+      - "3002:3000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "100MB"
+
+  db:
+    image: postgres:latest
+    hostname: postgres
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./config/postgresql.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "250MB"
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U admin -d rinha'"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

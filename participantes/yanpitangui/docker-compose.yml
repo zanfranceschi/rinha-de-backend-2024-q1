@@ -1,0 +1,102 @@
+version: '3.9'
+name: 'rinha-yanpitangui'
+
+services:
+  api1: &api
+    image: ghcr.io/yanpitangui/rinha-2024-q01:latest
+    hostname: api1
+    container_name: rinhaapi1
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Cluster__Ip=api1
+      - Cluster__Port=5213
+      - Cluster__Seeds__0=akka.tcp://Rinha@api1:5213
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__Db=Host=db;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=2000;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+      - "5213:5213"
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '150MB'
+    networks:
+      - app-network
+    volumes:
+      - app1:/tmp
+
+  api2:
+    <<: *api
+    hostname: api2
+    container_name: rinhaapi2
+    ports:
+      - "8081:8080"
+      - "5214:5213"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Cluster__Ip=api2
+      - Cluster__Port=5213
+      - Cluster__Seeds__0=akka.tcp://Rinha@api1:5213
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__Db=Host=db;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=2000;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+    volumes:
+      - app2:/tmp
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '30MB'
+
+  db:
+    image: postgres:latest
+    container_name: rinhadb
+    command: 'postgres -c max_connections=1000 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off'
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '220MB'
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "rinha"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+networks:
+  app-network:
+volumes:
+  app1:
+  app2:
+

@@ -7,12 +7,14 @@ services:
     ports:
       - '8081:8080'
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+
     deploy:
       resources:
         limits:
-          cpus: '0.25'
-          memory: '20MB'
+          cpus: '0.3'
+          memory: '50MB'
 
   api02:
     <<: *api
@@ -33,11 +35,17 @@ services:
       - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
       - ./config/postgres.conf:/docker-entrypoint-initdb.d/postgres.conf
     command: postgres -c config_file=/docker-entrypoint-initdb.d/postgres.conf
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -h localhost -p 5432 -U admin -d rinha']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
     deploy:
       resources:
         limits:
-          cpus: '0.8'
-          memory: '490MB'
+          cpus: '0.7'
+          memory: '400MB'
 
   nginx:
     image: nginx:latest
@@ -52,9 +60,9 @@ services:
       resources:
         limits:
           cpus: '0.2'
-          memory: '20MB'
+          memory: '50MB'
 
 networks:
   default:
     driver: bridge
-    name: rinha-nginx-2024-q1-dotnet
+    name: rinha-backend-2024-q1-dotnet

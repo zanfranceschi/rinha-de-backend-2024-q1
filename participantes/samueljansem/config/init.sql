@@ -1,9 +1,15 @@
-CREATE TABLE
+SET CLIENT_MIN_MESSAGES = WARNING;
+SET ROW_SECURITY = OFF;
+
+CREATE UNLOGGED TABLE
     "clientes" (
         "id" INT PRIMARY KEY,
         "saldo" INTEGER NOT NULL,
         "limite" INTEGER NOT NULL
     );
+
+CREATE INDEX idx_pk_clientes ON clientes (id) INCLUDE (saldo);
+CLUSTER clientes USING idx_pk_clientes;
 
 CREATE UNLOGGED TABLE
     "transacoes" (
@@ -16,6 +22,12 @@ CREATE UNLOGGED TABLE
         CONSTRAINT "fk_transacoes_id_cliente" FOREIGN KEY ("id_cliente") REFERENCES "clientes" ("id")
     );
 
+CREATE INDEX idx_transacoes_id_cliente ON transacoes (id_cliente);
+CREATE INDEX idx_transacoes_realizada_em ON transacoes (realizada_em DESC);
+CLUSTER transacoes USING idx_transacoes_id_cliente;
+
+
+ALTER TABLE "clientes" SET (autovacuum_enabled = false);
 ALTER TABLE "transacoes" SET (autovacuum_enabled = false);
 
 INSERT INTO
