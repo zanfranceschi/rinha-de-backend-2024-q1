@@ -1,7 +1,7 @@
 CREATE TABLE clientes (
   id SERIAL PRIMARY KEY,
   limite INT,
-  saldo_inicial INT
+  saldo INT
 );
 
 CREATE TABLE transacoes (
@@ -17,11 +17,13 @@ CREATE TABLE transacoes (
 
 DO $$
 BEGIN
-  INSERT INTO clientes (limite, saldo_inicial)
+  INSERT INTO clientes (limite, saldo)
   VALUES
     (1000 * 100, 0),
     (800 * 100, 0),
     (10000 * 100, 0),
     (100000 * 100, 0),
     (5000 * 100, 0);
-END; $$
+END; $$;
+
+CREATE INDEX idx_client ON transacoes (client_id ASC)
