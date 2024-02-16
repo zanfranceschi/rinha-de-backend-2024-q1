@@ -1,6 +1,6 @@
 # Especificações do Ambiente de Testes
 
-Abaixo estão os detalhes do servidor (mentira, é meu note mesmo) que rodará os testes. 
+Abaixo estão os detalhes do servidor (gentilmente concedido pelo Giovanni Bassi) que rodará os testes. 
 
 
 Docker
