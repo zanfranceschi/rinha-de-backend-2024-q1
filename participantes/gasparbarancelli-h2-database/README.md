@@ -3,7 +3,11 @@
 
 ## Rinha de Backend 2024
 
-Aplicação desenvolvida em Quarkus com VirtualThreads, compilando imagem nativa utilizando a GraalVM, utilizando o H2 como banco de dados e o Envoy como proxy.
+Aplicação desenvolvida em Quarkus com VirtualThreads, compilando imagem nativa utilizando a GraalVM.
+
+Utilizei o H2 como banco de dados compilado para código de máquina com a GraalVM e disponibilizada imagem no meu repositório Docker.
+
+Para proxy fiz uso do Envoy.
 
 
 ##### BUILD
