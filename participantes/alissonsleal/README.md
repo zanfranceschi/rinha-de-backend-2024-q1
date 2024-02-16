@@ -8,7 +8,7 @@
 - [**PostgreSQL**](https://orm.drizzle.team/docs/get-started-postgresql): Banco de dados relacional
 - [**nginx**](https://nginx.org): Servidor HTTP e proxy reverso
 
-![](https://i.imgur.com/bae6Dvu.png)
+![](https://i.imgur.com/AXJvD2J.png)
 
 ## Instruções
 
