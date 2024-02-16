@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Feb 16 17:59:38 UTC 2024** com **186** submissões.
+Atualizada **Fri Feb 16 20:00:10 UTC 2024** com **186** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -23,7 +23,7 @@ Atualizada **Fri Feb 16 17:59:38 UTC 2024** com **186** submissões.
 | [bbonagura9](./participantes/bbonagura9) | ok | 2 |
 | [bcaua](./participantes/bcaua) | ok | 2 |
 | [betamedina](./participantes/betamedina) | falha - [logs](./participantes/betamedina/docker-compose.logs) | -- |
-| [bgskurono](./participantes/bgskurono) | ok | 2 |
+| [bgskurono](./participantes/bgskurono) | ok | 1 |
 | [bine-golang](./participantes/bine-golang) | ok | 2 |
 | [bine-php-road-runner](./participantes/bine-php-road-runner) | ok | 2 |
 | [bine-php-swoole](./participantes/bine-php-swoole) | ok | 2 |
@@ -134,7 +134,7 @@ Atualizada **Fri Feb 16 17:59:38 UTC 2024** com **186** submissões.
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 4 |
 | [lucasSSalgado](./participantes/lucasSSalgado) | ok | 4 |
 | [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | falha - [logs](./participantes/lucasew-go-tigerbeetle/docker-compose.logs) | -- |
-| [lucianovilela](./participantes/lucianovilela) | falha - [logs](./participantes/lucianovilela/docker-compose.logs) | -- |
+| [lucianovilela](./participantes/lucianovilela) | ok | 4 |
 | [luizfrra](./participantes/luizfrra) | ok | 2 |
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 12 |
