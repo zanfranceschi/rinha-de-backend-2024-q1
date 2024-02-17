@@ -1,0 +1,52 @@
+version: '3.8'
+services:
+  app: &app
+    image: ghcr.io/juniodutra/java_from_zero:latest
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=jdbc:postgresql://db:5432/postgres
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+      - PORT=8080
+      - CONCURRENCY_SIZE=10
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "90MB"
+  app2:
+    <<: *app
+  db:
+    image: postgres
+    command: postgres -c shared_buffers=340MB -c max_connections=250 -c log_min_messages=FATAL
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+      - ./resource/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.9"
+          memory: "330MB"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+      - app2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "40MB"
+volumes:
+  postgres_data:

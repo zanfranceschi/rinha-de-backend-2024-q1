@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL4 PRIMARY KEY,
+    "limit" BIGINT NOT NULL,
+    amount BIGINT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS transactions (
+    id SERIAL4 PRIMARY KEY,
+    user_id INT4 NOT NULL,
+    amount INT8 NOT NULL,
+    type CHAR(1) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+INSERT INTO users ("limit") VALUES (100000);
+INSERT INTO users ("limit") VALUES (80000);
+INSERT INTO users ("limit") VALUES (1000000);
+INSERT INTO users ("limit") VALUES (10000000);
+INSERT INTO users ("limit") VALUES (500000);
