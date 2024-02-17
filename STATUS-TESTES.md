@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 18:50:38 UTC 2024** com **205** submissões.
+Atualizada **Sat Feb 17 19:19:46 UTC 2024** com **205** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -165,7 +165,7 @@ Atualizada **Sat Feb 17 18:50:38 UTC 2024** com **205** submissões.
 | [murilochianfa](./participantes/murilochianfa) | ok | 1 |
 | [mvellasco](./participantes/mvellasco) | ok | 1466 |
 | [my_way](./participantes/my_way) | ok | 9 |
-| [newton](./participantes/newton) | falha - [logs](./participantes/newton/docker-compose.logs) | -- |
+| [newton](./participantes/newton) | ok | 3 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
 | [nielsonrolim-ror](./participantes/nielsonrolim-ror) | ok | 1 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
@@ -198,7 +198,7 @@ Atualizada **Sat Feb 17 18:50:38 UTC 2024** com **205** submissões.
 | [victor-macedo](./participantes/victor-macedo) | ok | 122 |
 | [victor-marcolino](./participantes/victor-marcolino) | ok | 2 |
 | [victor99z](./participantes/victor99z) | ok | 6 |
-| [victorverdoodt](./participantes/victorverdoodt) | ok | 2 |
+| [victorverdoodt](./participantes/victorverdoodt) | ok | 4 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 4 |
 | [vkobinski](./participantes/vkobinski) | ok | 4 |
