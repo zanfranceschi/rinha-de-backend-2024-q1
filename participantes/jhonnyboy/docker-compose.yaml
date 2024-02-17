@@ -12,9 +12,8 @@ services:
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=qwerty
       - MYSQL_ROOT_PASSWORD=qwerty
-      - MYSQL_TCP_PORT=9930
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-P", "9930", "-u", "admin", "-p", "qwerty"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-P", "3306", "-u", "admin", "-p", "qwerty"]
       timeout: 20s
       retries: 10
     # ports:
@@ -36,7 +35,7 @@ services:
     environment:
       - API_PORT=9910
       - DB_HOST=127.0.0.1
-      - DB_PORT=9930
+      - DB_PORT=3306
       - DB_USER=admin
       - DB_PASSWORD=qwerty
       - DB_NAME=rinha-db
@@ -46,7 +45,7 @@ services:
       resources:
         limits:
           cpus: '0.15'
-          memory: 75M
+          memory: 50M
 
   rinha-api-2:
     image: jhonatanrs/rinha-backend-2024-q1-mysql:latest
@@ -56,7 +55,7 @@ services:
     environment:
       - API_PORT=9920
       - DB_HOST=127.0.0.1
-      - DB_PORT=9930
+      - DB_PORT=3306
       - DB_USER=admin
       - DB_PASSWORD=qwerty
       - DB_NAME=rinha-db
@@ -66,7 +65,7 @@ services:
       resources:
         limits:
           cpus: '0.15'
-          memory: 75M
+          memory: 50M
   
   nginx:
     image: nginx:latest
@@ -84,4 +83,4 @@ services:
       resources:
         limits:
           cpus: '0.15'
-          memory: 50M
+          memory: 100M
