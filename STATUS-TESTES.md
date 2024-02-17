@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 18:08:28 UTC 2024** com **204** submissões.
+Atualizada **Sat Feb 17 18:33:41 UTC 2024** com **205** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -157,6 +157,7 @@ Atualizada **Sat Feb 17 18:08:28 UTC 2024** com **204** submissões.
 | [marincor](./participantes/marincor) | ok | 6 |
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 4 |
+| [mateusdeitos-node](./participantes/mateusdeitos-node) | ok | 2 |
 | [matheuslao](./participantes/matheuslao) | ok | 4599 |
 | [matheusleal](./participantes/matheusleal) | ok | 3 |
 | [maxwell](./participantes/maxwell) | ok | 2 |
@@ -197,7 +198,7 @@ Atualizada **Sat Feb 17 18:08:28 UTC 2024** com **204** submissões.
 | [victor-macedo](./participantes/victor-macedo) | ok | 122 |
 | [victor-marcolino](./participantes/victor-marcolino) | ok | 2 |
 | [victor99z](./participantes/victor99z) | ok | 6 |
-| [victorverdoodt](./participantes/victorverdoodt) | ok | 5 |
+| [victorverdoodt](./participantes/victorverdoodt) | ok | 2 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 4 |
 | [vkobinski](./participantes/vkobinski) | ok | 4 |
