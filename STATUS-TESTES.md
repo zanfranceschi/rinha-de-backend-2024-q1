@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 23:13:11 UTC 2024** com **209** submissões.
+Atualizada **Sat Feb 17 23:31:24 UTC 2024** com **211** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -35,6 +35,7 @@ Atualizada **Sat Feb 17 23:13:11 UTC 2024** com **209** submissões.
 | [boaglio](./participantes/boaglio) | ok | 1 |
 | [breno5g](./participantes/breno5g) | ok | 4 |
 | [brilvio](./participantes/brilvio) | ok | 2 |
+| [brunolipe-a](./participantes/brunolipe-a) | falha - [logs](./participantes/brunolipe-a/docker-compose.logs) | -- |
 | [buemura-nestjs](./participantes/buemura-nestjs) | ok | 4 |
 | [buemura](./participantes/buemura) | ok | 4 |
 | [bun-saulofelipe](./participantes/bun-saulofelipe) | ok | 2 |
@@ -54,7 +55,7 @@ Atualizada **Sat Feb 17 23:13:11 UTC 2024** com **209** submissões.
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [deno-cassiogangrel](./participantes/deno-cassiogangrel) | ok | 4 |
 | [devkemc-node](./participantes/devkemc-node) | ok | 6476 |
-| [diego-coronel](./participantes/diego-coronel) | ok | 2 |
+| [diego-coronel](./participantes/diego-coronel) | falha - [logs](./participantes/diego-coronel/docker-compose.logs) | -- |
 | [diegoalexandrooliveira](./participantes/diegoalexandrooliveira) | ok | 5 |
 | [direisc](./participantes/direisc) | ok | 5 |
 | [doceazedo](./participantes/doceazedo) | falha - [logs](./participantes/doceazedo/docker-compose.logs) | -- |
@@ -77,7 +78,7 @@ Atualizada **Sat Feb 17 23:13:11 UTC 2024** com **209** submissões.
 | [fabionaspolini-sync](./participantes/fabionaspolini-sync) | ok | 2 |
 | [fabionaspolini](./participantes/fabionaspolini) | ok | 2 |
 | [felipe-alcantara-actor-model](./participantes/felipe-alcantara-actor-model) | ok | 1 |
-| [felipemarkson](./participantes/felipemarkson) | falha - [logs](./participantes/felipemarkson/docker-compose.logs) | -- |
+| [felipemarkson](./participantes/felipemarkson) | ok | 2 |
 | [fielcapao](./participantes/fielcapao) | falha - [logs](./participantes/fielcapao/docker-compose.logs) | -- |
 | [filipemacedo](./participantes/filipemacedo) | ok | 4 |
 | [flpStrri](./participantes/flpStrri) | ok | 2 |
@@ -151,6 +152,7 @@ Atualizada **Sat Feb 17 23:13:11 UTC 2024** com **209** submissões.
 | [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | falha - [logs](./participantes/lucasew-go-tigerbeetle/docker-compose.logs) | -- |
 | [lucianovilela](./participantes/lucianovilela) | ok | 4 |
 | [luizfrra](./participantes/luizfrra) | ok | 2 |
+| [m-lnrs](./participantes/m-lnrs) | ok | 3 |
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 11 |
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
