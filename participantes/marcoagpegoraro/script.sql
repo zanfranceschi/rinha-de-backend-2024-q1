@@ -26,7 +26,7 @@ DECLARE
     limite_cliente NUMERIC;
     saldo_cliente NUMERIC;
 BEGIN
-    SELECT * INTO client_record FROM cliente WHERE id = id_cliente;
+    SELECT * INTO client_record FROM cliente WHERE id = id_cliente FOR UPDATE;
     IF NOT FOUND THEN
         text_message := 'Cliente não encontrado';
         is_error := true;
