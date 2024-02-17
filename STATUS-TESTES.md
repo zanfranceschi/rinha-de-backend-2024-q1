@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 07:19:00 UTC 2024** com **198** submissões.
+Atualizada **Sat Feb 17 07:30:25 UTC 2024** com **198** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -13,7 +13,7 @@ Atualizada **Sat Feb 17 07:19:00 UTC 2024** com **198** submissões.
 | [acerola](./participantes/acerola) | ok | 5 |
 | [agostinho](./participantes/agostinho) | ok | 4 |
 | [agpsl](./participantes/agpsl) | ok | 2 |
-| [alissonsleal](./participantes/alissonsleal) | ok | 2 |
+| [alissonsleal](./participantes/alissonsleal) | ok | 3 |
 | [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
