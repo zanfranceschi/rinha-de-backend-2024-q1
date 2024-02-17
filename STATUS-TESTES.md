@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 19:19:46 UTC 2024** com **205** submissões.
+Atualizada **Sat Feb 17 19:53:07 UTC 2024** com **207** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -17,6 +17,7 @@ Atualizada **Sat Feb 17 19:19:46 UTC 2024** com **205** submissões.
 | [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
+| [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
 | [antoniogdelrio](./participantes/antoniogdelrio) | ok | 5 |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | falha - [logs](./participantes/arrudaricardo-01/docker-compose.logs) | -- |
 | [avalonbits](./participantes/avalonbits) | ok | 1 |
@@ -59,6 +60,7 @@ Atualizada **Sat Feb 17 19:19:46 UTC 2024** com **205** submissões.
 | [doceazedo](./participantes/doceazedo) | falha - [logs](./participantes/doceazedo/docker-compose.logs) | -- |
 | [dowingows-phalcon-php](./participantes/dowingows-phalcon-php) | ok | 2 |
 | [dreamagici4n](./participantes/dreamagici4n) | ok | 3 |
+| [droderuan](./participantes/droderuan) | falha - [logs](./participantes/droderuan/docker-compose.logs) | -- |
 | [dscamargo](./participantes/dscamargo) | ok | 2 |
 | [dsinmsdj](./participantes/dsinmsdj) | ok | 2 |
 | [edimarlnx](./participantes/edimarlnx) | falha - [logs](./participantes/edimarlnx/docker-compose.logs) | -- |
@@ -149,7 +151,7 @@ Atualizada **Sat Feb 17 19:19:46 UTC 2024** com **205** submissões.
 | [lucianovilela](./participantes/lucianovilela) | ok | 4 |
 | [luizfrra](./participantes/luizfrra) | ok | 2 |
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
-| [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 12 |
+| [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 11 |
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
 | [marcusadriano-go](./participantes/marcusadriano-go) | ok | 4 |
 | [marcusantunius](./participantes/marcusantunius) | ok | 2 |
