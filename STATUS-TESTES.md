@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 20:13:03 UTC 2024** com **207** submissões.
+Atualizada **Sat Feb 17 20:37:50 UTC 2024** com **207** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -92,10 +92,10 @@ Atualizada **Sat Feb 17 20:13:03 UTC 2024** com **207** submissões.
 | [geffersonFerraz-http3](./participantes/geffersonFerraz-http3) | ok | 2 |
 | [geraldojrcg-elixir](./participantes/geraldojrcg-elixir) | falha - [logs](./participantes/geraldojrcg-elixir/docker-compose.logs) | -- |
 | [gilmardealcantara](./participantes/gilmardealcantara) | ok | 2 |
-| [giovannibassi-nonpooled](./participantes/giovannibassi-nonpooled) | ok | 2 |
+| [giovannibassi-nonpooled](./participantes/giovannibassi-nonpooled) | ok | 1 |
 | [giovannibassi-rust](./participantes/giovannibassi-rust) | ok | 1 |
-| [giovannibassi-vb](./participantes/giovannibassi-vb) | ok | 2 |
-| [giovannibassi](./participantes/giovannibassi) | ok | 2 |
+| [giovannibassi-vb](./participantes/giovannibassi-vb) | ok | 1 |
+| [giovannibassi](./participantes/giovannibassi) | ok | 1 |
 | [gldmelo](./participantes/gldmelo) | ok | 2 |
 | [gmrms](./participantes/gmrms) | ok | 2 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
