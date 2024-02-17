@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 16:17:18 UTC 2024** com **199** submissões.
+Atualizada **Sat Feb 17 16:44:49 UTC 2024** com **202** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -46,6 +46,7 @@ Atualizada **Sat Feb 17 16:17:18 UTC 2024** com **199** submissões.
 | [cesar-rodrigues](./participantes/cesar-rodrigues) | falha - [logs](./participantes/cesar-rodrigues/docker-compose.logs) | -- |
 | [claudio-silva](./participantes/claudio-silva) | ok | 3 |
 | [cleitinif](./participantes/cleitinif) | ok | 4 |
+| [crebitojs](./participantes/crebitojs) | ok | 3 |
 | [cristiano182](./participantes/cristiano182) | ok | 1 |
 | [danielwisky](./participantes/danielwisky) | ok | 3 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
@@ -95,6 +96,7 @@ Atualizada **Sat Feb 17 16:17:18 UTC 2024** com **199** submissões.
 | [gldmelo](./participantes/gldmelo) | ok | 2 |
 | [gmrms](./participantes/gmrms) | ok | 2 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
+| [gustavoramos00-spring-trsfree](./participantes/gustavoramos00-spring-trsfree) | ok | 2 |
 | [gustavoramos00](./participantes/gustavoramos00) | ok | 2 |
 | [gutkedu-nodejs](./participantes/gutkedu-nodejs) | ok | 486 |
 | [gwoliveira-no-db-lock](./participantes/gwoliveira-no-db-lock) | ok | 4 |
@@ -181,7 +183,7 @@ Atualizada **Sat Feb 17 16:17:18 UTC 2024** com **199** submissões.
 | [rizzo-nodejs](./participantes/rizzo-nodejs) | falha - [logs](./participantes/rizzo-nodejs/docker-compose.logs) | -- |
 | [rodolphovs](./participantes/rodolphovs) | ok | 1 |
 | [rodrigocaldeira-c](./participantes/rodrigocaldeira-c) | ok | 11 |
-| [rodrigocaldeira](./participantes/rodrigocaldeira) | ok | 5 |
+| [rodrigocaldeira](./participantes/rodrigocaldeira) | falha - [logs](./participantes/rodrigocaldeira/docker-compose.logs) | -- |
 | [ronaldo_scardini](./participantes/ronaldo_scardini) | ok | 2 |
 | [ruhtar](./participantes/ruhtar) | falha - [logs](./participantes/ruhtar/docker-compose.logs) | -- |
 | [samluiz](./participantes/samluiz) | ok | 2 |
@@ -190,6 +192,7 @@ Atualizada **Sat Feb 17 16:17:18 UTC 2024** com **199** submissões.
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 54 |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
+| [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 122 |
 | [victor-marcolino](./participantes/victor-marcolino) | ok | 2 |
 | [victor99z](./participantes/victor99z) | ok | 6 |
