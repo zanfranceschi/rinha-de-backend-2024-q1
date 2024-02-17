@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 04:24:42 UTC 2024** com **196** submissões.
+Atualizada **Sat Feb 17 06:10:14 UTC 2024** com **196** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -36,7 +36,7 @@ Atualizada **Sat Feb 17 04:24:42 UTC 2024** com **196** submissões.
 | [buemura](./participantes/buemura) | ok | 4 |
 | [bun-saulofelipe](./participantes/bun-saulofelipe) | ok | 2 |
 | [cacambito](./participantes/cacambito) | falha - [logs](./participantes/cacambito/docker-compose.logs) | -- |
-| [cadu](./participantes/cadu) | falha - [logs](./participantes/cadu/docker-compose.logs) | -- |
+| [cadu](./participantes/cadu) | ok | 1 |
 | [caique](./participantes/caique) | ok | 4 |
 | [cairocampos98](./participantes/cairocampos98) | ok | 94 |
 | [caravanacloud](./participantes/caravanacloud) | falha - [logs](./participantes/caravanacloud/docker-compose.logs) | -- |
@@ -92,7 +92,7 @@ Atualizada **Sat Feb 17 04:24:42 UTC 2024** com **196** submissões.
 | [giovannibassi](./participantes/giovannibassi) | ok | 2 |
 | [gldmelo](./participantes/gldmelo) | falha - [logs](./participantes/gldmelo/docker-compose.logs) | -- |
 | [gmrms](./participantes/gmrms) | ok | 2 |
-| [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 426 |
+| [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
 | [gustavoramos00](./participantes/gustavoramos00) | ok | 2 |
 | [gutkedu-nodejs](./participantes/gutkedu-nodejs) | ok | 486 |
 | [gwoliveira-no-db-lock](./participantes/gwoliveira-no-db-lock) | ok | 4 |
@@ -101,7 +101,7 @@ Atualizada **Sat Feb 17 04:24:42 UTC 2024** com **196** submissões.
 | [heitor-ps](./participantes/heitor-ps) | ok | 2 |
 | [hendrikaraujo](./participantes/hendrikaraujo) | ok | 2 |
 | [hfurlan](./participantes/hfurlan) | ok | 4 |
-| [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 5 |
+| [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 6971 |
 | [ilosamart](./participantes/ilosamart) | ok | 1693 |
 | [impedro29-performance](./participantes/impedro29-performance) | ok | 16 |
 | [isadora-souza](./participantes/isadora-souza) | ok | 4 |
