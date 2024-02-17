@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 07:36:54 UTC 2024** com **198** submissões.
+Atualizada **Sat Feb 17 07:43:10 UTC 2024** com **198** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -112,7 +112,7 @@ Atualizada **Sat Feb 17 07:36:54 UTC 2024** com **198** submissões.
 | [itujo-minimal-node-uws](./participantes/itujo-minimal-node-uws) | ok | 2 |
 | [itujo](./participantes/itujo) | ok | 6 |
 | [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 4 |
-| [jhonnyboy](./participantes/jhonnyboy) | falha - [logs](./participantes/jhonnyboy/docker-compose.logs) | -- |
+| [jhonnyboy](./participantes/jhonnyboy) | ok | 2 |
 | [jjeanjacques10](./participantes/jjeanjacques10) | ok | 2 |
 | [joaopmerlin](./participantes/joaopmerlin) | falha - [logs](./participantes/joaopmerlin/docker-compose.logs) | -- |
 | [jojodev](./participantes/jojodev) | ok | 1 |
