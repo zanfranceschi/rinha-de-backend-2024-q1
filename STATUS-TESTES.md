@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 18:50:38 UTC 2024** com **205** submissões.
+Atualizada **Sat Feb 17 19:01:54 UTC 2024** com **205** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -198,7 +198,7 @@ Atualizada **Sat Feb 17 18:50:38 UTC 2024** com **205** submissões.
 | [victor-macedo](./participantes/victor-macedo) | ok | 122 |
 | [victor-marcolino](./participantes/victor-marcolino) | ok | 2 |
 | [victor99z](./participantes/victor99z) | ok | 6 |
-| [victorverdoodt](./participantes/victorverdoodt) | ok | 2 |
+| [victorverdoodt](./participantes/victorverdoodt) | ok | 4 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 4 |
 | [vkobinski](./participantes/vkobinski) | ok | 4 |
