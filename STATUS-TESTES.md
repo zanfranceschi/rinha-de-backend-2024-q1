@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 16:44:49 UTC 2024** com **202** submissões.
+Atualizada **Sat Feb 17 16:59:04 UTC 2024** com **203** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -34,6 +34,7 @@ Atualizada **Sat Feb 17 16:44:49 UTC 2024** com **202** submissões.
 | [boaglio](./participantes/boaglio) | ok | 1 |
 | [breno5g](./participantes/breno5g) | ok | 4 |
 | [brilvio](./participantes/brilvio) | ok | 2 |
+| [buemura-nestjs](./participantes/buemura-nestjs) | ok | 4 |
 | [buemura](./participantes/buemura) | ok | 4 |
 | [bun-saulofelipe](./participantes/bun-saulofelipe) | ok | 2 |
 | [cacambito](./participantes/cacambito) | falha - [logs](./participantes/cacambito/docker-compose.logs) | -- |
