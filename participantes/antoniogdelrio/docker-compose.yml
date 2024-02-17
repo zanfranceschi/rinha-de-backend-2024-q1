@@ -16,6 +16,12 @@ services:
     command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
     networks:
       - rinha-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d rinha" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     deploy:
       resources:
         limits:
@@ -24,14 +30,14 @@ services:
 
   api01: &api
     image: antoniogdelrio/rinha-backend-2024-q1:latest
-    # build: .
     hostname: api01
     environment:
       - DB_HOSTNAME=db
     ports:
       - "8081:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - rinha-network
     deploy:
