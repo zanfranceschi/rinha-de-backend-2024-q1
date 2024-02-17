@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 06:29:33 UTC 2024** com **196** submissões.
+Atualizada **Sat Feb 17 06:33:00 UTC 2024** com **197** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -57,6 +57,7 @@ Atualizada **Sat Feb 17 06:29:33 UTC 2024** com **196** submissões.
 | [dowingows-phalcon-php](./participantes/dowingows-phalcon-php) | ok | 2 |
 | [dreamagici4n](./participantes/dreamagici4n) | ok | 3 |
 | [dscamargo](./participantes/dscamargo) | ok | 2 |
+| [dsinmsdj](./participantes/dsinmsdj) | falha - [logs](./participantes/dsinmsdj/docker-compose.logs) | -- |
 | [edimarlnx](./participantes/edimarlnx) | falha - [logs](./participantes/edimarlnx/docker-compose.logs) | -- |
 | [edubarbieri](./participantes/edubarbieri) | falha - [logs](./participantes/edubarbieri/docker-compose.logs) | -- |
 | [eigr](./participantes/eigr) | falha - [logs](./participantes/eigr/docker-compose.logs) | -- |
