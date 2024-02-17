@@ -61,3 +61,5 @@ BEGIN
     RETURN saldo_atualizado;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE INDEX idx_transacoes_on_cliente_id_realizado_em ON transacoes USING btree (cliente_id, realizada_em);

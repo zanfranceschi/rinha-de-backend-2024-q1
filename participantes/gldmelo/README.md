@@ -5,7 +5,7 @@
 Stack:
 - `nginx` como load balancer
 - `postgres` como banco de dados
-- `.NET 8` com linguagem `C#` para API com `Dapper` para acesso a dados
+- `.NET 8` com linguagem `C#` para API compilado com Native AOT
 
 
 [Implementação](https://github.com/gldmelo/rinha-de-backend-2024-q1-poc)
