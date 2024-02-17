@@ -8,8 +8,8 @@
 ## [@whyakari](https://t.me/whyakari) - Akari Azusagawa.
 
 ### Submissão e Ferramentas feitas com:
+- golang como linguagem;
 - nginx como load balancer;
 - mariadb como banco de dados;
-- gin-gonic para subir as api's;
-- golang como linguagem principal;
+- gin-gonic como web framework;
 - [repositório da api](https://github.com/whyakari/rinha-de-backend-v2).
