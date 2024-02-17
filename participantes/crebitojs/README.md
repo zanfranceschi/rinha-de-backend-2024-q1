@@ -15,3 +15,7 @@
 ## Repo
 
 [Aqui](https://github.com/lucashmsilva/rinha-de-backend-2024-q1)
+
+## Criadores
+https://github.com/lucashmsilva \
+https://github.com/bermr
