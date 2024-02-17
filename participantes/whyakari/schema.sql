@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS clientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-	nome VARCHAR(50) NOT NULL,
+    nome VARCHAR(50) NOT NULL,
     saldo INT NOT NULL,
     limite INT NOT NULL
 );
@@ -15,9 +15,9 @@ CREATE TABLE IF NOT EXISTS transacoes (
     FOREIGN KEY (id_cliente) REFERENCES clientes(id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-INSERT INTO clientes (nome, saldo, limite) VALUES
-    ('Akari', 100000, 0),
-    ('Isabella', 80000, 0),
-    ('Julia', 1000000, 0),
-    ('Hendrick', 10000000, 0),
-    ('Gustavo', 500000, 0);
+INSERT INTO clientes (nome, limite, saldo) VALUES
+	('Akari', 100000 * 100, 0),
+	('Isabella', 80000 * 100, 0),
+	('Julia', 1000000 * 100, 0),
+	('Hendrick', 10000000 * 100, 0),
+	('Gustavo', 500000 * 100, 0);
