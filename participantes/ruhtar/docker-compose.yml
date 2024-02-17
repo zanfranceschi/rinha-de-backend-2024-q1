@@ -3,8 +3,8 @@ version: "3.5"
 services:
   api01: &api # image: ruhtar/rinha-de-backend2
     # image: ${DOCKER_REGISTRY-}rinha-api
-    image: ruhtar/rinha-de-backend2
-    restart: always
+    image: ruhtar/rinha-de-backend2:latest
+    restart: unless-stopped
     # build:
     #   context: .
     #   dockerfile: Dockerfile
@@ -21,7 +21,7 @@ services:
       resources:
         limits:
           cpus: "0.30"
-          memory: "90MB"
+          memory: "120MB"
 
   api02:
     <<: *api
@@ -35,6 +35,7 @@ services:
 
   nginx:
     image: nginx:latest
+    restart: unless-stopped
     # network_mode: "host"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
@@ -47,19 +48,19 @@ services:
       resources:
         limits:
           cpus: "0.2"
-          memory: "70MB"
+          memory: "40MB"
 
   db:
     image: postgres:16.1
     hostname: db
-    # restart: unless-stopped
+    restart: unless-stopped
     environment:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=postgres
       - POSTGRES_DB=rinha
       # - POSTGRES_MAX_CONNECTIONS=150
-      # - POSTGRES_SHARED_BUFFERS=256MB # Ajuste conforme necessário
-      # - POSTGRES_MAX_WAL_SIZE=1GB # Ajuste conforme necessário
+      # - POSTGRES_SHARED_BUFFERS=256MB
+      # - POSTGRES_MAX_WAL_SIZE=1GB 
       # - POSTGRES_FSYNC=off
       # - POSTGRES_SYNCHRONOUS_COMMIT=off
       # - POSTGRES_CHECKPOINT_TIMEOUT=1d
@@ -74,7 +75,7 @@ services:
       resources:
         limits:
           cpus: "0.7"
-          memory: "300MB"
+          memory: "270MB"
 # networks:
 #   default:
 #     driver: bridge
