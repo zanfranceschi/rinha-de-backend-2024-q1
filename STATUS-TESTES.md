@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 18:33:41 UTC 2024** com **205** submissões.
+Atualizada **Sat Feb 17 18:50:38 UTC 2024** com **205** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -64,7 +64,7 @@ Atualizada **Sat Feb 17 18:33:41 UTC 2024** com **205** submissões.
 | [edimarlnx](./participantes/edimarlnx) | falha - [logs](./participantes/edimarlnx/docker-compose.logs) | -- |
 | [edubarbieri](./participantes/edubarbieri) | falha - [logs](./participantes/edubarbieri/docker-compose.logs) | -- |
 | [eigr](./participantes/eigr) | falha - [logs](./participantes/eigr/docker-compose.logs) | -- |
-| [elioenaiferrari-rust](./participantes/elioenaiferrari-rust) | falha - [logs](./participantes/elioenaiferrari-rust/docker-compose.logs) | -- |
+| [elioenaiferrari-rust](./participantes/elioenaiferrari-rust) | ok | 2 |
 | [elioenaiferrari](./participantes/elioenaiferrari) | falha - [logs](./participantes/elioenaiferrari/docker-compose.logs) | -- |
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) | -- |
 | [engylemure](./participantes/engylemure) | ok | 4 |
@@ -185,7 +185,7 @@ Atualizada **Sat Feb 17 18:33:41 UTC 2024** com **205** submissões.
 | [rizzo-nodejs](./participantes/rizzo-nodejs) | falha - [logs](./participantes/rizzo-nodejs/docker-compose.logs) | -- |
 | [rodolphovs](./participantes/rodolphovs) | ok | 1 |
 | [rodrigocaldeira-c](./participantes/rodrigocaldeira-c) | ok | 11 |
-| [rodrigocaldeira](./participantes/rodrigocaldeira) | falha - [logs](./participantes/rodrigocaldeira/docker-compose.logs) | -- |
+| [rodrigocaldeira](./participantes/rodrigocaldeira) | ok | 71 |
 | [ronaldo_scardini](./participantes/ronaldo_scardini) | ok | 2 |
 | [ruhtar](./participantes/ruhtar) | falha - [logs](./participantes/ruhtar/docker-compose.logs) | -- |
 | [samluiz](./participantes/samluiz) | ok | 2 |
