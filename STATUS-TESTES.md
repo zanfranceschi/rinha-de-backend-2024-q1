@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 06:10:14 UTC 2024** com **196** submissões.
+Atualizada **Sat Feb 17 16:17:18 UTC 2024** com **199** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -13,7 +13,8 @@ Atualizada **Sat Feb 17 06:10:14 UTC 2024** com **196** submissões.
 | [acerola](./participantes/acerola) | ok | 5 |
 | [agostinho](./participantes/agostinho) | ok | 4 |
 | [agpsl](./participantes/agpsl) | ok | 2 |
-| [alissonsleal](./participantes/alissonsleal) | ok | 2 |
+| [alissonsleal](./participantes/alissonsleal) | ok | 3 |
+| [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
 | [antoniogdelrio](./participantes/antoniogdelrio) | ok | 5 |
@@ -57,6 +58,7 @@ Atualizada **Sat Feb 17 06:10:14 UTC 2024** com **196** submissões.
 | [dowingows-phalcon-php](./participantes/dowingows-phalcon-php) | ok | 2 |
 | [dreamagici4n](./participantes/dreamagici4n) | ok | 3 |
 | [dscamargo](./participantes/dscamargo) | ok | 2 |
+| [dsinmsdj](./participantes/dsinmsdj) | ok | 2 |
 | [edimarlnx](./participantes/edimarlnx) | falha - [logs](./participantes/edimarlnx/docker-compose.logs) | -- |
 | [edubarbieri](./participantes/edubarbieri) | falha - [logs](./participantes/edubarbieri/docker-compose.logs) | -- |
 | [eigr](./participantes/eigr) | falha - [logs](./participantes/eigr/docker-compose.logs) | -- |
@@ -90,7 +92,7 @@ Atualizada **Sat Feb 17 06:10:14 UTC 2024** com **196** submissões.
 | [giovannibassi-rust](./participantes/giovannibassi-rust) | ok | 1 |
 | [giovannibassi-vb](./participantes/giovannibassi-vb) | ok | 2 |
 | [giovannibassi](./participantes/giovannibassi) | ok | 2 |
-| [gldmelo](./participantes/gldmelo) | falha - [logs](./participantes/gldmelo/docker-compose.logs) | -- |
+| [gldmelo](./participantes/gldmelo) | ok | 2 |
 | [gmrms](./participantes/gmrms) | ok | 2 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
 | [gustavoramos00](./participantes/gustavoramos00) | ok | 2 |
@@ -101,16 +103,16 @@ Atualizada **Sat Feb 17 06:10:14 UTC 2024** com **196** submissões.
 | [heitor-ps](./participantes/heitor-ps) | ok | 2 |
 | [hendrikaraujo](./participantes/hendrikaraujo) | ok | 2 |
 | [hfurlan](./participantes/hfurlan) | ok | 4 |
-| [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 6971 |
+| [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 40 |
 | [ilosamart](./participantes/ilosamart) | ok | 1693 |
 | [impedro29-performance](./participantes/impedro29-performance) | ok | 16 |
-| [isadora-souza](./participantes/isadora-souza) | ok | 4 |
+| [isadora-souza](./participantes/isadora-souza) | ok | 3 |
 | [italobbarros](./participantes/italobbarros) | ok | 2 |
 | [italopussi](./participantes/italopussi) | ok | 3 |
 | [itujo-minimal-node-uws](./participantes/itujo-minimal-node-uws) | ok | 2 |
 | [itujo](./participantes/itujo) | ok | 6 |
 | [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 4 |
-| [jhonnyboy](./participantes/jhonnyboy) | falha - [logs](./participantes/jhonnyboy/docker-compose.logs) | -- |
+| [jhonnyboy](./participantes/jhonnyboy) | ok | 2 |
 | [jjeanjacques10](./participantes/jjeanjacques10) | ok | 2 |
 | [joaopmerlin](./participantes/joaopmerlin) | falha - [logs](./participantes/joaopmerlin/docker-compose.logs) | -- |
 | [jojodev](./participantes/jojodev) | ok | 1 |
@@ -147,6 +149,7 @@ Atualizada **Sat Feb 17 06:10:14 UTC 2024** com **196** submissões.
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 12 |
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
 | [marcusadriano-go](./participantes/marcusadriano-go) | ok | 4 |
+| [marcusantunius](./participantes/marcusantunius) | ok | 2 |
 | [mari-souza](./participantes/mari-souza) | falha - [logs](./participantes/mari-souza/docker-compose.logs) | -- |
 | [marincor](./participantes/marincor) | ok | 6 |
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
@@ -188,7 +191,7 @@ Atualizada **Sat Feb 17 06:10:14 UTC 2024** com **196** submissões.
 | [thiagosantana](./participantes/thiagosantana) | ok | 54 |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 122 |
-| [victor-marcolino](./participantes/victor-marcolino) | ok | 125 |
+| [victor-marcolino](./participantes/victor-marcolino) | ok | 2 |
 | [victor99z](./participantes/victor99z) | ok | 6 |
 | [victorverdoodt](./participantes/victorverdoodt) | ok | 5 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |

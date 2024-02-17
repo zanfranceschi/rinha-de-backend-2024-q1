@@ -1,0 +1,74 @@
+version: '3.5'
+
+services:
+  api01: &api
+    image: alissonsleal/rinha-de-backend-2024-q1-go:latest
+    hostname: api01
+    restart: unless-stopped
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    networks:
+      - default
+    environment:
+      - APP_PORT=3000
+      - DB_HOST=db
+      - DB_USER=rinha
+      - DB_PASSWORD=rinha
+      - DB_NAME=rinha
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: '30MB'
+
+  api02:
+    <<: *api
+    hostname: api02
+
+  db:
+    image: postgres:latest
+    hostname: db
+    restart: unless-stopped
+    networks:
+      - default
+    environment:
+      POSTGRES_DB: rinha
+      POSTGRES_USER: rinha
+      POSTGRES_PASSWORD: rinha
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./config/database/schema.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./config/database/postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '440MB'
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - '9999:9999'
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '50MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-network
