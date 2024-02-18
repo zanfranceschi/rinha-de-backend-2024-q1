@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 17:45:23 UTC 2024** com **221** submissões.
+Atualizada **Sun Feb 18 18:11:58 UTC 2024** com **225** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -93,6 +93,7 @@ Atualizada **Sun Feb 18 17:45:23 UTC 2024** com **221** submissões.
 | [gasparbarancelli](./participantes/gasparbarancelli) | ok | 2 |
 | [gavageovanni](./participantes/gavageovanni) | ok | 2 |
 | [gbfonseca](./participantes/gbfonseca) | ok | 2 |
+| [gcrispino](./participantes/gcrispino) | falha - [logs](./participantes/gcrispino/docker-compose.logs) | -- |
 | [geffersonFerraz-http2](./participantes/geffersonFerraz-http2) | ok | 2 |
 | [geffersonFerraz-http3](./participantes/geffersonFerraz-http3) | ok | 2 |
 | [geraldojrcg-elixir](./participantes/geraldojrcg-elixir) | falha - [logs](./participantes/geraldojrcg-elixir/docker-compose.logs) | -- |
@@ -172,6 +173,7 @@ Atualizada **Sun Feb 18 17:45:23 UTC 2024** com **221** submissões.
 | [matheusfbosa](./participantes/matheusfbosa) | ok | 4 |
 | [matheuslao](./participantes/matheuslao) | ok | 4599 |
 | [matheusleal](./participantes/matheusleal) | ok | 3 |
+| [matheuswilliam](./participantes/matheuswilliam) | ok | 2 |
 | [maxwell](./participantes/maxwell) | ok | 2 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [murilochianfa](./participantes/murilochianfa) | ok | 1 |
@@ -185,8 +187,10 @@ Atualizada **Sun Feb 18 17:45:23 UTC 2024** com **221** submissões.
 | [olukkas](./participantes/olukkas) | ok | 4 |
 | [omurilo](./participantes/omurilo) | ok | 2 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 2 |
+| [picklesdog-go](./participantes/picklesdog-go) | ok | 1 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 3 |
 | [quokka](./participantes/quokka) | ok | 5 |
+| [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 10 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
 | [rdenadai_bun_sqlite](./participantes/rdenadai_bun_sqlite) | ok | 2 |
