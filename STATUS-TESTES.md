@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 19:05:42 UTC 2024** com **228** submissões.
+Atualizada **Sun Feb 18 19:16:55 UTC 2024** com **229** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -145,6 +145,7 @@ Atualizada **Sun Feb 18 19:05:42 UTC 2024** com **228** submissões.
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
 | [lbaesso-php](./participantes/lbaesso-php) | ok | 2 |
 | [leandro-sousa](./participantes/leandro-sousa) | ok | 10002 |
+| [leonardoksn](./participantes/leonardoksn) | falha - [logs](./participantes/leonardoksn/docker-compose.logs) | -- |
 | [leonardovee](./participantes/leonardovee) | falha - [logs](./participantes/leonardovee/docker-compose.logs) | -- |
 | [leoralph](./participantes/leoralph) | ok | 2 |
 | [lmtani](./participantes/lmtani) | ok | 4 |
@@ -217,7 +218,7 @@ Atualizada **Sun Feb 18 19:05:42 UTC 2024** com **228** submissões.
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 54 |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
-| [vhogemann](./participantes/vhogemann) | ok | 4 |
+| [vhogemann](./participantes/vhogemann) | ok | 2 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 122 |
 | [victor-marcolino](./participantes/victor-marcolino) | ok | 2 |
 | [victor99z](./participantes/victor99z) | ok | 6 |
