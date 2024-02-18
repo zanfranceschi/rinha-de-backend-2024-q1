@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   web01:
-    image: felipealcantara/rinha-de-backend-2024:1.0.0
+    image: felipealcantara/rinha-de-backend-2024:1.0.1
     environment:
       GIN_MODE: release
       APP_PORT: "8080"
@@ -15,10 +15,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.23"
-          memory: "50MB"
+          cpus: "0.28"
+          memory: "20MB"
   web02:
-    image: felipealcantara/rinha-de-backend-2024:1.0.0
+    image: felipealcantara/rinha-de-backend-2024:1.0.1
     environment:
       GIN_MODE: release
       APP_PORT: "8081"
@@ -31,11 +31,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.23"
-          memory: "40MB"
+          cpus: "0.28"
+          memory: "20MB"
 
   lb:
-    image: felipealcantara/rinha-de-backend-2024-lb:1.0.0
+    image: felipealcantara/rinha-de-backend-2024-lb:1.0.1
     environment:
       APP_PORT: 9999
       APP_BACKENDS: "127.0.0.1:8080,127.0.0.1:8081"
@@ -49,8 +49,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.35"
-          memory: "80MB"
+          cpus: "0.42"
+          memory: "20MB"
 
   db:
     image: mongo:7.0.5
@@ -61,5 +61,5 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.57"
+          cpus: "0.40"
           memory: "180MB"
