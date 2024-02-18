@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 18:11:58 UTC 2024** com **225** submissões.
+Atualizada **Sun Feb 18 18:29:54 UTC 2024** com **227** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -67,10 +67,11 @@ Atualizada **Sun Feb 18 18:11:58 UTC 2024** com **225** submissões.
 | [droderuan](./participantes/droderuan) | ok | 4 |
 | [dscamargo](./participantes/dscamargo) | ok | 2 |
 | [dsinmsdj](./participantes/dsinmsdj) | ok | 2 |
+| [ed1000](./participantes/ed1000) | falha - [logs](./participantes/ed1000/docker-compose.logs) | -- |
 | [edimarlnx](./participantes/edimarlnx) | falha - [logs](./participantes/edimarlnx/docker-compose.logs) | -- |
 | [edubarbieri](./participantes/edubarbieri) | falha - [logs](./participantes/edubarbieri/docker-compose.logs) | -- |
 | [eigr](./participantes/eigr) | falha - [logs](./participantes/eigr/docker-compose.logs) | -- |
-| [elioenaiferrari-rust](./participantes/elioenaiferrari-rust) | ok | 4 |
+| [elioenaiferrari-rust](./participantes/elioenaiferrari-rust) | ok | 2 |
 | [elioenaiferrari](./participantes/elioenaiferrari) | falha - [logs](./participantes/elioenaiferrari/docker-compose.logs) | -- |
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) | -- |
 | [engylemure](./participantes/engylemure) | ok | 4 |
@@ -165,6 +166,7 @@ Atualizada **Sun Feb 18 18:11:58 UTC 2024** com **225** submissões.
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
 | [marcusadriano-go](./participantes/marcusadriano-go) | ok | 4 |
 | [marcusantunius](./participantes/marcusantunius) | ok | 1 |
+| [marcusdacoregio](./participantes/marcusdacoregio) | ok | 2 |
 | [mari-souza](./participantes/mari-souza) | falha - [logs](./participantes/mari-souza/docker-compose.logs) | -- |
 | [marincor](./participantes/marincor) | ok | 6 |
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
@@ -191,7 +193,7 @@ Atualizada **Sun Feb 18 18:11:58 UTC 2024** com **225** submissões.
 | [ptrecenti](./participantes/ptrecenti) | ok | 3 |
 | [quokka](./participantes/quokka) | ok | 5 |
 | [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
-| [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 10 |
+| [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 4 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
 | [rdenadai_bun_sqlite](./participantes/rdenadai_bun_sqlite) | ok | 2 |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
