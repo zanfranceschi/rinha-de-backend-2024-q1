@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 17 23:44:24 UTC 2024** com **211** submissões.
+Atualizada **Sun Feb 18 00:02:14 UTC 2024** com **211** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -157,7 +157,7 @@ Atualizada **Sat Feb 17 23:44:24 UTC 2024** com **211** submissões.
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 11 |
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
 | [marcusadriano-go](./participantes/marcusadriano-go) | ok | 4 |
-| [marcusantunius](./participantes/marcusantunius) | ok | 2 |
+| [marcusantunius](./participantes/marcusantunius) | ok | 1 |
 | [mari-souza](./participantes/mari-souza) | falha - [logs](./participantes/mari-souza/docker-compose.logs) | -- |
 | [marincor](./participantes/marincor) | ok | 6 |
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
