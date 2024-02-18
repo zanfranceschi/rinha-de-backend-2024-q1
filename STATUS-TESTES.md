@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 18:11:58 UTC 2024** com **225** submissões.
+Atualizada **Sun Feb 18 19:05:42 UTC 2024** com **228** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -67,10 +67,11 @@ Atualizada **Sun Feb 18 18:11:58 UTC 2024** com **225** submissões.
 | [droderuan](./participantes/droderuan) | ok | 4 |
 | [dscamargo](./participantes/dscamargo) | ok | 2 |
 | [dsinmsdj](./participantes/dsinmsdj) | ok | 2 |
+| [ed1000](./participantes/ed1000) | falha - [logs](./participantes/ed1000/docker-compose.logs) | -- |
 | [edimarlnx](./participantes/edimarlnx) | falha - [logs](./participantes/edimarlnx/docker-compose.logs) | -- |
 | [edubarbieri](./participantes/edubarbieri) | falha - [logs](./participantes/edubarbieri/docker-compose.logs) | -- |
 | [eigr](./participantes/eigr) | falha - [logs](./participantes/eigr/docker-compose.logs) | -- |
-| [elioenaiferrari-rust](./participantes/elioenaiferrari-rust) | ok | 4 |
+| [elioenaiferrari-rust](./participantes/elioenaiferrari-rust) | ok | 2 |
 | [elioenaiferrari](./participantes/elioenaiferrari) | falha - [logs](./participantes/elioenaiferrari/docker-compose.logs) | -- |
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) | -- |
 | [engylemure](./participantes/engylemure) | ok | 4 |
@@ -93,7 +94,7 @@ Atualizada **Sun Feb 18 18:11:58 UTC 2024** com **225** submissões.
 | [gasparbarancelli](./participantes/gasparbarancelli) | ok | 2 |
 | [gavageovanni](./participantes/gavageovanni) | ok | 2 |
 | [gbfonseca](./participantes/gbfonseca) | ok | 2 |
-| [gcrispino](./participantes/gcrispino) | falha - [logs](./participantes/gcrispino/docker-compose.logs) | -- |
+| [gcrispino](./participantes/gcrispino) | ok | 186 |
 | [geffersonFerraz-http2](./participantes/geffersonFerraz-http2) | ok | 2 |
 | [geffersonFerraz-http3](./participantes/geffersonFerraz-http3) | ok | 2 |
 | [geraldojrcg-elixir](./participantes/geraldojrcg-elixir) | falha - [logs](./participantes/geraldojrcg-elixir/docker-compose.logs) | -- |
@@ -142,6 +143,7 @@ Atualizada **Sun Feb 18 18:11:58 UTC 2024** com **225** submissões.
 | [klimber](./participantes/klimber) | ok | 5 |
 | [krymancer](./participantes/krymancer) | falha - [logs](./participantes/krymancer/docker-compose.logs) | -- |
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
+| [lbaesso-php](./participantes/lbaesso-php) | ok | 2 |
 | [leandro-sousa](./participantes/leandro-sousa) | ok | 10002 |
 | [leonardovee](./participantes/leonardovee) | falha - [logs](./participantes/leonardovee/docker-compose.logs) | -- |
 | [leoralph](./participantes/leoralph) | ok | 2 |
@@ -165,6 +167,7 @@ Atualizada **Sun Feb 18 18:11:58 UTC 2024** com **225** submissões.
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
 | [marcusadriano-go](./participantes/marcusadriano-go) | ok | 4 |
 | [marcusantunius](./participantes/marcusantunius) | ok | 1 |
+| [marcusdacoregio](./participantes/marcusdacoregio) | ok | 2 |
 | [mari-souza](./participantes/mari-souza) | falha - [logs](./participantes/mari-souza/docker-compose.logs) | -- |
 | [marincor](./participantes/marincor) | ok | 6 |
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
@@ -191,7 +194,7 @@ Atualizada **Sun Feb 18 18:11:58 UTC 2024** com **225** submissões.
 | [ptrecenti](./participantes/ptrecenti) | ok | 3 |
 | [quokka](./participantes/quokka) | ok | 5 |
 | [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
-| [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 10 |
+| [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 4 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
 | [rdenadai_bun_sqlite](./participantes/rdenadai_bun_sqlite) | ok | 2 |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
