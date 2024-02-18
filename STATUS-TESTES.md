@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 02:13:33 UTC 2024** com **211** submissões.
+Atualizada **Sun Feb 18 02:34:17 UTC 2024** com **213** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -51,6 +51,7 @@ Atualizada **Sun Feb 18 02:13:33 UTC 2024** com **211** submissões.
 | [cleitinif](./participantes/cleitinif) | ok | 4 |
 | [crebitojs](./participantes/crebitojs) | ok | 3 |
 | [cristiano182](./participantes/cristiano182) | ok | 1 |
+| [daandrn-php](./participantes/daandrn-php) | ok | 2 |
 | [danielwisky](./participantes/danielwisky) | ok | 3 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [deno-cassiogangrel](./participantes/deno-cassiogangrel) | ok | 4 |
@@ -78,6 +79,7 @@ Atualizada **Sun Feb 18 02:13:33 UTC 2024** com **211** submissões.
 | [fabionaspolini-sync](./participantes/fabionaspolini-sync) | ok | 2 |
 | [fabionaspolini](./participantes/fabionaspolini) | ok | 2 |
 | [felipe-alcantara-actor-model](./participantes/felipe-alcantara-actor-model) | ok | 1 |
+| [felipebossolani-dotnet](./participantes/felipebossolani-dotnet) | ok | 2 |
 | [felipemarkson](./participantes/felipemarkson) | ok | 2 |
 | [fielcapao](./participantes/fielcapao) | falha - [logs](./participantes/fielcapao/docker-compose.logs) | -- |
 | [filipemacedo](./participantes/filipemacedo) | ok | 4 |
@@ -110,7 +112,7 @@ Atualizada **Sun Feb 18 02:13:33 UTC 2024** com **211** submissões.
 | [heitor-ps](./participantes/heitor-ps) | ok | 2 |
 | [hendrikaraujo](./participantes/hendrikaraujo) | ok | 2 |
 | [hfurlan](./participantes/hfurlan) | ok | 4 |
-| [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 40 |
+| [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 4 |
 | [ilosamart](./participantes/ilosamart) | ok | 1693 |
 | [impedro29-performance](./participantes/impedro29-performance) | ok | 16 |
 | [isadora-souza](./participantes/isadora-souza) | ok | 3 |
