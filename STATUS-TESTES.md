@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 01:37:24 UTC 2024** com **211** submissões.
+Atualizada **Sun Feb 18 01:54:03 UTC 2024** com **211** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -55,7 +55,7 @@ Atualizada **Sun Feb 18 01:37:24 UTC 2024** com **211** submissões.
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [deno-cassiogangrel](./participantes/deno-cassiogangrel) | ok | 4 |
 | [devkemc-node](./participantes/devkemc-node) | ok | 6476 |
-| [diego-coronel](./participantes/diego-coronel) | falha - [logs](./participantes/diego-coronel/docker-compose.logs) | -- |
+| [diego-coronel](./participantes/diego-coronel) | ok | 2 |
 | [diegoalexandrooliveira](./participantes/diegoalexandrooliveira) | ok | 5 |
 | [direisc](./participantes/direisc) | ok | 5 |
 | [doceazedo](./participantes/doceazedo) | falha - [logs](./participantes/doceazedo/docker-compose.logs) | -- |
@@ -67,7 +67,7 @@ Atualizada **Sun Feb 18 01:37:24 UTC 2024** com **211** submissões.
 | [edimarlnx](./participantes/edimarlnx) | falha - [logs](./participantes/edimarlnx/docker-compose.logs) | -- |
 | [edubarbieri](./participantes/edubarbieri) | falha - [logs](./participantes/edubarbieri/docker-compose.logs) | -- |
 | [eigr](./participantes/eigr) | falha - [logs](./participantes/eigr/docker-compose.logs) | -- |
-| [elioenaiferrari-rust](./participantes/elioenaiferrari-rust) | ok | 2 |
+| [elioenaiferrari-rust](./participantes/elioenaiferrari-rust) | ok | 4 |
 | [elioenaiferrari](./participantes/elioenaiferrari) | falha - [logs](./participantes/elioenaiferrari/docker-compose.logs) | -- |
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) | -- |
 | [engylemure](./participantes/engylemure) | ok | 4 |
