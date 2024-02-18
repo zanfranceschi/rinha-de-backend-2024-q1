@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 22:45:19 UTC 2024** com **232** submissões.
+Atualizada **Sun Feb 18 23:01:59 UTC 2024** com **234** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -10,6 +10,7 @@ Atualizada **Sun Feb 18 22:45:19 UTC 2024** com **232** submissões.
 | [Fabricio-net8](./participantes/Fabricio-net8) | ok | 2 |
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
 | [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 3 |
+| [accerqueira-redbean-atw-down](./participantes/accerqueira-redbean-atw-down) | ok | 1 |
 | [acerola](./participantes/acerola) | ok | 5 |
 | [agostinho](./participantes/agostinho) | ok | 4 |
 | [agpsl](./participantes/agpsl) | ok | 2 |
@@ -156,6 +157,7 @@ Atualizada **Sun Feb 18 22:45:19 UTC 2024** com **232** submissões.
 | [lpicanco](./participantes/lpicanco) | ok | 2 |
 | [lsfratel-python](./participantes/lsfratel-python) | ok | 2 |
 | [lsfratel](./participantes/lsfratel) | ok | 3 |
+| [lubien-multi-tenant-sqlite](./participantes/lubien-multi-tenant-sqlite) | falha - [logs](./participantes/lubien-multi-tenant-sqlite/docker-compose.logs) | -- |
 | [lubien-phoenixqlite](./participantes/lubien-phoenixqlite) | ok | 1 |
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 4 |
 | [lucasSSalgado](./participantes/lucasSSalgado) | ok | 4 |
