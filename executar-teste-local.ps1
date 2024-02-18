@@ -5,7 +5,7 @@ $GATLING_BIN_DIR = "$env:USERPROFILE\gatling\3.10.3\bin"
 $GATLING_WORKSPACE = "$(Get-Location)\load-test\user-files"
 
 function Run-Gatling {
-    & "$GATLING_BIN_DIR/gatling.bat" -rm local -s RinhaBackendCreditosSimulation `
+    & "$GATLING_BIN_DIR/gatling.bat" -rm local -s RinhaBackendCrebitosSimulation `
         -rd "Rinha de Backend - 2024/Q1: Crébito" `
         -rf $RESULTS_WORKSPACE `
         -sf "$GATLING_WORKSPACE/simulations"

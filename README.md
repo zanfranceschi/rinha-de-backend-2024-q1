@@ -362,7 +362,7 @@ Aqui estão instruções rápidas para você poder executar os testes:
     O caminho do relatório é exibido ao término da simulação.
     Os resultados/relatórios são salvos em `./load-test/user-files/results`.
 
-Fique à vontade para alterar a [simulação](./load-test/user-files/simulations/rinhabackend/RinhaBackendCreditosSimulation.scala) para testar diferentes aspectos e cenários. Não inclua essas alterações no pull request de submissão!
+Fique à vontade para alterar a [simulação](./load-test/user-files/simulations/rinhabackend/RinhaBackendCrebitosSimulation.scala) para testar diferentes aspectos e cenários. Não inclua essas alterações no pull request de submissão!
 
 De nada :)
 
