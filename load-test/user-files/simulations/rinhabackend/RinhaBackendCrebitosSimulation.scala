@@ -196,9 +196,9 @@ class RinhaBackendCrebitosSimulation
         jmesPath("ultimas_transacoes[1].descricao").ofType[String].is("toma"),
         jmesPath("ultimas_transacoes[1].tipo").ofType[String].is("c"),
         jmesPath("ultimas_transacoes[1].valor").ofType[Int].is("1")
+      )
     )
-    )
-    .exec( // Testando uma possivel inconsistencia no extrato
+    .exec( // Consistencia do extrato
       http("validações")
       .post("/clientes/#{id}/transacoes")
           .header("content-type", "application/json")
@@ -208,7 +208,8 @@ class RinhaBackendCrebitosSimulation
             jmesPath("saldo").saveAs("saldo"),
             jmesPath("limite").saveAs("limite")
           )
-          .resources(//depois do POST, faco 5 gets em paralelo
+          .resources(
+            // 5 consultas simultâneas ao extrato para verificar consistência
             http("validações").get("/clientes/#{id}/extrato").check(
               jmesPath("ultimas_transacoes[0].descricao").ofType[String].is("danada"),
               jmesPath("ultimas_transacoes[0].tipo").ofType[String].is("c"),
