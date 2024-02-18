@@ -1,5 +1,500 @@
- nginx Pulling 
- db Pulling 
- rinha-server Pulling 
- rinha-server Error 
-Error response from daemon: pull access denied for rinha-server, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+ Network rinha-nginx-2024q1  Creating
+ Network rinha-nginx-2024q1  Created
+ Container gcrispino-db-1  Creating
+ Container gcrispino-db-1  Created
+ Container gcrispino-rinha-server-2  Creating
+ Container gcrispino-rinha-server-1  Creating
+ Container gcrispino-rinha-server-1  Created
+ Container gcrispino-rinha-server-2  Created
+ Container gcrispino-nginx-1  Creating
+ Container gcrispino-nginx-1  Created
+Attaching to db-1, nginx-1, rinha-server-1, rinha-server-2
+db-1            | The files belonging to this database system will be owned by user "postgres".
+db-1            | This user must also own the server process.
+db-1            | 
+db-1            | The database cluster will be initialized with locale "en_US.utf8".
+db-1            | The default database encoding has accordingly been set to "UTF8".
+db-1            | The default text search configuration will be set to "english".
+db-1            | 
+db-1            | Data page checksums are disabled.
+db-1            | 
+db-1            | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1            | creating subdirectories ... ok
+db-1            | selecting dynamic shared memory implementation ... posix
+db-1            | selecting default max_connections ... 100
+db-1            | selecting default shared_buffers ... 128MB
+db-1            | selecting default time zone ... Etc/UTC
+db-1            | creating configuration files ... ok
+db-1            | running bootstrap script ... ok
+rinha-server-2  | 2024/02/18 18:47:55 maxprocs: Updating GOMAXPROCS=1: using minimum allowed GOMAXPROCS
+rinha-server-2  | dbConnStr postgres://user:password@db/rinha?sslmode=disable
+db-1            | performing post-bootstrap initialization ... ok
+rinha-server-1  | 2024/02/18 18:47:56 maxprocs: Updating GOMAXPROCS=1: using minimum allowed GOMAXPROCS
+rinha-server-1  | dbConnStr postgres://user:password@db/rinha?sslmode=disable
+db-1            | initdb: warning: enabling "trust" authentication for local connections
+db-1            | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1            | syncing data to disk ... ok
+db-1            | 
+db-1            | 
+db-1            | Success. You can now start the database server using:
+db-1            | 
+db-1            |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1            | 
+db-1            | waiting for server to start....2024-02-18 18:47:56.734 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1            | 2024-02-18 18:47:56.737 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1            | 2024-02-18 18:47:56.747 UTC [51] LOG:  database system was shut down at 2024-02-18 18:47:55 UTC
+db-1            | 2024-02-18 18:47:56.754 UTC [48] LOG:  database system is ready to accept connections
+nginx-1         | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1         | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+db-1            |  done
+db-1            | server started
+nginx-1         | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1         | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1         | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1         | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1         | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1         | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1         | /docker-entrypoint.sh: Configuration complete; ready for start up
+db-1            | CREATE DATABASE
+db-1            | 
+db-1            | 
+db-1            | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
+db-1            | CREATE TABLE
+db-1            | CREATE TABLE
+db-1            | ALTER TABLE
+db-1            | 
+db-1            | 
+db-1            | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/seeds.sql
+db-1            | INSERT 0 5
+db-1            | 
+db-1            | 
+db-1            | waiting for server to shut down....2024-02-18 18:47:56.988 UTC [48] LOG:  received fast shutdown request
+db-1            | 2024-02-18 18:47:56.992 UTC [48] LOG:  aborting any active transactions
+db-1            | 2024-02-18 18:47:56.993 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1            | 2024-02-18 18:47:56.995 UTC [49] LOG:  shutting down
+db-1            | 2024-02-18 18:47:56.998 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1            | 2024-02-18 18:47:57.460 UTC [49] LOG:  checkpoint complete: wrote 938 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.202 s, sync=0.236 s, total=0.465 s; sync files=307, longest=0.213 s, average=0.001 s; distance=4289 kB, estimate=4289 kB; lsn=0/191B1C8, redo lsn=0/191B1C8
+db-1            | 2024-02-18 18:47:57.466 UTC [48] LOG:  database system is shut down
+db-1            |  done
+db-1            | server stopped
+db-1            | 
+db-1            | PostgreSQL init process complete; ready for start up.
+db-1            | 
+db-1            | 2024-02-18 18:47:57.512 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1            | 2024-02-18 18:47:57.512 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1            | 2024-02-18 18:47:57.512 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1            | 2024-02-18 18:47:57.517 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1            | 2024-02-18 18:47:57.524 UTC [68] LOG:  database system was shut down at 2024-02-18 18:47:57 UTC
+db-1            | 2024-02-18 18:47:57.530 UTC [1] LOG:  database system is ready to accept connections
+rinha-server-1  | 
+rinha-server-1  |    ____    __
+rinha-server-1  |   / __/___/ /  ___
+rinha-server-1  |  / _// __/ _ \/ _ \
+rinha-server-1  | /___/\__/_//_/\___/ v4.11.4
+rinha-server-1  | High performance, minimalist Go web framework
+rinha-server-1  | https://echo.labstack.com
+rinha-server-1  | ____________________________________O/_______
+rinha-server-1  |                                     O\
+rinha-server-1  | ⇨ http server started on [::]:8080
+rinha-server-2  | 
+rinha-server-2  |    ____    __
+rinha-server-2  |   / __/___/ /  ___
+rinha-server-2  |  / _// __/ _ \/ _ \
+rinha-server-2  | /___/\__/_//_/\___/ v4.11.4
+rinha-server-2  | High performance, minimalist Go web framework
+rinha-server-2  | https://echo.labstack.com
+rinha-server-2  | ____________________________________O/_______
+rinha-server-2  |                                     O\
+rinha-server-2  | ⇨ http server started on [::]:8080
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:47:59 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 110 "-" "curl/7.81.0"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:47:59 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 110 "-" "curl/7.81.0"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:04 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:04 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:04 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:04 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:04 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:05 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1030 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:06 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:07 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1029 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:08.698159196Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"GET","uri":"/clientes/6/extrato","user_agent":"Agente do Caos - 2024/Q1","status":404,"error":"code=404, message=customer not found","latency":1101962,"latency_human":"1.101962ms","bytes_in":0,"bytes_out":33}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "GET /clientes/6/extrato HTTP/1.1" 404 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 109 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 110 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 111 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1029 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 112 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 286 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 287 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 284 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1022 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:08.729543327Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/3/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":112334,"latency_human":"112.334µs","bytes_in":51,"bytes_out":35}
+rinha-server-1  | {"time":"2024-02-18T18:48:08.729493502Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/2/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":132415,"latency_human":"132.415µs","bytes_in":51,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:08.731240541Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/2/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":64467,"latency_human":"64.467µs","bytes_in":49,"bytes_out":35}
+rinha-server-1  | {"time":"2024-02-18T18:48:08.730280507Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/5/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":97762,"latency_human":"97.762µs","bytes_in":51,"bytes_out":35}
+rinha-server-1  | {"time":"2024-02-18T18:48:08.731944919Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/1/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":75558,"latency_human":"75.558µs","bytes_in":51,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:08.732557585Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/3/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":58678,"latency_human":"58.678µs","bytes_in":49,"bytes_out":35}
+rinha-server-2  | {"time":"2024-02-18T18:48:08.733146623Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/2/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":61011,"latency_human":"61.011µs","bytes_in":67,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+rinha-server-1  | {"time":"2024-02-18T18:48:08.734255612Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/1/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":63723,"latency_human":"63.723µs","bytes_in":49,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+rinha-server-1  | {"time":"2024-02-18T18:48:08.735461678Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/3/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":93840,"latency_human":"93.84µs","bytes_in":67,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:08.735597433Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/2/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":56268,"latency_human":"56.268µs","bytes_in":42,"bytes_out":35}
+rinha-server-2  | {"time":"2024-02-18T18:48:08.735893645Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/5/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":54310,"latency_human":"54.31µs","bytes_in":49,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+rinha-server-1  | {"time":"2024-02-18T18:48:08.737475331Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/5/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":65861,"latency_human":"65.861µs","bytes_in":67,"bytes_out":35}
+rinha-server-1  | {"time":"2024-02-18T18:48:08.737618547Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/2/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":58118,"latency_human":"58.118µs","bytes_in":44,"bytes_out":35}
+rinha-server-2  | {"time":"2024-02-18T18:48:08.737992957Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/3/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":56529,"latency_human":"56.529µs","bytes_in":42,"bytes_out":35}
+rinha-server-1  | {"time":"2024-02-18T18:48:08.737767176Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/1/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":54284,"latency_human":"54.284µs","bytes_in":67,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 287 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:08.739410046Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/3/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":60350,"latency_human":"60.35µs","bytes_in":44,"bytes_out":35}
+rinha-server-1  | {"time":"2024-02-18T18:48:08.739985987Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/1/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":75065,"latency_human":"75.065µs","bytes_in":42,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:08.740992669Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/4/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":60113,"latency_human":"60.113µs","bytes_in":51,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:08.741913841Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/1/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":82698,"latency_human":"82.698µs","bytes_in":44,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+rinha-server-1  | {"time":"2024-02-18T18:48:08.741745482Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/5/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":75980,"latency_human":"75.98µs","bytes_in":42,"bytes_out":35}
+rinha-server-1  | {"time":"2024-02-18T18:48:08.742393154Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/4/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":76938,"latency_human":"76.938µs","bytes_in":49,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:08.743381378Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/5/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":58994,"latency_human":"58.994µs","bytes_in":44,"bytes_out":35}
+rinha-server-1  | {"time":"2024-02-18T18:48:08.744189198Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/4/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":74096,"latency_human":"74.096µs","bytes_in":67,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:08.745286188Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/4/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":43695,"latency_human":"43.695µs","bytes_in":42,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+rinha-server-1  | {"time":"2024-02-18T18:48:08.746364316Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/4/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=Unprocessable Entity","latency":43161,"latency_human":"43.161µs","bytes_in":44,"bytes_out":35}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:08 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:09 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 288 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:09 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:09 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:10 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 288 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:10 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:10 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:10 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:11 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:11 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:11 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:11 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 672 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:11 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:11 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:11 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:12 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:12 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:12 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:12 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:12 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:12 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:12 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 766 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:12 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:12 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:12 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:12 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:12 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:13 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:13 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:13 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:13 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:13 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:13 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:13 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 770 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:13 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:13 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:13 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:13 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:13 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1050 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:14 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 1071 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1059 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:15 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 1074 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:16 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 1072 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 1067 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:17 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 1070 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 1067 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:18 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 1072 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:19 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1074 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 1072 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:20 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 1074 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 1074 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:21.737952393Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/2/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=error creating customer transaction: transaction results in negative balance","latency":871649,"latency_human":"871.649µs","bytes_in":55,"bytes_out":91}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 91 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+rinha-server-1  | {"time":"2024-02-18T18:48:21.863566949Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/2/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=error creating customer transaction: transaction results in negative balance","latency":741809,"latency_human":"741.809µs","bytes_in":55,"bytes_out":91}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 91 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:22 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:22 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:22 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:22.113681911Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/2/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=error creating customer transaction: transaction results in negative balance","latency":743463,"latency_human":"743.463µs","bytes_in":55,"bytes_out":91}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:22 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 91 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:22 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:22 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:22 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1073 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:22 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 91 "-" "Agente do Caos - 2024/Q1"
+rinha-server-2  | {"time":"2024-02-18T18:48:22.197637943Z","id":"","remote_ip":"172.30.0.5","host":"rinha-server:8080","method":"POST","uri":"/clientes/2/transacoes","user_agent":"Agente do Caos - 2024/Q1","status":422,"error":"code=422, message=error creating customer transaction: transaction results in negative balance","latency":888957,"latency_human":"888.957µs","bytes_in":55,"bytes_out":91}
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:22 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:22 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:22 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1         | 172.30.0.1 - - [18/Feb/2024:18:48:22 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"

@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 18:41:18 UTC 2024** com **228** submissões.
+Atualizada **Sun Feb 18 18:52:37 UTC 2024** com **228** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -94,7 +94,7 @@ Atualizada **Sun Feb 18 18:41:18 UTC 2024** com **228** submissões.
 | [gasparbarancelli](./participantes/gasparbarancelli) | ok | 2 |
 | [gavageovanni](./participantes/gavageovanni) | ok | 2 |
 | [gbfonseca](./participantes/gbfonseca) | ok | 2 |
-| [gcrispino](./participantes/gcrispino) | falha - [logs](./participantes/gcrispino/docker-compose.logs) | -- |
+| [gcrispino](./participantes/gcrispino) | ok | 186 |
 | [geffersonFerraz-http2](./participantes/geffersonFerraz-http2) | ok | 2 |
 | [geffersonFerraz-http3](./participantes/geffersonFerraz-http3) | ok | 2 |
 | [geraldojrcg-elixir](./participantes/geraldojrcg-elixir) | falha - [logs](./participantes/geraldojrcg-elixir/docker-compose.logs) | -- |
