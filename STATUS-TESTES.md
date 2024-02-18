@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 23:40:28 UTC 2024** com **235** submissões.
+Atualizada **Sun Feb 18 23:48:36 UTC 2024** com **235** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -141,7 +141,7 @@ Atualizada **Sun Feb 18 23:40:28 UTC 2024** com **235** submissões.
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 1472 |
 | [kalelMartinho_fastapi](./participantes/kalelMartinho_fastapi) | ok | 3 |
 | [kauan-calasans](./participantes/kauan-calasans) | ok | 5 |
-| [kiro-tagama](./participantes/kiro-tagama) | ok | 2601 |
+| [kiro-tagama](./participantes/kiro-tagama) | falha - [logs](./participantes/kiro-tagama/docker-compose.logs) | -- |
 | [klimber](./participantes/klimber) | ok | 5 |
 | [krymancer](./participantes/krymancer) | falha - [logs](./participantes/krymancer/docker-compose.logs) | -- |
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
