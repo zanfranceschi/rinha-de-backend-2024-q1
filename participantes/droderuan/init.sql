@@ -1,38 +1,32 @@
 
-CREATE SCHEMA IF NOT EXISTS `rinha_backend` DEFAULT CHARACTER SET utf8 ;
-USE `rinha_backend` ;
+CREATE TABLE IF NOT EXISTS Cliente (
+  id SERIAL PRIMARY KEY,
+  limite INT NOT NULL,
+  saldo INT NOT NULL
+);
 
-CREATE TABLE IF NOT EXISTS `rinha_backend`.`Cliente` (
-  `id` INT(1) UNSIGNED NOT NULL,
-  `limite` INT(9) NOT NULL,
-  `saldo` INT(9) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS Transacao (
+  id SERIAL PRIMARY KEY,
+  idCliente INT REFERENCES Cliente(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  valor INT NOT NULL,
+  descricao VARCHAR(10) NOT NULL,
+  tipo CHAR(1) NOT NULL,
+  realizada_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-
-CREATE TABLE IF NOT EXISTS `rinha_backend`.`Transacao` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `idCliente` INT(1) UNSIGNED NOT NULL,
-  `valor` INT(9) NOT NULL,
-  `descricao` VARCHAR(10) NOT NULL,
-  `tipo` ENUM('c', 'd') NOT NULL,
-  `realizada_em` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`, `idCliente`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_Transacao_Cliente_idx` (`idCliente` ASC) VISIBLE,
-  CONSTRAINT `fk_Transacao_Cliente`
-    FOREIGN KEY (`idCliente`)
-    REFERENCES `rinha_backend`.`Cliente` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
-INSERT INTO `rinha_backend`.`Cliente` (id, limite, saldo)
+INSERT INTO Cliente (id, limite, saldo)
 VALUES
   (1, 100000, 0),
   (2, 80000, 0),
   (3, 1000000, 0),
   (4, 10000000, 0),
   (5, 500000, 0);
+
+CREATE OR REPLACE function atualizar_saldo_e_inserir_transacao(a integer, b integer, c integer, d text, e text)
+RETURNS SETOF Cliente AS $$
+BEGIN
+	RETURN QUERY UPDATE Cliente set saldo=saldo+b where id=a RETURNING *;
+	INSERT INTO Transacao (idCliente, valor, tipo, descricao, realizada_em)
+	VALUES (a, c, d, e, NOW());
+end
+$$ LANGUAGE plpgsql;
