@@ -197,7 +197,49 @@ class RinhaBackendCrebitosSimulation
         jmesPath("ultimas_transacoes[1].tipo").ofType[String].is("c"),
         jmesPath("ultimas_transacoes[1].valor").ofType[Int].is("1")
     )
-  )
+    )
+    .exec( // Testando uma possivel inconsistencia no extrato
+      http("validações")
+      .post("/clientes/#{id}/transacoes")
+          .header("content-type", "application/json")
+          .body(StringBody(s"""{"valor": 1, "tipo": "c", "descricao": "danada"}"""))
+          .check(
+            status.in(200),
+            jmesPath("saldo").saveAs("saldo"),
+            jmesPath("limite").saveAs("limite")
+          )
+          .resources(//depois do POST, faco 5 gets em paralelo
+            http("validações").get("/clientes/#{id}/extrato").check(
+              jmesPath("ultimas_transacoes[0].descricao").ofType[String].is("danada"),
+              jmesPath("ultimas_transacoes[0].tipo").ofType[String].is("c"),
+              jmesPath("ultimas_transacoes[0].valor").ofType[Int].is("1"),
+              jmesPath("saldo.limite").ofType[String].is("#{limite}"),
+              jmesPath("saldo.total").ofType[String].is("#{saldo}")
+            ),
+            http("validações").get("/clientes/#{id}/extrato").check(
+              jmesPath("ultimas_transacoes[0].descricao").ofType[String].is("danada"),
+              jmesPath("ultimas_transacoes[0].tipo").ofType[String].is("c"),
+              jmesPath("ultimas_transacoes[0].valor").ofType[Int].is("1"),
+              jmesPath("saldo.limite").ofType[String].is("#{limite}"),
+              jmesPath("saldo.total").ofType[String].is("#{saldo}")
+            ),
+            http("validações").get("/clientes/#{id}/extrato").check(
+              jmesPath("ultimas_transacoes[0].descricao").ofType[String].is("danada"),
+              jmesPath("ultimas_transacoes[0].tipo").ofType[String].is("c"),
+              jmesPath("ultimas_transacoes[0].valor").ofType[Int].is("1"),
+              jmesPath("saldo.limite").ofType[String].is("#{limite}"),
+              jmesPath("saldo.total").ofType[String].is("#{saldo}")
+            ),
+            http("validações").get("/clientes/#{id}/extrato").check(
+              jmesPath("ultimas_transacoes[0].descricao").ofType[String].is("danada"),
+              jmesPath("ultimas_transacoes[0].tipo").ofType[String].is("c"),
+              jmesPath("ultimas_transacoes[0].valor").ofType[Int].is("1"),
+              jmesPath("saldo.limite").ofType[String].is("#{limite}"),
+              jmesPath("saldo.total").ofType[String].is("#{saldo}")
+            )
+        )
+    )
+  
   .exec(
       http("validações")
       .post("/clientes/#{id}/transacoes")
