@@ -12,9 +12,7 @@ CREATE UNLOGGED TABLE transactions
     amount      INTEGER     NOT NULL,
     operation   CHAR(1)     NOT NULL,
     description VARCHAR(10) NOT NULL,
-    created_at  TIMESTAMP   NOT NULL DEFAULT NOW(),
-    CONSTRAINT fk_transactions_client_id
-        FOREIGN KEY (client_id) REFERENCES clients (id)
+    created_at  TIMESTAMP   NOT NULL DEFAULT NOW()
 );
 
 ALTER TABLE transactions SET (autovacuum_enabled = false);

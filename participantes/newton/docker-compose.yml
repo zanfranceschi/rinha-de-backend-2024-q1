@@ -1,0 +1,75 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: newtonpeixoto/rinha_backend_q1:latest
+    hostname: api01
+    environment:
+      PHX_HOST: api01
+      ERL_MAX_PORTS: 512
+      DATABASE_URL: postgres://postgres:password@db/rinha_backend
+      PORT: 4000
+      POOL_SIZE: 25
+      SECRET_KEY_BASE: h7EdRgV1JsTFlxJ9pC2Gyihln66em+VWx2EOFNnk9Yy3yCxYNsXyRGEjdLJPNuHO
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "200MB"
+
+  api02:
+    <<: *api 
+    hostname: api02
+    environment:
+      PHX_HOST: api01
+      ERL_MAX_PORTS: 512
+      DATABASE_URL: postgres://postgres:password@db/rinha_backend
+      PORT: 4000
+      POOL_SIZE: 25
+      SECRET_KEY_BASE: h7EdRgV1JsTFlxJ9pC2Gyihln66em+VWx2EOFNnk9Yy3yCxYNsXyRGEjdLJPNuHO
+ 
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "20MB"
+
+  db:
+    image: postgres:14.1-alpine
+    command: postgres -c config_file="/etc/database.conf"
+    hostname: db
+    environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=password
+        - POSTGRES_DB=rinha_backend
+    ports:
+        - '5432:5432'
+    volumes: 
+        - ./script.sql:/docker-entrypoint-initdb.d/init.sql
+        - ./database.conf:/etc/database.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "130MB"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d rinha_backend" ]
+      interval: 3s
+      timeout: 1s
+      retries: 10
+networks:
+  default:
+    driver: bridge
+    name: rinha-2024-q1

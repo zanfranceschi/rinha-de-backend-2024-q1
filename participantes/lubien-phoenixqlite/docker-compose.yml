@@ -1,0 +1,72 @@
+version: "3.5"
+
+services:
+  rinha1: &api
+    image: lubien/backend-fight-2024-q1:v0.0.2
+    hostname: rinha1
+    environment:
+      - DB_HOSTNAME=db
+      - PORT=3000
+      - SECRET_KEY_BASE=1FAGGKyEC9U+FODc+Jf3apLW+ntvEiT3uAxP4MTuAsZEgr4Z9GQ5X+60UeMXTQQl
+      - RELEASE_COOKIE=PGL67P4KHY62MQBXIOTTJ3OTHQB52LEHKW57WRXUH5ZQDWIS42CQ====
+      - DATABASE_PATH=/data/prod.db
+      - RINHA_APP_NAME=rinha1
+      - IP_V4_ADDRESS=192.0.1.11
+      - PRIMARY_REGION=primary
+      - MY_REGION=primary
+    ports:
+      - "3001:3000"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.85"
+          memory: "256MB"
+    networks:
+      erlcluster:
+        ipv4_address: 192.0.1.11
+
+  rinha2:
+    <<: *api
+    hostname: rinha2
+    environment:
+      - PORT=3000
+      - SECRET_KEY_BASE=1FAGGKyEC9U+FODc+Jf3apLW+ntvEiT3uAxP4MTuAsZEgr4Z9GQ5X+60UeMXTQQl
+      - RELEASE_COOKIE=PGL67P4KHY62MQBXIOTTJ3OTHQB52LEHKW57WRXUH5ZQDWIS42CQ====
+      - RINHA_APP_NAME=rinha2
+      - IP_V4_ADDRESS=192.0.1.12
+      - PRIMARY_REGION=primary
+      - MY_REGION=replica
+    ports:
+      - "3002:3000"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "147MB"
+    networks:
+      erlcluster:
+        ipv4_address: 192.0.1.12
+  
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - rinha1
+      - rinha2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "147MB"
+    networks:
+      erlcluster:
+
+networks:
+  erlcluster:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.0.1.0/24"

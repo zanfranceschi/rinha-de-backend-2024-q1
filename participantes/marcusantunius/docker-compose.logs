@@ -1,0 +1,110 @@
+ Container db  Creating
+ db Published ports are discarded when using host network mode 
+ Container db  Created
+ Container api2  Creating
+ Container api1  Creating
+ Container api2  Created
+ Container api1  Created
+ Container marcusantunius-nginx-1  Creating
+ Container marcusantunius-nginx-1  Created
+Attaching to api1, api2, db, nginx-1
+db       | The files belonging to this database system will be owned by user "postgres".
+db       | This user must also own the server process.
+db       | 
+db       | The database cluster will be initialized with locale "en_US.utf8".
+db       | The default database encoding has accordingly been set to "UTF8".
+db       | The default text search configuration will be set to "english".
+db       | 
+db       | Data page checksums are disabled.
+db       | 
+db       | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db       | creating subdirectories ... ok
+db       | selecting dynamic shared memory implementation ... posix
+db       | selecting default max_connections ... 100
+db       | selecting default shared_buffers ... 128MB
+db       | selecting default time zone ... Etc/UTC
+db       | creating configuration files ... ok
+db       | running bootstrap script ... ok
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db       | performing post-bootstrap initialization ... ok
+db       | initdb: warning: enabling "trust" authentication for local connections
+db       | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db       | syncing data to disk ... ok
+db       | 
+db       | 
+db       | Success. You can now start the database server using:
+db       | 
+db       |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db       | 
+db       | waiting for server to start....2024-02-17 23:52:51.642 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db       | 2024-02-17 23:52:51.642 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db       | 2024-02-17 23:52:51.643 UTC [51] LOG:  database system was shut down at 2024-02-17 23:52:49 UTC
+db       | 2024-02-17 23:52:51.646 UTC [48] LOG:  database system is ready to accept connections
+db       |  done
+db       | server started
+db       | CREATE DATABASE
+db       | 
+db       | 
+db       | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/migration.sql
+db       | SET
+db       | CREATE TABLE
+db       | INSERT 0 5
+db       | CREATE TABLE
+db       | CREATE INDEX
+db       | ALTER TABLE
+db       | ALTER TABLE
+db       | 
+db       | 
+db       | waiting for server to shut down...2024-02-17 23:52:51.924 UTC [48] LOG:  received fast shutdown request
+db       | .2024-02-17 23:52:51.924 UTC [48] LOG:  aborting any active transactions
+db       | 2024-02-17 23:52:51.926 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db       | 2024-02-17 23:52:51.926 UTC [49] LOG:  shutting down
+db       | 2024-02-17 23:52:51.926 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db       | 2024-02-17 23:52:51.932 UTC [49] LOG:  checkpoint complete: wrote 939 buffers (3.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4289 kB, estimate=4289 kB; lsn=0/191B1D0, redo lsn=0/191B1D0
+db       | 2024-02-17 23:52:51.936 UTC [48] LOG:  database system is shut down
+db       |  done
+db       | server stopped
+db       | 
+db       | PostgreSQL init process complete; ready for start up.
+db       | 
+db       | 2024-02-17 23:52:52.041 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db       | 2024-02-17 23:52:52.041 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db       | 2024-02-17 23:52:52.041 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db       | 2024-02-17 23:52:52.041 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db       | 2024-02-17 23:52:52.043 UTC [66] LOG:  database system was shut down at 2024-02-17 23:52:51 UTC
+db       | 2024-02-17 23:52:52.046 UTC [1] LOG:  database system is ready to accept connections
+nginx-1  | 2024/02/17 23:52:52 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://0.0.0.0:81/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/17 23:52:52 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://0.0.0.0:82/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/17 23:52:54 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/17 23:52:56 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/17 23:52:58 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/17 23:53:00 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/17 23:53:02 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db       | 2024-02-17 23:54:49.101 UTC [85] ERROR:  new row for relation "cliente" violates check constraint "cliente_check"
+db       | 2024-02-17 23:54:49.101 UTC [85] DETAIL:  Failing row contains (1, 100000, -100000).
+db       | 2024-02-17 23:54:49.101 UTC [85] STATEMENT:  UPDATE "cliente" SET "saldo" = "saldo" - $1 WHERE "cliente"."id" = $2
+db       | 2024-02-17 23:57:07.821 UTC [74] ERROR:  new row for relation "cliente" violates check constraint "cliente_check"
+db       | 2024-02-17 23:57:07.821 UTC [74] DETAIL:  Failing row contains (3, 1000000, -1000000).
+db       | 2024-02-17 23:57:07.821 UTC [74] STATEMENT:  UPDATE "cliente" SET "saldo" = "saldo" - $1 WHERE "cliente"."id" = $2
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api1 exited with code 0
+api1 exited with code 0
+api2 exited with code 0
+api2 exited with code 0
+db       | 2024-02-17 23:57:18.604 UTC [1] LOG:  received fast shutdown request
+db       | 2024-02-17 23:57:18.604 UTC [1] LOG:  aborting any active transactions
+db       | 2024-02-17 23:57:18.606 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db       | 2024-02-17 23:57:18.606 UTC [64] LOG:  shutting down
+db       | 2024-02-17 23:57:18.606 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db       | 2024-02-17 23:57:18.609 UTC [64] LOG:  checkpoint complete: wrote 686 buffers (2.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.001 s, total=0.004 s; sync files=0, longest=0.000 s, average=0.000 s; distance=2330 kB, estimate=2330 kB; lsn=0/1B61BE0, redo lsn=0/1B61BE0
+db       | 2024-02-17 23:57:18.613 UTC [1] LOG:  database system is shut down
+db exited with code 0

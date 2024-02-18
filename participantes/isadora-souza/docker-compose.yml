@@ -1,0 +1,88 @@
+version: '3.5'
+
+services:
+  api1:
+    image: isadoramsouza/api-rinha-backend-go-2024-q1:latest
+    hostname: api1
+    network_mode: "host"
+    environment:
+      - DB_HOST=localhost
+      - DB_USER=admin
+      - DB_PASSWORD=rinha
+      - DB_NAME=rinhabackenddb
+      - DB_PORT=5432
+      - PORT=8080
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    depends_on:
+      db:
+        condition: service_healthy
+    expose:
+      - "8080"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.37'
+          memory: '60MB'
+
+  api2:
+    image: isadoramsouza/api-rinha-backend-go-2024-q1:latest
+    hostname: api2
+    network_mode: "host"
+    environment:
+      - DB_HOST=localhost
+      - DB_USER=admin
+      - DB_PASSWORD=rinha
+      - DB_NAME=rinhabackenddb
+      - DB_PORT=5432
+      - PORT=8081
+    depends_on:
+      db:
+        condition: service_healthy
+    expose:
+    - "8081"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.37'
+          memory: '60MB'
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    network_mode: "host"
+    expose:
+      - "9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '30MB'
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinhabackenddb
+    network_mode: "host"
+    expose:
+      - "5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '0.56'
+          memory: '400MB'
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U admin -d rinhabackenddb'"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s

@@ -1,0 +1,76 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: daandrn/php:rinha
+    container_name: api01
+    hostname: api01
+    volumes:
+    #- ./ngphp.conf:/etc/nginx/conf.d/ngphp.conf
+    - ./index.php:/var/www/index.php
+    - ./php.ini:/usr/local/etc/php/conf.d/php.ini
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "150MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    container_name: api02
+    volumes:
+    #- ./ngphp.conf:/etc/nginx/conf.d/ngphp.conf
+    - ./index.php:/var/www/index.php
+    - ./php.ini:/usr/local/etc/php/conf.d/php.ini
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8081:8080"
+  
+  nginx:
+    image: nginx:1.25.3-alpine
+    container_name: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "30MB"
+
+  db:
+    image: postgres:16.1-alpine
+    hostname: rinha
+    container_name: db
+    environment:
+      - POSTGRES_PASSWORD=456
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.80"
+          memory: "220MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha

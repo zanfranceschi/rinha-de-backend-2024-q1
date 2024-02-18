@@ -1,0 +1,49 @@
+services:
+  api1: &api
+    image: avalonbits/rinha2024:latest
+    hostname: api1
+    container_name: rinhaapi1
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: '80MB'
+    networks:
+      - app-network
+    volumes:
+      - sqlitedb:/tmp
+
+  api2:
+    <<: *api
+    hostname: api2
+    container_name: rinhaapi2
+    volumes:
+      - sqlitedb:/tmp
+
+  envoy:
+    image: envoyproxy/envoy:v1.29-latest
+    container_name: rinhaproxy
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: '134MB'
+
+networks:
+  app-network:
+volumes:
+  sqlitedb:
+

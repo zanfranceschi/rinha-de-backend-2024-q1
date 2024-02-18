@@ -1,0 +1,67 @@
+version: "3.5"
+services:
+  api1: &api
+    image: geraldojrcg/rinha-backend-2024-q1-elixir
+    depends_on:
+      - database
+    hostname: api1
+    environment:
+      PHX_HOST: api1
+      ERL_MAX_PORTS: 512
+      DATABASE_URL: postgres://postgres:postgres@database/rinha_backend
+      PORT: 3000
+      POOL_SIZE: 20
+      SECRET_KEY_BASE: N1Bgi5I4wbP5J8I4V4UmE5VlkWSIH/8mBAGkiHeF+h1OkQGWnCulI71yKsFxi0MS
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "100MB"
+
+  api2:
+    <<: *api
+    hostname: api2
+    environment:
+      PHX_HOST: api2
+      ERL_MAX_PORTS: 512
+      DATABASE_URL: postgres://postgres:postgres@database/rinha_backend
+      PORT: 3000
+      POOL_SIZE: 20
+      SECRET_KEY_BASE: N1Bgi5I4wbP5J8I4V4UmE5VlkWSIH/8mBAGkiHeF+h1OkQGWnCulI71yKsFxi0MS
+
+  database:
+    image: postgres:latest
+    command: postgres -c config_file="/etc/postgresql.conf"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rinha_backend
+    ports:
+      - 5432:5432
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgresql.conf:/etc/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "300MB"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "50MB"

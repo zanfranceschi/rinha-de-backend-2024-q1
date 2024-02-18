@@ -1,0 +1,58 @@
+services:
+
+  api1:
+    container_name: api1
+    image: gasparbarancelli/rinha-backend-2024-h2:latest
+    network_mode: host
+    environment:
+      - QUARKUS_HTTP_PORT=8081
+      - DATABASE_INSERT=true
+      - DATABASE_GENERATION=create
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "90MB"
+
+  api2:
+    container_name: api2
+    image: gasparbarancelli/rinha-backend-2024-h2:latest
+    network_mode: host
+    environment:
+      - QUARKUS_HTTP_PORT=8082
+      - DATABASE_GENERATION=none
+    depends_on:
+      - api1
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "90MB"
+
+  envoy:
+    container_name: envoy
+    image: envoyproxy/envoy:v1.29.1
+    network_mode: host
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+    depends_on:
+      - api1
+      - api2
+    command: ["envoy", "-c", "/etc/envoy/envoy.yaml"]
+
+  db:
+    container_name: db
+    image: gasparbarancelli/rinha-backend-database:latest
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "270MB"

@@ -1,0 +1,76 @@
+version: '3.7'
+
+networks:
+  dbnetwork:
+
+services:
+  db:
+    image: postgres:16
+    restart: always
+    networks:
+      - dbnetwork
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rinhabackend
+    volumes:
+      - ./config/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./config/script.sql:/docker-entrypoint-initdb.d/script.sql
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "200MB"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 15s
+      timeout: 25s
+
+  application1: &application1
+    image: patrickchagas/rinha-backend-2024:latest
+    container_name: application1
+    networks:
+      - dbnetwork
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - env=production
+      - PORT=:8000
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/rinhabackend?sslmode=disable&pool_min_conns=0&pool_max_conns=15
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "150MB"
+  
+  application2:
+    <<: *application1
+    container_name: application2
+    environment:
+      - env=production
+      - PORT=:8000
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/rinhabackend?sslmode=disable&pool_min_conns=0&pool_max_conns=15
+  
+  nginx:
+    image: nginx
+    hostname: api
+    networks:
+      - dbnetwork
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - application1
+      - application2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+

@@ -1,0 +1,83 @@
+version: "3.5"
+
+services:
+  api01: &api01
+    image: avinho/rinhabackend:latest
+    hostname: api01
+    environment:
+      - DB_HOSTNAME=db
+      - PORT=3000
+    ports:
+      - "3001:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "80MB"
+    networks:
+      - rinha-network
+
+  api02:
+    <<: *api01
+    hostname: api02
+    ports:
+      - "3002:8080"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "70MB"
+    networks:
+      - rinha-network
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./import.sql:/docker-entrypoint-initdb.d/import.sql
+    command: postgres -c 'max_connections=500' -c 'full_page_writes=off' -c 'fsync=off' -c 'synchronous_commit=off' -c 'effective_io_concurrency=4' -c 'shared_buffers=230MB' -c 'checkpoint_timeout=1d' -c 'checkpoint_completion_target=0.9' -c 'wal_buffers=16MB' -c 'log_min_messages=panic' -c 'log_min_error_statement=panic'
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "320MB"
+    networks:
+      - rinha-network
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready",
+          "-q",
+          "-d",
+          "rinha",
+          "-U",
+          "admin"
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+networks:
+  rinha-network:
+    driver: bridge
