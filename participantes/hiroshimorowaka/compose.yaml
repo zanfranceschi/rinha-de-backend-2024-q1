@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   api01: &app
-    image: hiroshimorowaka/rinha-backend-2024:latest
+    image: hiroshimorowaka/rinha-backend-2024:nodejs
     # build: .
     hostname: api01
     network_mode: host
@@ -36,8 +36,6 @@ services:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=rinha
-    ports:
-      - 5432:5432
     deploy:
       resources:
         limits:
@@ -52,8 +50,6 @@ services:
     depends_on:
       - api01
       - api02
-    ports:
-      - 9999:9999
     deploy:
       resources:
         limits:
