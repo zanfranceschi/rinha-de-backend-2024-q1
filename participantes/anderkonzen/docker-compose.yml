@@ -1,0 +1,71 @@
+version: "3.8"
+
+services:
+  api01: &api
+    image: anderkonzen/crebito:latest
+    hostname: api01
+    environment:
+      - DATABASE_URL=ecto://postgres:postgres@db/crebito_prod
+      - SECRET_KEY_BASE=JPJ+Us105BpDWDJGyR2W/MVIE37wpuyjYwRUPvOmZwFm48H9clVM0/WrnsHBJ+m/
+      - DB_HOSTNAME=db
+      - POOL_SIZE=15
+      - DISABLE_LOG=true
+    ports:
+      - "8081:4000"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+  api02:
+    <<: *api 
+    hostname: api02
+    ports:
+      - "8082:4000"
+ 
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "10MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=crebito_prod
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.13"
+          memory: "140MB"
+
+# O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
+# A edição anterior se beneficiou do modo host pois o volume de requisições
+# era relativamente alto e a virtualização da rede se tornou um gargalo, mas
+# este modo é mais complexo de ser configurado. Fique à vontade para usar o
+# modo que quiser desde que não conflite com portas trivialmente usadas em um
+# SO.
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
+
