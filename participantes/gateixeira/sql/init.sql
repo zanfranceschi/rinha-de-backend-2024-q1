@@ -15,13 +15,12 @@ CREATE TABLE transaction (
     FOREIGN KEY (client_id) REFERENCES client(id)
 );
 
-DO $$
-BEGIN
-  INSERT INTO client (id, acc_limit)
-  VALUES
+CREATE INDEX IF NOT EXISTS idx_cliente_id ON transaction (client_id);
+
+INSERT INTO client (id, acc_limit)
+VALUES
     (1, 1000 * 100),
     (2, 800 * 100),
     (3, 10000 * 100),
     (4, 100000 * 100),
     (5, 5000 * 100);
-END; $$
