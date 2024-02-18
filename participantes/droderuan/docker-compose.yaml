@@ -1,25 +1,27 @@
 services:
   db:
-    image: mysql:8.3.0
+    image: postgres:16
     restart: always
     environment:
-      MYSQL_DATABASE: "rinha_backend"
-      MYSQL_USER: "rinha"
-      MYSQL_PASSWORD: "backend"
-      MYSQL_ROOT_PASSWORD: "backend"
+      POSTGRES_DB: "rinha_backend"
+      POSTGRES_USER: "rinha"
+      POSTGRES_PASSWORD: "backend"
     healthcheck:
-      test: mysql -h db -u rinha -pbackend rinha_backend -e "SELECT count(*) FROM rinha_backend.Cliente;"
+      test: PGPASSWORD=backend psql -h db -U rinha rinha_backend -c  "SELECT count(*) FROM Cliente;"
       interval: 5s
       timeout: 5s
       retries: 10
       start_period: 10s
     ports:
-      - "3306:3306"
+      - "5432:5432"
     expose:
-      - "3306"
+      - "5432"
     deploy:
       resources:
         limits:
+          cpus: "0.4"
+          memory: "300mb"
+        reservations:
           cpus: "0.4"
           memory: "300mb"
     volumes:
@@ -27,6 +29,7 @@ services:
 
   api01: &api
     image: droderuan/node-rinha-backend-2024
+    # pull_policy: build
     hostname: api01
     restart: always
     command: npm run start:prod
@@ -41,6 +44,9 @@ services:
     deploy:
       resources:
         limits:
+          cpus: "0.5"
+          memory: "100mb"
+        reservations:
           cpus: "0.5"
           memory: "100mb"
   api02:
@@ -60,6 +66,9 @@ services:
     deploy:
       resources:
         limits:
+          cpus: "0.1"
+          memory: "50MB"
+        reservations:
           cpus: "0.1"
           memory: "50MB"
 
