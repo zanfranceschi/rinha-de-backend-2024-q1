@@ -1,12 +1,13 @@
 services:
   db:
-    image: mysql:latest
+    image: postgres:10.0
     hostname: db
     environment:
-      - MYSQL_DATABASE=banco
-      - MYSQL_ROOT_PASSWORD=123456
+      - POSTGRES_DB=banco
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123456
     ports:
-      - 3306:3306
+      - 5432:5432
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     deploy:
@@ -16,17 +17,22 @@ services:
           memory: "240MB"
     networks:
       - default
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h localhost -p 5432 -U admin -d banco"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
     
   api01: &api
     image: jordanacavalcante/api-rinha:latest
     hostname: api01
     environment:
-      - DB_HOSTNAME=db
-      - PORT=3306
+      - DATABASE_URI=postgresql+psycopg2://admin:123456@db/banco
     ports:
       - 5000:5000
     depends_on:
-      - db
+      db: 
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -39,12 +45,12 @@ services:
     <<: *api
     hostname: api02
     environment:
-      - DB_HOSTNAME=db
-      - PORT=3306
+      - DATABASE_URI=postgresql+psycopg2://admin:123456@db/banco
     ports:
       - 5001:5000
     depends_on:
-      - db
+      db: 
+        condition: service_healthy
     networks:
       - default
 

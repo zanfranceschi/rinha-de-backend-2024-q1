@@ -4,11 +4,12 @@ services:
   api01: &api
     # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
     # publicamente acessível! Ex.: hub.docker.com
-    image: vkobinski/rinha:latest
+    image: vkobinski/rinha
     hostname: api01
     environment:
       - DB_HOSTNAME=rinha
       - DATABASE_URL=postgres://rinha:rinha@db/rinha
+      - PROD_PORT=8080
 
     # Não é necessário expor qualquer porta além da porta do load balancer,
     # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
@@ -30,6 +31,7 @@ services:
     environment:
       - DB_HOSTNAME=rinha
       - DATABASE_URL=postgres://rinha:rinha@db/rinha
+      - PROD_PORT=8080
     ports:
       - "8082:8080"
 
@@ -41,13 +43,12 @@ services:
       - api01
       - api02
     ports:
-        # Obrigatório expor/usar a porta 9999 no load balancer!
       - "9999:9999"
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "100MB"
+          cpus: "0.2"
+          memory: "50MB"
 
   db:
     image: postgres:latest
@@ -59,7 +60,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./db/script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgres.conf:/docker-entrypoint-initdb.d/postgres.conf
     deploy:
       resources:
         limits:
@@ -67,8 +69,8 @@ services:
           # aqui declarados é de 1.5 unidades de CPU e 550MB
           # de memória. A distribuição feita aqui é apenas
           # um exemplo – distribua como quiser.
-          cpus: "0.5"
-          memory: "350MB"
+          cpus: "0.8"
+          memory: "300MB"
 
 # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
 # A edição anterior se beneficiou do modo host pois o volume de requisições

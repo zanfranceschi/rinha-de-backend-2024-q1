@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  postgres:
+    hostname: postgres.rinha2024.local
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rinha2024
+    ports:
+      - "5432:5432"
+    networks:
+      - rinha2024
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "120MB"
+
+  instance_1:
+    hostname: instance_1.rinha2024.local
+    image: elioenaiferrari/rinha2024:elixir
+    ports:
+      - "4000:4000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - rinha2024
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+  instance_2:
+    hostname: instance_2.rinha2024.local
+    image: elioenaiferrari/rinha2024:elixir
+    ports:
+      - "4001:4000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      instance_1:
+        condition: service_started
+    networks:
+      - rinha2024
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+  nginx:
+    hostname: nginx.rinha2024.local
+    image: nginx:1.25-alpine
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - instance_1
+      - instance_2
+    networks:
+      - rinha2024
+    deploy:
+      resources:
+        limits:
+          cpus: "0.13"
+          memory: "20MB"
+
+networks:
+  rinha2024:
+    driver: bridge

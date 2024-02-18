@@ -1,0 +1,74 @@
+version: '3.9'
+name: 'rinhavb-giovannibassi'
+
+services:
+  api1: &api
+    image: giggio/rinhabackend-2401:240213_1745-vb
+    container_name: rinhaapi1
+    network_mode: host
+    environment: &env
+      ConnectionStrings__Rinha: Host=localhost;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=2000;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+      ASPNETCORE_URLS: http://*:9997
+    depends_on:
+      db:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '80MB'
+
+  api2:
+    <<: *api
+    container_name: rinhaapi2
+    environment:
+      <<: *env
+      ASPNETCORE_URLS: http://*:9998
+
+  envoy:
+    image: envoyproxy/envoy:v1.29-latest
+    container_name: rinhaproxy
+    network_mode: host
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '134MB'
+
+  db:
+    image: postgres:16.2
+    container_name: rinhadb
+    network_mode: host
+    command: 'postgres -c max_connections=300 -c shared_buffers=96MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=16MB'
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./sql/ddl.sql:/docker-entrypoint-initdb.d/01-ddl.sql:ro
+      - ./sql/criartransacao.sql:/docker-entrypoint-initdb.d/11-criartransacao.sql:ro
+      - ./sql/resetdb.sql:/docker-entrypoint-initdb.d/21-resetdb.sql:ro
+      - type: tmpfs
+        target: /var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '256MB'
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "rinha"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+      start_interval: 1s

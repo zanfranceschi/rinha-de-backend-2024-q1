@@ -1,3 +1,4 @@
+CREATE TYPE tipo_transacao AS ENUM ('c', 'd');
 
 CREATE TABLE IF NOT EXISTS clientes (
 	id SERIAL PRIMARY KEY,
@@ -5,20 +6,23 @@ CREATE TABLE IF NOT EXISTS clientes (
   saldo INTEGER NOT NULL
 );
 
-CREATE INDEX idx_clientes ON clientes USING HASH(id);
+CREATE INDEX idx_clientes ON clientes USING btree(id);
+CLUSTER clientes USING idx_clientes; 
 
 CREATE TABLE IF NOT EXISTS transacoes (
 	id SERIAL PRIMARY KEY,
 	cliente_id INTEGER NOT NULL,
 	valor INTEGER NOT NULL,
-	tipo CHAR(1) NOT NULL,
+	tipo tipo_transacao NOT NULL,
 	descricao VARCHAR(10) NOT NULL,
 	realizada_em TIMESTAMP NOT NULL DEFAULT NOW(),
 	CONSTRAINT fk_clientes_transacoes_id
 		FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+    ON DELETE CASCADE
 );
 
-CREATE INDEX idx_transacao ON transacoes (id DESC);
+CREATE INDEX idx_transacoes_cliente_id ON transacoes USING btree(cliente_id);
+CLUSTER transacoes USING idx_transacoes_cliente_id;
 
 DO $$
 BEGIN
@@ -53,7 +57,8 @@ BEGIN
     FROM
         clientes c
     WHERE
-        c.id = _cliente_id;
+        c.id = _cliente_id
+    LIMIT 1;
 
     SELECT
         CASE
@@ -90,10 +95,11 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+
 CREATE OR REPLACE FUNCTION transacao(
     _cliente_id INTEGER,
     _valor INTEGER,
-    _tipo CHAR,
+    _tipo tipo_transacao,
     _descricao VARCHAR(10),
     OUT codigo_erro SMALLINT,
     OUT resultado JSON
@@ -104,13 +110,16 @@ DECLARE
     _limite INTEGER;
     _saldo INTEGER;
 BEGIN
+  BEGIN
     SELECT limite, saldo INTO _limite, _saldo
     FROM clientes
-    WHERE id = _cliente_id;
+    WHERE id = _cliente_id
+    FOR UPDATE;
 
     IF NOT FOUND THEN
         codigo_erro := 1;
         resultado := NULL;
+        RETURN;
     ELSE
         IF _tipo = 'c' THEN
             UPDATE clientes 
@@ -119,6 +128,7 @@ BEGIN
             RETURNING json_build_object('limite', limite, 'saldo', saldo) INTO resultado;
             INSERT INTO transacoes(cliente_id, valor, tipo, descricao)
             VALUES (_cliente_id, _valor, _tipo, _descricao);
+            RETURN;
         ELSEIF _tipo = 'd' AND _saldo - _valor >= -_limite THEN
             UPDATE clientes
             SET saldo = _saldo - _valor
@@ -126,11 +136,14 @@ BEGIN
             RETURNING json_build_object('limite', limite, 'saldo', saldo) INTO resultado;
             INSERT INTO transacoes(cliente_id, valor, tipo, descricao)
             VALUES (_cliente_id, _valor, _tipo, _descricao);
+            RETURN;
         ELSE
             codigo_erro := 2;
             resultado := NULL;
+            RETURN;
         END IF;
     END IF;
+  END;
 END;
 $$
 LANGUAGE plpgsql;

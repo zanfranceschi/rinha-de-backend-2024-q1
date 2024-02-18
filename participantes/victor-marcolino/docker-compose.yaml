@@ -1,0 +1,67 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: vorkurk/rinha-backend-2024:v3-75th-3
+    hostname: api01
+    environment:
+      - DB_HOSTNAME=db
+      - DB_PASSWORD=123
+      - DB_USER=admin
+      - DB_NAME=rinha
+      - DB_PORT=5432
+      - CACHE_ADDRESS=mencached:11211
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "100MB"
+  api02:
+    <<: *api
+    hostname: api02
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "100MB"
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "100MB"
+  mencached:
+    image: memcached:latest
+    hostname: memcached
+    ports:
+      - "11211:11211"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "100MB"
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
+volumes:
+  lock-volume:
