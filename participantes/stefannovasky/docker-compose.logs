@@ -4,8 +4,8 @@
  Container stefannovasky-postgres-db-1  Created
  Container rinha-api-2  Creating
  Container rinha-api-1  Creating
- Container rinha-api-2  Created
  Container rinha-api-1  Created
+ Container rinha-api-2  Created
  Container stefannovasky-nginx-1  Creating
  Container stefannovasky-nginx-1  Created
 Attaching to rinha-api-1, rinha-api-2, nginx-1, postgres-db-1
@@ -27,6 +27,8 @@ postgres-db-1  | selecting default time zone ... Etc/UTC
 postgres-db-1  | creating configuration files ... ok
 postgres-db-1  | running bootstrap script ... ok
 postgres-db-1  | performing post-bootstrap initialization ... ok
+postgres-db-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres-db-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 postgres-db-1  | syncing data to disk ... ok
 postgres-db-1  | 
 postgres-db-1  | 
@@ -34,12 +36,10 @@ postgres-db-1  | Success. You can now start the database server using:
 postgres-db-1  | 
 postgres-db-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 postgres-db-1  | 
-postgres-db-1  | initdb: warning: enabling "trust" authentication for local connections
-postgres-db-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-postgres-db-1  | waiting for server to start....2024-02-16 14:37:48.236 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres-db-1  | 2024-02-16 14:37:48.239 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres-db-1  | 2024-02-16 14:37:48.248 UTC [51] LOG:  database system was shut down at 2024-02-16 14:37:46 UTC
-postgres-db-1  | 2024-02-16 14:37:48.259 UTC [48] LOG:  database system is ready to accept connections
+postgres-db-1  | waiting for server to start....2024-02-17 23:57:33.041 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres-db-1  | 2024-02-17 23:57:33.044 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-db-1  | 2024-02-17 23:57:33.054 UTC [51] LOG:  database system was shut down at 2024-02-17 23:57:31 UTC
+postgres-db-1  | 2024-02-17 23:57:33.069 UTC [48] LOG:  database system is ready to accept connections
 postgres-db-1  |  done
 postgres-db-1  | server started
 postgres-db-1  | CREATE DATABASE
@@ -49,40 +49,29 @@ postgres-db-1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint
 postgres-db-1  | CREATE TABLE
 postgres-db-1  | CREATE TABLE
 postgres-db-1  | CREATE INDEX
-postgres-db-1  | CREATE TYPE
 postgres-db-1  | CREATE FUNCTION
 postgres-db-1  | CREATE FUNCTION
 postgres-db-1  | INSERT 0 5
 postgres-db-1  | 
 postgres-db-1  | 
-postgres-db-1  | waiting for server to shut down...2024-02-16 14:37:48.494 UTC [48] LOG:  received fast shutdown request
-postgres-db-1  | .2024-02-16 14:37:48.497 UTC [48] LOG:  aborting any active transactions
-postgres-db-1  | 2024-02-16 14:37:48.499 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-postgres-db-1  | 2024-02-16 14:37:48.515 UTC [49] LOG:  shutting down
-postgres-db-1  | 2024-02-16 14:37:48.518 UTC [49] LOG:  checkpoint starting: shutdown immediate
-postgres-db-1  | 2024-02-16 14:37:49.038 UTC [49] LOG:  checkpoint complete: wrote 941 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.304 s, sync=0.208 s, total=0.524 s; sync files=315, longest=0.172 s, average=0.001 s; distance=4303 kB, estimate=4303 kB; lsn=0/191E8B0, redo lsn=0/191E8B0
-postgres-db-1  | 2024-02-16 14:37:49.044 UTC [48] LOG:  database system is shut down
+postgres-db-1  | waiting for server to shut down...2024-02-17 23:57:33.296 UTC [48] LOG:  received fast shutdown request
+postgres-db-1  | .2024-02-17 23:57:33.299 UTC [48] LOG:  aborting any active transactions
+postgres-db-1  | 2024-02-17 23:57:33.314 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres-db-1  | 2024-02-17 23:57:33.314 UTC [49] LOG:  shutting down
+postgres-db-1  | 2024-02-17 23:57:33.321 UTC [49] LOG:  checkpoint starting: shutdown immediate
+postgres-db-1  | 2024-02-17 23:57:33.846 UTC [49] LOG:  checkpoint complete: wrote 941 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.394 s, sync=0.118 s, total=0.532 s; sync files=315, longest=0.063 s, average=0.001 s; distance=4300 kB, estimate=4300 kB; lsn=0/191DBA8, redo lsn=0/191DBA8
+postgres-db-1  | 2024-02-17 23:57:33.852 UTC [48] LOG:  database system is shut down
 postgres-db-1  |  done
 postgres-db-1  | server stopped
 postgres-db-1  | 
 postgres-db-1  | PostgreSQL init process complete; ready for start up.
 postgres-db-1  | 
-postgres-db-1  | 2024-02-16 14:37:49.124 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres-db-1  | 2024-02-16 14:37:49.124 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres-db-1  | 2024-02-16 14:37:49.124 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-postgres-db-1  | 2024-02-16 14:37:49.130 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres-db-1  | 2024-02-16 14:37:49.137 UTC [66] LOG:  database system was shut down at 2024-02-16 14:37:49 UTC
-postgres-db-1  | 2024-02-16 14:37:49.144 UTC [1] LOG:  database system is ready to accept connections
-rinha-api-2    | warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
-rinha-api-2    |       Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:8080'.
-rinha-api-2    | info: Microsoft.Hosting.Lifetime[14]
-rinha-api-2    |       Now listening on: http://[::]:8080
-rinha-api-2    | info: Microsoft.Hosting.Lifetime[0]
-rinha-api-2    |       Application started. Press Ctrl+C to shut down.
-rinha-api-2    | info: Microsoft.Hosting.Lifetime[0]
-rinha-api-2    |       Hosting environment: Production
-rinha-api-2    | info: Microsoft.Hosting.Lifetime[0]
-rinha-api-2    |       Content root path: /app
+postgres-db-1  | 2024-02-17 23:57:33.927 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres-db-1  | 2024-02-17 23:57:33.927 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-db-1  | 2024-02-17 23:57:33.927 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-db-1  | 2024-02-17 23:57:33.934 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-db-1  | 2024-02-17 23:57:33.942 UTC [66] LOG:  database system was shut down at 2024-02-17 23:57:33 UTC
+postgres-db-1  | 2024-02-17 23:57:33.949 UTC [1] LOG:  database system is ready to accept connections
 rinha-api-1    | warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
 rinha-api-1    |       Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:8080'.
 rinha-api-1    | info: Microsoft.Hosting.Lifetime[14]
@@ -93,6 +82,16 @@ rinha-api-1    | info: Microsoft.Hosting.Lifetime[0]
 rinha-api-1    |       Hosting environment: Production
 rinha-api-1    | info: Microsoft.Hosting.Lifetime[0]
 rinha-api-1    |       Content root path: /app
+rinha-api-2    | warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
+rinha-api-2    |       Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:8080'.
+rinha-api-2    | info: Microsoft.Hosting.Lifetime[14]
+rinha-api-2    |       Now listening on: http://[::]:8080
+rinha-api-2    | info: Microsoft.Hosting.Lifetime[0]
+rinha-api-2    |       Application started. Press Ctrl+C to shut down.
+rinha-api-2    | info: Microsoft.Hosting.Lifetime[0]
+rinha-api-2    |       Hosting environment: Production
+rinha-api-2    | info: Microsoft.Hosting.Lifetime[0]
+rinha-api-2    |       Content root path: /app
 nginx-1        | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1        | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1        | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -108,15 +107,15 @@ rinha-api-2    | info: Microsoft.Hosting.Lifetime[0]
 rinha-api-2    |       Application is shutting down...
 rinha-api-1    | info: Microsoft.Hosting.Lifetime[0]
 rinha-api-1    |       Application is shutting down...
-rinha-api-1 exited with code 0
-rinha-api-1 exited with code 0
 rinha-api-2 exited with code 0
 rinha-api-2 exited with code 0
-postgres-db-1  | 2024-02-16 14:42:08.408 UTC [1] LOG:  received fast shutdown request
-postgres-db-1  | 2024-02-16 14:42:08.414 UTC [1] LOG:  aborting any active transactions
-postgres-db-1  | 2024-02-16 14:42:08.415 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-postgres-db-1  | 2024-02-16 14:42:08.416 UTC [64] LOG:  shutting down
-postgres-db-1  | 2024-02-16 14:42:08.418 UTC [64] LOG:  checkpoint starting: shutdown immediate
-postgres-db-1  | 2024-02-16 14:42:08.594 UTC [64] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.024 s, sync=0.137 s, total=0.179 s; sync files=32, longest=0.082 s, average=0.005 s; distance=2651 kB, estimate=2651 kB; lsn=0/1BB57D0, redo lsn=0/1BB57D0
-postgres-db-1  | 2024-02-16 14:42:08.600 UTC [1] LOG:  database system is shut down
+rinha-api-1 exited with code 0
+rinha-api-1 exited with code 0
+postgres-db-1  | 2024-02-18 00:01:52.800 UTC [1] LOG:  received fast shutdown request
+postgres-db-1  | 2024-02-18 00:01:52.812 UTC [1] LOG:  aborting any active transactions
+postgres-db-1  | 2024-02-18 00:01:52.815 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+postgres-db-1  | 2024-02-18 00:01:52.815 UTC [64] LOG:  shutting down
+postgres-db-1  | 2024-02-18 00:01:52.818 UTC [64] LOG:  checkpoint starting: shutdown immediate
+postgres-db-1  | 2024-02-18 00:01:53.016 UTC [64] LOG:  checkpoint complete: wrote 936 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.018 s, sync=0.142 s, total=0.202 s; sync files=32, longest=0.135 s, average=0.005 s; distance=2651 kB, estimate=2651 kB; lsn=0/1BB47A8, redo lsn=0/1BB47A8
+postgres-db-1  | 2024-02-18 00:01:53.022 UTC [1] LOG:  database system is shut down
 postgres-db-1 exited with code 0
