@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 07:38:22 UTC 2024** com **218** submissões.
+Atualizada **Sun Feb 18 07:49:45 UTC 2024** com **219** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -155,6 +155,7 @@ Atualizada **Sun Feb 18 07:38:22 UTC 2024** com **218** submissões.
 | [lucasSSalgado](./participantes/lucasSSalgado) | ok | 4 |
 | [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | falha - [logs](./participantes/lucasew-go-tigerbeetle/docker-compose.logs) | -- |
 | [lucianovilela](./participantes/lucianovilela) | ok | 4 |
+| [luisescosta](./participantes/luisescosta) | ok | 2 |
 | [luizfrra](./participantes/luizfrra) | ok | 2 |
 | [m-lnrs](./participantes/m-lnrs) | ok | 3 |
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
