@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 18:29:54 UTC 2024** com **227** submissões.
+Atualizada **Sun Feb 18 18:41:18 UTC 2024** com **228** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -143,6 +143,7 @@ Atualizada **Sun Feb 18 18:29:54 UTC 2024** com **227** submissões.
 | [klimber](./participantes/klimber) | ok | 5 |
 | [krymancer](./participantes/krymancer) | falha - [logs](./participantes/krymancer/docker-compose.logs) | -- |
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
+| [lbaesso-php](./participantes/lbaesso-php) | ok | 2 |
 | [leandro-sousa](./participantes/leandro-sousa) | ok | 10002 |
 | [leonardovee](./participantes/leonardovee) | falha - [logs](./participantes/leonardovee/docker-compose.logs) | -- |
 | [leoralph](./participantes/leoralph) | ok | 2 |
