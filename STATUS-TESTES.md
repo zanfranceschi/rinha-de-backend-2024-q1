@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 03:29:30 UTC 2024** com **214** submissões.
+Atualizada **Sun Feb 18 03:45:50 UTC 2024** com **215** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -35,7 +35,7 @@ Atualizada **Sun Feb 18 03:29:30 UTC 2024** com **214** submissões.
 | [boaglio](./participantes/boaglio) | ok | 1 |
 | [breno5g](./participantes/breno5g) | ok | 4 |
 | [brilvio](./participantes/brilvio) | ok | 2 |
-| [brunolipe-a](./participantes/brunolipe-a) | falha - [logs](./participantes/brunolipe-a/docker-compose.logs) | -- |
+| [brunolipe-a](./participantes/brunolipe-a) | ok | 4 |
 | [buemura-nestjs](./participantes/buemura-nestjs) | ok | 4 |
 | [buemura](./participantes/buemura) | ok | 4 |
 | [bun-saulofelipe](./participantes/bun-saulofelipe) | ok | 2 |
@@ -165,6 +165,7 @@ Atualizada **Sun Feb 18 03:29:30 UTC 2024** com **214** submissões.
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 4 |
 | [mateusdeitos-node](./participantes/mateusdeitos-node) | ok | 2 |
+| [matheusfbosa](./participantes/matheusfbosa) | ok | 4 |
 | [matheuslao](./participantes/matheuslao) | ok | 4599 |
 | [matheusleal](./participantes/matheusleal) | ok | 3 |
 | [maxwell](./participantes/maxwell) | ok | 2 |
