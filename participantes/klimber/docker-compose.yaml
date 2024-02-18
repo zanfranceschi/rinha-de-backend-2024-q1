@@ -1,0 +1,79 @@
+version: "3.5"
+
+services:
+  backend01: &backend
+    image: klimberdev/rinha-2024q1-crebito
+    hostname: backend01
+    environment:
+      - PORT=8080
+      - POSTGRES_HOSTNAME=db
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "200MB"
+
+  backend02:
+    <<: *backend
+    hostname: backend02
+    environment:
+      - PORT=8081
+      - POSTGRES_HOSTNAME=db
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend01
+      - backend02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "15MB"
+
+  db:
+    image: postgres:15
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./01_init.sql:/docker-entrypoint-initdb.d/01_init.sql
+      - ./02_prefill.sql:/docker-entrypoint-initdb.d/02_prefill.sql
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -d rinha -U admin' ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 2s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "135MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-klimber-2024q1
