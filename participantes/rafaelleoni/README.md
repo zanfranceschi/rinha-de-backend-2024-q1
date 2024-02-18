@@ -15,4 +15,4 @@ Submissão feita com:
 
 ## Contatos
 [GitHub: @RafaelLeoni](https://github.com/RafaelLeoni) <br />
-[LinkedIn: @rafael-leal-leoni](linkedin.com/in/rafael-leal-leoni)
+[LinkedIn: @rafael-leal-leoni](https://linkedin.com/in/rafael-leal-leoni)
