@@ -10,7 +10,6 @@ services:
     environment:
       - DB_HOSTNAME=db
       - QUARKUS_BANNER_ENABLED=false
-#      - QUARKUS_HTTP_LIMITS_MAX_CONNECTIONS=60000
       - QUARKUS_HTTP_IDLE_TIMEOUT=45
       - QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://db:5400/rinha
       - QUARKUS_DATASOURCE_JDBC_INITIAL_SIZE=50
@@ -46,8 +45,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.40"
-          memory: "80MB"
+          cpus: "0.25"
+          memory: "90MB"
   api02:
     networks:
       - rinha-net
@@ -57,7 +56,6 @@ services:
     environment:
       - DB_HOSTNAME=db
       - QUARKUS_BANNER_ENABLED=false
-#      - QUARKUS_HTTP_LIMITS_MAX_CONNECTIONS=60000
       - QUARKUS_HTTP_IDLE_TIMEOUT=45
       - QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://db:5400/rinha
       - QUARKUS_DATASOURCE_JDBC_INITIAL_SIZE=50
@@ -95,8 +93,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.40"
-          memory: "80MB"
+          cpus: "0.25"
+          memory: "90MB"
 
 
   nginx:
@@ -125,7 +123,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.20"
+          cpus: "0.30"
           memory: "40MB"
     
   db:
@@ -149,8 +147,8 @@ services:
     deploy:
       resources: 
         limits:
-          cpus: "0.50"
-          memory: "350MB"
+          cpus: "0.70"
+          memory: "330MB"
     healthcheck:
       test: ["CMD", "pg_isready", "--username", "rinha", "--port", "5400"]
       interval: 5s

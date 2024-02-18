@@ -5,10 +5,12 @@ services:
     image: brunolipea/rinha-2024-q1-adonisjs
     env_file:
       - .env.production.local
-    # ports:
-    #   - "3001:3333"
+    ports:
+      - "3001:3333"
     depends_on:
       - db
+    networks:
+      - rinha-network
     deploy:
       resources:
         limits:
@@ -19,8 +21,8 @@ services:
     <<: *api
     hostname: api02
     command: node ./bin/server.js
-    # ports:
-    #   - "3002:3333"
+    ports:
+      - "3002:3333"
 
   nginx:
     image: nginx:latest
@@ -31,6 +33,8 @@ services:
       - api02
     ports:
       - "9999:9999"
+    networks:
+      - rinha-network
     deploy:
       resources:
         limits:
@@ -44,11 +48,16 @@ services:
       - POSTGRES_PASSWORD=docker
       - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
-    # ports:
-    #   - "5433:5432"
-    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c full_page_writes=0
+    ports:
+      - "5433:5432"
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c log_min_messages='panic' -c log_min_messages='panic' -c log_min_error_statement='panic' -c synchronous_commit=off
+    networks:
+      - rinha-network
     deploy:
       resources:
         limits:
           cpus: "0.45"
           memory: "140MB"
+
+networks:
+  rinha-network:
