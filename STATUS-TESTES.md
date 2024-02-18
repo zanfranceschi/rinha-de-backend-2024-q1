@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 02:34:17 UTC 2024** com **213** submissões.
+Atualizada **Sun Feb 18 02:50:33 UTC 2024** com **214** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -180,6 +180,7 @@ Atualizada **Sun Feb 18 02:34:17 UTC 2024** com **213** submissões.
 | [olukkas](./participantes/olukkas) | ok | 4 |
 | [omurilo](./participantes/omurilo) | ok | 2 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 2 |
+| [ptrecenti](./participantes/ptrecenti) | ok | 3 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 10 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
