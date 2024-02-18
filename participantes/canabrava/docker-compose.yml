@@ -5,9 +5,7 @@ services:
     image: leandronsp/canabrava
     container_name: api1
     depends_on:
-      postgres:
-        condition: service_healthy
-      pgbouncer:
+      - pgbouncer
     deploy:
       resources:
         limits:
@@ -55,7 +53,8 @@ services:
       - PGBOUNCER_RESERVE_POOL_SIZE=30
       - PGBOUNCER_DEFAULT_POOL_SIZE=30
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     deploy:
       resources:
         limits:
