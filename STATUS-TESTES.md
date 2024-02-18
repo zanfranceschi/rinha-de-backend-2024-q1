@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 06:23:52 UTC 2024** com **217** submissões.
+Atualizada **Sun Feb 18 06:35:09 UTC 2024** com **217** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -79,7 +79,7 @@ Atualizada **Sun Feb 18 06:23:52 UTC 2024** com **217** submissões.
 | [fabiokleis](./participantes/fabiokleis) | ok | 3 |
 | [fabionaspolini-sync](./participantes/fabionaspolini-sync) | ok | 2 |
 | [fabionaspolini](./participantes/fabionaspolini) | ok | 2 |
-| [felipe-alcantara-actor-model](./participantes/felipe-alcantara-actor-model) | ok | 1 |
+| [felipe-alcantara-actor-model](./participantes/felipe-alcantara-actor-model) | ok | 0 |
 | [felipebossolani-dotnet](./participantes/felipebossolani-dotnet) | ok | 2 |
 | [felipemarkson](./participantes/felipemarkson) | ok | 2 |
 | [fielcapao](./participantes/fielcapao) | falha - [logs](./participantes/fielcapao/docker-compose.logs) | -- |
