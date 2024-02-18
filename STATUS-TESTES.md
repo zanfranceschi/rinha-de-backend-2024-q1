@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 15:23:07 UTC 2024** com **220** submissões.
+Atualizada **Sun Feb 18 15:49:29 UTC 2024** com **221** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -45,7 +45,7 @@ Atualizada **Sun Feb 18 15:23:07 UTC 2024** com **220** submissões.
 | [caique](./participantes/caique) | ok | 4 |
 | [cairocampos98](./participantes/cairocampos98) | ok | 94 |
 | [canabrava](./participantes/canabrava) | ok | 1 |
-| [caravanacloud](./participantes/caravanacloud) | ok | 2 |
+| [caravanacloud](./participantes/caravanacloud) | ok | 1 |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 1 |
 | [cassiano-manuelzinho-golang](./participantes/cassiano-manuelzinho-golang) | ok | 2 |
 | [cesar-rodrigues](./participantes/cesar-rodrigues) | falha - [logs](./participantes/cesar-rodrigues/docker-compose.logs) | -- |
@@ -189,6 +189,7 @@ Atualizada **Sun Feb 18 15:23:07 UTC 2024** com **220** submissões.
 | [quokka](./participantes/quokka) | ok | 5 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 10 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
+| [rdenadai_bun_sqlite](./participantes/rdenadai_bun_sqlite) | ok | 2 |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
 | [rdenadai_rust](./participantes/rdenadai_rust) | ok | 4 |
 | [recoba](./participantes/recoba) | ok | 3 |
@@ -221,7 +222,7 @@ Atualizada **Sun Feb 18 15:23:07 UTC 2024** com **220** submissões.
 | [williammaia](./participantes/williammaia) | ok | 6 |
 | [williansugiyama](./participantes/williansugiyama) | ok | 1 |
 | [yMarceloMaia](./participantes/yMarceloMaia) | ok | 7 |
-| [yanpgabriel](./participantes/yanpgabriel) | ok | 5 |
+| [yanpgabriel](./participantes/yanpgabriel) | ok | 4 |
 | [yanpitangui](./participantes/yanpitangui) | ok | 2 |
 | [ygorcarmo](./participantes/ygorcarmo) | ok | 7 |
 | [zsantana](./participantes/zsantana) | ok | 2 |
