@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 04:50:48 UTC 2024** com **215** submissões.
+Atualizada **Sun Feb 18 05:12:24 UTC 2024** com **217** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -43,6 +43,7 @@ Atualizada **Sun Feb 18 04:50:48 UTC 2024** com **215** submissões.
 | [cadu](./participantes/cadu) | ok | 1 |
 | [caique](./participantes/caique) | ok | 4 |
 | [cairocampos98](./participantes/cairocampos98) | ok | 94 |
+| [canabrava](./participantes/canabrava) | ok | 1 |
 | [caravanacloud](./participantes/caravanacloud) | ok | 2 |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 1 |
 | [cassiano-manuelzinho-golang](./participantes/cassiano-manuelzinho-golang) | ok | 2 |
@@ -182,6 +183,7 @@ Atualizada **Sun Feb 18 04:50:48 UTC 2024** com **215** submissões.
 | [omurilo](./participantes/omurilo) | ok | 2 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 2 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 3 |
+| [quokka](./participantes/quokka) | ok | 5 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 10 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
