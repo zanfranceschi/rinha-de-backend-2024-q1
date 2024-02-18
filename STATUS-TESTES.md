@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 18 00:02:14 UTC 2024** com **211** submissões.
+Atualizada **Sun Feb 18 00:13:38 UTC 2024** com **211** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -183,7 +183,7 @@ Atualizada **Sun Feb 18 00:02:14 UTC 2024** com **211** submissões.
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
 | [rdenadai_rust](./participantes/rdenadai_rust) | ok | 4 |
 | [recoba](./participantes/recoba) | ok | 3 |
-| [reonardoleis](./participantes/reonardoleis) | falha - [logs](./participantes/reonardoleis/docker-compose.logs) | -- |
+| [reonardoleis](./participantes/reonardoleis) | ok | 1 |
 | [rhsobr-bun](./participantes/rhsobr-bun) | ok | 2 |
 | [rigottig](./participantes/rigottig) | ok | 6 |
 | [ritilopes](./participantes/ritilopes) | ok | 2 |
