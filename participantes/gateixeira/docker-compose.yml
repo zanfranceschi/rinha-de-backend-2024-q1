@@ -4,7 +4,7 @@ services:
   api01: &api
     # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
     # publicamente acessível! Ex.: hub.docker.com
-    image: rinha:latest
+    image: gateixeira/rdb24q1:latest
     hostname: api01
     environment:
       - DB_HOST=db
@@ -23,8 +23,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.2"
-          memory: "80MB"
+          cpus: "0.4"
+          memory: "115MB"
 
   api02:
     # Essa sintaxe reusa o que foi declarado em 'api01'.
@@ -46,8 +46,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.3"
-          memory: "60MB"
+          cpus: "0.2"
+          memory: "20MB"
 
   db:
     image: postgres:latest
@@ -69,8 +69,22 @@ services:
           # aqui declarados é de 1.5 unidades de CPU e 550MB
           # de memória. A distribuição feita aqui é apenas
           # um exemplo – distribua como quiser.
-          cpus: "1"
-          memory: "330MB"
+          cpus: "0.5"
+          memory: "300MB"
+#   pgadmin:
+#     image: dpage/pgadmin4
+#     container_name: pgadmin4_container
+#     restart: always
+#     ports:
+#       - "8888:80"
+#     environment:
+#       PGADMIN_DEFAULT_EMAIL: admin@admin.com
+#       PGADMIN_DEFAULT_PASSWORD: admin
+#     volumes:
+#       - pgadmin-data:/var/lib/pgadmin
+
+# volumes:
+#   pgadmin-data:
 
 # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
 # A edição anterior se beneficiou do modo host pois o volume de requisições

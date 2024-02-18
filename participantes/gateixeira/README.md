@@ -4,8 +4,8 @@
 
 Submissão feita com:
 - `nginx` como load balancer
-- `postgres` como banco de dados (sem fine tuning e com queries simples)
-- `golang` puro para api (com exceção do driver de postgres)
+- `postgres` como banco de dados (com queries simples)
+- `golang` standard lib (exceção pro driver do banco)
 - [repositório da api](https://github.com/gateixeira/rinha-golang)
 
 [@gateixeira](https://twitter.com/gateixeira) @ twitter
