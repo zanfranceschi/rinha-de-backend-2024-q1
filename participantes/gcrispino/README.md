@@ -18,4 +18,4 @@ Submissão feita com:
     - [`automaxprocs`](https://github.com/uber-go/automaxprocs) para configurar automaticamente a variável de ambiente [`GOMAXPROCS`](https://dave.cheney.net/tag/gomaxprocs).
 - [Repositório da api](https://github.com/GCrispino/rinha-2024).
 
-[@GCrispino](https://twitter.com/gcrispino) @ twitter
+[@gabcrispino](https://twitter.com/gabcrispino) @ twitter
