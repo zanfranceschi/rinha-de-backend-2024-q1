@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Feb 19 20:25:39 UTC 2024** com **255** submissões.
+Atualizada **Mon Feb 19 20:44:45 UTC 2024** com **258** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -177,6 +177,7 @@ Atualizada **Mon Feb 19 20:25:39 UTC 2024** com **255** submissões.
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 4 |
 | [lucasSSalgado](./participantes/lucasSSalgado) | ok | 4 |
 | [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | falha - [logs](./participantes/lucasew-go-tigerbeetle/docker-compose.logs) | -- |
+| [lucassperez-go-crebito](./participantes/lucassperez-go-crebito) | falha - [logs](./participantes/lucassperez-go-crebito/docker-compose.logs) | -- |
 | [lucaswilliameufrasio](./participantes/lucaswilliameufrasio) | ok | 4 |
 | [lucianovilela](./participantes/lucianovilela) | ok | 5 |
 | [luisescosta](./participantes/luisescosta) | ok | 2 |
@@ -200,6 +201,7 @@ Atualizada **Mon Feb 19 20:25:39 UTC 2024** com **255** submissões.
 | [matheuswilliam](./participantes/matheuswilliam) | ok | 2 |
 | [maxwell](./participantes/maxwell) | ok | 1 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
+| [mgenteluci](./participantes/mgenteluci) | ok | 4 |
 | [murilochianfa](./participantes/murilochianfa) | falha - [logs](./participantes/murilochianfa/docker-compose.logs) | -- |
 | [mvellasco](./participantes/mvellasco) | ok | 48 |
 | [my_way](./participantes/my_way) | ok | 2091 |
@@ -210,6 +212,7 @@ Atualizada **Mon Feb 19 20:25:39 UTC 2024** com **255** submissões.
 | [oliveiratheone-rust](./participantes/oliveiratheone-rust) | falha - [logs](./participantes/oliveiratheone-rust/docker-compose.logs) | -- |
 | [oloko64](./participantes/oloko64) | ok | 1 |
 | [olukkas](./participantes/olukkas) | ok | 4 |
+| [omurilo-perl](./participantes/omurilo-perl) | falha - [logs](./participantes/omurilo-perl/docker-compose.logs) | -- |
 | [omurilo](./participantes/omurilo) | ok | 2 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
