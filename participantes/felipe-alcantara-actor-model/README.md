@@ -4,7 +4,7 @@
 
 ### *Usando **menos recursos** do que o estipulado pela rinha!!
 
-Estamos utilizando apenas **230MB** de memória economizando **320MB** dos 550MB que poderíamos ter usado!
+Estamos utilizando apenas **300MB** de memória economizando **250MB** dos 550MB que poderíamos ter usado!
 
 ## Submissão feita com:
 ### - `Actor model` 
