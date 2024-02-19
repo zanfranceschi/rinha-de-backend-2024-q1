@@ -7,7 +7,7 @@ O Projeto contem:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `nodejs` para api 
-- [repositório da api](https://github.com/danilosoftwares/danilosoftwares-danilosoftwares-rinha-backend-nodejs-2024-q1)
+- [repositório da api](https://github.com/danilosoftwares/rinha-backend-nodejs-2024-q1)
 
 
 ### Redes
