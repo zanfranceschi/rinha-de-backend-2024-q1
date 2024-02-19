@@ -23,12 +23,11 @@ CREATE UNLOGGED TABLE transacoes (
     descricao varchar(10),
     datahora timestamp DEFAULT CURRENT_TIMESTAMP,
     ultimolimite int,
-    ultimosaldo int,
-    FOREIGN KEY (clienteid) REFERENCES clientes(id)
+    ultimosaldo int
 );
 
--- CREATE INDEX idx_transacoes_clienteid ON transacoes (clienteid);
-CREATE INDEX idx_transacoes_id_clienteid ON transacoes (id DESC, clienteid);
+CREATE INDEX idx_transacoes_id ON transacoes (id DESC);
+CREATE INDEX idx_transacoes_clienteid ON transacoes (clienteid);
 
 INSERT INTO clientes (id, nome, limite, saldo)
   VALUES
