@@ -4,8 +4,8 @@
  Container brunolipe-a-db-1  Created
  Container brunolipe-a-api02-1  Creating
  Container brunolipe-a-api01-1  Creating
- Container brunolipe-a-api01-1  Created
  Container brunolipe-a-api02-1  Created
+ Container brunolipe-a-api01-1  Created
  Container brunolipe-a-nginx-1  Creating
  Container brunolipe-a-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -57,24 +57,19 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1  | 2024/02/18 03:36:09 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.4:3333/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/18 03:36:09 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.3:3333/clientes/1/extrato", host: "localhost:9999"
-api02-1  | {"level":30,"time":1708227370118,"pid":1,"hostname":"api02","msg":"started HTTP server on 0.0.0.0:3333"}
+api02-1  | {"level":30,"time":1708308631821,"pid":1,"hostname":"api02","msg":"started HTTP server on 0.0.0.0:3333"}
+nginx-1  | 2024/02/19 02:10:32 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.3:3333/clientes/1/extrato", host: "localhost:9999"
 api01-1  | [ info ] Upgrading migrations version from "1" to "2"
 api01-1  | ❯ migrating database/migrations/1708099480576_create_clients_table
 api01-1  | [2K[1A[2K[G❯ migrated database/migrations/1708099480576_create_clients_table
 api01-1  | ❯ migrating database/migrations/1708099614559_create_transactions_table
+api02-1  | {"level":50,"time":1708308632252,"pid":1,"hostname":"api02","request_id":"ksi4jo5sqqm33se1zwaq26do","err":{"type":"DatabaseError","message":"select * from \"clients\" where \"id\" = $1 limit $2 - relation \"clients\" does not exist","stack":"error: select * from \"clients\" where \"id\" = $1 limit $2 - relation \"clients\" does not exist\n    at Parser.parseErrorMessage (/app/node_modules/pg-protocol/dist/parser.js:287:98)\n    at Parser.handlePacket (/app/node_modules/pg-protocol/dist/parser.js:126:29)\n    at Parser.parse (/app/node_modules/pg-protocol/dist/parser.js:39:38)\n    at Socket.<anonymous> (/app/node_modules/pg-protocol/dist/index.js:11:42)\n    at Socket.emit (node:events:518:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)\n    at Readable.push (node:internal/streams/readable:390:5)\n    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)","length":106,"name":"error","severity":"ERROR","code":"42P01","position":"15","file":"parse_relation.c","line":"1449","routine":"parserOpenTable","status":500},"x-request-id":"ksi4jo5sqqm33se1zwaq26do","msg":"select * from \"clients\" where \"id\" = $1 limit $2 - relation \"clients\" does not exist"}
 api01-1  | [2K[1A[2K[G❯ migrated database/migrations/1708099614559_create_transactions_table
 api01-1  | 
-api01-1  | Migrated in 319 ms
-nginx-1  | 2024/02/18 03:36:11 [error] 30#30: *4 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1  | Migrated in 258 ms
 api01-1  | ❯ completed database/seeders/client_seeder
-nginx-1  | 2024/02/18 03:36:13 [error] 30#30: *5 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | {"level":30,"time":1708227373916,"pid":1,"hostname":"610805e8d926","msg":"started HTTP server on 0.0.0.0:3333"}
-nginx-1  | 2024/02/18 03:36:15 [error] 30#30: *6 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/18 03:36:17 [error] 30#30: *7 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/18 03:36:19 [error] 30#30: *8 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | {"level":40,"time":1708227390915,"pid":1,"hostname":"610805e8d926","request_id":"y0ogk7hib3cuh9bkr1vfg5rc","x-request-id":"y0ogk7hib3cuh9bkr1vfg5rc","msg":"Row not found"}
+api01-1  | {"level":30,"time":1708308636019,"pid":1,"hostname":"366a8a6ecfc2","msg":"started HTTP server on 0.0.0.0:3333"}
+api02-1  | {"level":40,"time":1708308643357,"pid":1,"hostname":"api02","request_id":"oz2m78n360m8gvmnbamxopsu","x-request-id":"oz2m78n360m8gvmnbamxopsu","msg":"Row not found"}
 nginx-1 exited with code 0
 nginx-1 exited with code 0
 api01-1 exited with code 0
