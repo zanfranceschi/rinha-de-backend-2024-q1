@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Feb 19 14:28:18 UTC 2024** com **236** submissões.
+Atualizada **Mon Feb 19 18:16:59 UTC 2024** com **236** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -187,57 +187,57 @@ Atualizada **Mon Feb 19 14:28:18 UTC 2024** com **236** submissões.
 | [murilochianfa](./participantes/murilochianfa) | falha - [logs](./participantes/murilochianfa/docker-compose.logs) | -- |
 | [mvellasco](./participantes/mvellasco) | ok | 48 |
 | [my_way](./participantes/my_way) | ok | 2091 |
-| [newton](./participantes/newton) | ok | 4 |
-| [nicolasmmb](./participantes/nicolasmmb) | falha - [logs](./participantes/nicolasmmb/docker-compose.logs) | -- |
-| [nielsonrolim-ror](./participantes/nielsonrolim-ror) | falha - [logs](./participantes/nielsonrolim-ror/docker-compose.logs) | -- |
+| [newton](./participantes/newton) | ok | 3 |
+| [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
+| [nielsonrolim-ror](./participantes/nielsonrolim-ror) | ok | 1 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
 | [oliveiratheone-rust](./participantes/oliveiratheone-rust) | falha - [logs](./participantes/oliveiratheone-rust/docker-compose.logs) | -- |
-| [oloko64](./participantes/oloko64) | falha - [logs](./participantes/oloko64/docker-compose.logs) | -- |
-| [olukkas](./participantes/olukkas) | falha - [logs](./participantes/olukkas/docker-compose.logs) | -- |
-| [omurilo](./participantes/omurilo) | falha - [logs](./participantes/omurilo/docker-compose.logs) | -- |
-| [paulohenriqu](./participantes/paulohenriqu) | falha - [logs](./participantes/paulohenriqu/docker-compose.logs) | -- |
-| [picklesdog-go](./participantes/picklesdog-go) | falha - [logs](./participantes/picklesdog-go/docker-compose.logs) | -- |
-| [ptrecenti](./participantes/ptrecenti) | falha - [logs](./participantes/ptrecenti/docker-compose.logs) | -- |
-| [quokka](./participantes/quokka) | falha - [logs](./participantes/quokka/docker-compose.logs) | -- |
-| [rafaelleoni](./participantes/rafaelleoni) | falha - [logs](./participantes/rafaelleoni/docker-compose.logs) | -- |
-| [rafaelpadovezi](./participantes/rafaelpadovezi) | falha - [logs](./participantes/rafaelpadovezi/docker-compose.logs) | -- |
-| [ramondelemos](./participantes/ramondelemos) | falha - [logs](./participantes/ramondelemos/docker-compose.logs) | -- |
-| [rdenadai_bun_sqlite](./participantes/rdenadai_bun_sqlite) | falha - [logs](./participantes/rdenadai_bun_sqlite/docker-compose.logs) | -- |
-| [rdenadai_python](./participantes/rdenadai_python) | falha - [logs](./participantes/rdenadai_python/docker-compose.logs) | -- |
-| [rdenadai_rust](./participantes/rdenadai_rust) | falha - [logs](./participantes/rdenadai_rust/docker-compose.logs) | -- |
-| [recoba](./participantes/recoba) | falha - [logs](./participantes/recoba/docker-compose.logs) | -- |
-| [reonardoleis](./participantes/reonardoleis) | falha - [logs](./participantes/reonardoleis/docker-compose.logs) | -- |
-| [rhsobr-bun](./participantes/rhsobr-bun) | falha - [logs](./participantes/rhsobr-bun/docker-compose.logs) | -- |
-| [rigottig](./participantes/rigottig) | falha - [logs](./participantes/rigottig/docker-compose.logs) | -- |
-| [ritilopes](./participantes/ritilopes) | falha - [logs](./participantes/ritilopes/docker-compose.logs) | -- |
+| [oloko64](./participantes/oloko64) | ok | 1 |
+| [olukkas](./participantes/olukkas) | ok | 4 |
+| [omurilo](./participantes/omurilo) | ok | 2 |
+| [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
+| [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
+| [ptrecenti](./participantes/ptrecenti) | ok | 4 |
+| [quokka](./participantes/quokka) | ok | 5 |
+| [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
+| [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
+| [ramondelemos](./participantes/ramondelemos) | ok | 2 |
+| [rdenadai_bun_sqlite](./participantes/rdenadai_bun_sqlite) | ok | 2 |
+| [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
+| [rdenadai_rust](./participantes/rdenadai_rust) | ok | 5 |
+| [recoba](./participantes/recoba) | ok | 2 |
+| [reonardoleis](./participantes/reonardoleis) | ok | 1 |
+| [rhsobr-bun](./participantes/rhsobr-bun) | ok | 2 |
+| [rigottig](./participantes/rigottig) | ok | 6 |
+| [ritilopes](./participantes/ritilopes) | ok | 1 |
 | [rizzo-nodejs](./participantes/rizzo-nodejs) | falha - [logs](./participantes/rizzo-nodejs/docker-compose.logs) | -- |
-| [rodolphovs](./participantes/rodolphovs) | falha - [logs](./participantes/rodolphovs/docker-compose.logs) | -- |
-| [rodrigocaldeira-c](./participantes/rodrigocaldeira-c) | falha - [logs](./participantes/rodrigocaldeira-c/docker-compose.logs) | -- |
-| [rodrigocaldeira](./participantes/rodrigocaldeira) | falha - [logs](./participantes/rodrigocaldeira/docker-compose.logs) | -- |
-| [ronaldo_scardini](./participantes/ronaldo_scardini) | falha - [logs](./participantes/ronaldo_scardini/docker-compose.logs) | -- |
-| [rschio](./participantes/rschio) | falha - [logs](./participantes/rschio/docker-compose.logs) | -- |
+| [rodolphovs](./participantes/rodolphovs) | ok | 1 |
+| [rodrigocaldeira-c](./participantes/rodrigocaldeira-c) | ok | 13 |
+| [rodrigocaldeira](./participantes/rodrigocaldeira) | ok | 80 |
+| [ronaldo_scardini](./participantes/ronaldo_scardini) | ok | 2 |
+| [rschio](./participantes/rschio) | ok | 5 |
 | [ruhtar](./participantes/ruhtar) | falha - [logs](./participantes/ruhtar/docker-compose.logs) | -- |
-| [samluiz](./participantes/samluiz) | falha - [logs](./participantes/samluiz/docker-compose.logs) | -- |
-| [samueljansem](./participantes/samueljansem) | falha - [logs](./participantes/samueljansem/docker-compose.logs) | -- |
+| [samluiz](./participantes/samluiz) | ok | 2 |
+| [samueljansem](./participantes/samueljansem) | ok | 2 |
 | [stefannovasky](./participantes/stefannovasky) | falha - [logs](./participantes/stefannovasky/docker-compose.logs) | -- |
-| [taciossbr](./participantes/taciossbr) | falha - [logs](./participantes/taciossbr/docker-compose.logs) | -- |
-| [thiagosantana](./participantes/thiagosantana) | falha - [logs](./participantes/thiagosantana/docker-compose.logs) | -- |
-| [thicsilva](./participantes/thicsilva) | falha - [logs](./participantes/thicsilva/docker-compose.logs) | -- |
-| [thusspokebieu-activej](./participantes/thusspokebieu-activej) | falha - [logs](./participantes/thusspokebieu-activej/docker-compose.logs) | -- |
-| [vhogemann](./participantes/vhogemann) | falha - [logs](./participantes/vhogemann/docker-compose.logs) | -- |
-| [victor-macedo](./participantes/victor-macedo) | falha - [logs](./participantes/victor-macedo/docker-compose.logs) | -- |
-| [victor-marcolino](./participantes/victor-marcolino) | falha - [logs](./participantes/victor-marcolino/docker-compose.logs) | -- |
-| [victor99z](./participantes/victor99z) | falha - [logs](./participantes/victor99z/docker-compose.logs) | -- |
-| [victorverdoodt](./participantes/victorverdoodt) | falha - [logs](./participantes/victorverdoodt/docker-compose.logs) | -- |
-| [viniciusfcf](./participantes/viniciusfcf) | falha - [logs](./participantes/viniciusfcf/docker-compose.logs) | -- |
-| [vitorrt-nodejs](./participantes/vitorrt-nodejs) | falha - [logs](./participantes/vitorrt-nodejs/docker-compose.logs) | -- |
-| [vkobinski](./participantes/vkobinski) | falha - [logs](./participantes/vkobinski/docker-compose.logs) | -- |
+| [taciossbr](./participantes/taciossbr) | ok | 5 |
+| [thiagosantana](./participantes/thiagosantana) | ok | 56 |
+| [thicsilva](./participantes/thicsilva) | ok | 5 |
+| [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 2 |
+| [vhogemann](./participantes/vhogemann) | ok | 4 |
+| [victor-macedo](./participantes/victor-macedo) | ok | 51 |
+| [victor-marcolino](./participantes/victor-marcolino) | ok | 4 |
+| [victor99z](./participantes/victor99z) | ok | 8 |
+| [victorverdoodt](./participantes/victorverdoodt) | ok | 4 |
+| [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
+| [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
+| [vkobinski](./participantes/vkobinski) | ok | 5 |
 | [whyakari](./participantes/whyakari) | falha - [logs](./participantes/whyakari/docker-compose.logs) | -- |
-| [williammaia](./participantes/williammaia) | falha - [logs](./participantes/williammaia/docker-compose.logs) | -- |
-| [williansugiyama](./participantes/williansugiyama) | falha - [logs](./participantes/williansugiyama/docker-compose.logs) | -- |
-| [yMarceloMaia](./participantes/yMarceloMaia) | falha - [logs](./participantes/yMarceloMaia/docker-compose.logs) | -- |
-| [yanpgabriel](./participantes/yanpgabriel) | falha - [logs](./participantes/yanpgabriel/docker-compose.logs) | -- |
-| [yanpitangui](./participantes/yanpitangui) | falha - [logs](./participantes/yanpitangui/docker-compose.logs) | -- |
-| [ygorcarmo](./participantes/ygorcarmo) | falha - [logs](./participantes/ygorcarmo/docker-compose.logs) | -- |
+| [williammaia](./participantes/williammaia) | ok | 7 |
+| [williansugiyama](./participantes/williansugiyama) | ok | 1 |
+| [yMarceloMaia](./participantes/yMarceloMaia) | ok | 9 |
+| [yanpgabriel](./participantes/yanpgabriel) | ok | 6 |
+| [yanpitangui](./participantes/yanpitangui) | ok | 2 |
+| [ygorcarmo](./participantes/ygorcarmo) | ok | 8 |
 | [zan-dotnet](./participantes/zan-dotnet) | ok | 2 |
 | [zsantana](./participantes/zsantana) | ok | 2 |
