@@ -2,8 +2,8 @@
  Container kiro-tagama-db-1  Created
  Container kiro-tagama-api02-1  Creating
  Container kiro-tagama-api01-1  Creating
- Container kiro-tagama-api01-1  Created
  Container kiro-tagama-api02-1  Created
+ Container kiro-tagama-api01-1  Created
  Container kiro-tagama-nginx-1  Creating
  Container kiro-tagama-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -33,14 +33,12 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1  | 2024/02/18 23:47:17 [emerg] 1#1: host not found in upstream "api01:3000" in /etc/nginx/nginx.conf:10
+nginx-1  | 2024/02/19 09:39:31 [emerg] 1#1: host not found in upstream "api01:3000" in /etc/nginx/nginx.conf:10
 nginx-1  | nginx: [emerg] host not found in upstream "api01:3000" in /etc/nginx/nginx.conf:10
 api01-1  | n conectou
 api02-1  | n conectou
 db-1     | performing post-bootstrap initialization ... ok
 nginx-1 exited with code 1
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -48,10 +46,12 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | waiting for server to start....2024-02-18 23:47:19.271 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-18 23:47:19.274 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-18 23:47:19.283 UTC [51] LOG:  database system was shut down at 2024-02-18 23:47:18 UTC
-db-1     | 2024-02-18 23:47:19.294 UTC [48] LOG:  database system is ready to accept connections
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1     | waiting for server to start....2024-02-19 09:39:33.090 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 09:39:33.092 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 09:39:33.101 UTC [51] LOG:  database system was shut down at 2024-02-19 09:39:31 UTC
+db-1     | 2024-02-19 09:39:33.113 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -64,32 +64,33 @@ db-1     | CREATE TABLE
 db-1     | DO
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-18 23:47:19.495 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-02-18 23:47:19.498 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-18 23:47:19.501 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-18 23:47:19.515 UTC [49] LOG:  shutting down
-db-1     | 2024-02-18 23:47:19.518 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-18 23:47:20.030 UTC [49] LOG:  checkpoint complete: wrote 944 buffers (2.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.302 s, sync=0.199 s, total=0.515 s; sync files=310, longest=0.176 s, average=0.001 s; distance=4314 kB, estimate=4314 kB; lsn=0/1921210, redo lsn=0/1921210
-db-1     | 2024-02-18 23:47:20.035 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-02-19 09:39:33.326 UTC [48] LOG:  received fast shutdown request
+db-1     | .2024-02-19 09:39:33.328 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-19 09:39:33.331 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-19 09:39:33.331 UTC [49] LOG:  shutting down
+db-1     | 2024-02-19 09:39:33.333 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 09:39:33.827 UTC [49] LOG:  checkpoint complete: wrote 944 buffers (2.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.288 s, sync=0.196 s, total=0.497 s; sync files=310, longest=0.173 s, average=0.001 s; distance=4314 kB, estimate=4314 kB; lsn=0/1921210, redo lsn=0/1921210
+db-1     | 2024-02-19 09:39:33.832 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-18 23:47:20.123 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-18 23:47:20.123 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-18 23:47:20.123 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-18 23:47:20.128 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-18 23:47:20.135 UTC [66] LOG:  database system was shut down at 2024-02-18 23:47:20 UTC
-db-1     | 2024-02-18 23:47:20.141 UTC [1] LOG:  database system is ready to accept connections
-api01-1 exited with code 0
+db-1     | 2024-02-19 09:39:33.954 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 09:39:33.955 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 09:39:33.955 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 09:39:33.961 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 09:39:33.969 UTC [66] LOG:  database system was shut down at 2024-02-19 09:39:33 UTC
+db-1     | 2024-02-19 09:39:33.976 UTC [1] LOG:  database system is ready to accept connections
 api02-1 exited with code 0
+api02-1 exited with code 137
+api01-1 exited with code 0
 api01-1 exited with code 137
-db-1     | 2024-02-18 23:48:11.780 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-18 23:48:11.790 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-18 23:48:11.792 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-02-18 23:48:11.792 UTC [64] LOG:  shutting down
-db-1     | 2024-02-18 23:48:11.795 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-18 23:48:11.849 UTC [64] LOG:  checkpoint complete: wrote 44 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.029 s, total=0.057 s; sync files=13, longest=0.026 s, average=0.003 s; distance=238 kB, estimate=238 kB; lsn=0/195CDA8, redo lsn=0/195CDA8
-db-1     | 2024-02-18 23:48:11.853 UTC [1] LOG:  database system is shut down
+db-1     | 2024-02-19 09:40:25.612 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-19 09:40:25.617 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-19 09:40:25.619 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-02-19 09:40:25.619 UTC [64] LOG:  shutting down
+db-1     | 2024-02-19 09:40:25.621 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 09:40:25.682 UTC [64] LOG:  checkpoint complete: wrote 44 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.033 s, total=0.063 s; sync files=13, longest=0.010 s, average=0.003 s; distance=238 kB, estimate=238 kB; lsn=0/195CDA8, redo lsn=0/195CDA8
+db-1     | 2024-02-19 09:40:25.686 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0

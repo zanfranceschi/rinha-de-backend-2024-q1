@@ -1,0 +1,254 @@
+#0 building with "default" instance using docker driver
+
+#1 [app2 internal] load build definition from Dockerfile
+#1 transferring dockerfile: 337B done
+#1 DONE 0.1s
+
+#2 [app1 internal] load build definition from Dockerfile
+#2 transferring dockerfile: 337B done
+#2 DONE 0.1s
+
+#3 [app1 internal] load metadata for docker.io/library/perl:5.36
+#3 DONE 1.8s
+
+#4 [app1 internal] load .dockerignore
+#4 transferring context: 96B done
+#4 DONE 0.1s
+
+#5 [app2 internal] load .dockerignore
+#5 transferring context: 96B done
+#5 DONE 0.2s
+
+#6 [app2 1/7] FROM docker.io/library/perl:5.36@sha256:58530009090a1b2af7b0f3dc145ea0cca01e34e5b0fb9a1684cf413cad901c5d
+#6 resolve docker.io/library/perl:5.36@sha256:58530009090a1b2af7b0f3dc145ea0cca01e34e5b0fb9a1684cf413cad901c5d
+#6 ...
+
+#7 [app1 internal] load build context
+#7 transferring context: 46.59kB done
+#7 DONE 0.2s
+
+#6 [app2 1/7] FROM docker.io/library/perl:5.36@sha256:58530009090a1b2af7b0f3dc145ea0cca01e34e5b0fb9a1684cf413cad901c5d
+#6 resolve docker.io/library/perl:5.36@sha256:58530009090a1b2af7b0f3dc145ea0cca01e34e5b0fb9a1684cf413cad901c5d 0.2s done
+#6 sha256:58530009090a1b2af7b0f3dc145ea0cca01e34e5b0fb9a1684cf413cad901c5d 9.89kB / 9.89kB done
+#6 sha256:c463b8cc240c0e3afb9709b4372db6f81d8cfdbc3e1bc31ce61a196538fbe3b5 2.31kB / 2.31kB done
+#6 sha256:02f2d698ef54fe74343477a859cbab94cfd8ec6f1a68d06e5de974a2e51c103a 4.66kB / 4.66kB done
+#6 ...
+
+#8 [app2 internal] load build context
+#8 transferring context: 46.59kB done
+#8 DONE 0.3s
+
+#6 [app2 1/7] FROM docker.io/library/perl:5.36@sha256:58530009090a1b2af7b0f3dc145ea0cca01e34e5b0fb9a1684cf413cad901c5d
+#6 sha256:58530009090a1b2af7b0f3dc145ea0cca01e34e5b0fb9a1684cf413cad901c5d 9.89kB / 9.89kB done
+#6 sha256:c463b8cc240c0e3afb9709b4372db6f81d8cfdbc3e1bc31ce61a196538fbe3b5 2.31kB / 2.31kB done
+#6 sha256:02f2d698ef54fe74343477a859cbab94cfd8ec6f1a68d06e5de974a2e51c103a 4.66kB / 4.66kB done
+#6 DONE 0.7s
+
+#9 [app1 2/7] WORKDIR /usr/src/myapp
+#9 DONE 0.3s
+
+#10 [app2 3/7] RUN apt-get install libssl-dev zlib1g-dev
+#10 0.360 Reading package lists...
+#10 0.368 Building dependency tree...
+#10 0.369 Reading state information...
+#10 0.373 libssl-dev is already the newest version (3.0.11-1~deb12u2).
+#10 0.373 zlib1g-dev is already the newest version (1:1.2.13.dfsg-1).
+#10 0.373 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+#10 DONE 0.6s
+
+#11 [app1 4/7] COPY cpanfile* /usr/src/myapp
+#11 DONE 0.5s
+
+#12 [app1 5/7] RUN cpan -i App::cpanminus
+#12 0.451 Loading internal logger. Log::Log4perl recommended for better logging
+#12 0.451 
+#12 0.451 CPAN.pm requires configuration, but most of it can be done automatically.
+#12 0.451 If you answer 'no' below, you will enter an interactive dialog for each
+#12 0.451 configuration option instead.
+#12 0.451 
+#12 0.451 Would you like to configure as much as possible automatically? [yes] yes
+#12 0.486 Fetching with HTTP::Tiny:
+#12 0.486 https://cpan.org/authors/01mailrc.txt.gz
+#12 0.782 Reading '/root/.cpan/sources/authors/01mailrc.txt.gz'
+#12 0.899 ............................................................................DONE
+#12 0.995 Fetching with HTTP::Tiny:
+#12 0.995 https://cpan.org/modules/02packages.details.txt.gz
+#12 1.906 Reading '/root/.cpan/sources/modules/02packages.details.txt.gz'
+#12 2.367   Database was generated on Mon, 19 Feb 2024 18:41:02 GMT
+#12 2.367   HTTP::Date not available
+#12 2.367 ..............
+#12 2.929   New CPAN.pm version (v2.36) available.
+#12 2.929   [Currently running version is v2.33]
+#12 2.929   You might want to try
+#12 2.929     install CPAN
+#12 2.929     reload cpan
+#12 2.929   to both upgrade CPAN.pm and run the new version without leaving
+#12 2.929   the current session.
+#12 2.929 
+#12 2.929 
+#12 2.959 ..............................................................DONE
+#12 5.525 Fetching with HTTP::Tiny:
+#12 5.525 https://cpan.org/modules/03modlist.data.gz
+#12 5.732 Reading '/root/.cpan/sources/modules/03modlist.data.gz'
+#12 5.735 DONE
+#12 5.735 Writing /root/.cpan/Metadata
+#12 6.352 App::cpanminus is up to date (1.7047).
+#12 DONE 7.7s
+
+#13 [app1 6/7] RUN cpanm --cpanfile cpanfile --installdeps --notest --quiet .
+#13 1.761 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemTextContentLanguage'
+#13 1.761 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemKeyphraseVersion'
+#13 1.761 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemKeyphraseLabels'
+#13 1.761 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemKeyphraseConfidences'
+#13 1.761 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemTextContentLanguage'
+#13 1.761 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemKeyphraseVersion'
+#13 1.761 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemKeyphraseLabels'
+#13 1.761 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemKeyphraseConfidences'
+#13 1.762 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemTextContentLanguage'
+#13 1.768 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemTextContentLanguage'
+#13 1.768 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemKeyphraseVersion'
+#13 1.768 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemKeyphraseLabels'
+#13 1.768 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemKeyphraseConfidences'
+#13 1.769 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemTextContentLanguage'
+#13 1.769 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemKeyphraseVersion'
+#13 1.769 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemKeyphraseLabels'
+#13 1.769 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemKeyphraseConfidences'
+#13 1.770 /usr/bin/tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.metadata:kMDItemTextContentLanguage'
+#13 3.135 Successfully installed URI-5.27
+#13 3.620 Successfully installed HTML-Tagset-3.20
+#13 4.375 Successfully installed IO-HTML-1.004
+#13 5.072 Successfully installed Clone-0.46
+#13 5.501 Successfully installed LWP-MediaTypes-6.04
+#13 6.339 Successfully installed Encode-Locale-1.05
+#13 7.007 Successfully installed TimeDate-2.33
+#13 7.217 Successfully installed HTTP-Date-6.06
+#13 7.451 Successfully installed HTTP-Message-6.45
+#13 8.699 Successfully installed HTML-Parser-3.81
+#13 8.928 Successfully installed CGI-4.61
+#13 9.148 Successfully installed HTTP-Server-Simple-0.52
+#13 10.54 Successfully installed Module-Build-0.4234
+#13 10.87 Successfully installed Module-Runtime-0.016
+#13 11.66 Successfully installed Try-Tiny-0.31
+#13 11.87 Successfully installed Module-Implementation-0.09
+#13 13.32 Successfully installed Params-Util-1.102
+#13 13.76 Successfully installed Sub-Install-0.929
+#13 13.98 Successfully installed Data-OptList-0.114
+#13 14.49 Successfully installed Dist-CheckConflicts-0.11
+#13 15.96 Successfully installed Package-Stash-XS-0.30
+#13 16.24 Successfully installed Package-Stash-0.40
+#13 16.46 Successfully installed Class-Load-0.25
+#13 16.66 Successfully installed DateTimeX-TO_JSON-0.0.2
+#13 17.41 Successfully installed File-ShareDir-Install-0.14
+#13 18.18 Successfully installed Test-SharedFork-0.35
+#13 18.40 Successfully installed Test-TCP-2.22
+#13 19.03 Successfully installed Devel-StackTrace-2.05
+#13 19.25 Successfully installed Devel-StackTrace-AsHTML-0.15
+#13 19.64 Successfully installed WWW-Form-UrlEncoded-0.26
+#13 20.13 Successfully installed ExtUtils-Helpers-0.026
+#13 20.68 Successfully installed ExtUtils-Config-0.008
+#13 20.89 Successfully installed ExtUtils-InstallPaths-0.012
+#13 21.16 Successfully installed Module-Build-Tiny-0.047
+#13 21.38 Successfully installed HTTP-Headers-Fast-0.22
+#13 21.75 Successfully installed Filesys-Notify-Simple-0.14
+#13 22.12 Successfully installed POSIX-strftime-Compiler-0.46
+#13 22.27 Successfully installed Apache-LogFormat-Compiler-0.36
+#13 22.66 Successfully installed Stream-Buffered-0.03
+#13 23.25 Successfully installed Class-Inspector-1.36
+#13 23.55 Successfully installed File-ShareDir-1.118
+#13 23.91 Successfully installed Hash-MultiValue-0.16
+#13 24.16 Successfully installed Cookie-Baker-0.12
+#13 24.95 Successfully installed Test-Deep-1.204
+#13 25.16 Successfully installed HTTP-MultiPartParser-0.02
+#13 27.76 Successfully installed Cpanel-JSON-XS-4.37
+#13 27.97 Successfully installed JSON-MaybeXS-1.004005
+#13 28.12 Successfully installed HTTP-Entity-Parser-0.25
+#13 28.51 Successfully installed Plack-1.0051
+#13 28.96 Successfully installed URL-Encode-0.03
+#13 29.34 Successfully installed URI-Query-0.16
+#13 32.93 Successfully installed DBI-1.643
+#13 33.56 Successfully installed Sub-Quote-2.006008
+#13 33.96 Successfully installed Role-Tiny-2.002004
+#13 34.48 Successfully installed Class-Method-Modifiers-2.15
+#13 34.71 Successfully installed Moo-2.005005
+#13 35.08 Successfully installed JSON-Tiny-0.58
+#13 35.60 Successfully installed YAML-Tiny-1.74
+#13 36.13 Successfully installed JSON-4.10
+#13 36.95 Successfully installed Exporter-Tiny-1.006002
+#13 37.24 Successfully installed Type-Tiny-2.004000
+#13 38.00 Successfully installed Slick-0.007
+#13 38.41 Successfully installed Tie-RegexpHash-0.17
+#13 73.42 Successfully installed DBD-SQLite-1.74
+#13 74.55 Successfully installed Test-Fatal-0.017
+#13 75.01 Successfully installed Eval-Closure-0.14
+#13 75.39 Successfully installed MRO-Compat-0.15
+#13 76.13 Successfully installed XString-0.005
+#13 76.41 Successfully installed Specio-0.48
+#13 77.45 Successfully installed Sub-Identify-0.14
+#13 79.01 Successfully installed Variable-Magic-0.63
+#13 79.39 Successfully installed Sub-Exporter-Progressive-0.001013
+#13 79.62 Successfully installed B-Hooks-EndOfScope-0.26
+#13 80.00 Successfully installed namespace-clean-0.27
+#13 80.22 Successfully installed namespace-autoclean-0.29
+#13 81.17 Successfully installed Class-Data-Inheritable-0.09
+#13 81.39 Successfully installed Exception-Class-1.45
+#13 81.62 Successfully installed Params-ValidationCompiler-0.31
+#13 82.66 Successfully installed Class-Singleton-1.6
+#13 83.45 Successfully installed DateTime-TimeZone-2.62
+#13 87.95 Successfully installed DateTime-Locale-1.40
+#13 88.64 Successfully installed DateTime-1.65
+#13 89.04 Successfully installed DateTime-Format-RFC3339-v1.8.0
+#13 91.29 Successfully installed Socket6-0.29
+#13 91.81 Successfully installed Net-Server-2.014
+#13 92.28 Successfully installed IO-Socket-INET6-2.73
+#13 92.52 Successfully installed HTTP-Server-Simple-CGI-PreFork-6
+#13 92.57 87 distributions installed
+#13 DONE 94.2s
+
+#14 [app1 7/7] COPY . /usr/src/myapp
+#14 DONE 0.5s
+
+#15 [app1] exporting to image
+#15 exporting layers
+#15 exporting layers 5.0s done
+#15 writing image sha256:81e6149f74651dc7eba130e5882f461dd4ad64fd477273ac11331c3754a7251d done
+#15 naming to docker.io/omurilo/camel done
+#15 DONE 5.0s
+
+#16 [app2] exporting to image
+#16 exporting layers 5.1s done
+#16 writing image sha256:899b78346f0f68587b6af9a15bba678d97949aed8cfe1e0be1fbe83821218e7a done
+#16 naming to docker.io/omurilo/camel 0.0s done
+#16 DONE 5.1s
+ Container camel_two  Creating
+ Container camel_one  Creating
+ Container camel_two  Created
+ Container camel_one  Created
+ Container nginx  Creating
+ Container nginx  Created
+Attaching to camel_one, camel_two, nginx
+camel_one  | Can't open perl script "./src/slick-sqlite.pl": No such file or directory
+camel_two  | Can't open perl script "./src/slick-sqlite.pl": No such file or directory
+nginx      | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx      | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx      | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx      | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx      | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx      | /docker-entrypoint.sh: Configuration complete; ready for start up
+nginx      | 2024/02/19 20:40:50 [emerg] 1#1: bind() to 0.0.0.0:9999 failed (98: Address already in use)
+nginx      | nginx: [emerg] bind() to 0.0.0.0:9999 failed (98: Address already in use)
+camel_two exited with code 2
+camel_one exited with code 2
+nginx      | 2024/02/19 20:40:50 [emerg] 1#1: bind() to 0.0.0.0:9999 failed (98: Address already in use)
+nginx      | nginx: [emerg] bind() to 0.0.0.0:9999 failed (98: Address already in use)
+nginx      | 2024/02/19 20:40:50 [emerg] 1#1: bind() to 0.0.0.0:9999 failed (98: Address already in use)
+nginx      | nginx: [emerg] bind() to 0.0.0.0:9999 failed (98: Address already in use)
+nginx      | 2024/02/19 20:40:50 [emerg] 1#1: bind() to 0.0.0.0:9999 failed (98: Address already in use)
+nginx      | nginx: [emerg] bind() to 0.0.0.0:9999 failed (98: Address already in use)
+nginx      | 2024/02/19 20:40:50 [emerg] 1#1: bind() to 0.0.0.0:9999 failed (98: Address already in use)
+nginx      | nginx: [emerg] bind() to 0.0.0.0:9999 failed (98: Address already in use)
+nginx      | 2024/02/19 20:40:50 [emerg] 1#1: still could not bind()
+nginx      | nginx: [emerg] still could not bind()
+nginx exited with code 1
