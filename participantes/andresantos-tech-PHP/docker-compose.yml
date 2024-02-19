@@ -1,0 +1,61 @@
+version: "3.5"
+
+services:
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "9999:9999"
+    depends_on:
+      - app1
+      - app2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+
+  app1: &app1
+    container_name: app1
+    image: devnote/php-8.2-rr:rinha-backend-v1-prod
+    depends_on:
+      - postgres
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '150MB'
+
+  app2:
+    <<: *app1
+    container_name: app2
+
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.docker/postgres/init.sql:/docker-entrypoint-initdb.d/01-init.sql
+    command: postgres -c max_connections=1000 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '150MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

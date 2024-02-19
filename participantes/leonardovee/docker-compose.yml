@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  api1: &api
+    image: leonardovee/rinha-de-backend-2024-q1
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+    environment:
+      - SERVER_PORT=8081
+      - DATABASE_URL=postgres://postgres:postgres@db/postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+
+  api2:
+    <<: *api
+    ports:
+      - "8082:8082"
+    environment:
+      - SERVER_PORT=8082
+      - DATABASE_URL=postgres://postgres:postgres@db/postgres
+
+  haproxy:
+    container_name: haproxy
+    ports:
+      - "9999:9999"
+    image: haproxytech/haproxy-alpine
+    volumes:
+      - ./haproxy.cfg:/etc/haproxy/haproxy.cfg
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '50MB'
+
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '400MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

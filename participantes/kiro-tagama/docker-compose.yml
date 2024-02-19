@@ -11,7 +11,6 @@ services:
     depends_on:
       - db
     deploy:
-      replicas: 3
       resources:
         limits:
           cpus: '0.3'
@@ -48,7 +47,7 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     network_mode: host
-    command: postgres -c 'log_error_verbosity=terse' -c 'checkpoint_timeout=600' -c 'max_wal_size=4096' -c 'max_connections=30' -c 'random_page_cost=1.1' -c 'effective_io_concurrency=30'
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -N 50 -c shared_buffers=256MB
     deploy:
       resources:
         limits:

@@ -27,9 +27,9 @@ Para participar você precisa desenvolver uma API HTTP com os seguintes endpoint
 ```
 Onde
 - `[id]` (na URL) deve ser um número inteiro representando a identificação do cliente.
-- `valor` deve um número inteiro positivo que representa centavos (não vamos trabalhar com frações de centavos). Por exemplo, R$ 10 são 1000 centavos.
+- `valor` deve ser um número inteiro positivo que representa centavos (não vamos trabalhar com frações de centavos). Por exemplo, R$ 10 são 1000 centavos.
 - `tipo` deve ser apenas `c` para crédito ou `d` para débito.
-- `descricao` deve ser uma string de 1 a 10 caractéres.
+- `descricao` deve ser uma string de 1 a 10 caracteres.
 
 Todos os campos são obrigatórios.
 
@@ -383,3 +383,4 @@ Surpresa! :)
 ## Acompanhamento do Status das Execuções dos Testes
 
 [Link do status parcial da Rinha de Backend](./STATUS-TESTES.md).
+ 

@@ -1,0 +1,55 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: brunolipea/rinha-2024-q1-adonisjs
+    env_file:
+      - .env.production.local
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "220MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    command: node ./bin/server.js
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "10MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c log_min_messages='panic' -c log_min_messages='panic' -c log_min_error_statement='panic' -c synchronous_commit=off
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d rinha"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "100MB"

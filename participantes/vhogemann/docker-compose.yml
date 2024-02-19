@@ -1,0 +1,82 @@
+version: '3.5'
+services:
+  api1:
+    # API - Instância 01
+    image: vhogemann/rinha-de-backend-2024-fsharp:latest
+    #build: Rinha
+    hostname: api1
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Production
+    depends_on:
+      - postgres
+    expose:
+      - "80"
+    links:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: '100MB'
+
+  api2:
+    # API - Instância 01
+    image: vhogemann/rinha-de-backend-2024-fsharp:latest
+    #build: Rinha
+    hostname: api2
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    depends_on:
+      - postgres
+    expose:
+      - "80"
+    links:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: '100MB'
+
+  nginx:
+    # Load Balancer
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '10MB'
+
+  postgres:
+    # Banco de dados
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready", "-d", "postgres" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    expose:
+      - "5432"
+    ports:
+      - 9998:5432
+    volumes:
+      - ./bootstrap.sql:/docker-entrypoint-initdb.d/bootstrap.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: '1.1'
+          memory: '340MB'

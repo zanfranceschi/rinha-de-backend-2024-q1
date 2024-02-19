@@ -1,0 +1,68 @@
+version: '3.8'
+name: rinha-de-backend-lbaesso-php
+services:
+
+  app1: &app
+    container_name: app1
+    image: lbaisso/rinha-de-backend-2024-q1-php:latest
+    depends_on:
+      - postgres
+    networks:
+      - rinha-net-php
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASS=password
+      - DB_NAME=rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "100MB"
+
+  app2:
+    <<: *app
+    container_name: app2
+
+  nginx:
+    container_name: nginx-proxy
+    image: nginx:latest
+    volumes:
+      - ./nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app1
+      - app2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "40MB"
+    networks:
+      - rinha-net-php
+
+  postgres:
+    container_name: postgres
+    hostname: postgres
+    image: postgres:latest
+    command: postgres -c 'max_connections=256'
+    networks:
+      - rinha-net-php
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.60"
+          memory: "310MB"
+
+networks:
+  rinha-net-php:
+    driver: bridge
+    name: rinha-net-php

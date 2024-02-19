@@ -53,7 +53,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./src/main/resources/import.sql:/docker-entrypoint-initdb.d/import.sql
+      - ./import.sql:/docker-entrypoint-initdb.d/import.sql
     command: postgres -c 'max_connections=500' -c 'full_page_writes=off' -c 'fsync=off' -c 'synchronous_commit=off' -c 'effective_io_concurrency=4' -c 'shared_buffers=230MB' -c 'checkpoint_timeout=1d' -c 'checkpoint_completion_target=0.9' -c 'wal_buffers=16MB' -c 'log_min_messages=panic' -c 'log_min_error_statement=panic'
     deploy:
       resources:
@@ -63,7 +63,16 @@ services:
     networks:
       - rinha-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-q", "-d", "rinha", "-U", "admin"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready",
+          "-q",
+          "-d",
+          "rinha",
+          "-U",
+          "admin"
+        ]
       interval: 15s
       timeout: 5s
       retries: 5

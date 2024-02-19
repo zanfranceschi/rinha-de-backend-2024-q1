@@ -1,0 +1,73 @@
+version: '3.5'
+services:
+  api1: &app
+    container_name: marcosisocram-api1
+    image: marcosisocram/rinha-2024-q1:1.0.0
+    hostname: api1
+    network_mode: "host"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - PORT=8180
+      - DB_URL=jdbc:postgresql://localhost:5433/postgres
+      - DB_USER=user
+      - DB_PASSWORD=rinha-de-bK
+      - DB_POOLSIZE=15
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2375'
+          memory: "85MB"
+
+  api2: # API - Instância 02
+    <<: *app
+    container_name: marcosisocram-api2
+    hostname: api2
+    environment:
+      - PORT=8280
+      - DB_URL=jdbc:postgresql://localhost:5433/postgres
+      - DB_USER=user
+      - DB_PASSWORD=rinha-de-bK
+      - DB_POOLSIZE=15
+
+  db:
+    container_name: marcosisocram-db
+    image: postgres:16.1
+    hostname: db
+    network_mode: "host"
+    environment:
+      - POSTGRES_PASSWORD=rinha-de-bK
+      - POSTGRES_USER=user
+      - POSTGRES_DB=postgres
+      - PGPORT=5433
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.625'
+          memory: '350MB'
+
+  balance:
+    container_name: marcosisocram-balancinha
+    image: marcosisocram/balancinha:1.0.0
+    restart: on-failure
+    depends_on:
+      - api1
+      - api2
+    expose:
+      - "9999"
+    network_mode: "host"
+    command: [ "/app/balance", "9999", "localhost:8180", "localhost:8280" ]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "30MB"
