@@ -1,4 +1,4 @@
-# Submissão Filipe Dias ([@jfilipedias](https://twitter.com/jfilipedias))
+# Submissão Filipe Dias ([@jfiliped](https://twitter.com/jfiliped))
 
 Submissão para a rinha de Backend 2024-Q1.
 
