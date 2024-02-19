@@ -7,7 +7,7 @@ Programação reativa usando project reactor (spring boot webflux):
 
 ## Código fonte
 
-- [AQUI](https://github.com/davidDeltaSierra/rinha-de-backend-2024-q1)
+- [AQUI](https://github.com/davidDeltaSierra/rinha-2024-q1-reactor)
 
 ## Autor
 
