@@ -11,7 +11,7 @@ services:
       - "5432:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c max_connections=40
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
       interval: 5s
@@ -25,8 +25,8 @@ services:
           # aqui declarados é de 1.5 unidades de CPU e 550MB
           # de memória. A distribuição feita aqui é apenas
           # um exemplo – distribua como quiser.
-          cpus: "0.35"
-          memory: "150MB"
+          cpus: "0.55"
+          memory: "220MB"
 
   nginx:
     image: nginx:1.25.4-alpine
@@ -61,8 +61,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.50"
-          memory: "150MB"
+          cpus: "0.40"
+          memory: "140MB"
 
   api02:
     # Essa sintaxe reusa o que foi declarado em 'api01'.
