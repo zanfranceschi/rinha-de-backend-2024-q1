@@ -1,0 +1,65 @@
+version: '3.7'
+services:
+
+  db:
+    container_name: rb-db
+    image: postgres:16-alpine
+    hostname: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rinha
+    command: [ "docker-entrypoint.sh", "postgres", "-c", "fsync=off" ]
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres.conf:/etc/postgresql/postgresql.conf
+      - db-data:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: "0.60"
+          memory: "200MB"
+
+  api1: &app
+    image: gfds/rb-api:latest
+    container_name: rb-api1
+    restart: unless-stopped
+    environment:
+      - PORT=8080
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=rinha
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "170MB"
+
+  api2:
+    <<: *app
+    container_name: rb-api2
+    environment:
+      - PORT=8081
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=rinha
+
+  lb:
+    image: gfds/rb-lb
+    container_name: rb-lb
+    restart: unless-stopped
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "10MB"
+
+volumes:
+  db-data:

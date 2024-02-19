@@ -1,0 +1,85 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: ricardovhz/rinha2_api
+    hostname: api01
+    environment:
+      - DEBUG=false
+      - PORT=3000
+      - STORE_HOST=store:5001
+      - TCP_POOL_SIZE=100
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    networks:
+      - rinha2
+    ports:
+      - "3001:3000"
+    depends_on:
+      - store
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "100MB"
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "3002:3000"
+
+  envoy:
+    image: envoyproxy/envoy:v1.29-latest
+    container_name: rinhaproxy
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    networks:
+      - rinha2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '250MB'
+
+  initdb:
+    image: alpine
+    container_name: initdb
+    entrypoint: sh -c "/init.sh"
+    volumes:
+      - store-data:/data/store/
+      - ./init.sh:/init.sh:ro
+
+  store:
+    image: ricardovhz/rinha2_store
+    hostname: store
+    depends_on:
+      - initdb
+    ports:
+      - "5001:5001"
+    environment:
+      - STORE_CONN_TYPE=tcp
+      - STORE_HOST=:5001
+      - PATH_PREFIX=/data/store
+      - DEBUG=true
+    networks:
+      - rinha2
+    volumes:
+      - store-data:/data/store/
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "100MB"
+
+networks:
+  rinha2:
+
+volumes:
+  store-data:

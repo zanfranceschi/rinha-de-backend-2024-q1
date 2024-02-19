@@ -4,8 +4,8 @@
  Container fabionaspolini-db-1  Created
  Container fabionaspolini-api02-1  Creating
  Container fabionaspolini-api01-1  Creating
- Container fabionaspolini-api01-1  Created
  Container fabionaspolini-api02-1  Created
+ Container fabionaspolini-api01-1  Created
  Container fabionaspolini-nginx-1  Creating
  Container fabionaspolini-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -25,25 +25,15 @@ db-1     | selecting default max_connections ... 100
 db-1     | selecting default shared_buffers ... 128MB
 db-1     | selecting default time zone ... UTC
 db-1     | creating configuration files ... ok
-api02-1  | Rinha Backend 2024 Q1
-api02-1  | Using ASYNC methods
-api02-1  | ------------------------------------------------------------
 db-1     | running bootstrap script ... ok
-api02-1  | warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
-api02-1  |       Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://*:9999'.
 api01-1  | Rinha Backend 2024 Q1
 api01-1  | Using ASYNC methods
 api01-1  | ------------------------------------------------------------
-api02-1  | info: Microsoft.Hosting.Lifetime[14]
-api02-1  |       Now listening on: http://[::]:9999
-api02-1  | info: Microsoft.Hosting.Lifetime[0]
-api02-1  |       Application started. Press Ctrl+C to shut down.
-api02-1  | info: Microsoft.Hosting.Lifetime[0]
-api02-1  |       Hosting environment: Production
-api02-1  | info: Microsoft.Hosting.Lifetime[0]
-api02-1  |       Content root path: /app
 api01-1  | warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
 api01-1  |       Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://*:9999'.
+api02-1  | Rinha Backend 2024 Q1
+api02-1  | Using ASYNC methods
+api02-1  | ------------------------------------------------------------
 api01-1  | info: Microsoft.Hosting.Lifetime[14]
 api01-1  |       Now listening on: http://[::]:9999
 api01-1  | info: Microsoft.Hosting.Lifetime[0]
@@ -52,8 +42,18 @@ api01-1  | info: Microsoft.Hosting.Lifetime[0]
 api01-1  |       Hosting environment: Production
 api01-1  | info: Microsoft.Hosting.Lifetime[0]
 api01-1  |       Content root path: /app
+api02-1  | warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
+api02-1  |       Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://*:9999'.
+api02-1  | info: Microsoft.Hosting.Lifetime[14]
+api02-1  |       Now listening on: http://[::]:9999
+api02-1  | info: Microsoft.Hosting.Lifetime[0]
+api02-1  |       Application started. Press Ctrl+C to shut down.
+api02-1  | info: Microsoft.Hosting.Lifetime[0]
+api02-1  |       Hosting environment: Production
+api02-1  | info: Microsoft.Hosting.Lifetime[0]
+api02-1  |       Content root path: /app
 db-1     | sh: locale: not found
-db-1     | 2024-02-16 21:36:42.118 UTC [30] WARNING:  no usable system locales were found
+db-1     | 2024-02-19 05:22:35.950 UTC [30] WARNING:  no usable system locales were found
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -73,10 +73,10 @@ db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-16 21:36:44.442 UTC [36] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
-db-1     | 2024-02-16 21:36:44.445 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 21:36:44.455 UTC [39] LOG:  database system was shut down at 2024-02-16 21:36:42 UTC
-db-1     | 2024-02-16 21:36:44.466 UTC [36] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 05:22:38.542 UTC [36] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+db-1     | 2024-02-19 05:22:38.545 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 05:22:38.556 UTC [39] LOG:  database system was shut down at 2024-02-19 05:22:36 UTC
+db-1     | 2024-02-19 05:22:38.579 UTC [36] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -93,24 +93,105 @@ db-1     | psql:/docker-entrypoint-initdb.d/init.sql:36: NOTICE:  function inser
 db-1     | CREATE FUNCTION
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down....2024-02-16 21:36:44.606 UTC [36] LOG:  received fast shutdown request
-db-1     | 2024-02-16 21:36:44.609 UTC [36] LOG:  aborting any active transactions
-db-1     | 2024-02-16 21:36:44.614 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
-db-1     | 2024-02-16 21:36:44.615 UTC [37] LOG:  shutting down
-db-1     | 2024-02-16 21:36:44.620 UTC [37] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 21:36:45.116 UTC [37] LOG:  checkpoint complete: wrote 938 buffers (2.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.368 s, sync=0.117 s, total=0.501 s; sync files=313, longest=0.063 s, average=0.001 s; distance=4303 kB, estimate=4303 kB; lsn=0/1924130, redo lsn=0/1924130
-db-1     | 2024-02-16 21:36:45.144 UTC [36] LOG:  database system is shut down
+db-1     | waiting for server to shut down....2024-02-19 05:22:38.708 UTC [36] LOG:  received fast shutdown request
+db-1     | 2024-02-19 05:22:38.711 UTC [36] LOG:  aborting any active transactions
+db-1     | 2024-02-19 05:22:38.714 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
+db-1     | 2024-02-19 05:22:38.714 UTC [37] LOG:  shutting down
+db-1     | 2024-02-19 05:22:38.717 UTC [37] LOG:  checkpoint starting: shutdown immediate
+api01-1  | fail: Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware[1]
+api01-1  |       An unhandled exception has occurred while executing the request.
+api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 172.23.0.2:5432
+api01-1  |        ---> System.Net.Sockets.SocketException (111): Connection refused
+api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError, CancellationToken) + 0x48
+api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16) + 0x59
+api01-1  |          at System.Net.Sockets.Socket.<<ConnectAsync>g__WaitForConnectWithCancellation|285_0>d.MoveNext() + 0x19e
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Npgsql.TaskTimeoutAndCancellation.<ExecuteAsync>d__1.MoveNext() + 0x2de
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Npgsql.Internal.NpgsqlConnector.<ConnectAsync>d__220.MoveNext() + 0x42f
+api01-1  |          at Npgsql.Internal.NpgsqlConnector.<ConnectAsync>d__220.MoveNext() + 0x6df
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Npgsql.Internal.NpgsqlConnector.<RawOpen>d__217.MoveNext() + 0xa07
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x12d
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x6d3
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x54b
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0x1c7
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Npgsql.NpgsqlConnection.<<Open>g__OpenAsync|42_0>d.MoveNext() + 0x3de
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Dapper.Internal.AsyncCommandState.<<ExecuteReaderAsync>g__Awaited|7_0>d.MoveNext() + 0xb8
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Dapper.Internal.AsyncQueryState.<ExecuteReaderAsync>d__8.MoveNext() + 0xb1
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Dapper.Command`1.<QueryOneRowAsync>d__67`1.MoveNext() + 0x196
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at Dapper.Command`1.<QueryOneRowAsync>d__67`1.MoveNext() + 0x85f
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at RinhaBackend_2024_q1_aot_dapper.Api.ApiHandler.<HandleGetExtrato>d__1.MoveNext() + 0xe6
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Microsoft.AspNetCore.Http.Generated.<GeneratedRouteBuilderExtensions_g>FF60964370F5E176CAF4E62DD6A4081857770DD4FE137DF75793748D018A6ED58__GeneratedRouteBuilderExtensionsCore.<>c__DisplayClass4_0.<<MapGet1>g__RequestHandler|4>d.MoveNext() + 0x261
+api01-1  |       --- End of stack trace from previous location ---
+api01-1  |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
+api01-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api01-1  |          at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<<Invoke>g__Awaited|10_0>d.MoveNext() + 0xac
+db-1     | 2024-02-19 05:22:39.236 UTC [37] LOG:  checkpoint complete: wrote 938 buffers (2.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.397 s, sync=0.112 s, total=0.522 s; sync files=313, longest=0.064 s, average=0.001 s; distance=4303 kB, estimate=4303 kB; lsn=0/1924130, redo lsn=0/1924130
+db-1     | 2024-02-19 05:22:39.260 UTC [36] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-16 21:36:45.344 UTC [1] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
-db-1     | 2024-02-16 21:36:45.344 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 21:36:45.344 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 21:36:45.350 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 21:36:45.357 UTC [54] LOG:  database system was shut down at 2024-02-16 21:36:45 UTC
-db-1     | 2024-02-16 21:36:45.364 UTC [1] LOG:  database system is ready to accept connections
+db-1     | 2024-02-19 05:22:39.442 UTC [1] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+db-1     | 2024-02-19 05:22:39.442 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 05:22:39.442 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 05:22:39.449 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 05:22:39.457 UTC [54] LOG:  database system was shut down at 2024-02-19 05:22:39 UTC
+db-1     | 2024-02-19 05:22:39.464 UTC [1] LOG:  database system is ready to accept connections
 api01-1  | fail: Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware[1]
 api01-1  |       An unhandled exception has occurred while executing the request.
 api01-1  |       Microsoft.AspNetCore.Http.BadHttpRequestException: Failed to read parameter "TransacaoPostRequest request" from the request body as JSON.
@@ -348,19 +429,19 @@ api02-1  |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSucc
 api02-1  |          at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<<Invoke>g__Awaited|10_0>d.MoveNext() + 0xac
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api02-1  | info: Microsoft.Hosting.Lifetime[0]
-api02-1  |       Application is shutting down...
 api01-1  | info: Microsoft.Hosting.Lifetime[0]
 api01-1  |       Application is shutting down...
-api02-1 exited with code 0
-api02-1 exited with code 0
+api02-1  | info: Microsoft.Hosting.Lifetime[0]
+api02-1  |       Application is shutting down...
 api01-1 exited with code 0
-api01-1 exited with code 137
-db-1     | 2024-02-16 21:42:09.105 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-16 21:42:09.109 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-16 21:42:09.112 UTC [1] LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
-db-1     | 2024-02-16 21:42:09.112 UTC [52] LOG:  shutting down
-db-1     | 2024-02-16 21:42:09.116 UTC [52] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 21:42:09.294 UTC [52] LOG:  checkpoint complete: wrote 921 buffers (2.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.012 s, sync=0.125 s, total=0.183 s; sync files=30, longest=0.118 s, average=0.005 s; distance=2100 kB, estimate=2100 kB; lsn=0/1B314E8, redo lsn=0/1B314E8
-db-1     | 2024-02-16 21:42:09.322 UTC [1] LOG:  database system is shut down
+api01-1 exited with code 0
+api02-1 exited with code 0
+api02-1 exited with code 137
+db-1     | 2024-02-19 05:28:05.507 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-19 05:28:05.510 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-19 05:28:05.513 UTC [1] LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
+db-1     | 2024-02-19 05:28:05.513 UTC [52] LOG:  shutting down
+db-1     | 2024-02-19 05:28:05.522 UTC [52] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 05:28:05.691 UTC [52] LOG:  checkpoint complete: wrote 929 buffers (2.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.143 s, total=0.179 s; sync files=30, longest=0.094 s, average=0.005 s; distance=2102 kB, estimate=2102 kB; lsn=0/1B31B48, redo lsn=0/1B31B48
+db-1     | 2024-02-19 05:28:05.716 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0
