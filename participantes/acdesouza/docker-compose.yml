@@ -1,0 +1,85 @@
+version: "3.5"
+
+services:
+  api01: &api
+    # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
+    # publicamente acessível! Ex.: hub.docker.com
+    image: acdesouza/acdesouza_rinha_backend_2024_q1:latest
+    hostname: api01
+    environment:
+      RAILS_ENV: production
+      WEB_CONCURRENCY: 0
+      RAILS_MAX_THREADS: 15
+      RAILS_LOG_LEVEL:  fatal
+      DATABASE_URL: postgres://postgres:password@db:5432/rinha_backend_2024_q1_production
+      RAILS_MASTER_KEY: f54fad799fd77dbfaa7ebd4b8173a4e8
+      RUBY_YJIT_ENABLE: 1
+    depends_on:
+      - db-migrator
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "190MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api
+    hostname: api02
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+        # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "10MB"
+
+  db: # Banco de dados
+    image: postgres:latest
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    volumes:
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    deploy:
+       resources:
+         limits:
+           cpus: '0.4'
+           memory: '160MB'
+
+  db-migrator: # Database preparation
+    image: acdesouza/acdesouza_rinha_backend_2024_q1
+    command: bin/rails db:setup db:seed
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      RAILS_ENV: production
+      DATABASE_URL: postgres://postgres:password@db:5432/rinha_backend_2024_q1_production
+      RAILS_MASTER_KEY: f54fad799fd77dbfaa7ebd4b8173a4e8
+
+# O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
+# A edição anterior se beneficiou do modo host pois o volume de requisições
+# era relativamente alto e a virtualização da rede se tornou um gargalo, mas
+# este modo é mais complexo de ser configurado. Fique à vontade para usar o
+# modo que quiser desde que não conflite com portas trivialmente usadas em um
+# SO.
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
