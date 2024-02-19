@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Feb 19 14:14:18 UTC 2024** com **236** submissões.
+Atualizada **Mon Feb 19 14:28:18 UTC 2024** com **236** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -239,5 +239,5 @@ Atualizada **Mon Feb 19 14:14:18 UTC 2024** com **236** submissões.
 | [yanpgabriel](./participantes/yanpgabriel) | falha - [logs](./participantes/yanpgabriel/docker-compose.logs) | -- |
 | [yanpitangui](./participantes/yanpitangui) | falha - [logs](./participantes/yanpitangui/docker-compose.logs) | -- |
 | [ygorcarmo](./participantes/ygorcarmo) | falha - [logs](./participantes/ygorcarmo/docker-compose.logs) | -- |
-| [zan-dotnet](./participantes/zan-dotnet) | falha - [logs](./participantes/zan-dotnet/docker-compose.logs) | -- |
-| [zsantana](./participantes/zsantana) | falha - [logs](./participantes/zsantana/docker-compose.logs) | -- |
+| [zan-dotnet](./participantes/zan-dotnet) | ok | 2 |
+| [zsantana](./participantes/zsantana) | ok | 2 |
