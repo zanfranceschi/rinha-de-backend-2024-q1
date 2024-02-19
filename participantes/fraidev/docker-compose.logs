@@ -1,9 +1,9 @@
  Container fraidev-db-1  Creating
  Container fraidev-db-1  Created
- Container fraidev-api01-1  Creating
  Container fraidev-api02-1  Creating
- Container fraidev-api01-1  Created
+ Container fraidev-api01-1  Creating
  Container fraidev-api02-1  Created
+ Container fraidev-api01-1  Created
  Container fraidev-nginx-1  Creating
  Container fraidev-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -34,6 +34,8 @@ nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
 db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -41,12 +43,10 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-16 07:32:24.461 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 07:32:24.464 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 07:32:24.474 UTC [51] LOG:  database system was shut down at 2024-02-16 07:32:22 UTC
-db-1     | 2024-02-16 07:32:24.487 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 05:53:19.515 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 05:53:19.519 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 05:53:19.528 UTC [51] LOG:  database system was shut down at 2024-02-19 05:53:17 UTC
+db-1     | 2024-02-19 05:53:19.540 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -72,66 +72,66 @@ db-1     | CREATE FUNCTION
 db-1     | CREATE FUNCTION
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-16 07:32:24.701 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-02-16 07:32:24.705 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-16 07:32:24.706 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-16 07:32:24.708 UTC [49] LOG:  shutting down
-db-1     | 2024-02-16 07:32:24.711 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 07:32:25.227 UTC [49] LOG:  checkpoint complete: wrote 940 buffers (2.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.291 s, sync=0.216 s, total=0.519 s; sync files=315, longest=0.175 s, average=0.001 s; distance=4295 kB, estimate=4295 kB; lsn=0/191C9B0, redo lsn=0/191C9B0
-db-1     | 2024-02-16 07:32:25.233 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down....2024-02-19 05:53:19.716 UTC [48] LOG:  received fast shutdown request
+db-1     | 2024-02-19 05:53:19.719 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-19 05:53:19.721 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-19 05:53:19.721 UTC [49] LOG:  shutting down
+db-1     | 2024-02-19 05:53:19.724 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 05:53:20.240 UTC [49] LOG:  checkpoint complete: wrote 940 buffers (2.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.307 s, sync=0.201 s, total=0.519 s; sync files=315, longest=0.164 s, average=0.001 s; distance=4295 kB, estimate=4295 kB; lsn=0/191C9B0, redo lsn=0/191C9B0
+db-1     | 2024-02-19 05:53:20.246 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-api02-1  | thread 'main' panicked at src/main.rs:32:10:
-api02-1  | can't connect to database: PoolTimedOut
-api02-1  | note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+db-1     | 2024-02-19 05:53:20.342 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 05:53:20.342 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 05:53:20.342 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 05:53:20.347 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 05:53:20.354 UTC [66] LOG:  database system was shut down at 2024-02-19 05:53:20 UTC
+db-1     | 2024-02-19 05:53:20.360 UTC [1] LOG:  database system is ready to accept connections
 api01-1  | thread 'main' panicked at src/main.rs:32:10:
 api01-1  | can't connect to database: PoolTimedOut
 api01-1  | note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-db-1     | 2024-02-16 07:32:25.329 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 07:32:25.329 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 07:32:25.329 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 07:32:25.336 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 07:32:25.345 UTC [66] LOG:  database system was shut down at 2024-02-16 07:32:25 UTC
-db-1     | 2024-02-16 07:32:25.352 UTC [1] LOG:  database system is ready to accept connections
+api02-1  | thread 'main' panicked at src/main.rs:32:10:
+api02-1  | can't connect to database: PoolTimedOut
+api02-1  | note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 api01-1 exited with code 101
 api02-1 exited with code 101
-nginx-1  | 2024/02/16 07:32:26 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:26 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:28 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:28 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:30 [error] 31#31: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:30 [error] 31#31: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:32 [error] 32#32: *10 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:32 [error] 32#32: *10 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:34 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:36 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:38 [error] 29#29: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:38 [error] 29#29: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:40 [error] 29#29: *18 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:42 [error] 29#29: *19 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:44 [error] 29#29: *20 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:46 [error] 29#29: *21 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:48 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:50 [error] 29#29: *23 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:50 [error] 29#29: *23 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:52 [error] 29#29: *26 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:54 [error] 29#29: *27 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:56 [error] 29#29: *28 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:32:58 [error] 29#29: *29 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:33:00 [error] 29#29: *30 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:33:02 [error] 29#29: *31 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:33:02 [error] 29#29: *31 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:33:04 [error] 29#29: *34 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:21 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:21 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:23 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:23 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:25 [error] 32#32: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:25 [error] 32#32: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:27 [error] 31#31: *10 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:27 [error] 31#31: *10 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:29 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:31 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:33 [error] 29#29: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:33 [error] 29#29: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:35 [error] 29#29: *18 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:37 [error] 29#29: *19 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:39 [error] 29#29: *20 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:41 [error] 29#29: *21 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:43 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:45 [error] 29#29: *23 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:45 [error] 29#29: *23 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:47 [error] 29#29: *26 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:49 [error] 29#29: *27 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:51 [error] 29#29: *28 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:53 [error] 29#29: *29 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:55 [error] 29#29: *30 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:57 [error] 29#29: *31 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3002/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:57 [error] 29#29: *31 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:3001/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:53:59 [error] 29#29: *34 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-db-1     | 2024-02-16 07:33:06.877 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-16 07:33:06.881 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-16 07:33:06.883 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-02-16 07:33:06.883 UTC [64] LOG:  shutting down
-db-1     | 2024-02-16 07:33:06.886 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 07:33:06.931 UTC [64] LOG:  checkpoint complete: wrote 45 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.021 s, total=0.049 s; sync files=13, longest=0.016 s, average=0.002 s; distance=238 kB, estimate=238 kB; lsn=0/1958548, redo lsn=0/1958548
-db-1     | 2024-02-16 07:33:06.935 UTC [1] LOG:  database system is shut down
+db-1     | 2024-02-19 05:54:01.962 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-19 05:54:01.967 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-19 05:54:01.969 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-02-19 05:54:01.970 UTC [64] LOG:  shutting down
+db-1     | 2024-02-19 05:54:01.974 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 05:54:02.010 UTC [64] LOG:  checkpoint complete: wrote 45 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.014 s, total=0.041 s; sync files=13, longest=0.006 s, average=0.002 s; distance=238 kB, estimate=238 kB; lsn=0/1958548, redo lsn=0/1958548
+db-1     | 2024-02-19 05:54:02.014 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0
