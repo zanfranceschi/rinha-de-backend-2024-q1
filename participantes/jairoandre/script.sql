@@ -1,14 +1,14 @@
 -- Your SQL goes here
 CREATE TABLE clients(
   id INT PRIMARY KEY,
-  account_limit INT NOT NULL,
-  balance INT NOT NULL
+  account_limit BIGINT NOT NULL,
+  balance BIGINT NOT NULL
 );
 
 CREATE TABLE transactions(
   id SERIAL PRIMARY KEY,
   client_id INT NOT NULL,
-  amount INT NOT NULL,
+  amount BIGINT NOT NULL,
   transaction_type VARCHAR(1) NOT NULL,
   details TEXT NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
