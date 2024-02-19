@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  java_pg_db:
+    container_name: java_pg_db
+    image: postgres:15.4
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/configure.sql
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_USER=postgres
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "140MB"
+
+  java_api_1:
+    container_name: java_api_1
+    image: lipeferreira1609/dev_bank_with_java:latest
+    depends_on:
+      - java_pg_db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "200MB"
+
+  java_api_2:
+    container_name: java_api_2
+    image: lipeferreira1609/dev_bank_with_java:latest
+    depends_on:
+      - java_pg_db
+      - java_api_1
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "200MB"
+
+
+  nginx:
+    container_name: java_nginx
+    image: nginx:latest
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - java_api_1
+      - java_api_2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "10MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-backend-2024
