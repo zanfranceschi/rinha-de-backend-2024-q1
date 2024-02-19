@@ -17,7 +17,7 @@ services:
       - DB_INITIAL_POOL_SIZE=13
       - DB_MAX_POOL_SIZE=13
       - API_USE_DB_FUNC=true
-      - LOG_LEVEL=ERROR
+      - LOG_LEVEL=INFO
       - PORT=8080
     depends_on:
       db:
@@ -33,7 +33,6 @@ services:
     hostname: api02
     environment:
       - PORT=8081
-      - LOG_LEVEL=ERROR
 
   nginx:
     image: nginx:latest
@@ -66,7 +65,8 @@ services:
       retries: 5
     volumes:
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c full_page_writes=0
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     deploy:
       resources:
         limits:

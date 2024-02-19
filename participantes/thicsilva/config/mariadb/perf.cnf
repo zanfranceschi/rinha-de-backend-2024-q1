@@ -1,0 +1,83 @@
+[mysqld]
+max_connections = 500
+max_allowed_packet = 16M
+
+# Sort buffer is used to perform sorts for some ORDER BY and GROUP BY
+# queries. If sorted data does not fit into the sort buffer, a disk
+# based merge sort is used instead - See the "Sort_merge_passes"
+# status variable. Allocated per thread if sort is needed.
+# Comment out for now, the default in MariaDB 10.2 is 2M
+#sort_buffer_size = 1M
+
+# Size of the buffer used for doing full table scans.
+# Allocated per thread, if a full scan is needed.
+read_buffer_size = 1M
+
+# When reading rows in sorted order after a sort, the rows are read
+# through this buffer to avoid disk seeks. You can improve ORDER BY
+# performance a lot, if set this to a high value.
+# Allocated per thread, when needed.
+read_rnd_buffer_size = 8M
+
+join_buffer_size = 8M # should be equal to read_rnd_buffer_size?
+
+# Maximum allowed size for a single HEAP (in memory) table. This option
+# is a protection against the accidential creation of a very large HEAP
+# table which could otherwise use up all memory resources.
+max_heap_table_size = 64M
+tmp_table_size = 64M # Should be equal to max_heap_table_size
+
+## Generally, it is unwise to set the query cache to be larger than 64-128M
+## as the costs associated with maintaining the cache outweigh the performance
+## gains.
+## The query cache is a well known bottleneck that can be seen even when
+## concurrency is moderate. The best option is to disable it from day 1
+## by setting query_cache_size = 0 (now the default on MySQL 5.6)
+## and to use other ways to speed up read queries: good indexing, adding
+## replicas to spread the read load or using an external cache.
+query_cache_type = on
+query_cache_size  = 64M
+query_cache_strip_comments = on
+query_cache_min_res_unit = 2K
+# query_cache_limit = 256K # Default is 1M now
+
+thread_cache_size = 16
+table_open_cache = 4096
+table_definition_cache = 1024
+
+#
+# InnoDB
+#
+# The buffer pool is where data and indexes are cached: having it as large as possible
+# will ensure you use memory and not disks for most read operations.
+# Typical values are 50..75% of available RAM.
+innodb_buffer_pool_size = 210M # 75% of 280MB RAM
+innodb_log_file_size = 53M # 25% of innodb_buffer_pool_size
+innodb_flush_method	= O_DIRECT
+
+# This setting should be set to 0 (disabled) on SSDs which do not have
+# any performance gains with sequential IO.
+innodb_flush_neighbors = 0
+
+# The default setting of 1 means that InnoDB is fully ACID compliant.
+# It is the best value when your primary concern is data safety, for instance on a master.
+# However it can have a significant overhead on systems with slow disks because of the
+# extra fsyncs that are needed to flush each change to the redo logs.
+# Setting it to 2 is a bit less reliable because committed transactions will be
+# flushed to the redo logs only once a second, but that can be acceptable on some situations
+# for a master and that is definitely a good value for a replica. 0 is even faster
+# but you are more likely to lose some data in case of a crash: it is only a good value for a replica.
+innodb_flush_log_at_trx_commit = 0
+
+# Conquer an InnoDB crash with `InnoDB: A long semaphore wait` error
+# See http://stackoverflow.com/questions/24860111/warning-a-long-semaphore-wait
+# See http://www.markleith.co.uk/2009/05/13/innodb_stats_on_metadata-innodb_adaptive_hash_index/
+innodb_adaptive_hash_index = off
+
+innodb_lock_wait_timeout = 60s
+
+# Kill iddle connections after 1min
+wait_timeout = 60
+
+[mysqldump]
+max-allowed-packet = 16M
