@@ -2,8 +2,8 @@
  Network rinha-nginx-2024q1  Created
  Container jonattas_bunjs-db-1  Creating
  Container jonattas_bunjs-db-1  Created
- Container jonattas_bunjs-api02-1  Creating
  Container jonattas_bunjs-api01-1  Creating
+ Container jonattas_bunjs-api02-1  Creating
  Container jonattas_bunjs-api01-1  Created
  Container jonattas_bunjs-api02-1  Created
  Container jonattas_bunjs-nginx-1  Creating
@@ -38,6 +38,8 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -45,12 +47,10 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-16 10:10:46.942 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 10:10:46.945 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 10:10:46.957 UTC [51] LOG:  database system was shut down at 2024-02-16 10:10:45 UTC
-db-1     | 2024-02-16 10:10:46.963 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 08:55:32.401 UTC [47] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 08:55:32.403 UTC [47] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 08:55:32.412 UTC [50] LOG:  database system was shut down at 2024-02-19 08:55:31 UTC
+db-1     | 2024-02-19 08:55:32.418 UTC [47] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -62,50 +62,50 @@ db-1     | CREATE TABLE
 db-1     | INSERT 0 5
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-16 10:10:47.197 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-02-16 10:10:47.202 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-16 10:10:47.203 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-16 10:10:47.204 UTC [49] LOG:  shutting down
-db-1     | 2024-02-16 10:10:47.214 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 10:10:47.709 UTC [49] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.296 s, sync=0.189 s, total=0.506 s; sync files=308, longest=0.163 s, average=0.001 s; distance=4291 kB, estimate=4291 kB; lsn=0/191B978, redo lsn=0/191B978
-db-1     | 2024-02-16 10:10:47.714 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-02-19 08:55:32.651 UTC [47] LOG:  received fast shutdown request
+db-1     | .2024-02-19 08:55:32.654 UTC [47] LOG:  aborting any active transactions
+db-1     | 2024-02-19 08:55:32.655 UTC [47] LOG:  background worker "logical replication launcher" (PID 53) exited with exit code 1
+db-1     | 2024-02-19 08:55:32.656 UTC [48] LOG:  shutting down
+db-1     | 2024-02-19 08:55:32.659 UTC [48] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 08:55:33.175 UTC [48] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.257 s, sync=0.247 s, total=0.520 s; sync files=308, longest=0.223 s, average=0.001 s; distance=4291 kB, estimate=4291 kB; lsn=0/191B978, redo lsn=0/191B978
+db-1     | 2024-02-19 08:55:33.181 UTC [47] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-16 10:10:47.823 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 10:10:47.823 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 10:10:47.823 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 10:10:47.829 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 10:10:47.836 UTC [66] LOG:  database system was shut down at 2024-02-16 10:10:47 UTC
-db-1     | 2024-02-16 10:10:47.843 UTC [1] LOG:  database system is ready to accept connections
-db-1     | 2024-02-16 10:10:57.839 UTC [74] ERROR:  invalid input syntax for type integer: "1.2"
-db-1     | 2024-02-16 10:10:57.839 UTC [74] CONTEXT:  unnamed portal parameter $2 = '...'
-db-1     | 2024-02-16 10:10:57.839 UTC [74] STATEMENT:  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES ($1, $2, $3, $4)
-db-1     | 2024-02-16 10:10:57.842 UTC [71] ERROR:  invalid input syntax for type integer: "1.2"
-db-1     | 2024-02-16 10:10:57.842 UTC [71] CONTEXT:  unnamed portal parameter $2 = '...'
-db-1     | 2024-02-16 10:10:57.842 UTC [71] STATEMENT:  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES ($1, $2, $3, $4)
-db-1     | 2024-02-16 10:10:57.842 UTC [87] ERROR:  invalid input syntax for type integer: "1.2"
-db-1     | 2024-02-16 10:10:57.842 UTC [87] CONTEXT:  unnamed portal parameter $2 = '...'
-db-1     | 2024-02-16 10:10:57.842 UTC [87] STATEMENT:  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES ($1, $2, $3, $4)
-db-1     | 2024-02-16 10:10:57.849 UTC [81] ERROR:  invalid input syntax for type integer: "1.2"
-db-1     | 2024-02-16 10:10:57.849 UTC [81] CONTEXT:  unnamed portal parameter $2 = '...'
-db-1     | 2024-02-16 10:10:57.849 UTC [81] STATEMENT:  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES ($1, $2, $3, $4)
-db-1     | 2024-02-16 10:10:57.852 UTC [79] ERROR:  invalid input syntax for type integer: "1.2"
-db-1     | 2024-02-16 10:10:57.852 UTC [79] CONTEXT:  unnamed portal parameter $2 = '...'
-db-1     | 2024-02-16 10:10:57.852 UTC [79] STATEMENT:  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES ($1, $2, $3, $4)
+db-1     | 2024-02-19 08:55:33.276 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 08:55:33.276 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 08:55:33.276 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 08:55:33.281 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 08:55:33.289 UTC [65] LOG:  database system was shut down at 2024-02-19 08:55:33 UTC
+db-1     | 2024-02-19 08:55:33.296 UTC [1] LOG:  database system is ready to accept connections
+db-1     | 2024-02-19 08:55:43.617 UTC [72] ERROR:  invalid input syntax for type integer: "1.2"
+db-1     | 2024-02-19 08:55:43.617 UTC [72] CONTEXT:  unnamed portal parameter $2 = '...'
+db-1     | 2024-02-19 08:55:43.617 UTC [72] STATEMENT:  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES ($1, $2, $3, $4)
+db-1     | 2024-02-19 08:55:43.618 UTC [83] ERROR:  invalid input syntax for type integer: "1.2"
+db-1     | 2024-02-19 08:55:43.618 UTC [83] CONTEXT:  unnamed portal parameter $2 = '...'
+db-1     | 2024-02-19 08:55:43.618 UTC [83] STATEMENT:  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES ($1, $2, $3, $4)
+db-1     | 2024-02-19 08:55:43.619 UTC [86] ERROR:  invalid input syntax for type integer: "1.2"
+db-1     | 2024-02-19 08:55:43.619 UTC [86] CONTEXT:  unnamed portal parameter $2 = '...'
+db-1     | 2024-02-19 08:55:43.619 UTC [86] STATEMENT:  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES ($1, $2, $3, $4)
+db-1     | 2024-02-19 08:55:43.619 UTC [85] ERROR:  invalid input syntax for type integer: "1.2"
+db-1     | 2024-02-19 08:55:43.619 UTC [85] CONTEXT:  unnamed portal parameter $2 = '...'
+db-1     | 2024-02-19 08:55:43.619 UTC [85] STATEMENT:  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES ($1, $2, $3, $4)
+db-1     | 2024-02-19 08:55:43.630 UTC [74] ERROR:  invalid input syntax for type integer: "1.2"
+db-1     | 2024-02-19 08:55:43.630 UTC [74] CONTEXT:  unnamed portal parameter $2 = '...'
+db-1     | 2024-02-19 08:55:43.630 UTC [74] STATEMENT:  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES ($1, $2, $3, $4)
 nginx-1 exited with code 0
 nginx-1 exited with code 0
 api02-1 exited with code 0
 api02-1 exited with code 137
 api01-1 exited with code 0
 api01-1 exited with code 137
-db-1     | 2024-02-16 10:15:12.416 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-16 10:15:12.421 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-16 10:15:12.423 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-02-16 10:15:12.423 UTC [64] LOG:  shutting down
-db-1     | 2024-02-16 10:15:12.426 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 10:15:12.584 UTC [64] LOG:  checkpoint complete: wrote 809 buffers (4.9%); 0 WAL file(s) added, 0 removed, 2 recycled; write=0.014 s, sync=0.125 s, total=0.161 s; sync files=34, longest=0.076 s, average=0.004 s; distance=24565 kB, estimate=24565 kB; lsn=0/3118ED0, redo lsn=0/3118ED0
-db-1     | 2024-02-16 10:15:12.588 UTC [1] LOG:  database system is shut down
+db-1     | 2024-02-19 08:59:58.209 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-19 08:59:58.212 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-19 08:59:58.214 UTC [1] LOG:  background worker "logical replication launcher" (PID 68) exited with exit code 1
+db-1     | 2024-02-19 08:59:58.215 UTC [63] LOG:  shutting down
+db-1     | 2024-02-19 08:59:58.217 UTC [63] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 08:59:58.379 UTC [63] LOG:  checkpoint complete: wrote 803 buffers (4.9%); 0 WAL file(s) added, 0 removed, 2 recycled; write=0.013 s, sync=0.112 s, total=0.165 s; sync files=34, longest=0.097 s, average=0.004 s; distance=25222 kB, estimate=25222 kB; lsn=0/31BD318, redo lsn=0/31BD318
+db-1     | 2024-02-19 08:59:58.383 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0
