@@ -4,8 +4,6 @@ services:
   app1: &app
     container_name: camel_one
     image: omurilo/camel
-    build:
-      context: .
     environment:
       PORT: "8080"
     expose:
@@ -13,13 +11,6 @@ services:
     network_mode: host
     volumes:
       - ./database:/usr/src/myapp/database
-    develop:
-      watch:
-        - action: rebuild
-          path: ./src
-        - action: sync+restart
-          path: ./nginx.conf
-          target: /nginx.conf
     deploy:
       resources:
         limits:
