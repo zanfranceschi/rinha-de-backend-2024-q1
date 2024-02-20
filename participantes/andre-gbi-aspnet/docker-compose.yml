@@ -1,0 +1,57 @@
+version: '3.5'
+
+services:
+  dotnet-web-01: &api
+    image: andregbiba/rinha-dotnet:latest
+    hostname: service-01
+    depends_on:
+      - postgres
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      HTTP_PORT: 8010
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "120MB"
+    network_mode: host
+
+
+  dotnet-web-02: 
+    <<: *api
+    hostname: service-02
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      HTTP_PORT: 8020
+
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - dotnet-web-01
+      - dotnet-web-02
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "20MB"
+
+  postgres:
+    image: postgres:latest
+    hostname: db
+    environment:
+      POSTGRES_USER: user_rinha
+      POSTGRES_PASSWORD: passwd_rinha
+      POSTGRES_DB: db_rinha
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    command: 'postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c max_connections=1000 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off' 
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "290MB"  
