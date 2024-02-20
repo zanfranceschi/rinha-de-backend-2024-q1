@@ -1,14 +1,12 @@
 version: '3.9'
 services:
   api01: &api
-    command: bash -c "bundle install && ruby server.rb -o 0.0.0.0 -p 8080"
+    command: bash -c "ruby server.rb -o 0.0.0.0 -p 8080"
     image: ghcr.io/davide-almeida/sinatrinha-do-povo:latest
     hostname: api01
     environment:
       - DB_HOSTNAME=db
       - RUBY_YJIT_ENABLE=1
-    ports:
-      - "8081:8080"
     depends_on:
       - db
     deploy:
@@ -22,8 +20,6 @@ services:
     hostname: api02
     environment:
       - DB_HOSTNAME=db
-    ports:
-      - "8082:8080"
  
   nginx:
     image: nginx:latest
