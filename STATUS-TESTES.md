@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 20 23:18:17 UTC 2024** com **267** submissões.
+Atualizada **Tue Feb 20 23:40:49 UTC 2024** com **269** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -116,6 +116,8 @@ Atualizada **Tue Feb 20 23:18:17 UTC 2024** com **267** submissões.
 | [giovannibassi-rust](./participantes/giovannibassi-rust) | ok | 1 |
 | [giovannibassi-vb](./participantes/giovannibassi-vb) | ok | 1 |
 | [giovannibassi](./participantes/giovannibassi) | ok | 1 |
+| [gldmelo-cs-py-hibrid](./participantes/gldmelo-cs-py-hibrid) | ok | 2 |
+| [gldmelo-py-fastapi](./participantes/gldmelo-py-fastapi) | falha - [logs](./participantes/gldmelo-py-fastapi/docker-compose.logs) | -- |
 | [gldmelo](./participantes/gldmelo) | ok | 2 |
 | [gmrms](./participantes/gmrms) | ok | 2 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
@@ -207,7 +209,7 @@ Atualizada **Tue Feb 20 23:18:17 UTC 2024** com **267** submissões.
 | [maxwell](./participantes/maxwell) | ok | 1 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [mgenteluci](./participantes/mgenteluci) | ok | 4 |
-| [murilochianfa](./participantes/murilochianfa) | falha - [logs](./participantes/murilochianfa/docker-compose.logs) | -- |
+| [murilochianfa](./participantes/murilochianfa) | ok | 1 |
 | [mvellasco](./participantes/mvellasco) | ok | 48 |
 | [my_way](./participantes/my_way) | ok | 2091 |
 | [newton](./participantes/newton) | ok | 3 |
