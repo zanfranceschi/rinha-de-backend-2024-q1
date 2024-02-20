@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 20 14:27:27 UTC 2024** com **264** submissões.
+Atualizada **Tue Feb 20 14:39:02 UTC 2024** com **264** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -259,7 +259,7 @@ Atualizada **Tue Feb 20 14:27:27 UTC 2024** com **264** submissões.
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
 | [vkobinski](./participantes/vkobinski) | ok | 5 |
-| [whyakari](./participantes/whyakari) | falha - [logs](./participantes/whyakari/docker-compose.logs) | -- |
+| [whyakari](./participantes/whyakari) | ok | 8 |
 | [williammaia](./participantes/williammaia) | ok | 7 |
 | [williansugiyama](./participantes/williansugiyama) | ok | 1 |
 | [yMarceloMaia](./participantes/yMarceloMaia) | ok | 9 |
