@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 20 15:38:16 UTC 2024** com **266** submissões.
+Atualizada **Tue Feb 20 15:50:06 UTC 2024** com **266** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -61,7 +61,7 @@ Atualizada **Tue Feb 20 15:38:16 UTC 2024** com **266** submissões.
 | [danielwisky](./participantes/danielwisky) | ok | 3 |
 | [danilo-nodejs](./participantes/danilo-nodejs) | ok | 3 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
-| [david-silva](./participantes/david-silva) | falha - [logs](./participantes/david-silva/docker-compose.logs) | -- |
+| [david-silva](./participantes/david-silva) | ok | 2 |
 | [deno-cassiogangrel](./participantes/deno-cassiogangrel) | ok | 4 |
 | [devkemc-node](./participantes/devkemc-node) | ok | 6605 |
 | [diego-coronel](./participantes/diego-coronel) | ok | 2 |
