@@ -1,9 +1,9 @@
 version: "3.5"
 
 services:
-  api01: &api
+  api_csharp:
     image: gldmelo/rinhabackendcrebito:1.5-aot
-    hostname: api01
+    hostname: api_csharp
     environment:
       - ASPNETCORE_URLS=http://*:8080
     depends_on:
@@ -11,22 +11,27 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.30"
-          memory: "45MB"
+          cpus: "0.3"
+          memory: "60MB"
 
-  api02:
-    <<: *api
-    hostname: api02
-    environment:
-      - ASPNETCORE_URLS=http://*:8080
+  api_python:
+    image: gldmelo/rinhabackendcrebito:1.0-py
+    hostname: api_python
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "60MB"
       
   nginx:
     image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api01
-      - api02
+      - api_csharp
+      - api_python
     ports:
       - "9999:9999"
     deploy:
@@ -52,7 +57,7 @@ services:
       resources:
         limits:
           cpus: "0.7"
-          memory: "370MB"
+          memory: "340MB"
 
 networks:
   default:

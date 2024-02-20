@@ -2,23 +2,19 @@ version: "3.5"
 
 services:
   api01: &api
-    image: gldmelo/rinhabackendcrebito:1.5-aot
+    image: gldmelo/rinhabackendcrebito:1.0-py
     hostname: api01
-    environment:
-      - ASPNETCORE_URLS=http://*:8080
     depends_on:
       - db
     deploy:
       resources:
         limits:
-          cpus: "0.30"
-          memory: "45MB"
+          cpus: "0.3"
+          memory: "60MB"
 
   api02:
     <<: *api
     hostname: api02
-    environment:
-      - ASPNETCORE_URLS=http://*:8080
       
   nginx:
     image: nginx:latest
@@ -52,7 +48,7 @@ services:
       resources:
         limits:
           cpus: "0.7"
-          memory: "370MB"
+          memory: "340MB"
 
 networks:
   default:
