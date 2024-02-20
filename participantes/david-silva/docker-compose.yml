@@ -25,8 +25,8 @@ services:
     image: daviddeltasierra/rinha-2024-q1-reactor
     environment:
       - spring.r2dbc.url=r2dbc:postgresql://postgress:5432/rinha
-      - spring.r2dbc.pool.initial-size=80
-      - spring.r2dbc.pool.max-size=80
+      - spring.r2dbc.pool.initial-size=50
+      - spring.r2dbc.pool.max-size=50
 
   app-2:
     container_name: app-2
@@ -40,7 +40,7 @@ services:
           cpus: "0.2"
           memory: 200M
     image: postgres
-    command: postgres -c 'max_connections=300'
+    command: postgres -c 'max_connections=100'
     volumes:
       - ./scripts:/docker-entrypoint-initdb.d
     environment:
