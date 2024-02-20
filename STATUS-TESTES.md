@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 20 02:07:49 UTC 2024** com **262** submissões.
+Atualizada **Tue Feb 20 02:23:47 UTC 2024** com **263** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -187,7 +187,7 @@ Atualizada **Tue Feb 20 02:07:49 UTC 2024** com **262** submissões.
 | [luizgribeiro-monGo](./participantes/luizgribeiro-monGo) | ok | 1 |
 | [m-lnrs](./participantes/m-lnrs) | ok | 3 |
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
-| [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 11 |
+| [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 7 |
 | [marcoseckart](./participantes/marcoseckart) | ok | 2 |
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
 | [marcusadriano-go](./participantes/marcusadriano-go) | ok | 4 |
@@ -230,6 +230,7 @@ Atualizada **Tue Feb 20 02:07:49 UTC 2024** com **262** submissões.
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
 | [rdenadai_rust](./participantes/rdenadai_rust) | ok | 5 |
 | [recoba](./participantes/recoba) | ok | 2 |
+| [renan-norba](./participantes/renan-norba) | ok | 1 |
 | [reonardoleis](./participantes/reonardoleis) | ok | 1 |
 | [rhsobr-bun](./participantes/rhsobr-bun) | ok | 2 |
 | [ricardovhz](./participantes/ricardovhz) | ok | 2 |
