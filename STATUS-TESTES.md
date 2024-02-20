@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 20 01:03:51 UTC 2024** com **259** submissões.
+Atualizada **Tue Feb 20 01:53:31 UTC 2024** com **262** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -19,6 +19,7 @@ Atualizada **Tue Feb 20 01:03:51 UTC 2024** com **259** submissões.
 | [alissonsleal](./participantes/alissonsleal) | ok | 3 |
 | [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
 | [anderkonzen](./participantes/anderkonzen) | ok | 1 |
+| [andre-gbi-aspnet](./participantes/andre-gbi-aspnet) | ok | 2 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
 | [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
@@ -166,7 +167,7 @@ Atualizada **Tue Feb 20 01:03:51 UTC 2024** com **259** submissões.
 | [lipe1994_dotnet](./participantes/lipe1994_dotnet) | ok | 5 |
 | [lipe1994_drogon](./participantes/lipe1994_drogon) | ok | 88 |
 | [lipe1994_spring](./participantes/lipe1994_spring) | ok | 2 |
-| [lmtani](./participantes/lmtani) | ok | 4 |
+| [lmtani](./participantes/lmtani) | ok | 1 |
 | [lobomfz-rust](./participantes/lobomfz-rust) | ok | 4 |
 | [lobomfz](./participantes/lobomfz) | ok | 5 |
 | [lpicanco-cpp](./participantes/lpicanco-cpp) | ok | 1 |
@@ -180,13 +181,14 @@ Atualizada **Tue Feb 20 01:03:51 UTC 2024** com **259** submissões.
 | [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | falha - [logs](./participantes/lucasew-go-tigerbeetle/docker-compose.logs) | -- |
 | [lucassperez-go-crebito](./participantes/lucassperez-go-crebito) | falha - [logs](./participantes/lucassperez-go-crebito/docker-compose.logs) | -- |
 | [lucaswilliameufrasio](./participantes/lucaswilliameufrasio) | ok | 4 |
-| [lucianovilela](./participantes/lucianovilela) | ok | 5 |
+| [lucianovilela](./participantes/lucianovilela) | ok | 4 |
 | [luisescosta](./participantes/luisescosta) | ok | 2 |
 | [luizfrra](./participantes/luizfrra) | ok | 2 |
 | [luizgribeiro-monGo](./participantes/luizgribeiro-monGo) | ok | 1 |
 | [m-lnrs](./participantes/m-lnrs) | ok | 3 |
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
-| [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 13 |
+| [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 11 |
+| [marcoseckart](./participantes/marcoseckart) | ok | 2 |
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
 | [marcusadriano-go](./participantes/marcusadriano-go) | ok | 4 |
 | [marcusantunius](./participantes/marcusantunius) | ok | 1 |
@@ -209,6 +211,7 @@ Atualizada **Tue Feb 20 01:03:51 UTC 2024** com **259** submissões.
 | [newton](./participantes/newton) | ok | 3 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
 | [nielsonrolim-ror](./participantes/nielsonrolim-ror) | ok | 1 |
+| [normanfrieman](./participantes/normanfrieman) | ok | 12 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
 | [oliveiratheone-rust](./participantes/oliveiratheone-rust) | falha - [logs](./participantes/oliveiratheone-rust/docker-compose.logs) | -- |
 | [oloko64](./participantes/oloko64) | ok | 1 |
