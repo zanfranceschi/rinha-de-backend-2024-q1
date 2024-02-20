@@ -26,8 +26,6 @@ services:
         limits:
           cpus: '0.4'
           memory: '130MB'
-    volumes:
-      - app1:/tmp
 
   api2:
     <<: *api
@@ -40,8 +38,6 @@ services:
       - Cluster__Seeds__0=akka.tcp://Rinha@localhost:5213
       - ASPNETCORE_URLS=http://+:8081
       - ConnectionStrings__Db=Host=localhost;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Maximum Pool Size=128;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
-    volumes:
-      - app2:/tmp
 
   nginx:
     image: nginx:latest
@@ -80,8 +76,3 @@ services:
       timeout: 5s
       retries: 20
       start_period: 10s
-
-volumes:
-  app1:
-  app2:
-
