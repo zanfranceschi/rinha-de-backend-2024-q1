@@ -17,7 +17,7 @@ CREATE TYPE criar_transacao_result AS (
   limite integer
 );
 
-CREATE OR REPLACE FUNCTION criar_transacao(a_id_cliente INTEGER, valor INTEGER, descricao VARCHAR(10), tipo CHAR(1))
+CREATE FUNCTION criar_transacao(a_id_cliente INTEGER, valor INTEGER, descricao VARCHAR(10), tipo CHAR(1))
 RETURNS criar_transacao_result AS $$
 DECLARE 
   current_data RECORD;
@@ -25,12 +25,12 @@ DECLARE
   copy_valor INTEGER;
 BEGIN
   PERFORM pg_advisory_xact_lock(a_id_cliente);
-	SELECT * INTO current_data FROM transacoes WHERE id_cliente = a_id_cliente order by id desc limit 1;
-	
-	IF current_data IS NULL THEN
-		SELECT -1, -1, -1 INTO result;
+  SELECT * INTO current_data FROM transacoes WHERE id_cliente = a_id_cliente ORDER BY id DESC LIMIT 1;
+
+  IF current_data IS NULL THEN
+    SELECT -1, -1, -1 INTO result;
     RETURN result;
-	END IF;
+  END IF;
 
   IF tipo = 'd' THEN
     copy_valor := valor * -1;
@@ -50,13 +50,13 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-INSERT INTO transacoes (id_cliente, saldo, limite, valor, descricao, tipo, realizada_em)
-VALUES
-  (1, 0, 1000 * 100, 0, '', 'c', now()),
-  (2, 0, 800 * 100, 0, '', 'c', now()),
-  (3, 0, 10000 * 100, 0, '', 'c', now()),
-  (4, 0, 100000 * 100, 0, '', 'c', now()),
-  (5, 0, 5000 * 100, 0, '', 'c', now());
-
-CREATE EXTENSION pg_prewarm;
-SELECT pg_prewarm('transacoes');  
+DO $$
+BEGIN
+  INSERT INTO transacoes (id_cliente, saldo, limite, valor, descricao, tipo, realizada_em)
+  VALUES
+    (1, 0, 1000 * 100, 0, '', 'c', NOW()),
+    (2, 0, 800 * 100, 0, '', 'c', NOW()),
+    (3, 0, 10000 * 100, 0, '', 'c', NOW()),
+    (4, 0, 100000 * 100, 0, '', 'c', NOW()),
+    (5, 0, 5000 * 100, 0, '', 'c', NOW());
+END; $$
