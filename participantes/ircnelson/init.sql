@@ -12,10 +12,7 @@ CREATE UNLOGGED TABLE transacoes (
 	tipo CHAR(1) NOT NULL,
 	descricao VARCHAR(10) NOT NULL,
 	realizada_em TIMESTAMP NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC')
-	--CONSTRAINT fk_transacoes_cliente_id FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
-
---CREATE INDEX CONCURRENTLY ix_clientes_concurrently ON clientes (id);
 
 CREATE INDEX ix_transacoes_realizada_em ON transacoes (realizada_em DESC) INCLUDE (valor, tipo, descricao);
 CREATE INDEX ix_clientes_extrato ON clientes (id) INCLUDE (limite, saldo);
