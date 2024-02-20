@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 20 17:55:40 UTC 2024** com **266** submissões.
+Atualizada **Tue Feb 20 18:19:21 UTC 2024** com **267** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -24,7 +24,7 @@ Atualizada **Tue Feb 20 17:55:40 UTC 2024** com **266** submissões.
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
 | [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
 | [antoniogdelrio](./participantes/antoniogdelrio) | ok | 3 |
-| [arrudaricardo-01](./participantes/arrudaricardo-01) | ok | 5 |
+| [arrudaricardo-01](./participantes/arrudaricardo-01) | ok | 6 |
 | [avalonbits](./participantes/avalonbits) | ok | 2 |
 | [avinho](./participantes/avinho) | ok | 3 |
 | [aysion_bun](./participantes/aysion_bun) | ok | 1 |
@@ -186,6 +186,7 @@ Atualizada **Tue Feb 20 17:55:40 UTC 2024** com **266** submissões.
 | [luisescosta](./participantes/luisescosta) | ok | 2 |
 | [luizfrra](./participantes/luizfrra) | ok | 2 |
 | [luizgribeiro-monGo](./participantes/luizgribeiro-monGo) | ok | 1 |
+| [luizimcpi](./participantes/luizimcpi) | falha - [logs](./participantes/luizimcpi/docker-compose.logs) | -- |
 | [m-lnrs](./participantes/m-lnrs) | ok | 3 |
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 7 |
@@ -193,7 +194,7 @@ Atualizada **Tue Feb 20 17:55:40 UTC 2024** com **266** submissões.
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
 | [marcusadriano-go](./participantes/marcusadriano-go) | ok | 4 |
 | [marcusantunius](./participantes/marcusantunius) | ok | 1 |
-| [marcusdacoregio](./participantes/marcusdacoregio) | ok | 3 |
+| [marcusdacoregio](./participantes/marcusdacoregio) | ok | 7 |
 | [mari-souza](./participantes/mari-souza) | falha - [logs](./participantes/mari-souza/docker-compose.logs) | -- |
 | [marincor](./participantes/marincor) | ok | 8274 |
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
