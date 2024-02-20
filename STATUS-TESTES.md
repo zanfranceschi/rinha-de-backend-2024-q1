@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 20 01:53:31 UTC 2024** com **262** submissões.
+Atualizada **Tue Feb 20 02:01:11 UTC 2024** com **262** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -142,7 +142,7 @@ Atualizada **Tue Feb 20 01:53:31 UTC 2024** com **262** submissões.
 | [jfilipedias](./participantes/jfilipedias) | ok | 4 |
 | [jhonnyboy](./participantes/jhonnyboy) | ok | 1 |
 | [jjeanjacques10](./participantes/jjeanjacques10) | ok | 2 |
-| [joaopmerlin](./participantes/joaopmerlin) | falha - [logs](./participantes/joaopmerlin/docker-compose.logs) | -- |
+| [joaopmerlin](./participantes/joaopmerlin) | ok | 3 |
 | [jojodev](./participantes/jojodev) | ok | 437 |
 | [jonattas_bunjs](./participantes/jonattas_bunjs) | ok | 17 |
 | [josebaroni-postgrest](./participantes/josebaroni-postgrest) | ok | 2 |
