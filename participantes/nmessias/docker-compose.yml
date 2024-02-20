@@ -28,10 +28,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://127.0.0.1:3000/clientes/1/extrato"]
-      interval: 1s
-      retries: 15      
     deploy:
       resources:
         limits:
@@ -42,10 +38,6 @@ services:
     <<: *app
     environment: 
       - SERVER_NAME=:3001
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://127.0.0.1:3001/clientes/1/extrato"]
-      interval: 1s
-      retries: 15    
 
   nginx:
     image: nginx:latest

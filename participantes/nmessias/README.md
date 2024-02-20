@@ -2,9 +2,8 @@
 
 ## Tecnologias
 
-- PHP 8.3
-- FrankenPHP
-- Postgres 16
+- PHP 8.3 com FrankenPHP worker mode
+- Postgres
 - Nginx
 
 ## Repositório
