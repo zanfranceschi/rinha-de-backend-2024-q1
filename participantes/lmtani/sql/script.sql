@@ -1,11 +1,16 @@
-CREATE TABLE clientes (
+SET check_function_bodies = false;
+SET idle_in_transaction_session_timeout = 0;
+SET lock_timeout = 0;
+SET statement_timeout = 0;
+
+CREATE UNLOGGED TABLE clientes (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     limite INTEGER NOT NULL,
     saldo INTEGER DEFAULT 0
 );
 
-CREATE TABLE transacoes (
+CREATE UNLOGGED TABLE transacoes (
     id SERIAL PRIMARY KEY,
     cliente_id INTEGER NOT NULL REFERENCES clientes(id),
     valor INTEGER NOT NULL,
