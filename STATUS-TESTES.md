@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 20 14:39:02 UTC 2024** com **264** submissões.
+Atualizada **Tue Feb 20 15:11:46 UTC 2024** com **266** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -24,7 +24,7 @@ Atualizada **Tue Feb 20 14:39:02 UTC 2024** com **264** submissões.
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
 | [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
 | [antoniogdelrio](./participantes/antoniogdelrio) | ok | 3 |
-| [arrudaricardo-01](./participantes/arrudaricardo-01) | falha - [logs](./participantes/arrudaricardo-01/docker-compose.logs) | -- |
+| [arrudaricardo-01](./participantes/arrudaricardo-01) | ok | 5 |
 | [avalonbits](./participantes/avalonbits) | ok | 2 |
 | [avinho](./participantes/avinho) | ok | 3 |
 | [aysion_bun](./participantes/aysion_bun) | ok | 1 |
@@ -132,6 +132,7 @@ Atualizada **Tue Feb 20 14:39:02 UTC 2024** com **264** submissões.
 | [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 4 |
 | [ilosamart](./participantes/ilosamart) | ok | 1755 |
 | [impedro29-performance](./participantes/impedro29-performance) | ok | 39 |
+| [ircnelson](./participantes/ircnelson) | ok | 2 |
 | [isadora-souza](./participantes/isadora-souza) | ok | 3 |
 | [italobbarros](./participantes/italobbarros) | ok | 2 |
 | [italopussi](./participantes/italopussi) | ok | 3 |
@@ -156,7 +157,7 @@ Atualizada **Tue Feb 20 14:39:02 UTC 2024** com **264** submissões.
 | [kauan-calasans](./participantes/kauan-calasans) | ok | 5 |
 | [kiro-tagama](./participantes/kiro-tagama) | falha - [logs](./participantes/kiro-tagama/docker-compose.logs) | -- |
 | [klimber](./participantes/klimber) | ok | 5 |
-| [krymancer](./participantes/krymancer) | falha - [logs](./participantes/krymancer/docker-compose.logs) | -- |
+| [krymancer](./participantes/krymancer) | ok | 2304 |
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
 | [lbaesso-php](./participantes/lbaesso-php) | ok | 2 |
 | [leandro-sousa](./participantes/leandro-sousa) | falha - [logs](./participantes/leandro-sousa/docker-compose.logs) | -- |
@@ -251,6 +252,7 @@ Atualizada **Tue Feb 20 14:39:02 UTC 2024** com **264** submissões.
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
 | [thicsilva](./participantes/thicsilva) | ok | 5 |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
+| [udleinati](./participantes/udleinati) | falha - [logs](./participantes/udleinati/docker-compose.logs) | -- |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
 | [victor-marcolino](./participantes/victor-marcolino) | ok | 4 |
