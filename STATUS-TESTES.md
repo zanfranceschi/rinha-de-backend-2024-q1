@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 20 03:16:34 UTC 2024** com **263** submissões.
+Atualizada **Tue Feb 20 03:29:00 UTC 2024** com **263** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -216,7 +216,7 @@ Atualizada **Tue Feb 20 03:16:34 UTC 2024** com **263** submissões.
 | [oliveiratheone-rust](./participantes/oliveiratheone-rust) | falha - [logs](./participantes/oliveiratheone-rust/docker-compose.logs) | -- |
 | [oloko64](./participantes/oloko64) | ok | 1 |
 | [olukkas](./participantes/olukkas) | ok | 4 |
-| [omurilo-perl](./participantes/omurilo-perl) | falha - [logs](./participantes/omurilo-perl/docker-compose.logs) | -- |
+| [omurilo-perl](./participantes/omurilo-perl) | ok | 1 |
 | [omurilo](./participantes/omurilo) | ok | 2 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
