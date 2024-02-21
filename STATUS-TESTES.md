@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Feb 21 02:04:12 UTC 2024** com **274** submissões.
+Atualizada **Wed Feb 21 02:30:52 UTC 2024** com **276** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -148,6 +148,7 @@ Atualizada **Wed Feb 21 02:04:12 UTC 2024** com **274** submissões.
 | [joaopmerlin](./participantes/joaopmerlin) | ok | 3 |
 | [jojodev](./participantes/jojodev) | ok | 437 |
 | [jonattas_bunjs](./participantes/jonattas_bunjs) | ok | 17 |
+| [jorgehrique-dotnet](./participantes/jorgehrique-dotnet) | ok | 3 |
 | [josebaroni-postgrest](./participantes/josebaroni-postgrest) | ok | 2 |
 | [josebaroni](./participantes/josebaroni) | ok | 2 |
 | [jovitcorreia](./participantes/jovitcorreia) | ok | 1 |
@@ -254,6 +255,7 @@ Atualizada **Wed Feb 21 02:04:12 UTC 2024** com **274** submissões.
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
 | [santannaf_web](./participantes/santannaf_web) | ok | 6 |
 | [santannaf_webflux](./participantes/santannaf_webflux) | ok | 5 |
+| [silmar-alberti-franken-php](./participantes/silmar-alberti-franken-php) | ok | 3 |
 | [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
