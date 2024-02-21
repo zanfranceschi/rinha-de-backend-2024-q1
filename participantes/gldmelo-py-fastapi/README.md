@@ -4,11 +4,12 @@
 
 Stack:
 - `nginx` como load balancer
+- API 1: `.NET 8` com linguagem `C#` para API compilado com Native AOT
+- API 2: `Python 3.11` usando Fast API
 - `postgres` como banco de dados
-- `Python 3.11` usando Fast API
-
 
 [Implementação](https://github.com/gldmelo/rinha-de-backend-2024-q1-py-fast-api)
+[Implementação](https://github.com/gldmelo/rinha-de-backend-2024-q1-poc)
 
 [@gldmelo](https://twitter.com/gldmelo) @twitter
 [@gldmelo](https://github.com/gldmelo) @GitHub

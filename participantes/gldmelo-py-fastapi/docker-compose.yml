@@ -4,6 +4,9 @@ services:
   api01: &api
     image: gldmelo/rinhabackendcrebito:1.0-py
     hostname: api01
+    command: uvicorn src.main:app --proxy-headers --host 0.0.0.0 --port 8000
+    ports:
+      - 8001:8000
     depends_on:
       - db
     deploy:
@@ -15,6 +18,8 @@ services:
   api02:
     <<: *api
     hostname: api02
+    ports:
+      - 8002:8000
       
   nginx:
     image: nginx:latest
