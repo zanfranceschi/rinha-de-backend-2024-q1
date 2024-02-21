@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Feb 21 00:14:01 UTC 2024** com **269** submissões.
+Atualizada **Wed Feb 21 00:36:40 UTC 2024** com **272** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -154,6 +154,7 @@ Atualizada **Wed Feb 21 00:14:01 UTC 2024** com **269** submissões.
 | [jpaf](./participantes/jpaf) | ok | 2 |
 | [jpcairesf-java](./participantes/jpcairesf-java) | falha - [logs](./participantes/jpcairesf-java/docker-compose.logs) | -- |
 | [julianojj](./participantes/julianojj) | ok | 7 |
+| [juliorovesta](./participantes/juliorovesta) | ok | 1 |
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 1861 |
 | [kalelMartinho_fastapi](./participantes/kalelMartinho_fastapi) | ok | 3 |
 | [kauan-calasans](./participantes/kauan-calasans) | ok | 5 |
@@ -211,10 +212,11 @@ Atualizada **Wed Feb 21 00:14:01 UTC 2024** com **269** submissões.
 | [mgenteluci](./participantes/mgenteluci) | ok | 4 |
 | [murilochianfa](./participantes/murilochianfa) | ok | 1 |
 | [mvellasco](./participantes/mvellasco) | ok | 48 |
-| [my_way](./participantes/my_way) | ok | 2091 |
+| [my_way](./participantes/my_way) | ok | 23 |
 | [newton](./participantes/newton) | ok | 3 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
 | [nielsonrolim-ror](./participantes/nielsonrolim-ror) | ok | 1 |
+| [nmessias](./participantes/nmessias) | ok | 1 |
 | [normanfrieman](./participantes/normanfrieman) | ok | 12 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
 | [oliveiratheone-rust](./participantes/oliveiratheone-rust) | falha - [logs](./participantes/oliveiratheone-rust/docker-compose.logs) | -- |
@@ -250,6 +252,7 @@ Atualizada **Wed Feb 21 00:14:01 UTC 2024** com **269** submissões.
 | [ruhtar](./participantes/ruhtar) | falha - [logs](./participantes/ruhtar/docker-compose.logs) | -- |
 | [samluiz](./participantes/samluiz) | ok | 2 |
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
+| [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
