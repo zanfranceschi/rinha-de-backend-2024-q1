@@ -5,7 +5,7 @@ services:
     image: jonatasoli/rinha-q1-2024-fastapi:v1
     hostname: api1
     network_mode: host
-    entrypoint: 'poetry run uvicorn src.main:main --host 0.0.0.0 --port 8000 --workers 2 --log-level critical'
+    entrypoint: 'poetry run uvicorn src.main:main --host 0.0.0.0 --port 8000 --workers 1 --log-level critical'
     environment:
       PORT: 8000
       DATABASE_URL: postgres://rinha:rinha@localhost:5432/rinha
@@ -23,7 +23,7 @@ services:
   api2:
     <<: *app1
     hostname: api2
-    entrypoint: 'poetry run uvicorn src.main:main --host 0.0.0.0 --port 8001 --workers 2 --log-level critical'
+    entrypoint: 'poetry run uvicorn src.main:main --host 0.0.0.0 --port 8001 --workers 1 --log-level critical'
     environment:
       PORT: 8001
       DATABASE_URL: postgres://rinha:rinha@localhost:5432/rinha
