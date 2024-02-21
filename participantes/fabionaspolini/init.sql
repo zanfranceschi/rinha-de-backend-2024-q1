@@ -33,50 +33,67 @@ create type inserir_transacao_result as (
  */
 
 -- data type
-drop function if exists inserir_transacao; 
-
-create or replace function inserir_transacao(
-	cliente_id int,
-	tipo char(1),
-	valor int,
-	descricao varchar(10))
+create or replace function inserir_transacao_credito(
+    cliente_id int,
+    valor int,
+    descricao varchar(10))
 returns inserir_transacao_result as $func$
 declare
-	cli cliente%rowtype;
-	result inserir_transacao_result;
+    cli cliente%rowtype;
+    result inserir_transacao_result;
 begin
-	select * from cliente where id = cliente_id into cli;
-	if not found then
-		select 1, 'Cliente inválido.', null, null into result;
-		return result;
-	end if;
+    /* Se for crédito, não valida estouro de limite*/
+    update cliente
+    set saldo = saldo + valor
+    where id = cliente_id
+    returning *
+    into cli;
+    
+    if not found then
+        select 1, 'Cliente inválido.', null, null into result;
+        return result;
+    end if;
 
-	if (tipo = 'd') then
-		/* Se for débito, valida estouro de limite*/
-		update cliente
-		set saldo = saldo - valor
-		where id = cliente_id
-	      and saldo - valor + limite >= 0 
-	    returning *
-	   	into cli;
-	   
-		if not found then
-			select 2, 'Saldo e limite insuficiente para executar a operação.', null, null into result;
-			return result;
-		end if;
-	else
-		/* Se for crédito, não valida estouro de limite*/
-		update cliente
-		set saldo = saldo + valor
-		where id = cliente_id
-	    returning *
-	   	into cli;
-	end if;
+    insert into transacao(cliente_id, tipo, valor, realizada_em, descricao)
+    values (cliente_id, 'c', valor, now(), descricao);
 
-	insert into transacao(cliente_id, tipo, valor, realizada_em, descricao)
-	values (cliente_id, tipo, valor, now(), descricao);
+    select 0, null, cli.saldo, cli.limite into result;
+    return result;
+end;
+$func$ language plpgsql;
 
-	select 0, null, cli.saldo, cli.limite into result;
-	return result;
+create or replace function inserir_transacao_debito(
+    cliente_id int,
+    valor int,
+    descricao varchar(10))
+returns inserir_transacao_result as $func$
+declare
+    cli cliente%rowtype;
+    result inserir_transacao_result;
+begin
+    /* Se for débito, valida estouro de limite*/
+    update cliente
+    set saldo = saldo - valor
+    where id = cliente_id
+      and saldo - valor + limite >= 0 
+    returning *
+    into cli;
+   
+    if not found then
+        if not exists(select 1 from cliente where id = cliente_id) then
+            select 1, 'Cliente inválido.', null, null into result;
+            return result;
+        end if;
+    
+        select 2, 'Saldo e limite insuficiente para executar a operação.', null, null into result;
+        return result;
+    end if;
+
+
+    insert into transacao(cliente_id, tipo, valor, realizada_em, descricao)
+    values (cliente_id, 'd', valor, now(), descricao);
+
+    select 0, null, cli.saldo, cli.limite into result;
+    return result;
 end;
 $func$ language plpgsql;
