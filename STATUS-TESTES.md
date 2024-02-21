@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Feb 21 01:26:03 UTC 2024** com **272** submissões.
+Atualizada **Wed Feb 21 01:37:42 UTC 2024** com **274** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -252,6 +252,8 @@ Atualizada **Wed Feb 21 01:26:03 UTC 2024** com **272** submissões.
 | [ruhtar](./participantes/ruhtar) | falha - [logs](./participantes/ruhtar/docker-compose.logs) | -- |
 | [samluiz](./participantes/samluiz) | ok | 2 |
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
+| [santannaf_web](./participantes/santannaf_web) | ok | 6 |
+| [santannaf_webflux](./participantes/santannaf_webflux) | ok | 5 |
 | [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
