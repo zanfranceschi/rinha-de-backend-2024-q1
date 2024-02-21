@@ -1,0 +1,99 @@
+version: '3.5'
+services:
+  postgres: ### Banco de dados
+    image: postgres:latest
+    hostname: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: db_financial
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c max_connections=200
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.70'
+          memory: 128MB
+
+  api01: &api
+    image: thalessantanna/app_rinha_2024_web:latest
+    hostname: api01
+    container_name: api01
+    environment:
+      - VIRTUAL_THREADS_ENABLED=true
+      - SERVER_HTTP_CONN_TIMEOUT=500
+      - SERVER_MAX_THREADS=50
+      - SERVER_MAX_CONNECTIONS=200
+      - DB_MIN_IDLE=1
+      - DB_POOL_MAX_POOL=10
+      - DB_IDLE_TIMEOUT=30000
+      - DB_POOL_MAX_LIFETIME=2000000
+      - DB_CONNECTION_TIMEOUT=1000
+      - DB_HOST=postgres
+      - DB_DATABASE=db_financial
+      - DB_USER=admin
+      - DB_PASSWORD=admin
+      - SERVER_PORT=30001
+    ports:
+      - "30001:30001"
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: 128MB
+
+  api02:
+    <<: *api
+    hostname: api02
+    container_name: api02
+    environment:
+      - VIRTUAL_THREADS_ENABLED=true
+      - SERVER_HTTP_CONN_TIMEOUT=500
+      - SERVER_MAX_THREADS=50
+      - SERVER_MAX_CONNECTIONS=200
+      - DB_MIN_IDLE=1
+      - DB_POOL_MAX_POOL=10
+      - DB_IDLE_TIMEOUT=30000
+      - DB_POOL_MAX_LIFETIME=2000000
+      - DB_CONNECTION_TIMEOUT=1000
+      - DB_HOST=postgres
+      - DB_DATABASE=db_financial
+      - DB_USER=admin
+      - DB_PASSWORD=admin
+      - SERVER_PORT=30002
+    ports:
+      - "30002:30002"
+
+  nginx:
+    image: nginx:latest
+    hostname: nginx
+    container_name: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: 100MB
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1-web
