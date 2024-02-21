@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Feb 21 22:13:52 UTC 2024** com **281** submissões.
+Atualizada **Wed Feb 21 22:37:30 UTC 2024** com **282** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -55,6 +55,7 @@ Atualizada **Wed Feb 21 22:13:52 UTC 2024** com **281** submissões.
 | [cassiano-manuelzinho-golang](./participantes/cassiano-manuelzinho-golang) | ok | 2 |
 | [cesar-rodrigues](./participantes/cesar-rodrigues) | falha - [logs](./participantes/cesar-rodrigues/docker-compose.logs) | -- |
 | [claudio-silva](./participantes/claudio-silva) | ok | 3 |
+| [claudioneves1981](./participantes/claudioneves1981) | ok | 1 |
 | [cleitinif](./participantes/cleitinif) | ok | 4 |
 | [crebitojs](./participantes/crebitojs) | ok | 3 |
 | [cristiano182](./participantes/cristiano182) | ok | 1 |
@@ -98,7 +99,7 @@ Atualizada **Wed Feb 21 22:13:52 UTC 2024** com **281** submissões.
 | [filipemacedo](./participantes/filipemacedo) | ok | 3 |
 | [flpStrri](./participantes/flpStrri) | ok | 2 |
 | [fraidev](./participantes/fraidev) | falha - [logs](./participantes/fraidev/docker-compose.logs) | -- |
-| [franklaercio](./participantes/franklaercio) | falha - [logs](./participantes/franklaercio/docker-compose.logs) | -- |
+| [franklaercio](./participantes/franklaercio) | ok | 37 |
 | [gabrielfmagalhaes](./participantes/gabrielfmagalhaes) | ok | 5 |
 | [gabrielluciano-vertx](./participantes/gabrielluciano-vertx) | ok | 1 |
 | [gasparbarancelli-h2-database](./participantes/gasparbarancelli-h2-database) | ok | 2 |
@@ -182,7 +183,7 @@ Atualizada **Wed Feb 21 22:13:52 UTC 2024** com **281** submissões.
 | [lpicanco](./participantes/lpicanco) | ok | 2 |
 | [lsfratel-python](./participantes/lsfratel-python) | ok | 3 |
 | [lsfratel](./participantes/lsfratel) | ok | 3 |
-| [lubien-multi-tenant-sqlite](./participantes/lubien-multi-tenant-sqlite) | falha - [logs](./participantes/lubien-multi-tenant-sqlite/docker-compose.logs) | -- |
+| [lubien-multi-tenant-sqlite](./participantes/lubien-multi-tenant-sqlite) | ok | 2 |
 | [lubien-phoenixqlite](./participantes/lubien-phoenixqlite) | ok | 2 |
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 4 |
 | [lucasSSalgado](./participantes/lucasSSalgado) | ok | 4 |
