@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Feb 21 01:09:50 UTC 2024** com **272** submissões.
+Atualizada **Wed Feb 21 01:26:03 UTC 2024** com **272** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -160,7 +160,7 @@ Atualizada **Wed Feb 21 01:09:50 UTC 2024** com **272** submissões.
 | [kauan-calasans](./participantes/kauan-calasans) | ok | 5 |
 | [kiro-tagama](./participantes/kiro-tagama) | falha - [logs](./participantes/kiro-tagama/docker-compose.logs) | -- |
 | [klimber](./participantes/klimber) | ok | 5 |
-| [krymancer](./participantes/krymancer) | ok | 2304 |
+| [krymancer](./participantes/krymancer) | ok | 4 |
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
 | [lbaesso-php](./participantes/lbaesso-php) | ok | 2 |
 | [leandro-sousa](./participantes/leandro-sousa) | falha - [logs](./participantes/leandro-sousa/docker-compose.logs) | -- |
@@ -207,11 +207,11 @@ Atualizada **Wed Feb 21 01:09:50 UTC 2024** com **272** submissões.
 | [matheuslao](./participantes/matheuslao) | ok | 7 |
 | [matheusleal](./participantes/matheusleal) | ok | 4 |
 | [matheuswilliam](./participantes/matheuswilliam) | ok | 2 |
-| [maxwell](./participantes/maxwell) | ok | 1 |
+| [maxwell](./participantes/maxwell) | falha - [logs](./participantes/maxwell/docker-compose.logs) | -- |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [mgenteluci](./participantes/mgenteluci) | ok | 4 |
 | [murilochianfa](./participantes/murilochianfa) | ok | 1 |
-| [mvellasco](./participantes/mvellasco) | ok | 48 |
+| [mvellasco](./participantes/mvellasco) | ok | 257 |
 | [my_way](./participantes/my_way) | ok | 23 |
 | [newton](./participantes/newton) | ok | 3 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
