@@ -1,10 +1,10 @@
-CREATE TABLE IF NOT EXISTS clients (
+CREATE UNLOGGED TABLE IF NOT EXISTS clients (
   id SERIAL PRIMARY KEY,
   client_limit INT,
   balance INT
 );
 
-CREATE TABLE IF NOT EXISTS transactions (
+CREATE UNLOGGED TABLE IF NOT EXISTS transactions (
   id SERIAL PRIMARY KEY,
   client_id INT NOT NULL,
   CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES clients(id),
