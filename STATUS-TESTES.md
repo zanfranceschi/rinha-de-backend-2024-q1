@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 20 22:05:37 UTC 2024** com **267** submissões.
+Atualizada **Wed Feb 21 05:03:16 UTC 2024** com **276** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -116,6 +116,8 @@ Atualizada **Tue Feb 20 22:05:37 UTC 2024** com **267** submissões.
 | [giovannibassi-rust](./participantes/giovannibassi-rust) | ok | 1 |
 | [giovannibassi-vb](./participantes/giovannibassi-vb) | ok | 1 |
 | [giovannibassi](./participantes/giovannibassi) | ok | 1 |
+| [gldmelo-cs-py-hibrid](./participantes/gldmelo-cs-py-hibrid) | ok | 2 |
+| [gldmelo-py-fastapi](./participantes/gldmelo-py-fastapi) | falha - [logs](./participantes/gldmelo-py-fastapi/docker-compose.logs) | -- |
 | [gldmelo](./participantes/gldmelo) | ok | 2 |
 | [gmrms](./participantes/gmrms) | ok | 2 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
@@ -146,18 +148,20 @@ Atualizada **Tue Feb 20 22:05:37 UTC 2024** com **267** submissões.
 | [joaopmerlin](./participantes/joaopmerlin) | ok | 3 |
 | [jojodev](./participantes/jojodev) | ok | 437 |
 | [jonattas_bunjs](./participantes/jonattas_bunjs) | ok | 17 |
+| [jorgehrique-dotnet](./participantes/jorgehrique-dotnet) | ok | 3 |
 | [josebaroni-postgrest](./participantes/josebaroni-postgrest) | ok | 2 |
 | [josebaroni](./participantes/josebaroni) | ok | 2 |
 | [jovitcorreia](./participantes/jovitcorreia) | ok | 1 |
 | [jpaf](./participantes/jpaf) | ok | 2 |
 | [jpcairesf-java](./participantes/jpcairesf-java) | falha - [logs](./participantes/jpcairesf-java/docker-compose.logs) | -- |
 | [julianojj](./participantes/julianojj) | ok | 7 |
+| [juliorovesta](./participantes/juliorovesta) | ok | 1 |
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 1861 |
 | [kalelMartinho_fastapi](./participantes/kalelMartinho_fastapi) | ok | 3 |
 | [kauan-calasans](./participantes/kauan-calasans) | ok | 5 |
 | [kiro-tagama](./participantes/kiro-tagama) | falha - [logs](./participantes/kiro-tagama/docker-compose.logs) | -- |
 | [klimber](./participantes/klimber) | ok | 5 |
-| [krymancer](./participantes/krymancer) | ok | 2304 |
+| [krymancer](./participantes/krymancer) | ok | 4 |
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
 | [lbaesso-php](./participantes/lbaesso-php) | ok | 2 |
 | [leandro-sousa](./participantes/leandro-sousa) | falha - [logs](./participantes/leandro-sousa/docker-compose.logs) | -- |
@@ -204,15 +208,16 @@ Atualizada **Tue Feb 20 22:05:37 UTC 2024** com **267** submissões.
 | [matheuslao](./participantes/matheuslao) | ok | 7 |
 | [matheusleal](./participantes/matheusleal) | ok | 4 |
 | [matheuswilliam](./participantes/matheuswilliam) | ok | 2 |
-| [maxwell](./participantes/maxwell) | ok | 1 |
+| [maxwell](./participantes/maxwell) | falha - [logs](./participantes/maxwell/docker-compose.logs) | -- |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [mgenteluci](./participantes/mgenteluci) | ok | 4 |
-| [murilochianfa](./participantes/murilochianfa) | falha - [logs](./participantes/murilochianfa/docker-compose.logs) | -- |
-| [mvellasco](./participantes/mvellasco) | ok | 48 |
-| [my_way](./participantes/my_way) | ok | 2091 |
+| [murilochianfa](./participantes/murilochianfa) | ok | 1 |
+| [mvellasco](./participantes/mvellasco) | ok | 257 |
+| [my_way](./participantes/my_way) | ok | 23 |
 | [newton](./participantes/newton) | ok | 3 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
 | [nielsonrolim-ror](./participantes/nielsonrolim-ror) | ok | 1 |
+| [nmessias](./participantes/nmessias) | ok | 1 |
 | [normanfrieman](./participantes/normanfrieman) | ok | 12 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
 | [oliveiratheone-rust](./participantes/oliveiratheone-rust) | falha - [logs](./participantes/oliveiratheone-rust/docker-compose.logs) | -- |
@@ -248,6 +253,10 @@ Atualizada **Tue Feb 20 22:05:37 UTC 2024** com **267** submissões.
 | [ruhtar](./participantes/ruhtar) | falha - [logs](./participantes/ruhtar/docker-compose.logs) | -- |
 | [samluiz](./participantes/samluiz) | ok | 2 |
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
+| [santannaf_web](./participantes/santannaf_web) | ok | 6 |
+| [santannaf_webflux](./participantes/santannaf_webflux) | ok | 5 |
+| [silmar-alberti-franken-php](./participantes/silmar-alberti-franken-php) | ok | 3 |
+| [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
