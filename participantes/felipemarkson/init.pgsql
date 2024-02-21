@@ -113,3 +113,22 @@ BEGIN
     RETURN ret;
 END
 $$;
+
+-- CONFIGURATIONS
+ALTER SYSTEM SET max_connections = '201';
+ALTER SYSTEM SET shared_buffers = '115MB';
+ALTER SYSTEM SET effective_cache_size = '345MB';
+ALTER SYSTEM SET maintenance_work_mem = '29440kB';
+ALTER SYSTEM SET checkpoint_completion_target = '0.9';
+ALTER SYSTEM SET wal_buffers = '3532kB';
+ALTER SYSTEM SET default_statistics_target = '100';
+ALTER SYSTEM SET random_page_cost = '4';
+ALTER SYSTEM SET effective_io_concurrency = '2';
+ALTER SYSTEM SET work_mem = '292kB';
+ALTER SYSTEM SET huge_pages = 'off';
+ALTER SYSTEM SET min_wal_size = '20GB';
+ALTER SYSTEM SET max_wal_size = '80GB';
+ALTER SYSTEM SET fsync = 'off';
+ALTER SYSTEM SET synchronous_commit = 'off';
+ALTER SYSTEM SET full_page_writes = 'off';
+ALTER SYSTEM SET checkpoint_timeout = '600';

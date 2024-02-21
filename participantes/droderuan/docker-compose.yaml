@@ -1,7 +1,15 @@
 services:
   db:
-    image: postgres:16
-    restart: always
+    image: postgres:16-bookworm
+    command:
+      [
+        "-c",
+        "fsync=off",
+        "-c",
+        "full_page_writes=false",
+        "-c",
+        "synchronous_commit=off",
+      ]
     environment:
       POSTGRES_DB: "rinha_backend"
       POSTGRES_USER: "rinha"
@@ -14,27 +22,17 @@ services:
       start_period: 10s
     ports:
       - "5432:5432"
-    expose:
-      - "5432"
     deploy:
       resources:
         limits:
           cpus: "0.4"
           memory: "300mb"
-        reservations:
-          cpus: "0.4"
-          memory: "300mb"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 
-  api01: &api
+  api:
     image: droderuan/node-rinha-backend-2024
-    # pull_policy: build
-    hostname: api01
-    restart: always
     command: npm run start:prod
-    ports:
-      - "8081:3333"
     environment:
       DB_HOST: "db"
       DB_POOL: 15
@@ -42,33 +40,23 @@ services:
       db:
         condition: service_healthy
     deploy:
+      replicas: 2
       resources:
         limits:
           cpus: "0.5"
           memory: "100mb"
-        reservations:
-          cpus: "0.5"
-          memory: "100mb"
-  api02:
-    <<: *api
-    hostname: api02
-    ports:
-      - "8082:3333"
+
   nginx:
     image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api01
-      - api02
+      - api
     ports:
       - "9999:9999"
     deploy:
       resources:
         limits:
-          cpus: "0.1"
-          memory: "50MB"
-        reservations:
           cpus: "0.1"
           memory: "50MB"
 
