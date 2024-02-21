@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Feb 21 23:24:05 UTC 2024** com **282** submissões.
+Atualizada **Wed Feb 21 23:46:55 UTC 2024** com **283** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -90,8 +90,8 @@ Atualizada **Wed Feb 21 23:24:05 UTC 2024** com **282** submissões.
 | [eu_fountai](./participantes/eu_fountai) | ok | 2 |
 | [exemplo](./participantes/exemplo) | ok | 2 |
 | [fabiokleis](./participantes/fabiokleis) | ok | 3 |
-| [fabionaspolini-sync](./participantes/fabionaspolini-sync) | ok | 2 |
-| [fabionaspolini](./participantes/fabionaspolini) | ok | 2 |
+| [fabionaspolini-sync](./participantes/fabionaspolini-sync) | ok | 1 |
+| [fabionaspolini](./participantes/fabionaspolini) | ok | 1 |
 | [felipe-alcantara-actor-model](./participantes/felipe-alcantara-actor-model) | ok | 1 |
 | [felipebossolani-dotnet](./participantes/felipebossolani-dotnet) | ok | 2 |
 | [felipemarkson](./participantes/felipemarkson) | ok | 2 |
@@ -267,6 +267,7 @@ Atualizada **Wed Feb 21 23:24:05 UTC 2024** com **282** submissões.
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
 | [thicsilva](./participantes/thicsilva) | ok | 5 |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
+| [thusspokebieu-rust](./participantes/thusspokebieu-rust) | falha - [logs](./participantes/thusspokebieu-rust/docker-compose.logs) | -- |
 | [udleinati](./participantes/udleinati) | falha - [logs](./participantes/udleinati/docker-compose.logs) | -- |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
