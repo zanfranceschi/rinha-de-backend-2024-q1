@@ -1,0 +1,55 @@
+version: '3.9'
+services:
+  api01: &api
+    command: bash -c "ruby server.rb -o 0.0.0.0 -p 8080"
+    image: ghcr.io/davide-almeida/sinatrinha-do-povo:latest
+    hostname: api01
+    environment:
+      - DB_HOSTNAME=db
+      - RUBY_YJIT_ENABLE=1
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "100MB"
+
+  api02:
+    <<: *api 
+    hostname: api02
+    environment:
+      - DB_HOSTNAME=db
+ 
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./setup/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+  db:
+    image: postgres:16.2-alpine3.19
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    command: postgres -c max_connections=30
+    volumes:
+      - ./setup/init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "300MB"
