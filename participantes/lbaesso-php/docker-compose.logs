@@ -26,10 +26,10 @@ postgres     | selecting default shared_buffers ... 128MB
 postgres     | selecting default time zone ... Etc/UTC
 postgres     | creating configuration files ... ok
 postgres     | running bootstrap script ... ok
-app1         | [19-Feb-2024 09:52:32] NOTICE: fpm is running, pid 1
-app1         | [19-Feb-2024 09:52:32] NOTICE: ready to handle connections
-app2         | [19-Feb-2024 09:52:32] NOTICE: fpm is running, pid 1
-app2         | [19-Feb-2024 09:52:32] NOTICE: ready to handle connections
+app1         | [19-Feb-2024 19:33:07] NOTICE: fpm is running, pid 1
+app1         | [19-Feb-2024 19:33:07] NOTICE: ready to handle connections
+app2         | [19-Feb-2024 19:33:07] NOTICE: fpm is running, pid 1
+app2         | [19-Feb-2024 19:33:07] NOTICE: ready to handle connections
 nginx-proxy  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-proxy  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-proxy  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -49,63 +49,64 @@ postgres     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 postgres     | 
 postgres     | initdb: warning: enabling "trust" authentication for local connections
 postgres     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-postgres     | waiting for server to start....2024-02-19 09:52:34.836 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres     | 2024-02-19 09:52:34.839 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres     | 2024-02-19 09:52:34.848 UTC [51] LOG:  database system was shut down at 2024-02-19 09:52:33 UTC
-postgres     | 2024-02-19 09:52:34.860 UTC [48] LOG:  database system is ready to accept connections
+postgres     | waiting for server to start....2024-02-19 19:33:09.229 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres     | 2024-02-19 19:33:09.232 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres     | 2024-02-19 19:33:09.242 UTC [52] LOG:  database system was shut down at 2024-02-19 19:33:07 UTC
+postgres     | 2024-02-19 19:33:09.256 UTC [49] LOG:  database system is ready to accept connections
 postgres     |  done
 postgres     | server started
 postgres     | CREATE DATABASE
 postgres     | 
 postgres     | 
 postgres     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
-postgres     | DROP TABLE
 postgres     | psql:/docker-entrypoint-initdb.d/script.sql:3: NOTICE:  table "transacoes" does not exist, skipping
-postgres     | psql:/docker-entrypoint-initdb.d/script.sql:4: NOTICE:  table "clientes" does not exist, skipping
 postgres     | DROP TABLE
+postgres     | DROP TABLE
+postgres     | psql:/docker-entrypoint-initdb.d/script.sql:4: NOTICE:  table "clientes" does not exist, skipping
 postgres     | CREATE TABLE
 postgres     | CREATE INDEX
 postgres     | CREATE INDEX
 postgres     | CREATE INDEX
 postgres     | CREATE TABLE
 postgres     | CREATE INDEX
+postgres     | CREATE INDEX
 postgres     | INSERT 0 5
 postgres     | INSERT 0 5
 postgres     | 
 postgres     | 
-postgres     | waiting for server to shut down....2024-02-19 09:52:35.095 UTC [48] LOG:  received fast shutdown request
-postgres     | 2024-02-19 09:52:35.099 UTC [48] LOG:  aborting any active transactions
-postgres     | 2024-02-19 09:52:35.115 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-postgres     | 2024-02-19 09:52:35.115 UTC [49] LOG:  shutting down
-postgres     | 2024-02-19 09:52:35.118 UTC [49] LOG:  checkpoint starting: shutdown immediate
-postgres     | 2024-02-19 09:52:35.626 UTC [49] LOG:  checkpoint complete: wrote 955 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.405 s, sync=0.092 s, total=0.511 s; sync files=319, longest=0.062 s, average=0.001 s; distance=4297 kB, estimate=4297 kB; lsn=0/191D0D0, redo lsn=0/191D0D0
-postgres     | 2024-02-19 09:52:35.632 UTC [48] LOG:  database system is shut down
+postgres     | waiting for server to shut down....2024-02-19 19:33:09.485 UTC [49] LOG:  received fast shutdown request
+postgres     | 2024-02-19 19:33:09.488 UTC [49] LOG:  aborting any active transactions
+postgres     | 2024-02-19 19:33:09.514 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+postgres     | 2024-02-19 19:33:09.514 UTC [50] LOG:  shutting down
+postgres     | 2024-02-19 19:33:09.517 UTC [50] LOG:  checkpoint starting: shutdown immediate
+postgres     | 2024-02-19 19:33:10.005 UTC [50] LOG:  checkpoint complete: wrote 954 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.384 s, sync=0.092 s, total=0.491 s; sync files=321, longest=0.065 s, average=0.001 s; distance=4294 kB, estimate=4294 kB; lsn=0/191C478, redo lsn=0/191C478
+postgres     | 2024-02-19 19:33:10.010 UTC [49] LOG:  database system is shut down
 postgres     |  done
 postgres     | server stopped
 postgres     | 
 postgres     | PostgreSQL init process complete; ready for start up.
 postgres     | 
-postgres     | 2024-02-19 09:52:35.732 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres     | 2024-02-19 09:52:35.733 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres     | 2024-02-19 09:52:35.733 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-postgres     | 2024-02-19 09:52:35.740 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres     | 2024-02-19 09:52:35.747 UTC [66] LOG:  database system was shut down at 2024-02-19 09:52:35 UTC
-postgres     | 2024-02-19 09:52:35.754 UTC [1] LOG:  database system is ready to accept connections
+postgres     | 2024-02-19 19:33:10.119 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres     | 2024-02-19 19:33:10.120 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres     | 2024-02-19 19:33:10.120 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres     | 2024-02-19 19:33:10.126 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres     | 2024-02-19 19:33:10.134 UTC [67] LOG:  database system was shut down at 2024-02-19 19:33:09 UTC
+postgres     | 2024-02-19 19:33:10.141 UTC [1] LOG:  database system is ready to accept connections
 nginx-proxy exited with code 0
 nginx-proxy exited with code 0
-app1         | [19-Feb-2024 09:56:49] NOTICE: Finishing ...
-app1         | [19-Feb-2024 09:56:49] NOTICE: exiting, bye-bye!
-app2         | [19-Feb-2024 09:56:49] NOTICE: Finishing ...
-app2         | [19-Feb-2024 09:56:49] NOTICE: exiting, bye-bye!
+app1         | [19-Feb-2024 19:37:24] NOTICE: Finishing ...
+app2         | [19-Feb-2024 19:37:24] NOTICE: Finishing ...
+app1         | [19-Feb-2024 19:37:24] NOTICE: exiting, bye-bye!
+app2         | [19-Feb-2024 19:37:24] NOTICE: exiting, bye-bye!
 app1 exited with code 0
 app1 exited with code 0
 app2 exited with code 0
 app2 exited with code 0
-postgres     | 2024-02-19 09:56:50.315 UTC [1] LOG:  received fast shutdown request
-postgres     | 2024-02-19 09:56:50.318 UTC [1] LOG:  aborting any active transactions
-postgres     | 2024-02-19 09:56:50.320 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-postgres     | 2024-02-19 09:56:50.320 UTC [64] LOG:  shutting down
-postgres     | 2024-02-19 09:56:50.323 UTC [64] LOG:  checkpoint starting: shutdown immediate
-postgres     | 2024-02-19 09:56:50.538 UTC [64] LOG:  checkpoint complete: wrote 1059 buffers (6.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.011 s, sync=0.194 s, total=0.219 s; sync files=34, longest=0.169 s, average=0.006 s; distance=2113 kB, estimate=2113 kB; lsn=0/1B2D648, redo lsn=0/1B2D648
-postgres     | 2024-02-19 09:56:50.543 UTC [1] LOG:  database system is shut down
+postgres     | 2024-02-19 19:37:25.035 UTC [1] LOG:  received fast shutdown request
+postgres     | 2024-02-19 19:37:25.040 UTC [1] LOG:  aborting any active transactions
+postgres     | 2024-02-19 19:37:25.042 UTC [1] LOG:  background worker "logical replication launcher" (PID 70) exited with exit code 1
+postgres     | 2024-02-19 19:37:25.043 UTC [65] LOG:  shutting down
+postgres     | 2024-02-19 19:37:25.045 UTC [65] LOG:  checkpoint starting: shutdown immediate
+postgres     | 2024-02-19 19:37:25.274 UTC [65] LOG:  checkpoint complete: wrote 1102 buffers (6.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.017 s, sync=0.197 s, total=0.232 s; sync files=34, longest=0.160 s, average=0.006 s; distance=2113 kB, estimate=2113 kB; lsn=0/1B2CAB8, redo lsn=0/1B2CAB8
+postgres     | 2024-02-19 19:37:25.279 UTC [1] LOG:  database system is shut down
 postgres exited with code 0

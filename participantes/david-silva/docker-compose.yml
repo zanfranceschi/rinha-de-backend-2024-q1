@@ -1,0 +1,57 @@
+version: "3"
+services:
+  lb:
+    container_name: nginx
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 10M
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "9999:9999"
+    depends_on:
+      - app-1
+
+  app-1: &app-base
+    container_name: app-1
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: 200M
+    image: daviddeltasierra/rinha-2024-q1-reactor
+    environment:
+      - spring.r2dbc.url=r2dbc:postgresql://postgress:5432/rinha
+      - spring.r2dbc.username=postgres
+      - spring.r2dbc.password=root
+      - spring.r2dbc.pool.initial-size=10
+      - spring.r2dbc.pool.max-size=10
+    depends_on:
+      postgress:
+        condition: service_healthy
+
+  app-2:
+    container_name: app-2
+    <<: *app-base
+
+  postgress:
+    container_name: postgress
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 140M
+    image: postgres:alpine
+    user: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      retries: 6
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=rinha

@@ -1,0 +1,53 @@
+version: '3'
+services:
+  php-1: &php
+    image: silmaralberti/rinha-frankenphp:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "0.36"
+          memory: "150MB"
+    restart: unless-stopped
+    ports:
+      - target: 80
+        protocol: tcp
+
+  php-2:
+    <<: *php
+
+  ngnix:
+    image: nginx:stable-alpine3.17
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "50MB"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - php-1
+      - php-2
+    ports:
+      - ${HTTP_PORT:-9999}:80
+
+  database:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "0.61"
+          memory: "200MB"
+    environment:
+      POSTGRES_USER: "rinha"
+      POSTGRES_PASSWORD: "rinha-2024"
+      POSTGRES_DB: "rinha"
+    command: 'postgres -c config_file="/etc/postgresql.conf"'
+    volumes:
+      - ./docker/postgresql/postgres.conf:/etc/postgresql.conf:ro
+      - ./docker/postgresql/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+      
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

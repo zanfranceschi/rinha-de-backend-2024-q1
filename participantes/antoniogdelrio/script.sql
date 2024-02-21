@@ -37,8 +37,6 @@ DECLARE
 BEGIN
     SELECT limite, saldo INTO l, s FROM clientes WHERE id = client_id FOR UPDATE;
 
-    INSERT INTO transacoes (client_id, valor, tipo, descricao, data_transacao) VALUES (client_id, valor, tipo, descricao, NOW());
-
     IF tipo = 'd' AND (s - valor) >= l * -1 THEN
         UPDATE clientes SET saldo = s - valor WHERE id = client_id;
         s := s - valor;
@@ -48,6 +46,8 @@ BEGIN
     ELSIF tipo = 'd' AND (s - valor) < l * -1 THEN
       RETURN NULL;
     END IF;
+
+    INSERT INTO transacoes (client_id, valor, tipo, descricao, data_transacao) VALUES (client_id, valor, tipo, descricao, NOW());
 
     RETURN (l, s);
 END $$;

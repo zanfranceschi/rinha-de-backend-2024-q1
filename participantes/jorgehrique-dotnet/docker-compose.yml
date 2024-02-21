@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  api1: &api
+    image: jorgehrique/rinha-backend-app-24-q1:1.0.0
+    container_name: api1
+    depends_on:
+      - mongo
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: '100M'
+
+  api2:
+    <<: *api 
+    container_name: api2
+
+  nginx: # Load Balancer
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: '20M'
+
+  mongo: # Banco de dados
+    image: mongo:7.0.5-jammy
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.80'
+          memory: '280M'
