@@ -14,7 +14,6 @@ CREATE TABLE IF NOT EXISTS "transaction" (
   "client_id"   INT NOT NULL REFERENCES clients("id")
 );
 
-
 DO $$
 BEGIN
   INSERT INTO clients ("name", "limit")
