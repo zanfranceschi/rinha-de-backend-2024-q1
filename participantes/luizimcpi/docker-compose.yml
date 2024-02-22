@@ -1,0 +1,71 @@
+version: '3.4'
+services:
+  api1:
+    image: luizimcpi/rinha-2024q1-crebito
+    hostname: api1
+    depends_on:
+      - mysqldocker
+    expose:
+      - "8080"
+    networks: 
+      - prod
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: '50MB'
+  api2:
+    image: luizimcpi/rinha-2024q1-crebito
+    hostname: api2
+    depends_on:
+      - mysqldocker
+    expose:
+      - "8080"
+    networks: 
+      - prod
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: '50MB'
+
+  nginx: # Load Balancer
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    networks: 
+      - prod
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: '50MB'
+
+  mysqldocker:
+    image: mysql:8.3.0
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - prod
+    environment:
+      MYSQL_DATABASE: rinhabank
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 123456
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: '400MB'
+
+networks:
+  prod:
+    driver: bridge

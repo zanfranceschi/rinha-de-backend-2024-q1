@@ -1,3 +1,9 @@
+volumes:
+  db-data:
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
 services:
   loadbalancer:
     image: nginx:latest
@@ -28,7 +34,7 @@ services:
       #   limits:
       #     memory: 1024M
     volumes:
-    - ./data:/data
+    - db-data:/data
     - ./tigerbeetle-start.sh:/tigerbeetle-start.sh
   backend1:
     image: ghcr.io/lucasew/playground-rinha202401-backend:latest

@@ -2,8 +2,8 @@
  Network ed1000_default  Created
  Container ed1000-postgres-1  Creating
  Container ed1000-postgres-1  Created
- Container ed1000-api02-1  Creating
  Container ed1000-api01-1  Creating
+ Container ed1000-api02-1  Creating
  Container ed1000-api01-1  Created
  Container ed1000-api02-1  Created
  Container ed1000-nginx-1  Creating
@@ -27,10 +27,8 @@ postgres-1  | selecting default time zone ... UTC
 postgres-1  | creating configuration files ... ok
 postgres-1  | running bootstrap script ... ok
 postgres-1  | sh: locale: not found
-postgres-1  | 2024-02-19 04:24:41.224 UTC [30] WARNING:  no usable system locales were found
+postgres-1  | 2024-02-21 02:10:36.230 UTC [30] WARNING:  no usable system locales were found
 postgres-1  | performing post-bootstrap initialization ... ok
-postgres-1  | initdb: warning: enabling "trust" authentication for local connections
-postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 postgres-1  | syncing data to disk ... ok
 postgres-1  | 
 postgres-1  | 
@@ -38,18 +36,20 @@ postgres-1  | Success. You can now start the database server using:
 postgres-1  | 
 postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 postgres-1  | 
-postgres-1  | waiting for server to start....2024-02-19 04:24:42.989 UTC [36] LOG:  starting PostgreSQL 16.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
-postgres-1  | 2024-02-19 04:24:42.991 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres-1  | 2024-02-19 04:24:43.014 UTC [39] LOG:  database system was shut down at 2024-02-19 04:24:42 UTC
-postgres-1  | 2024-02-19 04:24:43.021 UTC [36] LOG:  database system is ready to accept connections
+postgres-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres-1  | waiting for server to start....2024-02-21 02:10:37.841 UTC [36] LOG:  starting PostgreSQL 16.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+postgres-1  | 2024-02-21 02:10:37.844 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2024-02-21 02:10:37.853 UTC [39] LOG:  database system was shut down at 2024-02-21 02:10:36 UTC
+postgres-1  | 2024-02-21 02:10:37.863 UTC [36] LOG:  database system is ready to accept connections
 postgres-1  |  done
 postgres-1  | server started
 postgres-1  | CREATE DATABASE
 postgres-1  | 
 postgres-1  | 
 postgres-1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
-postgres-1  | DROP TABLE
 postgres-1  | psql:/docker-entrypoint-initdb.d/init.sql:1: NOTICE:  table "transacoes" does not exist, skipping
+postgres-1  | DROP TABLE
 postgres-1  | psql:/docker-entrypoint-initdb.d/init.sql:3: NOTICE:  table "clientes" does not exist, skipping
 postgres-1  | DROP TABLE
 postgres-1  | CREATE TABLE
@@ -57,40 +57,24 @@ postgres-1  | CREATE TABLE
 postgres-1  | DO
 postgres-1  | 
 postgres-1  | 
-postgres-1  | waiting for server to shut down....2024-02-19 04:24:43.219 UTC [36] LOG:  received fast shutdown request
-postgres-1  | 2024-02-19 04:24:43.224 UTC [36] LOG:  aborting any active transactions
-postgres-1  | 2024-02-19 04:24:43.227 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
-postgres-1  | 2024-02-19 04:24:43.228 UTC [37] LOG:  shutting down
-postgres-1  | 2024-02-19 04:24:43.231 UTC [37] LOG:  checkpoint starting: shutdown immediate
-postgres-1  | 2024-02-19 04:24:43.737 UTC [37] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.377 s, sync=0.119 s, total=0.509 s; sync files=313, longest=0.078 s, average=0.001 s; distance=4301 kB, estimate=4301 kB; lsn=0/1923A20, redo lsn=0/1923A20
-postgres-1  | 2024-02-19 04:24:43.744 UTC [36] LOG:  database system is shut down
+postgres-1  | waiting for server to shut down....2024-02-21 02:10:38.044 UTC [36] LOG:  received fast shutdown request
+postgres-1  | 2024-02-21 02:10:38.047 UTC [36] LOG:  aborting any active transactions
+postgres-1  | 2024-02-21 02:10:38.049 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
+postgres-1  | 2024-02-21 02:10:38.049 UTC [37] LOG:  shutting down
+postgres-1  | 2024-02-21 02:10:38.051 UTC [37] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2024-02-21 02:10:38.568 UTC [37] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.275 s, sync=0.231 s, total=0.520 s; sync files=313, longest=0.163 s, average=0.001 s; distance=4301 kB, estimate=4301 kB; lsn=0/1923A58, redo lsn=0/1923A58
+postgres-1  | 2024-02-21 02:10:38.575 UTC [36] LOG:  database system is shut down
 postgres-1  |  done
 postgres-1  | server stopped
 postgres-1  | 
 postgres-1  | PostgreSQL init process complete; ready for start up.
 postgres-1  | 
-postgres-1  | 2024-02-19 04:24:43.842 UTC [1] LOG:  starting PostgreSQL 16.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
-postgres-1  | 2024-02-19 04:24:43.842 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres-1  | 2024-02-19 04:24:43.842 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-postgres-1  | 2024-02-19 04:24:43.850 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres-1  | 2024-02-19 04:24:43.858 UTC [54] LOG:  database system was shut down at 2024-02-19 04:24:43 UTC
-postgres-1  | 2024-02-19 04:24:43.864 UTC [1] LOG:  database system is ready to accept connections
-api02-1     | 
-api02-1     |   .   ____          _            __ _ _
-api02-1     |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-api02-1     | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
-api02-1     |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-api02-1     |   '  |____| .__|_| |_|_| |_\__, | / / / /
-api02-1     |  =========|_|==============|___/=/_/_/_/
-api02-1     |  :: Spring Boot ::                (v3.2.2)
-api02-1     | 
-api02-1     | 2024-02-19T04:24:46.047Z  INFO 1 --- [           main] b.c.e.app.rinha.Rinha2024Q1Application   : Starting AOT-processed Rinha2024Q1Application using Java 21.0.2 with PID 1 (/app started by root in /)
-api02-1     | 2024-02-19T04:24:46.047Z  INFO 1 --- [           main] b.c.e.app.rinha.Rinha2024Q1Application   : No active profile set, falling back to 1 default profile: "default"
-api02-1     | 2024-02-19T04:24:46.066Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-api02-1     | 2024-02-19T04:24:46.067Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-api02-1     | 2024-02-19T04:24:46.067Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-api02-1     | 2024-02-19T04:24:46.075Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-api02-1     | 2024-02-19T04:24:46.075Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 28 ms
+postgres-1  | 2024-02-21 02:10:38.668 UTC [1] LOG:  starting PostgreSQL 16.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+postgres-1  | 2024-02-21 02:10:38.668 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2024-02-21 02:10:38.668 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2024-02-21 02:10:38.679 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2024-02-21 02:10:38.686 UTC [54] LOG:  database system was shut down at 2024-02-21 02:10:38 UTC
+postgres-1  | 2024-02-21 02:10:38.693 UTC [1] LOG:  database system is ready to accept connections
 api01-1     | 
 api01-1     |   .   ____          _            __ _ _
 api01-1     |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -100,17 +84,33 @@ api01-1     |   '  |____| .__|_| |_|_| |_\__, | / / / /
 api01-1     |  =========|_|==============|___/=/_/_/_/
 api01-1     |  :: Spring Boot ::                (v3.2.2)
 api01-1     | 
-api01-1     | 2024-02-19T04:24:46.099Z  INFO 1 --- [           main] b.c.e.app.rinha.Rinha2024Q1Application   : Starting AOT-processed Rinha2024Q1Application using Java 21.0.2 with PID 1 (/app started by root in /)
-api01-1     | 2024-02-19T04:24:46.099Z  INFO 1 --- [           main] b.c.e.app.rinha.Rinha2024Q1Application   : No active profile set, falling back to 1 default profile: "default"
-api01-1     | 2024-02-19T04:24:46.123Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-api01-1     | 2024-02-19T04:24:46.124Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-api01-1     | 2024-02-19T04:24:46.124Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-api01-1     | 2024-02-19T04:24:46.135Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-api01-1     | 2024-02-19T04:24:46.135Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 35 ms
-api02-1     | 2024-02-19T04:24:46.247Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-api02-1     | 2024-02-19T04:24:46.247Z  INFO 1 --- [           main] b.c.e.app.rinha.Rinha2024Q1Application   : Started Rinha2024Q1Application in 0.213 seconds (process running for 0.217)
-api01-1     | 2024-02-19T04:24:46.259Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-api01-1     | 2024-02-19T04:24:46.259Z  INFO 1 --- [           main] b.c.e.app.rinha.Rinha2024Q1Application   : Started Rinha2024Q1Application in 0.175 seconds (process running for 0.179)
+api01-1     | 2024-02-21T02:10:41.423Z  INFO 1 --- [           main] b.c.e.app.rinha.Rinha2024Q1Application   : Starting AOT-processed Rinha2024Q1Application using Java 21.0.2 with PID 1 (/app started by root in /)
+api01-1     | 2024-02-21T02:10:41.423Z  INFO 1 --- [           main] b.c.e.app.rinha.Rinha2024Q1Application   : No active profile set, falling back to 1 default profile: "default"
+api01-1     | 2024-02-21T02:10:41.445Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+api01-1     | 2024-02-21T02:10:41.446Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+api01-1     | 2024-02-21T02:10:41.446Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+api01-1     | 2024-02-21T02:10:41.455Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+api01-1     | 2024-02-21T02:10:41.455Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 32 ms
+api02-1     | 
+api02-1     |   .   ____          _            __ _ _
+api02-1     |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+api02-1     | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+api02-1     |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+api02-1     |   '  |____| .__|_| |_|_| |_\__, | / / / /
+api02-1     |  =========|_|==============|___/=/_/_/_/
+api02-1     |  :: Spring Boot ::                (v3.2.2)
+api02-1     | 
+api02-1     | 2024-02-21T02:10:41.474Z  INFO 1 --- [           main] b.c.e.app.rinha.Rinha2024Q1Application   : Starting AOT-processed Rinha2024Q1Application using Java 21.0.2 with PID 1 (/app started by root in /)
+api02-1     | 2024-02-21T02:10:41.474Z  INFO 1 --- [           main] b.c.e.app.rinha.Rinha2024Q1Application   : No active profile set, falling back to 1 default profile: "default"
+api02-1     | 2024-02-21T02:10:41.535Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+api02-1     | 2024-02-21T02:10:41.536Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+api02-1     | 2024-02-21T02:10:41.536Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+api02-1     | 2024-02-21T02:10:41.543Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+api02-1     | 2024-02-21T02:10:41.543Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 69 ms
+api01-1     | 2024-02-21T02:10:41.645Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+api01-1     | 2024-02-21T02:10:41.645Z  INFO 1 --- [           main] b.c.e.app.rinha.Rinha2024Q1Application   : Started Rinha2024Q1Application in 0.234 seconds (process running for 0.239)
+api02-1     | 2024-02-21T02:10:41.723Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+api02-1     | 2024-02-21T02:10:41.723Z  INFO 1 --- [           main] b.c.e.app.rinha.Rinha2024Q1Application   : Started Rinha2024Q1Application in 0.261 seconds (process running for 0.265)
 nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -120,33 +120,33 @@ nginx-1     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-reso
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
-api01-1     | 2024-02-19T04:24:47.755Z  INFO 1 --- [omcat-handler-0] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-api01-1     | 2024-02-19T04:24:47.755Z  INFO 1 --- [omcat-handler-0] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-api01-1     | 2024-02-19T04:24:47.756Z  INFO 1 --- [omcat-handler-0] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-api01-1     | 2024-02-19T04:24:47.756Z  INFO 1 --- [omcat-handler-0] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-api01-1     | 2024-02-19T04:24:47.770Z  INFO 1 --- [omcat-handler-0] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6e963bd
-api01-1     | 2024-02-19T04:24:47.770Z  INFO 1 --- [omcat-handler-0] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-api02-1     | 2024-02-19T04:24:47.781Z  INFO 1 --- [omcat-handler-0] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-api02-1     | 2024-02-19T04:24:47.781Z  INFO 1 --- [omcat-handler-0] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-api02-1     | 2024-02-19T04:24:47.781Z  INFO 1 --- [omcat-handler-0] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-api02-1     | 2024-02-19T04:24:47.782Z  INFO 1 --- [omcat-handler-0] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-api02-1     | 2024-02-19T04:24:47.795Z  INFO 1 --- [omcat-handler-0] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1571c6cf
-api02-1     | 2024-02-19T04:24:47.795Z  INFO 1 --- [omcat-handler-0] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+api01-1     | 2024-02-21T02:10:43.427Z  INFO 1 --- [omcat-handler-0] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+api01-1     | 2024-02-21T02:10:43.427Z  INFO 1 --- [omcat-handler-0] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+api01-1     | 2024-02-21T02:10:43.428Z  INFO 1 --- [omcat-handler-0] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+api01-1     | 2024-02-21T02:10:43.428Z  INFO 1 --- [omcat-handler-0] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+api01-1     | 2024-02-21T02:10:43.442Z  INFO 1 --- [omcat-handler-0] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@fc1d58c
+api01-1     | 2024-02-21T02:10:43.442Z  INFO 1 --- [omcat-handler-0] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+api02-1     | 2024-02-21T02:10:43.452Z  INFO 1 --- [omcat-handler-0] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+api02-1     | 2024-02-21T02:10:43.453Z  INFO 1 --- [omcat-handler-0] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+api02-1     | 2024-02-21T02:10:43.453Z  INFO 1 --- [omcat-handler-0] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+api02-1     | 2024-02-21T02:10:43.453Z  INFO 1 --- [omcat-handler-0] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+api02-1     | 2024-02-21T02:10:43.466Z  INFO 1 --- [omcat-handler-0] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@17555308
+api02-1     | 2024-02-21T02:10:43.467Z  INFO 1 --- [omcat-handler-0] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api02-1     | 2024-02-19T04:29:01.406Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-api01-1     | 2024-02-19T04:29:01.406Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-api02-1     | 2024-02-19T04:29:01.413Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-api01-1     | 2024-02-19T04:29:01.414Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-api01-1 exited with code 0
-api01-1 exited with code 143
+api02-1     | 2024-02-21T02:14:56.987Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+api02-1     | 2024-02-21T02:14:56.991Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+api01-1     | 2024-02-21T02:14:56.998Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+api01-1     | 2024-02-21T02:14:56.999Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
 api02-1 exited with code 0
 api02-1 exited with code 143
-postgres-1  | 2024-02-19 04:29:02.417 UTC [1] LOG:  received fast shutdown request
-postgres-1  | 2024-02-19 04:29:02.433 UTC [1] LOG:  aborting any active transactions
-postgres-1  | 2024-02-19 04:29:02.436 UTC [1] LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
-postgres-1  | 2024-02-19 04:29:02.436 UTC [52] LOG:  shutting down
-postgres-1  | 2024-02-19 04:29:02.440 UTC [52] LOG:  checkpoint starting: shutdown immediate
-postgres-1  | 2024-02-19 04:29:02.539 UTC [52] LOG:  checkpoint complete: wrote 635 buffers (3.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.011 s, sync=0.073 s, total=0.104 s; sync files=29, longest=0.066 s, average=0.003 s; distance=2406 kB, estimate=2406 kB; lsn=0/1B7D378, redo lsn=0/1B7D378
-postgres-1  | 2024-02-19 04:29:02.544 UTC [1] LOG:  database system is shut down
+api01-1 exited with code 0
+api01-1 exited with code 143
+postgres-1  | 2024-02-21 02:14:58.044 UTC [1] LOG:  received fast shutdown request
+postgres-1  | 2024-02-21 02:14:58.055 UTC [1] LOG:  aborting any active transactions
+postgres-1  | 2024-02-21 02:14:58.058 UTC [1] LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
+postgres-1  | 2024-02-21 02:14:58.058 UTC [52] LOG:  shutting down
+postgres-1  | 2024-02-21 02:14:58.063 UTC [52] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2024-02-21 02:14:58.164 UTC [52] LOG:  checkpoint complete: wrote 664 buffers (4.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.069 s, total=0.106 s; sync files=30, longest=0.060 s, average=0.003 s; distance=2640 kB, estimate=2640 kB; lsn=0/1BB7CB0, redo lsn=0/1BB7CB0
+postgres-1  | 2024-02-21 02:14:58.168 UTC [1] LOG:  database system is shut down
 postgres-1 exited with code 0

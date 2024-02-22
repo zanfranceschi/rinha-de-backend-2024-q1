@@ -1,0 +1,68 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: nelsoncvjr/rinhadebackend-2024q1:v1
+    hostname: api01
+    environment:
+      - HTTP_PORTS=80
+      - ConnectionStrings__Postgres=Host=db;Database=rinha;Username=admin;Password=123;Pooling=true;MaxPoolSize=32;MinPoolSize=8;Timeout=30;
+    ports:
+      - "3001:80"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "64MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "3002:80"
+  
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "128MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c checkpoint_timeout=10min -c max_connections=1000 -c fsync=off -c synchronous_commit=0 -c full_page_writes=0
+    healthcheck:
+      test: pg_isready -U admin -d rinha
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "294MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

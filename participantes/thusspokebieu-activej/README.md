@@ -12,6 +12,8 @@ Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `java` para api 
+- `graalvm` para compilar para nativo
+- [junixsocket](https://github.com/kohlschutter/junixsocket) para unix socket com o postgres
 - [activej](https://activej.io/) (framework hipster tddb mtmtmt massa q ngm conhece)
 
 ## Repositório

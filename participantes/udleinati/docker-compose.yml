@@ -1,0 +1,72 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16.2-alpine
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c full_page_writes=0
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: rinha
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: sql
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "150MB"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d rinha"]
+      interval: 2s
+      timeout: 2s
+      retries: 25
+
+  api_1: &api_1
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "160MB"
+    image: udleinati/rinha-de-backend-2024-q1-project:0.0.1
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_DATABASE: rinha
+      POSTGRES_USERNAME: root
+      POSTGRES_PASSWORD: sql
+      POSTGRES_LOGGER: "false"
+    healthcheck:
+      test: ["CMD-SHELL", "true"]
+      interval: 2s
+      timeout: 2s
+      retries: 25
+    depends_on:
+      db:
+        condition: service_healthy
+
+  api_2:
+    <<: *api_1
+
+  haproxy:
+    image: haproxy:2.9.5-alpine
+    ports:
+      - 9999:9999
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "80MB"
+    depends_on:
+      api_1:
+        condition: service_healthy
+      api_2:
+        condition: service_healthy
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-haproxy-2024q1
