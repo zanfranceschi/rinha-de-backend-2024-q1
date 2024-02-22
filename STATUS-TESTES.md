@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Feb 22 02:37:43 UTC 2024** com **284** submissões.
+Atualizada **Thu Feb 22 03:30:23 UTC 2024** com **286** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -35,6 +35,7 @@ Atualizada **Thu Feb 22 02:37:43 UTC 2024** com **284** submissões.
 | [betamedina](./participantes/betamedina) | falha - [logs](./participantes/betamedina/docker-compose.logs) | -- |
 | [bgskurono](./participantes/bgskurono) | ok | 1 |
 | [bine-golang](./participantes/bine-golang) | ok | 2 |
+| [bine-php-laravel](./participantes/bine-php-laravel) | ok | 4 |
 | [bine-php-road-runner](./participantes/bine-php-road-runner) | ok | 2 |
 | [bine-php-swoole](./participantes/bine-php-swoole) | ok | 2 |
 | [bine-reactphp](./participantes/bine-reactphp) | ok | 2 |
@@ -100,7 +101,7 @@ Atualizada **Thu Feb 22 02:37:43 UTC 2024** com **284** submissões.
 | [filipemacedo](./participantes/filipemacedo) | ok | 3 |
 | [flpStrri](./participantes/flpStrri) | ok | 2 |
 | [fraidev](./participantes/fraidev) | falha - [logs](./participantes/fraidev/docker-compose.logs) | -- |
-| [franklaercio](./participantes/franklaercio) | ok | 37 |
+| [franklaercio](./participantes/franklaercio) | ok | 5 |
 | [gabrielfmagalhaes](./participantes/gabrielfmagalhaes) | ok | 5 |
 | [gabrielluciano-vertx](./participantes/gabrielluciano-vertx) | ok | 1 |
 | [gasparbarancelli-h2-database](./participantes/gasparbarancelli-h2-database) | ok | 2 |
@@ -119,7 +120,7 @@ Atualizada **Thu Feb 22 02:37:43 UTC 2024** com **284** submissões.
 | [giovannibassi-rust](./participantes/giovannibassi-rust) | ok | 1 |
 | [giovannibassi-vb](./participantes/giovannibassi-vb) | ok | 1 |
 | [giovannibassi](./participantes/giovannibassi) | ok | 1 |
-| [gldmelo-cs-py-hibrid](./participantes/gldmelo-cs-py-hibrid) | ok | 2 |
+| [gldmelo-cs-py-hibrid](./participantes/gldmelo-cs-py-hibrid) | ok | 4 |
 | [gldmelo-py-fastapi](./participantes/gldmelo-py-fastapi) | ok | 2 |
 | [gldmelo](./participantes/gldmelo) | ok | 2 |
 | [gmrms](./participantes/gmrms) | ok | 2 |
@@ -170,6 +171,7 @@ Atualizada **Thu Feb 22 02:37:43 UTC 2024** com **284** submissões.
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
 | [lbaesso-php](./participantes/lbaesso-php) | ok | 2 |
 | [leandro-sousa](./participantes/leandro-sousa) | falha - [logs](./participantes/leandro-sousa/docker-compose.logs) | -- |
+| [leonardohofling](./participantes/leonardohofling) | ok | 80 |
 | [leonardoksn](./participantes/leonardoksn) | falha - [logs](./participantes/leonardoksn/docker-compose.logs) | -- |
 | [leonardovee](./participantes/leonardovee) | falha - [logs](./participantes/leonardovee/docker-compose.logs) | -- |
 | [leoralph](./participantes/leoralph) | ok | 2 |
@@ -226,7 +228,7 @@ Atualizada **Thu Feb 22 02:37:43 UTC 2024** com **284** submissões.
 | [nmessias](./participantes/nmessias) | ok | 1 |
 | [normanfrieman](./participantes/normanfrieman) | ok | 2 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
-| [oliveiratheone-rust](./participantes/oliveiratheone-rust) | falha - [logs](./participantes/oliveiratheone-rust/docker-compose.logs) | -- |
+| [oliveiratheone-rust](./participantes/oliveiratheone-rust) | ok | 1 |
 | [oloko64](./participantes/oloko64) | ok | 1 |
 | [olukkas](./participantes/olukkas) | ok | 4 |
 | [omurilo-perl](./participantes/omurilo-perl) | ok | 1 |
@@ -259,15 +261,15 @@ Atualizada **Thu Feb 22 02:37:43 UTC 2024** com **284** submissões.
 | [ruhtar](./participantes/ruhtar) | falha - [logs](./participantes/ruhtar/docker-compose.logs) | -- |
 | [samluiz](./participantes/samluiz) | ok | 2 |
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
-| [santannaf_web](./participantes/santannaf_web) | ok | 6 |
-| [santannaf_webflux](./participantes/santannaf_webflux) | ok | 5 |
+| [santannaf_web](./participantes/santannaf_web) | ok | 2 |
+| [santannaf_webflux](./participantes/santannaf_webflux) | ok | 3 |
 | [silmar-alberti-franken-php](./participantes/silmar-alberti-franken-php) | ok | 3 |
 | [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
 | [thicsilva](./participantes/thicsilva) | ok | 5 |
-| [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
+| [thusspokebieu-activej](./participantes/thusspokebieu-activej) | falha - [logs](./participantes/thusspokebieu-activej/docker-compose.logs) | -- |
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | falha - [logs](./participantes/thusspokebieu-rust/docker-compose.logs) | -- |
 | [udleinati](./participantes/udleinati) | falha - [logs](./participantes/udleinati/docker-compose.logs) | -- |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
