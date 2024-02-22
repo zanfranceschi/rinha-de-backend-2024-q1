@@ -1,4 +1,4 @@
-create unlogged table account
+create table account
 (
     customer_id   integer unique primary key not null,
     account_limit integer                    not null,
@@ -12,7 +12,7 @@ values (1, 1000 * 100),
        (4, 100000 * 100),
        (5, 5000 * 100);
 
-create unlogged table transactions
+create table transactions
 (
     id          varchar(40) not null,
     customer_id integer     not null,
