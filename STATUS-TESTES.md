@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Feb 22 22:08:55 UTC 2024** com **293** submissões.
+Atualizada **Thu Feb 22 22:24:58 UTC 2024** com **295** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -43,6 +43,7 @@ Atualizada **Thu Feb 22 22:08:55 UTC 2024** com **293** submissões.
 | [boaglio](./participantes/boaglio) | falha - [logs](./participantes/boaglio/docker-compose.logs) | -- |
 | [breno5g](./participantes/breno5g) | ok | 4 |
 | [brilvio](./participantes/brilvio) | ok | 2 |
+| [brunocamarggo](./participantes/brunocamarggo) | ok | 2 |
 | [brunolipe-a](./participantes/brunolipe-a) | ok | 4 |
 | [buemura-nestjs](./participantes/buemura-nestjs) | ok | 4 |
 | [buemura](./participantes/buemura) | ok | 2 |
@@ -168,6 +169,7 @@ Atualizada **Thu Feb 22 22:08:55 UTC 2024** com **293** submissões.
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 1861 |
 | [kalelMartinho_fastapi](./participantes/kalelMartinho_fastapi) | ok | 3 |
 | [kauan-calasans](./participantes/kauan-calasans) | ok | 5 |
+| [kelvinromero-fastapi](./participantes/kelvinromero-fastapi) | ok | 5 |
 | [kiro-tagama](./participantes/kiro-tagama) | falha - [logs](./participantes/kiro-tagama/docker-compose.logs) | -- |
 | [klimber](./participantes/klimber) | ok | 5 |
 | [krymancer](./participantes/krymancer) | ok | 4 |
