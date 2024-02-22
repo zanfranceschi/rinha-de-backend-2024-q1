@@ -21,6 +21,11 @@ CREATE TABLE IF NOT EXISTS saldos(
     FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
 
+CREATE INDEX IF NOT EXISTS clientes_id_idx ON clientes(id);
+CREATE INDEX IF NOT EXISTS transacoes_cliente_id_idx ON transacoes(cliente_id);
+CREATE INDEX IF NOT EXISTS transacoes_realizada_em_idx ON transacoes(realizada_em);
+CREATE INDEX IF NOT EXISTS saldos_cliente_id_idx ON saldos(cliente_id);
+
 INSERT INTO clientes(limite) VALUES (100000);
 INSERT INTO clientes(limite) VALUES (80000);
 INSERT INTO clientes(limite) VALUES (1000000);
@@ -28,8 +33,3 @@ INSERT INTO clientes(limite) VALUES (10000000);
 INSERT INTO clientes(limite) VALUES (500000);
 
 INSERT INTO saldos(cliente_id, valor) SELECT id, 0 FROM clientes;
-
-CREATE INDEX IF NOT EXISTS clientes_id_idx ON clientes(id);
-CREATE INDEX IF NOT EXISTS transacoes_cliente_id_idx ON transacoes(cliente_id);
-CREATE INDEX IF NOT EXISTS transacoes_realizada_em_idx ON transacoes(realizada_em);
-CREATE INDEX IF NOT EXISTS saldos_cliente_id_idx ON saldos(cliente_id);
