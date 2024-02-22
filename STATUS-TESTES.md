@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Feb 22 00:26:51 UTC 2024** com **283** submissões.
+Atualizada **Thu Feb 22 00:44:47 UTC 2024** com **284** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -60,6 +60,7 @@ Atualizada **Thu Feb 22 00:26:51 UTC 2024** com **283** submissões.
 | [crebitojs](./participantes/crebitojs) | ok | 3 |
 | [cristiano182](./participantes/cristiano182) | ok | 1 |
 | [daandrn-php](./participantes/daandrn-php) | ok | 2 |
+| [daniel-goncalves](./participantes/daniel-goncalves) | falha - [logs](./participantes/daniel-goncalves/docker-compose.logs) | -- |
 | [danielwisky](./participantes/danielwisky) | ok | 3 |
 | [danilo-nodejs](./participantes/danilo-nodejs) | ok | 3 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |

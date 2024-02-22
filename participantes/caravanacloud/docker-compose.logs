@@ -1,0 +1,109 @@
+ Container db  Creating
+ db Published ports are discarded when using host network mode 
+ Container db  Created
+ Container api01  Creating
+ Container api02  Creating
+ api02 Published ports are discarded when using host network mode 
+ Container api02  Created
+ api01 Published ports are discarded when using host network mode 
+ Container api01  Created
+ Container lb  Creating
+ nginx Published ports are discarded when using host network mode 
+ Container lb  Created
+Attaching to api01, api02, db, lb
+db     | The files belonging to this database system will be owned by user "postgres".
+db     | This user must also own the server process.
+db     | 
+db     | The database cluster will be initialized with locale "en_US.utf8".
+db     | The default database encoding has accordingly been set to "UTF8".
+db     | The default text search configuration will be set to "english".
+db     | 
+db     | Data page checksums are disabled.
+db     | 
+db     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db     | creating subdirectories ... ok
+db     | selecting dynamic shared memory implementation ... posix
+db     | selecting default max_connections ... 100
+db     | selecting default shared_buffers ... 128MB
+db     | selecting default time zone ... Etc/UTC
+db     | creating configuration files ... ok
+db     | running bootstrap script ... ok
+db     | performing post-bootstrap initialization ... ok
+db     | initdb: warning: enabling "trust" authentication for local connections
+db     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db     | syncing data to disk ... ok
+db     | 
+db     | 
+db     | Success. You can now start the database server using:
+db     | 
+db     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db     | 
+db     | waiting for server to start.... done
+db     | server started
+db     | CREATE DATABASE
+db     | 
+db     | 
+db     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+db     | CREATE TABLE
+db     | CREATE TABLE
+db     | CREATE INDEX
+db     | INSERT 0 5
+db     | CREATE EXTENSION
+db     |  pg_prewarm 
+db     | ------------
+db     |           1
+db     | (1 row)
+db     | 
+db     |  pg_prewarm 
+db     | ------------
+db     |           0
+db     | (1 row)
+db     | 
+db     | CREATE TYPE
+db     | CREATE FUNCTION
+db     | CREATE FUNCTION
+db     | 
+db     | 
+db     | waiting for server to shut down.... done
+db     | server stopped
+db     | 
+db     | PostgreSQL init process complete; ready for start up.
+db     | 
+api01  | 2024-02-22 00:33:27,147 WARN  [io.qua.run.con.ConfigRecorder] (main) Build time property cannot be changed at runtime:
+api01  |  - quarkus.datasource.jdbc.transactions is set to 'disabled' but it is build time fixed to 'enabled'. Did you change the property quarkus.datasource.jdbc.transactions after building the application?
+api01  | 2024-02-22 00:33:27,148 DEBUG [io.qua.ver.cor.run.VertxCoreRecorder] (main) Vert.x Cache configured to: /tmp/vertx-cache/5150967183612424296
+api01  | 2024-02-22 00:33:27,150 DEBUG [io.qua.ver.cor.run.VertxCoreRecorder] (main) Vertx has Native Transport Enabled: false
+api01  | 2024-02-22 00:33:27,214 INFO  [car.RinhaServlet] (main) Poc? ??
+api01  | 2024-02-22 00:33:27,215 DEBUG [io.qua.agr.run.DataSources] (main) Started datasource <default> connected to jdbc:postgresql://127.0.0.1:5400/rinha
+api02  | 2024-02-22 00:33:27,219 WARN  [io.qua.run.con.ConfigRecorder] (main) Build time property cannot be changed at runtime:
+api02  |  - quarkus.datasource.jdbc.transactions is set to 'disabled' but it is build time fixed to 'enabled'. Did you change the property quarkus.datasource.jdbc.transactions after building the application?
+api02  | 2024-02-22 00:33:27,223 INFO  [car.RinhaServlet] (main) Poc? ??
+api01  | 2024-02-22 00:33:27,248 INFO  [io.quarkus] (main) rinhadebackend 0.0.1 native (powered by Quarkus 3.7.3) started in 0.106s. Listening on: http://0.0.0.0:9001
+api01  | 2024-02-22 00:33:27,248 INFO  [io.quarkus] (main) Profile prod activated. 
+api01  | 2024-02-22 00:33:27,248 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, jdbc-postgresql, narayana-jta, servlet, smallrye-context-propagation, vertx]
+api02  | 2024-02-22 00:33:27,256 INFO  [io.quarkus] (main) rinhadebackend 0.0.1 native (powered by Quarkus 3.7.3) started in 0.116s. Listening on: http://0.0.0.0:9002
+api02  | 2024-02-22 00:33:27,256 INFO  [io.quarkus] (main) Profile prod activated. 
+api02  | 2024-02-22 00:33:27,256 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, jdbc-postgresql, narayana-jta, servlet, smallrye-context-propagation, vertx]
+lb     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+lb     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+lb     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+lb     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+lb     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+lb     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+lb     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+lb     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+lb     | /docker-entrypoint.sh: Configuration complete; ready for start up
+lb exited with code 0
+lb exited with code 0
+api01  | 2024-02-22 00:37:44,676 DEBUG [io.qua.run.Application] (SIGTERM handler) Received signed 15, shutting down
+api01  | 2024-02-22 00:37:44,676 DEBUG [io.qua.run.Application] (SIGTERM handler) Shutting down with exit code 143
+api01  | 2024-02-22 00:37:44,676 DEBUG [io.qua.run.Application] (Shutdown thread) Stopping application
+api01  | 2024-02-22 00:37:44,676 DEBUG [io.qua.run.shu.ShutdownRecorder] (Shutdown thread) Attempting to gracefully shutdown.
+api01  | 2024-02-22 00:37:44,676 DEBUG [io.qua.run.Application] (main) Stopping application
+api01  | 2024-02-22 00:37:44,677 DEBUG [io.qua.arc.impl] (Shutdown thread) ArC DI container shut down
+api02  | 2024-02-22 00:37:44,685 INFO  [io.quarkus] (Shutdown thread) rinhadebackend stopped in 0.009s
+api01  | 2024-02-22 00:37:44,687 DEBUG [io.qua.thread-pool] (Shutdown thread) loop: 1, remaining: 60000000000, intervalRemaining: 5000000000, interruptRemaining: 10000000000
+api01  | 2024-02-22 00:37:44,687 INFO  [io.quarkus] (Shutdown thread) rinhadebackend stopped in 0.011s
+api01 exited with code 0
+api02 exited with code 0
+db exited with code 0
