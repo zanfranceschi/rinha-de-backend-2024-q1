@@ -23,4 +23,40 @@ VALUES
     (2, 80000, 0),
     (3, 1000000, 0),
     (4, 10000000, 0),
-    (5, 500000, 0)
+    (5, 500000, 0);
+
+CREATE OR REPLACE FUNCTION atualiza_saldo(p_id INT, p_valor INT, p_tipo BPCHAR(1), p_descricao VARCHAR(10))
+RETURNS TABLE (Id INT, Limite INT, Saldo INT) AS $$
+
+DECLARE rows_affected INT;
+
+BEGIN
+	UPDATE "Clientes"
+	SET "Saldo" =
+		(CASE
+			WHEN 'd' = p_tipo
+				THEN "Saldo" - p_valor
+				ELSE "Saldo" + p_valor
+		END)
+	WHERE
+		"Id" = p_id
+		AND CASE
+			WHEN 'd' = p_tipo
+				THEN ("Saldo" - p_valor + "Limite") >= 0
+				ELSE TRUE
+			END;
+
+	GET DIAGNOSTICS rows_affected = ROW_COUNT;
+
+	IF rows_affected > 0 THEN
+		INSERT INTO public."Transacoes"
+		("Id", "ClienteId", "Valor", "Tipo", "Descricao", "Data")
+		VALUES(gen_random_uuid(), p_id, p_valor, p_tipo, p_descricao, NOW());
+
+		RETURN query
+		SELECT "Id", "Limite", "Saldo" FROM "Clientes" c WHERE "Id" = p_id;
+	ELSE
+		RETURN NEXT;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;

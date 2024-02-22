@@ -14,7 +14,7 @@ services:
       resources:
         limits:
           cpus: "0.6"
-          memory: "230MB"
+          memory: "220MB"
 
   api02:
     <<: *api
@@ -42,6 +42,8 @@ services:
   db:
     image: mongo:latest
     hostname: db
+    restart: on-failure
+    command: --wiredTigerCacheSizeGB 0.25
     ports:
       - "27017:27017"
     volumes:
@@ -50,7 +52,7 @@ services:
       resources:
         limits:
           cpus: "0.13"
-          memory: "80MB"
+          memory: "100MB"
 
 networks:
   default:
