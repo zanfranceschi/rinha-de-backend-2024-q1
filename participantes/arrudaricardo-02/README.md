@@ -4,7 +4,7 @@
 
 - `nginx` load balancer
 - `postgreSQL` RDBMS 
-- `go` API runtime 
+- `go` API 
 
 
 ## Autor
