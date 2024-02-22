@@ -5,8 +5,8 @@
 Stack:
 - `nginx` como load balancer
 - `postgres` como banco de dados
-- `Python 3.11` usando Fast API
-
+- API 01: `.NET 8` com linguagem `C#` para API compilado com Native AOT
+- API 02: `Python 3.11` usando Fast API
 
 ### Implementação
 
