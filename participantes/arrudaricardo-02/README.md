@@ -2,7 +2,7 @@
 
 ## Stack
 
-- `nginx` load balancer
+- `nginx` LB
 - `postgreSQL` RDBMS 
 - `go` API 
 
