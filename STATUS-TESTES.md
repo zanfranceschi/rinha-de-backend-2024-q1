@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Feb 22 20:44:56 UTC 2024** com **288** submissões.
+Atualizada **Thu Feb 22 21:22:11 UTC 2024** com **293** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -26,6 +26,7 @@ Atualizada **Thu Feb 22 20:44:56 UTC 2024** com **288** submissões.
 | [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
 | [antoniogdelrio](./participantes/antoniogdelrio) | ok | 3 |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | ok | 6 |
+| [arrudaricardo-02](./participantes/arrudaricardo-02) | ok | 2 |
 | [avalonbits](./participantes/avalonbits) | ok | 2 |
 | [avinho](./participantes/avinho) | ok | 3 |
 | [aysion_bun](./participantes/aysion_bun) | ok | 1 |
@@ -58,9 +59,11 @@ Atualizada **Thu Feb 22 20:44:56 UTC 2024** com **288** submissões.
 | [claudio-silva](./participantes/claudio-silva) | ok | 3 |
 | [claudioneves1981](./participantes/claudioneves1981) | ok | 1 |
 | [cleitinif](./participantes/cleitinif) | ok | 4 |
+| [cleverton-rocha](./participantes/cleverton-rocha) | falha - [logs](./participantes/cleverton-rocha/docker-compose.logs) | -- |
 | [crebitojs](./participantes/crebitojs) | ok | 3 |
 | [cristiano182](./participantes/cristiano182) | ok | 1 |
 | [daandrn-php](./participantes/daandrn-php) | ok | 2 |
+| [dagneifilho](./participantes/dagneifilho) | ok | 2 |
 | [daniel-goncalves](./participantes/daniel-goncalves) | falha - [logs](./participantes/daniel-goncalves/docker-compose.logs) | -- |
 | [danielwisky](./participantes/danielwisky) | ok | 3 |
 | [danilo-nodejs](./participantes/danilo-nodejs) | ok | 3 |
@@ -217,6 +220,7 @@ Atualizada **Thu Feb 22 20:44:56 UTC 2024** com **288** submissões.
 | [matheusfbosa](./participantes/matheusfbosa) | ok | 11 |
 | [matheuslao](./participantes/matheuslao) | ok | 7 |
 | [matheusleal](./participantes/matheusleal) | ok | 4 |
+| [matheuswilliam-java](./participantes/matheuswilliam-java) | ok | 2 |
 | [matheuswilliam](./participantes/matheuswilliam) | ok | 2 |
 | [maxwell](./participantes/maxwell) | ok | 1 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
@@ -262,6 +266,7 @@ Atualizada **Thu Feb 22 20:44:56 UTC 2024** com **288** submissões.
 | [ronaldo_scardini](./participantes/ronaldo_scardini) | ok | 2 |
 | [rschio](./participantes/rschio) | ok | 5 |
 | [ruhtar](./participantes/ruhtar) | falha - [logs](./participantes/ruhtar/docker-compose.logs) | -- |
+| [rwillians-elixir](./participantes/rwillians-elixir) | ok | 4 |
 | [samluiz](./participantes/samluiz) | ok | 2 |
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
 | [santannaf_web](./participantes/santannaf_web) | ok | 2 |
