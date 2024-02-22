@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Feb 22 13:45:02 UTC 2024** com **288** submissões.
+Atualizada **Thu Feb 22 13:56:45 UTC 2024** com **289** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -183,6 +183,7 @@ Atualizada **Thu Feb 22 13:45:02 UTC 2024** com **288** submissões.
 | [lobomfz-rust](./participantes/lobomfz-rust) | ok | 4 |
 | [lobomfz](./participantes/lobomfz) | ok | 5 |
 | [lpicanco-cpp](./participantes/lpicanco-cpp) | ok | 1 |
+| [lpicanco-moonshine](./participantes/lpicanco-moonshine) | ok | 1 |
 | [lpicanco](./participantes/lpicanco) | ok | 2 |
 | [lsfratel-python](./participantes/lsfratel-python) | ok | 3 |
 | [lsfratel](./participantes/lsfratel) | ok | 3 |
