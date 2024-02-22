@@ -36,3 +36,7 @@ Peguei várias ideias legais de configurações de infra de vários repositório
 - https://github.com/viniciusfonseca/rinha-backend-rust-2
 
 - https://github.com/gabrielluciano/rinha-backend-2024-q1-vertx
+
+Muitas ideias tiradas do benchmark do techempower do ntex:
+
+- https://github.com/TechEmpower/FrameworkBenchmarks/blob/master/frameworks/Rust/ntex
