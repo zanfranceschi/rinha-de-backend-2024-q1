@@ -1,0 +1,61 @@
+version: "3"
+name: rinhanginx2024q1
+
+services:
+  proxy:
+    image: nginx:latest
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "9999:9999"
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+  api01: &app
+    image: notilew/rinha-24q1:latest
+    container_name: "api01"
+    environment:
+      - PG_HOST=rinha-db
+      - PG_PORT=5432
+      - PG_DB=rinha_db
+      - PG_POOL=18
+      - ENABLE_TIMING=False
+    depends_on:
+      - rinha-db
+    expose:
+      - 5432:5432
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "150MB"
+  api02: 
+    <<: *app
+    container_name: "api02"
+  
+  rinha-db:
+    image: postgres:16.2-alpine3.19
+    hostname: rinha-db
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rinha_db
+      - POSTGRES_USER=postgres
+    ports:
+      - "5430:5432"
+    volumes:
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./config/postgres.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "200MB"
+networks:
+  default:
+    driver: bridge

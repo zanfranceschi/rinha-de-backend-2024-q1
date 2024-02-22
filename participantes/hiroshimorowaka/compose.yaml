@@ -8,7 +8,6 @@ services:
     container_name: api01-express
     environment:
       - DATABASE_URL=postgres://docker:docker@localhost:5432/rinha
-      - CREATE_TABLE=true
       - HTTP_PORT=8081
     expose:
       - "8080"
@@ -26,7 +25,6 @@ services:
     container_name: api02-express
     environment:
       - DATABASE_URL=postgres://docker:docker@localhost:5432/rinha
-      - CREATE_TABLE=false
       - HTTP_PORT=8082
 
 
@@ -35,6 +33,8 @@ services:
     network_mode: host
     container_name: postgres
     command: postgres -c 'max_connections=75' -c 'log_error_verbosity=terse'
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
