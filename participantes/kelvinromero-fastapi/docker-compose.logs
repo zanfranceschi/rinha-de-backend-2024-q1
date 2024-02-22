@@ -1,0 +1,500 @@
+ Network rinha-2024-q1  Creating
+ Network rinha-2024-q1  Created
+ Container db  Creating
+ Container db  Created
+ Container api01  Creating
+ Container api02  Creating
+ Container api02  Created
+ Container api01  Created
+ Container lb  Creating
+ Container lb  Created
+Attaching to api01, api02, db, lb
+db     | The files belonging to this database system will be owned by user "postgres".
+db     | This user must also own the server process.
+db     | 
+db     | The database cluster will be initialized with locale "en_US.utf8".
+db     | The default database encoding has accordingly been set to "UTF8".
+db     | The default text search configuration will be set to "english".
+db     | 
+db     | Data page checksums are disabled.
+db     | 
+db     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db     | creating subdirectories ... ok
+db     | selecting dynamic shared memory implementation ... posix
+db     | selecting default max_connections ... 100
+db     | selecting default shared_buffers ... 128MB
+db     | selecting default time zone ... UTC
+db     | creating configuration files ... ok
+db     | running bootstrap script ... ok
+api02  | INFO:     Will watch for changes in these directories: ['/app']
+api02  | INFO:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+api02  | INFO:     Started reloader process [1] using StatReload
+api01  | INFO:     Will watch for changes in these directories: ['/app']
+api01  | INFO:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+api01  | INFO:     Started reloader process [1] using StatReload
+lb     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+lb     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+lb     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+lb     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+lb     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+lb     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+lb     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+lb     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+lb     | /docker-entrypoint.sh: Configuration complete; ready for start up
+db     | sh: locale: not found
+db     | 2024-02-22 22:20:08.927 UTC [30] WARNING:  no usable system locales were found
+db     | performing post-bootstrap initialization ... ok
+db     | syncing data to disk ... ok
+db     | 
+db     | 
+db     | Success. You can now start the database server using:
+db     | 
+db     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db     | 
+db     | initdb: warning: enabling "trust" authentication for local connections
+db     | You can change this by editing pg_hba.conf or using the option -A, or
+db     | --auth-local and --auth-host, the next time you run initdb.
+api02  | INFO:     Started server process [8]
+api02  | INFO:     Waiting for application startup.
+api02  | INFO:     Application startup complete.
+db     | waiting for server to start....2024-02-22 22:20:10.530 GMT [36] LOG:  starting PostgreSQL 14.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 10.3.1_git20211027) 10.3.1 20211027, 64-bit
+db     | 2024-02-22 22:20:10.533 GMT [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db     | 2024-02-22 22:20:10.544 GMT [37] LOG:  database system was shut down at 2024-02-22 22:20:10 GMT
+db     | 2024-02-22 22:20:10.550 GMT [36] LOG:  database system is ready to accept connections
+db     |  done
+db     | server started
+api01  | INFO:     Started server process [9]
+api01  | INFO:     Waiting for application startup.
+api01  | INFO:     Application startup complete.
+db     | 2024-02-22 22:20:10.804 GMT [55] FATAL:  database "rinha" does not exist
+db     | CREATE DATABASE
+db     | 
+db     | 
+db     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+db     | CREATE TABLE
+db     | CREATE TABLE
+db     | CREATE INDEX
+db     | INSERT 0 5
+db     | 
+db     | 
+db     | waiting for server to shut down...2024-02-22 22:20:11.161 GMT [36] LOG:  received fast shutdown request
+db     | .2024-02-22 22:20:11.164 GMT [36] LOG:  aborting any active transactions
+db     | 2024-02-22 22:20:11.165 GMT [36] LOG:  background worker "logical replication launcher" (PID 43) exited with exit code 1
+db     | 2024-02-22 22:20:11.165 GMT [38] LOG:  shutting down
+db     | 2024-02-22 22:20:11.255 GMT [36] LOG:  database system is shut down
+db     |  done
+db     | server stopped
+db     | 
+db     | PostgreSQL init process complete; ready for start up.
+db     | 
+db     | 2024-02-22 22:20:11.277 GMT [1] LOG:  starting PostgreSQL 14.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 10.3.1_git20211027) 10.3.1 20211027, 64-bit
+db     | 2024-02-22 22:20:11.277 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db     | 2024-02-22 22:20:11.277 GMT [1] LOG:  listening on IPv6 address "::", port 5432
+db     | 2024-02-22 22:20:11.288 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db     | 2024-02-22 22:20:11.295 GMT [59] LOG:  database system was shut down at 2024-02-22 22:20:11 GMT
+db     | 2024-02-22 22:20:11.300 GMT [1] LOG:  database system is ready to accept connections
+api01  | INFO:     172.18.0.5:47168 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47548 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47178 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47184 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47556 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47198 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47200 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47566 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47582 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47594 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47206 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47216 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47602 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47228 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47242 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47608 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47254 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47622 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47260 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47638 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47274 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47644 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47286 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47658 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47294 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47666 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47676 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47688 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47300 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47302 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47702 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47704 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47316 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47710 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47328 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47334 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47712 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47344 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47716 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47356 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47728 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47360 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47738 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47370 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47748 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47374 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47760 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47378 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47766 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47384 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47782 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47392 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:47798 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59422 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41640 - "GET /clientes/6/extrato HTTP/1.0" 404 Not Found
+api01  | INFO:     172.18.0.5:41648 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59432 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59434 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41650 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59440 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41656 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59456 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41660 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59462 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41662 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59474 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41668 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59476 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41678 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59484 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41684 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41694 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59496 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41706 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59508 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41716 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59520 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59536 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41724 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59546 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41732 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41742 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59552 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41748 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59568 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59584 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41760 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41772 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59590 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41778 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59606 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41794 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59612 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59618 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59632 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41804 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59640 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41814 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41830 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41834 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59652 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41836 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59668 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59678 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.18.0.5:41848 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59680 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.18.0.5:41852 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59696 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59712 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59718 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59728 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.18.0.5:41860 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.18.0.5:41864 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.18.0.5:41878 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.18.0.5:41882 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59742 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.18.0.5:41898 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.18.0.5:41908 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59756 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59768 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.18.0.5:41910 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59782 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.18.0.5:41920 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.18.0.5:41928 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59792 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.18.0.5:59808 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41930 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59824 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41932 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59830 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41942 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59842 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41952 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59852 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41966 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41982 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59858 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59874 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41986 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59890 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:41994 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42008 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59898 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59904 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42010 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59906 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42014 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42028 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59920 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59936 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42034 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59948 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42046 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59950 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42060 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59960 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42072 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59964 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59968 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42086 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42094 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59970 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42100 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59986 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42114 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59994 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42122 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:59996 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42130 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60012 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42134 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60014 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42150 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60022 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42162 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60024 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42178 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60030 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42180 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60046 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42196 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60062 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42212 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42218 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60066 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60074 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42234 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60088 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42248 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60100 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42256 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60112 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60116 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42270 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42276 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60128 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42280 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60142 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42282 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60156 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42286 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60160 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42288 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60170 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42304 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60174 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42310 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60180 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42324 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60192 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42328 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60198 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42336 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60208 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42338 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60220 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42344 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60222 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42350 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60232 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42360 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60248 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42372 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60258 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42380 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60262 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:60268 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:42388 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47404 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:41966 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47416 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:41970 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47424 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:41976 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47432 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:41990 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47440 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:41992 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47448 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42002 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47456 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42014 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47464 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42026 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47470 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47484 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42028 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42032 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42034 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47500 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47512 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47526 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42046 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42054 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47536 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42062 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47552 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42064 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42076 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47564 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47580 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42088 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47582 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42104 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47598 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42112 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47606 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42114 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47614 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42122 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47616 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42134 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47620 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42144 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47628 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42160 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47638 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42164 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47642 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42174 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47646 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42178 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47650 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42182 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47664 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42196 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47666 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42208 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47670 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42222 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47686 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42224 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47688 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42228 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47690 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42232 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47706 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42240 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47718 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42250 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47722 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42266 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47726 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42276 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42280 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47740 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47756 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42282 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47764 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42284 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47778 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42290 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47786 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42292 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47788 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42304 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47802 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47804 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42306 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42310 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47806 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42312 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47820 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42326 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47826 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42336 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42338 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47842 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47846 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42348 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47850 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42364 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47852 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42374 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47858 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42378 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47872 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42394 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47876 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42398 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47878 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42412 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47888 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42418 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47892 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42426 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47902 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42438 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47908 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42442 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47916 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42446 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47926 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42448 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47932 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42460 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47946 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42476 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47954 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42490 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47962 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42500 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47976 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42502 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47990 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42514 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42528 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:47998 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48008 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48010 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42542 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42550 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48014 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42566 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48030 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48034 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42580 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42584 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42588 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48042 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48046 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48052 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42598 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42610 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48058 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48074 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42626 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42640 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42642 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48084 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48098 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48110 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42656 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42672 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48120 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42682 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48122 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48136 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42688 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42690 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42698 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48148 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48154 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.18.0.5:42714 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.18.0.5:48160 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
