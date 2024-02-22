@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Feb 22 13:02:13 UTC 2024** com **286** submissões.
+Atualizada **Thu Feb 22 13:45:02 UTC 2024** com **288** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -199,6 +199,7 @@ Atualizada **Thu Feb 22 13:02:13 UTC 2024** com **286** submissões.
 | [luizfrra](./participantes/luizfrra) | ok | 2 |
 | [luizgribeiro-monGo](./participantes/luizgribeiro-monGo) | ok | 1 |
 | [luizimcpi](./participantes/luizimcpi) | falha - [logs](./participantes/luizimcpi/docker-compose.logs) | -- |
+| [m-lnrs-async-python](./participantes/m-lnrs-async-python) | ok | 3 |
 | [m-lnrs](./participantes/m-lnrs) | ok | 3 |
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 7 |
@@ -255,6 +256,7 @@ Atualizada **Thu Feb 22 13:02:13 UTC 2024** com **286** submissões.
 | [rodolphovs](./participantes/rodolphovs) | ok | 1 |
 | [rodrigocaldeira-c](./participantes/rodrigocaldeira-c) | ok | 13 |
 | [rodrigocaldeira](./participantes/rodrigocaldeira) | ok | 80 |
+| [rodrixl](./participantes/rodrixl) | ok | 3 |
 | [rof20004](./participantes/rof20004) | ok | 4 |
 | [ronaldo_scardini](./participantes/ronaldo_scardini) | ok | 2 |
 | [rschio](./participantes/rschio) | ok | 5 |
@@ -269,8 +271,8 @@ Atualizada **Thu Feb 22 13:02:13 UTC 2024** com **286** submissões.
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
 | [thicsilva](./participantes/thicsilva) | ok | 5 |
-| [thusspokebieu-activej](./participantes/thusspokebieu-activej) | falha - [logs](./participantes/thusspokebieu-activej/docker-compose.logs) | -- |
-| [thusspokebieu-rust](./participantes/thusspokebieu-rust) | falha - [logs](./participantes/thusspokebieu-rust/docker-compose.logs) | -- |
+| [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
+| [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
 | [udleinati](./participantes/udleinati) | falha - [logs](./participantes/udleinati/docker-compose.logs) | -- |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
