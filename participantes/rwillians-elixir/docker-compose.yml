@@ -1,0 +1,62 @@
+version: "3.9"
+
+services:
+  proxy:
+    image: haproxy:2.9.5-alpine
+    container_name: rwillians-proxy
+    depends_on: [ api01, api02 ]
+    ports: [ "9999:80" ]
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    deploy:
+      mode: global
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 24M
+
+  postgres:
+    image: postgres:16.2-alpine3.19
+    container_name: rwillians-postgres
+    command: postgres -c max_connections=30
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=postgres"
+      - "POSTGRES_DB=rinha"
+      - "LANG=en_US.utf8'"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - './priv/repo/structure.sql:/docker-entrypoint-initdb.d/ddl.sql'
+      - ./priv/repo/seeds.sql:/docker-entrypoint-initdb.d/seeds.sql
+    deploy:
+      mode: global
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 270M
+
+  api01: &api
+    image: ghcr.io/rwillians/rinha-de-backend-2024q1:${RINHA_RWILLIANS_IMAGE_VERSION:-latest}
+    container_name: rwillians-api-01
+    depends_on: [ postgres ]
+    ports: [ "3001:3000" ]
+    environment:
+      - "DATABASE_URL=postgres://postgres:postgres@postgres:5432/rinha"
+      - "PORT=3000"
+      - "ECTO_POOL_SIZE=15"
+      - "ECTO_SSL_ENABLED=false"
+    deploy:
+      mode: global
+      resources:
+        limits:
+          cpus: '0.375'
+          memory: 128M
+
+  api02:
+    <<: *api
+    container_name: rwillians-api-02
+    ports: [ "3002:3000" ]
+
+volumes:
+  postgres:
+
