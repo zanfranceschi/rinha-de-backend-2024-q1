@@ -13,11 +13,10 @@ CREATE TABLE IF NOT EXISTS Transacao (
   valor INT NOT NULL,
   descricao VARCHAR(10) NOT NULL,
   tipo CHAR(1) NOT NULL,
-  realizada_em CHAR(14)
+  realizada_em CHAR(13)
 );
 
 CREATE INDEX transacao_idCliente_1_idx ON Transacao (idCliente) WITH (fillfactor = 30);
-CREATE INDEX transacao_id_idx ON Transacao (id DESC) WITH (fillfactor = 30);
 
 INSERT INTO Cliente (id, limite, saldo)
 VALUES

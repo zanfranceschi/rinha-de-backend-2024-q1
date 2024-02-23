@@ -12,20 +12,19 @@ services:
       ]
     environment:
       POSTGRES_DB: "rinha_backend"
-      POSTGRES_USER: "rinha"
-      POSTGRES_PASSWORD: "backend"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
     healthcheck:
-      test: PGPASSWORD=backend psql -h db -U rinha rinha_backend -c  "SELECT count(*) FROM Cliente;"
-      interval: 5s
-      timeout: 5s
+      test: PGPASSWORD=backend psql -h db -U postgres rinha_backend -c  "SELECT count(*) FROM Cliente;"
+      interval: 2s
+      timeout: 2s
       retries: 10
-      start_period: 10s
+      start_period: 2s
     ports:
       - "5432:5432"
     deploy:
       resources:
         limits:
-          cpus: "0.4"
+          cpus: "0.6"
           memory: "300mb"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
@@ -43,7 +42,7 @@ services:
       replicas: 2
       resources:
         limits:
-          cpus: "0.5"
+          cpus: "0.4"
           memory: "100mb"
 
   nginx:
