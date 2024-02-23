@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Feb 23 02:58:16 UTC 2024** com **300** submissões.
+Atualizada **Fri Feb 23 03:54:40 UTC 2024** com **300** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -35,7 +35,7 @@ Atualizada **Fri Feb 23 02:58:16 UTC 2024** com **300** submissões.
 | [bcaua](./participantes/bcaua) | ok | 2 |
 | [betamedina](./participantes/betamedina) | falha - [logs](./participantes/betamedina/docker-compose.logs) | -- |
 | [bgskurono](./participantes/bgskurono) | ok | 1 |
-| [biigode](./participantes/biigode) | falha - [logs](./participantes/biigode/docker-compose.logs) | -- |
+| [biigode](./participantes/biigode) | ok | 4 |
 | [bine-golang](./participantes/bine-golang) | ok | 2 |
 | [bine-php-laravel](./participantes/bine-php-laravel) | ok | 4 |
 | [bine-php-road-runner](./participantes/bine-php-road-runner) | ok | 2 |
@@ -61,7 +61,7 @@ Atualizada **Fri Feb 23 02:58:16 UTC 2024** com **300** submissões.
 | [claudio-silva](./participantes/claudio-silva) | ok | 3 |
 | [claudioneves1981](./participantes/claudioneves1981) | ok | 1 |
 | [cleitinif](./participantes/cleitinif) | ok | 4 |
-| [cleverton-rocha](./participantes/cleverton-rocha) | falha - [logs](./participantes/cleverton-rocha/docker-compose.logs) | -- |
+| [cleverton-rocha](./participantes/cleverton-rocha) | ok | 4 |
 | [crebitojs](./participantes/crebitojs) | ok | 3 |
 | [cristiano182](./participantes/cristiano182) | ok | 1 |
 | [daandrn-php](./participantes/daandrn-php) | ok | 2 |
