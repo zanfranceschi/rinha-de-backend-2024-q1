@@ -1,0 +1,59 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgres.conf:/docker-entrypoint-initdb.d/postgres.conf      
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "150MB"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: on-failure
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "50MB"
+  
+  api01: &api
+    image: robsoncassol/rinha-de-backend:graal-compatibility
+    hostname: api
+    restart: on-failure
+    depends_on:
+      - postgres
+    environment:
+      - SERVER_PORT=8080
+      - DB_POOL_SIZE=15
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/rinha
+      - SPRING_DATASOURCE_USERNAME=rinha
+      - SPRING_DATASOURCE_PASSWORD=rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "150MB"
+  api02:
+    <<: *api
+    depends_on:
+      - postgres
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
