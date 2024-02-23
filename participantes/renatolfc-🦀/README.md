@@ -1,7 +1,7 @@
 # Submissão para Rinha de Backend, Segunda Edição: 2024/Q1 - Controle de Concorrência
 
 
-<img src="https://en.wikipedia.org/wiki/File:Rust_programming_language_black_logo.svg" alt="logo rust" width="300" height="auto">
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Rust_programming_language_black_logo.svg" alt="logo rust" width="300" height="auto">
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="logo postgres" width="200" height="auto">
 
 
