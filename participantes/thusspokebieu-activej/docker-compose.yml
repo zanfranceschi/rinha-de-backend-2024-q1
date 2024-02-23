@@ -1,8 +1,10 @@
+
+
 version: "3.5"
 
 services:
   api01: &api 
-    image: gmessiasc/activej-crebito
+    image: gmessiasc/activej-crebito-native
     hostname: api01
     environment:
       - HOSTNAME=0.0.0.0
@@ -16,8 +18,8 @@ services:
     deploy:
       resources:
        limits:
-         cpus: "0.35"
-         memory: "165MB"
+         cpus: "0.2"
+         memory: "100MB"
     healthcheck:
       test: ["CMD", "curl", "-f", "-s", "-o", "/dev/null", "http://localhost:8081/health-check"]
       start_period: 2s
@@ -66,8 +68,8 @@ services:
     deploy:
        resources:
          limits:
-           cpus: "0.6"
-           memory: "190MB"
+           cpus: "0.9"
+           memory: "280MB"
 
   nginx:
     image: nginx:latest
@@ -83,7 +85,7 @@ services:
       resources:
         limits:
           cpus: "0.2"
-          memory: "20MB"
+          memory: "70MB"
 
 volumes:
   pg-volume: 

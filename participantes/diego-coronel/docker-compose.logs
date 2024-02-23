@@ -26,6 +26,7 @@ postgres  | selecting default shared_buffers ... 128MB
 postgres  | selecting default time zone ... Etc/UTC
 postgres  | creating configuration files ... ok
 postgres  | running bootstrap script ... ok
+postgres  | performing post-bootstrap initialization ... ok
 nginx     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -35,7 +36,8 @@ nginx     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolv
 nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx     | /docker-entrypoint.sh: Configuration complete; ready for start up
-postgres  | performing post-bootstrap initialization ... ok
+postgres  | initdb: warning: enabling "trust" authentication for local connections
+postgres  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 postgres  | syncing data to disk ... ok
 postgres  | 
 postgres  | 
@@ -43,12 +45,10 @@ postgres  | Success. You can now start the database server using:
 postgres  | 
 postgres  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 postgres  | 
-postgres  | initdb: warning: enabling "trust" authentication for local connections
-postgres  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-postgres  | waiting for server to start....2024-02-19 18:57:54.369 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres  | 2024-02-19 18:57:54.372 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres  | 2024-02-19 18:57:54.383 GMT [51] LOG:  database system was shut down at 2024-02-19 18:57:52 GMT
-postgres  | 2024-02-19 18:57:54.395 GMT [48] LOG:  database system is ready to accept connections
+postgres  | waiting for server to start....2024-02-23 00:51:49.940 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-02-23 00:51:49.943 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-02-23 00:51:49.953 GMT [51] LOG:  database system was shut down at 2024-02-23 00:51:48 GMT
+postgres  | 2024-02-23 00:51:49.964 GMT [48] LOG:  database system is ready to accept connections
 postgres  |  done
 postgres  | server started
 postgres  | CREATE DATABASE
@@ -66,435 +66,435 @@ postgres  | INSERT 0 1
 postgres  | INSERT 0 1
 postgres  | 
 postgres  | 
-postgres  | waiting for server to shut down...2024-02-19 18:57:54.599 GMT [48] LOG:  received fast shutdown request
-postgres  | .2024-02-19 18:57:54.602 GMT [48] LOG:  aborting any active transactions
-postgres  | 2024-02-19 18:57:54.614 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-postgres  | 2024-02-19 18:57:54.616 GMT [49] LOG:  shutting down
-postgres  | 2024-02-19 18:57:54.619 GMT [49] LOG:  checkpoint starting: shutdown immediate
-postgres  | 2024-02-19 18:57:55.129 GMT [49] LOG:  checkpoint complete: wrote 939 buffers (12.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.286 s, sync=0.213 s, total=0.514 s; sync files=313, longest=0.170 s, average=0.001 s; distance=4288 kB, estimate=4288 kB; lsn=0/191AA58, redo lsn=0/191AA58
-postgres  | 2024-02-19 18:57:55.134 GMT [48] LOG:  database system is shut down
+postgres  | waiting for server to shut down...2024-02-23 00:51:50.173 GMT [48] LOG:  received fast shutdown request
+postgres  | .2024-02-23 00:51:50.176 GMT [48] LOG:  aborting any active transactions
+postgres  | 2024-02-23 00:51:50.178 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres  | 2024-02-23 00:51:50.178 GMT [49] LOG:  shutting down
+postgres  | 2024-02-23 00:51:50.181 GMT [49] LOG:  checkpoint starting: shutdown immediate
+postgres  | 2024-02-23 00:51:50.699 GMT [49] LOG:  checkpoint complete: wrote 939 buffers (12.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.355 s, sync=0.152 s, total=0.521 s; sync files=313, longest=0.117 s, average=0.001 s; distance=4288 kB, estimate=4288 kB; lsn=0/191AA58, redo lsn=0/191AA58
+postgres  | 2024-02-23 00:51:50.703 GMT [48] LOG:  database system is shut down
 postgres  |  done
 postgres  | server stopped
 postgres  | 
 postgres  | PostgreSQL init process complete; ready for start up.
 postgres  | 
-postgres  | 2024-02-19 18:57:55.223 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres  | 2024-02-19 18:57:55.223 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres  | 2024-02-19 18:57:55.223 GMT [1] LOG:  listening on IPv6 address "::", port 5432
-postgres  | 2024-02-19 18:57:55.228 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres  | 2024-02-19 18:57:55.236 GMT [66] LOG:  database system was shut down at 2024-02-19 18:57:55 GMT
-postgres  | 2024-02-19 18:57:55.243 GMT [1] LOG:  database system is ready to accept connections
-postgres  | 2024-02-19 18:58:18.665 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:18.665 GMT [101] DETAIL:  Failing row contains (2, 80000, -81304, 1).
-postgres  | 2024-02-19 18:58:18.665 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:18.914 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:18.914 GMT [80] DETAIL:  Failing row contains (2, 80000, -80614, 1).
-postgres  | 2024-02-19 18:58:18.914 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:20.032 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:20.032 GMT [80] DETAIL:  Failing row contains (2, 80000, -83838, 1).
-postgres  | 2024-02-19 18:58:20.032 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:20.319 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:20.319 GMT [80] DETAIL:  Failing row contains (2, 80000, -81300, 1).
-postgres  | 2024-02-19 18:58:20.319 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:20.462 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:20.462 GMT [80] DETAIL:  Failing row contains (2, 80000, -85672, 1).
-postgres  | 2024-02-19 18:58:20.462 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:20.497 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:20.497 GMT [80] DETAIL:  Failing row contains (2, 80000, -80615, 1).
-postgres  | 2024-02-19 18:58:20.497 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:20.712 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:20.712 GMT [101] DETAIL:  Failing row contains (2, 80000, -82160, 1).
-postgres  | 2024-02-19 18:58:20.712 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:22.706 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:22.706 GMT [91] DETAIL:  Failing row contains (2, 80000, -84352, 1).
-postgres  | 2024-02-19 18:58:22.706 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:22.835 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:22.835 GMT [91] DETAIL:  Failing row contains (2, 80000, -89382, 1).
-postgres  | 2024-02-19 18:58:22.835 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:22.867 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:22.867 GMT [80] DETAIL:  Failing row contains (2, 80000, -87295, 1).
-postgres  | 2024-02-19 18:58:22.867 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:22.932 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:22.932 GMT [91] DETAIL:  Failing row contains (2, 80000, -83565, 1).
-postgres  | 2024-02-19 18:58:22.932 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:22.964 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:22.964 GMT [91] DETAIL:  Failing row contains (2, 80000, -83455, 1).
-postgres  | 2024-02-19 18:58:22.964 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:23.330 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:23.330 GMT [91] DETAIL:  Failing row contains (1, 100000, -100082, 1).
-postgres  | 2024-02-19 18:58:23.330 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:23.633 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:23.633 GMT [80] DETAIL:  Failing row contains (2, 80000, -80372, 1).
-postgres  | 2024-02-19 18:58:23.633 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:23.815 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:23.815 GMT [80] DETAIL:  Failing row contains (2, 80000, -84485, 1).
-postgres  | 2024-02-19 18:58:23.815 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:23.875 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:23.875 GMT [91] DETAIL:  Failing row contains (2, 80000, -83290, 1).
-postgres  | 2024-02-19 18:58:23.875 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:24.054 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:24.054 GMT [91] DETAIL:  Failing row contains (1, 100000, -105079, 1).
-postgres  | 2024-02-19 18:58:24.054 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:24.311 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:24.311 GMT [91] DETAIL:  Failing row contains (1, 100000, -102009, 1).
-postgres  | 2024-02-19 18:58:24.311 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:24.768 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:24.768 GMT [80] DETAIL:  Failing row contains (2, 80000, -82539, 1).
-postgres  | 2024-02-19 18:58:24.768 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:24.882 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:24.882 GMT [80] DETAIL:  Failing row contains (2, 80000, -84069, 1).
-postgres  | 2024-02-19 18:58:24.882 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:24.997 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:24.997 GMT [101] DETAIL:  Failing row contains (2, 80000, -85945, 1).
-postgres  | 2024-02-19 18:58:24.997 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:25.105 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:25.105 GMT [101] DETAIL:  Failing row contains (2, 80000, -81236, 1).
-postgres  | 2024-02-19 18:58:25.105 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:26.391 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:26.391 GMT [73] DETAIL:  Failing row contains (1, 100000, -100316, 1).
-postgres  | 2024-02-19 18:58:26.391 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:27.022 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:27.022 GMT [101] DETAIL:  Failing row contains (1, 100000, -102453, 1).
-postgres  | 2024-02-19 18:58:27.022 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:27.372 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:27.372 GMT [101] DETAIL:  Failing row contains (2, 80000, -83543, 1).
-postgres  | 2024-02-19 18:58:27.372 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:27.573 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:27.573 GMT [101] DETAIL:  Failing row contains (2, 80000, -82843, 1).
-postgres  | 2024-02-19 18:58:27.573 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:27.772 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:27.772 GMT [73] DETAIL:  Failing row contains (2, 80000, -82852, 1).
-postgres  | 2024-02-19 18:58:27.772 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:27.822 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:27.822 GMT [101] DETAIL:  Failing row contains (2, 80000, -83942, 1).
-postgres  | 2024-02-19 18:58:27.822 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:27.872 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:27.872 GMT [73] DETAIL:  Failing row contains (2, 80000, -81580, 1).
-postgres  | 2024-02-19 18:58:27.872 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:28.020 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:28.020 GMT [73] DETAIL:  Failing row contains (2, 80000, -84648, 1).
-postgres  | 2024-02-19 18:58:28.020 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:28.211 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:28.211 GMT [73] DETAIL:  Failing row contains (2, 80000, -85951, 1).
-postgres  | 2024-02-19 18:58:28.211 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:28.235 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:28.235 GMT [73] DETAIL:  Failing row contains (2, 80000, -86756, 1).
-postgres  | 2024-02-19 18:58:28.235 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:28.258 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:28.258 GMT [91] DETAIL:  Failing row contains (2, 80000, -84112, 1).
-postgres  | 2024-02-19 18:58:28.258 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:28.306 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:28.306 GMT [73] DETAIL:  Failing row contains (2, 80000, -84255, 1).
-postgres  | 2024-02-19 18:58:28.306 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:28.973 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:28.973 GMT [73] DETAIL:  Failing row contains (2, 80000, -86381, 1).
-postgres  | 2024-02-19 18:58:28.973 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:29.042 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:29.042 GMT [73] DETAIL:  Failing row contains (2, 80000, -82691, 1).
-postgres  | 2024-02-19 18:58:29.042 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:29.224 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:29.224 GMT [101] DETAIL:  Failing row contains (2, 80000, -81360, 1).
-postgres  | 2024-02-19 18:58:29.224 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:29.337 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:29.337 GMT [73] DETAIL:  Failing row contains (2, 80000, -82644, 1).
-postgres  | 2024-02-19 18:58:29.337 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:29.474 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:29.474 GMT [101] DETAIL:  Failing row contains (1, 100000, -106300, 1).
-postgres  | 2024-02-19 18:58:29.474 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:29.519 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:29.519 GMT [73] DETAIL:  Failing row contains (2, 80000, -82945, 1).
-postgres  | 2024-02-19 18:58:29.519 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:29.542 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:29.542 GMT [101] DETAIL:  Failing row contains (2, 80000, -84014, 1).
-postgres  | 2024-02-19 18:58:29.542 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:29.610 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:29.610 GMT [73] DETAIL:  Failing row contains (2, 80000, -83197, 1).
-postgres  | 2024-02-19 18:58:29.610 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:29.656 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:29.656 GMT [101] DETAIL:  Failing row contains (2, 80000, -81723, 1).
-postgres  | 2024-02-19 18:58:29.656 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:29.997 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:29.997 GMT [80] DETAIL:  Failing row contains (2, 80000, -83316, 1).
-postgres  | 2024-02-19 18:58:29.997 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:30.105 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:30.105 GMT [101] DETAIL:  Failing row contains (2, 80000, -85649, 1).
-postgres  | 2024-02-19 18:58:30.105 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:30.127 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:30.127 GMT [101] DETAIL:  Failing row contains (2, 80000, -84740, 1).
-postgres  | 2024-02-19 18:58:30.127 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:30.279 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:30.279 GMT [101] DETAIL:  Failing row contains (2, 80000, -86033, 1).
-postgres  | 2024-02-19 18:58:30.279 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:30.301 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:30.301 GMT [101] DETAIL:  Failing row contains (2, 80000, -82320, 1).
-postgres  | 2024-02-19 18:58:30.301 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:30.497 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:30.497 GMT [101] DETAIL:  Failing row contains (1, 100000, -101047, 1).
-postgres  | 2024-02-19 18:58:30.497 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:30.627 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:30.627 GMT [80] DETAIL:  Failing row contains (2, 80000, -83267, 1).
-postgres  | 2024-02-19 18:58:30.627 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:30.823 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:30.823 GMT [101] DETAIL:  Failing row contains (1, 100000, -100605, 1).
-postgres  | 2024-02-19 18:58:30.823 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:30.866 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:30.866 GMT [80] DETAIL:  Failing row contains (1, 100000, -104163, 1).
-postgres  | 2024-02-19 18:58:30.866 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:30.997 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:30.997 GMT [73] DETAIL:  Failing row contains (1, 100000, -104457, 1).
-postgres  | 2024-02-19 18:58:30.997 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:31.039 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:31.039 GMT [101] DETAIL:  Failing row contains (1, 100000, -107802, 1).
-postgres  | 2024-02-19 18:58:31.039 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:31.252 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:31.252 GMT [73] DETAIL:  Failing row contains (2, 80000, -86277, 1).
-postgres  | 2024-02-19 18:58:31.252 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:31.294 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:31.294 GMT [101] DETAIL:  Failing row contains (1, 100000, -100140, 1).
-postgres  | 2024-02-19 18:58:31.294 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:31.317 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:31.317 GMT [73] DETAIL:  Failing row contains (1, 100000, -100518, 1).
-postgres  | 2024-02-19 18:58:31.317 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:31.443 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:31.443 GMT [101] DETAIL:  Failing row contains (1, 100000, -100100, 1).
-postgres  | 2024-02-19 18:58:31.443 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:32.997 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:32.997 GMT [91] DETAIL:  Failing row contains (1, 100000, -103222, 1).
-postgres  | 2024-02-19 18:58:32.997 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:33.722 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:33.722 GMT [73] DETAIL:  Failing row contains (1, 100000, -100071, 1).
-postgres  | 2024-02-19 18:58:33.722 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:33.781 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:33.781 GMT [91] DETAIL:  Failing row contains (1, 100000, -103111, 1).
-postgres  | 2024-02-19 18:58:33.781 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:33.958 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:33.958 GMT [73] DETAIL:  Failing row contains (2, 80000, -84240, 1).
-postgres  | 2024-02-19 18:58:33.958 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:33.997 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:33.997 GMT [101] DETAIL:  Failing row contains (1, 100000, -101568, 1).
-postgres  | 2024-02-19 18:58:33.997 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.091 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.091 GMT [73] DETAIL:  Failing row contains (1, 100000, -101762, 1).
-postgres  | 2024-02-19 18:58:34.091 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.110 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.110 GMT [91] DETAIL:  Failing row contains (1, 100000, -100748, 1).
-postgres  | 2024-02-19 18:58:34.110 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.129 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.129 GMT [91] DETAIL:  Failing row contains (1, 100000, -107704, 1).
-postgres  | 2024-02-19 18:58:34.129 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.280 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.280 GMT [91] DETAIL:  Failing row contains (2, 80000, -82840, 1).
-postgres  | 2024-02-19 18:58:34.280 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.393 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.393 GMT [91] DETAIL:  Failing row contains (1, 100000, -108310, 1).
-postgres  | 2024-02-19 18:58:34.393 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.430 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.430 GMT [73] DETAIL:  Failing row contains (1, 100000, -103607, 1).
-postgres  | 2024-02-19 18:58:34.430 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.449 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.449 GMT [91] DETAIL:  Failing row contains (1, 100000, -101517, 1).
-postgres  | 2024-02-19 18:58:34.449 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.468 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.468 GMT [91] DETAIL:  Failing row contains (1, 100000, -106965, 1).
-postgres  | 2024-02-19 18:58:34.468 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.525 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.525 GMT [91] DETAIL:  Failing row contains (1, 100000, -104352, 1).
-postgres  | 2024-02-19 18:58:34.525 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.544 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.544 GMT [91] DETAIL:  Failing row contains (1, 100000, -106178, 1).
-postgres  | 2024-02-19 18:58:34.544 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.619 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.619 GMT [91] DETAIL:  Failing row contains (2, 80000, -87119, 1).
-postgres  | 2024-02-19 18:58:34.619 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.639 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.639 GMT [73] DETAIL:  Failing row contains (2, 80000, -88133, 1).
-postgres  | 2024-02-19 18:58:34.639 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.828 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.828 GMT [73] DETAIL:  Failing row contains (1, 100000, -103614, 1).
-postgres  | 2024-02-19 18:58:34.828 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.903 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.903 GMT [73] DETAIL:  Failing row contains (1, 100000, -103857, 1).
-postgres  | 2024-02-19 18:58:34.903 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.921 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.921 GMT [73] DETAIL:  Failing row contains (1, 100000, -106754, 1).
-postgres  | 2024-02-19 18:58:34.921 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:34.979 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:34.979 GMT [73] DETAIL:  Failing row contains (2, 80000, -83535, 1).
-postgres  | 2024-02-19 18:58:34.979 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:35.068 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:35.068 GMT [101] DETAIL:  Failing row contains (1, 100000, -104111, 1).
-postgres  | 2024-02-19 18:58:35.068 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:35.197 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:35.197 GMT [101] DETAIL:  Failing row contains (1, 100000, -101905, 1).
-postgres  | 2024-02-19 18:58:35.197 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:35.215 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:35.215 GMT [101] DETAIL:  Failing row contains (1, 100000, -103648, 1).
-postgres  | 2024-02-19 18:58:35.215 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:35.342 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:35.342 GMT [73] DETAIL:  Failing row contains (1, 100000, -106354, 1).
-postgres  | 2024-02-19 18:58:35.342 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:35.451 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:35.451 GMT [101] DETAIL:  Failing row contains (1, 100000, -107586, 1).
-postgres  | 2024-02-19 18:58:35.451 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:35.578 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:35.578 GMT [73] DETAIL:  Failing row contains (1, 100000, -102165, 1).
-postgres  | 2024-02-19 18:58:35.578 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:35.633 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:35.633 GMT [73] DETAIL:  Failing row contains (1, 100000, -105867, 1).
-postgres  | 2024-02-19 18:58:35.633 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:35.687 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:35.687 GMT [73] DETAIL:  Failing row contains (1, 100000, -101311, 1).
-postgres  | 2024-02-19 18:58:35.687 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:35.760 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:35.760 GMT [73] DETAIL:  Failing row contains (1, 100000, -104086, 1).
-postgres  | 2024-02-19 18:58:35.760 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:36.104 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:36.104 GMT [73] DETAIL:  Failing row contains (1, 100000, -104237, 1).
-postgres  | 2024-02-19 18:58:36.104 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:36.139 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:36.139 GMT [91] DETAIL:  Failing row contains (1, 100000, -101146, 1).
-postgres  | 2024-02-19 18:58:36.139 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:36.497 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:36.497 GMT [91] DETAIL:  Failing row contains (1, 100000, -103708, 1).
-postgres  | 2024-02-19 18:58:36.497 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:36.514 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:36.514 GMT [91] DETAIL:  Failing row contains (1, 100000, -102523, 1).
-postgres  | 2024-02-19 18:58:36.514 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:36.657 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:36.657 GMT [91] DETAIL:  Failing row contains (1, 100000, -107754, 1).
-postgres  | 2024-02-19 18:58:36.657 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:36.907 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:36.907 GMT [91] DETAIL:  Failing row contains (1, 100000, -101880, 1).
-postgres  | 2024-02-19 18:58:36.907 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:37.047 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:37.047 GMT [80] DETAIL:  Failing row contains (1, 100000, -100084, 1).
-postgres  | 2024-02-19 18:58:37.047 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:37.064 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:37.064 GMT [80] DETAIL:  Failing row contains (1, 100000, -101002, 1).
-postgres  | 2024-02-19 18:58:37.064 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:37.200 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:37.200 GMT [80] DETAIL:  Failing row contains (1, 100000, -102830, 1).
-postgres  | 2024-02-19 18:58:37.200 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:37.302 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:37.302 GMT [91] DETAIL:  Failing row contains (1, 100000, -103279, 1).
-postgres  | 2024-02-19 18:58:37.302 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:37.352 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:37.352 GMT [80] DETAIL:  Failing row contains (1, 100000, -103691, 1).
-postgres  | 2024-02-19 18:58:37.352 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:37.607 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:37.607 GMT [91] DETAIL:  Failing row contains (1, 100000, -102451, 1).
-postgres  | 2024-02-19 18:58:37.607 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:37.947 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:37.947 GMT [80] DETAIL:  Failing row contains (1, 100000, -108925, 1).
-postgres  | 2024-02-19 18:58:37.947 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:38.247 GMT [73] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:38.247 GMT [73] DETAIL:  Failing row contains (2, 80000, -88407, 1).
-postgres  | 2024-02-19 18:58:38.247 GMT [73] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:38.280 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:38.280 GMT [91] DETAIL:  Failing row contains (2, 80000, -84201, 1).
-postgres  | 2024-02-19 18:58:38.280 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:38.447 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:38.447 GMT [101] DETAIL:  Failing row contains (2, 80000, -81303, 1).
-postgres  | 2024-02-19 18:58:38.447 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:38.647 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:38.647 GMT [101] DETAIL:  Failing row contains (1, 100000, -107997, 1).
-postgres  | 2024-02-19 18:58:38.647 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:38.680 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:38.680 GMT [101] DETAIL:  Failing row contains (1, 100000, -108563, 1).
-postgres  | 2024-02-19 18:58:38.680 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:38.697 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:38.697 GMT [101] DETAIL:  Failing row contains (2, 80000, -82540, 1).
-postgres  | 2024-02-19 18:58:38.697 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:38.713 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:38.713 GMT [80] DETAIL:  Failing row contains (1, 100000, -101465, 1).
-postgres  | 2024-02-19 18:58:38.713 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:38.780 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:38.780 GMT [80] DETAIL:  Failing row contains (2, 80000, -83198, 1).
-postgres  | 2024-02-19 18:58:38.780 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:38.897 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:38.897 GMT [101] DETAIL:  Failing row contains (1, 100000, -104755, 1).
-postgres  | 2024-02-19 18:58:38.897 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:38.913 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:38.913 GMT [80] DETAIL:  Failing row contains (2, 80000, -83539, 1).
-postgres  | 2024-02-19 18:58:38.913 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:39.013 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:39.013 GMT [80] DETAIL:  Failing row contains (2, 80000, -82741, 1).
-postgres  | 2024-02-19 18:58:39.013 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:39.061 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:39.061 GMT [101] DETAIL:  Failing row contains (2, 80000, -82745, 1).
-postgres  | 2024-02-19 18:58:39.061 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:39.109 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:39.109 GMT [101] DETAIL:  Failing row contains (1, 100000, -100031, 1).
-postgres  | 2024-02-19 18:58:39.109 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:39.142 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:39.142 GMT [80] DETAIL:  Failing row contains (1, 100000, -100919, 1).
-postgres  | 2024-02-19 18:58:39.142 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:39.189 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:39.189 GMT [101] DETAIL:  Failing row contains (2, 80000, -80277, 1).
-postgres  | 2024-02-19 18:58:39.189 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:39.319 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:39.319 GMT [80] DETAIL:  Failing row contains (2, 80000, -80988, 1).
-postgres  | 2024-02-19 18:58:39.319 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:39.900 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:39.900 GMT [80] DETAIL:  Failing row contains (2, 80000, -86998, 1).
-postgres  | 2024-02-19 18:58:39.900 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:39.932 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:39.932 GMT [101] DETAIL:  Failing row contains (2, 80000, -82338, 1).
-postgres  | 2024-02-19 18:58:39.932 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:40.387 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:40.387 GMT [101] DETAIL:  Failing row contains (1, 100000, -106453, 1).
-postgres  | 2024-02-19 18:58:40.387 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:40.403 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:40.403 GMT [101] DETAIL:  Failing row contains (2, 80000, -83008, 1).
-postgres  | 2024-02-19 18:58:40.403 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:40.497 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:40.497 GMT [80] DETAIL:  Failing row contains (2, 80000, -81599, 1).
-postgres  | 2024-02-19 18:58:40.497 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:40.575 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:40.575 GMT [101] DETAIL:  Failing row contains (2, 80000, -80144, 1).
-postgres  | 2024-02-19 18:58:40.575 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:40.762 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:40.762 GMT [80] DETAIL:  Failing row contains (1, 100000, -101343, 1).
-postgres  | 2024-02-19 18:58:40.762 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:40.809 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:40.809 GMT [101] DETAIL:  Failing row contains (1, 100000, -108023, 1).
-postgres  | 2024-02-19 18:58:40.809 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:40.856 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:40.856 GMT [101] DETAIL:  Failing row contains (1, 100000, -103646, 1).
-postgres  | 2024-02-19 18:58:40.856 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:40.965 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:40.965 GMT [80] DETAIL:  Failing row contains (1, 100000, -106145, 1).
-postgres  | 2024-02-19 18:58:40.965 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:41.057 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:41.057 GMT [101] DETAIL:  Failing row contains (2, 80000, -86116, 1).
-postgres  | 2024-02-19 18:58:41.057 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:41.087 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:41.087 GMT [80] DETAIL:  Failing row contains (2, 80000, -83958, 1).
-postgres  | 2024-02-19 18:58:41.087 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:41.118 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:41.118 GMT [80] DETAIL:  Failing row contains (2, 80000, -82954, 1).
-postgres  | 2024-02-19 18:58:41.118 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:41.163 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:41.163 GMT [80] DETAIL:  Failing row contains (2, 80000, -87784, 1).
-postgres  | 2024-02-19 18:58:41.163 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:41.193 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:41.193 GMT [101] DETAIL:  Failing row contains (2, 80000, -89591, 1).
-postgres  | 2024-02-19 18:58:41.193 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:41.209 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:41.209 GMT [80] DETAIL:  Failing row contains (2, 80000, -84975, 1).
-postgres  | 2024-02-19 18:58:41.209 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:41.330 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:41.330 GMT [101] DETAIL:  Failing row contains (2, 80000, -85042, 1).
-postgres  | 2024-02-19 18:58:41.330 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:41.678 GMT [101] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:41.678 GMT [101] DETAIL:  Failing row contains (1, 100000, -105511, 1).
-postgres  | 2024-02-19 18:58:41.678 GMT [101] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:41.709 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:41.709 GMT [80] DETAIL:  Failing row contains (1, 100000, -101886, 1).
-postgres  | 2024-02-19 18:58:41.709 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:42.055 GMT [91] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:42.055 GMT [91] DETAIL:  Failing row contains (1, 100000, -105801, 1).
-postgres  | 2024-02-19 18:58:42.055 GMT [91] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
-postgres  | 2024-02-19 18:58:42.070 GMT [80] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
-postgres  | 2024-02-19 18:58:42.070 GMT [80] DETAIL:  Failing row contains (1, 100000, -101584, 1).
-postgres  | 2024-02-19 18:58:42.070 GMT [80] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:51:50.795 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-02-23 00:51:50.796 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres  | 2024-02-23 00:51:50.796 GMT [1] LOG:  listening on IPv6 address "::", port 5432
+postgres  | 2024-02-23 00:51:50.801 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-02-23 00:51:50.809 GMT [66] LOG:  database system was shut down at 2024-02-23 00:51:50 GMT
+postgres  | 2024-02-23 00:51:50.816 GMT [1] LOG:  database system is ready to accept connections
+postgres  | 2024-02-23 00:52:10.080 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:10.080 GMT [87] DETAIL:  Failing row contains (2, 80000, -82798, 1).
+postgres  | 2024-02-23 00:52:10.080 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:11.673 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:11.673 GMT [87] DETAIL:  Failing row contains (2, 80000, -83351, 1).
+postgres  | 2024-02-23 00:52:11.673 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:11.990 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:11.990 GMT [72] DETAIL:  Failing row contains (2, 80000, -84706, 1).
+postgres  | 2024-02-23 00:52:11.990 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:12.347 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:12.347 GMT [87] DETAIL:  Failing row contains (2, 80000, -80916, 1).
+postgres  | 2024-02-23 00:52:12.347 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:15.186 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:15.186 GMT [88] DETAIL:  Failing row contains (2, 80000, -81902, 1).
+postgres  | 2024-02-23 00:52:15.186 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:15.386 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:15.386 GMT [88] DETAIL:  Failing row contains (2, 80000, -82819, 1).
+postgres  | 2024-02-23 00:52:15.386 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:15.547 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:15.547 GMT [88] DETAIL:  Failing row contains (2, 80000, -81329, 1).
+postgres  | 2024-02-23 00:52:15.547 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:18.008 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:18.008 GMT [87] DETAIL:  Failing row contains (1, 100000, -100095, 1).
+postgres  | 2024-02-23 00:52:18.008 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:18.500 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:18.500 GMT [87] DETAIL:  Failing row contains (2, 80000, -84896, 1).
+postgres  | 2024-02-23 00:52:18.500 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:18.534 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:18.534 GMT [87] DETAIL:  Failing row contains (2, 80000, -80431, 1).
+postgres  | 2024-02-23 00:52:18.534 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:18.598 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:18.598 GMT [72] DETAIL:  Failing row contains (2, 80000, -81046, 1).
+postgres  | 2024-02-23 00:52:18.598 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:18.695 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:18.695 GMT [87] DETAIL:  Failing row contains (2, 80000, -83276, 1).
+postgres  | 2024-02-23 00:52:18.695 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:18.726 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:18.726 GMT [87] DETAIL:  Failing row contains (2, 80000, -80540, 1).
+postgres  | 2024-02-23 00:52:18.726 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:18.921 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:18.921 GMT [72] DETAIL:  Failing row contains (2, 80000, -80501, 1).
+postgres  | 2024-02-23 00:52:18.921 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:19.357 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:19.357 GMT [77] DETAIL:  Failing row contains (2, 80000, -88381, 1).
+postgres  | 2024-02-23 00:52:19.357 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:19.781 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:19.781 GMT [77] DETAIL:  Failing row contains (2, 80000, -83452, 1).
+postgres  | 2024-02-23 00:52:19.781 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:20.147 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:20.147 GMT [77] DETAIL:  Failing row contains (2, 80000, -80318, 1).
+postgres  | 2024-02-23 00:52:20.147 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:20.431 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:20.431 GMT [88] DETAIL:  Failing row contains (1, 100000, -107495, 1).
+postgres  | 2024-02-23 00:52:20.431 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:20.488 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:20.488 GMT [77] DETAIL:  Failing row contains (1, 100000, -105989, 1).
+postgres  | 2024-02-23 00:52:20.488 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:20.546 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:20.546 GMT [88] DETAIL:  Failing row contains (1, 100000, -104999, 1).
+postgres  | 2024-02-23 00:52:20.546 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:20.717 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:20.717 GMT [88] DETAIL:  Failing row contains (1, 100000, -102578, 1).
+postgres  | 2024-02-23 00:52:20.717 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:20.831 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:20.831 GMT [88] DETAIL:  Failing row contains (1, 100000, -105900, 1).
+postgres  | 2024-02-23 00:52:20.831 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:20.974 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:20.974 GMT [88] DETAIL:  Failing row contains (1, 100000, -102723, 1).
+postgres  | 2024-02-23 00:52:20.974 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:21.088 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:21.088 GMT [88] DETAIL:  Failing row contains (1, 100000, -104081, 1).
+postgres  | 2024-02-23 00:52:21.088 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:21.389 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:21.389 GMT [77] DETAIL:  Failing row contains (1, 100000, -103243, 1).
+postgres  | 2024-02-23 00:52:21.389 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:21.444 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:21.444 GMT [88] DETAIL:  Failing row contains (1, 100000, -103198, 1).
+postgres  | 2024-02-23 00:52:21.444 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:21.497 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:21.497 GMT [88] DETAIL:  Failing row contains (1, 100000, -108245, 1).
+postgres  | 2024-02-23 00:52:21.497 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:21.632 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:21.632 GMT [88] DETAIL:  Failing row contains (1, 100000, -100970, 1).
+postgres  | 2024-02-23 00:52:21.632 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:21.686 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:21.686 GMT [77] DETAIL:  Failing row contains (1, 100000, -108062, 1).
+postgres  | 2024-02-23 00:52:21.686 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:21.713 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:21.713 GMT [88] DETAIL:  Failing row contains (1, 100000, -102630, 1).
+postgres  | 2024-02-23 00:52:21.713 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:21.930 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:21.930 GMT [77] DETAIL:  Failing row contains (1, 100000, -104352, 1).
+postgres  | 2024-02-23 00:52:21.930 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:22.010 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:22.010 GMT [88] DETAIL:  Failing row contains (1, 100000, -106617, 1).
+postgres  | 2024-02-23 00:52:22.010 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:22.065 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:22.065 GMT [77] DETAIL:  Failing row contains (1, 100000, -107960, 1).
+postgres  | 2024-02-23 00:52:22.065 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:22.172 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:22.172 GMT [88] DETAIL:  Failing row contains (1, 100000, -101406, 1).
+postgres  | 2024-02-23 00:52:22.172 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:22.568 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:22.568 GMT [72] DETAIL:  Failing row contains (1, 100000, -101942, 1).
+postgres  | 2024-02-23 00:52:22.568 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:23.171 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:23.171 GMT [88] DETAIL:  Failing row contains (1, 100000, -107515, 1).
+postgres  | 2024-02-23 00:52:23.171 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:23.220 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:23.220 GMT [77] DETAIL:  Failing row contains (2, 80000, -81608, 1).
+postgres  | 2024-02-23 00:52:23.220 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:23.421 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:23.421 GMT [77] DETAIL:  Failing row contains (2, 80000, -80945, 1).
+postgres  | 2024-02-23 00:52:23.421 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:23.546 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:23.546 GMT [77] DETAIL:  Failing row contains (2, 80000, -84132, 1).
+postgres  | 2024-02-23 00:52:23.546 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:23.796 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:23.796 GMT [88] DETAIL:  Failing row contains (2, 80000, -80623, 1).
+postgres  | 2024-02-23 00:52:23.796 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:23.896 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:23.896 GMT [77] DETAIL:  Failing row contains (2, 80000, -82046, 1).
+postgres  | 2024-02-23 00:52:23.896 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:23.946 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:23.946 GMT [88] DETAIL:  Failing row contains (1, 100000, -108267, 1).
+postgres  | 2024-02-23 00:52:23.946 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:24.021 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:24.021 GMT [77] DETAIL:  Failing row contains (1, 100000, -100532, 1).
+postgres  | 2024-02-23 00:52:24.021 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:24.071 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:24.071 GMT [88] DETAIL:  Failing row contains (1, 100000, -104992, 1).
+postgres  | 2024-02-23 00:52:24.071 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:24.264 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:24.264 GMT [77] DETAIL:  Failing row contains (1, 100000, -100969, 1).
+postgres  | 2024-02-23 00:52:24.264 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:24.455 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:24.455 GMT [77] DETAIL:  Failing row contains (2, 80000, -84180, 1).
+postgres  | 2024-02-23 00:52:24.455 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:24.503 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:24.503 GMT [87] DETAIL:  Failing row contains (2, 80000, -86319, 1).
+postgres  | 2024-02-23 00:52:24.503 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:24.692 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:24.692 GMT [87] DETAIL:  Failing row contains (1, 100000, -101611, 1).
+postgres  | 2024-02-23 00:52:24.692 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:24.717 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:24.717 GMT [72] DETAIL:  Failing row contains (1, 100000, -102453, 1).
+postgres  | 2024-02-23 00:52:24.717 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:24.931 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:24.931 GMT [72] DETAIL:  Failing row contains (1, 100000, -103021, 1).
+postgres  | 2024-02-23 00:52:24.931 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:24.978 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:24.978 GMT [87] DETAIL:  Failing row contains (1, 100000, -102885, 1).
+postgres  | 2024-02-23 00:52:24.978 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:25.074 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:25.074 GMT [87] DETAIL:  Failing row contains (1, 100000, -101753, 1).
+postgres  | 2024-02-23 00:52:25.074 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:25.122 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:25.122 GMT [72] DETAIL:  Failing row contains (1, 100000, -104325, 1).
+postgres  | 2024-02-23 00:52:25.122 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:25.168 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:25.168 GMT [72] DETAIL:  Failing row contains (1, 100000, -104230, 1).
+postgres  | 2024-02-23 00:52:25.168 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:26.032 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:26.032 GMT [87] DETAIL:  Failing row contains (1, 100000, -100086, 1).
+postgres  | 2024-02-23 00:52:26.032 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:26.254 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:26.254 GMT [87] DETAIL:  Failing row contains (1, 100000, -100342, 1).
+postgres  | 2024-02-23 00:52:26.254 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:26.384 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:26.384 GMT [72] DETAIL:  Failing row contains (1, 100000, -105860, 1).
+postgres  | 2024-02-23 00:52:26.384 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:26.427 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:26.427 GMT [87] DETAIL:  Failing row contains (2, 80000, -81783, 1).
+postgres  | 2024-02-23 00:52:26.427 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:26.515 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:26.515 GMT [72] DETAIL:  Failing row contains (2, 80000, -81090, 1).
+postgres  | 2024-02-23 00:52:26.515 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:26.667 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:26.667 GMT [72] DETAIL:  Failing row contains (1, 100000, -105636, 1).
+postgres  | 2024-02-23 00:52:26.667 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:26.732 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:26.732 GMT [87] DETAIL:  Failing row contains (2, 80000, -80358, 1).
+postgres  | 2024-02-23 00:52:26.732 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:26.798 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:26.798 GMT [87] DETAIL:  Failing row contains (2, 80000, -82470, 1).
+postgres  | 2024-02-23 00:52:26.798 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:26.993 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:26.993 GMT [72] DETAIL:  Failing row contains (1, 100000, -100069, 1).
+postgres  | 2024-02-23 00:52:26.993 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:27.015 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:27.015 GMT [87] DETAIL:  Failing row contains (2, 80000, -80113, 1).
+postgres  | 2024-02-23 00:52:27.015 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:27.080 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:27.080 GMT [72] DETAIL:  Failing row contains (1, 100000, -104265, 1).
+postgres  | 2024-02-23 00:52:27.080 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:27.465 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:27.465 GMT [72] DETAIL:  Failing row contains (2, 80000, -80296, 1).
+postgres  | 2024-02-23 00:52:27.465 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:27.868 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:27.868 GMT [72] DETAIL:  Failing row contains (2, 80000, -83844, 1).
+postgres  | 2024-02-23 00:52:27.868 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:28.039 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:28.039 GMT [72] DETAIL:  Failing row contains (1, 100000, -107307, 1).
+postgres  | 2024-02-23 00:52:28.039 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:28.082 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:28.082 GMT [87] DETAIL:  Failing row contains (1, 100000, -105065, 1).
+postgres  | 2024-02-23 00:52:28.082 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:28.206 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:28.206 GMT [88] DETAIL:  Failing row contains (1, 100000, -102965, 1).
+postgres  | 2024-02-23 00:52:28.206 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:28.386 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:28.386 GMT [88] DETAIL:  Failing row contains (2, 80000, -83102, 1).
+postgres  | 2024-02-23 00:52:28.386 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:28.446 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:28.446 GMT [88] DETAIL:  Failing row contains (1, 100000, -107013, 1).
+postgres  | 2024-02-23 00:52:28.446 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:28.526 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:28.526 GMT [72] DETAIL:  Failing row contains (2, 80000, -84396, 1).
+postgres  | 2024-02-23 00:52:28.526 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:28.586 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:28.586 GMT [72] DETAIL:  Failing row contains (2, 80000, -83235, 1).
+postgres  | 2024-02-23 00:52:28.586 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:28.706 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:28.706 GMT [88] DETAIL:  Failing row contains (2, 80000, -87423, 1).
+postgres  | 2024-02-23 00:52:28.706 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:28.886 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:28.886 GMT [72] DETAIL:  Failing row contains (1, 100000, -101084, 1).
+postgres  | 2024-02-23 00:52:28.886 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:29.006 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:29.006 GMT [88] DETAIL:  Failing row contains (1, 100000, -102433, 1).
+postgres  | 2024-02-23 00:52:29.006 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:29.204 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:29.204 GMT [88] DETAIL:  Failing row contains (1, 100000, -103068, 1).
+postgres  | 2024-02-23 00:52:29.204 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:29.342 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:29.342 GMT [72] DETAIL:  Failing row contains (1, 100000, -101491, 1).
+postgres  | 2024-02-23 00:52:29.342 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:29.518 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:29.518 GMT [72] DETAIL:  Failing row contains (1, 100000, -100734, 1).
+postgres  | 2024-02-23 00:52:29.518 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:29.773 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:29.773 GMT [72] DETAIL:  Failing row contains (1, 100000, -102290, 1).
+postgres  | 2024-02-23 00:52:29.773 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:29.911 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:29.911 GMT [88] DETAIL:  Failing row contains (2, 80000, -80553, 1).
+postgres  | 2024-02-23 00:52:29.911 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:29.949 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:29.949 GMT [72] DETAIL:  Failing row contains (2, 80000, -84749, 1).
+postgres  | 2024-02-23 00:52:29.949 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.088 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.088 GMT [88] DETAIL:  Failing row contains (1, 100000, -103481, 1).
+postgres  | 2024-02-23 00:52:30.088 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.164 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.164 GMT [72] DETAIL:  Failing row contains (1, 100000, -102966, 1).
+postgres  | 2024-02-23 00:52:30.164 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.221 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.221 GMT [72] DETAIL:  Failing row contains (1, 100000, -107399, 1).
+postgres  | 2024-02-23 00:52:30.221 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.240 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.240 GMT [72] DETAIL:  Failing row contains (2, 80000, -80209, 1).
+postgres  | 2024-02-23 00:52:30.240 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.259 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.259 GMT [87] DETAIL:  Failing row contains (1, 100000, -104328, 1).
+postgres  | 2024-02-23 00:52:30.259 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.334 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.334 GMT [87] DETAIL:  Failing row contains (2, 80000, -83393, 1).
+postgres  | 2024-02-23 00:52:30.334 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.372 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.372 GMT [72] DETAIL:  Failing row contains (1, 100000, -101125, 1).
+postgres  | 2024-02-23 00:52:30.372 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.410 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.410 GMT [87] DETAIL:  Failing row contains (1, 100000, -106269, 1).
+postgres  | 2024-02-23 00:52:30.410 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.447 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.447 GMT [72] DETAIL:  Failing row contains (1, 100000, -102693, 1).
+postgres  | 2024-02-23 00:52:30.447 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.485 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.485 GMT [72] DETAIL:  Failing row contains (2, 80000, -84639, 1).
+postgres  | 2024-02-23 00:52:30.485 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.561 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.561 GMT [72] DETAIL:  Failing row contains (2, 80000, -80486, 1).
+postgres  | 2024-02-23 00:52:30.561 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.617 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.617 GMT [87] DETAIL:  Failing row contains (2, 80000, -89234, 1).
+postgres  | 2024-02-23 00:52:30.617 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.675 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.675 GMT [87] DETAIL:  Failing row contains (2, 80000, -83002, 1).
+postgres  | 2024-02-23 00:52:30.675 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.712 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.712 GMT [72] DETAIL:  Failing row contains (1, 100000, -108702, 1).
+postgres  | 2024-02-23 00:52:30.712 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.749 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.749 GMT [87] DETAIL:  Failing row contains (1, 100000, -100397, 1).
+postgres  | 2024-02-23 00:52:30.749 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.901 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.901 GMT [72] DETAIL:  Failing row contains (1, 100000, -101137, 1).
+postgres  | 2024-02-23 00:52:30.901 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.938 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.938 GMT [87] DETAIL:  Failing row contains (1, 100000, -108652, 1).
+postgres  | 2024-02-23 00:52:30.938 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.957 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.957 GMT [87] DETAIL:  Failing row contains (1, 100000, -101371, 1).
+postgres  | 2024-02-23 00:52:30.957 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:30.995 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:30.995 GMT [72] DETAIL:  Failing row contains (2, 80000, -86084, 1).
+postgres  | 2024-02-23 00:52:30.995 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:31.014 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:31.014 GMT [87] DETAIL:  Failing row contains (2, 80000, -81389, 1).
+postgres  | 2024-02-23 00:52:31.014 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:31.051 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:31.051 GMT [72] DETAIL:  Failing row contains (1, 100000, -100543, 1).
+postgres  | 2024-02-23 00:52:31.051 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:31.090 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:31.090 GMT [87] DETAIL:  Failing row contains (1, 100000, -103722, 1).
+postgres  | 2024-02-23 00:52:31.090 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:31.128 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:31.128 GMT [72] DETAIL:  Failing row contains (1, 100000, -103633, 1).
+postgres  | 2024-02-23 00:52:31.128 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:31.164 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:31.164 GMT [72] DETAIL:  Failing row contains (1, 100000, -103339, 1).
+postgres  | 2024-02-23 00:52:31.164 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:31.182 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:31.182 GMT [72] DETAIL:  Failing row contains (1, 100000, -106977, 1).
+postgres  | 2024-02-23 00:52:31.182 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:31.273 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:31.273 GMT [88] DETAIL:  Failing row contains (1, 100000, -100864, 1).
+postgres  | 2024-02-23 00:52:31.273 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:31.309 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:31.309 GMT [72] DETAIL:  Failing row contains (1, 100000, -103051, 1).
+postgres  | 2024-02-23 00:52:31.309 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:31.564 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:31.564 GMT [72] DETAIL:  Failing row contains (1, 100000, -103082, 1).
+postgres  | 2024-02-23 00:52:31.564 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:31.600 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:31.600 GMT [88] DETAIL:  Failing row contains (1, 100000, -102067, 1).
+postgres  | 2024-02-23 00:52:31.600 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:31.727 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:31.727 GMT [72] DETAIL:  Failing row contains (2, 80000, -80898, 1).
+postgres  | 2024-02-23 00:52:31.727 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:31.873 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:31.873 GMT [88] DETAIL:  Failing row contains (2, 80000, -80437, 1).
+postgres  | 2024-02-23 00:52:31.873 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.000 GMT [88] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.000 GMT [88] DETAIL:  Failing row contains (2, 80000, -82915, 1).
+postgres  | 2024-02-23 00:52:32.000 GMT [88] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.036 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.036 GMT [72] DETAIL:  Failing row contains (1, 100000, -102792, 1).
+postgres  | 2024-02-23 00:52:32.036 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.180 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.180 GMT [72] DETAIL:  Failing row contains (2, 80000, -83203, 1).
+postgres  | 2024-02-23 00:52:32.180 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.252 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.252 GMT [72] DETAIL:  Failing row contains (2, 80000, -80560, 1).
+postgres  | 2024-02-23 00:52:32.252 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.305 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.305 GMT [72] DETAIL:  Failing row contains (2, 80000, -82944, 1).
+postgres  | 2024-02-23 00:52:32.305 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.448 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.448 GMT [87] DETAIL:  Failing row contains (2, 80000, -85767, 1).
+postgres  | 2024-02-23 00:52:32.448 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.555 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.555 GMT [72] DETAIL:  Failing row contains (2, 80000, -84719, 1).
+postgres  | 2024-02-23 00:52:32.555 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.698 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.698 GMT [72] DETAIL:  Failing row contains (2, 80000, -82105, 1).
+postgres  | 2024-02-23 00:52:32.698 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.752 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.752 GMT [72] DETAIL:  Failing row contains (2, 80000, -86062, 1).
+postgres  | 2024-02-23 00:52:32.752 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.787 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.787 GMT [87] DETAIL:  Failing row contains (1, 100000, -100492, 1).
+postgres  | 2024-02-23 00:52:32.787 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.805 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.805 GMT [87] DETAIL:  Failing row contains (2, 80000, -85107, 1).
+postgres  | 2024-02-23 00:52:32.805 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.842 GMT [72] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.842 GMT [72] DETAIL:  Failing row contains (2, 80000, -83332, 1).
+postgres  | 2024-02-23 00:52:32.842 GMT [72] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:32.913 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:32.913 GMT [87] DETAIL:  Failing row contains (1, 100000, -102353, 1).
+postgres  | 2024-02-23 00:52:32.913 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:33.128 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:33.128 GMT [87] DETAIL:  Failing row contains (2, 80000, -81652, 1).
+postgres  | 2024-02-23 00:52:33.128 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:33.146 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:33.146 GMT [77] DETAIL:  Failing row contains (1, 100000, -101112, 1).
+postgres  | 2024-02-23 00:52:33.146 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:33.162 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:33.162 GMT [87] DETAIL:  Failing row contains (2, 80000, -83618, 1).
+postgres  | 2024-02-23 00:52:33.162 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:33.179 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:33.179 GMT [77] DETAIL:  Failing row contains (2, 80000, -81612, 1).
+postgres  | 2024-02-23 00:52:33.179 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:33.212 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:33.212 GMT [77] DETAIL:  Failing row contains (2, 80000, -83278, 1).
+postgres  | 2024-02-23 00:52:33.212 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:33.280 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:33.280 GMT [77] DETAIL:  Failing row contains (1, 100000, -108530, 1).
+postgres  | 2024-02-23 00:52:33.280 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:33.331 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:33.331 GMT [77] DETAIL:  Failing row contains (2, 80000, -87303, 1).
+postgres  | 2024-02-23 00:52:33.331 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:33.467 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:33.467 GMT [77] DETAIL:  Failing row contains (2, 80000, -87748, 1).
+postgres  | 2024-02-23 00:52:33.467 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:33.721 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:33.721 GMT [77] DETAIL:  Failing row contains (1, 100000, -105090, 1).
+postgres  | 2024-02-23 00:52:33.721 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:33.822 GMT [77] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:33.822 GMT [77] DETAIL:  Failing row contains (1, 100000, -107282, 1).
+postgres  | 2024-02-23 00:52:33.822 GMT [77] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"
+postgres  | 2024-02-23 00:52:33.908 GMT [87] ERROR:  new row for relation "cliente" violates check constraint "saldo_limite_check"
+postgres  | 2024-02-23 00:52:33.908 GMT [87] DETAIL:  Failing row contains (5, 500000, -501013, 1).
+postgres  | 2024-02-23 00:52:33.908 GMT [87] STATEMENT:  update "cliente" set "saldo" = ("cliente"."saldo" - $1) where "cliente"."id" = $2 returning "cliente"."limite", "cliente"."saldo"

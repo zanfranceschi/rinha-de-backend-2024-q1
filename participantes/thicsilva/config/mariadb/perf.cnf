@@ -1,5 +1,5 @@
 [mysqld]
-max_connections = 500
+max_connections = 1000
 max_allowed_packet = 16M
 
 # Sort buffer is used to perform sorts for some ORDER BY and GROUP BY
@@ -35,10 +35,10 @@ tmp_table_size = 64M # Should be equal to max_heap_table_size
 ## by setting query_cache_size = 0 (now the default on MySQL 5.6)
 ## and to use other ways to speed up read queries: good indexing, adding
 ## replicas to spread the read load or using an external cache.
-query_cache_type = on
-query_cache_size  = 64M
-query_cache_strip_comments = on
-query_cache_min_res_unit = 2K
+# query_cache_type = on
+# query_cache_size  = 64M
+# query_cache_strip_comments = on
+# query_cache_min_res_unit = 2K
 # query_cache_limit = 256K # Default is 1M now
 
 thread_cache_size = 16
@@ -51,8 +51,8 @@ table_definition_cache = 1024
 # The buffer pool is where data and indexes are cached: having it as large as possible
 # will ensure you use memory and not disks for most read operations.
 # Typical values are 50..75% of available RAM.
-innodb_buffer_pool_size = 210M # 75% of 280MB RAM
-innodb_log_file_size = 53M # 25% of innodb_buffer_pool_size
+innodb_buffer_pool_size = 278M # 75% of 350MB RAM
+innodb_log_file_size = 69M # 25% of innodb_buffer_pool_size
 innodb_flush_method	= O_DIRECT
 
 # This setting should be set to 0 (disabled) on SSDs which do not have

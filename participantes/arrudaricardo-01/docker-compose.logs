@@ -2,11 +2,9 @@
  Network rinha-2024q1  Created
  Container postgres  Creating
  Container postgres  Created
- Container bun-api-1  Creating
  Container bun-api-2  Creating
- api-1 The requested image's platform (linux/arm64) does not match the detected host platform (linux/amd64/v4) and no specific platform was requested 
+ Container bun-api-1  Creating
  Container bun-api-1  Created
- api-2 The requested image's platform (linux/arm64) does not match the detected host platform (linux/amd64/v4) and no specific platform was requested 
  Container bun-api-2  Created
  Container nginx  Creating
  Container nginx  Created
@@ -27,9 +25,6 @@ postgres   | selecting default max_connections ... 100
 postgres   | selecting default shared_buffers ... 128MB
 postgres   | selecting default time zone ... Etc/UTC
 postgres   | creating configuration files ... ok
-bun-api-1  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-postgres   | running bootstrap script ... ok
 nginx      | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx      | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -39,10 +34,8 @@ nginx      | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resol
 nginx      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx      | /docker-entrypoint.sh: Configuration complete; ready for start up
+postgres   | running bootstrap script ... ok
 postgres   | performing post-bootstrap initialization ... ok
-bun-api-1 exited with code 0
-postgres   | initdb: warning: enabling "trust" authentication for local connections
-postgres   | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 postgres   | syncing data to disk ... ok
 postgres   | 
 postgres   | 
@@ -50,15 +43,30 @@ postgres   | Success. You can now start the database server using:
 postgres   | 
 postgres   |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 postgres   | 
-postgres   | waiting for server to start....2024-02-20 01:20:18.038 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres   | 2024-02-20 01:20:18.118 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres   | 2024-02-20 01:20:18.334 UTC [52] LOG:  database system was shut down at 2024-02-20 01:20:17 UTC
-postgres   | 2024-02-20 01:20:18.787 UTC [49] LOG:  database system is ready to accept connections
+postgres   | initdb: warning: enabling "trust" authentication for local connections
+postgres   | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres   | waiting for server to start....2024-02-20 18:02:15.116 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres   | 2024-02-20 18:02:15.120 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres   | 2024-02-20 18:02:15.130 UTC [51] LOG:  database system was shut down at 2024-02-20 18:02:14 UTC
+postgres   | 2024-02-20 18:02:15.137 UTC [48] LOG:  database system is ready to accept connections
 postgres   |  done
 postgres   | server started
-bun-api-2 exited with code 1
 postgres   | 
 postgres   | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+bun-api-1  |  7 | var cachedError = function(xs) {
+bun-api-1  |  8 |   if (originCache.has(xs))
+bun-api-1  |  9 |     return originCache.get(xs);
+bun-api-1  | 10 |   const x = Error.stackTraceLimit;
+bun-api-1  | 11 |   Error.stackTraceLimit = 4;
+bun-api-1  | 12 |   originCache.set(xs, new Error);
+bun-api-1  |                                     ^
+bun-api-1  | ECONNREFUSED: Failed to connect
+bun-api-1  |  syscall: "connect"
+bun-api-1  | 
+bun-api-1  |       at cachedError (/$bunfs/root/main:12:32)
+bun-api-1  |       at new Query (/$bunfs/root/main:42:84)
+bun-api-1  |       at sql2 (/$bunfs/root/main:1601:71)
+bun-api-1  |       at /$bunfs/root/main:1953:31
 postgres   | CREATE TABLE
 postgres   | CREATE TABLE
 postgres   | INSERT 0 1
@@ -68,212 +76,35 @@ postgres   | INSERT 0 1
 postgres   | INSERT 0 1
 postgres   | 
 postgres   | 
-postgres   | 2024-02-20 01:20:19.147 UTC [49] LOG:  received fast shutdown request
-postgres   | waiting for server to shut down....2024-02-20 01:20:19.150 UTC [49] LOG:  aborting any active transactions
-postgres   | 2024-02-20 01:20:19.214 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-postgres   | 2024-02-20 01:20:19.214 UTC [50] LOG:  shutting down
-postgres   | 2024-02-20 01:20:19.218 UTC [50] LOG:  checkpoint starting: shutdown immediate
-postgres   | 2024-02-20 01:20:19.344 UTC [50] LOG:  checkpoint complete: wrote 64 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.104 s, total=0.130 s; sync files=46, longest=0.091 s, average=0.003 s; distance=179 kB, estimate=179 kB; lsn=0/1517648, redo lsn=0/1517648
-postgres   | 2024-02-20 01:20:19.348 UTC [49] LOG:  database system is shut down
+postgres   | waiting for server to shut down...2024-02-20 18:02:15.536 UTC [48] LOG:  received fast shutdown request
+postgres   | .2024-02-20 18:02:15.540 UTC [48] LOG:  aborting any active transactions
+postgres   | 2024-02-20 18:02:15.548 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres   | 2024-02-20 18:02:15.549 UTC [49] LOG:  shutting down
+postgres   | 2024-02-20 18:02:15.552 UTC [49] LOG:  checkpoint starting: shutdown immediate
+postgres   | 2024-02-20 18:02:15.671 UTC [49] LOG:  checkpoint complete: wrote 64 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.012 s, sync=0.093 s, total=0.123 s; sync files=46, longest=0.083 s, average=0.003 s; distance=179 kB, estimate=179 kB; lsn=0/1517648, redo lsn=0/1517648
+postgres   | 2024-02-20 18:02:15.674 UTC [48] LOG:  database system is shut down
 postgres   |  done
 postgres   | server stopped
 postgres   | 
 postgres   | PostgreSQL init process complete; ready for start up.
 postgres   | 
-postgres   | 2024-02-20 01:20:19.471 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres   | 2024-02-20 01:20:19.503 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres   | 2024-02-20 01:20:19.503 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-postgres   | 2024-02-20 01:20:19.512 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres   | 2024-02-20 01:20:19.521 UTC [65] LOG:  database system was shut down at 2024-02-20 01:20:19 UTC
-postgres   | 2024-02-20 01:20:19.527 UTC [1] LOG:  database system is ready to accept connections
-bun-api-2 exited with code 1
-bun-api-1 exited with code 1
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-2 exited with code 1
-bun-api-1 exited with code 1
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-2 exited with code 1
-bun-api-1 exited with code 1
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-2 exited with code 1
-bun-api-1 exited with code 1
-nginx      | 2024/02/20 01:20:23 [error] 32#32: *1 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:20:23 [error] 32#32: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-2 exited with code 1
-bun-api-1 exited with code 1
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-2 exited with code 1
-bun-api-1 exited with code 1
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-2 exited with code 1
-bun-api-1 exited with code 1
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-2 exited with code 1
-bun-api-1 exited with code 1
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-1 exited with code 1
-bun-api-2 exited with code 1
-nginx      | 2024/02/20 01:21:25 [error] 31#31: *4 upstream timed out (110: Operation timed out) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:21:44 [error] 31#31: *4 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:21:49 [error] 34#34: *7 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:21:52 [error] 34#34: *7 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:21:57 [error] 33#33: *10 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:00 [error] 33#33: *10 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:03 [error] 32#32: *13 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-1  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-2  | exec ./main: exec format error
-bun-api-1 exited with code 1
-bun-api-2 exited with code 1
-nginx      | 2024/02/20 01:22:06 [error] 32#32: *13 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:08 [error] 32#32: *16 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:10 [error] 32#32: *17 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:12 [error] 32#32: *18 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:17 [error] 32#32: *19 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:20 [error] 32#32: *19 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:22 [error] 32#32: *22 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:24 [error] 32#32: *23 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:26 [error] 32#32: *24 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:32 [error] 32#32: *25 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:35 [error] 32#32: *25 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:37 [error] 32#32: *28 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:39 [error] 32#32: *29 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:41 [error] 32#32: *30 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:46 [error] 32#32: *31 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:49 [error] 32#32: *31 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.30.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:51 [error] 32#32: *34 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx      | 2024/02/20 01:22:53 [error] 32#32: *35 no live upstreams while connecting to upstream, client: 172.30.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+postgres   | 2024-02-20 18:02:15.762 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres   | 2024-02-20 18:02:15.762 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres   | 2024-02-20 18:02:15.762 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres   | 2024-02-20 18:02:15.768 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres   | 2024-02-20 18:02:15.815 UTC [64] LOG:  database system was shut down at 2024-02-20 18:02:15 UTC
+postgres   | 2024-02-20 18:02:15.822 UTC [1] LOG:  database system is ready to accept connections
 nginx exited with code 0
 nginx exited with code 0
-bun-api-2 exited with code 0
 bun-api-1 exited with code 0
-postgres   | 2024-02-20 01:22:56.057 UTC [1] LOG:  received fast shutdown request
-postgres   | 2024-02-20 01:22:56.060 UTC [1] LOG:  aborting any active transactions
-postgres   | 2024-02-20 01:22:56.062 UTC [1] LOG:  background worker "logical replication launcher" (PID 68) exited with exit code 1
-postgres   | 2024-02-20 01:22:56.062 UTC [63] LOG:  shutting down
-postgres   | 2024-02-20 01:22:56.071 UTC [63] LOG:  checkpoint starting: shutdown immediate
-postgres   | 2024-02-20 01:22:56.140 UTC [63] LOG:  checkpoint complete: wrote 45 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.049 s, total=0.078 s; sync files=14, longest=0.038 s, average=0.004 s; distance=250 kB, estimate=250 kB; lsn=0/1555E70, redo lsn=0/1555E70
-postgres   | 2024-02-20 01:22:56.143 UTC [1] LOG:  database system is shut down
+bun-api-1 exited with code 137
+bun-api-2 exited with code 0
+bun-api-2 exited with code 137
+postgres   | 2024-02-20 18:06:42.673 UTC [1] LOG:  received fast shutdown request
+postgres   | 2024-02-20 18:06:42.677 UTC [1] LOG:  aborting any active transactions
+postgres   | 2024-02-20 18:06:42.679 UTC [1] LOG:  background worker "logical replication launcher" (PID 67) exited with exit code 1
+postgres   | 2024-02-20 18:06:42.680 UTC [62] LOG:  shutting down
+postgres   | 2024-02-20 18:06:42.683 UTC [62] LOG:  checkpoint starting: shutdown immediate
+postgres   | 2024-02-20 18:06:42.811 UTC [62] LOG:  checkpoint complete: wrote 612 buffers (3.7%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.010 s, sync=0.103 s, total=0.132 s; sync files=32, longest=0.096 s, average=0.004 s; distance=15466 kB, estimate=15466 kB; lsn=0/2432080, redo lsn=0/2432080
+postgres   | 2024-02-20 18:06:42.816 UTC [1] LOG:  database system is shut down
 postgres exited with code 0
