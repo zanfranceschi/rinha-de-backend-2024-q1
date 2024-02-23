@@ -10,7 +10,7 @@ services:
       POSTGRES_DB: db_financial
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c max_connections=200 -c shared_buffers=100MB -c fsync=off -c full_page_writes=off
+    command: postgres -c max_connections=200 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready" ]
       interval: 5s
@@ -23,7 +23,7 @@ services:
       resources:
         limits:
           cpus: '0.70'
-          memory: 128MB
+          memory: 194MB
 
   api01: &api
     image: thalessantanna/app_rinha_2024_webflux:latest
@@ -48,8 +48,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.30"
-          memory: 128MB
+          cpus: "0.35"
+          memory: 146MB
 
   api02:
     <<: *api
@@ -84,8 +84,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.20"
-          memory: 100MB
+          cpus: "0.10"
+          memory: 64MB
 
 networks:
   default:
