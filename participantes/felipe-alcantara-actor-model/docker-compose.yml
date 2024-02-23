@@ -2,10 +2,11 @@ version: "3.8"
 
 services:
   web01:
-    image: felipealcantara/rinha-de-backend-2024:latest
+    image: felipealcantara/rinha-de-backend-2024:1.0.1
     environment:
       GIN_MODE: release
       APP_PORT: "8080"
+      DROP_DB_ON_START: "true"
     expose:
     - "8080"
     depends_on:
@@ -14,13 +15,14 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.35"
-          memory: "120MB"
+          cpus: "0.28"
+          memory: "20MB"
   web02:
-    image: felipealcantara/rinha-de-backend-2024:latest
+    image: felipealcantara/rinha-de-backend-2024:1.0.1
     environment:
       GIN_MODE: release
       APP_PORT: "8081"
+      DROP_DB_ON_START: "true"
     expose:
     - "8081"
     network_mode: host
@@ -29,36 +31,35 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.35"
-          memory: "120MB"
+          cpus: "0.28"
+          memory: "20MB"
 
   lb:
-    image: felipealcantara/rinha-de-backend-2024-lb:latest
+    image: felipealcantara/rinha-de-backend-2024-lb:1.0.1
     environment:
       APP_PORT: 9999
-      APP_MAX_CONNS_PER_HOST: 100
-      APP_MAX_IDLE_CONNS: 4
-      APP_MAX_IDLE_CONNS_PER_HOST: 2
-      APP_IDLE_CONN_TIMEOUT_SECONDS: 30
+      APP_BACKENDS: "127.0.0.1:8080,127.0.0.1:8081"
     expose:
     - "9999"
     depends_on:
     - web01
     - web02
+    - db
     network_mode: host
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "170MB"
+          cpus: "0.42"
+          memory: "20MB"
 
   db:
     image: mongo:7.0.5
+    command: mongod --quiet --logpath /dev/null
     expose:
     - "27017"
     network_mode: host
     deploy:
       resources:
         limits:
-          cpus: "0.3"
-          memory: "140MB"
+          cpus: "0.40"
+          memory: "180MB"

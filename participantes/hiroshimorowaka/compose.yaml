@@ -1,12 +1,13 @@
 version: '3.5'
 services:
   api01: &app
-    image: hiroshimorowaka/rinha-backend-2024:latest
+    image: hiroshimorowaka/rinha-backend-2024:express
+    # build: .
     hostname: api01
     network_mode: host
+    container_name: api01-express
     environment:
       - DATABASE_URL=postgres://docker:docker@localhost:5432/rinha
-      - CREATE_TABLE=true
       - HTTP_PORT=8081
     expose:
       - "8080"
@@ -21,22 +22,23 @@ services:
   api02:
     <<: *app
     hostname: api02
+    container_name: api02-express
     environment:
       - DATABASE_URL=postgres://docker:docker@localhost:5432/rinha
-      - CREATE_TABLE=false
       - HTTP_PORT=8082
 
 
   postgres:
     image: postgres:16.1-alpine3.19
     network_mode: host
+    container_name: postgres
     command: postgres -c 'max_connections=75' -c 'log_error_verbosity=terse'
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=rinha
-    ports:
-      - 5432:5432
     deploy:
       resources:
         limits:
@@ -46,13 +48,12 @@ services:
   nginx:
     image: nginx:1.25.3-alpine
     network_mode: host
+    container_name: nginx
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - api01
       - api02
-    ports:
-      - 9999:9999
     deploy:
       resources:
         limits:

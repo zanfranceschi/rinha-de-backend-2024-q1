@@ -1,0 +1,67 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    command: 'postgres -c max_connections=1000 -c work_mem=8MB -c hot_standby=off -c shared_buffers=150MB -c checkpoint_timeout=1d -c wal_level=minimal -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c max_wal_senders=0'
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.375"
+          memory: "300MB"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  backend-1:
+    container_name: backend-1
+    image: joaopmerlin/rinha-de-backend-2024-q1:0.0.1-SNAPSHOT
+    environment:
+      SERVER_PORT: 8080
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.375"
+          memory: "100MB"
+
+  backend-2:
+    container_name: backend-2
+    image: joaopmerlin/rinha-de-backend-2024-q1:0.0.1-SNAPSHOT
+    environment:
+      SERVER_PORT: 8080
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.375"
+          memory: "100MB"
+
+  envoy:
+    container_name: envoy
+    image: envoyproxy/envoy:v1.29.1
+    volumes:
+      - ./envoy.yml:/etc/envoy/envoy.yaml
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.375"
+          memory: "50MB"
+    depends_on:
+      - backend-1
+      - backend-2
+    command: [ "envoy", "-c", "/etc/envoy/envoy.yaml" ]

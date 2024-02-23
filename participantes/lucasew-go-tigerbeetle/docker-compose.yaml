@@ -1,3 +1,9 @@
+# volumes:
+#   db-data:
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
 services:
   loadbalancer:
     image: nginx:latest
@@ -14,7 +20,7 @@ services:
           cpus: "0.2"
           memory: "50MB"
   db:
-    image: ghcr.io/lucasew/playground/rinha202401-tigerbeetle:latest
+    image: ghcr.io/lucasew/playground-rinha202401-tigerbeetle:latest
     # build:
     #   dockerfile: ./Dockerfile.tigerbeetle-lowram
     entrypoint: /tigerbeetle-start.sh
@@ -28,10 +34,10 @@ services:
       #   limits:
       #     memory: 1024M
     volumes:
-    - ./data:/data
+    # - db-data:/data
     - ./tigerbeetle-start.sh:/tigerbeetle-start.sh
   backend1:
-    image: ghcr.io/lucasew/playground/rinha202401-backend:latest
+    image: ghcr.io/lucasew/playground-rinha202401-backend:latest
     restart: always
     environment:
       - "TB_ADDRESS=db:3000"
@@ -50,7 +56,7 @@ services:
       - db
 
   backend2:
-    image: ghcr.io/lucasew/playground/rinha202401-backend:latest
+    image: ghcr.io/lucasew/playground-rinha202401-backend:latest
     restart: always
     environment:
       - "TB_ADDRESS=db:3000"

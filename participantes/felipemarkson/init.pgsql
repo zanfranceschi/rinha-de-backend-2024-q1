@@ -1,6 +1,7 @@
 CREATE UNLOGGED TABLE clientes (
     id SERIAL PRIMARY KEY,
-    limite INTEGER NOT NULL
+    limite INTEGER NOT NULL,
+    saldo INTEGER NOT NULL CHECK(saldo >= -limite)
 );
 
 CREATE UNLOGGED TABLE transacoes (
@@ -12,24 +13,15 @@ CREATE UNLOGGED TABLE transacoes (
     realizada_em TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
-CREATE UNLOGGED TABLE saldos (
-    id SERIAL PRIMARY KEY,
-    cliente_id INTEGER NOT NULL REFERENCES clientes(id),
-    valor INTEGER NOT NULL
-);
-
 DO $$
 BEGIN
-    INSERT INTO clientes (limite)
+    INSERT INTO clientes (limite, saldo)
     VALUES
-        (1000 * 100),
-        (800 * 100),
-        (10000 * 100),
-        (100000 * 100),
-        (5000 * 100);
-
-    INSERT INTO saldos (cliente_id, valor)
-        SELECT id, 0 FROM clientes;
+        (1000   * 100, 0),
+        (800    * 100, 0),
+        (10000  * 100, 0),
+        (100000 * 100, 0),
+        (5000   * 100, 0);
 END;
 $$;
 
@@ -45,23 +37,17 @@ AS $$
 DECLARE 
   ret json;
 BEGIN
-    UPDATE saldos SET valor = valor + valor_in WHERE cliente_id = cliente_id_in;
-    IF NOT FOUND THEN
-        ret := NULL;
-        RETURN ret;
+    WITH rw AS (
+        UPDATE clientes SET saldo = saldo + valor_in
+        WHERE id = cliente_id_in
+        RETURNING limite, saldo
+    ) SELECT to_json(rw) FROM rw INTO ret;
+
+    IF NOT FOUND THEN RETURN NULL;
     END IF;
 
     INSERT INTO transacoes(cliente_id, valor, tipo, descricao)
-        VALUES (cliente_id_in, valor_in, 'c' ,descricao_in);
-
-    SELECT to_json(rw) FROM (
-        SELECT limite, saldos.valor as saldo
-            FROM clientes
-                INNER JOIN saldos ON clientes.id = saldos.cliente_id
-            WHERE clientes.id = cliente_id_in
-            LIMIT 1
-    ) rw
-        INTO ret;
+    VALUES (cliente_id_in, valor_in, 'c' ,descricao_in);
 
     RETURN ret;
 END
@@ -78,29 +64,22 @@ AS $$
 DECLARE 
   ret json;
 BEGIN
-    UPDATE saldos SET valor = (valor - valor_in)
-        WHERE cliente_id = cliente_id_in
-            AND (valor - valor_in) > - (
-                SELECT limite FROM clientes WHERE id = cliente_id_in LIMIT 1
-            );
-    IF NOT FOUND THEN
-        ret := NULL;
-        RETURN ret;
+    WITH rw AS (
+        UPDATE clientes SET saldo = saldo - valor_in
+        WHERE id = cliente_id_in
+        RETURNING limite, saldo
+    ) SELECT to_json(rw) FROM rw INTO ret;
+
+    IF NOT FOUND THEN RETURN NULL;
     END IF;
 
     INSERT INTO transacoes(cliente_id, valor, tipo, descricao)
-        VALUES (cliente_id_in, valor_in, 'd' ,descricao_in);
-
-    SELECT to_json(rw) FROM (
-        SELECT limite, saldos.valor as saldo
-            FROM clientes
-                INNER JOIN saldos ON clientes.id = saldos.cliente_id
-            WHERE clientes.id = cliente_id_in
-            LIMIT 1
-    ) rw
-        INTO ret;
-
+    VALUES (cliente_id_in, valor_in, 'd' ,descricao_in);
+    
     RETURN ret;
+
+EXCEPTION
+    WHEN check_violation THEN RETURN NULL;
 END
 $$;
 
@@ -114,29 +93,42 @@ AS $$
 DECLARE 
   ret json;
 BEGIN
-        SELECT json_build_object (
-            'saldo',                (SELECT to_json(sld) FROM (
-                                        SELECT saldos.valor AS total, LOCALTIMESTAMP AS data_extrato, limite
-                                            FROM clientes
-                                                INNER JOIN saldos ON clientes.id = saldos.cliente_id
-                                            WHERE clientes.id = cliente_id_in
-                                            LIMIT 1)
-                                        sld),
-
-            'ultimas_transacoes',   (SELECT coalesce(json_agg(tr), '[]'::json) FROM
-                                        (SELECT valor, tipo, descricao, realizada_em
-                                            FROM transacoes WHERE cliente_id = cliente_id_in
-                                            ORDER BY realizada_em DESC
-                                            LIMIT 10)
-                                        tr)
-        ) INTO ret;        
-    
-        IF NOT FOUND THEN
-            ret := NULL;
-            RETURN ret;
-        END IF;
-
+    SELECT json_build_object (
+        'saldo', (
+            SELECT to_json(sld) FROM (
+                SELECT saldo AS total, LOCALTIMESTAMP AS data_extrato, limite
+                FROM clientes WHERE clientes.id = cliente_id_in LIMIT 1
+            ) sld
+        ),
+        'ultimas_transacoes',(
+            SELECT coalesce(json_agg(tr), '[]'::json) FROM (
+                SELECT valor, tipo, descricao, realizada_em FROM transacoes
+                WHERE cliente_id = cliente_id_in ORDER BY realizada_em DESC LIMIT 10
+            ) tr
+        )
+    ) INTO ret;
+    IF NOT FOUND THEN
+        ret := NULL;
+    END IF;
     RETURN ret;
-
 END
 $$;
+
+-- CONFIGURATIONS
+ALTER SYSTEM SET max_connections = '201';
+ALTER SYSTEM SET shared_buffers = '115MB';
+ALTER SYSTEM SET effective_cache_size = '345MB';
+ALTER SYSTEM SET maintenance_work_mem = '29440kB';
+ALTER SYSTEM SET checkpoint_completion_target = '0.9';
+ALTER SYSTEM SET wal_buffers = '3532kB';
+ALTER SYSTEM SET default_statistics_target = '100';
+ALTER SYSTEM SET random_page_cost = '4';
+ALTER SYSTEM SET effective_io_concurrency = '2';
+ALTER SYSTEM SET work_mem = '292kB';
+ALTER SYSTEM SET huge_pages = 'off';
+ALTER SYSTEM SET min_wal_size = '20GB';
+ALTER SYSTEM SET max_wal_size = '80GB';
+ALTER SYSTEM SET fsync = 'off';
+ALTER SYSTEM SET synchronous_commit = 'off';
+ALTER SYSTEM SET full_page_writes = 'off';
+ALTER SYSTEM SET checkpoint_timeout = '600';

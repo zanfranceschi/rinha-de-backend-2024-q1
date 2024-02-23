@@ -1,0 +1,500 @@
+ Network my-network  Creating
+ Network my-network  Created
+ Container mydb  Creating
+ Container mydb  Created
+ Container danilo-nodejs-api02-1  Creating
+ Container danilo-nodejs-api01-1  Creating
+ Container danilo-nodejs-api02-1  Created
+ Container danilo-nodejs-api01-1  Created
+ Container nginx  Creating
+ Container nginx  Created
+Attaching to api01-1, api02-1, mydb, nginx
+mydb     | The files belonging to this database system will be owned by user "postgres".
+mydb     | This user must also own the server process.
+mydb     | 
+mydb     | The database cluster will be initialized with locale "en_US.utf8".
+mydb     | The default database encoding has accordingly been set to "UTF8".
+mydb     | The default text search configuration will be set to "english".
+mydb     | 
+mydb     | Data page checksums are disabled.
+mydb     | 
+mydb     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+mydb     | creating subdirectories ... ok
+mydb     | selecting dynamic shared memory implementation ... posix
+mydb     | selecting default max_connections ... 100
+mydb     | selecting default shared_buffers ... 128MB
+mydb     | selecting default time zone ... Etc/UTC
+mydb     | creating configuration files ... ok
+mydb     | running bootstrap script ... ok
+nginx    | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx    | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx    | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx    | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx    | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx    | /docker-entrypoint.sh: Configuration complete; ready for start up
+api01-1  | Servidor escutando na porta 3000
+api02-1  | Servidor escutando na porta 3000
+api01-1  | Error: connect ECONNREFUSED 192.168.16.2:5432
+api01-1  |     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+api01-1  |   errno: -111,
+api01-1  |   code: 'ECONNREFUSED',
+api01-1  |   syscall: 'connect',
+api01-1  |   address: '192.168.16.2',
+api01-1  |   port: 5432
+api01-1  | }
+api02-1  | Error: connect ECONNREFUSED 192.168.16.2:5432
+api02-1  |     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+api02-1  |   errno: -111,
+api02-1  |   code: 'ECONNREFUSED',
+api02-1  |   syscall: 'connect',
+api02-1  |   address: '192.168.16.2',
+api02-1  |   port: 5432
+api02-1  | }
+mydb     | performing post-bootstrap initialization ... ok
+mydb     | syncing data to disk ... ok
+mydb     | 
+mydb     | 
+mydb     | Success. You can now start the database server using:
+mydb     | 
+mydb     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+mydb     | 
+mydb     | initdb: warning: enabling "trust" authentication for local connections
+mydb     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+mydb     | waiting for server to start.... done
+mydb     | server started
+mydb     | CREATE DATABASE
+mydb     | 
+mydb     | 
+mydb     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/postgresql.conf
+mydb     | 
+mydb     | waiting for server to shut down.... done
+mydb     | server stopped
+mydb     | 
+mydb     | PostgreSQL init process complete; ready for start up.
+mydb     | 
+api01-1  | Script inicial executado no banco com sucesso.
+api02-1  | error: duplicate key value violates unique constraint "clients_pkey"
+api02-1  |     at Parser.parseErrorMessage (/app/node_modules/pg-protocol/dist/parser.js:287:98)
+api02-1  |     at Parser.handlePacket (/app/node_modules/pg-protocol/dist/parser.js:126:29)
+api02-1  |     at Parser.parse (/app/node_modules/pg-protocol/dist/parser.js:39:38)
+api02-1  |     at Socket.<anonymous> (/app/node_modules/pg-protocol/dist/index.js:11:42)
+api02-1  |     at Socket.emit (node:events:517:28)
+api02-1  |     at addChunk (node:internal/streams/readable:368:12)
+api02-1  |     at readableAddChunk (node:internal/streams/readable:341:9)
+api02-1  |     at Readable.push (node:internal/streams/readable:278:10)
+api02-1  |     at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+api02-1  |   length: 186,
+api02-1  |   severity: 'ERROR',
+api02-1  |   code: '23505',
+api02-1  |   detail: 'Key (id)=(1) already exists.',
+api02-1  |   hint: undefined,
+api02-1  |   position: undefined,
+api02-1  |   internalPosition: undefined,
+api02-1  |   internalQuery: undefined,
+api02-1  |   where: undefined,
+api02-1  |   schema: 'public',
+api02-1  |   table: 'clients',
+api02-1  |   column: undefined,
+api02-1  |   dataType: undefined,
+api02-1  |   constraint: 'clients_pkey',
+api02-1  |   file: 'nbtinsert.c',
+api02-1  |   line: '666',
+api02-1  |   routine: '_bt_check_unique',
+api02-1  |   query: 'CREATE TABLE IF NOT EXISTS clients (\n' +
+api02-1  |     '  id SERIAL PRIMARY KEY,\n' +
+api02-1  |     '  limit_use INTEGER,\n' +
+api02-1  |     '  balance INTEGER,\n' +
+api02-1  |     '  CONSTRAINT verificar CHECK (balance >= (-limit_use))\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE TABLE IF NOT EXISTS transactions (\n' +
+api02-1  |     '  id BIGSERIAL PRIMARY KEY,\n' +
+api02-1  |     '  id_client INTEGER NOT NULL,\n' +
+api02-1  |     '  credit_debit char(1) NOT NULL,\n' +
+api02-1  |     '  amount INTEGER NOT NULL DEFAULT 0,\n' +
+api02-1  |     '  description VARCHAR(10),\n' +
+api02-1  |     '  created_at timestamp default current_timestamp\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'INSERT INTO clients (id, limit_use, balance)\n' +
+api02-1  |     'VALUES\n' +
+api02-1  |     '  (1, 100000, 0),\n' +
+api02-1  |     '  (2, 80000, 0),\n' +
+api02-1  |     '  (3, 1000000, 0),\n' +
+api02-1  |     '  (4, 10000000, 0),\n' +
+api02-1  |     '  (5, 500000, 0);\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE INDEX IF NOT EXISTS transactions_created_at_idx ON transactions USING btree (id_client, created_at DESC);\n' +
+api02-1  |     '\n',
+api02-1  |   params: undefined
+api02-1  | }
+api02-1  | error: duplicate key value violates unique constraint "clients_pkey"
+api02-1  |     at Parser.parseErrorMessage (/app/node_modules/pg-protocol/dist/parser.js:287:98)
+api02-1  |     at Parser.handlePacket (/app/node_modules/pg-protocol/dist/parser.js:126:29)
+api02-1  |     at Parser.parse (/app/node_modules/pg-protocol/dist/parser.js:39:38)
+api02-1  |     at Socket.<anonymous> (/app/node_modules/pg-protocol/dist/index.js:11:42)
+api02-1  |     at Socket.emit (node:events:517:28)
+api02-1  |     at addChunk (node:internal/streams/readable:368:12)
+api02-1  |     at readableAddChunk (node:internal/streams/readable:341:9)
+api02-1  |     at Readable.push (node:internal/streams/readable:278:10)
+api02-1  |     at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+api02-1  |   length: 186,
+api02-1  |   severity: 'ERROR',
+api02-1  |   code: '23505',
+api02-1  |   detail: 'Key (id)=(1) already exists.',
+api02-1  |   hint: undefined,
+api02-1  |   position: undefined,
+api02-1  |   internalPosition: undefined,
+api02-1  |   internalQuery: undefined,
+api02-1  |   where: undefined,
+api02-1  |   schema: 'public',
+api02-1  |   table: 'clients',
+api02-1  |   column: undefined,
+api02-1  |   dataType: undefined,
+api02-1  |   constraint: 'clients_pkey',
+api02-1  |   file: 'nbtinsert.c',
+api02-1  |   line: '666',
+api02-1  |   routine: '_bt_check_unique',
+api02-1  |   query: 'CREATE TABLE IF NOT EXISTS clients (\n' +
+api02-1  |     '  id SERIAL PRIMARY KEY,\n' +
+api02-1  |     '  limit_use INTEGER,\n' +
+api02-1  |     '  balance INTEGER,\n' +
+api02-1  |     '  CONSTRAINT verificar CHECK (balance >= (-limit_use))\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE TABLE IF NOT EXISTS transactions (\n' +
+api02-1  |     '  id BIGSERIAL PRIMARY KEY,\n' +
+api02-1  |     '  id_client INTEGER NOT NULL,\n' +
+api02-1  |     '  credit_debit char(1) NOT NULL,\n' +
+api02-1  |     '  amount INTEGER NOT NULL DEFAULT 0,\n' +
+api02-1  |     '  description VARCHAR(10),\n' +
+api02-1  |     '  created_at timestamp default current_timestamp\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'INSERT INTO clients (id, limit_use, balance)\n' +
+api02-1  |     'VALUES\n' +
+api02-1  |     '  (1, 100000, 0),\n' +
+api02-1  |     '  (2, 80000, 0),\n' +
+api02-1  |     '  (3, 1000000, 0),\n' +
+api02-1  |     '  (4, 10000000, 0),\n' +
+api02-1  |     '  (5, 500000, 0);\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE INDEX IF NOT EXISTS transactions_created_at_idx ON transactions USING btree (id_client, created_at DESC);\n' +
+api02-1  |     '\n',
+api02-1  |   params: undefined
+api02-1  | }
+api02-1  | error: duplicate key value violates unique constraint "clients_pkey"
+api02-1  |     at Parser.parseErrorMessage (/app/node_modules/pg-protocol/dist/parser.js:287:98)
+api02-1  |     at Parser.handlePacket (/app/node_modules/pg-protocol/dist/parser.js:126:29)
+api02-1  |     at Parser.parse (/app/node_modules/pg-protocol/dist/parser.js:39:38)
+api02-1  |     at Socket.<anonymous> (/app/node_modules/pg-protocol/dist/index.js:11:42)
+api02-1  |     at Socket.emit (node:events:517:28)
+api02-1  |     at addChunk (node:internal/streams/readable:368:12)
+api02-1  |     at readableAddChunk (node:internal/streams/readable:341:9)
+api02-1  |     at Readable.push (node:internal/streams/readable:278:10)
+api02-1  |     at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+api02-1  |   length: 186,
+api02-1  |   severity: 'ERROR',
+api02-1  |   code: '23505',
+api02-1  |   detail: 'Key (id)=(1) already exists.',
+api02-1  |   hint: undefined,
+api02-1  |   position: undefined,
+api02-1  |   internalPosition: undefined,
+api02-1  |   internalQuery: undefined,
+api02-1  |   where: undefined,
+api02-1  |   schema: 'public',
+api02-1  |   table: 'clients',
+api02-1  |   column: undefined,
+api02-1  |   dataType: undefined,
+api02-1  |   constraint: 'clients_pkey',
+api02-1  |   file: 'nbtinsert.c',
+api02-1  |   line: '666',
+api02-1  |   routine: '_bt_check_unique',
+api02-1  |   query: 'CREATE TABLE IF NOT EXISTS clients (\n' +
+api02-1  |     '  id SERIAL PRIMARY KEY,\n' +
+api02-1  |     '  limit_use INTEGER,\n' +
+api02-1  |     '  balance INTEGER,\n' +
+api02-1  |     '  CONSTRAINT verificar CHECK (balance >= (-limit_use))\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE TABLE IF NOT EXISTS transactions (\n' +
+api02-1  |     '  id BIGSERIAL PRIMARY KEY,\n' +
+api02-1  |     '  id_client INTEGER NOT NULL,\n' +
+api02-1  |     '  credit_debit char(1) NOT NULL,\n' +
+api02-1  |     '  amount INTEGER NOT NULL DEFAULT 0,\n' +
+api02-1  |     '  description VARCHAR(10),\n' +
+api02-1  |     '  created_at timestamp default current_timestamp\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'INSERT INTO clients (id, limit_use, balance)\n' +
+api02-1  |     'VALUES\n' +
+api02-1  |     '  (1, 100000, 0),\n' +
+api02-1  |     '  (2, 80000, 0),\n' +
+api02-1  |     '  (3, 1000000, 0),\n' +
+api02-1  |     '  (4, 10000000, 0),\n' +
+api02-1  |     '  (5, 500000, 0);\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE INDEX IF NOT EXISTS transactions_created_at_idx ON transactions USING btree (id_client, created_at DESC);\n' +
+api02-1  |     '\n',
+api02-1  |   params: undefined
+api02-1  | }
+api02-1  | error: duplicate key value violates unique constraint "clients_pkey"
+api02-1  |     at Parser.parseErrorMessage (/app/node_modules/pg-protocol/dist/parser.js:287:98)
+api02-1  |     at Parser.handlePacket (/app/node_modules/pg-protocol/dist/parser.js:126:29)
+api02-1  |     at Parser.parse (/app/node_modules/pg-protocol/dist/parser.js:39:38)
+api02-1  |     at Socket.<anonymous> (/app/node_modules/pg-protocol/dist/index.js:11:42)
+api02-1  |     at Socket.emit (node:events:517:28)
+api02-1  |     at addChunk (node:internal/streams/readable:368:12)
+api02-1  |     at readableAddChunk (node:internal/streams/readable:341:9)
+api02-1  |     at Readable.push (node:internal/streams/readable:278:10)
+api02-1  |     at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+api02-1  |   length: 186,
+api02-1  |   severity: 'ERROR',
+api02-1  |   code: '23505',
+api02-1  |   detail: 'Key (id)=(1) already exists.',
+api02-1  |   hint: undefined,
+api02-1  |   position: undefined,
+api02-1  |   internalPosition: undefined,
+api02-1  |   internalQuery: undefined,
+api02-1  |   where: undefined,
+api02-1  |   schema: 'public',
+api02-1  |   table: 'clients',
+api02-1  |   column: undefined,
+api02-1  |   dataType: undefined,
+api02-1  |   constraint: 'clients_pkey',
+api02-1  |   file: 'nbtinsert.c',
+api02-1  |   line: '666',
+api02-1  |   routine: '_bt_check_unique',
+api02-1  |   query: 'CREATE TABLE IF NOT EXISTS clients (\n' +
+api02-1  |     '  id SERIAL PRIMARY KEY,\n' +
+api02-1  |     '  limit_use INTEGER,\n' +
+api02-1  |     '  balance INTEGER,\n' +
+api02-1  |     '  CONSTRAINT verificar CHECK (balance >= (-limit_use))\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE TABLE IF NOT EXISTS transactions (\n' +
+api02-1  |     '  id BIGSERIAL PRIMARY KEY,\n' +
+api02-1  |     '  id_client INTEGER NOT NULL,\n' +
+api02-1  |     '  credit_debit char(1) NOT NULL,\n' +
+api02-1  |     '  amount INTEGER NOT NULL DEFAULT 0,\n' +
+api02-1  |     '  description VARCHAR(10),\n' +
+api02-1  |     '  created_at timestamp default current_timestamp\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'INSERT INTO clients (id, limit_use, balance)\n' +
+api02-1  |     'VALUES\n' +
+api02-1  |     '  (1, 100000, 0),\n' +
+api02-1  |     '  (2, 80000, 0),\n' +
+api02-1  |     '  (3, 1000000, 0),\n' +
+api02-1  |     '  (4, 10000000, 0),\n' +
+api02-1  |     '  (5, 500000, 0);\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE INDEX IF NOT EXISTS transactions_created_at_idx ON transactions USING btree (id_client, created_at DESC);\n' +
+api02-1  |     '\n',
+api02-1  |   params: undefined
+api02-1  | }
+api02-1  | error: duplicate key value violates unique constraint "clients_pkey"
+api02-1  |     at Parser.parseErrorMessage (/app/node_modules/pg-protocol/dist/parser.js:287:98)
+api02-1  |     at Parser.handlePacket (/app/node_modules/pg-protocol/dist/parser.js:126:29)
+api02-1  |     at Parser.parse (/app/node_modules/pg-protocol/dist/parser.js:39:38)
+api02-1  |     at Socket.<anonymous> (/app/node_modules/pg-protocol/dist/index.js:11:42)
+api02-1  |     at Socket.emit (node:events:517:28)
+api02-1  |     at addChunk (node:internal/streams/readable:368:12)
+api02-1  |     at readableAddChunk (node:internal/streams/readable:341:9)
+api02-1  |     at Readable.push (node:internal/streams/readable:278:10)
+api02-1  |     at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+api02-1  |   length: 186,
+api02-1  |   severity: 'ERROR',
+api02-1  |   code: '23505',
+api02-1  |   detail: 'Key (id)=(1) already exists.',
+api02-1  |   hint: undefined,
+api02-1  |   position: undefined,
+api02-1  |   internalPosition: undefined,
+api02-1  |   internalQuery: undefined,
+api02-1  |   where: undefined,
+api02-1  |   schema: 'public',
+api02-1  |   table: 'clients',
+api02-1  |   column: undefined,
+api02-1  |   dataType: undefined,
+api02-1  |   constraint: 'clients_pkey',
+api02-1  |   file: 'nbtinsert.c',
+api02-1  |   line: '666',
+api02-1  |   routine: '_bt_check_unique',
+api02-1  |   query: 'CREATE TABLE IF NOT EXISTS clients (\n' +
+api02-1  |     '  id SERIAL PRIMARY KEY,\n' +
+api02-1  |     '  limit_use INTEGER,\n' +
+api02-1  |     '  balance INTEGER,\n' +
+api02-1  |     '  CONSTRAINT verificar CHECK (balance >= (-limit_use))\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE TABLE IF NOT EXISTS transactions (\n' +
+api02-1  |     '  id BIGSERIAL PRIMARY KEY,\n' +
+api02-1  |     '  id_client INTEGER NOT NULL,\n' +
+api02-1  |     '  credit_debit char(1) NOT NULL,\n' +
+api02-1  |     '  amount INTEGER NOT NULL DEFAULT 0,\n' +
+api02-1  |     '  description VARCHAR(10),\n' +
+api02-1  |     '  created_at timestamp default current_timestamp\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'INSERT INTO clients (id, limit_use, balance)\n' +
+api02-1  |     'VALUES\n' +
+api02-1  |     '  (1, 100000, 0),\n' +
+api02-1  |     '  (2, 80000, 0),\n' +
+api02-1  |     '  (3, 1000000, 0),\n' +
+api02-1  |     '  (4, 10000000, 0),\n' +
+api02-1  |     '  (5, 500000, 0);\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE INDEX IF NOT EXISTS transactions_created_at_idx ON transactions USING btree (id_client, created_at DESC);\n' +
+api02-1  |     '\n',
+api02-1  |   params: undefined
+api02-1  | }
+api02-1  | error: duplicate key value violates unique constraint "clients_pkey"
+api02-1  |     at Parser.parseErrorMessage (/app/node_modules/pg-protocol/dist/parser.js:287:98)
+api02-1  |     at Parser.handlePacket (/app/node_modules/pg-protocol/dist/parser.js:126:29)
+api02-1  |     at Parser.parse (/app/node_modules/pg-protocol/dist/parser.js:39:38)
+api02-1  |     at Socket.<anonymous> (/app/node_modules/pg-protocol/dist/index.js:11:42)
+api02-1  |     at Socket.emit (node:events:517:28)
+api02-1  |     at addChunk (node:internal/streams/readable:368:12)
+api02-1  |     at readableAddChunk (node:internal/streams/readable:341:9)
+api02-1  |     at Readable.push (node:internal/streams/readable:278:10)
+api02-1  |     at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+api02-1  |   length: 186,
+api02-1  |   severity: 'ERROR',
+api02-1  |   code: '23505',
+api02-1  |   detail: 'Key (id)=(1) already exists.',
+api02-1  |   hint: undefined,
+api02-1  |   position: undefined,
+api02-1  |   internalPosition: undefined,
+api02-1  |   internalQuery: undefined,
+api02-1  |   where: undefined,
+api02-1  |   schema: 'public',
+api02-1  |   table: 'clients',
+api02-1  |   column: undefined,
+api02-1  |   dataType: undefined,
+api02-1  |   constraint: 'clients_pkey',
+api02-1  |   file: 'nbtinsert.c',
+api02-1  |   line: '666',
+api02-1  |   routine: '_bt_check_unique',
+api02-1  |   query: 'CREATE TABLE IF NOT EXISTS clients (\n' +
+api02-1  |     '  id SERIAL PRIMARY KEY,\n' +
+api02-1  |     '  limit_use INTEGER,\n' +
+api02-1  |     '  balance INTEGER,\n' +
+api02-1  |     '  CONSTRAINT verificar CHECK (balance >= (-limit_use))\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE TABLE IF NOT EXISTS transactions (\n' +
+api02-1  |     '  id BIGSERIAL PRIMARY KEY,\n' +
+api02-1  |     '  id_client INTEGER NOT NULL,\n' +
+api02-1  |     '  credit_debit char(1) NOT NULL,\n' +
+api02-1  |     '  amount INTEGER NOT NULL DEFAULT 0,\n' +
+api02-1  |     '  description VARCHAR(10),\n' +
+api02-1  |     '  created_at timestamp default current_timestamp\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'INSERT INTO clients (id, limit_use, balance)\n' +
+api02-1  |     'VALUES\n' +
+api02-1  |     '  (1, 100000, 0),\n' +
+api02-1  |     '  (2, 80000, 0),\n' +
+api02-1  |     '  (3, 1000000, 0),\n' +
+api02-1  |     '  (4, 10000000, 0),\n' +
+api02-1  |     '  (5, 500000, 0);\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE INDEX IF NOT EXISTS transactions_created_at_idx ON transactions USING btree (id_client, created_at DESC);\n' +
+api02-1  |     '\n',
+api02-1  |   params: undefined
+api02-1  | }
+api02-1  | error: duplicate key value violates unique constraint "clients_pkey"
+api02-1  |     at Parser.parseErrorMessage (/app/node_modules/pg-protocol/dist/parser.js:287:98)
+api02-1  |     at Parser.handlePacket (/app/node_modules/pg-protocol/dist/parser.js:126:29)
+api02-1  |     at Parser.parse (/app/node_modules/pg-protocol/dist/parser.js:39:38)
+api02-1  |     at Socket.<anonymous> (/app/node_modules/pg-protocol/dist/index.js:11:42)
+api02-1  |     at Socket.emit (node:events:517:28)
+api02-1  |     at addChunk (node:internal/streams/readable:368:12)
+api02-1  |     at readableAddChunk (node:internal/streams/readable:341:9)
+api02-1  |     at Readable.push (node:internal/streams/readable:278:10)
+api02-1  |     at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+api02-1  |   length: 186,
+api02-1  |   severity: 'ERROR',
+api02-1  |   code: '23505',
+api02-1  |   detail: 'Key (id)=(1) already exists.',
+api02-1  |   hint: undefined,
+api02-1  |   position: undefined,
+api02-1  |   internalPosition: undefined,
+api02-1  |   internalQuery: undefined,
+api02-1  |   where: undefined,
+api02-1  |   schema: 'public',
+api02-1  |   table: 'clients',
+api02-1  |   column: undefined,
+api02-1  |   dataType: undefined,
+api02-1  |   constraint: 'clients_pkey',
+api02-1  |   file: 'nbtinsert.c',
+api02-1  |   line: '666',
+api02-1  |   routine: '_bt_check_unique',
+api02-1  |   query: 'CREATE TABLE IF NOT EXISTS clients (\n' +
+api02-1  |     '  id SERIAL PRIMARY KEY,\n' +
+api02-1  |     '  limit_use INTEGER,\n' +
+api02-1  |     '  balance INTEGER,\n' +
+api02-1  |     '  CONSTRAINT verificar CHECK (balance >= (-limit_use))\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE TABLE IF NOT EXISTS transactions (\n' +
+api02-1  |     '  id BIGSERIAL PRIMARY KEY,\n' +
+api02-1  |     '  id_client INTEGER NOT NULL,\n' +
+api02-1  |     '  credit_debit char(1) NOT NULL,\n' +
+api02-1  |     '  amount INTEGER NOT NULL DEFAULT 0,\n' +
+api02-1  |     '  description VARCHAR(10),\n' +
+api02-1  |     '  created_at timestamp default current_timestamp\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'INSERT INTO clients (id, limit_use, balance)\n' +
+api02-1  |     'VALUES\n' +
+api02-1  |     '  (1, 100000, 0),\n' +
+api02-1  |     '  (2, 80000, 0),\n' +
+api02-1  |     '  (3, 1000000, 0),\n' +
+api02-1  |     '  (4, 10000000, 0),\n' +
+api02-1  |     '  (5, 500000, 0);\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE INDEX IF NOT EXISTS transactions_created_at_idx ON transactions USING btree (id_client, created_at DESC);\n' +
+api02-1  |     '\n',
+api02-1  |   params: undefined
+api02-1  | }
+api02-1  | error: duplicate key value violates unique constraint "clients_pkey"
+api02-1  |     at Parser.parseErrorMessage (/app/node_modules/pg-protocol/dist/parser.js:287:98)
+api02-1  |     at Parser.handlePacket (/app/node_modules/pg-protocol/dist/parser.js:126:29)
+api02-1  |     at Parser.parse (/app/node_modules/pg-protocol/dist/parser.js:39:38)
+api02-1  |     at Socket.<anonymous> (/app/node_modules/pg-protocol/dist/index.js:11:42)
+api02-1  |     at Socket.emit (node:events:517:28)
+api02-1  |     at addChunk (node:internal/streams/readable:368:12)
+api02-1  |     at readableAddChunk (node:internal/streams/readable:341:9)
+api02-1  |     at Readable.push (node:internal/streams/readable:278:10)
+api02-1  |     at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+api02-1  |   length: 186,
+api02-1  |   severity: 'ERROR',
+api02-1  |   code: '23505',
+api02-1  |   detail: 'Key (id)=(1) already exists.',
+api02-1  |   hint: undefined,
+api02-1  |   position: undefined,
+api02-1  |   internalPosition: undefined,
+api02-1  |   internalQuery: undefined,
+api02-1  |   where: undefined,
+api02-1  |   schema: 'public',
+api02-1  |   table: 'clients',
+api02-1  |   column: undefined,
+api02-1  |   dataType: undefined,
+api02-1  |   constraint: 'clients_pkey',
+api02-1  |   file: 'nbtinsert.c',
+api02-1  |   line: '666',
+api02-1  |   routine: '_bt_check_unique',
+api02-1  |   query: 'CREATE TABLE IF NOT EXISTS clients (\n' +
+api02-1  |     '  id SERIAL PRIMARY KEY,\n' +
+api02-1  |     '  limit_use INTEGER,\n' +
+api02-1  |     '  balance INTEGER,\n' +
+api02-1  |     '  CONSTRAINT verificar CHECK (balance >= (-limit_use))\n' +
+api02-1  |     ');\n' +
+api02-1  |     '\n' +
+api02-1  |     'CREATE TABLE IF NOT EXISTS transactions (\n' +
+api02-1  |     '  id BIGSERIAL PRIMARY KEY,\n' +
+api02-1  |     '  id_client INTEGER NOT NULL,\n' +

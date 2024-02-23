@@ -1,0 +1,59 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: rdenadai/rinha-backend-2024q1:bun
+    hostname: api01
+    restart: on-failure
+    environment:
+      - START_DB=yes
+    healthcheck:
+      test: curl --fail http://localhost:8080/ || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
+    ulimits:
+      nofile:
+        soft: 100000
+        hard: 100000
+    volumes:
+      - /tmp:/src/data
+    deploy:
+      resources:
+        limits:
+          cpus: "0.65"
+          memory: "250MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api
+    hostname: api02
+    environment:
+      - START_DB=no
+    depends_on:
+      - api01
+
+  haproxy:
+    image: haproxy:alpine3.19
+    volumes:
+      - ./config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    ulimits:
+      nofile:
+        soft: 100000
+        hard: 100000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
