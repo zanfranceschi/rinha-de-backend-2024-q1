@@ -6,7 +6,7 @@ Submissão feita com:
 
 - `nginx` como load balancer
 - `postgres` como banco de dados
-- `dotnet` para api com as libs `entity framework`
+- `dotnet 8.0 AoT` para api
 - [repositório da api](https://github.com/Krymancer/rinha-de-backend-2024-q1-dotnet/)
 
 [@joaodocodigo](https://twitter.com/joaodocodigo) @ twitter

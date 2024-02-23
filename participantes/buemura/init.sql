@@ -1,47 +1,30 @@
 --- TABLES
-CREATE TABLE clientes (
-	id SERIAL PRIMARY KEY,
-	nome VARCHAR(50) NOT NULL,
-	limite INTEGER NOT NULL
+CREATE UNLOGGED TABLE customers (
+	id INT PRIMARY KEY,
+	account_limit INTEGER NOT NULL,
+	account_balance INTEGER NOT NULL DEFAULT 0
 );
 
-CREATE TABLE transacoes (
+CREATE UNLOGGED TABLE transactions (
 	id SERIAL PRIMARY KEY,
-	cliente_id INTEGER NOT NULL,
-	valor INTEGER NOT NULL,
-	tipo CHAR(1) NOT NULL,
-	descricao VARCHAR(10) NOT NULL,
-	realizada_em TIMESTAMP NOT NULL DEFAULT NOW(),
-	CONSTRAINT fk_clientes_transacoes_id
-		FOREIGN KEY (cliente_id) REFERENCES clientes(id)
-);
-
-CREATE TABLE saldos (
-	id SERIAL PRIMARY KEY,
-	cliente_id INTEGER NOT NULL,
-	valor INTEGER NOT NULL,
-	CONSTRAINT fk_clientes_saldos_id
-		FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+	customer_id INTEGER NOT NULL,
+	amount INTEGER NOT NULL,
+	type CHAR(1) NOT NULL,
+	description VARCHAR(10) NOT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	CONSTRAINT fk_customers_transactions_id
+		FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
 
 --- INDEX
-CREATE INDEX idx_clientes_id ON clientes (id);
-CREATE INDEX idx_transacoes_cliente_id ON transacoes (cliente_id);
-CREATE INDEX idx_saldos_cliente_id ON saldos (cliente_id);
-CREATE INDEX idx_transacoes_cliente_id_realizada_em ON transacoes (cliente_id, realizada_em DESC);
+CREATE INDEX idx_customers_id ON customers (id) INCLUDE (account_limit, account_balance);
+CREATE INDEX idx_transactions_customer_id ON transactions (customer_id);
+CREATE INDEX idx_transactions_customer_id_created_at ON transactions (customer_id, created_at DESC);
 
 --- SEED
 DO $$
 BEGIN
-	INSERT INTO clientes (nome, limite)
-	VALUES
-		('o barato sai caro', 1000 * 100),
-		('zan corp ltda', 800 * 100),
-		('les cruders', 10000 * 100),
-		('padaria joia de cocaia', 100000 * 100),
-		('kid mais', 5000 * 100);
-	
-	INSERT INTO saldos (cliente_id, valor)
-		SELECT id, 0 FROM clientes;
+	INSERT INTO customers (id, account_limit)
+	VALUES (1, 1000 * 100), (2, 800 * 100), (3, 10000 * 100), (4, 100000 * 100), (5, 5000 * 100);
 END;
 $$;

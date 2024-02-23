@@ -1,11 +1,8 @@
-version: '3.8'
 services:
   postgres:
+    hostname: postgres
     restart: always
     image: postgres:16-alpine3.19
-    #                     Max. connection        Increasing memory usage    Realy on SO to write    Do not wait for write      Accepting data           Checkpoint for wal
-    #                     allowed to the max     or shared buffers         on wal                  on wall                    corruption               in 1 day
-    command: 'postgres -c max_connections=151 -c shared_buffers=64MB    -c fsync=off            -c synchronous_commit=off  -c full_page_writes=off -c checkpoint_timeout=1d'
     volumes:
       - ./init.pgsql:/docker-entrypoint-initdb.d/init.sql
     environment:
@@ -20,14 +17,15 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1"
-          memory: "420MB"
+          cpus: "0.8"
+          memory: "460MB"
     networks:
-      - rinha
+      - rinha-network
 
   api1: &api
+    hostname: api1
     restart: always
-    image: fmarkson/rinha-backend-q1-2024:r3
+    image: fmarkson/rinha-backend-q1-2024:r5
     security_opt:
       # By default, Docker team do not allow Linux's io_uring because some vunerabilites
       # was found in the past.
@@ -37,53 +35,52 @@ services:
       # pwned anyway. I felt that Docker team was over conservative in this decision.
       # Docker is a development and sysadmin tool and should had an easiest way to
       # enable Linux's io_uring.
-      - seccomp:io_uring_seccomp.json 
-    hostname: api01
+      - seccomp:./io_uring_seccomp.json 
     depends_on:
       postgres:
         condition: service_healthy
     ulimits:
       nofile:
-        soft: 4096
-        hard: 4096
+        soft: 1000000
+        hard: 1000000
+    environment:
+      - PORT=9501
     deploy:
       resources:
         limits:
-          cpus: "0.125"
-          memory: "40MB" 
+          cpus: "0.2"
+          memory: "10MB" # 10MB is enought :)
     networks:
-      - rinha
-    healthcheck:
-      test: curl -s "http://localhost:9999/ping"
-      interval: 1s
-      timeout: 1s
-      retries: 100
+      - rinha-network
 
   api2:
     <<: *api
+    hostname: api2
+    environment:
+      - PORT=9502
 
   nginx:
+    hostname: nginx
     image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      api1:
-        condition: service_healthy
-      api2:
-        condition: service_healthy
-    ports:
-      - "9999:9999"
+      - api1
+      - api2
     ulimits:
       nofile:
-        soft: 4096
-        hard: 4096
+        soft: 1000000
+        hard: 1000000
     deploy:
       resources:
         limits:
-          cpus: "0.25"
-          memory: "50MB"
+          cpus: "0.3"
+          memory: "70MB"
+    ports:
+      - 9999:9999
+
     networks:
-      - rinha
+      - rinha-network
 
 networks:
-  rinha:
+  rinha-network:

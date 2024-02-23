@@ -4,8 +4,8 @@
  Container marcusadriano-go-db-1  Created
  Container marcusadriano-go-api2-1  Creating
  Container marcusadriano-go-api1-1  Creating
- Container marcusadriano-go-api2-1  Created
  Container marcusadriano-go-api1-1  Created
+ Container marcusadriano-go-api2-1  Created
  Container marcusadriano-go-nginx-1  Creating
  Container marcusadriano-go-nginx-1  Created
 Attaching to api1-1, api2-1, db-1, nginx-1
@@ -32,7 +32,7 @@ api2-1   |  │                   Fiber v2.52.0                   │
 api2-1   |  │               http://127.0.0.1:8080               │ 
 api2-1   |  │       (bound on host 0.0.0.0 and port 8080)       │ 
 api2-1   |  │                                                   │ 
-api2-1   |  │ Handlers ............. 7  Processes ........... 1 │ 
+api2-1   |  │ Handlers ............. 9  Processes ........... 1 │ 
 api2-1   |  │ Prefork ....... Disabled  PID ................. 1 │ 
 api2-1   |  └───────────────────────────────────────────────────┘ 
 api2-1   | 
@@ -42,11 +42,10 @@ api1-1   |  │                   Fiber v2.52.0                   │
 api1-1   |  │               http://127.0.0.1:8080               │ 
 api1-1   |  │       (bound on host 0.0.0.0 and port 8080)       │ 
 api1-1   |  │                                                   │ 
-api1-1   |  │ Handlers ............. 7  Processes ........... 1 │ 
+api1-1   |  │ Handlers ............. 9  Processes ........... 1 │ 
 api1-1   |  │ Prefork ....... Disabled  PID ................. 1 │ 
 api1-1   |  └───────────────────────────────────────────────────┘ 
 api1-1   | 
-db-1     | performing post-bootstrap initialization ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -56,6 +55,7 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db-1     | performing post-bootstrap initialization ... ok
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
@@ -65,10 +65,10 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | waiting for server to start....2024-02-16 09:16:04.104 -03 [49] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 09:16:04.106 -03 [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 09:16:04.115 -03 [52] LOG:  database system was shut down at 2024-02-16 09:16:03 -03
-db-1     | 2024-02-16 09:16:04.125 -03 [49] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 08:25:45.428 -03 [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 08:25:45.431 -03 [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 08:25:45.441 -03 [51] LOG:  database system was shut down at 2024-02-19 08:25:44 -03
+db-1     | 2024-02-19 08:25:45.447 -03 [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -77,45 +77,51 @@ db-1     |
 db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/ddl.sql
 db-1     | CREATE TABLE
 db-1     | CREATE TABLE
+db-1     | CREATE INDEX
+db-1     | ALTER TABLE
 db-1     | 
 db-1     | 
 db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/dml.sql
-db-1     | INSERT 0 1
-db-1     | INSERT 0 1
-db-1     | INSERT 0 1
-db-1     | INSERT 0 1
-db-1     | INSERT 0 1
+db-1     | INSERT 0 5
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-16 09:16:04.427 -03 [49] LOG:  received fast shutdown request
-db-1     | .2024-02-16 09:16:04.430 -03 [49] LOG:  aborting any active transactions
-db-1     | 2024-02-16 09:16:04.432 -03 [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-db-1     | 2024-02-16 09:16:04.432 -03 [50] LOG:  shutting down
-db-1     | 2024-02-16 09:16:04.434 -03 [50] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 09:16:04.920 -03 [50] LOG:  checkpoint complete: wrote 933 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.279 s, sync=0.195 s, total=0.489 s; sync files=306, longest=0.171 s, average=0.001 s; distance=4282 kB, estimate=4282 kB; lsn=0/1919490, redo lsn=0/1919490
-db-1     | 2024-02-16 09:16:04.926 -03 [49] LOG:  database system is shut down
+db-1     | waiting for server to shut down....2024-02-19 08:25:45.774 -03 [48] LOG:  received fast shutdown request
+db-1     | 2024-02-19 08:25:45.777 -03 [48] LOG:  aborting any active transactions
+db-1     | 2024-02-19 08:25:45.815 -03 [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-19 08:25:45.815 -03 [49] LOG:  shutting down
+db-1     | 2024-02-19 08:25:45.818 -03 [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 08:25:46.278 -03 [49] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.265 s, sync=0.184 s, total=0.464 s; sync files=307, longest=0.165 s, average=0.001 s; distance=4289 kB, estimate=4289 kB; lsn=0/191AF80, redo lsn=0/191AF80
+db-1     | 2024-02-19 08:25:46.284 -03 [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-16 09:16:04.951 -03 [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 09:16:04.952 -03 [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 09:16:04.952 -03 [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 09:16:04.957 -03 [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 09:16:04.965 -03 [69] LOG:  database system was shut down at 2024-02-16 09:16:04 -03
-db-1     | 2024-02-16 09:16:04.971 -03 [1] LOG:  database system is ready to accept connections
+db-1     | 2024-02-19 08:25:46.401 -03 [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 08:25:46.401 -03 [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 08:25:46.401 -03 [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 08:25:46.407 -03 [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 08:25:46.414 -03 [68] LOG:  database system was shut down at 2024-02-19 08:25:46 -03
+db-1     | 2024-02-19 08:25:46.420 -03 [1] LOG:  database system is ready to accept connections
+db-1     | 2024-02-19 08:28:28.050 -03 [73] ERROR:  new multixact has more than one updating member: 0 4[30954 (keysh), 30954 (nokeyupd), 30955 (keysh), 30955 (nokeyupd)]
+db-1     | 2024-02-19 08:28:28.050 -03 [73] STATEMENT:  -- name: UpdateUserBalance :one
+db-1     | 	UPDATE users 
+db-1     | 	SET balance = balance + $1 
+db-1     | 	WHERE id = $2 RETURNING balance, balance_limit
+db-1     | 	
+api1-1   | [90m8:28AM[0m [31mERR[0m [1mError creating transaction[0m [36merror=[0m[31m[1m"ERROR: new multixact has more than one updating member: 0 4[30954 (keysh), 30954 (nokeyupd), 30955 (keysh), 30955 (nokeyupd)] (SQLSTATE XX000)"[0m[0m
+api1-1   | [90m8:28AM[0m [31mERR[0m [1mServer error[0m [36mlatency=[0m"681.063µs" [36mmethod=[0mPOST [36mstatus=[0m500 [36murl=[0m/clientes/4/transacoes
 nginx-1 exited with code 0
 nginx-1 exited with code 0
 api2-1 exited with code 0
 api2-1 exited with code 2
 api1-1 exited with code 0
 api1-1 exited with code 2
-db-1     | 2024-02-16 09:20:19.668 -03 [1] LOG:  received fast shutdown request
-db-1     | 2024-02-16 09:20:19.683 -03 [1] LOG:  aborting any active transactions
-db-1     | 2024-02-16 09:20:19.685 -03 [1] LOG:  background worker "logical replication launcher" (PID 72) exited with exit code 1
-db-1     | 2024-02-16 09:20:19.685 -03 [67] LOG:  shutting down
-db-1     | 2024-02-16 09:20:19.688 -03 [67] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 09:20:19.827 -03 [67] LOG:  checkpoint complete: wrote 870 buffers (5.3%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.011 s, sync=0.088 s, total=0.143 s; sync files=27, longest=0.079 s, average=0.004 s; distance=16774 kB, estimate=16774 kB; lsn=0/297AED8, redo lsn=0/297AED8
-db-1     | 2024-02-16 09:20:19.832 -03 [1] LOG:  database system is shut down
+db-1     | 2024-02-19 08:30:01.226 -03 [1] LOG:  received fast shutdown request
+db-1     | 2024-02-19 08:30:01.254 -03 [1] LOG:  aborting any active transactions
+db-1     | 2024-02-19 08:30:01.257 -03 [1] LOG:  background worker "logical replication launcher" (PID 71) exited with exit code 1
+db-1     | 2024-02-19 08:30:01.257 -03 [66] LOG:  shutting down
+db-1     | 2024-02-19 08:30:01.261 -03 [66] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 08:30:01.464 -03 [66] LOG:  checkpoint complete: wrote 1000 buffers (6.1%); 0 WAL file(s) added, 0 removed, 2 recycled; write=0.015 s, sync=0.155 s, total=0.207 s; sync files=28, longest=0.121 s, average=0.006 s; distance=27944 kB, estimate=27944 kB; lsn=0/3465218, redo lsn=0/3465218
+db-1     | 2024-02-19 08:30:01.468 -03 [1] LOG:  database system is shut down
 db-1 exited with code 0

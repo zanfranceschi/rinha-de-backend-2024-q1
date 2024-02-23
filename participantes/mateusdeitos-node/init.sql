@@ -16,6 +16,9 @@ CREATE UNLOGGED TABLE transacoes (
 		FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
 
+CREATE INDEX CONCURRENTLY idx_transacoes_cliente_id
+	ON transacoes (cliente_id);
+
 DO $$
 BEGIN
 	INSERT INTO clientes (nome, limite, saldo)
@@ -33,50 +36,38 @@ CREATE OR REPLACE FUNCTION debitar(
 	cliente_id_tx INT,
 	valor_tx INT,
 	descricao_tx VARCHAR(10))
-RETURNS TABLE (
-	novo_saldo INT,
-	possui_erro BOOL,
-	mensagem VARCHAR(20))
+RETURNS RECORD
 LANGUAGE plpgsql
 AS $$
 DECLARE
-	saldo_atual int;
-	limite_atual int;
+	record RECORD;
+	_limite int;
+	_saldo int;
+ 	success int;
 BEGIN
 	PERFORM pg_advisory_xact_lock(cliente_id_tx);
-	SELECT 
-		c.limite,
-		COALESCE(c.saldo, 0)
-	INTO
-		limite_atual,
-		saldo_atual
-	FROM clientes c
-	WHERE c.id = cliente_id_tx;
+	
+  UPDATE clientes
+     SET saldo = saldo - valor_tx
+   WHERE id = cliente_id_tx
+     AND ABS(saldo - valor_tx) <= limite
+RETURNING saldo, limite INTO _saldo, _limite;
 
-	IF saldo_atual - valor_tx >= limite_atual * -1 THEN
-		INSERT INTO transacoes
-			VALUES(DEFAULT, cliente_id_tx, valor_tx, 'd', descricao_tx, NOW());
-		
-		UPDATE clientes
-		SET saldo = saldo - valor_tx
-		WHERE id = cliente_id_tx;
+	GET DIAGNOSTICS success = ROW_COUNT;
 
-		RETURN QUERY
-			SELECT
-				saldo,
-				FALSE,
-				'ok'::VARCHAR(20)
-			FROM clientes
-			WHERE id = cliente_id_tx;
-	ELSE
-		RETURN QUERY
-			SELECT
-				saldo,
-				TRUE,
-				'saldo insuficente'::VARCHAR(20)
-			FROM clientes
-			WHERE id = cliente_id_tx;
+	IF success THEN
+		INSERT INTO transacoes (cliente_id, valor, tipo, descricao)
+		VALUES (cliente_id_tx, valor_tx, 'd', descricao_tx);
+
+		SELECT success, _saldo, _limite INTO record;
+  ELSE 
+  	SELECT 0, saldo, limite
+      FROM clientes
+     WHERE id = cliente_id_tx
+      INTO record;
 	END IF;
+  
+  RETURN record;
 END;
 $$;
 
@@ -86,13 +77,10 @@ CREATE OR REPLACE FUNCTION creditar(
 	descricao_tx VARCHAR(10))
 RETURNS TABLE (
 	novo_saldo INT,
-	possui_erro BOOL,
-	mensagem VARCHAR(20))
+	_limite INT)
 LANGUAGE plpgsql
 AS $$
 BEGIN
-	PERFORM pg_advisory_xact_lock(cliente_id_tx);
-
 	INSERT INTO transacoes
 		VALUES(DEFAULT, cliente_id_tx, valor_tx, 'c', descricao_tx, NOW());
 
@@ -100,6 +88,6 @@ BEGIN
 		UPDATE clientes
 		SET saldo = saldo + valor_tx
 		WHERE id = cliente_id_tx
-		RETURNING saldo, FALSE, 'ok'::VARCHAR(20);
+		RETURNING saldo, limite;
 END;
 $$;

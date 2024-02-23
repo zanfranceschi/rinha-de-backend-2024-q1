@@ -1,0 +1,79 @@
+ Network brunolipe-a_default  Creating
+ Network brunolipe-a_default  Created
+ Container brunolipe-a-db-1  Creating
+ Container brunolipe-a-db-1  Created
+ Container brunolipe-a-api02-1  Creating
+ Container brunolipe-a-api01-1  Creating
+ Container brunolipe-a-api02-1  Created
+ Container brunolipe-a-api01-1  Created
+ Container brunolipe-a-nginx-1  Creating
+ Container brunolipe-a-nginx-1  Created
+Attaching to api01-1, api02-1, db-1, nginx-1
+db-1     | The files belonging to this database system will be owned by user "postgres".
+db-1     | This user must also own the server process.
+db-1     | 
+db-1     | The database cluster will be initialized with locale "en_US.utf8".
+db-1     | The default database encoding has accordingly been set to "UTF8".
+db-1     | The default text search configuration will be set to "english".
+db-1     | 
+db-1     | Data page checksums are disabled.
+db-1     | 
+db-1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1     | creating subdirectories ... ok
+db-1     | selecting dynamic shared memory implementation ... posix
+db-1     | selecting default max_connections ... 100
+db-1     | selecting default shared_buffers ... 128MB
+db-1     | selecting default time zone ... Etc/UTC
+db-1     | creating configuration files ... ok
+db-1     | running bootstrap script ... ok
+db-1     | performing post-bootstrap initialization ... ok
+db-1     | syncing data to disk ... ok
+db-1     | 
+db-1     | 
+db-1     | Success. You can now start the database server using:
+db-1     | 
+db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1     | 
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1     | waiting for server to start.... done
+db-1     | server started
+db-1     | CREATE DATABASE
+db-1     | 
+db-1     | 
+db-1     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+db-1     | 
+db-1     | waiting for server to shut down.... done
+db-1     | server stopped
+db-1     | 
+db-1     | PostgreSQL init process complete; ready for start up.
+db-1     | 
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+api02-1  | {"level":30,"time":1708308631821,"pid":1,"hostname":"api02","msg":"started HTTP server on 0.0.0.0:3333"}
+nginx-1  | 2024/02/19 02:10:32 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.3:3333/clientes/1/extrato", host: "localhost:9999"
+api01-1  | [ info ] Upgrading migrations version from "1" to "2"
+api01-1  | ❯ migrating database/migrations/1708099480576_create_clients_table
+api01-1  | [2K[1A[2K[G❯ migrated database/migrations/1708099480576_create_clients_table
+api01-1  | ❯ migrating database/migrations/1708099614559_create_transactions_table
+api02-1  | {"level":50,"time":1708308632252,"pid":1,"hostname":"api02","request_id":"ksi4jo5sqqm33se1zwaq26do","err":{"type":"DatabaseError","message":"select * from \"clients\" where \"id\" = $1 limit $2 - relation \"clients\" does not exist","stack":"error: select * from \"clients\" where \"id\" = $1 limit $2 - relation \"clients\" does not exist\n    at Parser.parseErrorMessage (/app/node_modules/pg-protocol/dist/parser.js:287:98)\n    at Parser.handlePacket (/app/node_modules/pg-protocol/dist/parser.js:126:29)\n    at Parser.parse (/app/node_modules/pg-protocol/dist/parser.js:39:38)\n    at Socket.<anonymous> (/app/node_modules/pg-protocol/dist/index.js:11:42)\n    at Socket.emit (node:events:518:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)\n    at Readable.push (node:internal/streams/readable:390:5)\n    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)","length":106,"name":"error","severity":"ERROR","code":"42P01","position":"15","file":"parse_relation.c","line":"1449","routine":"parserOpenTable","status":500},"x-request-id":"ksi4jo5sqqm33se1zwaq26do","msg":"select * from \"clients\" where \"id\" = $1 limit $2 - relation \"clients\" does not exist"}
+api01-1  | [2K[1A[2K[G❯ migrated database/migrations/1708099614559_create_transactions_table
+api01-1  | 
+api01-1  | Migrated in 258 ms
+api01-1  | ❯ completed database/seeders/client_seeder
+api01-1  | {"level":30,"time":1708308636019,"pid":1,"hostname":"366a8a6ecfc2","msg":"started HTTP server on 0.0.0.0:3333"}
+api02-1  | {"level":40,"time":1708308643357,"pid":1,"hostname":"api02","request_id":"oz2m78n360m8gvmnbamxopsu","x-request-id":"oz2m78n360m8gvmnbamxopsu","msg":"Row not found"}
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api01-1 exited with code 0
+api01-1 exited with code 0
+api02-1 exited with code 0
+api02-1 exited with code 0
+db-1 exited with code 0

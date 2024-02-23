@@ -1,7 +1,35 @@
- db Pulling 
- backend1 Pulling 
- backend2 Pulling 
- backend2 Error 
- backend1 Error 
- db Error 
-Error response from daemon: Head "https://ghcr.io/v2/lucasew/playground/rinha202401-backend/manifests/latest": unauthorized
+ Network rinha-nginx-2024q1  Creating
+ Network rinha-nginx-2024q1  Created
+ Container lucasew-go-tigerbeetle-db-1  Creating
+ Container lucasew-go-tigerbeetle-db-1  Created
+ Container lucasew-go-tigerbeetle-backend2-1  Creating
+ Container lucasew-go-tigerbeetle-backend1-1  Creating
+ Container lucasew-go-tigerbeetle-backend1-1  Created
+ Container lucasew-go-tigerbeetle-backend2-1  Created
+ Container lucasew-go-tigerbeetle-loadbalancer-1  Creating
+ Container lucasew-go-tigerbeetle-loadbalancer-1  Created
+Attaching to backend1-1, backend2-1, db-1, loadbalancer-1
+db-1            | [*] Setting up tigerbeetle database...
+db-1            | info(io): creating "0_0.tigerbeetle"...
+db-1            | info(io): allocating 257MiB...
+db-1            | error: PermissionDenied
+db-1            | [*] Starting tigerbeetle on port 3000...
+db-1            | info(io): opening "0_0.tigerbeetle"...
+db-1            | error: PermissionDenied
+backend2-1      | 2024/02/23 02:00:03 can't resolve tigerbeetle host "db": lookup db on 127.0.0.11:53: server misbehaving
+db-1 exited with code 1
+backend1-1      | 2024/02/23 02:00:03 can't resolve tigerbeetle host "db": lookup db on 127.0.0.11:53: server misbehaving
+loadbalancer-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+loadbalancer-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+loadbalancer-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+loadbalancer-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+loadbalancer-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+loadbalancer-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+loadbalancer-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+loadbalancer-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+loadbalancer-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+loadbalancer-1  | 2024/02/23 02:00:04 [emerg] 1#1: host not found in upstream "backend1:3001" in /etc/nginx/nginx.conf:17
+loadbalancer-1  | nginx: [emerg] host not found in upstream "backend1:3001" in /etc/nginx/nginx.conf:17
+backend2-1 exited with code 0
+backend1-1 exited with code 0
+loadbalancer-1 exited with code 1

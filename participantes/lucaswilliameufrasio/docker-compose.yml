@@ -1,0 +1,70 @@
+version: "3.7"
+
+services:
+  api01: &api
+    image: lucaswilliameufrasio/backend-cockfighting-q1-2024-api:latest
+    hostname: api01
+    environment:
+      - TZ=UTC
+      - PORT=9997
+      - DATABASE_URL=postgres://postgres:fight@db:5432/fight
+    networks:
+      - fight-pit
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "30MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+  
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+      - db
+    ports:
+      - "9999:9999"
+    networks:
+      - fight-pit
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "20MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    container_name: backend-cockfighting-2024-q1-database
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    environment:
+      - POSTGRES_PASSWORD=fight
+      - POSTGRES_DB=fight
+    volumes:
+      - ./docker/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker/database/postgresql.conf:/etc/postgresql/postgresql.conf
+    networks:
+      - fight-pit
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "470MB"
+
+networks:
+  fight-pit:
+    driver: bridge

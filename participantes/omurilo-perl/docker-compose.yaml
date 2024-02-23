@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  app1: &app
+    container_name: camel_one
+    image: omurilo/camel
+    environment:
+      PORT: "8080"
+    expose:
+      - 8080
+    network_mode: host
+    volumes:
+      - ./database:/usr/src/myapp/database
+    deploy:
+      resources:
+        limits:
+          cpus: "0.65"
+          memory: "250MB"
+
+  app2:
+    <<: *app
+    container_name: camel_two
+    environment:
+      PORT: "8081"
+    expose:
+      - 8081
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app1
+      - app2
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "50MB"
+

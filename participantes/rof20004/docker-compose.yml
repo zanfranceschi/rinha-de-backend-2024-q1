@@ -1,0 +1,84 @@
+version: "3"
+
+services:
+  nginx:
+    image: nginx
+    hostname: rinha-nginx
+    container_name: rinha-nginx
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - rinha-network
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "20MB"
+
+  api1: &api
+    pid: host
+    image: rof20004/rinha-backend-2024-q1:latest
+    hostname: rinha-api-1
+    container_name: rinha-api-1
+    environment:
+      DATABASE_HOST: rinha-db
+      DATABASE_PORT: 5432
+      DATABASE_USER: rinha
+      DATABASE_PASS: rinha
+      DATABASE_NAME: rinha
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    networks:
+      - rinha-network
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "40MB"
+
+  api2:
+    <<: *api
+    hostname: rinha-api-2
+    container_name: rinha-api-2
+
+  db:
+    image: postgres:15
+    hostname: rinha-db
+    container_name: rinha-db
+    environment:
+      POSTGRES_DB: rinha
+      POSTGRES_USER: rinha
+      POSTGRES_PASSWORD: rinha
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    ports:
+      - "5432:5432"
+    networks:
+      - rinha-network
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "rinha", "-U", "rinha", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "450MB"
+
+networks:
+  rinha-network:
+    driver: bridge

@@ -1,0 +1,64 @@
+version: "3.8"
+
+services:
+  api1: &app1
+    image: jonatasoli/rinha-q1-2024-fastapi:v1
+    hostname: api1
+    network_mode: host
+    entrypoint: 'poetry run uvicorn src.main:main --host 0.0.0.0 --port 8000 --workers 1 --log-level critical'
+    environment:
+      PORT: 8000
+      DATABASE_URL: postgres://rinha:rinha@localhost:5432/rinha
+      MAX_CONNECTIONS: 10
+    depends_on:
+      - db
+    expose:
+      - "8000"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "165MB"
+
+  api2:
+    <<: *app1
+    hostname: api2
+    entrypoint: 'poetry run uvicorn src.main:main --host 0.0.0.0 --port 8001 --workers 1 --log-level critical'
+    environment:
+      PORT: 8001
+      DATABASE_URL: postgres://rinha:rinha@localhost:5432/rinha
+      MAX_CONNECTIONS: 10
+
+  nginx:
+    image: docker.io/nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "40MB"
+
+  db:
+    image: docker.io/postgres:16
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    command: postgres -c log_min_messages=FATAL -c max_connections=200 -c shared_buffers=128MB -c fsync=off -c synchronous_commit=off -c checkpoint_timeout=1d -c full_page_writes=false
+    network_mode: host
+    environment:
+      POSTGRES_USER: rinha
+      POSTGRES_PASSWORD: rinha
+      POSTGRES_DB: rinha
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "180MB"

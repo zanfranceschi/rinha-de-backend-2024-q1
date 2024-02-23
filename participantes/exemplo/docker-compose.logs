@@ -4,8 +4,8 @@
  Container exemplo-db-1  Created
  Container exemplo-api01-1  Creating
  Container exemplo-api02-1  Creating
- Container exemplo-api01-1  Created
  Container exemplo-api02-1  Created
+ Container exemplo-api01-1  Created
  Container exemplo-nginx-1  Creating
  Container exemplo-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -36,6 +36,8 @@ nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
 db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -43,21 +45,18 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-16 07:02:48.035 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 07:02:48.049 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 07:02:48.064 UTC [52] LOG:  database system was shut down at 2024-02-16 07:02:46 UTC
-db-1     | 2024-02-16 07:02:48.071 UTC [49] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 05:08:47.632 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 05:08:47.639 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 05:08:47.649 UTC [51] LOG:  database system was shut down at 2024-02-19 05:08:47 UTC
+db-1     | 2024-02-19 05:08:47.657 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
-nginx-1  | 2024/02/16 07:02:48 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.160.4:3000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:02:48 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.160.3:3000/clientes/1/extrato", host: "localhost:9999"
 db-1     | CREATE DATABASE
 db-1     | 
 db-1     | 
 db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
-api02-1  | 2024-02-16 07:02:48.624:INFO::main: Logging initialized @4138ms
+nginx-1  | 2024/02/19 05:08:48 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.20.0.3:3000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:08:48 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.20.0.4:3000/clientes/1/extrato", host: "localhost:9999"
 db-1     | CREATE TABLE
 db-1     | CREATE TABLE
 db-1     | CREATE TABLE
@@ -66,61 +65,62 @@ db-1     | CREATE FUNCTION
 db-1     | CREATE FUNCTION
 db-1     | 
 db-1     | 
-db-1     | 2024-02-16 07:02:48.736 UTC [49] LOG:  received fast shutdown request
-db-1     | waiting for server to shut down....2024-02-16 07:02:48.746 UTC [49] LOG:  aborting any active transactions
-db-1     | 2024-02-16 07:02:48.750 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-db-1     | 2024-02-16 07:02:48.750 UTC [50] LOG:  shutting down
-db-1     | 2024-02-16 07:02:48.753 UTC [50] LOG:  checkpoint starting: shutdown immediate
-api01-1  | 2024-02-16 07:02:48.839:INFO::main: Logging initialized @4300ms
-db-1     | 2024-02-16 07:02:49.283 UTC [50] LOG:  checkpoint complete: wrote 946 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.400 s, sync=0.115 s, total=0.534 s; sync files=319, longest=0.060 s, average=0.001 s; distance=4314 kB, estimate=4314 kB; lsn=0/19212F8, redo lsn=0/19212F8
-db-1     | 2024-02-16 07:02:49.288 UTC [49] LOG:  database system is shut down
+db-1     | 2024-02-19 05:08:48.324 UTC [48] LOG:  received fast shutdown request
+db-1     | waiting for server to shut down....2024-02-19 05:08:48.327 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-19 05:08:48.328 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-19 05:08:48.329 UTC [49] LOG:  shutting down
+db-1     | 2024-02-19 05:08:48.333 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 05:08:48.846 UTC [49] LOG:  checkpoint complete: wrote 946 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.388 s, sync=0.115 s, total=0.517 s; sync files=319, longest=0.063 s, average=0.001 s; distance=4314 kB, estimate=4314 kB; lsn=0/19212F8, redo lsn=0/19212F8
+db-1     | 2024-02-19 05:08:48.851 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-16 07:02:49.363 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 07:02:49.364 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 07:02:49.364 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 07:02:49.370 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 07:02:49.377 UTC [67] LOG:  database system was shut down at 2024-02-16 07:02:49 UTC
-db-1     | 2024-02-16 07:02:49.384 UTC [1] LOG:  database system is ready to accept connections
-nginx-1  | 2024/02/16 07:02:50 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:02:52 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:02:54 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 07:02:56 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | Feb 16, 2024 7:02:57 AM com.mchange.v2.log.MLog 
-api01-1  | INFO: MLog clients using java 1.4+ standard logging.
-api02-1  | Feb 16, 2024 7:02:57 AM com.mchange.v2.log.MLog 
+db-1     | 2024-02-19 05:08:48.962 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 05:08:48.962 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 05:08:48.962 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 05:08:48.973 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 05:08:48.981 UTC [66] LOG:  database system was shut down at 2024-02-19 05:08:48 UTC
+db-1     | 2024-02-19 05:08:49.016 UTC [1] LOG:  database system is ready to accept connections
+api01-1  | 2024-02-19 05:08:49.115:INFO::main: Logging initialized @4376ms
+api02-1  | 2024-02-19 05:08:49.321:INFO::main: Logging initialized @4469ms
+nginx-1  | 2024/02/19 05:08:50 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:08:52 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:08:54 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:08:56 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | Feb 19, 2024 5:08:57 AM com.mchange.v2.log.MLog 
 api02-1  | INFO: MLog clients using java 1.4+ standard logging.
-nginx-1  | 2024/02/16 07:02:58 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | Feb 16, 2024 7:02:58 AM com.mchange.v2.c3p0.C3P0Registry 
+api01-1  | Feb 19, 2024 5:08:57 AM com.mchange.v2.log.MLog 
+api01-1  | INFO: MLog clients using java 1.4+ standard logging.
+nginx-1  | 2024/02/19 05:08:58 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | Feb 19, 2024 5:08:58 AM com.mchange.v2.c3p0.C3P0Registry 
 api02-1  | INFO: Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
-api01-1  | Feb 16, 2024 7:02:58 AM com.mchange.v2.c3p0.C3P0Registry 
+api01-1  | Feb 19, 2024 5:08:58 AM com.mchange.v2.c3p0.C3P0Registry 
 api01-1  | INFO: Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
-api02-1  | 2024-02-16 07:02:58.632:INFO:oejs.Server:main: jetty-9.2.z-SNAPSHOT
-api01-1  | 2024-02-16 07:02:58.716:INFO:oejs.Server:main: jetty-9.2.z-SNAPSHOT
-api02-1  | 2024-02-16 07:02:58.733:INFO:oejs.ServerConnector:main: Started ServerConnector@4420eb3a{HTTP/1.1}{0.0.0.0:3000}
-api02-1  | 2024-02-16 07:02:58.733:INFO:oejs.Server:main: Started @14247ms
+api02-1  | 2024-02-19 05:08:58.926:INFO:oejs.Server:main: jetty-9.2.z-SNAPSHOT
+api01-1  | 2024-02-19 05:08:59.018:INFO:oejs.Server:main: jetty-9.2.z-SNAPSHOT
+api02-1  | 2024-02-19 05:08:59.022:INFO:oejs.ServerConnector:main: Started ServerConnector@4420eb3a{HTTP/1.1}{0.0.0.0:3000}
+api02-1  | 2024-02-19 05:08:59.022:INFO:oejs.Server:main: Started @14170ms
 api02-1  | Started server on port 3000
-api01-1  | 2024-02-16 07:02:58.737:INFO:oejs.ServerConnector:main: Started ServerConnector@4420eb3a{HTTP/1.1}{0.0.0.0:3000}
-api01-1  | 2024-02-16 07:02:58.737:INFO:oejs.Server:main: Started @14199ms
+api01-1  | 2024-02-19 05:08:59.039:INFO:oejs.ServerConnector:main: Started ServerConnector@7531aa64{HTTP/1.1}{0.0.0.0:3000}
+api01-1  | 2024-02-19 05:08:59.114:INFO:oejs.Server:main: Started @14376ms
 api01-1  | Started server on port 3000
-api02-1  | Feb 16, 2024 7:03:00 AM com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource 
-api02-1  | INFO: Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1hgewhvb11d19eso14yox4k|4a3404fa, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hgewhvb11d19eso14yox4k|4a3404fa, idleConnectionTestPeriod -> 800, initialPoolSize -> 13, jdbcUrl -> jdbc:postgresql://db:5432/rinha?ApplicationName=rinha-web-server, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 3600, maxIdleTime -> 1800, maxIdleTimeExcessConnections -> 120, maxPoolSize -> 13, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
-api01-1  | Feb 16, 2024 7:03:07 AM com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource 
-api01-1  | INFO: Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1hgewhwb11d19epmrdd9wu|2b5a04b0, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hgewhwb11d19epmrdd9wu|2b5a04b0, idleConnectionTestPeriod -> 800, initialPoolSize -> 13, jdbcUrl -> jdbc:postgresql://db:5432/rinha?ApplicationName=rinha-web-server, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 3600, maxIdleTime -> 1800, maxIdleTimeExcessConnections -> 120, maxPoolSize -> 13, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+api02-1  | Feb 19, 2024 5:09:00 AM com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource 
+api02-1  | INFO: Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1bqu96sb11h7id8u1c384d5|2b5a04b0, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1bqu96sb11h7id8u1c384d5|2b5a04b0, idleConnectionTestPeriod -> 800, initialPoolSize -> 13, jdbcUrl -> jdbc:postgresql://db:5432/rinha?ApplicationName=rinha-web-server, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 3600, maxIdleTime -> 1800, maxIdleTimeExcessConnections -> 120, maxPoolSize -> 13, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+api01-1  | Feb 19, 2024 5:09:08 AM com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource 
+api01-1  | INFO: Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1bqu96rb11h7idbh160azt|2b5a04b0, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.postgresql.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1bqu96rb11h7idbh160azt|2b5a04b0, idleConnectionTestPeriod -> 800, initialPoolSize -> 13, jdbcUrl -> jdbc:postgresql://db:5432/rinha?ApplicationName=rinha-web-server, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 3600, maxIdleTime -> 1800, maxIdleTimeExcessConnections -> 120, maxPoolSize -> 13, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api02-1 exited with code 0
-api02-1 exited with code 143
 api01-1 exited with code 0
 api01-1 exited with code 143
-db-1     | 2024-02-16 07:07:18.245 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-16 07:07:18.249 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-16 07:07:18.251 UTC [1] LOG:  background worker "logical replication launcher" (PID 70) exited with exit code 1
-db-1     | 2024-02-16 07:07:18.251 UTC [65] LOG:  shutting down
-db-1     | 2024-02-16 07:07:18.255 UTC [65] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 07:07:18.379 UTC [65] LOG:  checkpoint complete: wrote 591 buffers (3.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.100 s, total=0.128 s; sync files=31, longest=0.093 s, average=0.004 s; distance=1859 kB, estimate=1859 kB; lsn=0/1AF2230, redo lsn=0/1AF2230
-db-1     | 2024-02-16 07:07:18.383 UTC [1] LOG:  database system is shut down
+api02-1 exited with code 0
+api02-1 exited with code 143
+db-1     | 2024-02-19 05:13:19.855 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-19 05:13:19.858 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-19 05:13:19.860 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-02-19 05:13:19.861 UTC [64] LOG:  shutting down
+db-1     | 2024-02-19 05:13:19.863 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 05:13:19.998 UTC [64] LOG:  checkpoint complete: wrote 586 buffers (3.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.110 s, total=0.138 s; sync files=31, longest=0.103 s, average=0.004 s; distance=1845 kB, estimate=1845 kB; lsn=0/1AEE738, redo lsn=0/1AEE738
+db-1     | 2024-02-19 05:13:20.002 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0

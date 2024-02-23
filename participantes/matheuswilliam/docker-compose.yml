@@ -1,0 +1,54 @@
+version: "3.5"
+services:
+  db:
+    image: "postgres:alpine"
+    hostname: db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./configs/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./configs/postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '200MB'
+
+  api01: &api
+    image: meanmatheus/api-rinha-c:latest
+    hostname: api01
+    depends_on:
+      - db
+    command: ["/bin/sh", "-c", "until pg_isready -h db -p 5432; do sleep 1; done && ./server"]
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '100MB'
+
+  api02:
+    <<: *api
+    hostname: api02
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./configs/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "9999:9999"
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '150MB'
+networks:
+  default:
+    driver: bridge
+    name: rinha-backend-2024
