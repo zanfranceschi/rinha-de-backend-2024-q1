@@ -3,7 +3,7 @@ version: '3.8'
 services:
   postgres:
     container_name: rinha-pg
-    image: postgres
+    image: postgres:latest
     hostname: db-rinha
     ports:
       - 5432:5432
@@ -14,31 +14,28 @@ services:
       PG_DATA: /data/postgres
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./postgresql.conf:/etc/postgresql/postgresql.conf
-    command: 'postgres -c config_file=/etc/postgresql/postgresql.conf'
+    command: 'postgres -c max_connections=300 -c shared_buffers=96MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=16MB'
     deploy:
       resources:
         limits:
-          cpus: '0.45'
-          memory: '140MB'
+          cpus: '0.6'
+          memory: '200MB'
 
   api01: &api
-    image: ultr444/rinha-backend-api
+    image: ultr444/rinha-backend-api:latest
     hostname: api01
     environment:
       - DATABASE_URL=postgresql://postgres:docker@db-rinha:5432/rinha?schema=public
       - PORT=3000
     ports:
       - '8080:3000'
-    build:
-      context: .
     depends_on:
       - postgres
     deploy:
       resources:
         limits:
-          cpus: '0.45'
-          memory: '200MB'
+          cpus: '0.4'
+          memory: '150MB'
   api02:
     <<: *api
     hostname: api02
@@ -57,8 +54,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
-          memory: '10MB'
+          cpus: '0.1'
+          memory: '50MB'
 
 networks:
   default:

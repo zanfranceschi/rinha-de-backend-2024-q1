@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Feb 23 01:40:55 UTC 2024** com **297** submissões.
+Atualizada **Fri Feb 23 14:50:15 UTC 2024** com **300** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -35,6 +35,7 @@ Atualizada **Fri Feb 23 01:40:55 UTC 2024** com **297** submissões.
 | [bcaua](./participantes/bcaua) | ok | 2 |
 | [betamedina](./participantes/betamedina) | falha - [logs](./participantes/betamedina/docker-compose.logs) | -- |
 | [bgskurono](./participantes/bgskurono) | ok | 1 |
+| [biigode](./participantes/biigode) | ok | 4 |
 | [bine-golang](./participantes/bine-golang) | ok | 2 |
 | [bine-php-laravel](./participantes/bine-php-laravel) | ok | 4 |
 | [bine-php-road-runner](./participantes/bine-php-road-runner) | ok | 2 |
@@ -60,7 +61,7 @@ Atualizada **Fri Feb 23 01:40:55 UTC 2024** com **297** submissões.
 | [claudio-silva](./participantes/claudio-silva) | ok | 3 |
 | [claudioneves1981](./participantes/claudioneves1981) | ok | 1 |
 | [cleitinif](./participantes/cleitinif) | ok | 4 |
-| [cleverton-rocha](./participantes/cleverton-rocha) | falha - [logs](./participantes/cleverton-rocha/docker-compose.logs) | -- |
+| [cleverton-rocha](./participantes/cleverton-rocha) | ok | 4 |
 | [crebitojs](./participantes/crebitojs) | ok | 3 |
 | [cristiano182](./participantes/cristiano182) | ok | 1 |
 | [daandrn-php](./participantes/daandrn-php) | ok | 2 |
@@ -78,7 +79,7 @@ Atualizada **Fri Feb 23 01:40:55 UTC 2024** com **297** submissões.
 | [doceazedo](./participantes/doceazedo) | falha - [logs](./participantes/doceazedo/docker-compose.logs) | -- |
 | [dowingows-phalcon-php](./participantes/dowingows-phalcon-php) | ok | 2 |
 | [dreamagici4n](./participantes/dreamagici4n) | ok | 0 |
-| [droderuan](./participantes/droderuan) | falha - [logs](./participantes/droderuan/docker-compose.logs) | -- |
+| [droderuan](./participantes/droderuan) | ok | 2 |
 | [dscamargo](./participantes/dscamargo) | ok | 2 |
 | [dscorzoni-django](./participantes/dscorzoni-django) | ok | 6317 |
 | [dscorzoni-fastapi](./participantes/dscorzoni-fastapi) | ok | 4 |
@@ -101,6 +102,7 @@ Atualizada **Fri Feb 23 01:40:55 UTC 2024** com **297** submissões.
 | [felipe-alcantara-actor-model](./participantes/felipe-alcantara-actor-model) | ok | 1 |
 | [felipebossolani-dotnet](./participantes/felipebossolani-dotnet) | ok | 2 |
 | [felipemarkson](./participantes/felipemarkson) | ok | 2 |
+| [fernanduandrade](./participantes/fernanduandrade) | ok | 2 |
 | [fielcapao](./participantes/fielcapao) | falha - [logs](./participantes/fielcapao/docker-compose.logs) | -- |
 | [filipemacedo](./participantes/filipemacedo) | ok | 3 |
 | [flpStrri](./participantes/flpStrri) | ok | 2 |
@@ -144,6 +146,7 @@ Atualizada **Fri Feb 23 01:40:55 UTC 2024** com **297** submissões.
 | [impedro29-performance](./participantes/impedro29-performance) | ok | 39 |
 | [ircnelson](./participantes/ircnelson) | ok | 2 |
 | [isadora-souza](./participantes/isadora-souza) | ok | 3 |
+| [isaquealves](./participantes/isaquealves) | falha - [logs](./participantes/isaquealves/docker-compose.logs) | -- |
 | [italobbarros](./participantes/italobbarros) | ok | 2 |
 | [italopussi](./participantes/italopussi) | ok | 3 |
 | [itujo-minimal-node-uws](./participantes/itujo-minimal-node-uws) | ok | 2 |
