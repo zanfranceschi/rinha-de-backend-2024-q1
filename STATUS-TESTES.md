@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Feb 23 02:45:55 UTC 2024** com **299** submissões.
+Atualizada **Fri Feb 23 02:51:35 UTC 2024** com **300** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -146,6 +146,7 @@ Atualizada **Fri Feb 23 02:45:55 UTC 2024** com **299** submissões.
 | [impedro29-performance](./participantes/impedro29-performance) | ok | 39 |
 | [ircnelson](./participantes/ircnelson) | ok | 2 |
 | [isadora-souza](./participantes/isadora-souza) | ok | 3 |
+| [isaquealves](./participantes/isaquealves) | falha - [logs](./participantes/isaquealves/docker-compose.logs) | -- |
 | [italobbarros](./participantes/italobbarros) | ok | 2 |
 | [italopussi](./participantes/italopussi) | ok | 3 |
 | [itujo-minimal-node-uws](./participantes/itujo-minimal-node-uws) | ok | 2 |
