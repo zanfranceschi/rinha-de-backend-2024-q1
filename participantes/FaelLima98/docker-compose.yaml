@@ -1,0 +1,64 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: feal/rinhabackend24q1:latest
+    hostname: api01
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "100MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8082:8080"
+      - "8083:8081"
+      
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "20MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/script.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "330MB"
+
+networks:
+  default:
+    driver: bridge
+    name: nginx

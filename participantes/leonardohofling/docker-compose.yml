@@ -1,0 +1,63 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: leonardohof/rinhabackend-2401:latest
+    hostname: api01
+    environment:
+      - ConnectionStrings__Default=Host=db;Database=postgres;User Id=postgres;Password=postgres;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=1000;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "100MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api 
+    hostname: api02
+    ports:
+      - "8082:8080"
+ 
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+        # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "25MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    command: 'postgres -c max_connections=1000 -c shared_buffers=128MB'
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '325MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
