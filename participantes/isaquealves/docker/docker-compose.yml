@@ -1,0 +1,75 @@
+version: "3.8"
+
+x-build: &default-build
+  context: .
+  dockerfile: Dockerfile
+
+services:
+  host1: &api
+    build: *default-build
+    env_file: .env
+    image: isaquealves/zebrito:latest
+    hostname: host1
+    environment:
+      - DB_HOSTNAME=${DATABASE_HOST}
+    ports:
+      - "8081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "60MB"
+
+  host2:
+    <<: *api
+    build: *default-build
+    hostname: host2
+    environment:
+      - DB_HOSTNAME=${DATABASE_HOST}
+    ports:
+      - "8082:8080"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - host1
+      - host2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "70MB"
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_DB=${DATABASE_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./config/postgres.conf:/etc/postgresql.conf
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/script.sql
+    command: postgres -c config_file=/etc/postgresql.conf
+    healthcheck:
+      interval: 3s
+      test: pg_isready -U ${DATABASE_USER} -d rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "310MB"
+
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
