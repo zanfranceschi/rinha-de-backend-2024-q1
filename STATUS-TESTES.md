@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Feb 23 01:01:29 UTC 2024** com **296** submissões.
+Atualizada **Fri Feb 23 01:14:11 UTC 2024** com **297** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -78,7 +78,7 @@ Atualizada **Fri Feb 23 01:01:29 UTC 2024** com **296** submissões.
 | [doceazedo](./participantes/doceazedo) | falha - [logs](./participantes/doceazedo/docker-compose.logs) | -- |
 | [dowingows-phalcon-php](./participantes/dowingows-phalcon-php) | ok | 2 |
 | [dreamagici4n](./participantes/dreamagici4n) | ok | 0 |
-| [droderuan](./participantes/droderuan) | ok | 2 |
+| [droderuan](./participantes/droderuan) | falha - [logs](./participantes/droderuan/docker-compose.logs) | -- |
 | [dscamargo](./participantes/dscamargo) | ok | 2 |
 | [dscorzoni-django](./participantes/dscorzoni-django) | ok | 6317 |
 | [dscorzoni-fastapi](./participantes/dscorzoni-fastapi) | ok | 4 |
@@ -179,6 +179,7 @@ Atualizada **Fri Feb 23 01:01:29 UTC 2024** com **296** submissões.
 | [leonardohofling](./participantes/leonardohofling) | ok | 80 |
 | [leonardoksn](./participantes/leonardoksn) | falha - [logs](./participantes/leonardoksn/docker-compose.logs) | -- |
 | [leonardovee](./participantes/leonardovee) | falha - [logs](./participantes/leonardovee/docker-compose.logs) | -- |
+| [leonardsoncc-go](./participantes/leonardsoncc-go) | ok | 2 |
 | [leoralph](./participantes/leoralph) | ok | 2 |
 | [lfsmariz-go](./participantes/lfsmariz-go) | ok | 2 |
 | [lipe1994_dotnet](./participantes/lipe1994_dotnet) | ok | 5 |
