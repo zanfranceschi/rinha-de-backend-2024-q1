@@ -1,0 +1,123 @@
+version: '3.6'
+
+services:
+
+  api01:
+    image: rodolfodpk/rinhadebackend-jvm:latest
+    hostname: api01
+    ports:
+      - "8081:8081"
+    environment:
+      - QUARKUS_HTTP_PORT=8081
+      - QUARKUS_DATASOURCE_REACTIVE_URL=postgresql://rinhadb:5432/rinhadb?loggerLevel=OFF
+      - DATABASE_USERNAME=rinha
+      - DATABASE_PASSWORD=rinha123
+      - QUARKUS_DATASOURCE_REACTIVE_CACHE_PREPARED_STATEMENTS=true
+      - QUARKUS_BANNER_ENABLED=false
+      - QUARKUS_MICROMETER_ENABLED=false
+      - QUARKUS_LOG_LEVEL=ERROR
+      - LOCKING_MODE=PG_ADVISORY
+#    healthcheck:
+#      test: [ "CMD", "curl", "-f", "http://127.0.0.1:8081/clientes/1/extrato" ]
+#      interval: 2s
+#      retries: 10
+    depends_on:
+      rinhadb:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "80MB"
+
+  api02:
+    image: rodolfodpk/rinhadebackend-jvm:latest
+    hostname: api02
+    ports:
+      - "8082:8082"
+    environment:
+      - QUARKUS_HTTP_PORT=8082
+      - QUARKUS_DATASOURCE_REACTIVE_URL=postgresql://rinhadb:5432/rinhadb?loggerLevel=OFF
+      - DATABASE_USERNAME=rinha
+      - DATABASE_PASSWORD=rinha123
+      - QUARKUS_DATASOURCE_REACTIVE_CACHE_PREPARED_STATEMENTS=true
+      - QUARKUS_BANNER_ENABLED=false
+      - QUARKUS_MICROMETER_ENABLED=false
+      - QUARKUS_LOG_LEVEL=ERROR
+      - LOCKING_MODE=PG_ADVISORY
+#    healthcheck:
+#      test: [ "CMD", "curl", "-f", "http://127.0.0.1:8082/clientes/1/extrato" ]
+#      interval: 2s
+#      retries: 10
+    depends_on:
+      rinhadb:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "80MB"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+#      api01:
+#        condition: service_healthy
+#      api02:
+#        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    healthcheck:
+      # test: ["CMD", "curl", "-f", "http://127.0.0.1:9999/clientes/1/extrato"]
+      test: ["CMD", "sleep", "5"]
+      interval: 3s
+      retries: 15
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "40MB"
+
+  rinhadb:
+    image: postgres:latest
+    hostname: rinhadb
+    environment:
+      - POSTGRES_DB=rinhadb
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha123
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    command: 'postgres -c config_file=/etc/postgresql/postgresql.conf'
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: "350MB"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 3s
+      timeout: 2s
+      retries: 10
+      start_period: 3s
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
