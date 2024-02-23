@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Feb 23 00:45:15 UTC 2024** com **295** submissões.
+Atualizada **Fri Feb 23 01:01:29 UTC 2024** com **296** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -231,6 +231,7 @@ Atualizada **Fri Feb 23 00:45:15 UTC 2024** com **295** submissões.
 | [mvellasco](./participantes/mvellasco) | ok | 257 |
 | [my_way](./participantes/my_way) | ok | 23 |
 | [newton](./participantes/newton) | ok | 3 |
+| [nicolasmmb-dart](./participantes/nicolasmmb-dart) | ok | 3 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
 | [nielsonrolim-ror](./participantes/nielsonrolim-ror) | ok | 1 |
 | [nmessias](./participantes/nmessias) | ok | 1 |
