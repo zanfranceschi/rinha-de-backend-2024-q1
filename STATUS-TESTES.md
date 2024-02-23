@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Feb 23 01:47:35 UTC 2024** com **297** submissões.
+Atualizada **Fri Feb 23 02:01:18 UTC 2024** com **299** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -35,6 +35,7 @@ Atualizada **Fri Feb 23 01:47:35 UTC 2024** com **297** submissões.
 | [bcaua](./participantes/bcaua) | ok | 2 |
 | [betamedina](./participantes/betamedina) | falha - [logs](./participantes/betamedina/docker-compose.logs) | -- |
 | [bgskurono](./participantes/bgskurono) | ok | 1 |
+| [biigode](./participantes/biigode) | falha - [logs](./participantes/biigode/docker-compose.logs) | -- |
 | [bine-golang](./participantes/bine-golang) | ok | 2 |
 | [bine-php-laravel](./participantes/bine-php-laravel) | ok | 4 |
 | [bine-php-road-runner](./participantes/bine-php-road-runner) | ok | 2 |
@@ -101,6 +102,7 @@ Atualizada **Fri Feb 23 01:47:35 UTC 2024** com **297** submissões.
 | [felipe-alcantara-actor-model](./participantes/felipe-alcantara-actor-model) | ok | 1 |
 | [felipebossolani-dotnet](./participantes/felipebossolani-dotnet) | ok | 2 |
 | [felipemarkson](./participantes/felipemarkson) | ok | 2 |
+| [fernanduandrade](./participantes/fernanduandrade) | ok | 2 |
 | [fielcapao](./participantes/fielcapao) | falha - [logs](./participantes/fielcapao/docker-compose.logs) | -- |
 | [filipemacedo](./participantes/filipemacedo) | ok | 3 |
 | [flpStrri](./participantes/flpStrri) | ok | 2 |
