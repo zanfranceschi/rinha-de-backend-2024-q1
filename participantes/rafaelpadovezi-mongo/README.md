@@ -11,3 +11,7 @@ Rinha de Backend 2024/01
 ## Repositório
 
 https://github.com/rafaelpadovezi/rinha-2-mongo
+
+## Blog
+
+https://dev.to/rafaelpadovezi
