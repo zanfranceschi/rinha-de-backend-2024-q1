@@ -9,7 +9,7 @@
 ## Matheus Bosa
 
 Submissão feita com:
-- `Nginx` como Load Balancer
-- `PostgreSQL` como banco de dados
-- `Go` para API com as libs `Fiber` e `lib/pq`
+- `Nginx 1.25` como Load Balancer
+- `PostgreSQL 16` como Banco de Dados
+- `Go 1.21` para API com as libs [Fiber](https://gofiber.io/) e [pgx/pgxpool](https://github.com/jackc/pgx)
 - [Repositório da API](https://github.com/matheusfbosa/rinha-de-backend-2024-q1-poc)
