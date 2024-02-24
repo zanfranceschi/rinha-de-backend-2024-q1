@@ -1,7 +1,7 @@
 # Segunda submissão para Rinha de Backend, Segunda Edição: 2024/Q1
 
 ## Feito por felipebossolani. 
-Link: [Twitter](https://twitter.com/FelipeBossolani) / [LinkedIn] (https://linkedin.com/FelipeBossolani)
+Link: [Twitter](https://twitter.com/FelipeBossolani) / [LinkedIn](https://linkedin.com/FelipeBossolani)
 
 ## Stack utilizada
 
@@ -20,8 +20,8 @@ Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `.net 9 preview 01`
-- [repositório](https://github.com/felipebossolani/rinha-de-backend-2024-q01-dotnet)
-- [docker hub](https://hub.docker.com/r/felipebossolani/rinha-de-backend-2024-q01-dotnet)
+- [repositório](https://github.com/felipebossolani/rinha-de-backend-2024-q01-dotnet9-preview)
+- [docker hub](https://hub.docker.com/r/felipebossolani/rinha-de-backend-2024-q01-dotnet9)
 
 ## Execução
 
