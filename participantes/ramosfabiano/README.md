@@ -2,8 +2,12 @@
 
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="logo nginx" width="300" height="auto">
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="logo postgres" width="200" height="auto">
-<img src="https://github.com/an-tao/drogon/wiki/images/drogon-white17.jpg" alt="logo clojure" width="200" height="auto">
+<br />
+<br />
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="logo postgres" width="250" height="auto">
+<br />
+<img src="https://github.com/an-tao/drogon/wiki/images/drogon-white17.jpg" alt="logo drogon" width="1000" height="auto">
+<br />
 
 ## Fabiano Ramos
 Submissão feita com:
