@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 24 19:22:26 UTC 2024** com **320** submissões.
+Atualizada **Sat Feb 24 20:05:03 UTC 2024** com **324** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -22,7 +22,7 @@ Atualizada **Sat Feb 24 19:22:26 UTC 2024** com **320** submissões.
 | [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
 | [anderkonzen](./participantes/anderkonzen) | ok | 1 |
 | [andersonfernandes-ruby](./participantes/andersonfernandes-ruby) | ok | 5 |
-| [andre-gbi-aspnet](./participantes/andre-gbi-aspnet) | ok | 2 |
+| [andre-gbi-aspnet](./participantes/andre-gbi-aspnet) | ok | 1 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
 | [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
@@ -64,7 +64,7 @@ Atualizada **Sat Feb 24 19:22:26 UTC 2024** com **320** submissões.
 | [claudioneves1981](./participantes/claudioneves1981) | ok | 1 |
 | [cleitinif](./participantes/cleitinif) | ok | 4 |
 | [cleverton-rocha](./participantes/cleverton-rocha) | ok | 4 |
-| [crebitojs](./participantes/crebitojs) | falha - [logs](./participantes/crebitojs/docker-compose.logs) | -- |
+| [crebitojs](./participantes/crebitojs) | ok | 2 |
 | [cristiano182](./participantes/cristiano182) | ok | 1 |
 | [daandrn-php](./participantes/daandrn-php) | ok | 2 |
 | [dagneifilho](./participantes/dagneifilho) | ok | 2 |
@@ -139,6 +139,7 @@ Atualizada **Sat Feb 24 19:22:26 UTC 2024** com **320** submissões.
 | [gldmelo](./participantes/gldmelo) | ok | 2 |
 | [gmrms](./participantes/gmrms) | ok | 2 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
+| [gustavonovaes-go](./participantes/gustavonovaes-go) | ok | 2 |
 | [gustavoramos00-spring-trsfree](./participantes/gustavoramos00-spring-trsfree) | ok | 2 |
 | [gustavoramos00](./participantes/gustavoramos00) | ok | 2 |
 | [gutkedu-nodejs](./participantes/gutkedu-nodejs) | ok | 630 |
@@ -222,6 +223,7 @@ Atualizada **Sat Feb 24 19:22:26 UTC 2024** com **320** submissões.
 | [m-lnrs-async-python](./participantes/m-lnrs-async-python) | ok | 3 |
 | [m-lnrs](./participantes/m-lnrs) | ok | 3 |
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
+| [macielti](./participantes/macielti) | ok | 4 |
 | [maelalvi-quarkus](./participantes/maelalvi-quarkus) | ok | 2 |
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 7 |
 | [marcoseckart](./participantes/marcoseckart) | ok | 2 |
@@ -234,7 +236,7 @@ Atualizada **Sat Feb 24 19:22:26 UTC 2024** com **320** submissões.
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 4 |
 | [mateusdeitos-node](./participantes/mateusdeitos-node) | ok | 2 |
-| [matheusdojava](./participantes/matheusdojava) | ok | 116 |
+| [matheusdojava](./participantes/matheusdojava) | ok | 142 |
 | [matheusfbosa](./participantes/matheusfbosa) | ok | 1 |
 | [matheuslao](./participantes/matheuslao) | ok | 7 |
 | [matheusleal](./participantes/matheusleal) | ok | 4 |
@@ -258,6 +260,7 @@ Atualizada **Sat Feb 24 19:22:26 UTC 2024** com **320** submissões.
 | [olukkas](./participantes/olukkas) | ok | 4 |
 | [omurilo-perl](./participantes/omurilo-perl) | ok | 1 |
 | [omurilo](./participantes/omurilo) | ok | 2 |
+| [otonielsilva](./participantes/otonielsilva) | ok | 2 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
@@ -318,6 +321,7 @@ Atualizada **Sat Feb 24 19:22:26 UTC 2024** com **320** submissões.
 | [whyakari](./participantes/whyakari) | ok | 8 |
 | [williammaia](./participantes/williammaia) | ok | 7 |
 | [williansugiyama](./participantes/williansugiyama) | ok | 1 |
+| [wladneto-02](./participantes/wladneto-02) | falha - [logs](./participantes/wladneto-02/docker-compose.logs) | -- |
 | [wladneto](./participantes/wladneto) | ok | 15 |
 | [yMarceloMaia](./participantes/yMarceloMaia) | ok | 9 |
 | [yanpgabriel](./participantes/yanpgabriel) | ok | 4 |
