@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 24 04:07:04 UTC 2024** com **315** submissões.
+Atualizada **Sat Feb 24 04:23:46 UTC 2024** com **316** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -21,6 +21,7 @@ Atualizada **Sat Feb 24 04:07:04 UTC 2024** com **315** submissões.
 | [alissonsleal](./participantes/alissonsleal) | ok | 3 |
 | [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
 | [anderkonzen](./participantes/anderkonzen) | ok | 1 |
+| [andersonfernandes-ruby](./participantes/andersonfernandes-ruby) | ok | 5 |
 | [andre-gbi-aspnet](./participantes/andre-gbi-aspnet) | ok | 2 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
