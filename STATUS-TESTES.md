@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 24 02:23:06 UTC 2024** com **314** submissões.
+Atualizada **Sat Feb 24 02:34:32 UTC 2024** com **315** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -294,6 +294,7 @@ Atualizada **Sat Feb 24 02:23:06 UTC 2024** com **314** submissões.
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
+| [thiagotn](./participantes/thiagotn) | ok | 2 |
 | [thicsilva](./participantes/thicsilva) | ok | 5 |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
