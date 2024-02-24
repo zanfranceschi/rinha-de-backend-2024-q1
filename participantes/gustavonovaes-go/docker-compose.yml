@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  api01: &api
+    image: gustavonovaes/rinha-backend-2024-go:latest
+    environment:
+      API_PORT: 3000
+      DATABASE_URL: "postgres://rinha:rinha@postgres:5432/rinha?sslmode=disable"
+    restart: unless-stopped
+    networks:
+      - default
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 100MB
+
+  api02: 
+    <<: *api
+
+  nginx:
+    image: nginx:1.25
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api01
+      - api02
+    networks:
+      - default
+    ports:
+      - 9999:80
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 100MB
+
+  postgres:
+    image: postgres:16
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    volumes:
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: "rinha"
+      POSTGRES_USER: "rinha"
+      POSTGRES_PASSWORD: "rinha"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 250MB
+
+networks:
+  default:
+    driver: bridge
+    name: network
