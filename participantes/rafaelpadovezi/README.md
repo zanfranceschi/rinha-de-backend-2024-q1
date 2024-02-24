@@ -12,3 +12,7 @@ Rinha de Backend 2024/01
 ## Repositório
 
 https://github.com/rafaelpadovezi/rinha-2
+
+## Blog
+
+https://dev.to/rafaelpadovezi
