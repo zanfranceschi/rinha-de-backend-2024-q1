@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 24 21:51:26 UTC 2024** com **325** submissões.
+Atualizada **Sat Feb 24 22:07:53 UTC 2024** com **326** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -73,6 +73,7 @@ Atualizada **Sat Feb 24 21:51:26 UTC 2024** com **325** submissões.
 | [danilo-nodejs](./participantes/danilo-nodejs) | ok | 3 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [david-silva](./participantes/david-silva) | ok | 2 |
+| [ddanielvaz](./participantes/ddanielvaz) | ok | 4 |
 | [deno-cassiogangrel](./participantes/deno-cassiogangrel) | ok | 4 |
 | [devkemc-node](./participantes/devkemc-node) | ok | 6605 |
 | [diego-coronel](./participantes/diego-coronel) | ok | 2 |
@@ -158,7 +159,7 @@ Atualizada **Sat Feb 24 21:51:26 UTC 2024** com **325** submissões.
 | [isadora-souza](./participantes/isadora-souza) | ok | 3 |
 | [isaquealves](./participantes/isaquealves) | falha - [logs](./participantes/isaquealves/docker-compose.logs) | -- |
 | [italobbarros](./participantes/italobbarros) | ok | 2 |
-| [italopussi](./participantes/italopussi) | ok | 3 |
+| [italopussi](./participantes/italopussi) | ok | 2 |
 | [itujo-minimal-node-uws](./participantes/itujo-minimal-node-uws) | ok | 2 |
 | [itujo](./participantes/itujo) | ok | 7 |
 | [ivmello](./participantes/ivmello) | ok | 2 |
