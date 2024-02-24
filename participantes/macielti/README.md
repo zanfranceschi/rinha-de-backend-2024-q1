@@ -14,4 +14,4 @@ Submissão feita com:
 - `clojure` para api com a lib [net.clojars.macielti/common-clj](https://clojars.org/net.clojars.macielti/common-clj/)
 - [repositório da api](https://github.com/macielti/carimbo)
 
-[@zanfranceschi](https://twitter.com/bruno_n_m) @ twitter
+[@bruno_n_m](https://twitter.com/bruno_n_m) @ twitter
