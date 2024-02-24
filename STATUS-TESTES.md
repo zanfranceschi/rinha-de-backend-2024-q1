@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 24 22:07:53 UTC 2024** com **326** submissões.
+Atualizada **Sat Feb 24 22:42:39 UTC 2024** com **330** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -46,6 +46,7 @@ Atualizada **Sat Feb 24 22:07:53 UTC 2024** com **326** submissões.
 | [boaglio](./participantes/boaglio) | falha - [logs](./participantes/boaglio/docker-compose.logs) | -- |
 | [breno5g](./participantes/breno5g) | ok | 4 |
 | [brilvio](./participantes/brilvio) | ok | 2 |
+| [brunocamarggo-golang](./participantes/brunocamarggo-golang) | ok | 2 |
 | [brunocamarggo](./participantes/brunocamarggo) | ok | 2 |
 | [brunolipe-a](./participantes/brunolipe-a) | ok | 4 |
 | [buemura-nestjs](./participantes/buemura-nestjs) | ok | 4 |
@@ -157,7 +158,7 @@ Atualizada **Sat Feb 24 22:07:53 UTC 2024** com **326** submissões.
 | [impedro29-performance](./participantes/impedro29-performance) | ok | 39 |
 | [ircnelson](./participantes/ircnelson) | ok | 2 |
 | [isadora-souza](./participantes/isadora-souza) | ok | 3 |
-| [isaquealves](./participantes/isaquealves) | falha - [logs](./participantes/isaquealves/docker-compose.logs) | -- |
+| [isaquealves](./participantes/isaquealves) | ok | 4 |
 | [italobbarros](./participantes/italobbarros) | ok | 2 |
 | [italopussi](./participantes/italopussi) | ok | 2 |
 | [itujo-minimal-node-uws](./participantes/itujo-minimal-node-uws) | ok | 2 |
@@ -182,6 +183,7 @@ Atualizada **Sat Feb 24 22:07:53 UTC 2024** com **326** submissões.
 | [julianojj](./participantes/julianojj) | ok | 7 |
 | [julioriffel-django](./participantes/julioriffel-django) | ok | 2422 |
 | [juliorovesta](./participantes/juliorovesta) | ok | 1 |
+| [juniorzucareli-dotnet](./participantes/juniorzucareli-dotnet) | ok | 1 |
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 1861 |
 | [kalelMartinho_fastapi](./participantes/kalelMartinho_fastapi) | ok | 3 |
 | [kauan-calasans](./participantes/kauan-calasans) | ok | 5 |
@@ -304,12 +306,13 @@ Atualizada **Sat Feb 24 22:07:53 UTC 2024** com **326** submissões.
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
+| [thiagosantana_go](./participantes/thiagosantana_go) | ok | 454 |
 | [thiagotn](./participantes/thiagotn) | ok | 2 |
 | [thicsilva](./participantes/thicsilva) | ok | 5 |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
-| [udleinati](./participantes/udleinati) | falha - [logs](./participantes/udleinati/docker-compose.logs) | -- |
+| [udleinati](./participantes/udleinati) | ok | 3 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
 | [victor-marcolino](./participantes/victor-marcolino) | ok | 4 |
@@ -320,6 +323,7 @@ Atualizada **Sat Feb 24 22:07:53 UTC 2024** com **326** submissões.
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
 | [vkobinski](./participantes/vkobinski) | ok | 5 |
 | [welitonfreitas](./participantes/welitonfreitas) | falha - [logs](./participantes/welitonfreitas/docker-compose.logs) | -- |
+| [wesleyegberto](./participantes/wesleyegberto) | ok | 2 |
 | [whyakari](./participantes/whyakari) | ok | 8 |
 | [williammaia](./participantes/williammaia) | ok | 7 |
 | [williansugiyama](./participantes/williansugiyama) | ok | 1 |
