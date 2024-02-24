@@ -1,12 +1,7 @@
 version: "3.8"
 
-x-build: &default-build
-  context: .
-  dockerfile: Dockerfile
-
 services:
   host1: &api
-    build: *default-build
     image: isaquealves/zebrito:latest
     hostname: host1
     environment:
@@ -24,7 +19,6 @@ services:
 
   host2:
     <<: *api
-    build: *default-build
     hostname: host2
     environment:
       - DB_HOSTNAME=db
