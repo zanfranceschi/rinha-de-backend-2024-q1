@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 24 20:05:03 UTC 2024** com **324** submissões.
+Atualizada **Sat Feb 24 20:16:59 UTC 2024** com **325** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -114,6 +114,7 @@ Atualizada **Sat Feb 24 20:05:03 UTC 2024** com **324** submissões.
 | [fraidev](./participantes/fraidev) | falha - [logs](./participantes/fraidev/docker-compose.logs) | -- |
 | [franklaercio](./participantes/franklaercio) | ok | 5 |
 | [ftathiago-blogdoft-csharp](./participantes/ftathiago-blogdoft-csharp) | ok | 2 |
+| [gabriel-roque](./participantes/gabriel-roque) | ok | 4 |
 | [gabrielfmagalhaes](./participantes/gabrielfmagalhaes) | ok | 5 |
 | [gabrielluciano-vertx](./participantes/gabrielluciano-vertx) | ok | 1 |
 | [gasparbarancelli-h2-database](./participantes/gasparbarancelli-h2-database) | ok | 2 |
