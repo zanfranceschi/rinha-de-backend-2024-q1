@@ -14,7 +14,7 @@ VALUES (1, 100000, 0),
 
 CREATE UNLOGGED TABLE TRANSACAO
 (
-    ID           INT         PRIMARY KEY,
+    ID           SERIAL      PRIMARY KEY,
     ID_CLIENTE   INT         NOT NULL,
     VALOR        INT         NOT NULL,
     TIPO         VARCHAR(1)  NOT NULL,
