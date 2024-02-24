@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  pg_dotnet_database:
+    container_name: pg_dotnet_database
+    image: postgres:15.4
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/configure.sql   # Monta um volume com os scripts SQL
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_USER=postgres
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "360MB"
+
+  dotnet_bank_api_1:
+    container_name: dotnet_bank_api_1
+    image: lipeferreira1609/dev_bank_with_dotnet:latest
+    depends_on:
+      - pg_dotnet_database
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "90MB"
+
+  dotnet_bank_api_2:
+    container_name: dotnet_bank_api_2
+    image: lipeferreira1609/dev_bank_with_dotnet:latest
+    depends_on:
+      - pg_dotnet_database
+      - dotnet_bank_api_1
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "90MB"
+
+
+  dotnet_nginx:
+    container_name: dotnet_nginx
+    image: nginx:latest
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - dotnet_bank_api_1
+      - dotnet_bank_api_2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "10MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-backend-2024

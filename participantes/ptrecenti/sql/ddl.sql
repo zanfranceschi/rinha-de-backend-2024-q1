@@ -4,7 +4,7 @@ CREATE TABLE clientes (
                           limite INTEGER NOT NULL
 );
 
-CREATE UNLOGGED TABLE transacoes (
+CREATE TABLE transacoes (
                                      id CHAR(32) PRIMARY KEY,
                                      cliente_id INTEGER NOT NULL,
                                      valor INTEGER NOT NULL,

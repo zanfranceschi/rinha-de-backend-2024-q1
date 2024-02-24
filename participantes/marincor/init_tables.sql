@@ -11,6 +11,9 @@ CREATE TABLE IF NOT EXISTS clientes (
     CONSTRAINT "clientes_pkey" PRIMARY KEY ("id")
 );
 
+CREATE INDEX idx_cliente_client_id
+ON clientes ("id");
+
 CREATE TABLE IF NOT EXISTS transacoes (
     "id" SERIAL NOT NULL,
     "valor" INTEGER NOT NULL,
@@ -21,6 +24,9 @@ CREATE TABLE IF NOT EXISTS transacoes (
     CONSTRAINT transacoes_pkey PRIMARY KEY ("id"),
     CONSTRAINT fk_clientes_transacoes_id FOREIGN KEY ("id_cliente") REFERENCES clientes("id")
 );
+
+CREATE INDEX idx_transacoes_client_id
+ON transacoes ("id_cliente");
 
 INSERT INTO
     clientes (saldo, limite)

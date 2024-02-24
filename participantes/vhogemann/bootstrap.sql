@@ -1,4 +1,4 @@
-CREATE TABLE balance (
+CREATE UNLOGGED TABLE balance (
     id SERIAL PRIMARY KEY,
     client_id INT NOT NULL,
     amount INT NOT NULL,
@@ -10,7 +10,7 @@ CREATE INDEX balance_client_id_idx ON balance (client_id);
 
 CREATE TYPE transaction_type AS ENUM ('DEPOSIT', 'WITHDRAWAL');
 
-CREATE TABLE transactions (
+CREATE UNLOGGED TABLE transactions (
     id SERIAL PRIMARY KEY,
     client_id INT NOT NULL,
     amount INT NOT NULL,

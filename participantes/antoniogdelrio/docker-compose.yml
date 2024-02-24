@@ -8,14 +8,11 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
-    ports:
-      - "5432:5432"
     volumes:
       - ./script.sql:/docker-entrypoint-initdb.d/script.sql
       - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
     command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
-    networks:
-      - rinha-network
+    network_mode: host
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U admin -d rinha" ]
       interval: 5s
@@ -32,14 +29,12 @@ services:
     image: antoniogdelrio/rinha-backend-2024-q1:latest
     hostname: api01
     environment:
-      - DB_HOSTNAME=db
-    ports:
-      - "8081:8080"
+      - DB_HOSTNAME=localhost
+      - PORT=8081
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      - rinha-network
+    network_mode: host
     deploy:
       resources:
         limits:
@@ -50,9 +45,8 @@ services:
     <<: *api
     hostname: api02
     environment:
-      - DB_HOSTNAME=db
-    ports:
-      - "8082:8080"
+      - DB_HOSTNAME=localhost
+      - PORT=8082
 
   nginx:
     image: nginx:latest
@@ -61,10 +55,7 @@ services:
     depends_on:
       - api01
       - api02
-    ports:
-      - "9999:9999"
-    networks:
-      - rinha-network
+    network_mode: host
     deploy:
       resources:
         limits:

@@ -1,0 +1,500 @@
+ Network rinha-nginx-2024q1  Creating
+ Network rinha-nginx-2024q1  Created
+ Container dscorzoni-django-db-1  Creating
+ Container dscorzoni-django-db-1  Created
+ Container dscorzoni-django-api01-1  Creating
+ Container dscorzoni-django-api01-1  Created
+ Container dscorzoni-django-api02-1  Creating
+ Container dscorzoni-django-api02-1  Created
+ Container dscorzoni-django-nginx-1  Creating
+ Container dscorzoni-django-nginx-1  Created
+Attaching to api01-1, api02-1, db-1, nginx-1
+db-1     | ********************************************************************************
+db-1     | WARNING: POSTGRES_HOST_AUTH_METHOD has been set to "trust". This will allow
+db-1     |          anyone with access to the Postgres port to access your database without
+db-1     |          a password, even if POSTGRES_PASSWORD is set. See PostgreSQL
+db-1     |          documentation about "trust":
+db-1     |          https://www.postgresql.org/docs/current/auth-trust.html
+db-1     |          In Docker's default configuration, this is effectively any other
+db-1     |          container on the same system.
+db-1     | 
+db-1     |          It is not recommended to use POSTGRES_HOST_AUTH_METHOD=trust. Replace
+db-1     |          it with "-e POSTGRES_PASSWORD=password" instead to set a password in
+db-1     |          "docker run".
+db-1     | ********************************************************************************
+db-1     | The files belonging to this database system will be owned by user "postgres".
+db-1     | This user must also own the server process.
+db-1     | 
+db-1     | The database cluster will be initialized with locale "en_US.utf8".
+db-1     | The default database encoding has accordingly been set to "UTF8".
+db-1     | The default text search configuration will be set to "english".
+db-1     | 
+db-1     | Data page checksums are disabled.
+db-1     | 
+db-1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1     | creating subdirectories ... ok
+db-1     | selecting dynamic shared memory implementation ... posix
+db-1     | selecting default max_connections ... 100
+db-1     | selecting default shared_buffers ... 128MB
+db-1     | selecting default time zone ... UTC
+db-1     | creating configuration files ... ok
+db-1     | running bootstrap script ... ok
+db-1     | sh: locale: not found
+db-1     | 2024-02-19 19:02:27.125 UTC [31] WARNING:  no usable system locales were found
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+api02-1  | [2024-02-19 19:02:27 +0000] [1] [INFO] Starting gunicorn 21.2.0
+api02-1  | [2024-02-19 19:02:27 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+api02-1  | [2024-02-19 19:02:27 +0000] [1] [INFO] Using worker: sync
+api02-1  | [2024-02-19 19:02:27 +0000] [7] [INFO] Booting worker with pid: 7
+db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1     | syncing data to disk ... ok
+db-1     | 
+db-1     | 
+db-1     | Success. You can now start the database server using:
+db-1     | 
+db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1     | 
+db-1     | waiting for server to start....2024-02-19 19:02:28.882 UTC [37] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+db-1     | 2024-02-19 19:02:28.886 UTC [37] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 19:02:28.897 UTC [40] LOG:  database system was shut down at 2024-02-19 19:02:28 UTC
+db-1     | 2024-02-19 19:02:28.904 UTC [37] LOG:  database system is ready to accept connections
+db-1     |  done
+db-1     | server started
+db-1     | 
+db-1     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+db-1     | 
+db-1     | waiting for server to shut down....2024-02-19 19:02:28.976 UTC [37] LOG:  received fast shutdown request
+db-1     | 2024-02-19 19:02:28.986 UTC [37] LOG:  aborting any active transactions
+db-1     | 2024-02-19 19:02:28.988 UTC [37] LOG:  background worker "logical replication launcher" (PID 43) exited with exit code 1
+db-1     | 2024-02-19 19:02:28.990 UTC [38] LOG:  shutting down
+db-1     | 2024-02-19 19:02:28.993 UTC [38] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 19:02:29.021 UTC [38] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.005 s, total=0.032 s; sync files=2, longest=0.003 s, average=0.003 s; distance=0 kB, estimate=0 kB; lsn=0/14F0408, redo lsn=0/14F0408
+db-1     | 2024-02-19 19:02:29.025 UTC [37] LOG:  database system is shut down
+db-1     |  done
+db-1     | server stopped
+db-1     | 
+db-1     | PostgreSQL init process complete; ready for start up.
+db-1     | 
+db-1     | 2024-02-19 19:02:29.100 UTC [1] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+db-1     | 2024-02-19 19:02:29.100 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 19:02:29.100 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 19:02:29.108 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 19:02:29.115 UTC [51] LOG:  database system was shut down at 2024-02-19 19:02:29 UTC
+db-1     | 2024-02-19 19:02:29.124 UTC [1] LOG:  database system is ready to accept connections
+nginx-1  | 2024/02/19 19:02:29 [error] 31#31: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.3:8000/clientes/1/extrato", host: "localhost:9999"
+db-1     | 2024-02-19 19:02:30.324 UTC [57] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:30.324 UTC [57] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" WHERE "app_customer"."id" = 1 LIMIT 21
+db-1     | 2024-02-19 19:02:30.333 UTC [57] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:30.333 UTC [57] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" LIMIT 21
+db-1     | 2024-02-19 19:02:30.334 UTC [57] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:30.334 UTC [57] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" LIMIT 21
+db-1     | 2024-02-19 19:02:30.334 UTC [57] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:30.334 UTC [57] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" WHERE "app_customer"."id" = 1 LIMIT 21
+db-1     | 2024-02-19 19:02:30.335 UTC [57] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:30.335 UTC [57] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" WHERE "app_customer"."id" = 1 LIMIT 21
+db-1     | 2024-02-19 19:02:30.335 UTC [57] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:30.335 UTC [57] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" WHERE "app_customer"."id" = 1 LIMIT 21
+db-1     | 2024-02-19 19:02:30.336 UTC [57] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:30.336 UTC [57] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" WHERE "app_customer"."id" = 1 LIMIT 21
+api02-1  | Internal Server Error: /clientes/1/extrato
+api02-1  | Traceback (most recent call last):
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/backends/utils.py", line 89, in _execute
+api02-1  |     return self.cursor.execute(sql, params)
+api02-1  | psycopg2.errors.UndefinedTable: relation "app_customer" does not exist
+api02-1  | LINE 1: ...p_customer"."limite", "app_customer"."saldo" FROM "app_custo...
+api02-1  |                                                              ^
+api02-1  | 
+api02-1  | 
+api02-1  | The above exception was the direct cause of the following exception:
+api02-1  | 
+api02-1  | Traceback (most recent call last):
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+api02-1  |     response = get_response(request)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+api02-1  |     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+api02-1  |     return view_func(*args, **kwargs)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/views/generic/base.py", line 104, in view
+api02-1  |     return self.dispatch(request, *args, **kwargs)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+api02-1  |     response = self.handle_exception(exc)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+api02-1  |     self.raise_uncaught_exception(exc)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+api02-1  |     raise exc
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+api02-1  |     response = handler(request, *args, **kwargs)
+api02-1  |   File "/app/rinhadjango/app/views.py", line 47, in get
+api02-1  |     customer = get_object_or_404(
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+api02-1  |     return queryset.get(*args, **kwargs)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/models/query.py", line 633, in get
+api02-1  |     num = len(clone)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/models/query.py", line 380, in __len__
+api02-1  |     self._fetch_all()
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+api02-1  |     self._result_cache = list(self._iterable_class(self))
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/models/query.py", line 91, in __iter__
+api02-1  |     results = compiler.execute_sql(
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+api02-1  |     cursor.execute(sql, params)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/backends/utils.py", line 102, in execute
+api02-1  |     return super().execute(sql, params)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/backends/utils.py", line 67, in execute
+api02-1  |     return self._execute_with_wrappers(
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+api02-1  |     return executor(sql, params, many, context)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/backends/utils.py", line 89, in _execute
+api02-1  |     return self.cursor.execute(sql, params)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/utils.py", line 91, in __exit__
+api02-1  |     raise dj_exc_value.with_traceback(traceback) from exc_value
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/backends/utils.py", line 89, in _execute
+api02-1  |     return self.cursor.execute(sql, params)
+api02-1  | django.db.utils.ProgrammingError: relation "app_customer" does not exist
+api02-1  | LINE 1: ...p_customer"."limite", "app_customer"."saldo" FROM "app_custo...
+api02-1  |                                                              ^
+api02-1  | 
+api01-1  | No changes detected
+nginx-1  | 2024/02/19 19:02:32 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.3:8000/clientes/1/extrato", host: "localhost:9999"
+db-1     | 2024-02-19 19:02:32.430 UTC [59] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:32.430 UTC [59] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" WHERE "app_customer"."id" = 1 LIMIT 21
+db-1     | 2024-02-19 19:02:32.438 UTC [59] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:32.438 UTC [59] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" LIMIT 21
+db-1     | 2024-02-19 19:02:32.439 UTC [59] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:32.439 UTC [59] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" LIMIT 21
+db-1     | 2024-02-19 19:02:32.439 UTC [59] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:32.439 UTC [59] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" WHERE "app_customer"."id" = 1 LIMIT 21
+db-1     | 2024-02-19 19:02:32.439 UTC [59] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:32.439 UTC [59] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" WHERE "app_customer"."id" = 1 LIMIT 21
+db-1     | 2024-02-19 19:02:32.440 UTC [59] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:32.440 UTC [59] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" WHERE "app_customer"."id" = 1 LIMIT 21
+db-1     | 2024-02-19 19:02:32.440 UTC [59] ERROR:  relation "app_customer" does not exist at character 82
+db-1     | 2024-02-19 19:02:32.440 UTC [59] STATEMENT:  SELECT "app_customer"."id", "app_customer"."limite", "app_customer"."saldo" FROM "app_customer" WHERE "app_customer"."id" = 1 LIMIT 21
+api02-1  | Internal Server Error: /clientes/1/extrato
+api02-1  | Traceback (most recent call last):
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/backends/utils.py", line 89, in _execute
+api02-1  |     return self.cursor.execute(sql, params)
+api02-1  | psycopg2.errors.UndefinedTable: relation "app_customer" does not exist
+api02-1  | LINE 1: ...p_customer"."limite", "app_customer"."saldo" FROM "app_custo...
+api02-1  |                                                              ^
+api02-1  | 
+api02-1  | 
+api02-1  | The above exception was the direct cause of the following exception:
+api02-1  | 
+api02-1  | Traceback (most recent call last):
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+api02-1  |     response = get_response(request)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+api02-1  |     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+api02-1  |     return view_func(*args, **kwargs)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/views/generic/base.py", line 104, in view
+api02-1  |     return self.dispatch(request, *args, **kwargs)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+api02-1  |     response = self.handle_exception(exc)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+api02-1  |     self.raise_uncaught_exception(exc)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+api02-1  |     raise exc
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+api02-1  |     response = handler(request, *args, **kwargs)
+api02-1  |   File "/app/rinhadjango/app/views.py", line 47, in get
+api02-1  |     customer = get_object_or_404(
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+api02-1  |     return queryset.get(*args, **kwargs)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/models/query.py", line 633, in get
+api02-1  |     num = len(clone)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/models/query.py", line 380, in __len__
+api02-1  |     self._fetch_all()
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+api02-1  |     self._result_cache = list(self._iterable_class(self))
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/models/query.py", line 91, in __iter__
+api02-1  |     results = compiler.execute_sql(
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+api02-1  |     cursor.execute(sql, params)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/backends/utils.py", line 102, in execute
+api02-1  |     return super().execute(sql, params)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/backends/utils.py", line 67, in execute
+api02-1  |     return self._execute_with_wrappers(
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+api02-1  |     return executor(sql, params, many, context)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/backends/utils.py", line 89, in _execute
+api02-1  |     return self.cursor.execute(sql, params)
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/utils.py", line 91, in __exit__
+api02-1  |     raise dj_exc_value.with_traceback(traceback) from exc_value
+api02-1  |   File "/usr/local/lib/python3.8/site-packages/django/db/backends/utils.py", line 89, in _execute
+api02-1  |     return self.cursor.execute(sql, params)
+api02-1  | django.db.utils.ProgrammingError: relation "app_customer" does not exist
+api02-1  | LINE 1: ...p_customer"."limite", "app_customer"."saldo" FROM "app_custo...
+api02-1  |                                                              ^
+api02-1  | 
+api01-1  | Operations to perform:
+api01-1  |   Apply all migrations: admin, app, auth, contenttypes, sessions
+api01-1  | Running migrations:
+api01-1  |   Applying contenttypes.0001_initial... OK
+api01-1  |   Applying auth.0001_initial... OK
+api01-1  |   Applying admin.0001_initial... OK
+api01-1  |   Applying admin.0002_logentry_remove_auto_add... OK
+api01-1  |   Applying admin.0003_logentry_add_action_flag_choices... OK
+api01-1  |   Applying app.0001_initial... OK
+api01-1  |   Applying app.0002_alter_transaction_valor... OK
+api01-1  |   Applying app.0003_alter_transaction_realizada_em... OK
+api01-1  |   Applying app.0004_alter_transaction_options... OK
+api01-1  |   Applying app.0005_alter_transaction_options_alter_transaction_cliente... OK
+api01-1  |   Applying contenttypes.0002_remove_content_type_name... OK
+api01-1  |   Applying auth.0002_alter_permission_name_max_length... OK
+api01-1  |   Applying auth.0003_alter_user_email_max_length... OK
+api01-1  |   Applying auth.0004_alter_user_username_opts... OK
+api01-1  |   Applying auth.0005_alter_user_last_login_null... OK
+api01-1  |   Applying auth.0006_require_contenttypes_0002... OK
+api01-1  |   Applying auth.0007_alter_validators_add_error_messages... OK
+api01-1  |   Applying auth.0008_alter_user_username_max_length... OK
+api01-1  |   Applying auth.0009_alter_user_last_name_max_length... OK
+api01-1  |   Applying auth.0010_alter_group_name_max_length... OK
+api01-1  |   Applying auth.0011_update_proxy_permissions... OK
+api01-1  |   Applying auth.0012_alter_user_first_name_max_length... OK
+api01-1  |   Applying sessions.0001_initial... OK
+nginx-1  | 2024/02/19 19:02:34 [error] 29#29: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.3:8000/clientes/1/extrato", host: "localhost:9999"
+api02-1  | Not Found: /clientes/1/extrato
+nginx-1  | 2024/02/19 19:02:36 [error] 32#32: *10 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.3:8000/clientes/1/extrato", host: "localhost:9999"
+api02-1  | Not Found: /clientes/1/extrato
+api01-1  | <QuerySet [<Customer: Customer object (1)>, <Customer: Customer object (2)>, <Customer: Customer object (3)>, <Customer: Customer object (4)>, <Customer: Customer object (5)>]>
+api01-1  | [2024-02-19 19:02:37 +0000] [1] [INFO] Starting gunicorn 21.2.0
+api01-1  | [2024-02-19 19:02:37 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+api01-1  | [2024-02-19 19:02:37 +0000] [1] [INFO] Using worker: sync
+api01-1  | [2024-02-19 19:02:37 +0000] [14] [INFO] Booting worker with pid: 14
+api02-1  | Not Found: /clientes/6/extrato
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/4/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/3/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/4/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/3/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/4/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/3/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/3/transacoes
+api02-1  | Unprocessable Entity: /clientes/4/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/4/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/3/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/2/transacoes
+api01-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api02-1  | Unprocessable Entity: /clientes/1/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api02-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/5/transacoes
+api01-1  | Unprocessable Entity: /clientes/2/transacoes

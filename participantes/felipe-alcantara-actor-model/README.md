@@ -4,7 +4,7 @@
 
 ### *Usando **menos recursos** do que o estipulado pela rinha!!
 
-Estamos utilizando apenas **230MB** de memória economizando **320MB** dos 550MB que poderíamos ter usado!
+Estamos utilizando apenas **240MB** de memória economizando **310MB** dos 550MB que poderíamos ter usado!
 
 ## Submissão feita com:
 ### - `Actor model` 
@@ -19,7 +19,7 @@ Para otimizar o desempenho dos rebuilds, implementamos uma técnica de *snapshot
 ### - `Load balancer com backends gRPC` 
 Optamos por uma implementação personalizada de um load balancer http que faz proxy para os backends rodando em gRPC. Nele implementamos um algoritmo extremamente simples de **consistent hashing**, porém eficaz para os objetivos da rinha, onde garantimos uma distribuição equilibrada do tráfego entre os nós da aplicação. Esse processo distribui os clientes, direcionando a requisição de um cliente específico sempre para o mesmo nó, o que elimina a necessidade de cache externo, já que o estado de um actor é mantido sempre em memória, proporcionando um acesso rápido e eficiente aos dados. Assim, não só garantimos uma distribuição uniforme do tráfego, mas também otimizamos o desempenho do sistema.
 
-### - `MongoDB` 
+### - `MongoDB + non blocking I/O` 
 Foi uma escolha arbitrária. Como o controle de concorrência é tratado pela aplicação, qualquer banco de dados poderia ser utilizado (até mesmo um arquivo, ou SQLite). Mas para atender aos requisitos da rinha, decidimos ter um server de banco de dados mesmo.
 
 ### - `Go + gRPC` 

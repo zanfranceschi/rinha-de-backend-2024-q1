@@ -1,0 +1,62 @@
+version: '3.5'
+
+services:
+  api-01: &api
+    image: henriqueholtz/rinha-de-backend-2024-q1-dotnet:0.1
+    container_name: api-01
+    environment:
+      - HTTP_PORTS=5000
+    ports:
+      - 5001:5000
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: '110MB'
+
+  api-02:
+    # Copy from 'api-01'.
+    <<: *api
+    container_name: api-02
+    ports:
+      - 5002:5000
+
+  nginx:
+    image: nginx:1.24
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api-01
+      - api-02
+    ports:
+      - '9999:9999'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.12'
+          memory: '50MB'
+
+  db:
+    image: postgres:12.18
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=Rinh@2024q1
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=RinhaDb
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgres.conf:/docker-entrypoint-initdb.d/postgres.conf
+    deploy:
+      resources:
+        limits:
+          cpus: '0.88'
+          memory: '280MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

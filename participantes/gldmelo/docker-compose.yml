@@ -2,30 +2,24 @@ version: "3.5"
 
 services:
   api01: &api
-    image: gldmelo/rinhabackendcrebito:1.4-aot
+    image: gldmelo/rinhabackendcrebito:1.5-aot
     hostname: api01
     environment:
-      - DB_HOSTNAME=db
-      - PORT=8080
-    ports:
-      - "3001:8080"
+      - ASPNETCORE_URLS=http://*:8080
     depends_on:
       - db
     deploy:
       resources:
         limits:
-          cpus: "0.3"
-          memory: "70MB"
+          cpus: "0.30"
+          memory: "45MB"
 
   api02:
     <<: *api
     hostname: api02
     environment:
-      - DB_HOSTNAME=db
-      - PORT=8080
-    ports:
-      - "3002:8080"
-  
+      - ASPNETCORE_URLS=http://*:8080
+      
   nginx:
     image: nginx:latest
     volumes:
@@ -39,7 +33,7 @@ services:
       resources:
         limits:
           cpus: "0.2"
-          memory: "40MB"
+          memory: "90MB"
     
   db:
     image: postgres:latest
@@ -64,3 +58,5 @@ networks:
   default:
     driver: bridge
     name: rinha-nginx-2024q1
+    driver_opts:
+      com.docker.network.driver.mtu: 1024
