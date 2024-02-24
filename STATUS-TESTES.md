@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 24 14:11:26 UTC 2024** com **316** submissões.
+Atualizada **Sat Feb 24 14:27:45 UTC 2024** com **316** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -232,7 +232,7 @@ Atualizada **Sat Feb 24 14:11:26 UTC 2024** com **316** submissões.
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 4 |
 | [mateusdeitos-node](./participantes/mateusdeitos-node) | ok | 2 |
-| [matheusdojava](./participantes/matheusdojava) | ok | 94 |
+| [matheusdojava](./participantes/matheusdojava) | ok | 116 |
 | [matheusfbosa](./participantes/matheusfbosa) | ok | 1 |
 | [matheuslao](./participantes/matheuslao) | ok | 7 |
 | [matheusleal](./participantes/matheusleal) | ok | 4 |
@@ -316,7 +316,7 @@ Atualizada **Sat Feb 24 14:11:26 UTC 2024** com **316** submissões.
 | [williansugiyama](./participantes/williansugiyama) | ok | 1 |
 | [wladneto](./participantes/wladneto) | falha - [logs](./participantes/wladneto/docker-compose.logs) | -- |
 | [yMarceloMaia](./participantes/yMarceloMaia) | ok | 9 |
-| [yanpgabriel](./participantes/yanpgabriel) | ok | 6 |
+| [yanpgabriel](./participantes/yanpgabriel) | ok | 4 |
 | [yanpitangui](./participantes/yanpitangui) | ok | 1 |
 | [ygorcarmo](./participantes/ygorcarmo) | ok | 8 |
 | [zan-clojure-01](./participantes/zan-clojure-01) | ok | 2 |
