@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Feb 24 14:27:45 UTC 2024** com **316** submissões.
+Atualizada **Sat Feb 24 14:47:39 UTC 2024** com **320** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -113,6 +113,7 @@ Atualizada **Sat Feb 24 14:27:45 UTC 2024** com **316** submissões.
 | [flpStrri](./participantes/flpStrri) | ok | 2 |
 | [fraidev](./participantes/fraidev) | falha - [logs](./participantes/fraidev/docker-compose.logs) | -- |
 | [franklaercio](./participantes/franklaercio) | ok | 5 |
+| [ftathiago-blogdoft-csharp](./participantes/ftathiago-blogdoft-csharp) | ok | 2 |
 | [gabrielfmagalhaes](./participantes/gabrielfmagalhaes) | ok | 5 |
 | [gabrielluciano-vertx](./participantes/gabrielluciano-vertx) | ok | 1 |
 | [gasparbarancelli-h2-database](./participantes/gasparbarancelli-h2-database) | ok | 2 |
@@ -132,6 +133,7 @@ Atualizada **Sat Feb 24 14:27:45 UTC 2024** com **316** submissões.
 | [giovannibassi-rust](./participantes/giovannibassi-rust) | ok | 1 |
 | [giovannibassi-vb](./participantes/giovannibassi-vb) | ok | 1 |
 | [giovannibassi](./participantes/giovannibassi) | ok | 1 |
+| [glauco-filho-01](./participantes/glauco-filho-01) | ok | 110 |
 | [gldmelo-cs-py-hibrid](./participantes/gldmelo-cs-py-hibrid) | ok | 4 |
 | [gldmelo-py-fastapi](./participantes/gldmelo-py-fastapi) | ok | 2 |
 | [gldmelo](./participantes/gldmelo) | ok | 2 |
@@ -261,7 +263,9 @@ Atualizada **Sat Feb 24 14:27:45 UTC 2024** com **316** submissões.
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
 | [quokka](./participantes/quokka) | ok | 5 |
 | [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
+| [rafaelpadovezi-mongo](./participantes/rafaelpadovezi-mongo) | ok | 2 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
+| [raiane-dev](./participantes/raiane-dev) | ok | 1 |
 | [raissadev](./participantes/raissadev) | ok | 2 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
 | [ramosfabiano](./participantes/ramosfabiano) | ok | 3 |
