@@ -1,0 +1,75 @@
+version: "3.9"
+
+services:
+  api1: &api
+    build: .
+    command: bash -c "./wait-for-it.sh db:5432 && uvicorn src.application:app --host 0.0.0.0 --port 8080"
+    hostname: api01
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./src:/src
+    env_file:
+      - ./.env
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_SECRET=${DB_SECRET}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "100MB"
+
+  api2:
+    <<: *api
+    hostname: api02
+    ports:
+      - "8082:8080"
+
+  nginx:
+    image: nginx:stable-alpine3.17-slim
+    ports:
+      - "9999:9999"
+    depends_on:
+      - db
+      - api1
+      - api2
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "10MB"
+
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "340MB"
+
+volumes:
+  postgres_data:
+
+networks:
+  default:
+    driver: bridge
+    name: rinhabackend
