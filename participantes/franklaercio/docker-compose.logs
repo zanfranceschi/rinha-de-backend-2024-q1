@@ -2,10 +2,10 @@
  Network rinha-nginx-2024q1  Created
  Container franklaercio-db-1  Creating
  Container franklaercio-db-1  Created
- Container franklaercio-api01-1  Creating
  Container franklaercio-api02-1  Creating
- Container franklaercio-api01-1  Created
+ Container franklaercio-api01-1  Creating
  Container franklaercio-api02-1  Created
+ Container franklaercio-api01-1  Created
  Container franklaercio-nginx-1  Creating
  Container franklaercio-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -36,8 +36,6 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -45,10 +43,12 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | waiting for server to start....2024-02-25 15:08:54.890 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-25 15:08:54.893 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-25 15:08:54.903 UTC [51] LOG:  database system was shut down at 2024-02-25 15:08:54 UTC
-db-1     | 2024-02-25 15:08:54.908 UTC [48] LOG:  database system is ready to accept connections
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1     | waiting for server to start....2024-02-25 21:05:29.401 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-25 21:05:29.404 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-25 21:05:29.414 UTC [51] LOG:  database system was shut down at 2024-02-25 21:05:28 UTC
+db-1     | 2024-02-25 21:05:29.421 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -57,6 +57,7 @@ db-1     |
 db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
 db-1     | CREATE TABLE
 db-1     | CREATE TABLE
+db-1     | CREATE INDEX
 db-1     | INSERT 0 1
 db-1     | INSERT 0 1
 db-1     | INSERT 0 1
@@ -64,437 +65,67 @@ db-1     | INSERT 0 1
 db-1     | INSERT 0 1
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-25 15:08:55.138 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-02-25 15:08:55.141 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-25 15:08:55.143 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-25 15:08:55.143 UTC [49] LOG:  shutting down
-db-1     | 2024-02-25 15:08:55.146 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-25 15:08:55.638 UTC [49] LOG:  checkpoint complete: wrote 939 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.393 s, sync=0.091 s, total=0.496 s; sync files=307, longest=0.059 s, average=0.001 s; distance=4294 kB, estimate=4294 kB; lsn=0/191C400, redo lsn=0/191C400
-db-1     | 2024-02-25 15:08:55.643 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-02-25 21:05:29.661 UTC [48] LOG:  received fast shutdown request
+db-1     | .2024-02-25 21:05:29.664 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-25 21:05:29.665 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-25 21:05:29.667 UTC [49] LOG:  shutting down
+db-1     | 2024-02-25 21:05:29.669 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-25 21:05:30.157 UTC [49] LOG:  checkpoint complete: wrote 938 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.371 s, sync=0.108 s, total=0.490 s; sync files=308, longest=0.074 s, average=0.001 s; distance=4292 kB, estimate=4292 kB; lsn=0/191BCA8, redo lsn=0/191BCA8
+db-1     | 2024-02-25 21:05:30.162 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-25 15:08:55.763 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-25 15:08:55.763 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-25 15:08:55.763 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-25 15:08:55.768 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-25 15:08:55.774 UTC [66] LOG:  database system was shut down at 2024-02-25 15:08:55 UTC
-db-1     | 2024-02-25 15:08:55.781 UTC [1] LOG:  database system is ready to accept connections
-nginx-1  | 2024/02/25 15:08:57 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.20.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/25 15:08:57 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.20.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/25 15:08:59 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/25 15:09:01 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-02-25T15:09:02.417Z  INFO 1 --- [           main] com.github.rinha.Application             : Starting Application v1.0.0 using Java 21.0.1 with PID 1 (/app/app.jar started by root in /)
-api02-1  | 2024-02-25T15:09:02.423Z  INFO 1 --- [           main] com.github.rinha.Application             : No active profile set, falling back to 1 default profile: "default"
-api01-1  | 2024-02-25T15:09:02.620Z  INFO 1 --- [           main] com.github.rinha.Application             : Starting Application v1.0.0 using Java 21.0.1 with PID 1 (/app/app.jar started by root in /)
-api01-1  | 2024-02-25T15:09:02.722Z  INFO 1 --- [           main] com.github.rinha.Application             : No active profile set, falling back to 1 default profile: "default"
-nginx-1  | 2024/02/25 15:09:03 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/25 15:09:05 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/25 15:09:07 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/25 15:09:09 [error] 29#29: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.20.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/25 15:09:09 [error] 29#29: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.20.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/25 15:09:11 [error] 29#29: *12 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/25 15:09:13 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/25 15:09:15 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-02-25T15:09:17.220Z  INFO 1 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080
-api01-1  | 2024-02-25T15:09:17.316Z  INFO 1 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080
-api02-1  | 2024-02-25T15:09:17.322Z  INFO 1 --- [           main] com.github.rinha.Application             : Started Application in 19.109 seconds (process running for 23.454)
-nginx-1  | 2024/02/25 15:09:17 [error] 29#29: *15 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | 2024-02-25T15:09:17.422Z  INFO 1 --- [           main] com.github.rinha.Application             : Started Application in 19.286 seconds (process running for 23.503)
-nginx-1  | 2024/02/25 15:09:19 [error] 29#29: *16 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-02-25T15:09:21.918Z  INFO 1 --- [or-http-epoll-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-api02-1  | 2024-02-25T15:09:23.327Z  INFO 1 --- [or-http-epoll-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1d5a9be5
-api02-1  | 2024-02-25T15:09:23.328Z  INFO 1 --- [or-http-epoll-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-db-1     | 2024-02-25 15:09:23.334 UTC [71] ERROR:  relation "account" does not exist at character 83
-db-1     | 2024-02-25 15:09:23.334 UTC [71] STATEMENT:  SELECT c.max_limit, c.balance, t.amount, t.kind, t.description, t.created_at FROM account as c LEFT JOIN transactions as t ON t.id_account = c.id WHERE c.id = $1 ORDER BY t.created_at DESC LIMIT 10
-api02-1  | 2024-02-25T15:09:23.725Z ERROR 1 --- [or-http-epoll-2] a.w.r.e.AbstractErrorWebExceptionHandler : [a79a0295-1]  500 Server Error for HTTP GET "/clientes/1/extrato"
-api02-1  | 
-api02-1  | org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT c.max_limit, c.balance, t.amount, t.kind, t.description, t.created_at FROM account as c LEFT JOIN transactions as t ON t.id_account = c.id WHERE c.id = ? ORDER BY t.created_at DESC LIMIT 10]
-api02-1  | 	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
-api02-1  | Error has been observed at the following site(s):
-api02-1  | 	*__checkpoint ⇢ HTTP GET "/clientes/1/extrato" [ExceptionHandlingWebHandler]
-api02-1  | Original Stack Trace:
-api02-1  | 		at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:723) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:754) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:767) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:820) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at com.github.rinha.services.AccountService.retrieveStatement(AccountService.java:30) ~[!/:1.0.0]
-api02-1  | 		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-api02-1  | 		at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-api02-1  | 		at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351) ~[spring-aop-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:713) ~[spring-aop-6.1.3.jar!/:6.1.3]
-api02-1  | 		at com.github.rinha.services.AccountService$$SpringCGLIB$$0.retrieveStatement(<generated>) ~[!/:1.0.0]
-api02-1  | 		at com.github.rinha.controllers.AccountController.retrieveStatement(AccountController.java:31) ~[!/:1.0.0]
-api02-1  | 		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-api02-1  | 		at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-api02-1  | 		at org.springframework.web.reactive.result.method.InvocableHandlerMethod.lambda$invoke$1(InvocableHandlerMethod.java:182) ~[spring-webflux-6.1.3.jar!/:6.1.3]
-api02-1  | 		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:132) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:122) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:193) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onSubscribe(MonoIgnoreThen.java:135) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:241) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:121) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Mono.subscribe(Mono.java:4512) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Mono.subscribe(Mono.java:4512) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoDeferContextual.subscribe(MonoDeferContextual.java:55) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.netty.http.server.HttpServer$HttpServerHandle.onStateChange(HttpServer.java:1169) ~[reactor-netty-http-1.1.15.jar!/:1.1.15]
-api02-1  | 		at reactor.netty.ReactorNetty$CompositeConnectionObserver.onStateChange(ReactorNetty.java:710) ~[reactor-netty-core-1.1.15.jar!/:1.1.15]
-api02-1  | 		at reactor.netty.transport.ServerTransport$ChildObserver.onStateChange(ServerTransport.java:481) ~[reactor-netty-core-1.1.15.jar!/:1.1.15]
-api02-1  | 		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:652) ~[reactor-netty-http-1.1.15.jar!/:1.1.15]
-api02-1  | 		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:114) ~[reactor-netty-core-1.1.15.jar!/:1.1.15]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:238) ~[reactor-netty-http-1.1.15.jar!/:1.1.15]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.epoll.AbstractEpollStreamChannel$EpollStreamUnsafe.epollInReady(AbstractEpollStreamChannel.java:800) ~[netty-transport-classes-epoll-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:509) ~[netty-transport-classes-epoll-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:407) ~[netty-transport-classes-epoll-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
-api02-1  | Caused by: org.postgresql.util.PSQLException: ERROR: relation "account" does not exist
-api02-1  |   Position: 83
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:134) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at org.springframework.jdbc.core.JdbcTemplate$1.doInPreparedStatement(JdbcTemplate.java:732) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:723) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:754) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:767) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:820) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	at com.github.rinha.services.AccountService.retrieveStatement(AccountService.java:30) ~[!/:1.0.0]
-api02-1  | 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-api02-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-api02-1  | 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351) ~[spring-aop-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:713) ~[spring-aop-6.1.3.jar!/:6.1.3]
-api02-1  | 	at com.github.rinha.services.AccountService$$SpringCGLIB$$0.retrieveStatement(<generated>) ~[!/:1.0.0]
-api02-1  | 	at com.github.rinha.controllers.AccountController.retrieveStatement(AccountController.java:31) ~[!/:1.0.0]
-api02-1  | 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-api02-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-api02-1  | 	at org.springframework.web.reactive.result.method.InvocableHandlerMethod.lambda$invoke$1(InvocableHandlerMethod.java:182) ~[spring-webflux-6.1.3.jar!/:6.1.3]
-api02-1  | 	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:132) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:122) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:193) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onSubscribe(MonoIgnoreThen.java:135) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:241) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:121) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Mono.subscribe(Mono.java:4512) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Mono.subscribe(Mono.java:4512) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoDeferContextual.subscribe(MonoDeferContextual.java:55) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.netty.http.server.HttpServer$HttpServerHandle.onStateChange(HttpServer.java:1169) ~[reactor-netty-http-1.1.15.jar!/:1.1.15]
-api02-1  | 	at reactor.netty.ReactorNetty$CompositeConnectionObserver.onStateChange(ReactorNetty.java:710) ~[reactor-netty-core-1.1.15.jar!/:1.1.15]
-api02-1  | 	at reactor.netty.transport.ServerTransport$ChildObserver.onStateChange(ServerTransport.java:481) ~[reactor-netty-core-1.1.15.jar!/:1.1.15]
-api02-1  | 	at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:652) ~[reactor-netty-http-1.1.15.jar!/:1.1.15]
-api02-1  | 	at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:114) ~[reactor-netty-core-1.1.15.jar!/:1.1.15]
-api02-1  | 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:238) ~[reactor-netty-http-1.1.15.jar!/:1.1.15]
-api02-1  | 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.epoll.AbstractEpollStreamChannel$EpollStreamUnsafe.epollInReady(AbstractEpollStreamChannel.java:800) ~[netty-transport-classes-epoll-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:509) ~[netty-transport-classes-epoll-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:407) ~[netty-transport-classes-epoll-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
-api02-1  | 
-db-1     | 2024-02-25 15:09:26.329 UTC [71] ERROR:  relation "account" does not exist at character 83
-db-1     | 2024-02-25 15:09:26.329 UTC [71] STATEMENT:  SELECT c.max_limit, c.balance, t.amount, t.kind, t.description, t.created_at FROM account as c LEFT JOIN transactions as t ON t.id_account = c.id WHERE c.id = $1 ORDER BY t.created_at DESC LIMIT 10
-api02-1  | 2024-02-25T15:09:26.330Z ERROR 1 --- [or-http-epoll-3] a.w.r.e.AbstractErrorWebExceptionHandler : [fd281b42-2]  500 Server Error for HTTP GET "/clientes/1/extrato"
-api02-1  | 
-api02-1  | org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT c.max_limit, c.balance, t.amount, t.kind, t.description, t.created_at FROM account as c LEFT JOIN transactions as t ON t.id_account = c.id WHERE c.id = ? ORDER BY t.created_at DESC LIMIT 10]
-api02-1  | 	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
-api02-1  | Error has been observed at the following site(s):
-api02-1  | 	*__checkpoint ⇢ HTTP GET "/clientes/1/extrato" [ExceptionHandlingWebHandler]
-api02-1  | Original Stack Trace:
-api02-1  | 		at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:723) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:754) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:767) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:820) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 		at com.github.rinha.services.AccountService.retrieveStatement(AccountService.java:30) ~[!/:1.0.0]
-api02-1  | 		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-api02-1  | 		at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-api02-1  | 		at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351) ~[spring-aop-6.1.3.jar!/:6.1.3]
-api02-1  | 		at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:713) ~[spring-aop-6.1.3.jar!/:6.1.3]
-api02-1  | 		at com.github.rinha.services.AccountService$$SpringCGLIB$$0.retrieveStatement(<generated>) ~[!/:1.0.0]
-api02-1  | 		at com.github.rinha.controllers.AccountController.retrieveStatement(AccountController.java:31) ~[!/:1.0.0]
-api02-1  | 		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-api02-1  | 		at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-api02-1  | 		at org.springframework.web.reactive.result.method.InvocableHandlerMethod.lambda$invoke$1(InvocableHandlerMethod.java:182) ~[spring-webflux-6.1.3.jar!/:6.1.3]
-api02-1  | 		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:132) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:122) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:193) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onSubscribe(MonoIgnoreThen.java:135) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:241) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:121) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Mono.subscribe(Mono.java:4512) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.Mono.subscribe(Mono.java:4512) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.core.publisher.MonoDeferContextual.subscribe(MonoDeferContextual.java:55) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 		at reactor.netty.http.server.HttpServer$HttpServerHandle.onStateChange(HttpServer.java:1169) ~[reactor-netty-http-1.1.15.jar!/:1.1.15]
-api02-1  | 		at reactor.netty.ReactorNetty$CompositeConnectionObserver.onStateChange(ReactorNetty.java:710) ~[reactor-netty-core-1.1.15.jar!/:1.1.15]
-api02-1  | 		at reactor.netty.transport.ServerTransport$ChildObserver.onStateChange(ServerTransport.java:481) ~[reactor-netty-core-1.1.15.jar!/:1.1.15]
-api02-1  | 		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:652) ~[reactor-netty-http-1.1.15.jar!/:1.1.15]
-api02-1  | 		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:114) ~[reactor-netty-core-1.1.15.jar!/:1.1.15]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:238) ~[reactor-netty-http-1.1.15.jar!/:1.1.15]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.epoll.AbstractEpollStreamChannel$EpollStreamUnsafe.epollInReady(AbstractEpollStreamChannel.java:800) ~[netty-transport-classes-epoll-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:509) ~[netty-transport-classes-epoll-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:407) ~[netty-transport-classes-epoll-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.105.Final.jar!/:4.1.105.Final]
-api02-1  | 		at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
-api02-1  | Caused by: org.postgresql.util.PSQLException: ERROR: relation "account" does not exist
-api02-1  |   Position: 83
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:134) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at org.springframework.jdbc.core.JdbcTemplate$1.doInPreparedStatement(JdbcTemplate.java:732) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:723) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:754) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:767) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:820) ~[spring-jdbc-6.1.3.jar!/:6.1.3]
-api02-1  | 	at com.github.rinha.services.AccountService.retrieveStatement(AccountService.java:30) ~[!/:1.0.0]
-api02-1  | 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-api02-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-api02-1  | 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351) ~[spring-aop-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:713) ~[spring-aop-6.1.3.jar!/:6.1.3]
-api02-1  | 	at com.github.rinha.services.AccountService$$SpringCGLIB$$0.retrieveStatement(<generated>) ~[!/:1.0.0]
-api02-1  | 	at com.github.rinha.controllers.AccountController.retrieveStatement(AccountController.java:31) ~[!/:1.0.0]
-api02-1  | 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-api02-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-api02-1  | 	at org.springframework.web.reactive.result.method.InvocableHandlerMethod.lambda$invoke$1(InvocableHandlerMethod.java:182) ~[spring-webflux-6.1.3.jar!/:6.1.3]
-api02-1  | 	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:132) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:122) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:193) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onSubscribe(MonoIgnoreThen.java:135) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:241) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189) ~[reactor-core-3.6.2.jar!/:3.6.2]
-api02-1  | 	at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.6.2.jar!/:3.6.2]
+db-1     | 2024-02-25 21:05:30.286 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-25 21:05:30.287 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-25 21:05:30.287 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-25 21:05:30.292 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-25 21:05:30.301 UTC [66] LOG:  database system was shut down at 2024-02-25 21:05:30 UTC
+db-1     | 2024-02-25 21:05:30.307 UTC [1] LOG:  database system is ready to accept connections
+nginx-1  | 2024/02/25 21:05:31 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/25 21:05:31 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/25 21:05:33 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/25 21:05:35 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | 2024-02-25T21:05:36.828Z  INFO 1 --- [           main] com.github.rinha.Application             : Starting Application v1.0.0 using Java 21.0.1 with PID 1 (/app/app.jar started by root in /)
+api01-1  | 2024-02-25T21:05:36.827Z  INFO 1 --- [           main] com.github.rinha.Application             : Starting Application v1.0.0 using Java 21.0.1 with PID 1 (/app/app.jar started by root in /)
+api02-1  | 2024-02-25T21:05:36.921Z  INFO 1 --- [           main] com.github.rinha.Application             : No active profile set, falling back to 1 default profile: "default"
+api01-1  | 2024-02-25T21:05:36.921Z  INFO 1 --- [           main] com.github.rinha.Application             : No active profile set, falling back to 1 default profile: "default"
+nginx-1  | 2024/02/25 21:05:37 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/25 21:05:39 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/25 21:05:41 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/25 21:05:43 [error] 29#29: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/25 21:05:43 [error] 29#29: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/25 21:05:45 [error] 29#29: *12 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/25 21:05:47 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/25 21:05:49 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1  | 2024-02-25T21:05:51.215Z  INFO 1 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080
+api01-1  | 2024-02-25T21:05:51.328Z  INFO 1 --- [           main] com.github.rinha.Application             : Started Application in 18.707 seconds (process running for 23.063)
+nginx-1  | 2024/02/25 21:05:51 [error] 29#29: *15 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | 2024-02-25T21:05:52.023Z  INFO 1 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080
+api02-1  | 2024-02-25T21:05:52.119Z  INFO 1 --- [           main] com.github.rinha.Application             : Started Application in 19.505 seconds (process running for 23.757)
+nginx-1  | 2024/02/25 21:05:53 [error] 29#29: *16 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | 2024-02-25T21:05:56.423Z  INFO 1 --- [or-http-epoll-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+api02-1  | 2024-02-25T21:05:57.721Z  INFO 1 --- [or-http-epoll-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@99cab35
+api02-1  | 2024-02-25T21:05:57.722Z  INFO 1 --- [or-http-epoll-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+api01-1  | 2024-02-25T21:06:04.630Z  INFO 1 --- [or-http-epoll-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+api01-1  | 2024-02-25T21:06:06.216Z  INFO 1 --- [or-http-epoll-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7d966b9e
+api01-1  | 2024-02-25T21:06:06.218Z  INFO 1 --- [or-http-epoll-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api01-1  | 2024-02-25T21:10:16.228Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+api02-1  | 2024-02-25T21:10:16.229Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+api01-1  | 2024-02-25T21:10:16.240Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+api02-1  | 2024-02-25T21:10:16.241Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+api02-1 exited with code 0
+api02-1 exited with code 143
+api01-1 exited with code 0
+api01-1 exited with code 143
+db-1     | 2024-02-25 21:10:17.180 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-25 21:10:17.210 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-25 21:10:17.212 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-02-25 21:10:17.213 UTC [64] LOG:  shutting down
+db-1     | 2024-02-25 21:10:17.216 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-25 21:10:17.365 UTC [64] LOG:  checkpoint complete: wrote 742 buffers (4.5%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.010 s, sync=0.123 s, total=0.152 s; sync files=29, longest=0.084 s, average=0.005 s; distance=19715 kB, estimate=19715 kB; lsn=0/2C5CB60, redo lsn=0/2C5CB60
+db-1     | 2024-02-25 21:10:17.369 UTC [1] LOG:  database system is shut down
+db-1 exited with code 0
