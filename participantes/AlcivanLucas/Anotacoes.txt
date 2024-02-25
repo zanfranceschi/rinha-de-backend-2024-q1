@@ -5,3 +5,42 @@ GET /clientes/[id]/extrato
 ----------tecnologias-------
 Nginx 
 Node.js
+
+comandos 
+docker image ls : exibi as immagens criadas 
+
+docker-compose up -d
+
+npx prisma migrate dev --name init: criar as tabelas correspondentes no banco de dados usando o Prisma Migrate, Este comando cria uma nova migração SQL em seu sistema de arquivos e a envia ao banco de dados. O --name initA opção fornecida ao comando especifica o nome da migração e será usada para nomear a pasta de migração criada em seu sistema de arquivos. 
+npm install @prisma/client
+
+docker build -t postgreSQL -f api_node/Dockerfile . 
+-t significa tag , e da o nome da imagem 
+- f é onde fica o arquivo de instruções Dockerfile 
+e "." é diretorio atual  
+
+docker run -d --rm --name mysql-container mysql-image  : cria o conteiner 
+ -d é dectected, faz rodar o conteiner em segundo plano 
+--rm seguinifica que se existir um conteiner com esse nome ele sera removido e outra sera criado no lugar 
+
+
+
+docker-compose up --force-recreate -d : re lê o docker-compose.yml e salva as alterações 
+
+docker-compose ps
+
+docker exec -i postgres-container postgres uroot -rinha < api_node/db/script.sql : executa o script.sql
+exec  : vamos executar comando dentro de um conteiner qu esta rodando
+-i    : significa que extamos executando o comando no modo impertivo pois iremos usar o terminal 
+uroot : 
+
+docker exec -it postgres-conteiner /bin/bash
+-it : significa que vamos usar o terminal bash 
+
+docker exec -it alcivanlucas-db-1 psql -U admin -l : Isso irá listar todos os bancos de dados disponíveis
+
+docker exec -it alcivanlucas-db-1 psql -U admin -d rinha : entra do conteiner do db  rinha pra executar comandos dentro dele 
+
+\dt : lista as tabelas do db rinha
+
+docker exec -it alcivanlucas-db-1 psql -U admin -d rinha -c "SELECT * FROM clientes;"

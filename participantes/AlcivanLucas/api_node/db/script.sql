@@ -1,4 +1,7 @@
 -- Scripts para a criação dos clientes e transações
+-- CREATE DATABASE IF NOT EXISTS rinha;
+-- USE rinha;
+
 CREATE TABLE IF NOT EXISTS clientes(
     id SERIAL PRIMARY KEY ,
     limite INTEGER NOT NULL,  -- deve ser o limite cadastrado do cliente. 
