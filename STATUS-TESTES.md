@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 25 22:43:31 UTC 2024** com **344** submissões.
+Atualizada **Sun Feb 25 22:59:43 UTC 2024** com **346** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -61,6 +61,7 @@ Atualizada **Sun Feb 25 22:43:31 UTC 2024** com **344** submissões.
 | [canabrava](./participantes/canabrava) | ok | 1 |
 | [caravanacloud](./participantes/caravanacloud) | ok | 1 |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 1 |
+| [carlsonsantana-springboot](./participantes/carlsonsantana-springboot) | ok | 2 |
 | [cassiano-manuelzinho-golang](./participantes/cassiano-manuelzinho-golang) | ok | 2 |
 | [cassiano-pedrinho-rust](./participantes/cassiano-pedrinho-rust) | ok | 2 |
 | [cesar-rodrigues](./participantes/cesar-rodrigues) | falha - [logs](./participantes/cesar-rodrigues/docker-compose.logs) | -- |
@@ -100,6 +101,7 @@ Atualizada **Sun Feb 25 22:43:31 UTC 2024** com **344** submissões.
 | [elioenaiferrari](./participantes/elioenaiferrari) | falha - [logs](./participantes/elioenaiferrari/docker-compose.logs) | -- |
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) | -- |
 | [emanuel-xavier](./participantes/emanuel-xavier) | ok | 2 |
+| [emiliosheinz-fumegalli-node](./participantes/emiliosheinz-fumegalli-node) | ok | 4 |
 | [engylemure](./participantes/engylemure) | ok | 3 |
 | [erickmarx](./participantes/erickmarx) | ok | 2 |
 | [erickreis](./participantes/erickreis) | ok | 3 |
