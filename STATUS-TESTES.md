@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 25 20:58:54 UTC 2024** com **340** submissões.
+Atualizada **Sun Feb 25 21:15:21 UTC 2024** com **341** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -117,7 +117,7 @@ Atualizada **Sun Feb 25 20:58:54 UTC 2024** com **340** submissões.
 | [filipemacedo](./participantes/filipemacedo) | ok | 3 |
 | [flpStrri](./participantes/flpStrri) | ok | 2 |
 | [fraidev](./participantes/fraidev) | falha - [logs](./participantes/fraidev/docker-compose.logs) | -- |
-| [franklaercio](./participantes/franklaercio) | falha - [logs](./participantes/franklaercio/docker-compose.logs) | -- |
+| [franklaercio](./participantes/franklaercio) | ok | 4 |
 | [ftathiago-blogdoft-csharp](./participantes/ftathiago-blogdoft-csharp) | ok | 2 |
 | [gabriel-roque](./participantes/gabriel-roque) | ok | 4 |
 | [gabrielfmagalhaes](./participantes/gabrielfmagalhaes) | ok | 5 |
@@ -315,6 +315,7 @@ Atualizada **Sun Feb 25 20:58:54 UTC 2024** com **340** submissões.
 | [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
+| [tagliatti](./participantes/tagliatti) | ok | 945 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
 | [thiagosantana_go](./participantes/thiagosantana_go) | ok | 10 |
 | [thiagotn](./participantes/thiagotn) | ok | 2 |
