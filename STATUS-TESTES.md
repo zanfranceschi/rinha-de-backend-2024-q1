@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 25 14:57:40 UTC 2024** com **338** submissões.
+Atualizada **Sun Feb 25 15:14:54 UTC 2024** com **339** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -76,7 +76,7 @@ Atualizada **Sun Feb 25 14:57:40 UTC 2024** com **338** submissões.
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [david-silva](./participantes/david-silva) | ok | 2 |
 | [ddanielvaz](./participantes/ddanielvaz) | ok | 4 |
-| [delzin](./participantes/delzin) | falha - [logs](./participantes/delzin/docker-compose.logs) | -- |
+| [delzin](./participantes/delzin) | ok | 0 |
 | [deno-cassiogangrel](./participantes/deno-cassiogangrel) | ok | 4 |
 | [devkemc-node](./participantes/devkemc-node) | ok | 6605 |
 | [diego-coronel](./participantes/diego-coronel) | ok | 2 |
@@ -116,7 +116,7 @@ Atualizada **Sun Feb 25 14:57:40 UTC 2024** com **338** submissões.
 | [filipemacedo](./participantes/filipemacedo) | ok | 3 |
 | [flpStrri](./participantes/flpStrri) | ok | 2 |
 | [fraidev](./participantes/fraidev) | falha - [logs](./participantes/fraidev/docker-compose.logs) | -- |
-| [franklaercio](./participantes/franklaercio) | ok | 5 |
+| [franklaercio](./participantes/franklaercio) | falha - [logs](./participantes/franklaercio/docker-compose.logs) | -- |
 | [ftathiago-blogdoft-csharp](./participantes/ftathiago-blogdoft-csharp) | ok | 2 |
 | [gabriel-roque](./participantes/gabriel-roque) | ok | 4 |
 | [gabrielfmagalhaes](./participantes/gabrielfmagalhaes) | ok | 5 |
@@ -282,6 +282,7 @@ Atualizada **Sun Feb 25 14:57:40 UTC 2024** com **338** submissões.
 | [raissadev](./participantes/raissadev) | ok | 2 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
 | [ramosfabiano](./participantes/ramosfabiano) | ok | 3 |
+| [raphaelmonticello](./participantes/raphaelmonticello) | ok | 3 |
 | [rdenadai_bun_sqlite](./participantes/rdenadai_bun_sqlite) | ok | 2 |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
 | [rdenadai_rust](./participantes/rdenadai_rust) | ok | 5 |
