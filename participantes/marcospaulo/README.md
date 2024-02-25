@@ -1,4 +1,4 @@
-# Java 21, GraalVM, PostgreSQL
+# Java 21, Sun HTTP Server, GraalVM, PgBouncer, PostgreSQL
 
 - GitHub: [@marcosisocram](https://github.com/marcosisocram)
 - X: [@mrpavllo](https://x.com/mrpavllo)
