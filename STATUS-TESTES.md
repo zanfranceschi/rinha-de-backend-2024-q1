@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 25 05:37:10 UTC 2024** com **337** submissões.
+Atualizada **Sun Feb 25 05:48:38 UTC 2024** com **338** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -234,6 +234,7 @@ Atualizada **Sun Feb 25 05:37:10 UTC 2024** com **337** submissões.
 | [macielti](./participantes/macielti) | ok | 4 |
 | [maelalvi-quarkus](./participantes/maelalvi-quarkus) | ok | 2 |
 | [marciocg-javaquarkus](./participantes/marciocg-javaquarkus) | ok | 2 |
+| [marciotoshio](./participantes/marciotoshio) | ok | 4 |
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 7 |
 | [marcoseckart](./participantes/marcoseckart) | ok | 2 |
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
