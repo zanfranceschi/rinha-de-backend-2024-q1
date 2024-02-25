@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 25 02:17:36 UTC 2024** com **330** submissões.
+Atualizada **Sun Feb 25 13:22:46 UTC 2024** com **338** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -29,6 +29,7 @@ Atualizada **Sun Feb 25 02:17:36 UTC 2024** com **330** submissões.
 | [antoniogdelrio](./participantes/antoniogdelrio) | ok | 3 |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | ok | 6 |
 | [arrudaricardo-02](./participantes/arrudaricardo-02) | ok | 2 |
+| [asfernandes-cpp-haproxy-mongoose-pgsql](./participantes/asfernandes-cpp-haproxy-mongoose-pgsql) | ok | 1 |
 | [avalonbits](./participantes/avalonbits) | ok | 2 |
 | [avinho](./participantes/avinho) | ok | 3 |
 | [aysion_bun](./participantes/aysion_bun) | ok | 1 |
@@ -75,6 +76,7 @@ Atualizada **Sun Feb 25 02:17:36 UTC 2024** com **330** submissões.
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [david-silva](./participantes/david-silva) | ok | 2 |
 | [ddanielvaz](./participantes/ddanielvaz) | ok | 4 |
+| [delzin](./participantes/delzin) | falha - [logs](./participantes/delzin/docker-compose.logs) | -- |
 | [deno-cassiogangrel](./participantes/deno-cassiogangrel) | ok | 4 |
 | [devkemc-node](./participantes/devkemc-node) | ok | 6605 |
 | [diego-coronel](./participantes/diego-coronel) | ok | 2 |
@@ -125,6 +127,7 @@ Atualizada **Sun Feb 25 02:17:36 UTC 2024** com **330** submissões.
 | [gavageovanni](./participantes/gavageovanni) | ok | 2 |
 | [gbank](./participantes/gbank) | falha - [logs](./participantes/gbank/docker-compose.logs) | -- |
 | [gbfonseca](./participantes/gbfonseca) | ok | 2 |
+| [gcrispino-pgx](./participantes/gcrispino-pgx) | ok | 3 |
 | [gcrispino](./participantes/gcrispino) | ok | 184 |
 | [geffersonFerraz-http2](./participantes/geffersonFerraz-http2) | ok | 2 |
 | [geffersonFerraz-http3](./participantes/geffersonFerraz-http3) | ok | 2 |
@@ -141,6 +144,7 @@ Atualizada **Sun Feb 25 02:17:36 UTC 2024** com **330** submissões.
 | [gldmelo-py-fastapi](./participantes/gldmelo-py-fastapi) | ok | 2 |
 | [gldmelo](./participantes/gldmelo) | ok | 2 |
 | [gmrms](./participantes/gmrms) | ok | 2 |
+| [guaracy-nim](./participantes/guaracy-nim) | ok | 1 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
 | [gustavonovaes-go](./participantes/gustavonovaes-go) | ok | 2 |
 | [gustavoramos00-spring-trsfree](./participantes/gustavoramos00-spring-trsfree) | ok | 2 |
@@ -229,6 +233,8 @@ Atualizada **Sun Feb 25 02:17:36 UTC 2024** com **330** submissões.
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
 | [macielti](./participantes/macielti) | ok | 4 |
 | [maelalvi-quarkus](./participantes/maelalvi-quarkus) | ok | 2 |
+| [marciocg-javaquarkus](./participantes/marciocg-javaquarkus) | ok | 2 |
+| [marciotoshio](./participantes/marciotoshio) | ok | 4 |
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 7 |
 | [marcoseckart](./participantes/marcoseckart) | ok | 2 |
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
@@ -288,6 +294,8 @@ Atualizada **Sun Feb 25 02:17:36 UTC 2024** com **330** submissões.
 | [rigottig](./participantes/rigottig) | ok | 6 |
 | [ritilopes](./participantes/ritilopes) | ok | 1 |
 | [rizzo-nodejs](./participantes/rizzo-nodejs) | falha - [logs](./participantes/rizzo-nodejs/docker-compose.logs) | -- |
+| [rodolphovs-c-db](./participantes/rodolphovs-c-db) | ok | 1 |
+| [rodolphovs-rs](./participantes/rodolphovs-rs) | ok | 1 |
 | [rodolphovs](./participantes/rodolphovs) | ok | 1 |
 | [rodrigocaldeira-c](./participantes/rodrigocaldeira-c) | ok | 13 |
 | [rodrigocaldeira](./participantes/rodrigocaldeira) | ok | 80 |
@@ -306,13 +314,13 @@ Atualizada **Sun Feb 25 02:17:36 UTC 2024** com **330** submissões.
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
-| [thiagosantana_go](./participantes/thiagosantana_go) | ok | 454 |
+| [thiagosantana_go](./participantes/thiagosantana_go) | ok | 10 |
 | [thiagotn](./participantes/thiagotn) | ok | 2 |
 | [thicsilva](./participantes/thicsilva) | ok | 5 |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
-| [udleinati](./participantes/udleinati) | ok | 3 |
+| [udleinati](./participantes/udleinati) | ok | 2 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
 | [victor-marcolino](./participantes/victor-marcolino) | ok | 4 |
