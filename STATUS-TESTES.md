@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 25 21:15:21 UTC 2024** com **341** submissões.
+Atualizada **Sun Feb 25 21:42:16 UTC 2024** com **344** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -51,6 +51,7 @@ Atualizada **Sun Feb 25 21:15:21 UTC 2024** com **341** submissões.
 | [brunocamarggo](./participantes/brunocamarggo) | ok | 2 |
 | [brunolipe-a](./participantes/brunolipe-a) | ok | 4 |
 | [buemura-nestjs](./participantes/buemura-nestjs) | ok | 4 |
+| [buemura-quarkus](./participantes/buemura-quarkus) | ok | 3 |
 | [buemura](./participantes/buemura) | ok | 2 |
 | [bun-saulofelipe](./participantes/bun-saulofelipe) | ok | 2 |
 | [cacambito](./participantes/cacambito) | falha - [logs](./participantes/cacambito/docker-compose.logs) | -- |
@@ -146,6 +147,7 @@ Atualizada **Sun Feb 25 21:15:21 UTC 2024** com **341** submissões.
 | [gldmelo](./participantes/gldmelo) | ok | 2 |
 | [gmrms](./participantes/gmrms) | ok | 2 |
 | [guaracy-nim](./participantes/guaracy-nim) | ok | 1 |
+| [guihbc](./participantes/guihbc) | falha - [logs](./participantes/guihbc/docker-compose.logs) | -- |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
 | [gustavonovaes-go](./participantes/gustavonovaes-go) | ok | 2 |
 | [gustavoramos00-spring-trsfree](./participantes/gustavoramos00-spring-trsfree) | ok | 2 |
@@ -169,7 +171,7 @@ Atualizada **Sun Feb 25 21:15:21 UTC 2024** com **341** submissões.
 | [itujo-minimal-node-uws](./participantes/itujo-minimal-node-uws) | ok | 2 |
 | [itujo](./participantes/itujo) | ok | 7 |
 | [ivmello](./participantes/ivmello) | ok | 2 |
-| [jairoandre](./participantes/jairoandre) | falha - [logs](./participantes/jairoandre/docker-compose.logs) | -- |
+| [jairoandre](./participantes/jairoandre) | ok | 1106 |
 | [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 4 |
 | [jfilipedias](./participantes/jfilipedias) | ok | 4 |
 | [jhonnyboy](./participantes/jhonnyboy) | ok | 1 |
@@ -304,6 +306,7 @@ Atualizada **Sun Feb 25 21:15:21 UTC 2024** com **341** submissões.
 | [rodrixl](./participantes/rodrixl) | ok | 3 |
 | [rof20004](./participantes/rof20004) | ok | 4 |
 | [ronaldo_scardini](./participantes/ronaldo_scardini) | ok | 2 |
+| [ronistone-go](./participantes/ronistone-go) | ok | 30 |
 | [rschio](./participantes/rschio) | ok | 5 |
 | [ruhtar](./participantes/ruhtar) | falha - [logs](./participantes/ruhtar/docker-compose.logs) | -- |
 | [rwillians-elixir](./participantes/rwillians-elixir) | ok | 4 |
