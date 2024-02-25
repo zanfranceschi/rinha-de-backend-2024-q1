@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 25 22:59:43 UTC 2024** com **346** submissões.
+Atualizada **Sun Feb 25 23:16:01 UTC 2024** com **348** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -238,6 +238,7 @@ Atualizada **Sun Feb 25 22:59:43 UTC 2024** com **346** submissões.
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
 | [macielti](./participantes/macielti) | ok | 4 |
 | [maelalvi-quarkus](./participantes/maelalvi-quarkus) | ok | 2 |
+| [marcelo-lucas-dotnet-1](./participantes/marcelo-lucas-dotnet-1) | ok | 2 |
 | [marciocg-javaquarkus](./participantes/marciocg-javaquarkus) | ok | 2 |
 | [marciotoshio](./participantes/marciotoshio) | ok | 4 |
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 7 |
@@ -296,6 +297,7 @@ Atualizada **Sun Feb 25 22:59:43 UTC 2024** com **346** submissões.
 | [renatolfc-🦀](./participantes/renatolfc-🦀) | ok | 2 |
 | [reonardoleis](./participantes/reonardoleis) | ok | 1 |
 | [rhsobr-bun](./participantes/rhsobr-bun) | ok | 2 |
+| [rhsobr-go](./participantes/rhsobr-go) | ok | 1 |
 | [ricardovhz](./participantes/ricardovhz) | ok | 2 |
 | [rigottig](./participantes/rigottig) | ok | 6 |
 | [ritilopes](./participantes/ritilopes) | ok | 1 |
