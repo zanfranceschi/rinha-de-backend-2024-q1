@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 25 15:35:19 UTC 2024** com **339** submissões.
+Atualizada **Sun Feb 25 15:46:52 UTC 2024** com **340** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -61,6 +61,7 @@ Atualizada **Sun Feb 25 15:35:19 UTC 2024** com **339** submissões.
 | [caravanacloud](./participantes/caravanacloud) | ok | 1 |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 1 |
 | [cassiano-manuelzinho-golang](./participantes/cassiano-manuelzinho-golang) | ok | 2 |
+| [cassiano-pedrinho-rust](./participantes/cassiano-pedrinho-rust) | ok | 2 |
 | [cesar-rodrigues](./participantes/cesar-rodrigues) | falha - [logs](./participantes/cesar-rodrigues/docker-compose.logs) | -- |
 | [claudio-silva](./participantes/claudio-silva) | ok | 3 |
 | [claudioneves1981](./participantes/claudioneves1981) | ok | 1 |
