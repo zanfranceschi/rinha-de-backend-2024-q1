@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Feb 25 23:16:01 UTC 2024** com **348** submissões.
+Atualizada **Sun Feb 25 23:27:32 UTC 2024** com **350** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -44,6 +44,7 @@ Atualizada **Sun Feb 25 23:16:01 UTC 2024** com **348** submissões.
 | [bine-php-road-runner](./participantes/bine-php-road-runner) | ok | 2 |
 | [bine-php-swoole](./participantes/bine-php-swoole) | ok | 2 |
 | [bine-reactphp](./participantes/bine-reactphp) | ok | 2 |
+| [boaglio-jaiminho](./participantes/boaglio-jaiminho) | ok | 44 |
 | [boaglio](./participantes/boaglio) | falha - [logs](./participantes/boaglio/docker-compose.logs) | -- |
 | [breno5g](./participantes/breno5g) | ok | 4 |
 | [brilvio](./participantes/brilvio) | ok | 2 |
@@ -278,6 +279,7 @@ Atualizada **Sun Feb 25 23:16:01 UTC 2024** com **348** submissões.
 | [omurilo](./participantes/omurilo) | ok | 2 |
 | [otonielsilva](./participantes/otonielsilva) | ok | 2 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
+| [pedrohenriquea](./participantes/pedrohenriquea) | ok | 3 |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
 | [quokka](./participantes/quokka) | ok | 5 |
