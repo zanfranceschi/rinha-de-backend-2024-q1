@@ -1,0 +1,84 @@
+version: '3.5'
+
+services:
+  db:
+    image: postgres:16.2
+    entrypoint: [
+      "/bin/sh",
+      "-c",
+      "rm -rf /var/lib/postgresql/data/* /var/run/postgresql/* && docker-entrypoint.sh postgres -c fsync=off -c synchronous_commit=off -c checkpoint_timeout=3600 -c full_page_writes=off -c shared_buffers=192MB"
+    ]
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+      - TZ=GMT+0
+      - PGTZ=GMT+0
+    volumes:
+      - ./config/sql/database.sql:/docker-entrypoint-initdb.d/01-database.sql:ro
+      - ./data/postgresql/data:/var/lib/postgresql/data
+      - ./data/postgresql/run:/var/run/postgresql
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '390MB'
+    network_mode: host
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "rinha", "--dbname", "rinha"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+
+  api1: &api
+    #image: ubuntu:23.10
+    #command: /app/rinhaback24q1-haproxy-mongoose-pgsql-api
+    #volumes:
+    #  - ./build/Release/out/bin/rinhaback24q1-haproxy-mongoose-pgsql-api:/app/rinhaback24q1-haproxy-mongoose-pgsql-api:ro
+    image: asfernandes/rinhaback24q1:haproxy-mongoose-pgsql-api
+    volumes:
+      - ./data/postgresql/run:/tmp/postgresql
+    environment: &env
+      POLL_TIME: 10
+      NET_WORKERS: 8
+      DB_WORKERS: 8
+      #PGHOST: 127.0.0.1
+      PGHOST: /tmp/postgresql
+      PGDATABASE: rinha
+      PGUSER: rinha
+      PGPASSWORD: rinha
+      LISTEN_ADDRESS: 127.0.0.1:9997
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+    network_mode: host
+    depends_on:
+      db:
+        condition: service_healthy
+
+  api2:
+    <<: *api
+    environment:
+      <<: *env
+      LISTEN_ADDRESS: 127.0.0.1:9998
+
+  haproxy:
+    image: haproxy:2.9.5-alpine
+    volumes:
+      - ./config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: '60MB'
+    network_mode: host
+    depends_on:
+      - api1
+      - api2
