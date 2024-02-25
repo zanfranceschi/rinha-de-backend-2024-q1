@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   api1: &api
-    image: rhsobr/rinha-de-backend-2024-q1-go:sha-200f1f4
+    image: rhsobr/rinha-de-backend-2024-q1-go:main
     hostname: api1
     environment:
       - API_PORT=3000
@@ -22,7 +22,7 @@ services:
       resources:
         limits:
           cpus: "0.3"
-          memory: 128MB
+          memory: 96MB
     networks:
       - app_network
 
@@ -67,7 +67,7 @@ services:
     volumes:
       - ./configs/database/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
       - ./configs/database/seed.sql:/docker-entrypoint-initdb.d/seed.sql
-    command: postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=off
+    command: postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=off -c autovacuum=off -c shared_buffers=128MB -c effective_io_concurrency=25
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
       interval: 5s
@@ -78,7 +78,7 @@ services:
       resources:
         limits:
           cpus: "0.4"
-          memory: 240MB
+          memory: 256MB
     networks:
       - app_network
 
@@ -93,7 +93,6 @@ services:
       - POOL_MODE=transaction
       - ADMIN_USERS=admin
       - AUTH_TYPE=plain
-      - MIN_POOL_SIZE=1
     healthcheck:
       test:
         ["CMD-SHELL", "pg_isready -h $${DB_HOST} -d $${DB_NAME} -U $${DB_USER}"]
