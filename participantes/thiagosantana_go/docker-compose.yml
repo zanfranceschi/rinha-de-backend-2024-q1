@@ -34,7 +34,8 @@ services:
           memory: "50MB"  
 
   postgres:
-    image: postgres:13.5
+    image: postgres:latest
+    command: -c 'max_connections=400'
     hostname: postgres
     environment:
       POSTGRES_USER: postgres
@@ -45,7 +46,7 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -d rinha -U postgres"]
       interval: 2s
       timeout: 5s
       retries: 5
@@ -53,5 +54,4 @@ services:
       resources:
         limits:
           cpus: "0.4"
-          memory: "300MB"
-    
+          memory: "300MB" 
