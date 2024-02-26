@@ -14,7 +14,7 @@
 
 ## Repo
 
-[Aqui](https://github.com/lucashmsilva/rinha-de-backend-2024-q1)
+[Aqui](https://github.com/lucashmsilva/rinha-de-backend-2024-q1-lucashmsilva)
 
 ## Criadores
 https://github.com/lucashmsilva \

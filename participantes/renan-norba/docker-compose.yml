@@ -1,8 +1,7 @@
 version: "3.5"
 
 services:
-  api01:
-    &api
+  api01: &api
     image: norbajr/rinha-norba-renan-elixir:latest
     hostname: localhost
     container_name: api01
@@ -11,9 +10,6 @@ services:
       - RELEASE_NODE=api01
       - RELEASE_COOKIE=rinha
       - PORT=4000
-
-    ports:
-      - 4000:4000
 
     deploy:
       resources:
@@ -29,8 +25,6 @@ services:
       - RELEASE_NODE=api02
       - RELEASE_COOKIE=rinha
       - PORT=4001
-    ports:
-      - 4001:4001
 
     depends_on:
       - api01
@@ -45,8 +39,10 @@ services:
     depends_on:
       - api01
       - api02
-    ports:
-      - "9999:9999"
+    # ports:
+    #   # Obrigatório expor/usar a porta 9999 no load balancer!
+    #   # não precisa expor no modo host
+    #   - "9999:9999"
     deploy:
       resources:
         limits:

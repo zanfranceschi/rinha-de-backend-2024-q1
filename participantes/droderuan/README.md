@@ -1,6 +1,6 @@
 ![8g6e2x](https://github.com/droderuan/node-rinha-backend-2024q1/assets/43659888/58908935-3f71-4a74-957d-e21767536894)
 
-# Node.Js with express and MySQL
+# Node.Js with express and PostgreSQL
 
 Minha submissão ao desafio Rinha de Backend 2024Q1 da comunidade!
 

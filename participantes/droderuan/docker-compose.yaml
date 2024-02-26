@@ -12,20 +12,19 @@ services:
       ]
     environment:
       POSTGRES_DB: "rinha_backend"
-      POSTGRES_USER: "rinha"
-      POSTGRES_PASSWORD: "backend"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
     healthcheck:
-      test: PGPASSWORD=backend psql -h db -U rinha rinha_backend -c  "SELECT count(*) FROM Cliente;"
-      interval: 5s
-      timeout: 5s
+      test: PGPASSWORD=backend psql -h db -U postgres rinha_backend -c  "SELECT count(*) FROM Cliente;"
+      interval: 2s
+      timeout: 2s
       retries: 10
-      start_period: 10s
+      start_period: 2s
     ports:
       - "5432:5432"
     deploy:
       resources:
         limits:
-          cpus: "0.4"
+          cpus: "0.6"
           memory: "300mb"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
@@ -39,11 +38,17 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    healthcheck:
+      test: curl -X GET 'localhost:3333/clientes/1/extrato'
+      interval: 2s
+      timeout: 2s
+      retries: 10
+      start_period: 2s
     deploy:
       replicas: 2
       resources:
         limits:
-          cpus: "0.5"
+          cpus: "0.4"
           memory: "100mb"
 
   nginx:
@@ -51,7 +56,8 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api
+      api:
+        condition: service_healthy
     ports:
       - "9999:9999"
     deploy:

@@ -22,7 +22,7 @@ CREATE UNLOGGED TABLE transacao (
     id SERIAL PRIMARY KEY,
     valor integer NOT NULL,
     descricao varchar(10) NOT NULL,
-    realizadaem timestamp NOT NULL,
+    realizadaem timestamp NOT NULL DEFAULT (NOW() at time zone 'utc'),
     idcliente integer NOT NULL
 );
 

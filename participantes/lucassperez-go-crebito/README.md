@@ -21,7 +21,7 @@ Submissão feita com:
 
 ## Teste Gatling
 
-<img alt="(Imagem) Estatísticas do teste com gatling, 2024/02/19." src="https://github.com/lucassperez/go-crebito/assets/60318892/62f80af7-7f66-4510-85f6-d80c446f5fd7" />
+<img alt="(Imagem) Estatísticas do teste com gatling, 2024/02/23." src="https://github.com/lucassperez/go-crebito/assets/60318892/145855fd-79cf-42be-879b-e2e41d24a016" />
 
 ## Comentários
 
