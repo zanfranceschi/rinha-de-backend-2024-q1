@@ -5,16 +5,16 @@ CREATE UNLOGGED TABLE cliente
     saldo  INT NOT NULL
 );
 
-INSERT INTO cliente (limite, saldo)
-VALUES (100000, 0),
-       (80000, 0),
-       (1000000, 0),
-       (10000000, 0),
-       (500000, 0);
+INSERT INTO cliente (id, limite, saldo)
+VALUES (1, 100000, 0),
+       (2, 80000, 0),
+       (3, 1000000, 0),
+       (4, 10000000, 0),
+       (5, 500000, 0);
 
 CREATE UNLOGGED TABLE TRANSACAO
 (
-    ID           INT         PRIMARY KEY,
+    ID           SERIAL      PRIMARY KEY,
     ID_CLIENTE   INT         NOT NULL,
     VALOR        INT         NOT NULL,
     TIPO         VARCHAR(1)  NOT NULL,
@@ -22,8 +22,11 @@ CREATE UNLOGGED TABLE TRANSACAO
     REALIZADA_EM TIMESTAMP   NOT NULL
 );
 
-CREATE
-OR REPLACE FUNCTION efetuar_transacao(
+CREATE INDEX idx_transacao_id_cliente ON transacao (id_cliente);
+CREATE INDEX idx_transacao_id_cliente_realizada_em ON transacao (id_cliente, realizada_em DESC);
+
+
+CREATE OR REPLACE FUNCTION efetuar_transacao(
 clienteIdParam int,
 tipoParam varchar(1),
 valorParam int,
@@ -68,6 +71,3 @@ RETURN QUERY SELECT cliente.saldo, cliente.limite;
 END;
 $$
 LANGUAGE plpgsql;
-
-CREATE INDEX idx_transacao_id_cliente_realizada_em ON transacao (id_cliente);
-CREATE INDEX idx_transacao_id_cliente_realizada_em ON transacao (id_cliente, realizada_em DESC);

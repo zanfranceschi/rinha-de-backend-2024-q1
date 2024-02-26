@@ -1,0 +1,85 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: ghhernandes/golang-rinha-backend:latest
+    hostname: api01
+    environment:
+      - DB_HOST=/var/run/postgresql
+      - DB_USER=admin
+      - DB_PASSWORD=123
+      - DB_NAME=rinha
+      - SOCKET_ADDR=/etc/nginx/socket/api01.sock
+    ports:
+      - "8081:8080"
+    volumes:
+      - pg_socket_volume:/var/run/postgresql
+      - nginx_socket_volume:/etc/nginx/socket:Z
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "30MB"
+
+  api02:
+    <<: *api 
+    hostname: api02
+    ports:
+      - "8082:8080"
+    environment:
+      - DB_HOST=/var/run/postgresql
+      - DB_USER=admin
+      - DB_PASSWORD=123
+      - DB_NAME=rinha
+      - SOCKET_ADDR=/etc/nginx/socket/api02.sock
+
+  nginx:
+    image: nginx:latest
+    privileged: true
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - nginx_socket_volume:/etc/nginx/socket:Z
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "30MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/script.sql:/docker-entrypoint-initdb.d/script.sql
+      - pg_socket_volume:/var/run/postgresql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: "460MB"
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U admin -d rinha'"]
+      interval: 5s
+      timeout: 2s
+      retries: 10
+      start_period: 10s
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  pg_socket_volume:
+  nginx_socket_volume:

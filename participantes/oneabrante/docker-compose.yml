@@ -1,0 +1,64 @@
+version: '3.9'
+services:
+  api01: &api
+    image: abrantedevops/apirinhabackend:1.0.0
+    hostname: api01
+    environment:
+      - DATABASE_URL=mysql://root:rinha@db:3306/db?schema=public
+    ports:
+      - 3001:3000
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.55"
+          memory: "50MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "3002:3000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "40MB"
+
+  db:
+    container_name: db
+    image: mariadb:10
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=rinha
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=rinha
+      - MYSQL_DATABASE=db
+    # volumes:
+    #   - db_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "400MB"
+
+# volumes:
+#   db_data:
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
