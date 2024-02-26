@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Feb 26 22:06:01 UTC 2024** com **367** submissões.
+Atualizada **Mon Feb 26 22:46:05 UTC 2024** com **369** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -28,6 +28,7 @@ Atualizada **Mon Feb 26 22:06:01 UTC 2024** com **367** submissões.
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
 | [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
 | [antoniogdelrio](./participantes/antoniogdelrio) | ok | 3 |
+| [antunesleo-python](./participantes/antunesleo-python) | ok | 4 |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | ok | 6 |
 | [arrudaricardo-02](./participantes/arrudaricardo-02) | ok | 2 |
 | [asfernandes-cpp-haproxy-mongoose-pgsql](./participantes/asfernandes-cpp-haproxy-mongoose-pgsql) | ok | 1 |
@@ -157,7 +158,7 @@ Atualizada **Mon Feb 26 22:06:01 UTC 2024** com **367** submissões.
 | [gldmelo](./participantes/gldmelo) | ok | 2 |
 | [gmrms](./participantes/gmrms) | ok | 2 |
 | [guaracy-nim](./participantes/guaracy-nim) | ok | 1 |
-| [guihbc](./participantes/guihbc) | ok | 2886 |
+| [guihbc](./participantes/guihbc) | ok | 277 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
 | [gustavonovaes-go](./participantes/gustavonovaes-go) | ok | 2 |
 | [gustavoramos00-spring-trsfree](./participantes/gustavoramos00-spring-trsfree) | ok | 2 |
@@ -253,6 +254,7 @@ Atualizada **Mon Feb 26 22:06:01 UTC 2024** com **367** submissões.
 | [marciotoshio](./participantes/marciotoshio) | ok | 4 |
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 7 |
 | [marcoseckart](./participantes/marcoseckart) | ok | 2 |
+| [marcospaulo-java](./participantes/marcospaulo-java) | ok | 1 |
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
 | [marcusadriano-go](./participantes/marcusadriano-go) | ok | 4 |
 | [marcusantunius](./participantes/marcusantunius) | ok | 1 |
@@ -346,6 +348,7 @@ Atualizada **Mon Feb 26 22:06:01 UTC 2024** com **367** submissões.
 | [thicsilva](./participantes/thicsilva) | ok | 5 |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
+| [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
