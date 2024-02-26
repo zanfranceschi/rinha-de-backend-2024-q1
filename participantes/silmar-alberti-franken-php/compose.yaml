@@ -1,7 +1,7 @@
 version: '3'
 services:
   php-1: &php
-    image: silmaralberti/rinha-frankenphp:latest
+    image: silmaralberti/rinha-frankenphp:1.1
     deploy:
       resources:
         limits:
@@ -15,15 +15,15 @@ services:
   php-2:
     <<: *php
 
-  ngnix:
-    image: nginx:stable-alpine3.17
+  haproxy:
+    image: haproxy:2.9-alpine
     deploy:
       resources:
         limits:
           cpus: "0.17"
           memory: "50MB"
     volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/haproxy/:/usr/local/etc/haproxy/:ro
     depends_on:
       - php-1
       - php-2
