@@ -2,12 +2,16 @@
 
 # Rinha Back-end Dotnet só o básico.
 
+[repo](https://github.com/offpepe/rinha-2024-q1)
+
 Submissão só o básico, .NET 8 nativo, multiplexin e reza braba, com muita fé eu vo longe🙏
 
 - .NET 8 AOT
 - Postgresql
 - nginx
 - Fé
+
+
 
 ## Pontos importantes
 
