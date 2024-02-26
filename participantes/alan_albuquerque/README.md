@@ -1,4 +1,4 @@
-![so_o_basico](./so_o_basico.png
+![so_o_basico](./so_o_basico.png)
 
 # Rinha Back-end Dotnet só o básico.
 
