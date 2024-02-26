@@ -1,0 +1,107 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: ronistone/rinhabackend-spring:0.1
+    hostname: api01
+    environment:
+      - RINHA_DATABASE=jdbc:postgresql://db:5432/rinha
+      - RINHA_DATABASE_USERNAME=admin
+      - RINHA_DATABASE_PASSWORD=123
+      - RINHA_DATABASE_MAXCONNECTIONS=30
+      - RINHA_WEBSERVER_MIN_THREADS=30
+    ports:
+      - "3001:8080"
+    depends_on:
+      - db
+    logging:
+      driver: none
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "112MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "3002:8080"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    logging:
+      driver: none
+    deploy:
+      resources:
+        limits:
+          cpus: "0.05"
+          memory: "30MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    logging:
+      driver: none
+    volumes:
+      - ./database.sql:/docker-entrypoint-initdb.d/init.sql
+    command:
+      - "postgres"
+      - "-c"
+      - "checkpoint_timeout=600"
+      - "-c"
+      - "max_wal_size=4096"
+      - "-c"
+      - "shared_buffers=200MB"
+      - "-c"
+      - "work_mem=16MB"
+      - "-c"
+      - "effective_cache_size=100MB"
+      - "-c"
+      - "synchronous_commit=0"
+      - "-c"
+      - "full_page_writes=0"
+      - "-c"
+      - "log_min_messages=panic"
+      - "-c"
+      - "log_min_error_statement=panic"
+      - "-c"
+      - "max_connections=230"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.61"
+          memory: "290MB"
+  warmup:
+    image: ronistone/warmup:0.1
+    volumes:
+      - ./warmup.sh:/warmup.sh
+    depends_on:
+      - api01
+      - api02
+      - nginx
+      - db
+    entrypoint: ["/bin/bash", "/warmup.sh"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.04"
+          memory: "6MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
