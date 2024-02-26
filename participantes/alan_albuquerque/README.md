@@ -1,8 +1,8 @@
 ![so_o_basico](./so_o_basico.png)
 
-# Rinha Back-end Dotnet só o básico.
+#  Dotnet só o básico.
 
-[repo](https://github.com/offpepe/rinha-2024-q1)
+[repo](https://github.com/offpepe/rinha-2024-q1) - [twitter](https://twitter.com/Offplayer_G)
 
 Submissão só o básico, .NET 8 nativo, multiplexin e reza braba, com muita fé eu vo longe🙏
 
