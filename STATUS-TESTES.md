@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Feb 26 20:32:16 UTC 2024** com **365** submissões.
+Atualizada **Mon Feb 26 20:43:54 UTC 2024** com **367** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -70,6 +70,7 @@ Atualizada **Mon Feb 26 20:32:16 UTC 2024** com **365** submissões.
 | [claudio-silva](./participantes/claudio-silva) | ok | 3 |
 | [claudioneves1981](./participantes/claudioneves1981) | ok | 1 |
 | [cleitinif](./participantes/cleitinif) | ok | 4 |
+| [cleverton-rocha-java](./participantes/cleverton-rocha-java) | falha - [logs](./participantes/cleverton-rocha-java/docker-compose.logs) | -- |
 | [cleverton-rocha](./participantes/cleverton-rocha) | ok | 4 |
 | [crebitojs](./participantes/crebitojs) | ok | 2 |
 | [cristiano182](./participantes/cristiano182) | ok | 1 |
@@ -319,6 +320,7 @@ Atualizada **Mon Feb 26 20:32:16 UTC 2024** com **365** submissões.
 | [rodolphovs-c-db](./participantes/rodolphovs-c-db) | ok | 1 |
 | [rodolphovs-rs](./participantes/rodolphovs-rs) | ok | 1 |
 | [rodolphovs](./participantes/rodolphovs) | ok | 1 |
+| [rodrigoaramburu](./participantes/rodrigoaramburu) | falha - [logs](./participantes/rodrigoaramburu/docker-compose.logs) | -- |
 | [rodrigocaldeira-c](./participantes/rodrigocaldeira-c) | ok | 13 |
 | [rodrigocaldeira](./participantes/rodrigocaldeira) | ok | 80 |
 | [rodrixl](./participantes/rodrixl) | ok | 3 |
