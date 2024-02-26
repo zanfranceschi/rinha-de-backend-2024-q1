@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Feb 26 02:11:30 UTC 2024** com **352** submissões.
+Atualizada **Mon Feb 26 02:37:16 UTC 2024** com **356** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -111,6 +111,7 @@ Atualizada **Mon Feb 26 02:11:30 UTC 2024** com **352** submissões.
 | [fabiokleis](./participantes/fabiokleis) | ok | 3 |
 | [fabionaspolini-sync](./participantes/fabionaspolini-sync) | ok | 1 |
 | [fabionaspolini](./participantes/fabionaspolini) | ok | 1 |
+| [fbourguignon](./participantes/fbourguignon) | falha - [logs](./participantes/fbourguignon/docker-compose.logs) | -- |
 | [felipe-alcantara-actor-model](./participantes/felipe-alcantara-actor-model) | ok | 1 |
 | [felipebossolani-dotnet](./participantes/felipebossolani-dotnet) | ok | 2 |
 | [felipebossolani-dotnet9-preview](./participantes/felipebossolani-dotnet9-preview) | ok | 2 |
@@ -139,6 +140,7 @@ Atualizada **Mon Feb 26 02:11:30 UTC 2024** com **352** submissões.
 | [geffersonFerraz-http3](./participantes/geffersonFerraz-http3) | ok | 2 |
 | [geraldojrcg-elixir](./participantes/geraldojrcg-elixir) | falha - [logs](./participantes/geraldojrcg-elixir/docker-compose.logs) | -- |
 | [gfds-micronaut](./participantes/gfds-micronaut) | falha - [logs](./participantes/gfds-micronaut/docker-compose.logs) | -- |
+| [ghhernandes](./participantes/ghhernandes) | ok | 2 |
 | [gianimpronta-springboot](./participantes/gianimpronta-springboot) | ok | 1 |
 | [gilmardealcantara](./participantes/gilmardealcantara) | ok | 2 |
 | [giovannibassi-nonpooled](./participantes/giovannibassi-nonpooled) | ok | 1 |
@@ -288,6 +290,7 @@ Atualizada **Mon Feb 26 02:11:30 UTC 2024** com **352** submissões.
 | [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
 | [rafaelpadovezi-mongo](./participantes/rafaelpadovezi-mongo) | ok | 2 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
+| [rafaeltorquato-saitama](./participantes/rafaeltorquato-saitama) | ok | 1 |
 | [raiane-dev](./participantes/raiane-dev) | ok | 1 |
 | [raissadev](./participantes/raissadev) | ok | 2 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
@@ -357,4 +360,5 @@ Atualizada **Mon Feb 26 02:11:30 UTC 2024** com **352** submissões.
 | [ygorcarmo](./participantes/ygorcarmo) | ok | 8 |
 | [zan-clojure-01](./participantes/zan-clojure-01) | ok | 2 |
 | [zan-dotnet](./participantes/zan-dotnet) | ok | 2 |
+| [zelnatal](./participantes/zelnatal) | ok | 3 |
 | [zsantana](./participantes/zsantana) | ok | 2 |
