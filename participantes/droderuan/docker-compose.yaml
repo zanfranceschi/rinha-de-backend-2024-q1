@@ -9,6 +9,8 @@ services:
         "full_page_writes=false",
         "-c",
         "synchronous_commit=off",
+        "-c",
+        "effective_io_concurrency=200",
       ]
     environment:
       POSTGRES_DB: "rinha_backend"
@@ -39,7 +41,7 @@ services:
       db:
         condition: service_healthy
     healthcheck:
-      test: curl -X GET 'localhost:3333/clientes/1/extrato'
+      test: curl -X GET 'localhost:3333/healthcheck'
       interval: 2s
       timeout: 2s
       retries: 10
