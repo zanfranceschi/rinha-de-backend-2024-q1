@@ -4,8 +4,8 @@
  Container ptrecenti-db-1  Created
  Container ptrecenti-api02-1  Creating
  Container ptrecenti-api01-1  Creating
- Container ptrecenti-api02-1  Created
  Container ptrecenti-api01-1  Created
+ Container ptrecenti-api02-1  Created
  Container ptrecenti-nginx-1  Creating
  Container ptrecenti-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -36,10 +36,10 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | waiting for server to start....2024-02-19 15:14:01.989 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-19 15:14:01.989 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-19 15:14:01.990 UTC [51] LOG:  database system was shut down at 2024-02-19 15:14:01 UTC
-db-1     | 2024-02-19 15:14:01.993 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-24 05:15:24.896 UTC [47] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-24 05:15:24.898 UTC [47] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-24 05:15:24.907 UTC [50] LOG:  database system was shut down at 2024-02-24 05:15:23 UTC
+db-1     | 2024-02-24 05:15:24.912 UTC [47] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -48,6 +48,7 @@ db-1     |
 db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/ddl.sql
 db-1     | CREATE TABLE
 db-1     | CREATE TABLE
+db-1     | CREATE INDEX
 db-1     | CREATE TABLE
 db-1     | 
 db-1     | 
@@ -55,46 +56,50 @@ db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initd
 db-1     | DO
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-19 15:14:02.220 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-02-19 15:14:02.220 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-19 15:14:02.222 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-19 15:14:02.222 UTC [49] LOG:  shutting down
-db-1     | 2024-02-19 15:14:02.222 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-19 15:14:02.227 UTC [49] LOG:  checkpoint complete: wrote 943 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4306 kB, estimate=4306 kB; lsn=0/191F5E0, redo lsn=0/191F5E0
-db-1     | 2024-02-19 15:14:02.232 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down....2024-02-24 05:15:25.190 UTC [47] LOG:  received fast shutdown request
+db-1     | 2024-02-24 05:15:25.193 UTC [47] LOG:  aborting any active transactions
+db-1     | 2024-02-24 05:15:25.195 UTC [47] LOG:  background worker "logical replication launcher" (PID 53) exited with exit code 1
+db-1     | 2024-02-24 05:15:25.195 UTC [48] LOG:  shutting down
+db-1     | 2024-02-24 05:15:25.198 UTC [48] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-24 05:15:25.665 UTC [48] LOG:  checkpoint complete: wrote 944 buffers (7.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.363 s, sync=0.085 s, total=0.470 s; sync files=311, longest=0.053 s, average=0.001 s; distance=4316 kB, estimate=4316 kB; lsn=0/1921CB0, redo lsn=0/1921CB0
+db-1     | 2024-02-24 05:15:25.670 UTC [47] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-19 15:14:02.336 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-19 15:14:02.337 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-19 15:14:02.337 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-19 15:14:02.337 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-19 15:14:02.339 UTC [68] LOG:  database system was shut down at 2024-02-19 15:14:02 UTC
-db-1     | 2024-02-19 15:14:02.342 UTC [1] LOG:  database system is ready to accept connections
-api01-1  | [main] INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+db-1     | 2024-02-24 05:15:25.718 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-24 05:15:25.718 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-24 05:15:25.718 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-24 05:15:25.723 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-24 05:15:25.730 UTC [67] LOG:  database system was shut down at 2024-02-24 05:15:25 UTC
+db-1     | 2024-02-24 05:15:25.737 UTC [1] LOG:  database system is ready to accept connections
 api02-1  | [main] INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-api02-1  | [main] INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@14d35ef2
+api02-1  | [main] INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@28f55098
 api02-1  | [main] INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-api02-1  | Feb 19, 2024 3:14:07 PM io.undertow.Undertow start
+api02-1  | Feb 24, 2024 5:15:28 AM io.undertow.Undertow start
 api02-1  | INFO: starting server: Undertow - 2.3.7.Final
-api02-1  | Feb 19, 2024 3:14:07 PM org.xnio.Xnio <clinit>
+api02-1  | Feb 24, 2024 5:15:28 AM org.xnio.Xnio <clinit>
 api02-1  | INFO: XNIO version 3.8.9.Final
-api02-1  | Feb 19, 2024 3:14:07 PM org.xnio.nio.NioXnio <clinit>
+api02-1  | Feb 24, 2024 5:15:28 AM org.xnio.nio.NioXnio <clinit>
 api02-1  | INFO: XNIO NIO Implementation Version 3.8.8.Final
-api02-1  | Feb 19, 2024 3:14:07 PM org.jboss.threads.Version <clinit>
+api02-1  | Feb 24, 2024 5:15:28 AM org.jboss.threads.Version <clinit>
 api02-1  | INFO: JBoss Threads version 3.5.0.Final
-api01-1  | [main] INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5b75d947
+api01-1  | [main] INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+api02-1  | Feb 24, 2024 5:15:28 AM io.amanawa.rinha.Crebito main
+api02-1  | INFO: Required database connections:10 connections-min-idle:1 workers:480 io:60
+api01-1  | [main] INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@65bdce87
 api01-1  | [main] INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-api01-1  | Feb 19, 2024 3:14:07 PM io.undertow.Undertow start
+api01-1  | Feb 24, 2024 5:15:28 AM io.undertow.Undertow start
 api01-1  | INFO: starting server: Undertow - 2.3.7.Final
-api01-1  | Feb 19, 2024 3:14:07 PM org.xnio.Xnio <clinit>
+api01-1  | Feb 24, 2024 5:15:28 AM org.xnio.Xnio <clinit>
 api01-1  | INFO: XNIO version 3.8.9.Final
-api01-1  | Feb 19, 2024 3:14:07 PM org.xnio.nio.NioXnio <clinit>
+api01-1  | Feb 24, 2024 5:15:28 AM org.xnio.nio.NioXnio <clinit>
 api01-1  | INFO: XNIO NIO Implementation Version 3.8.8.Final
-api01-1  | Feb 19, 2024 3:14:07 PM org.jboss.threads.Version <clinit>
+api01-1  | Feb 24, 2024 5:15:28 AM org.jboss.threads.Version <clinit>
 api01-1  | INFO: JBoss Threads version 3.5.0.Final
+api01-1  | Feb 24, 2024 5:15:28 AM io.amanawa.rinha.Crebito main
+api01-1  | INFO: Required database connections:10 connections-min-idle:1 workers:480 io:60
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -106,15 +111,15 @@ nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api01-1 exited with code 0
-api01-1 exited with code 137
 api02-1 exited with code 0
 api02-1 exited with code 137
-db-1     | 2024-02-19 15:18:32.684 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-19 15:18:32.684 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-19 15:18:32.686 UTC [1] LOG:  background worker "logical replication launcher" (PID 71) exited with exit code 1
-db-1     | 2024-02-19 15:18:32.686 UTC [66] LOG:  shutting down
-db-1     | 2024-02-19 15:18:32.686 UTC [66] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-19 15:18:32.691 UTC [66] LOG:  checkpoint complete: wrote 1108 buffers (6.8%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.005 s, sync=0.001 s, total=0.005 s; sync files=0, longest=0.000 s, average=0.000 s; distance=12362 kB, estimate=12362 kB; lsn=0/2531ED0, redo lsn=0/2531ED0
-db-1     | 2024-02-19 15:18:32.695 UTC [1] LOG:  database system is shut down
+api01-1 exited with code 0
+api01-1 exited with code 137
+db-1     | 2024-02-24 05:19:54.554 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-24 05:19:54.557 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-24 05:19:54.559 UTC [1] LOG:  background worker "logical replication launcher" (PID 70) exited with exit code 1
+db-1     | 2024-02-24 05:19:54.559 UTC [65] LOG:  shutting down
+db-1     | 2024-02-24 05:19:54.561 UTC [65] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-24 05:19:54.711 UTC [65] LOG:  checkpoint complete: wrote 819 buffers (6.7%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.012 s, sync=0.104 s, total=0.152 s; sync files=32, longest=0.097 s, average=0.004 s; distance=22188 kB, estimate=22188 kB; lsn=0/2ECCF20, redo lsn=0/2ECCF20
+db-1     | 2024-02-24 05:19:54.715 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0
