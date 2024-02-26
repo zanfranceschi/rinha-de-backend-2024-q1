@@ -9,7 +9,9 @@ Rinha de Backend, Segunda Edição: 2024/Q1 - Controle de Concorrência
 Submissão feita com:
 - `haproxy` como load balancer
 - `postgres` como banco de dados
-- `golang 1.21.5` para api com as libs `pgx` e `echo`
+- `golang 1.21.5` para api com as libs `pgx` e `gin`
+- CPU: 1.0
+- Memória: 150MB
 - [repositório da api](https://github.com/hhendrikk/rinha-backend-2024-golang)
 
 [@hendrikaraujo](https://twitter.com/hendrikaraujo) @ twitter
