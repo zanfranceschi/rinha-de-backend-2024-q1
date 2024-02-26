@@ -1,0 +1,59 @@
+version: "3.5"
+
+services:
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./script/start-db.sql:/docker-entrypoint-initdb.d/script.sql
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "350MB"
+
+  tcp_server:
+    image: delfiofrancisco/rinha-bck-delfzin:latest
+    hostname: TCP_SERVER
+    environment:
+      - DB_HOST=db
+      - INSTANCE=TCP_SERVER
+      - TCP_PORT=3301
+    depends_on:
+     - db
+    ports:
+      - "3301:3301"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "100MB"
+
+  http_server:
+    image: delfiofrancisco/rinha-bck-delfzin:latest
+    environment:
+      - HTTP_PORT=9999
+      - INSTANCE=HTTP_SERVER
+      - TCP_PORT=3301
+      - TCP_HOST=TCP_SERVER
+    depends_on:
+     - db
+     - tcp_server
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "100MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

@@ -1,0 +1,72 @@
+version: "3"
+
+services:
+  api1: &api
+    image: antunesleo/rinha-2024-q1-python
+    environment:
+      DATABASE_HOST: localhost
+      DATABASE_PORT: 5432
+      DATABASE_NAME: rinhapython
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+    command: bash -c "gunicorn main:app -c gunicorn_conf.py -b unix:/tmp/sockets/api1.sock"
+    volumes:
+      - sockets:/tmp/sockets
+    depends_on:
+      db: 
+        condition: service_healthy
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '60MB'
+
+  api2:
+    <<: *api
+    command: bash -c "gunicorn main:app -c gunicorn_conf.py -b unix:/tmp/sockets/api2.sock"
+
+  nginx:
+    image: nginx:1.25.3
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - sockets:/tmp/sockets
+    depends_on:
+      - api1
+      - api2
+    network_mode: "host"
+    deploy:
+        resources:
+          limits:
+            cpus: '0.1'
+            memory: '30MB'
+
+  db:
+    image: "postgres:16-bullseye"
+    hostname: postgres
+    volumes:
+      - postgresql_data:/var/lib/postgres/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      - POSTGRES_DB=rinhapython
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGPASSWORD=postgres
+    network_mode: "host"
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    deploy:
+        resources:
+          limits:
+            cpus: '0.6'
+            memory: '396MB'
+
+volumes:
+  postgresql_data:
+  init.sql:
+  sockets:

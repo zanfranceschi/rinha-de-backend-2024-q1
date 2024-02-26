@@ -4,7 +4,7 @@ services:
   api01: &api
     # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
     # publicamente acessível! Ex.: hub.docker.com
-    image: jairoandre/rb2024:1.0
+    image: jairoandre/rb2024:v3
     hostname: api01
     environment:
       - DATABASE_URL=postgres://root:root@db:5432/rb2024
@@ -60,15 +60,6 @@ services:
           # um exemplo – distribua como quiser.
           cpus: "0.13"
           memory: "140MB"
-  pgadmin:
-    image: docker.io/dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "jairoandre@gmail.com"
-      PGADMIN_DEFAULT_PASSWORD: "root"
-    depends_on:
-      - postgres
-    ports:
-      - "16543:80"
 
 # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
 # A edição anterior se beneficiou do modo host pois o volume de requisições

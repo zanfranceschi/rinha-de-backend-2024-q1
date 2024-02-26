@@ -1,4 +1,4 @@
-**Por favor, marque com um `x` os requisitos que antendeu antes de prosseguir com o pull request.**
+**Por favor, marque com um `x` os requisitos que atendeu antes de prosseguir com o pull request.**
 
 - [ ] Incluí um README.md com informações sobre minha participação.
 - [ ] O arquivo `docker-compose.yml` está na raiz do meu diretório.

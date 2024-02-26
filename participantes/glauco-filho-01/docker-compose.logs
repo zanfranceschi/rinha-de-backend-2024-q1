@@ -1,0 +1,229 @@
+ Container postgres  Creating
+ Container postgres  Created
+ Container glauco-filho-01-api2-1  Creating
+ Container glauco-filho-01-api1-1  Creating
+ Container glauco-filho-01-api2-1  Created
+ Container glauco-filho-01-api1-1  Created
+ Container glauco-filho-01-nginx-1  Creating
+ Container glauco-filho-01-nginx-1  Created
+Attaching to api1-1, api2-1, nginx-1, postgres
+postgres  | The files belonging to this database system will be owned by user "postgres".
+postgres  | This user must also own the server process.
+postgres  | 
+postgres  | The database cluster will be initialized with locale "en_US.utf8".
+postgres  | The default database encoding has accordingly been set to "UTF8".
+postgres  | The default text search configuration will be set to "english".
+postgres  | 
+postgres  | Data page checksums are disabled.
+postgres  | 
+postgres  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres  | creating subdirectories ... ok
+postgres  | selecting dynamic shared memory implementation ... posix
+postgres  | selecting default max_connections ... 100
+postgres  | selecting default shared_buffers ... 128MB
+postgres  | selecting default time zone ... UTC
+postgres  | creating configuration files ... ok
+nginx-1   | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1   | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1   | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1   | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1   | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+postgres  | running bootstrap script ... ok
+nginx-1   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1   | /docker-entrypoint.sh: Configuration complete; ready for start up
+postgres  | sh: locale: not found
+postgres  | 2024-02-24 14:33:15.946 UTC [30] WARNING:  no usable system locales were found
+postgres  | performing post-bootstrap initialization ... ok
+postgres  | syncing data to disk ... ok
+postgres  | 
+postgres  | 
+postgres  | Success. You can now start the database server using:
+postgres  | 
+postgres  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres  | 
+postgres  | initdb: warning: enabling "trust" authentication for local connections
+postgres  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres  | waiting for server to start.... done
+postgres  | server started
+postgres  | CREATE DATABASE
+postgres  | 
+postgres  | 
+postgres  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+postgres  | SET
+postgres  | SET
+postgres  | SET
+postgres  | SET
+postgres  | CREATE TABLE
+postgres  | CREATE TABLE
+postgres  | CREATE FUNCTION
+postgres  | CREATE FUNCTION
+postgres  | CREATE FUNCTION
+postgres  | CREATE INDEX
+postgres  | CREATE INDEX
+postgres  | DO
+postgres  | 
+postgres  | 
+api1-1    | ERROR:root:e: 
+api1-1    | Traceback (most recent call last):
+api1-1    |   File "/app/core/deps.py", line 28, in get_database_session
+api1-1    |     yield session
+api1-1    |   File "/app/api/endpoints_validados/extrato.py", line 36, in get_extrato
+api1-1    |     result = await session.execute(
+api1-1    |              ^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 452, in execute
+api1-1    |     result = await greenlet_spawn(
+api1-1    |              ^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 197, in greenlet_spawn
+api1-1    |     result = context.throw(*sys.exc_info())
+api1-1    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+api1-1    |     return self._execute_internal(
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2181, in _execute_internal
+api1-1    |     conn = self._connection_for_bind(bind)
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2050, in _connection_for_bind
+api1-1    |     return trans._connection_for_bind(engine, execution_options)
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "<string>", line 2, in _connection_for_bind
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+api1-1    |     ret_value = fn(self, *arg, **kw)
+api1-1    |                 ^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1144, in _connection_for_bind
+api1-1    |     conn = bind.connect()
+api1-1    |            ^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3258, in connect
+api1-1    |     return self._connection_cls(self)
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 145, in __init__
+api1-1    |     self._dbapi_connection = engine.raw_connection()
+api1-1    |                              ^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3282, in raw_connection
+api1-1    |     return self.pool.connect()
+api1-1    |            ^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+api1-1    |     return _ConnectionFairy._checkout(self)
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1263, in _checkout
+api1-1    |     fairy = _ConnectionRecord.checkout(pool)
+api1-1    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+api1-1    |     rec = pool._do_get()
+api1-1    |           ^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 168, in _do_get
+api1-1    |     with util.safe_reraise():
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+api1-1    |     raise exc_value.with_traceback(exc_tb)
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 166, in _do_get
+api1-1    |     return self._create_connection()
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+api1-1    |     return _ConnectionRecord(self)
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+api1-1    |     self.__connect()
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+api1-1    |     with util.safe_reraise():
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+api1-1    |     raise exc_value.with_traceback(exc_tb)
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+api1-1    |     self.dbapi_connection = connection = pool._invoke_creator(self)
+api1-1    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 643, in connect
+api1-1    |     return dialect.connect(*cargs, **cparams)
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 616, in connect
+api1-1    |     return self.loaded_dbapi.connect(*cargs, **cparams)
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 937, in connect
+api1-1    |     await_only(creator_fn(*arg, **kw)),
+api1-1    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 127, in await_only
+api1-1    |     return current.driver.switch(awaitable)  # type: ignore[no-any-return]
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 192, in greenlet_spawn
+api1-1    |     value = await result
+api1-1    |             ^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 2329, in connect
+api1-1    |     return await connect_utils._connect(
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connect_utils.py", line 1017, in _connect
+api1-1    |     raise last_error or exceptions.TargetServerAttributeNotMatched(
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connect_utils.py", line 991, in _connect
+api1-1    |     conn = await _connect_addr(
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connect_utils.py", line 828, in _connect_addr
+api1-1    |     return await __connect_addr(params, True, *args)
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connect_utils.py", line 873, in __connect_addr
+api1-1    |     tr, pr = await connector
+api1-1    |              ^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connect_utils.py", line 744, in _create_ssl_connection
+api1-1    |     tr, pr = await loop.create_connection(
+api1-1    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "uvloop/loop.pyx", line 2039, in create_connection
+api1-1    |   File "uvloop/loop.pyx", line 2016, in uvloop.loop.Loop.create_connection
+api1-1    | ConnectionRefusedError: [Errno 111] Connection refused
+api1-1    | ERROR:    Exception in ASGI application
+api1-1    | Traceback (most recent call last):
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 419, in run_asgi
+api1-1    |     result = await app(  # type: ignore[func-returns-value]
+api1-1    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+api1-1    |     return await self.app(scope, receive, send)
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1054, in __call__
+api1-1    |     await super().__call__(scope, receive, send)
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 123, in __call__
+api1-1    |     await self.middleware_stack(scope, receive, send)
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+api1-1    |     raise exc
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+api1-1    |     await self.app(scope, receive, _send)
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+api1-1    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+api1-1    |     raise exc
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+api1-1    |     await app(scope, receive, sender)
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 758, in __call__
+api1-1    |     await self.middleware_stack(scope, receive, send)
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 778, in app
+api1-1    |     await route.handle(scope, receive, send)
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 299, in handle
+api1-1    |     await self.app(scope, receive, send)
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 79, in app
+api1-1    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+api1-1    |     raise exc
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+api1-1    |     await app(scope, receive, sender)
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 74, in app
+api1-1    |     response = await func(request)
+api1-1    |                ^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 299, in app
+api1-1    |     raise e
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 294, in app
+api1-1    |     raw_response = await run_endpoint_function(
+api1-1    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+api1-1    |     return await dependant.call(**values)
+api1-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api1-1    |   File "/app/api/endpoints_validados/extrato.py", line 61, in get_extrato
+api1-1    |     transacoes = [UltimasTransacoesSchema(**data) for data in transacoes_data]
+api1-1    |                                                               ^^^^^^^^^^^^^^^
+api1-1    | UnboundLocalError: cannot access local variable 'transacoes_data' where it is not associated with a value
+postgres  | waiting for server to shut down.... done
+postgres  | server stopped
+postgres  | 
+postgres  | PostgreSQL init process complete; ready for start up.
+postgres  | 
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api2-1 exited with code 0
+api2-1 exited with code 0
+api1-1 exited with code 0
+api1-1 exited with code 0
+postgres exited with code 0
