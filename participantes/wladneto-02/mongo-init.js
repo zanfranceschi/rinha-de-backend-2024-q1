@@ -1,4 +1,4 @@
-db = db.getSiblingDB('Rinha');
+db = db.getSiblingDB('rinha');
 
 db.createCollection('clientes');
 //db.createCollection('transacoes', { capped : true, size: 102400, max :100 });
