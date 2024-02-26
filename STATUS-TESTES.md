@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Feb 26 00:08:26 UTC 2024** com **350** submissões.
+Atualizada **Mon Feb 26 00:20:03 UTC 2024** com **351** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -116,6 +116,7 @@ Atualizada **Mon Feb 26 00:08:26 UTC 2024** com **350** submissões.
 | [felipebossolani-dotnet9-preview](./participantes/felipebossolani-dotnet9-preview) | ok | 2 |
 | [felipemarkson](./participantes/felipemarkson) | ok | 2 |
 | [felipma-rust](./participantes/felipma-rust) | ok | 3 |
+| [fernandofogliato-java](./participantes/fernandofogliato-java) | ok | 2 |
 | [fernanduandrade](./participantes/fernanduandrade) | ok | 2 |
 | [fielcapao](./participantes/fielcapao) | falha - [logs](./participantes/fielcapao/docker-compose.logs) | -- |
 | [filipemacedo](./participantes/filipemacedo) | ok | 3 |
