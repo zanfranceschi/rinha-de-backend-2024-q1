@@ -1,10 +1,10 @@
 version: '3.9'
 services:
   api01: &api
-    image: abrantedevops/apirinhabackend:1.0.0
+    image: abrantedevops/apirinhabackend:0.0.1
     hostname: api01
     environment:
-      - DATABASE_URL=mysql://root:rinha@db:3306/db?schema=public
+      DATABASE_URL: ${DATABASE_URL}
     ports:
       - 3001:3000
     depends_on:
@@ -40,11 +40,10 @@ services:
     container_name: db
     image: mariadb:10
     restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=rinha
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=rinha
-      - MYSQL_DATABASE=db
+    env_file:
+      - .env
+    volumes:
+      - ./prisma/migrations/20240227133306_init/migration.sql:/docker-entrypoint-initdb.d/create_tables.sql
     # volumes:
     #   - db_data:/var/lib/mysql
     ports:
