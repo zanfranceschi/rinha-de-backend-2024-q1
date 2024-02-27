@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Feb 26 23:54:43 UTC 2024** com **369** submissões.
+Atualizada **Tue Feb 27 00:08:51 UTC 2024** com **371** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -171,6 +171,7 @@ Atualizada **Mon Feb 26 23:54:43 UTC 2024** com **369** submissões.
 | [hendrikaraujo](./participantes/hendrikaraujo) | ok | 3 |
 | [henriqueholtz](./participantes/henriqueholtz) | ok | 2 |
 | [hfurlan](./participantes/hfurlan) | ok | 4 |
+| [hiroshimorowaka-golang](./participantes/hiroshimorowaka-golang) | ok | 1 |
 | [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 2 |
 | [ilosamart](./participantes/ilosamart) | ok | 1755 |
 | [impedro29-performance](./participantes/impedro29-performance) | ok | 39 |
