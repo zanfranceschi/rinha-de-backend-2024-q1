@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 27 03:00:45 UTC 2024** com **377** submissões.
+Atualizada **Tue Feb 27 03:39:15 UTC 2024** com **380** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -161,6 +161,7 @@ Atualizada **Tue Feb 27 03:00:45 UTC 2024** com **377** submissões.
 | [gldmelo-py-fastapi](./participantes/gldmelo-py-fastapi) | ok | 2 |
 | [gldmelo](./participantes/gldmelo) | ok | 2 |
 | [gmrms](./participantes/gmrms) | ok | 2 |
+| [grilario](./participantes/grilario) | ok | 6 |
 | [guaracy-nim](./participantes/guaracy-nim) | ok | 1 |
 | [guihbc](./participantes/guihbc) | ok | 277 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
@@ -195,7 +196,7 @@ Atualizada **Tue Feb 27 03:00:45 UTC 2024** com **377** submissões.
 | [jjeanjacques10](./participantes/jjeanjacques10) | ok | 2 |
 | [joaopaulosg](./participantes/joaopaulosg) | ok | 2 |
 | [joaopmerlin](./participantes/joaopmerlin) | ok | 3 |
-| [johnpgr_vlang](./participantes/johnpgr_vlang) | falha - [logs](./participantes/johnpgr_vlang/docker-compose.logs) | -- |
+| [johnpgr_vlang](./participantes/johnpgr_vlang) | ok | 2 |
 | [jojodev](./participantes/jojodev) | ok | 1554 |
 | [jonatasoli](./participantes/jonatasoli) | ok | 1 |
 | [jonattas_bunjs](./participantes/jonattas_bunjs) | ok | 17 |
@@ -207,7 +208,7 @@ Atualizada **Tue Feb 27 03:00:45 UTC 2024** com **377** submissões.
 | [jpcairesf-go](./participantes/jpcairesf-go) | ok | 1 |
 | [jpcairesf-java](./participantes/jpcairesf-java) | falha - [logs](./participantes/jpcairesf-java/docker-compose.logs) | -- |
 | [julianojj](./participantes/julianojj) | ok | 7 |
-| [julioriffel-django](./participantes/julioriffel-django) | ok | 2422 |
+| [julioriffel-django](./participantes/julioriffel-django) | ok | 6 |
 | [juliorovesta](./participantes/juliorovesta) | ok | 1 |
 | [juniorzucareli-dotnet](./participantes/juniorzucareli-dotnet) | ok | 1 |
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 1861 |
@@ -245,7 +246,7 @@ Atualizada **Tue Feb 27 03:00:45 UTC 2024** com **377** submissões.
 | [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | ok | 3353 |
 | [lucassperez-go-crebito](./participantes/lucassperez-go-crebito) | ok | 4 |
 | [lucaswilliameufrasio](./participantes/lucaswilliameufrasio) | ok | 4 |
-| [lucianovilela](./participantes/lucianovilela) | ok | 3 |
+| [lucianovilela](./participantes/lucianovilela) | ok | 2 |
 | [luisescosta](./participantes/luisescosta) | ok | 2 |
 | [luizfrra](./participantes/luizfrra) | ok | 2 |
 | [luizgribeiro-monGo](./participantes/luizgribeiro-monGo) | ok | 1 |
@@ -261,6 +262,7 @@ Atualizada **Tue Feb 27 03:00:45 UTC 2024** com **377** submissões.
 | [marcoagpegoraro](./participantes/marcoagpegoraro) | ok | 7 |
 | [marcoseckart](./participantes/marcoseckart) | ok | 2 |
 | [marcospaulo-java](./participantes/marcospaulo-java) | ok | 1 |
+| [marcospaulo-kotlin](./participantes/marcospaulo-kotlin) | ok | 1 |
 | [marcospaulo](./participantes/marcospaulo) | ok | 1 |
 | [marcusadriano-go](./participantes/marcusadriano-go) | ok | 4 |
 | [marcusantunius](./participantes/marcusantunius) | ok | 1 |
@@ -362,6 +364,7 @@ Atualizada **Tue Feb 27 03:00:45 UTC 2024** com **377** submissões.
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
 | [victor-marcolino](./participantes/victor-marcolino) | ok | 4 |
 | [victor99z](./participantes/victor99z) | ok | 8 |
+| [victornfb](./participantes/victornfb) | ok | 4 |
 | [victorverdoodt](./participantes/victorverdoodt) | ok | 2 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [viniciusgferreira](./participantes/viniciusgferreira) | ok | 3 |
