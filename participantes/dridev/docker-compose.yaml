@@ -1,0 +1,64 @@
+services:
+  api01: &api
+    image: dridev1/rinha_back_end_go:1.0
+    hostname: api01
+    environment:
+      - DATABASE_URL=postgres://admin:admin@db:5432/rinha
+    ports:
+      - "8081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '20MB'
+    restart: always
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "8082:8080"
+
+  nginx:
+    image: nginx:1.25.3-alpine3.18
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - '9999:9999'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '20MB'
+
+  db:
+    image: postgres:16.2-bullseye
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'admin', '-d', 'rinha']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 5s
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '0.9'
+          memory: '490MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

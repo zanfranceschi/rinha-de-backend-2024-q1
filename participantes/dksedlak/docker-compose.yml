@@ -1,0 +1,80 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:latest
+    hostname: db
+    container_name: dksedlak-database
+    environment:
+      - POSTGRES_PASSWORD=nopassword
+      - POSTGRES_USER=rinha_backend
+      - POSTGRES_DB=production
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    healthcheck:
+      test: "pg_isready -h db"
+      interval: 3s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.76"
+          memory: "380MB"
+
+  service01: &service
+    image: dksedlak/rinha-backend-2024q1:latest
+    container_name: dksedlak-service-01
+    environment:
+      - ENV=production
+      - LOG_LEVEL=info
+      - HTTP_ADDR=8001
+      - POSTGRES_DSN=postgres://rinha_backend:nopassword@db:5432/production?sslmode=disable&pool_max_conns=19
+    expose:
+      - "8001:8001"
+    hostname: service01
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0.27'
+          memory: '50MB'
+
+  service02:
+    <<: *service
+    hostname: service02
+    container_name: dksedlak-service-02
+    expose:
+      - "8002:8002"
+    environment:
+      - ENV=production
+      - LOG_LEVEL=info
+      - HTTP_ADDR=8002
+      - POSTGRES_DSN=postgres://rinha_backend:nopassword@db:5432/production?sslmode=disable&pool_max_conns=19
+
+  nginx:
+    image: nginx:latest
+    container_name: dksedlak-load-balancer
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - service01
+      - service02
+    ports: 
+      # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "70MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
