@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 27 00:08:51 UTC 2024** com **371** submissões.
+Atualizada **Tue Feb 27 00:30:33 UTC 2024** com **374** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -36,6 +36,7 @@ Atualizada **Tue Feb 27 00:08:51 UTC 2024** com **371** submissões.
 | [avinho](./participantes/avinho) | ok | 3 |
 | [aysion_bun](./participantes/aysion_bun) | ok | 1 |
 | [aysion_nodejs](./participantes/aysion_nodejs) | ok | 6 |
+| [bbeluco](./participantes/bbeluco) | ok | 2 |
 | [bbonagura9](./participantes/bbonagura9) | ok | 2 |
 | [bcaua](./participantes/bcaua) | ok | 2 |
 | [betamedina](./participantes/betamedina) | falha - [logs](./participantes/betamedina/docker-compose.logs) | -- |
@@ -90,6 +91,7 @@ Atualizada **Tue Feb 27 00:08:51 UTC 2024** com **371** submissões.
 | [diego-coronel](./participantes/diego-coronel) | ok | 2 |
 | [diegoalexandrooliveira](./participantes/diegoalexandrooliveira) | ok | 5 |
 | [direisc](./participantes/direisc) | ok | 4 |
+| [dksedlak](./participantes/dksedlak) | ok | 3 |
 | [doceazedo](./participantes/doceazedo) | falha - [logs](./participantes/doceazedo/docker-compose.logs) | -- |
 | [dowingows-phalcon-php](./participantes/dowingows-phalcon-php) | ok | 2 |
 | [dreamagici4n](./participantes/dreamagici4n) | ok | 0 |
@@ -297,6 +299,7 @@ Atualizada **Tue Feb 27 00:08:51 UTC 2024** com **371** submissões.
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
 | [quarkusclub](./participantes/quarkusclub) | ok | 3 |
 | [quokka](./participantes/quokka) | ok | 5 |
+| [rafaelktakahashi](./participantes/rafaelktakahashi) | falha - [logs](./participantes/rafaelktakahashi/docker-compose.logs) | -- |
 | [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
 | [rafaelpadovezi-mongo](./participantes/rafaelpadovezi-mongo) | ok | 2 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
@@ -338,7 +341,7 @@ Atualizada **Tue Feb 27 00:08:51 UTC 2024** com **371** submissões.
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
 | [santannaf_web](./participantes/santannaf_web) | ok | 2 |
 | [santannaf_webflux](./participantes/santannaf_webflux) | ok | 3 |
-| [silmar-alberti-franken-php](./participantes/silmar-alberti-franken-php) | ok | 3 |
+| [silmar-alberti-franken-php](./participantes/silmar-alberti-franken-php) | ok | 2 |
 | [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
