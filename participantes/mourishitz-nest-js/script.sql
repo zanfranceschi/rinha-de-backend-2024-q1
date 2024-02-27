@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS transacoes (
   valor INT,
   tipo VARCHAR(1),
   descricao VARCHAR(10),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  realizada_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
   CONSTRAINT fk_cliente
     FOREIGN KEY(cliente_id) REFERENCES clientes(id)
