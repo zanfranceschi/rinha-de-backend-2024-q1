@@ -4,7 +4,7 @@
 - X: [@mrpavllo](https://x.com/mrpavllo)
 - Repositório: [github.com/marcosisocram/hela](https://github.com/marcosisocram/hela)
 
-## Apredizado
+## Aprendizado
 1. H2 Database
 2. Lock Distribuido (Redis)
 3. Undertow
