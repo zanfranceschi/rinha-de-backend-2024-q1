@@ -1,53 +1,68 @@
 import express from 'express';
 import { Request, Response } from 'express';
-
-// import { PrismaClient } from '@prisma/client';
-// const prisma = new PrismaClient();
-
+import {z } from 'zod';
 import { prisma } from './lib/prisma';
 
 const app = express();
 require('dotenv').config();
-
 app.use(express.json());
 
-// Defina a rota para listar os clientes
-app.get('/', async (req: Request, res: Response) => {
-    try {
-        // resquest: req, response: res    // Busque todos os clientes no banco de dados usando o Prisma Client
-        // const clientes = await prisma.clientes.findMany();
 
-        // Retorne a lista de clientes como resposta
-        // res.json(clientes);
-        res.send('Hello World')
-    } catch (error) {
-        // Em caso de erro, retorne uma resposta de erro com status 500
-        console.error('Erro ao buscar clientes:', error);
-        res.status(500).json({ error: 'Erro ao buscar clientes.' });
-    }
-});
-
-app.get('/clientes/:id/extrato', async  (req, res) => {
-    const clienteId = parseInt(req.params.id); 
+app.get('/clientes/:id/extrato', async  (req: Request, res: Response) => {
+    const clienteId = parseInt(req.params.id);
+    const data_extrato = new Date();
     // Verificando se o ID do cliente está dentro do intervalo esperado
     if (clienteId >= 1 && clienteId <= 5) {
-        res.send("Extrato do cliente " + clienteId);
+        try{
+            const saldo = await prisma.cliente.findUnique({
+                where:{
+                    id : clienteId
+                }
+            })
+            const transacoes = await prisma.transacao.findMany({
+                where: {
+                    cliente_id: clienteId
+                },orderBy:{
+                    realizada_em: 'desc'
+                }, take: 10 
+            });
+
+            // Removendo os atributos id e cliente_id das transacoes
+            const ultimas_transacoes = transacoes.map((transacao) => {
+                const { id, cliente_id, ...ultimas_transacoes } = transacao;
+                return ultimas_transacoes;
+            });
+
+            res.status(200).json({
+                saldo:{
+                    saldo: saldo?.saldo,
+                    limite: saldo?.limite
+                }, ultimas_transacoes
+            });
+        }catch{
+            res.status(500).json({ error:'Erro ao buscar extrato.' });
+        }
     } else {
         // Caso contrário, lançamos um erro com status 400 (Bad Request)
-        res.status(400).send('ID de cliente inválido');
+        res.status(404).send('ID de cliente inválido');
     }
-
 })
 
 // Rota para criar transações de um cliente específico
-app.post('/clientes/:id/transacoes', async  (req, res) => {
+app.post('/clientes/:id/transacoes', async  (req: Request, res: Response) => {
     const clienteId = parseInt(req.params.id); 
     // Verificando se o ID do cliente está dentro do intervalo esperado
     if (clienteId >= 1 && clienteId <= 5) {
         try {
-            
+            const createClienteBody = z.object({
+                valor: z.number().nonnegative(),
+                tipo: z.string().max(1),
+                descricao: z.string().max(10).min(1)
+            })
+
             // desestrutura o corpo da requisição 
-            const { valor, tipo, descricao } = req.body;
+            const { valor, tipo, descricao } = createClienteBody.parse(req.body);
+
 
             // Verificando se o corpo da requisição não está vazio
             if (!req.body) {
@@ -58,6 +73,7 @@ app.post('/clientes/:id/transacoes', async  (req, res) => {
             const cliente = await prisma.cliente.findUnique({
                 where:{id: clienteId}
             })
+
 
             // Verifica se o cliente foi encontrado
             if (!cliente) {
@@ -113,7 +129,13 @@ app.post('/clientes/:id/transacoes', async  (req, res) => {
     }
 })
 
-app.listen(3000,() =>{
-    console.log('Server is running on port 3000')
-})
+try {
+    app.listen(8080,() =>{
+    console.log('Server is running on port 8080')
+    }) 
+}
+catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
 
