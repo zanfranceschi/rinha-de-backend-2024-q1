@@ -1,0 +1,115 @@
+version: "3.5"
+
+services:
+  api1: &api
+    image: rhsobr/rinha-de-backend-2024-q1-go:main
+    hostname: api1
+    environment:
+      - API_PORT=3000
+      - DATABASE_URL=postgres://admin:admin@pgbouncer:5432/rinha?application_name=%app%
+      - DB_MAX_RW_CONNECTIONS=3
+      - GIN_MODE=release
+    depends_on:
+      pgbouncer:
+        condition: service_healthy
+    healthcheck:
+      test: curl --fail http://localhost:3000/clientes/1/extrato || exit 1
+      interval: 10s
+      timeout: 2s
+      retries: 5
+      start_period: 2s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 96MB
+    networks:
+      - app_network
+
+  api2:
+    <<: *api
+    hostname: api2
+
+  nginx:
+    image: byjg/nginx-extras
+    tty: true
+    volumes:
+      - ./configs/nginx.conf:/etc/nginx/nginx.conf:ro
+    healthcheck:
+      test: service nginx status || exit 1
+      interval: 15s
+      timeout: 3s
+      retries: 2
+    ports:
+      - 9999:9999
+    expose:
+      - "9999"
+    depends_on:
+      api1:
+        condition: service_healthy
+      api2:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "16MB"
+    networks:
+      - app_network
+
+  db:
+    image: postgres:16-alpine
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./configs/database/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+      - ./configs/database/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+    command: postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=off -c autovacuum=off -c shared_buffers=128MB -c effective_io_concurrency=25
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 1s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: 256MB
+    networks:
+      - app_network
+
+  pgbouncer:
+    image: edoburu/pgbouncer:1.22.0-p0
+    hostname: pgbouncer
+    environment:
+      - DB_USER=admin
+      - DB_PASSWORD=admin
+      - DB_HOST=db
+      - DB_NAME=rinha
+      - POOL_MODE=transaction
+      - ADMIN_USERS=admin
+      - AUTH_TYPE=plain
+    healthcheck:
+      test:
+        ["CMD-SHELL", "pg_isready -h $${DB_HOST} -d $${DB_NAME} -U $${DB_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 1s
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 16MB
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge

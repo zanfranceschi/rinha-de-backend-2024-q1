@@ -1,0 +1,52 @@
+version: "3.5"
+
+services:
+  nginx:
+    image: nginx
+    network_mode: host
+    volumes:
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "50MB"
+
+  db:
+    image: postgres
+    network_mode: host
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./conf/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "200MB"
+
+  api01: &api
+    image: trndd/node-rinha-api
+    network_mode: host
+    environment:
+      - API_PORT=3000
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "100MB"
+
+  api02:
+    <<: *api
+    environment:
+      - API_PORT=3001

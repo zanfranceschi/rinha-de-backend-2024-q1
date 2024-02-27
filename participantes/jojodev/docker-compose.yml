@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:10.0
+    image: postgres:16.0
     hostname: db
     environment:
       - POSTGRES_DB=banco
@@ -14,7 +14,7 @@ services:
       resources:
         limits:
           cpus: "0.13"
-          memory: "240MB"
+          memory: "200MB"
     networks:
       - default
     healthcheck:
@@ -33,6 +33,7 @@ services:
     depends_on:
       db: 
         condition: service_healthy
+    restart: unless-stopped
     deploy:
       resources:
         limits:
@@ -63,11 +64,12 @@ services:
     depends_on:
       - api01
       - api02
+    restart: unless-stopped
     deploy:
       resources:
         limits:
           cpus: "0.17"
-          memory: "10MB"
+          memory: "30MB"
     networks:
       - default
 
