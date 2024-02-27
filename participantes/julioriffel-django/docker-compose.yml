@@ -16,23 +16,9 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "150MB"
+          cpus: "0.64"
+          memory: "165MB"
       replicas: 2
-
-  nginx:
-    image: nginx:latest
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - api
-    ports:
-      - "9999:9999"
-    deploy:
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: "25MB"
 
   db:
     image: postgres:16
@@ -48,8 +34,22 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.1"
-          memory: "175MB"
+          cpus: "0.06"
+          memory: "165MB"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.07"
+          memory: "25MB"
 
   pgbouncer:
     image: edoburu/pgbouncer:latest
@@ -64,8 +64,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.1"
-          memory: "25MB"
+          cpus: "0.06"
+          memory: "15MB"
 
   redis:
     image: redis:latest
@@ -75,8 +75,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.1"
-          memory: "25MB"
+          cpus: "0.05"
+          memory: "15MB"
 
 networks:
   default:
