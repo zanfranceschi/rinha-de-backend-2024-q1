@@ -1,7 +1,7 @@
 #!/bin/bash
 
 startWarmupMakeTransactions() {
-    for i in {1..50}; do
+    for i in {1..30}; do
         # 2 requests to wake the 2 api instances up :)
         curl --fail -s --request POST \
                       --url http://nginx:9999/clientes/1/transacoes \
@@ -24,7 +24,7 @@ startWarmupMakeTransactions() {
 
 
 startWarmupExtract() {
-    for i in {1..50}; do
+    for i in {1..30}; do
         # 2 requests to wake the 2 api instances up :)
         curl --fail -s http://nginx:9999/clientes/1/extrato?skip=true > /dev/null && \
         curl --fail -s http://nginx:9999/clientes/1/extrato?skip=true > /dev/null
