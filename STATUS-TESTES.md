@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 27 00:30:33 UTC 2024** com **374** submissões.
+Atualizada **Tue Feb 27 00:41:03 UTC 2024** com **375** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -171,6 +171,7 @@ Atualizada **Tue Feb 27 00:30:33 UTC 2024** com **374** submissões.
 | [halexv](./participantes/halexv) | falha - [logs](./participantes/halexv/docker-compose.logs) | -- |
 | [heitor-ps](./participantes/heitor-ps) | ok | 2 |
 | [hendrikaraujo](./participantes/hendrikaraujo) | ok | 3 |
+| [henriqueccapozzi-django-01](./participantes/henriqueccapozzi-django-01) | ok | 1183 |
 | [henriqueholtz](./participantes/henriqueholtz) | ok | 2 |
 | [hfurlan](./participantes/hfurlan) | ok | 4 |
 | [hiroshimorowaka-golang](./participantes/hiroshimorowaka-golang) | ok | 1 |
