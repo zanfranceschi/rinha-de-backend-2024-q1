@@ -1,0 +1,50 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: grilario/rinha-2024-q1:latest
+    hostname: api01
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "64MB"
+
+  api02:
+    <<: *api 
+    hostname: api02
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "96MB"
+
+  db:
+    image: postgres:16
+    hostname: db
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: api
+      POSTGRES_DB: app
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.9"
+          memory: "326MB"
+
