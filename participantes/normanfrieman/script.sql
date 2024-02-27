@@ -6,7 +6,7 @@ CREATE TABLE public."Clientes" (
 );
 
 CREATE TABLE public."Transacoes" (
-	"Id" uuid NOT NULL,
+	"Id" SERIAL,
 	"ClienteId" int4 NOT NULL,
 	"Valor" int4 NOT NULL,
 	"Tipo" bpchar(1) NOT NULL,
@@ -26,7 +26,7 @@ VALUES
     (5, 500000, 0);
 
 CREATE OR REPLACE FUNCTION atualiza_saldo(p_id INT, p_valor INT, p_tipo BPCHAR(1), p_descricao VARCHAR(10))
-RETURNS TABLE (Id INT, Limite INT, Saldo INT) AS $$
+RETURNS TABLE (Saldo INT, Erro BOOLEAN) AS $$
 
 DECLARE rows_affected INT;
 
@@ -51,12 +51,13 @@ BEGIN
 	IF rows_affected > 0 THEN
 		INSERT INTO public."Transacoes"
 		("Id", "ClienteId", "Valor", "Tipo", "Descricao", "Data")
-		VALUES(gen_random_uuid(), p_id, p_valor, p_tipo, p_descricao, NOW());
+		VALUES(DEFAULT, p_id, p_valor, p_tipo, p_descricao, NOW());
 
 		RETURN query
-		SELECT "Id", "Limite", "Saldo" FROM "Clientes" c WHERE "Id" = p_id;
+		SELECT "Saldo", FALSE AS "Erro" FROM "Clientes" c WHERE "Id" = p_id;
 	ELSE
-		RETURN NEXT;
+		RETURN query
+		SELECT NULL::INT AS "Saldo", TRUE AS "Erro";
 	END IF;
 END;
 $$ LANGUAGE plpgsql;

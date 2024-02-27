@@ -1,0 +1,80 @@
+version: '3.5'
+services:
+  api1: &app
+    container_name: marcosisocram-kotlin-api1
+    image: marcosisocram/rinha-2024-q1-kotlin:1.0.0
+    hostname: api1
+    network_mode: "host"
+    depends_on:
+      - db
+      - redis
+    expose:
+      - "8180"
+    #command: ["-Dorg.slf4j.simpleLogger.defaultLogLevel=debug", "-Dlogger.level=debug"]
+    environment:
+      - PORT=8180
+      - DB_URL=jdbc:h2:tcp://localhost:9092/~/rinha
+      - DB_USER=sa
+      - DB_PASSWORD=sa
+      - DB_POOLSIZE=4
+      - DB_CREATE_TRANSACAO=true
+      - REDIS_URL=redis://127.0.0.1:6379
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2375'
+          memory: "90MB"
+
+  api2: # API - Instância 02
+    <<: *app
+    container_name: marcosisocram-kotlin-api2
+    expose:
+      - "8280"
+    environment:
+      - PORT=8280
+      - DB_URL=jdbc:h2:tcp://localhost:9092/~/rinha
+      - DB_USER=sa
+      - DB_PASSWORD=sa
+      - DB_POOLSIZE=4
+      - DB_CREATE_CLIENTE=true
+      - REDIS_URL=redis://127.0.0.1:6379
+    hostname: api2
+
+  db:
+    container_name: marcosisocram-kotlin-db
+    image: marcosisocram/rinha-h2:latest
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: '220MB'
+
+  haproxy:
+    container_name: marcosisocram-kotlin-haproxy
+    image: haproxy:2.9.4
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - api1
+      - api2
+    expose:
+      - "9999"
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.225"
+          memory: "110MB"
+
+  redis:
+    container_name: marcosisocram-kotlin-redis
+    image: 'bitnami/redis:latest'
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "40MB"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
