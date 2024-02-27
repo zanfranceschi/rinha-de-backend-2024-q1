@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Feb 27 00:47:56 UTC 2024** com **375** submissões.
+Atualizada **Tue Feb 27 01:04:02 UTC 2024** com **377** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -95,6 +95,7 @@ Atualizada **Tue Feb 27 00:47:56 UTC 2024** com **375** submissões.
 | [doceazedo](./participantes/doceazedo) | falha - [logs](./participantes/doceazedo/docker-compose.logs) | -- |
 | [dowingows-phalcon-php](./participantes/dowingows-phalcon-php) | ok | 2 |
 | [dreamagici4n](./participantes/dreamagici4n) | ok | 0 |
+| [dridev](./participantes/dridev) | ok | 2 |
 | [droderuan](./participantes/droderuan) | ok | 2 |
 | [dscamargo](./participantes/dscamargo) | ok | 2 |
 | [dscorzoni-django](./participantes/dscorzoni-django) | ok | 6317 |
@@ -122,6 +123,7 @@ Atualizada **Tue Feb 27 00:47:56 UTC 2024** com **375** submissões.
 | [felipebossolani-dotnet](./participantes/felipebossolani-dotnet) | ok | 2 |
 | [felipebossolani-dotnet9-preview](./participantes/felipebossolani-dotnet9-preview) | ok | 2 |
 | [felipemarkson](./participantes/felipemarkson) | ok | 2 |
+| [felipeymn](./participantes/felipeymn) | ok | 2 |
 | [felipma-rust-rataria-version](./participantes/felipma-rust-rataria-version) | ok | 1 |
 | [felipma-rust](./participantes/felipma-rust) | ok | 3 |
 | [fernandofogliato-java](./participantes/fernandofogliato-java) | ok | 2 |
