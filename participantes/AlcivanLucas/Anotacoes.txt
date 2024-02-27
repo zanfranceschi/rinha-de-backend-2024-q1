@@ -48,4 +48,20 @@ docker exec -it alcivanlucas-db-1 psql -U admin -d rinha -c "SELECT * FROM clien
 
 
 ------criando imagem docker--------
-docker build -t rinha-backend-2024-q1-nodejs:latest .
+docker build -t alcivanlucas/rinha-backend-2024-q1-nodejs:latest --no-cache .
+docker push alcivanlucas/rinha-backend-2024-q1-nodejs:latest
+docker run -p 8081:8080 rinha-backend-2024-q1-nodejs:latest : Mapear a porta 8080 do container para a porta 8081 do host. 
+
+docker ps -q lista todos os IDs de containers executando 
+docker stop $(docker ps -q) , encerra todos os container em execução
+
+
+descrição do repo nno hub.dockers
+Tecnologias: Node.js, Docker-compose, PostgreSQL, NGINX LinkedIn: alcivan-lucas
+alcivanlucas/rinha-backend-2024-q1-nodejs
+
+
+docker stop $(docker ps -q) && docker rm $(docker ps -a -q) : remmove e limpa
+
+OBS: uso do host "localhost" na sua URL de conexão do banco de dados. Quando você usa "localhost" dentro do contêiner da API, ele se refere ao próprio contêiner, não ao contêiner do banco de dados.
+Em vez de usar "localhost", você deve usar o nome do serviço do contêiner do banco de dados conforme definido no docker-compose.yml. Nesse caso, o nome do serviço é "db".

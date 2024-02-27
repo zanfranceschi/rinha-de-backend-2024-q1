@@ -11,8 +11,9 @@ COPY . .
 # Instale as dependências do projeto
 RUN npm install 
 
+# To redirecionando a porta 8080 do contêiner para a porta 8081 do host
+EXPOSE 8081:8080
+
 # Comando para executar sua aplicação quando o contêiner for iniciado
 CMD ["npm", "run", "dev"]
 
-# To redirecionando a porta 8080 do contêiner para a porta 8081 do host
-EXPOSE 8081:8080
