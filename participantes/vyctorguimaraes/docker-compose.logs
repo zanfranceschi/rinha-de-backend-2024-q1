@@ -1,0 +1,105 @@
+ Network rinha-backend  Creating
+ Network rinha-backend  Created
+ Container db  Creating
+ Container db  Created
+ Container api2  Creating
+ Container api1  Creating
+ Container api1  Created
+ Container api2  Created
+ Container vyctorguimaraes-nginx-1  Creating
+ Container vyctorguimaraes-nginx-1  Created
+Attaching to api1, api2, db, nginx-1
+db       | The files belonging to this database system will be owned by user "postgres".
+db       | This user must also own the server process.
+db       | 
+db       | The database cluster will be initialized with locale "en_US.utf8".
+db       | The default database encoding has accordingly been set to "UTF8".
+db       | The default text search configuration will be set to "english".
+db       | 
+db       | Data page checksums are disabled.
+db       | 
+db       | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db       | creating subdirectories ... ok
+db       | selecting dynamic shared memory implementation ... posix
+db       | selecting default max_connections ... 100
+db       | selecting default shared_buffers ... 128MB
+db       | selecting default time zone ... Etc/UTC
+db       | creating configuration files ... ok
+db       | running bootstrap script ... ok
+db       | performing post-bootstrap initialization ... ok
+api1     | APP_PORT:  4100
+api1     | DATABASE_URL:  postgresql://admin:123@db:5432/rinha?schema=public
+api1     | Server is running on port 4100
+api2     | APP_PORT:  4200
+api2     | DATABASE_URL:  postgresql://admin:123@db:5432/rinha?schema=public
+api2     | Server is running on port 4200
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db       | syncing data to disk ... ok
+db       | 
+db       | 
+db       | Success. You can now start the database server using:
+db       | 
+db       |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db       | 
+db       | initdb: warning: enabling "trust" authentication for local connections
+db       | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db       | waiting for server to start....2024-02-28 04:19:32.943 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db       | 2024-02-28 04:19:32.946 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db       | 2024-02-28 04:19:32.954 UTC [51] LOG:  database system was shut down at 2024-02-28 04:19:31 UTC
+db       | 2024-02-28 04:19:32.961 UTC [48] LOG:  database system is ready to accept connections
+db       |  done
+db       | server started
+db       | CREATE DATABASE
+db       | 
+db       | 
+db       | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
+db       | psql:/docker-entrypoint-initdb.d/script.sql:2: NOTICE:  table "transacoes" does not exist, skipping
+db       | psql:/docker-entrypoint-initdb.d/script.sql:4: NOTICE:  table "clientes" does not exist, skipping
+db       | DROP TABLE
+db       | DROP TABLE
+db       | CREATE TABLE
+db       | CREATE TABLE
+db       | ALTER TABLE
+db       | INSERT 0 5
+db       | 
+db       | 
+db       | waiting for server to shut down...2024-02-28 04:19:33.174 UTC [48] LOG:  received fast shutdown request
+db       | .2024-02-28 04:19:33.180 UTC [48] LOG:  aborting any active transactions
+db       | 2024-02-28 04:19:33.182 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db       | 2024-02-28 04:19:33.183 UTC [49] LOG:  shutting down
+db       | 2024-02-28 04:19:33.186 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db       | 2024-02-28 04:19:33.666 UTC [49] LOG:  checkpoint complete: wrote 939 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.385 s, sync=0.083 s, total=0.483 s; sync files=309, longest=0.054 s, average=0.001 s; distance=4302 kB, estimate=4302 kB; lsn=0/191E3C8, redo lsn=0/191E3C8
+db       | 2024-02-28 04:19:33.671 UTC [48] LOG:  database system is shut down
+db       |  done
+db       | server stopped
+db       | 
+db       | PostgreSQL init process complete; ready for start up.
+db       | 
+db       | 2024-02-28 04:19:33.699 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db       | 2024-02-28 04:19:33.699 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db       | 2024-02-28 04:19:33.699 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db       | 2024-02-28 04:19:33.708 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db       | 2024-02-28 04:19:33.721 UTC [66] LOG:  database system was shut down at 2024-02-28 04:19:33 UTC
+db       | 2024-02-28 04:19:33.735 UTC [1] LOG:  database system is ready to accept connections
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api1 exited with code 0
+api1 exited with code 137
+api2 exited with code 0
+api2 exited with code 137
+db       | 2024-02-28 04:23:58.706 UTC [1] LOG:  received fast shutdown request
+db       | 2024-02-28 04:23:58.713 UTC [1] LOG:  aborting any active transactions
+db       | 2024-02-28 04:23:58.715 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db       | 2024-02-28 04:23:58.715 UTC [64] LOG:  shutting down
+db       | 2024-02-28 04:23:58.718 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db       | 2024-02-28 04:23:58.863 UTC [64] LOG:  checkpoint complete: wrote 647 buffers (3.9%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.013 s, sync=0.116 s, total=0.148 s; sync files=31, longest=0.104 s, average=0.004 s; distance=18333 kB, estimate=18333 kB; lsn=0/2B05880, redo lsn=0/2B05880
+db       | 2024-02-28 04:23:58.867 UTC [1] LOG:  database system is shut down
+db exited with code 0

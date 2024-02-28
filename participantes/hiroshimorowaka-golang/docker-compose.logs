@@ -1,7 +1,7 @@
  Container postgres  Creating
  Container postgres  Created
- Container api01-golang  Creating
  Container api02-golang  Creating
+ Container api01-golang  Creating
  Container api01-golang  Created
  Container api02-golang  Created
  Container nginx  Creating
@@ -25,10 +25,8 @@ postgres      | selecting default time zone ... UTC
 postgres      | creating configuration files ... ok
 postgres      | running bootstrap script ... ok
 postgres      | sh: locale: not found
-postgres      | 2024-02-27 00:01:22.919 UTC [30] WARNING:  no usable system locales were found
+postgres      | 2024-02-28 03:42:43.831 UTC [30] WARNING:  no usable system locales were found
 postgres      | performing post-bootstrap initialization ... ok
-postgres      | initdb: warning: enabling "trust" authentication for local connections
-postgres      | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 postgres      | syncing data to disk ... ok
 postgres      | 
 postgres      | 
@@ -36,20 +34,22 @@ postgres      | Success. You can now start the database server using:
 postgres      | 
 postgres      |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 postgres      | 
-postgres      | waiting for server to start....2024-02-27 00:01:24.341 UTC [36] LOG:  starting PostgreSQL 16.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
-postgres      | 2024-02-27 00:01:24.345 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres      | 2024-02-27 00:01:24.355 UTC [39] LOG:  database system was shut down at 2024-02-27 00:01:23 UTC
-postgres      | 2024-02-27 00:01:24.368 UTC [36] LOG:  database system is ready to accept connections
+postgres      | initdb: warning: enabling "trust" authentication for local connections
+postgres      | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres      | waiting for server to start....2024-02-28 03:42:45.952 UTC [36] LOG:  starting PostgreSQL 16.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+postgres      | 2024-02-28 03:42:45.955 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres      | 2024-02-28 03:42:45.967 UTC [39] LOG:  database system was shut down at 2024-02-28 03:42:44 UTC
+postgres      | 2024-02-28 03:42:45.985 UTC [36] LOG:  database system is ready to accept connections
 postgres      |  done
 postgres      | server started
 postgres      | CREATE DATABASE
 postgres      | 
 postgres      | 
 postgres      | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
-postgres      | DROP TABLE
 postgres      | psql:/docker-entrypoint-initdb.d/init.sql:1: NOTICE:  table "transacoes" does not exist, skipping
 postgres      | DROP TABLE
 postgres      | psql:/docker-entrypoint-initdb.d/init.sql:2: NOTICE:  table "clientes" does not exist, skipping
+postgres      | DROP TABLE
 postgres      | CREATE TABLE
 postgres      | CREATE TABLE
 postgres      | CREATE INDEX
@@ -59,37 +59,26 @@ postgres      | ALTER TABLE
 postgres      | DO
 postgres      | 
 postgres      | 
-postgres      | waiting for server to shut down....2024-02-27 00:01:24.579 UTC [36] LOG:  received fast shutdown request
-postgres      | 2024-02-27 00:01:24.582 UTC [36] LOG:  aborting any active transactions
-postgres      | 2024-02-27 00:01:24.585 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
-postgres      | 2024-02-27 00:01:24.585 UTC [37] LOG:  shutting down
-postgres      | 2024-02-27 00:01:24.587 UTC [37] LOG:  checkpoint starting: shutdown immediate
-postgres      | 2024-02-27 00:01:25.104 UTC [37] LOG:  checkpoint complete: wrote 948 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.217 s, sync=0.290 s, total=0.520 s; sync files=323, longest=0.214 s, average=0.001 s; distance=4319 kB, estimate=4319 kB; lsn=0/19281B0, redo lsn=0/19281B0
-postgres      | 2024-02-27 00:01:25.110 UTC [36] LOG:  database system is shut down
+postgres      | waiting for server to shut down....2024-02-28 03:42:46.137 UTC [36] LOG:  received fast shutdown request
+postgres      | 2024-02-28 03:42:46.141 UTC [36] LOG:  aborting any active transactions
+postgres      | 2024-02-28 03:42:46.144 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
+postgres      | 2024-02-28 03:42:46.144 UTC [37] LOG:  shutting down
+postgres      | 2024-02-28 03:42:46.146 UTC [37] LOG:  checkpoint starting: shutdown immediate
+postgres      | 2024-02-28 03:42:46.674 UTC [37] LOG:  checkpoint complete: wrote 948 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.374 s, sync=0.143 s, total=0.530 s; sync files=323, longest=0.055 s, average=0.001 s; distance=4319 kB, estimate=4319 kB; lsn=0/19281B0, redo lsn=0/19281B0
+postgres      | 2024-02-28 03:42:46.679 UTC [36] LOG:  database system is shut down
 postgres      |  done
 postgres      | server stopped
 postgres      | 
 postgres      | PostgreSQL init process complete; ready for start up.
 postgres      | 
-postgres      | 2024-02-27 00:01:25.202 UTC [1] LOG:  starting PostgreSQL 16.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
-postgres      | 2024-02-27 00:01:25.203 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres      | 2024-02-27 00:01:25.203 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-postgres      | 2024-02-27 00:01:25.210 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres      | 2024-02-27 00:01:25.220 UTC [54] LOG:  database system was shut down at 2024-02-27 00:01:25 UTC
-postgres      | 2024-02-27 00:01:25.227 UTC [1] LOG:  database system is ready to accept connections
-postgres      | 2024-02-27 00:01:26.996 UTC [64] FATAL:  role "root" does not exist
-api01-golang  | 2024/02/27 00:01:27 &{0xc0003dcea0 <nil> <nil> <nil> <nil> <nil> 1h0m0s 0s 30m0s 16 13 1m0s true}
-api01-golang  | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
-api01-golang  |  - using env:	export GIN_MODE=release
-api01-golang  |  - using code:	gin.SetMode(gin.ReleaseMode)
-api01-golang  | 
-api01-golang  | [GIN-debug] POST   /clientes/:id/transacoes  --> api/controllers.TransactionHandler (1 handlers)
-api01-golang  | [GIN-debug] GET    /clientes/:id/extrato     --> api/controllers.StatementHandler (1 handlers)
-api01-golang  | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
-api01-golang  | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
-api01-golang  | [GIN-debug] Listening and serving HTTP on :8081
-api02-golang  | 2024/02/27 00:01:27 &{0xc000426d80 <nil> <nil> <nil> <nil> <nil> 1h0m0s 0s 30m0s 16 13 1m0s true}
-api02-golang  | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+postgres      | 2024-02-28 03:42:46.761 UTC [1] LOG:  starting PostgreSQL 16.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+postgres      | 2024-02-28 03:42:46.761 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres      | 2024-02-28 03:42:46.761 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres      | 2024-02-28 03:42:46.767 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres      | 2024-02-28 03:42:46.773 UTC [54] LOG:  database system was shut down at 2024-02-28 03:42:46 UTC
+postgres      | 2024-02-28 03:42:46.780 UTC [1] LOG:  database system is ready to accept connections
+postgres      | 2024-02-28 03:42:48.276 UTC [64] FATAL:  role "root" does not exist
+api02-golang  | {ConnConfig:0xc000446d80 BeforeConnect:<nil> AfterConnect:<nil> BeforeAcquire:<nil> AfterRelease:<nil> BeforeClose:<nil> MaxConnLifetime:1h0m0s MaxConnLifetimeJitter:0s MaxConnIdleTime:30m0s MaxConns:16 MinConns:13 HealthCheckPeriod:1m0s createdByParseConfig:true}[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
 api02-golang  |  - using env:	export GIN_MODE=release
 api02-golang  |  - using code:	gin.SetMode(gin.ReleaseMode)
 api02-golang  | 
@@ -98,6 +87,15 @@ api02-golang  | [GIN-debug] GET    /clientes/:id/extrato     --> api/controllers
 api02-golang  | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 api02-golang  | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 api02-golang  | [GIN-debug] Listening and serving HTTP on :8082
+api01-golang  | {ConnConfig:0xc00041d0e0 BeforeConnect:<nil> AfterConnect:<nil> BeforeAcquire:<nil> AfterRelease:<nil> BeforeClose:<nil> MaxConnLifetime:1h0m0s MaxConnLifetimeJitter:0s MaxConnIdleTime:30m0s MaxConns:16 MinConns:13 HealthCheckPeriod:1m0s createdByParseConfig:true}[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+api01-golang  |  - using env:	export GIN_MODE=release
+api01-golang  |  - using code:	gin.SetMode(gin.ReleaseMode)
+api01-golang  | 
+api01-golang  | [GIN-debug] POST   /clientes/:id/transacoes  --> api/controllers.TransactionHandler (1 handlers)
+api01-golang  | [GIN-debug] GET    /clientes/:id/extrato     --> api/controllers.StatementHandler (1 handlers)
+api01-golang  | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+api01-golang  | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+api01-golang  | [GIN-debug] Listening and serving HTTP on :8081
 nginx         | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx         | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx         | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -107,67 +105,67 @@ nginx         | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-re
 nginx         | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx         | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx         | /docker-entrypoint.sh: Configuration complete; ready for start up
-postgres      | 2024-02-27 00:01:32.057 UTC [98] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:01:37.116 UTC [105] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:01:42.164 UTC [112] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:01:47.212 UTC [120] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:01:52.264 UTC [127] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:01:57.307 UTC [134] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:02:02.352 UTC [141] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:02:07.408 UTC [149] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:02:12.456 UTC [156] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:02:17.504 UTC [163] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:02:22.560 UTC [170] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:02:27.620 UTC [178] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:02:32.664 UTC [186] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:02:37.724 UTC [193] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:02:42.792 UTC [200] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:02:47.853 UTC [208] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:02:52.895 UTC [215] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:02:57.956 UTC [222] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:03:03.005 UTC [229] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:03:08.060 UTC [237] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:03:13.108 UTC [244] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:03:18.160 UTC [250] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:03:23.212 UTC [257] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:03:28.265 UTC [266] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:03:33.329 UTC [273] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:03:38.392 UTC [280] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:03:43.441 UTC [287] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:03:48.488 UTC [295] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:03:53.548 UTC [302] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:03:58.601 UTC [309] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:04:03.657 UTC [317] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:04:08.713 UTC [325] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:04:13.760 UTC [332] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:04:18.816 UTC [339] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:04:23.861 UTC [346] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:04:28.921 UTC [355] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:04:33.968 UTC [362] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:04:39.024 UTC [369] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:04:44.076 UTC [376] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:04:49.132 UTC [384] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:04:54.184 UTC [391] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:04:59.241 UTC [398] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:05:04.288 UTC [405] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:05:09.345 UTC [415] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:05:14.396 UTC [422] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:05:19.444 UTC [429] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:05:24.496 UTC [436] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:05:29.544 UTC [444] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:05:34.601 UTC [451] FATAL:  role "root" does not exist
-postgres      | 2024-02-27 00:05:39.652 UTC [458] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:42:53.345 UTC [97] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:42:58.396 UTC [104] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:43:03.449 UTC [111] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:43:08.500 UTC [119] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:43:13.545 UTC [126] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:43:18.591 UTC [133] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:43:23.652 UTC [140] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:43:28.712 UTC [148] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:43:33.768 UTC [154] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:43:38.824 UTC [161] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:43:43.868 UTC [168] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:43:48.916 UTC [176] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:43:53.976 UTC [183] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:43:59.033 UTC [190] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:44:04.084 UTC [197] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:44:09.140 UTC [205] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:44:14.187 UTC [211] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:44:19.240 UTC [219] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:44:24.296 UTC [226] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:44:29.349 UTC [234] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:44:34.400 UTC [241] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:44:39.453 UTC [248] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:44:44.500 UTC [256] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:44:49.548 UTC [264] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:44:54.608 UTC [271] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:44:59.664 UTC [278] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:45:04.721 UTC [285] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:45:09.780 UTC [293] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:45:14.836 UTC [300] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:45:19.888 UTC [307] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:45:24.940 UTC [314] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:45:29.996 UTC [322] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:45:35.052 UTC [329] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:45:40.100 UTC [336] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:45:45.148 UTC [343] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:45:50.197 UTC [351] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:45:55.244 UTC [358] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:46:00.296 UTC [365] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:46:05.344 UTC [372] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:46:10.405 UTC [380] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:46:15.452 UTC [387] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:46:20.508 UTC [394] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:46:25.553 UTC [401] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:46:30.608 UTC [409] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:46:35.656 UTC [416] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:46:40.717 UTC [424] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:46:45.768 UTC [431] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:46:50.825 UTC [439] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:46:55.872 UTC [446] FATAL:  role "root" does not exist
+postgres      | 2024-02-28 03:47:00.921 UTC [453] FATAL:  role "root" does not exist
 nginx exited with code 0
 nginx exited with code 0
 api01-golang exited with code 0
 api01-golang exited with code 2
 api02-golang exited with code 0
 api02-golang exited with code 2
-postgres      | 2024-02-27 00:05:41.311 UTC [1] LOG:  received fast shutdown request
-postgres      | 2024-02-27 00:05:41.315 UTC [1] LOG:  aborting any active transactions
-postgres      | 2024-02-27 00:05:41.317 UTC [1] LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
-postgres      | 2024-02-27 00:05:41.317 UTC [52] LOG:  shutting down
-postgres      | 2024-02-27 00:05:41.320 UTC [52] LOG:  checkpoint starting: shutdown immediate
-postgres      | 2024-02-27 00:05:41.506 UTC [52] LOG:  checkpoint complete: wrote 960 buffers (5.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.011 s, sync=0.159 s, total=0.189 s; sync files=31, longest=0.151 s, average=0.006 s; distance=2102 kB, estimate=2102 kB; lsn=0/1B35CB0, redo lsn=0/1B35CB0
-postgres      | 2024-02-27 00:05:41.511 UTC [1] LOG:  database system is shut down
+postgres      | 2024-02-28 03:47:02.895 UTC [1] LOG:  received fast shutdown request
+postgres      | 2024-02-28 03:47:02.898 UTC [1] LOG:  aborting any active transactions
+postgres      | 2024-02-28 03:47:02.900 UTC [1] LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
+postgres      | 2024-02-28 03:47:02.901 UTC [52] LOG:  shutting down
+postgres      | 2024-02-28 03:47:02.904 UTC [52] LOG:  checkpoint starting: shutdown immediate
+postgres      | 2024-02-28 03:47:03.119 UTC [52] LOG:  checkpoint complete: wrote 962 buffers (5.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.011 s, sync=0.190 s, total=0.219 s; sync files=31, longest=0.177 s, average=0.007 s; distance=2113 kB, estimate=2113 kB; lsn=0/1B387C8, redo lsn=0/1B387C8
+postgres      | 2024-02-28 03:47:03.124 UTC [1] LOG:  database system is shut down
 postgres exited with code 0
