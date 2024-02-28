@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Feb 28 22:43:04 UTC 2024** com **399** submissões.
+Atualizada **Wed Feb 28 22:49:59 UTC 2024** com **400** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -373,6 +373,7 @@ Atualizada **Wed Feb 28 22:43:04 UTC 2024** com **399** submissões.
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
 | [tonico](./participantes/tonico) | ok | 80 |
+| [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
 | [vgdss](./participantes/vgdss) | ok | 5 |
