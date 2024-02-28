@@ -30,6 +30,33 @@ CREATE OR REPLACE FUNCTION update_balance_and_insert_transaction( _clientId INT,
         END IF;
 
 END; $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION get_balance_with_transaction(_clientId INT) RETURNS JSON AS $$
+DECLARE
+    result JSON;
+BEGIN
+    SELECT json_build_object(
+        'saldo', (SELECT * FROM json_build_object('total', c.balance, 'data_extrato', current_timestamp, 'limite', c.withdraw_limit)),
+        'ultimas_transacoes', (
+            SELECT COALESCE(json_agg(trx.*), '[]'::json) 
+                FROM (
+                    SELECT t.description as "descricao", t.type as "tipo", t.value as "valor", t.created_at AS "realizada_em" 
+                    FROM transaction t WHERE t.client_id = c.id ORDER BY t.created_at DESC LIMIT 10
+                ) 
+            as trx)
+        )
+    INTO result 
+    FROM clients c
+    WHERE c.id = _clientId;
+   
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'RN01:Cliente com código % não encontrado.', p_codigo_cliente;
+    END IF;
+   
+
+    RETURN result;
+END;
+$$ LANGUAGE plpgsql;
 -- Insert placeholder values
 INSERT INTO clients (id, withdraw_limit, balance) VALUES
     (1, 100000, 0),
