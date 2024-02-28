@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Feb 28 20:16:36 UTC 2024** com **394** submissões.
+Atualizada **Wed Feb 28 20:50:47 UTC 2024** com **397** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -227,7 +227,8 @@ Atualizada **Wed Feb 28 20:16:36 UTC 2024** com **394** submissões.
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
 | [lbaesso-php](./participantes/lbaesso-php) | ok | 1 |
 | [leandro-sousa](./participantes/leandro-sousa) | falha - [logs](./participantes/leandro-sousa/docker-compose.logs) | -- |
-| [leluque](./participantes/leluque-micronaut-java) | falha - [logs](participantes/leluque-micronaut-java/docker-compose.logs) | -- |
+| [leluque-micronaut-java](./participantes/leluque-micronaut-java) | ok | 2 |
+| [leluque](./participantes/leluque) | falha - [logs](./participantes/leluque/docker-compose.logs) | -- |
 | [leonardohofling](./participantes/leonardohofling) | ok | 2 |
 | [leonardoksn](./participantes/leonardoksn) | falha - [logs](./participantes/leonardoksn/docker-compose.logs) | -- |
 | [leonardovee](./participantes/leonardovee) | falha - [logs](./participantes/leonardovee/docker-compose.logs) | -- |
@@ -279,7 +280,7 @@ Atualizada **Wed Feb 28 20:16:36 UTC 2024** com **394** submissões.
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 4 |
 | [mateusdeitos-node](./participantes/mateusdeitos-node) | ok | 2 |
-| [matheus-trindade](./participantes/matheus-trindade) | ok | 4 |
+| [matheus-trindade](./participantes/matheus-trindade) | ok | 2 |
 | [matheusdojava](./participantes/matheusdojava) | ok | 142 |
 | [matheusfbosa](./participantes/matheusfbosa) | ok | 1 |
 | [matheuslao](./participantes/matheuslao) | ok | 7 |
@@ -308,6 +309,7 @@ Atualizada **Wed Feb 28 20:16:36 UTC 2024** com **394** submissões.
 | [oneabrante](./participantes/oneabrante) | falha - [logs](./participantes/oneabrante/docker-compose.logs) | -- |
 | [otonielsilva](./participantes/otonielsilva) | ok | 2 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
+| [paulohenriquesn-python](./participantes/paulohenriquesn-python) | ok | 3 |
 | [pedrohenriquea](./participantes/pedrohenriquea) | ok | 3 |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
@@ -373,6 +375,7 @@ Atualizada **Wed Feb 28 20:16:36 UTC 2024** com **394** submissões.
 | [udleinati](./participantes/udleinati) | ok | 2 |
 | [vgdss](./participantes/vgdss) | ok | 5 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
+| [victor-132](./participantes/victor-132) | ok | 2 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
 | [victor-marcolino](./participantes/victor-marcolino) | ok | 4 |
 | [victor99z](./participantes/victor99z) | ok | 8 |
@@ -383,6 +386,7 @@ Atualizada **Wed Feb 28 20:16:36 UTC 2024** com **394** submissões.
 | [vitorlacerda-dotnet](./participantes/vitorlacerda-dotnet) | ok | 15 |
 | [vitornorberto](./participantes/vitornorberto) | ok | 4 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
+| [vitorsalgado](./participantes/vitorsalgado) | ok | 1 |
 | [vkobinski](./participantes/vkobinski) | ok | 5 |
 | [vyctorguimaraes](./participantes/vyctorguimaraes) | ok | 6 |
 | [welitonfreitas](./participantes/welitonfreitas) | falha - [logs](./participantes/welitonfreitas/docker-compose.logs) | -- |
