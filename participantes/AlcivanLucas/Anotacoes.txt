@@ -11,8 +11,10 @@ docker image ls : exibi as immagens criadas
 
 docker-compose up -d
 
+--------COAMNDOS PRISMA MIGRATE----------
 npx prisma migrate dev --name init: criar as tabelas correspondentes no banco de dados usando o Prisma Migrate, Este comando cria uma nova migração SQL em seu sistema de arquivos e a envia ao banco de dados. O --name initA opção fornecida ao comando especifica o nome da migração e será usada para nomear a pasta de migração criada em seu sistema de arquivos. 
 npm install @prisma/client
+
 
 docker build -t postgreSQL -f api_node/Dockerfile . 
 -t significa tag , e da o nome da imagem 
@@ -34,18 +36,17 @@ exec  : vamos executar comando dentro de um conteiner qu esta rodando
 -i    : significa que extamos executando o comando no modo impertivo pois iremos usar o terminal 
 uroot : 
 
+
+
+--------COMANDOS DB PostgreSQL--------------------
+docker exec -it alcivanlucas-db-1 psql -U admin -d rinha -c "SELECT * FROM clientes;"
+docker exec -it alcivanlucas-db-1 psql -U admin -d rinha -c "DELETE FROM transacoes WHERE cliente_id BETWEEN 1 AND 5;"
+docker exec -it alcivanlucas-db-1 psql -U admin -d rinha -c "UPDATE clientes SET saldo = 0  WHERE id BETWEEN 1 AND 5;"
 docker exec -it postgres-conteiner /bin/bash
 -it : significa que vamos usar o terminal bash 
-
 docker exec -it alcivanlucas-db-1 psql -U admin -l : Isso irá listar todos os bancos de dados disponíveis
-
 docker exec -it alcivanlucas-db-1 psql -U admin -d rinha : entra do conteiner do db  rinha pra executar comandos dentro dele 
-
 \dt : lista as tabelas do db rinha
-
-docker exec -it alcivanlucas-db-1 psql -U admin -d rinha -c "SELECT * FROM clientes;"
-
-
 
 ------criando imagem docker--------
 docker build -t alcivanlucas/rinha-backend-2024-q1-nodejs:latest --no-cache .
@@ -65,3 +66,8 @@ docker stop $(docker ps -q) && docker rm $(docker ps -a -q) : remmove e limpa
 
 OBS: uso do host "localhost" na sua URL de conexão do banco de dados. Quando você usa "localhost" dentro do contêiner da API, ele se refere ao próprio contêiner, não ao contêiner do banco de dados.
 Em vez de usar "localhost", você deve usar o nome do serviço do contêiner do banco de dados conforme definido no docker-compose.yml. Nesse caso, o nome do serviço é "db".
+
+
+----------Variaveis ambiente-------- 
+ export GATLING_HOME=/home/galingds/Downloads/gatling_3.10.4
+ export JAVA_HOME=/opt/java-sdk-21

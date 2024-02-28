@@ -23,5 +23,5 @@ $ docker-compose up
 ```
 
 - Instagram: [@alcivan_lucas](https://www.instagram.com/alcivan_lucas/)
-- Github: [@alissonsleal](https://github.com/alissonsleal)
-- LinkedIn: [Alisson Leal](https://www.linkedin.com/in/alcivan-lucas)
+- Github: [@Alcivan_lucas](https://github.com/AlcivanLucas)
+- LinkedIn: [Alcivan Lucas](https://www.linkedin.com/in/alcivan-lucas)

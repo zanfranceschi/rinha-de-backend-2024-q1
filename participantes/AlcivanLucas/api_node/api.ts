@@ -9,11 +9,12 @@ app.use(express.json());
 
 
 app.get('/clientes/:id/extrato', async  (req: Request, res: Response) => {
-    const clienteId = parseInt(req.params.id);
-    const data_extrato = new Date();
-    // Verificando se o ID do cliente está dentro do intervalo esperado
-    if (clienteId >= 1 && clienteId <= 5) {
-        try{
+    try{
+        const clienteId = parseInt(req.params.id);
+        const data_extrato = new Date();
+
+        // Verificando se o ID do cliente está dentro do intervalo esperado
+        if (clienteId >= 1 && clienteId <= 5) {
             const saldo = await prisma.cliente.findUnique({
                 where:{
                     id : clienteId
@@ -35,27 +36,28 @@ app.get('/clientes/:id/extrato', async  (req: Request, res: Response) => {
 
             res.status(200).json({
                 saldo:{
-                    saldo: saldo?.saldo,
+                    total: saldo?.saldo, // o operador ? é só pra não lançar erro caso o valor seja nulo
+                    data_extrato: data_extrato,
                     limite: saldo?.limite
                 }, ultimas_transacoes
             });
-        }catch{
-            res.status(500).json({ error:'Erro ao buscar extrato.' });
+        } else {
+            // Caso contrário, lançamos um erro com status 400 (Bad Request)
+            res.status(404).send('ID de cliente inválido');
         }
-    } else {
-        // Caso contrário, lançamos um erro com status 400 (Bad Request)
-        res.status(404).send('ID de cliente inválido');
+    }catch{
+        res.status(404).json({ error:'deu erro' });
     }
 })
 
 // Rota para criar transações de um cliente específico
 app.post('/clientes/:id/transacoes', async  (req: Request, res: Response) => {
-    const clienteId = parseInt(req.params.id); 
-    // Verificando se o ID do cliente está dentro do intervalo esperado
-    if (clienteId >= 1 && clienteId <= 5) {
-        try {
+    try {
+        const clienteId = parseInt(req.params.id);
+        // Verificando se o ID do cliente está dentro do intervalo esperado
+        if (clienteId >= 1 && clienteId <= 5) {
             const createClienteBody = z.object({
-                valor: z.number().nonnegative(),
+                valor: z.number().int().positive(),
                 tipo: z.string().max(1),
                 descricao: z.string().max(10).min(1)
             })
@@ -113,19 +115,19 @@ app.post('/clientes/:id/transacoes', async  (req: Request, res: Response) => {
             });
 
             res.status(200).json( {limite: cliente.limite,
-                                   saldo: newBalance       
+                                    saldo: newBalance       
             });
-        } catch (error) {
-            // Caso ocorra algum erro, retornamos uma resposta de erro
-            console.error('Erro ao criar transação:', error);
-            res.status(500).json({ error: 'Erro ao criar transação.' });
-        }
-        console.log(clienteId) // mostra o id od cliente 
-        console.log(req.body) // mostra o corpo da requisição
+            // console.log(clienteId) // mostra o id od cliente 
+            // console.log(req.body) // mostra o corpo da requisição
 
-    } else {
-        // Caso contrário, lançamos um erro com status 400 (Bad Request)
-        res.status(404).send('ID de cliente inválido');
+        } else {
+            // Caso contrário, lançamos um erro com status 400 (Bad Request)
+            res.status(404).send('ID de cliente inválido');
+        }
+    } catch (error) {
+        // Caso ocorra algum erro, retornamos uma resposta de erro
+        console.error('Erro ao criar transação:', error);
+        res.status(404).json({ error: 'Erro ao criar transação.' });
     }
 })
 
