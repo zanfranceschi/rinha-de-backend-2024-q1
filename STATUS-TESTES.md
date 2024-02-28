@@ -227,7 +227,7 @@ Atualizada **Wed Feb 28 16:56:24 UTC 2024** com **394** submissões.
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
 | [lbaesso-php](./participantes/lbaesso-php) | ok | 1 |
 | [leandro-sousa](./participantes/leandro-sousa) | falha - [logs](./participantes/leandro-sousa/docker-compose.logs) | -- |
-| [leluque](./participantes/leluque) | falha - [logs](./participantes/leluque/docker-compose.logs) | -- |
+| [leluque](./participantes/leluque-micronaut-java) | falha - [logs](participantes/leluque-micronaut-java/docker-compose.logs) | -- |
 | [leonardohofling](./participantes/leonardohofling) | ok | 2 |
 | [leonardoksn](./participantes/leonardoksn) | falha - [logs](./participantes/leonardoksn/docker-compose.logs) | -- |
 | [leonardovee](./participantes/leonardovee) | falha - [logs](./participantes/leonardovee/docker-compose.logs) | -- |
