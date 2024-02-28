@@ -1,0 +1,67 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: lsfratel/rinha-2024-q1:python-own-framework
+    hostname: api01
+    environment:
+      - WORKERS=1
+      - THREADS=8
+      - PORT=3000
+      - PYTHONUNBUFFERED=1
+      - DATABASE_URL=postgres://postgres:postgres@db/rinha-2024-q1
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: curl --fail http://localhost:3000/clientes/1/extrato || exit 1
+      interval: 5s
+      timeout: 2s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "120MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+
+  lighttpd:
+    image: jitesoft/lighttpd
+    volumes:
+      - ./lighttpd.conf:/etc/lighttpd/lighttpd.conf
+    ports:
+      - "9999:9999"
+    depends_on:
+      api01:
+        condition: service_started
+      api02:
+        condition: service_started
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: '30MB'
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinha-2024-q1
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 2s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.60"
+          memory: "300MB"

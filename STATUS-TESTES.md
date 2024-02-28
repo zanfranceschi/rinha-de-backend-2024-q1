@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Feb 28 15:40:28 UTC 2024** com **394** submissões.
+Atualizada **Wed Feb 28 23:38:28 UTC 2024** com **400** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -22,6 +22,7 @@ Atualizada **Wed Feb 28 15:40:28 UTC 2024** com **394** submissões.
 | [alfredomorais](./participantes/alfredomorais) | falha - [logs](./participantes/alfredomorais/docker-compose.logs) | -- |
 | [alissonsleal](./participantes/alissonsleal) | ok | 3 |
 | [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
+| [allissonazevedo-python](./participantes/allissonazevedo-python) | ok | 2 |
 | [anderkonzen](./participantes/anderkonzen) | ok | 1 |
 | [andersonfernandes-ruby](./participantes/andersonfernandes-ruby) | ok | 5 |
 | [andre-gbi-aspnet](./participantes/andre-gbi-aspnet) | ok | 1 |
@@ -227,6 +228,7 @@ Atualizada **Wed Feb 28 15:40:28 UTC 2024** com **394** submissões.
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
 | [lbaesso-php](./participantes/lbaesso-php) | ok | 1 |
 | [leandro-sousa](./participantes/leandro-sousa) | falha - [logs](./participantes/leandro-sousa/docker-compose.logs) | -- |
+| [leluque-micronaut-java](./participantes/leluque-micronaut-java) | ok | 2 |
 | [leluque](./participantes/leluque) | falha - [logs](./participantes/leluque/docker-compose.logs) | -- |
 | [leonardohofling](./participantes/leonardohofling) | ok | 2 |
 | [leonardoksn](./participantes/leonardoksn) | falha - [logs](./participantes/leonardoksn/docker-compose.logs) | -- |
@@ -279,7 +281,7 @@ Atualizada **Wed Feb 28 15:40:28 UTC 2024** com **394** submissões.
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 4 |
 | [mateusdeitos-node](./participantes/mateusdeitos-node) | ok | 2 |
-| [matheus-trindade](./participantes/matheus-trindade) | ok | 4 |
+| [matheus-trindade](./participantes/matheus-trindade) | ok | 2 |
 | [matheusdojava](./participantes/matheusdojava) | ok | 142 |
 | [matheusfbosa](./participantes/matheusfbosa) | ok | 1 |
 | [matheuslao](./participantes/matheuslao) | ok | 7 |
@@ -308,6 +310,7 @@ Atualizada **Wed Feb 28 15:40:28 UTC 2024** com **394** submissões.
 | [oneabrante](./participantes/oneabrante) | falha - [logs](./participantes/oneabrante/docker-compose.logs) | -- |
 | [otonielsilva](./participantes/otonielsilva) | ok | 2 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
+| [paulohenriquesn-python](./participantes/paulohenriquesn-python) | ok | 3 |
 | [pedrohenriquea](./participantes/pedrohenriquea) | ok | 3 |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
@@ -361,7 +364,7 @@ Atualizada **Wed Feb 28 15:40:28 UTC 2024** com **394** submissões.
 | [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
-| [tagliatti](./participantes/tagliatti) | ok | 945 |
+| [tagliatti](./participantes/tagliatti) | ok | 4 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
 | [thiagosantana_go](./participantes/thiagosantana_go) | ok | 10 |
 | [thiagotn](./participantes/thiagotn) | ok | 2 |
@@ -369,10 +372,13 @@ Atualizada **Wed Feb 28 15:40:28 UTC 2024** com **394** submissões.
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
+| [tonico](./participantes/tonico) | ok | 80 |
+| [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
 | [vgdss](./participantes/vgdss) | ok | 5 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
+| [victor-132](./participantes/victor-132) | ok | 2 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
 | [victor-marcolino](./participantes/victor-marcolino) | ok | 4 |
 | [victor99z](./participantes/victor99z) | ok | 8 |
@@ -383,6 +389,7 @@ Atualizada **Wed Feb 28 15:40:28 UTC 2024** com **394** submissões.
 | [vitorlacerda-dotnet](./participantes/vitorlacerda-dotnet) | ok | 15 |
 | [vitornorberto](./participantes/vitornorberto) | ok | 4 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
+| [vitorsalgado](./participantes/vitorsalgado) | ok | 1 |
 | [vkobinski](./participantes/vkobinski) | ok | 5 |
 | [vyctorguimaraes](./participantes/vyctorguimaraes) | ok | 6 |
 | [welitonfreitas](./participantes/welitonfreitas) | falha - [logs](./participantes/welitonfreitas/docker-compose.logs) | -- |

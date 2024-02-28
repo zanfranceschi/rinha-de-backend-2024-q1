@@ -1,10 +1,11 @@
 services:
   api1: &api
-    image: leandronsp/agostinho
+    image: leandronsp/tortuga
     container_name: api1
     environment:
       - RUBY_YJIT_ENABLE=1
-      - DB_POOL_SIZE=5
+      - DB_POOL_SIZE=10
+      - THREAD_POOL_SIZE=5
     depends_on:
       postgres:
         condition: service_healthy
@@ -38,7 +39,7 @@ services:
       resources:
         limits:
           cpus: '0.7'
-          memory: '300MB'
+          memory: '200MB'
 
   nginx:
     image: nginx 
