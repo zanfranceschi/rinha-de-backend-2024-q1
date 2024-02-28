@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   api01: &api
-    image: abrantedevops/apirinhabackend:0.0.1
+    image: abrantedevops/apirinhabackend:latest
     hostname: api01
     environment:
       DATABASE_URL: ${DATABASE_URL}
@@ -43,9 +43,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./prisma/migrations/20240227133306_init/migration.sql:/docker-entrypoint-initdb.d/create_tables.sql
-    # volumes:
-    #   - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 3306:3306
     deploy:
@@ -53,9 +51,6 @@ services:
         limits:
           cpus: "1"
           memory: "400MB"
-
-# volumes:
-#   db_data:
 
 networks:
   default:
