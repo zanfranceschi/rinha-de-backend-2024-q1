@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Feb 28 05:27:04 UTC 2024** com **391** submissões.
+Atualizada **Wed Feb 28 05:36:46 UTC 2024** com **392** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -308,6 +308,7 @@ Atualizada **Wed Feb 28 05:27:04 UTC 2024** com **391** submissões.
 | [otonielsilva](./participantes/otonielsilva) | ok | 2 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
 | [pedrohenriquea](./participantes/pedrohenriquea) | ok | 3 |
+| [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
 | [quarkusclub](./participantes/quarkusclub) | ok | 3 |
