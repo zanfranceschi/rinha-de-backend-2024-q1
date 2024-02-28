@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Feb 28 20:57:54 UTC 2024** com **397** submissões.
+Atualizada **Wed Feb 28 21:14:21 UTC 2024** com **398** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -22,6 +22,7 @@ Atualizada **Wed Feb 28 20:57:54 UTC 2024** com **397** submissões.
 | [alfredomorais](./participantes/alfredomorais) | falha - [logs](./participantes/alfredomorais/docker-compose.logs) | -- |
 | [alissonsleal](./participantes/alissonsleal) | ok | 3 |
 | [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
+| [allissonazevedo-python](./participantes/allissonazevedo-python) | ok | 2 |
 | [anderkonzen](./participantes/anderkonzen) | ok | 1 |
 | [andersonfernandes-ruby](./participantes/andersonfernandes-ruby) | ok | 5 |
 | [andre-gbi-aspnet](./participantes/andre-gbi-aspnet) | ok | 1 |
@@ -363,7 +364,7 @@ Atualizada **Wed Feb 28 20:57:54 UTC 2024** com **397** submissões.
 | [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
-| [tagliatti](./participantes/tagliatti) | ok | 945 |
+| [tagliatti](./participantes/tagliatti) | ok | 4 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
 | [thiagosantana_go](./participantes/thiagosantana_go) | ok | 10 |
 | [thiagotn](./participantes/thiagotn) | ok | 2 |
