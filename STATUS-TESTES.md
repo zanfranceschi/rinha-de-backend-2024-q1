@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Feb 28 23:38:28 UTC 2024** com **400** submissões.
+Atualizada **Wed Feb 28 23:54:50 UTC 2024** com **401** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -245,6 +245,7 @@ Atualizada **Wed Feb 28 23:38:28 UTC 2024** com **400** submissões.
 | [lpicanco-cpp](./participantes/lpicanco-cpp) | ok | 1 |
 | [lpicanco-moonshine](./participantes/lpicanco-moonshine) | ok | 1 |
 | [lpicanco](./participantes/lpicanco) | ok | 2 |
+| [lsfratel-python-own-framework](./participantes/lsfratel-python-own-framework) | ok | 3 |
 | [lsfratel-python](./participantes/lsfratel-python) | ok | 3 |
 | [lsfratel](./participantes/lsfratel) | ok | 3 |
 | [lubien-multi-tenant-sqlite](./participantes/lubien-multi-tenant-sqlite) | ok | 2 |
