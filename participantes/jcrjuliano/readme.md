@@ -1,5 +1,5 @@
 # Projeto para rinha de backend
-Essa api é um projeto para rinha de backend, [aqui está o link](https://github.com/zanfranceschi/rinha-de-backend-2024-q1) para as regras. 
+Essa api é um projeto para rinha de backend.
 
 ## Como rodar o projeto
  Para rodar o projeto, basta clonar o repositório e rodar o comando: 
@@ -11,6 +11,9 @@ Essa api é um projeto para rinha de backend, [aqui está o link](https://github
     - Docker
     - Postgres
     - nginx
+    
+## Repositorio:
+[repositório da api](https://github.com/jcrjuliano/rinha-q1)
 
 ### Contato 
 Para entrar em contato comigo pode me mandar mensagem em:
