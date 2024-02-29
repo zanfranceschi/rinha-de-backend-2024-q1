@@ -16,7 +16,6 @@
 
 - [repositório da api](https://github.com/matheustavarestrindade/rinha-de-backend-2024-q1)
 
-![images do relatorio do gatling]()
 
 ## Matheus Trindade
 
