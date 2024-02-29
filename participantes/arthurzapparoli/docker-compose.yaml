@@ -1,0 +1,81 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: ghcr.io/arthurgeek/rinha-backend-2024-q1:sha-bc74eeb
+    network_mode: host
+    environment:
+      - PORT=6342
+    volumes:
+      - "postgres-socket:/var/run/postgresql"
+    hostname: api01
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: curl --fail http://localhost:6342/clientes/1/extrato || exit 1
+      start_period: 30s
+      start_interval: 5s
+      interval: 5m
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.05"
+          memory: "15MB"
+
+  api02:
+    <<: *api
+    environment:
+      - PORT=6343
+    hostname: api02
+    healthcheck:
+      test: curl --fail http://localhost:6343/clientes/1/extrato || exit 1
+
+  envoy:
+    image: envoyproxy/envoy:v1.29-latest
+    network_mode: host
+    volumes:
+      - ./config/envoy.yaml:/etc/envoy/envoy.yaml
+    depends_on:
+      api01:
+        condition: service_healthy
+      api02:
+        condition: service_healthy
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "70MB"
+
+  db:
+    image: postgres:latest
+    network_mode: host
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    command: "postgres -c max_connections=100 -c shared_buffers=160MB -c work_mem=32MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c checkpoint_timeout=1d"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "admin", "-d", "rinha"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/script.sql
+      - "postgres-socket:/var/run/postgresql"
+    deploy:
+      resources:
+        limits:
+          cpus: "1.1"
+          memory: "450MB"
+
+volumes:
+  postgres-socket:

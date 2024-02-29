@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS transactions (
 	`amount`		BIGINT NOT NULL,
 	`type`			VARCHAR(1) NOT NULL,
 	`description`	VARCHAR(10) NOT NULL,
-	`created_at`	TIMESTAMP NOT NULL,
+	`created_at`	TIMESTAMP(6) NOT NULL,
 	
 	PRIMARY KEY (`id`),
 	CONSTRAINT transaction_client_id_fk FOREIGN KEY (`client_id`) REFERENCES clients(`id`),

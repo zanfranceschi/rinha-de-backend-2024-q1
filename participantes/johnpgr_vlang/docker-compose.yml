@@ -1,0 +1,76 @@
+version: "3.5"
+
+services:
+  api1: &api
+    image: greidinger/rinha-2024-q1-vlang:latest
+    hostname: api1
+    environment:
+      - PORT=8080
+      - DB_PORT=5432
+      - DB_USER=user
+      - DB_PASS=1234
+      - DB_NAME=rinha-2024-q1
+      - DB_HOST=database
+    restart: unless-stopped
+    depends_on:
+      database:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "10MB"
+
+  api2:
+    <<: *api
+    hostname: api2
+    environment:
+      - PORT=8081
+      - DB_PORT=5432
+      - DB_USER=user
+      - DB_PASS=1234
+      - DB_NAME=rinha-2024-q1
+      - DB_HOST=database
+
+  nginx:
+    image: nginx
+    hostname: api
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "30MB"
+
+  database:
+    image: postgres:latest
+    hostname: database
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: user
+      POSTGRES_DB: rinha-2024-q1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d rinha-2024-q1"]
+      interval: 5s
+      timeout: 5s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "500MB"
+    volumes:
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024-q1

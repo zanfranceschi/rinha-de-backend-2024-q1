@@ -8,7 +8,7 @@ CREATE TYPE tipo_transacao AS ENUM ('c', 'd');
 
 CREATE TABLE IF NOT EXISTS transacoes (
   id SERIAL PRIMARY KEY,
-  valor INT NOT NULL,
+  valor INT NOT NULL CHECK (valor > 0),
   tipo tipo_transacao NOT NULL,
   descricao VARCHAR(10) CHECK (LENGTH(descricao) >= 1),
   realizada_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

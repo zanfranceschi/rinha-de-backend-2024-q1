@@ -9,7 +9,8 @@ services:
       POOL_SIZE: 10
       DB_HOST: localhost
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -56,6 +57,11 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: rinha_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
     deploy:
       resources:
         limits:

@@ -2,16 +2,18 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:16.1-alpine3.19
+    image: postgres:16.2
     hostname: postgres
     ports:
       - 5432:5432
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=postgres
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     deploy:
       resources:
         limits:
@@ -21,8 +23,6 @@ services:
   api1: &api
     image: mgenteluci/rinha2024q1
     hostname: api1
-    ports:
-      - "8081:8080"
     depends_on:
       - postgres
     deploy:
@@ -34,8 +34,6 @@ services:
   api2:
     <<: *api 
     hostname: api2
-    ports:
-      - "8082:8080"
 
   nginx:
     image: nginx

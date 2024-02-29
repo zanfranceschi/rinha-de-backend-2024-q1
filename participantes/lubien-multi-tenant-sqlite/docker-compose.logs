@@ -16,243 +16,100 @@ nginx-1   | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolv
 nginx-1   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1   | /docker-entrypoint.sh: Configuration complete; ready for start up
-rinha1-1  | 10:38:28.675 [notice] Application backend_fight exited: BackendFight.Application.start(:normal, []) returned an error: shutdown: failed to start child: :customer_1
-rinha1-1  |     ** (EXIT) an exception was raised:
-rinha1-1  |         ** (MatchError) no match of right hand side value: {:error, :database_open_failed}
-rinha1-1  |             (backend_fight 0.1.0) lib/sqlite_server.ex:28: SqliteServer.init/1
-rinha1-1  |             (stdlib 5.2) gen_server.erl:980: :gen_server.init_it/2
-rinha1-1  |             (stdlib 5.2) gen_server.erl:935: :gen_server.init_it/6
-rinha1-1  |             (stdlib 5.2) proc_lib.erl:241: :proc_lib.init_p_do_apply/3
-rinha1-1  | Kernel pid terminated (application_controller) ("{application_start_failure,backend_fight,{{shutdown,{failed_to_start_child,customer_1,{{badmatch,{error,database_open_failed}},[{'Elixir.SqliteServer',init,1,[{file,\"lib/sqlite_server.ex\"},{line,28}]},{gen_server,init_it,2,[{file,\"gen_server.erl\"},{line,980}]},{gen_server,init_it,6,[{file,\"gen_server.erl\"},{line,935}]},{proc_lib,init_p_do_apply,3,[{file,\"proc_lib.erl\"},{line,241}]}]}}},{'Elixir.BackendFight.Application',start,[normal,[]]}}}")
+rinha1-1  | 22:32:42.236 [info] Tenant 1 started
+rinha1-1  | 22:32:42.304 [info] Tenant 2 started
+rinha1-1  | 22:32:42.346 [info] Tenant 3 started
+rinha1-1  | 22:32:42.350 [info] Running BackendFightWeb.Endpoint with Bandit 1.2.2 at :::3000 (http)
+rinha1-1  | 22:32:42.350 [info] Access BackendFightWeb.Endpoint at https://example.com
+rinha2-1  | 22:32:44.444 [info] Tenant 4 started
+rinha2-1  | 22:32:44.501 [info] Tenant 5 started
+rinha2-1  | 22:32:44.506 [info] Discovered node :"rinha@192.0.1.11" in region primary
+rinha1-1  | 22:32:44.506 [info] Discovered node :"rinha@192.0.1.12" in region replica
+rinha2-1  | 22:32:44.507 [info] Running BackendFightWeb.Endpoint with Bandit 1.2.2 at :::3000 (http)
+rinha2-1  | 22:32:44.507 [info] Access BackendFightWeb.Endpoint at https://example.com
+rinha2-1  | 22:32:54.070 [error] GenServer #PID<0.1908.0> terminating
+rinha2-1  | ** (FunctionClauseError) no function clause matching in DateTime.from_unix/3
+rinha2-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:415: DateTime.from_unix("now", :millisecond, Calendar.ISO)
+rinha2-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:467: DateTime.from_unix!/3
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:17: anonymous fn/1 in BackendFight.Bank.get_customer_data/1
+rinha2-1  |     (elixir 1.16.1) lib/enum.ex:1700: Enum."-map/2-lists^map/1-1-"/2
+rinha2-1  |     (elixir 1.16.1) lib/enum.ex:1700: Enum."-map/2-lists^map/1-1-"/2
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:12: BackendFight.Bank.get_customer_data/1
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
+rinha2-1  | Last message: {:tcp, #Port<0.11>, "GET /clientes/5/extrato HTTP/1.1\r\nProxy-Connection: keep-alive\r\nHost: api\r\nuser-agent: Agente do Caos - 2024/Q1\r\naccept: */*\r\n\r\n"}
+rinha2-1  | 22:32:54.073 [error] GenServer #PID<0.1911.0> terminating
+rinha2-1  | ** (FunctionClauseError) no function clause matching in DateTime.from_unix/3
+rinha2-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:415: DateTime.from_unix("now", :millisecond, Calendar.ISO)
+rinha2-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:467: DateTime.from_unix!/3
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:17: anonymous fn/1 in BackendFight.Bank.get_customer_data/1
+rinha2-1  |     (elixir 1.16.1) lib/enum.ex:1700: Enum."-map/2-lists^map/1-1-"/2
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:12: BackendFight.Bank.get_customer_data/1
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
+rinha2-1  | Last message: {:tcp, #Port<0.12>, "GET /clientes/2/extrato HTTP/1.1\r\nProxy-Connection: keep-alive\r\nHost: api\r\nuser-agent: Agente do Caos - 2024/Q1\r\naccept: */*\r\n\r\n"}
+rinha1-1  | 22:32:54.074 [error] GenServer #PID<0.1920.0> terminating
+rinha1-1  | ** (FunctionClauseError) no function clause matching in DateTime.from_unix/3
+rinha1-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:415: DateTime.from_unix("now", :millisecond, Calendar.ISO)
+rinha1-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:467: DateTime.from_unix!/3
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:17: anonymous fn/1 in BackendFight.Bank.get_customer_data/1
+rinha1-1  |     (elixir 1.16.1) lib/enum.ex:1700: Enum."-map/2-lists^map/1-1-"/2
+rinha1-1  |     (elixir 1.16.1) lib/enum.ex:1700: Enum."-map/2-lists^map/1-1-"/2
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:12: BackendFight.Bank.get_customer_data/1
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
+rinha1-1  | Last message: {:tcp, #Port<0.14>, "GET /clientes/5/extrato HTTP/1.1\r\nProxy-Connection: keep-alive\r\nHost: api\r\nuser-agent: Agente do Caos - 2024/Q1\r\naccept: */*\r\n\r\n"}
+rinha2-1  | 22:32:54.079 [error] GenServer #PID<0.1915.0> terminating
+rinha2-1  | ** (FunctionClauseError) no function clause matching in DateTime.from_unix/3
+rinha2-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:415: DateTime.from_unix("now", :millisecond, Calendar.ISO)
+rinha2-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:467: DateTime.from_unix!/3
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:17: anonymous fn/1 in BackendFight.Bank.get_customer_data/1
+rinha2-1  |     (elixir 1.16.1) lib/enum.ex:1700: Enum."-map/2-lists^map/1-1-"/2
+rinha2-1  |     (elixir 1.16.1) lib/enum.ex:1700: Enum."-map/2-lists^map/1-1-"/2
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:12: BackendFight.Bank.get_customer_data/1
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
+rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
+rinha2-1  | Last message: {:tcp, #Port<0.16>, "GET /clientes/3/extrato HTTP/1.1\r\nProxy-Connection: keep-alive\r\nHost: api\r\nuser-agent: Agente do Caos - 2024/Q1\r\naccept: */*\r\n\r\n"}
+rinha1-1  | 22:32:54.077 [error] GenServer #PID<0.1918.0> terminating
+rinha1-1  | ** (FunctionClauseError) no function clause matching in DateTime.from_unix/3
+rinha1-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:415: DateTime.from_unix("now", :millisecond, Calendar.ISO)
+rinha1-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:467: DateTime.from_unix!/3
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:17: anonymous fn/1 in BackendFight.Bank.get_customer_data/1
+rinha1-1  |     (elixir 1.16.1) lib/enum.ex:1700: Enum."-map/2-lists^map/1-1-"/2
+rinha1-1  |     (elixir 1.16.1) lib/enum.ex:1700: Enum."-map/2-lists^map/1-1-"/2
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:12: BackendFight.Bank.get_customer_data/1
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
+rinha1-1  | Last message: {:tcp, #Port<0.12>, "GET /clientes/2/extrato HTTP/1.1\r\nProxy-Connection: keep-alive\r\nHost: api\r\nuser-agent: Agente do Caos - 2024/Q1\r\naccept: */*\r\n\r\n"}
+rinha1-1  | 22:32:54.078 [error] GenServer #PID<0.1911.0> terminating
+rinha1-1  | ** (FunctionClauseError) no function clause matching in DateTime.from_unix/3
+rinha1-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:415: DateTime.from_unix("now", :millisecond, Calendar.ISO)
+rinha1-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:467: DateTime.from_unix!/3
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:17: anonymous fn/1 in BackendFight.Bank.get_customer_data/1
+rinha1-1  |     (elixir 1.16.1) lib/enum.ex:1700: Enum."-map/2-lists^map/1-1-"/2
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:12: BackendFight.Bank.get_customer_data/1
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
+rinha1-1  | Last message: {:tcp, #Port<0.11>, "GET /clientes/3/extrato HTTP/1.1\r\nProxy-Connection: keep-alive\r\nHost: api\r\nuser-agent: Agente do Caos - 2024/Q1\r\naccept: */*\r\n\r\n"}
+rinha1-1  | 22:32:54.084 [error] GenServer #PID<0.1928.0> terminating
+rinha1-1  | ** (FunctionClauseError) no function clause matching in DateTime.from_unix/3
+rinha1-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:415: DateTime.from_unix("now", :millisecond, Calendar.ISO)
+rinha1-1  |     (elixir 1.16.1) lib/calendar/datetime.ex:467: DateTime.from_unix!/3
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:17: anonymous fn/1 in BackendFight.Bank.get_customer_data/1
+rinha1-1  |     (elixir 1.16.1) lib/enum.ex:1700: Enum."-map/2-lists^map/1-1-"/2
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:12: BackendFight.Bank.get_customer_data/1
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
+rinha1-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
+rinha1-1  | Last message: {:tcp, #Port<0.16>, "GET /clientes/1/extrato HTTP/1.1\r\nProxy-Connection: keep-alive\r\nHost: api\r\nuser-agent: Agente do Caos - 2024/Q1\r\naccept: */*\r\n\r\n"}
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+rinha1-1  | 22:36:58.330 [notice] SIGTERM received - shutting down
 rinha1-1  | 
-rinha1-1  | Crash dump is being written to: erl_crash.dump...done
-rinha1-1 exited with code 1
-rinha2-1  | 10:38:31.400 [info] Tenant 4 started
-rinha2-1  | 10:38:31.453 [info] Tenant 5 started
-rinha2-1  | 10:38:31.458 [info] Running BackendFightWeb.Endpoint with Bandit 1.2.2 at :::3000 (http)
-rinha2-1  | 10:38:31.458 [info] Access BackendFightWeb.Endpoint at https://example.com
-rinha2-1  | 10:38:34.347 [error] GenServer #PID<0.1902.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:38:36.355 [error] GenServer #PID<0.1903.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:38:38.362 [error] GenServer #PID<0.1906.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:38:40.370 [error] GenServer #PID<0.1907.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:38:42.377 [error] GenServer #PID<0.1910.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:38:44.384 [error] GenServer #PID<0.1911.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:38:46.391 [error] GenServer #PID<0.1912.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:38:48.398 [error] GenServer #PID<0.1915.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:38:53.483 [error] GenServer #PID<0.1918.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:38:55.491 [error] GenServer #PID<0.1919.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:38:57.499 [error] GenServer #PID<0.1922.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:38:59.506 [error] GenServer #PID<0.1923.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:39:01.514 [error] GenServer #PID<0.1924.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:39:03.521 [error] GenServer #PID<0.1927.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:39:05.529 [error] GenServer #PID<0.1928.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:39:07.536 [error] GenServer #PID<0.1931.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:39:12.619 [error] GenServer #PID<0.1934.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:39:14.627 [error] GenServer #PID<0.1935.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:39:16.634 [error] GenServer #PID<0.1938.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-rinha2-1  | 10:39:18.641 [error] GenServer #PID<0.1939.0> terminating
-rinha2-1  | ** (ArgumentError) no node found running in region "primary"
-rinha2-1  |     (fly_rpc 0.3.0) lib/fly_rpc.ex:165: Fly.RPC.rpc_region/3
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight/bank.ex:10: BackendFight.Bank.get_customer_data/1
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:9: BackendFightWeb.CustomerController.show/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.action/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/controllers/customer_controller.ex:1: BackendFightWeb.CustomerController.phoenix_controller_pipeline/2
-rinha2-1  |     (phoenix 1.7.11) lib/phoenix/router.ex:484: Phoenix.Router.__call__/5
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.plug_builder_call/2
-rinha2-1  |     (backend_fight 0.1.0) lib/backend_fight_web/endpoint.ex:1: BackendFightWeb.Endpoint.call/2
-rinha2-1  | Last message: {:continue, :handle_connection}
-nginx-1 exited with code 0
-nginx-1 exited with code 0
-rinha2-1  | 10:39:21.574 [notice] SIGTERM received - shutting down
+rinha2-1  | 22:36:58.333 [notice] SIGTERM received - shutting down
 rinha2-1  | 
 rinha2-1 exited with code 0
+rinha2-1 exited with code 0
+rinha1-1 exited with code 0
