@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Feb 29 16:02:18 UTC 2024** com **407** submissões.
+Atualizada **Thu Feb 29 16:20:18 UTC 2024** com **410** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -189,6 +189,7 @@ Atualizada **Thu Feb 29 16:02:18 UTC 2024** com **407** submissões.
 | [hfurlan](./participantes/hfurlan) | ok | 4 |
 | [hiroshimorowaka-golang](./participantes/hiroshimorowaka-golang) | ok | 1 |
 | [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 2 |
+| [hstreb-vertx](./participantes/hstreb-vertx) | ok | 1 |
 | [ilosamart](./participantes/ilosamart) | ok | 1755 |
 | [impedro29-performance](./participantes/impedro29-performance) | ok | 39 |
 | [ircnelson](./participantes/ircnelson) | ok | 2 |
@@ -201,6 +202,7 @@ Atualizada **Thu Feb 29 16:02:18 UTC 2024** com **407** submissões.
 | [ivmello](./participantes/ivmello) | ok | 2 |
 | [jairoandre](./participantes/jairoandre) | ok | 1106 |
 | [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 4 |
+| [jcrjuliano](./participantes/jcrjuliano) | ok | 1 |
 | [jfilipedias](./participantes/jfilipedias) | ok | 4 |
 | [jhonnyboy](./participantes/jhonnyboy) | ok | 1 |
 | [jjeanjacques10](./participantes/jjeanjacques10) | ok | 2 |
@@ -260,6 +262,7 @@ Atualizada **Thu Feb 29 16:02:18 UTC 2024** com **407** submissões.
 | [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | ok | 3353 |
 | [lucassperez-go-crebito](./participantes/lucassperez-go-crebito) | ok | 4 |
 | [lucaswilliameufrasio](./participantes/lucaswilliameufrasio) | ok | 4 |
+| [lucaswojahn](./participantes/lucaswojahn) | falha - [logs](./participantes/lucaswojahn/docker-compose.logs) | -- |
 | [lucianovilela](./participantes/lucianovilela) | ok | 2 |
 | [luisescosta](./participantes/luisescosta) | ok | 2 |
 | [luizfrra](./participantes/luizfrra) | ok | 2 |
