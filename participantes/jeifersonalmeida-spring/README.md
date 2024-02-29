@@ -10,6 +10,7 @@ Dessa forma não é esperado que essa submissão vença a rinha, porém, só de 
 ### Stack
 - [Nginx](https://www.nginx.com)
 - [Java](https://www.java.com/pt-BR/)
+- [GraalVM](https://www.graalvm.org/)
 - [Spring](https://spring.io/)
 - [PostgreSQL](https://www.postgresql.org)
 
