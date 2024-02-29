@@ -1,0 +1,62 @@
+version: "3.5"
+
+services:
+
+  api01: &api
+    image: docker.io/guaracybm/rinha-2024-01
+    #build: .
+    environment:
+      DB_HOST: localhost
+      PORT: 3000
+    depends_on:
+      - postgres
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5" # 0.55
+          memory: "180MB" # 200
+
+  api02:
+    <<: *api
+    environment:
+      DB_HOST: localhost
+      PORT: 3001
+
+  nginx:
+    image: nginx:latest
+    command: ["nginx", "-g", "daemon off;"]
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15" # 0.15
+          memory: "10MB" # 10
+
+  postgres:
+    image: postgres:latest
+    #hostname: db
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: admin
+      POSTGRES_DB: rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=8192 -c synchronous_commit=0 -c full_page_writes=0
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35" # 0.25
+          memory: "180MB" # 140

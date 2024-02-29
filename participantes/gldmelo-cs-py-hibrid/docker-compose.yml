@@ -7,22 +7,27 @@ services:
     environment:
       - ASPNETCORE_URLS=http://*:8080
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
-          cpus: "0.3"
+          cpus: "0.25"
           memory: "60MB"
 
   api_python:
     image: gldmelo/rinhabackendcrebito:1.0-py
     hostname: api_python
+    command: uvicorn src.main:app --proxy-headers --host 0.0.0.0 --port 8000
+    ports:
+      - 8001:8000
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
-          cpus: "0.3"
+          cpus: "0.25"
           memory: "60MB"
       
   nginx:
@@ -53,10 +58,15 @@ services:
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     command: [ "postgres", "-c", "config_file=/etc/postgresql/postgresql.conf" ]
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "admin" ]
+      timeout: 40s
+      interval: 2s
+      retries: 20
     deploy:
       resources:
         limits:
-          cpus: "0.7"
+          cpus: "0.8"
           memory: "340MB"
 
 networks:

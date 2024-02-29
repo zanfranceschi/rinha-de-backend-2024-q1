@@ -7,16 +7,17 @@ services:
       - "/crebito"
       - "-Xms64m"
       - "-Xmx64m"
+      - "-ea"
+      - "-server"
     hostname: api01
-    ports:
-      - "8081:8080"
     environment:
-      - SCALE_FACTOR=1
+      - SCALE_FACTOR=30
       - DB_HOSTNAME=db
       - DB_PORT=5432
       - DB_NAME=rinha
       - DB_USER=rinha
       - DB_PASS=rinha
+      - DB_POOL=10
     depends_on:
       db:
         condition: service_healthy
@@ -25,14 +26,13 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.2"
-          memory: "64MB"
+          cpus: "0.3"
+          memory: "96MB"
 
   api02:
     <<: *api
     hostname: api02
-    ports:
-      - "8082:8080"
+
   
   nginx:
     image: nginx:latest
@@ -48,23 +48,23 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.1"
-          memory: "32MB"
+          cpus: "0.15"
+          memory: "24MB"
 
   db:
     image: postgres:latest
     hostname: db
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=rinha
       - POSTGRES_USER=rinha
       - POSTGRES_DB=rinha
-    ports:
-      - "5432:5432"
     volumes:
       - ./sql/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
       - ./sql/dml.sql:/docker-entrypoint-initdb.d/dml.sql
     command: "postgres 
-      -c max_connections=96 
+      -c max_connections=100
       -c shared_buffers=96MB 
       -c effective_cache_size=288MB 
       -c maintenance_work_mem=24MB 
@@ -76,15 +76,12 @@ services:
       -c effective_io_concurrency=150 
       -c work_mem=384kB 
       -c min_wal_size=750MB 
-      -c max_wal_size=3GB
-      -c fsync=off
-      -c synchronous_commit=off
-      -c full_page_writes=off"
+      -c max_wal_size=3GB"
     deploy:
       resources:
         limits:
-          cpus: "1"
-          memory: "384MB"
+          cpus: "0.75"
+          memory: "334MB"
     networks:
       - app-network
     healthcheck:

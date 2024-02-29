@@ -5,6 +5,8 @@ Esse projeto foi feito usando:
 - Postgresql
 - NGINX
 
+<img src="results.png">
+
 ## Instrução
 Para rodar é nescessario ter o Docker instalado, e depois rodar o comando abaixo no terminal:
 

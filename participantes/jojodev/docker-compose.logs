@@ -2,10 +2,10 @@
  Network jojodev_default  Created
  Container jojodev-db-1  Creating
  Container jojodev-db-1  Created
- Container jojodev-api02-1  Creating
  Container jojodev-api01-1  Creating
- Container jojodev-api02-1  Created
+ Container jojodev-api02-1  Creating
  Container jojodev-api01-1  Created
+ Container jojodev-api02-1  Created
  Container jojodev-nginx-1  Creating
  Container jojodev-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -20,33 +20,29 @@ db-1     | Data page checksums are disabled.
 db-1     | 
 db-1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
 db-1     | creating subdirectories ... ok
+db-1     | selecting dynamic shared memory implementation ... posix
 db-1     | selecting default max_connections ... 100
 db-1     | selecting default shared_buffers ... 128MB
-db-1     | selecting dynamic shared memory implementation ... posix
+db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
 db-1     | performing post-bootstrap initialization ... ok
 db-1     | syncing data to disk ... ok
 db-1     | 
+db-1     | 
 db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | 
-db-1     | WARNING: enabling "trust" authentication for local connections
-db-1     | You can change this by editing pg_hba.conf or using the option -A, or
-db-1     | --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-19 08:47:48.420 UTC [39] LOG:  listening on IPv4 address "127.0.0.1", port 5432
-db-1     | 2024-02-19 08:47:48.420 UTC [39] LOG:  could not bind IPv6 address "::1": Cannot assign requested address
-db-1     | 2024-02-19 08:47:48.420 UTC [39] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
-db-1     | 2024-02-19 08:47:48.425 UTC [39] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-19 08:47:48.515 UTC [40] LOG:  database system was shut down at 2024-02-19 08:47:47 UTC
-db-1     | 2024-02-19 08:47:48.521 UTC [39] LOG:  database system is ready to accept connections
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1     | waiting for server to start....2024-02-24 01:27:56.317 UTC [48] LOG:  starting PostgreSQL 16.0 (Debian 16.0-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-24 01:27:56.321 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-24 01:27:56.332 UTC [51] LOG:  database system was shut down at 2024-02-24 01:27:54 UTC
+db-1     | 2024-02-24 01:27:56.338 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
-db-1     | 
-db-1     | CREATE ROLE
 db-1     | 
 db-1     | 
 db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
@@ -56,21 +52,24 @@ db-1     | CREATE TABLE
 db-1     | DO
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-19 08:47:50.118 UTC [39] LOG:  received fast shutdown request
-db-1     | .2024-02-19 08:47:50.122 UTC [39] LOG:  aborting any active transactions
-db-1     | 2024-02-19 08:47:50.123 UTC [39] LOG:  worker process: logical replication launcher (PID 46) exited with exit code 1
-db-1     | 2024-02-19 08:47:50.214 UTC [41] LOG:  shutting down
-db-1     | 2024-02-19 08:47:50.326 UTC [39] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-02-24 01:27:57.325 UTC [48] LOG:  received fast shutdown request
+db-1     | .2024-02-24 01:27:57.328 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-24 01:27:57.330 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-24 01:27:57.331 UTC [49] LOG:  shutting down
+db-1     | 2024-02-24 01:27:57.333 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-24 01:27:57.864 UTC [49] LOG:  checkpoint complete: wrote 946 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.257 s, sync=0.264 s, total=0.534 s; sync files=319, longest=0.214 s, average=0.001 s; distance=4313 kB, estimate=4313 kB; lsn=0/1921060, redo lsn=0/1921060
+db-1     | 2024-02-24 01:27:57.869 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-19 08:47:50.429 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-19 08:47:50.429 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-19 08:47:50.437 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-19 08:47:50.452 UTC [75] LOG:  database system was shut down at 2024-02-19 08:47:50 UTC
-db-1     | 2024-02-19 08:47:50.516 UTC [1] LOG:  database system is ready to accept connections
+db-1     | 2024-02-24 01:27:57.949 UTC [1] LOG:  starting PostgreSQL 16.0 (Debian 16.0-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-24 01:27:57.949 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-24 01:27:57.949 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-24 01:27:58.020 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-24 01:27:58.029 UTC [66] LOG:  database system was shut down at 2024-02-24 01:27:57 UTC
+db-1     | 2024-02-24 01:27:58.039 UTC [1] LOG:  database system is ready to accept connections
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -80,192 +79,24 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-api01-1  |  * Serving Flask app 'main'
-api01-1  |  * Debug mode: off
-api01-1  | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
-api01-1  |  * Running on all addresses (0.0.0.0)
-api01-1  |  * Running on http://127.0.0.1:5000
-api01-1  |  * Running on http://172.27.0.3:5000
-api01-1  | [33mPress CTRL+C to quit[0m
 api02-1  |  * Serving Flask app 'main'
 api02-1  |  * Debug mode: off
 api02-1  | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
 api02-1  |  * Running on all addresses (0.0.0.0)
 api02-1  |  * Running on http://127.0.0.1:5000
-api02-1  |  * Running on http://172.27.0.4:5000
+api02-1  |  * Running on http://192.168.144.3:5000
 api02-1  | [33mPress CTRL+C to quit[0m
-api01-1  | 172.27.0.5 - - [19/Feb/2024 08:47:54] "GET /clientes/1/extrato HTTP/1.0" 200 -
-api02-1  | 172.27.0.5 - - [19/Feb/2024 08:47:54] "GET /clientes/1/extrato HTTP/1.0" 200 -
-api02-1  | /app/database.py:18: SAWarning: Usage of the 'Session.add()' operation is not currently supported within the execution stage of the flush process. Results may not be consistent.  Consider using alternative event listeners or connection-level operations instead.
-api02-1  |   s.add(objeto)
-api02-1  | [2024-02-19 08:47:59,533] ERROR in app: Exception on /clientes/1/transacoes [POST]
-api02-1  | Traceback (most recent call last):
-api02-1  |   File "/app/database.py", line 19, in save_objeto
-api02-1  |     s.commit()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1969, in commit
-api02-1  |     trans.commit(_to_root=True)
-api02-1  |   File "<string>", line 2, in commit
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
-api02-1  |     ret_value = fn(self, *arg, **kw)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1274, in commit
-api02-1  |     self._parent.commit(_to_root=True)
-api02-1  |   File "<string>", line 2, in commit
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 121, in _go
-api02-1  |     raise sa_exc.IllegalStateChangeError(
-api02-1  | sqlalchemy.exc.IllegalStateChangeError: Method 'commit()' can't be called here; method '_prepare_impl()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)
-api02-1  | 
-api02-1  | During handling of the above exception, another exception occurred:
-api02-1  | 
-api02-1  | Traceback (most recent call last):
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
-api02-1  |     response = self.full_dispatch_request()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
-api02-1  |     rv = self.handle_user_exception(e)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
-api02-1  |     rv = self.dispatch_request()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
-api02-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-api02-1  |   File "/app/main.py", line 42, in create_transacao
-api02-1  |     save_objeto(nova_transacao, session)
-api02-1  |   File "/app/database.py", line 21, in save_objeto
-api02-1  |     s.rollback()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1931, in rollback
-api02-1  |     self._transaction.rollback(_to_root=True)
-api02-1  |   File "<string>", line 2, in rollback
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 121, in _go
-api02-1  |     raise sa_exc.IllegalStateChangeError(
-api02-1  | sqlalchemy.exc.IllegalStateChangeError: Method 'rollback()' can't be called here; method '_prepare_impl()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)
-api02-1  | 172.27.0.5 - - [19/Feb/2024 08:47:59] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
-api02-1  | [2024-02-19 08:47:59,541] ERROR in app: Exception on /clientes/1/transacoes [POST]
-api02-1  | Traceback (most recent call last):
-api02-1  |   File "/app/database.py", line 19, in save_objeto
-api02-1  |     s.commit()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1969, in commit
-api02-1  |     trans.commit(_to_root=True)
-api02-1  |   File "<string>", line 2, in commit
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
-api02-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 946, in _raise_for_prerequisite_state
-api02-1  |     raise sa_exc.InvalidRequestError(
-api02-1  | sqlalchemy.exc.InvalidRequestError: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
-api02-1  | 
-api02-1  | During handling of the above exception, another exception occurred:
-api02-1  | 
-api02-1  | Traceback (most recent call last):
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
-api02-1  |     response = self.full_dispatch_request()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
-api02-1  |     rv = self.handle_user_exception(e)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
-api02-1  |     rv = self.dispatch_request()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
-api02-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-api02-1  |   File "/app/main.py", line 42, in create_transacao
-api02-1  |     save_objeto(nova_transacao, session)
-api02-1  |   File "/app/database.py", line 21, in save_objeto
-api02-1  |     s.rollback()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1931, in rollback
-api02-1  |     self._transaction.rollback(_to_root=True)
-api02-1  |   File "<string>", line 2, in rollback
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
-api02-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 946, in _raise_for_prerequisite_state
-api02-1  |     raise sa_exc.InvalidRequestError(
-api02-1  | sqlalchemy.exc.InvalidRequestError: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
-api02-1  | 172.27.0.5 - - [19/Feb/2024 08:47:59] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
-api01-1  | 172.27.0.5 - - [19/Feb/2024 08:47:59] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-api01-1  | [2024-02-19 08:47:59,530] ERROR in app: Exception on /clientes/1/transacoes [POST]
-api01-1  | Traceback (most recent call last):
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
-api01-1  |     response = self.full_dispatch_request()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
-api01-1  |     rv = self.handle_user_exception(e)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
-api01-1  |     rv = self.dispatch_request()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
-api01-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-api01-1  |   File "/app/main.py", line 20, in create_transacao
-api01-1  |     cliente = get_cliente_by_id(cliente_id)
-api01-1  |   File "/app/main.py", line 15, in get_cliente_by_id
-api01-1  |     cliente = session.query(Cliente).filter_by(id=cliente_id).first()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2748, in first
-api01-1  |     return self.limit(1)._iter().first()  # type: ignore
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
-api01-1  |     result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
-api01-1  |     return self._execute_internal(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2180, in _execute_internal
-api01-1  |     conn = self._connection_for_bind(bind)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2047, in _connection_for_bind
-api01-1  |     return trans._connection_for_bind(engine, execution_options)
-api01-1  |   File "<string>", line 2, in _connection_for_bind
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
-api01-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 952, in _raise_for_prerequisite_state
-api01-1  |     raise sa_exc.InvalidRequestError(
-api01-1  | sqlalchemy.exc.InvalidRequestError: This session is in 'prepared' state; no further SQL can be emitted within this transaction.
-api01-1  | 172.27.0.5 - - [19/Feb/2024 08:47:59] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
-api01-1  | [2024-02-19 08:47:59,536] ERROR in app: Exception on /clientes/1/transacoes [POST]
-api01-1  | Traceback (most recent call last):
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
-api01-1  |     response = self.full_dispatch_request()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
-api01-1  |     rv = self.handle_user_exception(e)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
-api01-1  |     rv = self.dispatch_request()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
-api01-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-api01-1  |   File "/app/main.py", line 29, in create_transacao
-api01-1  |     saldo = get_saldo_by_cliente_id(cliente.id)
-api01-1  |   File "/app/main.py", line 11, in get_saldo_by_cliente_id
-api01-1  |     saldo = session.query(Saldo).filter_by(cliente_id = cliente_id_buscado).first()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2748, in first
-api01-1  |     return self.limit(1)._iter().first()  # type: ignore
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
-api01-1  |     result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
-api01-1  |     return self._execute_internal(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2180, in _execute_internal
-api01-1  |     conn = self._connection_for_bind(bind)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2047, in _connection_for_bind
-api01-1  |     return trans._connection_for_bind(engine, execution_options)
-api01-1  |   File "<string>", line 2, in _connection_for_bind
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
-api01-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 946, in _raise_for_prerequisite_state
-api01-1  |     raise sa_exc.InvalidRequestError(
-api01-1  | sqlalchemy.exc.InvalidRequestError: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
-api01-1  | [2024-02-19 08:47:59,538] ERROR in app: Exception on /clientes/1/transacoes [POST]
-api01-1  | Traceback (most recent call last):
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
-api01-1  |     response = self.full_dispatch_request()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
-api01-1  |     rv = self.handle_user_exception(e)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
-api01-1  |     rv = self.dispatch_request()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
-api01-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-api01-1  |   File "/app/main.py", line 20, in create_transacao
-api01-1  |     cliente = get_cliente_by_id(cliente_id)
-api01-1  |   File "/app/main.py", line 15, in get_cliente_by_id
-api01-1  |     cliente = session.query(Cliente).filter_by(id=cliente_id).first()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2748, in first
-api01-1  |     return self.limit(1)._iter().first()  # type: ignore
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
-api01-1  |     result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
-api01-1  |     return self._execute_internal(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2180, in _execute_internal
-api01-1  |     conn = self._connection_for_bind(bind)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2047, in _connection_for_bind
-api01-1  |     return trans._connection_for_bind(engine, execution_options)
-api01-1  |   File "<string>", line 2, in _connection_for_bind
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
-api01-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 946, in _raise_for_prerequisite_state
-api01-1  |     raise sa_exc.InvalidRequestError(
-api01-1  | sqlalchemy.exc.InvalidRequestError: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
-api02-1  | [2024-02-19 08:47:59,543] ERROR in app: Exception on /clientes/1/transacoes [POST]
+api01-1  |  * Serving Flask app 'main'
+api01-1  |  * Debug mode: off
+api01-1  | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+api01-1  |  * Running on all addresses (0.0.0.0)
+api01-1  |  * Running on http://127.0.0.1:5000
+api01-1  |  * Running on http://192.168.144.4:5000
+api01-1  | [33mPress CTRL+C to quit[0m
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:03] "GET /clientes/1/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:03] "GET /clientes/1/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api02-1  | [2024-02-24 01:28:08,033] ERROR in app: Exception on /clientes/1/transacoes [POST]
 api02-1  | Traceback (most recent call last):
 api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
 api02-1  |     response = self.full_dispatch_request()
@@ -285,78 +116,18 @@ api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.p
 api02-1  |     result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
 api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
 api02-1  |     return self._execute_internal(
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2169, in _execute_internal
-api02-1  |     ) = compile_state_cls.orm_pre_session_exec(
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 551, in orm_pre_session_exec
-api02-1  |     session._autoflush()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 3010, in _autoflush
-api02-1  |     self.flush()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4312, in flush
-api02-1  |     self._flush(objects)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4404, in _flush
-api02-1  |     flush_context.transaction = transaction = self._autobegin_t()._begin()
-api02-1  |   File "<string>", line 2, in _begin
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2180, in _execute_internal
+api02-1  |     conn = self._connection_for_bind(bind)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2047, in _connection_for_bind
+api02-1  |     return trans._connection_for_bind(engine, execution_options)
+api02-1  |   File "<string>", line 2, in _connection_for_bind
 api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
 api02-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
 api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 946, in _raise_for_prerequisite_state
 api02-1  |     raise sa_exc.InvalidRequestError(
 api02-1  | sqlalchemy.exc.InvalidRequestError: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
-api02-1  | 172.27.0.5 - - [19/Feb/2024 08:47:59] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
-api01-1  | [2024-02-19 08:47:59,538] ERROR in app: Exception on /clientes/1/transacoes [POST]
-api01-1  | Traceback (most recent call last):
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
-api01-1  |     response = self.full_dispatch_request()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
-api01-1  |     rv = self.handle_user_exception(e)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
-api01-1  |     rv = self.dispatch_request()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
-api01-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-api01-1  |   File "/app/main.py", line 29, in create_transacao
-api01-1  |     saldo = get_saldo_by_cliente_id(cliente.id)
-api01-1  |   File "/app/main.py", line 11, in get_saldo_by_cliente_id
-api01-1  |     saldo = session.query(Saldo).filter_by(cliente_id = cliente_id_buscado).first()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2748, in first
-api01-1  |     return self.limit(1)._iter().first()  # type: ignore
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
-api01-1  |     result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
-api01-1  |     return self._execute_internal(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2180, in _execute_internal
-api01-1  |     conn = self._connection_for_bind(bind)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2047, in _connection_for_bind
-api01-1  |     return trans._connection_for_bind(engine, execution_options)
-api01-1  |   File "<string>", line 2, in _connection_for_bind
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
-api01-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 946, in _raise_for_prerequisite_state
-api01-1  |     raise sa_exc.InvalidRequestError(
-api01-1  | sqlalchemy.exc.InvalidRequestError: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
-api01-1  | 172.27.0.5 - - [19/Feb/2024 08:47:59] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
-api01-1  | 172.27.0.5 - - [19/Feb/2024 08:47:59] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
-api02-1  | [2024-02-19 08:47:59,547] ERROR in app: Exception on /clientes/1/transacoes [POST]
-api02-1  | Traceback (most recent call last):
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4408, in _flush
-api02-1  |     flush_context.execute()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
-api02-1  |     rec.execute(self)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
-api02-1  |     util.preloaded.orm_persistence.save_obj(
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 60, in save_obj
-api02-1  |     for (
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 221, in _organize_states_for_save
-api02-1  |     for state, dict_, mapper, connection in _connections_for_states(
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1736, in _connections_for_states
-api02-1  |     connection = uowtransaction.transaction.connection(base_mapper)
-api02-1  |   File "<string>", line 2, in connection
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
-api02-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 944, in _raise_for_prerequisite_state
-api02-1  |     raise sa_exc.ResourceClosedError("This transaction is closed")
-api02-1  | sqlalchemy.exc.ResourceClosedError: This transaction is closed
-api02-1  | 
-api02-1  | During handling of the above exception, another exception occurred:
-api02-1  | 
+api02-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
+api02-1  | [2024-02-24 01:28:08,041] ERROR in app: Exception on /clientes/1/transacoes [POST]
 api02-1  | Traceback (most recent call last):
 api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
 api02-1  |     response = self.full_dispatch_request()
@@ -366,135 +137,364 @@ api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 87
 api02-1  |     rv = self.dispatch_request()
 api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
 api02-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-api02-1  |   File "/app/main.py", line 42, in create_transacao
-api02-1  |     save_objeto(nova_transacao, session)
-api02-1  |   File "/app/database.py", line 22, in save_objeto
-api02-1  |     raise e
-api02-1  |   File "/app/database.py", line 19, in save_objeto
-api02-1  |     s.commit()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1969, in commit
-api02-1  |     trans.commit(_to_root=True)
-api02-1  |   File "<string>", line 2, in commit
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
-api02-1  |     ret_value = fn(self, *arg, **kw)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1256, in commit
-api02-1  |     self._prepare_impl()
-api02-1  |   File "<string>", line 2, in _prepare_impl
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
-api02-1  |     ret_value = fn(self, *arg, **kw)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1231, in _prepare_impl
-api02-1  |     self.session.flush()
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4312, in flush
-api02-1  |     self._flush(objects)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
-api02-1  |     transaction.rollback(_capture_exception=True)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 150, in __exit__
-api02-1  |     raise value.with_traceback(traceback)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
-api02-1  |     transaction.rollback(_capture_exception=True)
-api02-1  |   File "<string>", line 2, in rollback
+api02-1  |   File "/app/main.py", line 20, in create_transacao
+api02-1  |     cliente = get_cliente_by_id(cliente_id)
+api02-1  |   File "/app/main.py", line 15, in get_cliente_by_id
+api02-1  |     cliente = session.query(Cliente).filter_by(id=cliente_id).first()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2748, in first
+api02-1  |     return self.limit(1)._iter().first()  # type: ignore
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
+api02-1  |     result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
+api02-1  |     return self._execute_internal(
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2180, in _execute_internal
+api02-1  |     conn = self._connection_for_bind(bind)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2047, in _connection_for_bind
+api02-1  |     return trans._connection_for_bind(engine, execution_options)
+api02-1  |   File "<string>", line 2, in _connection_for_bind
 api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
 api02-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
-api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 944, in _raise_for_prerequisite_state
-api02-1  |     raise sa_exc.ResourceClosedError("This transaction is closed")
-api02-1  | sqlalchemy.exc.ResourceClosedError: This transaction is closed
-api02-1  | 172.27.0.5 - - [19/Feb/2024 08:47:59] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
-api01-1  | 172.27.0.5 - - [19/Feb/2024 08:47:59] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
-api01-1  | /app/database.py:18: SAWarning: Usage of the 'Session.add()' operation is not currently supported within the execution stage of the flush process. Results may not be consistent.  Consider using alternative event listeners or connection-level operations instead.
-api01-1  |   s.add(objeto)
-api02-1  | 172.27.0.5 - - [19/Feb/2024 08:47:59] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-api01-1  | [2024-02-19 08:47:59,550] ERROR in app: Exception on /clientes/1/transacoes [POST]
-api01-1  | Traceback (most recent call last):
-api01-1  |   File "/app/database.py", line 19, in save_objeto
-api01-1  |     s.commit()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1969, in commit
-api01-1  |     trans.commit(_to_root=True)
-api01-1  |   File "<string>", line 2, in commit
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 121, in _go
-api01-1  |     raise sa_exc.IllegalStateChangeError(
-api01-1  | sqlalchemy.exc.IllegalStateChangeError: Method 'commit()' can't be called here; method 'commit()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)
-api01-1  | 
-api01-1  | During handling of the above exception, another exception occurred:
-api01-1  | 
-api01-1  | Traceback (most recent call last):
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
-api01-1  |     response = self.full_dispatch_request()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
-api01-1  |     rv = self.handle_user_exception(e)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
-api01-1  |     rv = self.dispatch_request()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
-api01-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-api01-1  |   File "/app/main.py", line 42, in create_transacao
-api01-1  |     save_objeto(nova_transacao, session)
-api01-1  |   File "/app/database.py", line 21, in save_objeto
-api01-1  |     s.rollback()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1931, in rollback
-api01-1  |     self._transaction.rollback(_to_root=True)
-api01-1  |   File "<string>", line 2, in rollback
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 121, in _go
-api01-1  |     raise sa_exc.IllegalStateChangeError(
-api01-1  | sqlalchemy.exc.IllegalStateChangeError: Method 'rollback()' can't be called here; method 'commit()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)
-api01-1  | 172.27.0.5 - - [19/Feb/2024 08:47:59] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-api01-1  | [2024-02-19 08:47:59,558] ERROR in app: Exception on /clientes/1/transacoes [POST]
-api01-1  | Traceback (most recent call last):
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4408, in _flush
-api01-1  |     flush_context.execute()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
-api01-1  |     rec.execute(self)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 679, in execute
-api01-1  |     util.preloaded.orm_persistence.delete_obj(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 174, in delete_obj
-api01-1  |     states_to_delete = list(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 309, in _organize_states_for_delete
-api01-1  |     for state, dict_, mapper, connection in _connections_for_states(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1736, in _connections_for_states
-api01-1  |     connection = uowtransaction.transaction.connection(base_mapper)
-api01-1  |   File "<string>", line 2, in connection
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
-api01-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 944, in _raise_for_prerequisite_state
-api01-1  |     raise sa_exc.ResourceClosedError("This transaction is closed")
-api01-1  | sqlalchemy.exc.ResourceClosedError: This transaction is closed
-api01-1  | 
-api01-1  | During handling of the above exception, another exception occurred:
-api01-1  | 
-api01-1  | Traceback (most recent call last):
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
-api01-1  |     response = self.full_dispatch_request()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
-api01-1  |     rv = self.handle_user_exception(e)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
-api01-1  |     rv = self.dispatch_request()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
-api01-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-api01-1  |   File "/app/main.py", line 44, in create_transacao
-api01-1  |     return {"limite": cliente.get_limite(),
-api01-1  |   File "/app/models.py", line 16, in get_limite
-api01-1  |     return self.limite
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/attributes.py", line 566, in __get__
-api01-1  |     return self.impl.get(state, dict_)  # type: ignore[no-any-return]
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/attributes.py", line 1086, in get
-api01-1  |     value = self._fire_loader_callables(state, key, passive)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/attributes.py", line 1116, in _fire_loader_callables
-api01-1  |     return state._load_expired(state, passive)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state.py", line 798, in _load_expired
-api01-1  |     self.manager.expired_attribute_loader(self, toload, passive)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/loading.py", line 1651, in load_scalar_attributes
-api01-1  |     result = load_on_ident(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/loading.py", line 507, in load_on_ident
-api01-1  |     return load_on_pk_identity(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/loading.py", line 692, in load_on_pk_identity
-api01-1  |     session.execute(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
-api01-1  |     return self._execute_internal(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2169, in _execute_internal
-api01-1  |     ) = compile_state_cls.orm_pre_session_exec(
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 551, in orm_pre_session_exec
-api01-1  |     session._autoflush()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 3010, in _autoflush
-api01-1  |     self.flush()
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4312, in flush
-api01-1  |     self._flush(objects)
-api01-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
-api01-1  |     transaction.rollback(_capture_exception=True)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 946, in _raise_for_prerequisite_state
+api02-1  |     raise sa_exc.InvalidRequestError(
+api02-1  | sqlalchemy.exc.InvalidRequestError: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+api02-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
+api02-1  | [2024-02-24 01:28:08,044] ERROR in app: Exception on /clientes/1/transacoes [POST]
+api02-1  | Traceback (most recent call last):
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
+api02-1  |     response = self.full_dispatch_request()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
+api02-1  |     rv = self.handle_user_exception(e)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
+api02-1  |     rv = self.dispatch_request()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
+api02-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+api02-1  |   File "/app/main.py", line 20, in create_transacao
+api02-1  |     cliente = get_cliente_by_id(cliente_id)
+api02-1  |   File "/app/main.py", line 15, in get_cliente_by_id
+api02-1  |     cliente = session.query(Cliente).filter_by(id=cliente_id).first()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2748, in first
+api02-1  |     return self.limit(1)._iter().first()  # type: ignore
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
+api02-1  |     result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
+api02-1  |     return self._execute_internal(
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2180, in _execute_internal
+api02-1  |     conn = self._connection_for_bind(bind)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2047, in _connection_for_bind
+api02-1  |     return trans._connection_for_bind(engine, execution_options)
+api02-1  |   File "<string>", line 2, in _connection_for_bind
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
+api02-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 946, in _raise_for_prerequisite_state
+api02-1  |     raise sa_exc.InvalidRequestError(
+api02-1  | sqlalchemy.exc.InvalidRequestError: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+api02-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
+api01-1  | /app/main.py:46: SAWarning: Usage of the 'Session.add()' operation is not currently supported within the execution stage of the flush process. Results may not be consistent.  Consider using alternative event listeners or connection-level operations instead.
+api01-1  |   session.add(nova_transacao)
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api02-1  | [2024-02-24 01:28:08,048] ERROR in app: Exception on /clientes/1/transacoes [POST]
+api02-1  | Traceback (most recent call last):
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
+api02-1  |     response = self.full_dispatch_request()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
+api02-1  |     rv = self.handle_user_exception(e)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
+api02-1  |     rv = self.dispatch_request()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
+api02-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+api02-1  |   File "/app/main.py", line 20, in create_transacao
+api02-1  |     cliente = get_cliente_by_id(cliente_id)
+api02-1  |   File "/app/main.py", line 15, in get_cliente_by_id
+api02-1  |     cliente = session.query(Cliente).filter_by(id=cliente_id).first()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2748, in first
+api02-1  |     return self.limit(1)._iter().first()  # type: ignore
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
+api02-1  |     result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
+api02-1  |     return self._execute_internal(
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2180, in _execute_internal
+api02-1  |     conn = self._connection_for_bind(bind)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2047, in _connection_for_bind
+api02-1  |     return trans._connection_for_bind(engine, execution_options)
+api02-1  |   File "<string>", line 2, in _connection_for_bind
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
+api02-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 946, in _raise_for_prerequisite_state
+api02-1  |     raise sa_exc.InvalidRequestError(
+api02-1  | sqlalchemy.exc.InvalidRequestError: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api02-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
+api01-1  | /app/main.py:11: SAWarning: Attribute history events accumulated on 1 previously clean instances within inner-flush event handlers have been reset, and will not result in database updates. Consider using set_committed_value() within inner-flush event handlers to avoid this warning. (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation.)
+api01-1  |   saldo = session.query(Saldo).filter_by(cliente_id = cliente_id_buscado).first()
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api02-1  | [2024-02-24 01:28:08,052] ERROR in app: Exception on /clientes/1/transacoes [POST]
+api02-1  | Traceback (most recent call last):
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
+api02-1  |     response = self.full_dispatch_request()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
+api02-1  |     rv = self.handle_user_exception(e)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
+api02-1  |     rv = self.dispatch_request()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
+api02-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+api02-1  |   File "/app/main.py", line 20, in create_transacao
+api02-1  |     cliente = get_cliente_by_id(cliente_id)
+api02-1  |   File "/app/main.py", line 15, in get_cliente_by_id
+api02-1  |     cliente = session.query(Cliente).filter_by(id=cliente_id).first()
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2748, in first
+api02-1  |     return self.limit(1)._iter().first()  # type: ignore
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
+api02-1  |     result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
+api02-1  |     return self._execute_internal(
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2180, in _execute_internal
+api02-1  |     conn = self._connection_for_bind(bind)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2047, in _connection_for_bind
+api02-1  |     return trans._connection_for_bind(engine, execution_options)
+api02-1  |   File "<string>", line 2, in _connection_for_bind
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
+api02-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 946, in _raise_for_prerequisite_state
+api02-1  |     raise sa_exc.InvalidRequestError(
+api02-1  | sqlalchemy.exc.InvalidRequestError: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+api02-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api02-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api02-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api02-1  | [2024-02-24 01:28:08,051] ERROR in app: Exception on /clientes/1/transacoes [POST]
+api02-1  | Traceback (most recent call last):
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
+api02-1  |     response = self.full_dispatch_request()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
+api02-1  |     rv = self.handle_user_exception(e)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
+api02-1  |     rv = self.dispatch_request()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
+api02-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+api02-1  |   File "/app/main.py", line 20, in create_transacao
+api02-1  |     cliente = get_cliente_by_id(cliente_id)
+api02-1  |   File "/app/main.py", line 15, in get_cliente_by_id
+api02-1  |     cliente = session.query(Cliente).filter_by(id=cliente_id).first()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2748, in first
+api02-1  |     return self.limit(1)._iter().first()  # type: ignore
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
+api02-1  |     result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
+api02-1  |     return self._execute_internal(
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2180, in _execute_internal
+api02-1  |     conn = self._connection_for_bind(bind)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2047, in _connection_for_bind
+api02-1  |     return trans._connection_for_bind(engine, execution_options)
+api02-1  |   File "<string>", line 2, in _connection_for_bind
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
+api02-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 946, in _raise_for_prerequisite_state
+api02-1  |     raise sa_exc.InvalidRequestError(
+api02-1  | sqlalchemy.exc.InvalidRequestError: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+api02-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
+api02-1  | [2024-02-24 01:28:08,055] ERROR in app: Exception on /clientes/1/transacoes [POST]
+api02-1  | Traceback (most recent call last):
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
+api02-1  |     response = self.full_dispatch_request()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 872, in full_dispatch_request
+api02-1  |     rv = self.handle_user_exception(e)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
+api02-1  |     rv = self.dispatch_request()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
+api02-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+api02-1  |   File "/app/main.py", line 20, in create_transacao
+api02-1  |     cliente = get_cliente_by_id(cliente_id)
+api02-1  |   File "/app/main.py", line 15, in get_cliente_by_id
+api02-1  |     cliente = session.query(Cliente).filter_by(id=cliente_id).first()
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2748, in first
+api02-1  |     return self.limit(1)._iter().first()  # type: ignore
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2847, in _iter
+api02-1  |     result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2308, in execute
+api02-1  |     return self._execute_internal(
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2180, in _execute_internal
+api02-1  |     conn = self._connection_for_bind(bind)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2047, in _connection_for_bind
+api02-1  |     return trans._connection_for_bind(engine, execution_options)
+api02-1  |   File "<string>", line 2, in _connection_for_bind
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
+api02-1  |     self._raise_for_prerequisite_state(fn.__name__, current_state)
+api02-1  |   File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 946, in _raise_for_prerequisite_state
+api02-1  |     raise sa_exc.InvalidRequestError(
+api02-1  | sqlalchemy.exc.InvalidRequestError: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+api02-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "[35m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 500 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | /app/main.py:15: SAWarning: Attribute history events accumulated on 1 previously clean instances within inner-flush event handlers have been reset, and will not result in database updates. Consider using set_committed_value() within inner-flush event handlers to avoid this warning. (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation.)
+api01-1  |   cliente = session.query(Cliente).filter_by(id=cliente_id).first()
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:28:08] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:30:10] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:30:10] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:30:10] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:30:10] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:30:10] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:30:10] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:30:10] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:30:10] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:30:10] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:30:10] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:30:10] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:30:10] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:31:11] "GET /clientes/1/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:31:12] "GET /clientes/5/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:31:12] "GET /clientes/2/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:31:12] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:31:12] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+nginx-1  | 2024/02/24 01:32:12 [error] 33#33: *119 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.144.3:5000/clientes/1/extrato", host: "localhost:9999"
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/1/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+nginx-1  | 2024/02/24 01:32:12 [error] 32#32: *114 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 192.168.144.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.144.3:5000/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/24 01:32:12 [error] 33#33: *111 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 192.168.144.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.144.3:5000/clientes/2/transacoes", host: "localhost:9999"
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/2/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/5/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/1/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/3/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/4/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/5/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/3/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/1/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/3/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/4/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/3/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/1/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/4/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/5/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/5/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/1/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:12] "GET /clientes/4/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:13] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:14] "GET /clientes/5/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:14] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:14] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:14] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:15] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:15] "GET /clientes/4/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:15] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:15] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:15] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:15] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:15] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:15] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:15] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:15] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:16] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:16] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:16] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:16] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:16] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:16] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:16] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:16] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:16] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:16] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:16] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:17] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:17] "GET /clientes/5/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:17] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:17] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:17] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:17] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:17] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:17] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:17] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:18] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:18] "GET /clientes/4/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:18] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:18] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:18] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:18] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:18] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:18] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:18] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "GET /clientes/2/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:19] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "GET /clientes/5/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:20] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "GET /clientes/3/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:21] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "GET /clientes/2/extrato HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/2/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/3/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/4/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/1/transacoes HTTP/1.0" 200 -
+api01-1  | 192.168.144.5 - - [24/Feb/2024 01:32:22] "POST /clientes/4/transacoes HTTP/1.0" 200 -

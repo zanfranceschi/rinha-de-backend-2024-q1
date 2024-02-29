@@ -2,10 +2,10 @@ version: "3.5"
 
 services:
   app1: &app
-    image: normanfrieman/clicbank:latest
+    image: normanfrieman/clicbank:3.0
     hostname: api1
     environment:
-      - ConnectionStrings__DefaultConnection=Server=db;Port=5432;Database=clicbank;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=75;Username=postgres;Password=1234
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=clicbank;Multiplexing=true;Pooling=true;Minimum Pool Size=25;Maximum Pool Size=75;Username=postgres;Password=1234
       - ASPNETCORE_URLS=http://+:8080
     ports:
       - "8081:8080"
@@ -41,7 +41,7 @@ services:
   db:
     image: postgres:16.2
     hostname: db
-    command: 'postgres -c max_connections=150'
+    command: 'postgres -c max_connections=150 -c fsync=off'
     environment:
       - POSTGRES_PASSWORD=1234
       - POSTGRES_USER=postgres

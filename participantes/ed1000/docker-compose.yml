@@ -26,26 +26,24 @@ services:
           # de memória. A distribuição feita aqui é apenas
           # um exemplo – distribua como quiser.
           cpus: "0.55"
-          memory: "220MB"
+          memory: "230MB"
 
   nginx:
     image: nginx:1.25.4-alpine
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api01
-      - api02
+      - api
     ports:
       - "9999:9999"
     deploy:
       resources:
         limits:
           cpus: "0.15"
-          memory: "50MB"
+          memory: "40MB"
 
-  api01: &api
-    image: 1tiquinho/rinha2024q1:v3
-    hostname: api01
+  api:
+    image: 1tiquinho/rinha2024q1:v4
     depends_on:
       postgres:
         condition: service_healthy
@@ -59,12 +57,8 @@ services:
         soft: 1000000
         hard: 1000000
     deploy:
+      replicas: 2
       resources:
         limits:
           cpus: "0.40"
           memory: "140MB"
-
-  api02:
-    # Essa sintaxe reusa o que foi declarado em 'api01'.
-    <<: *api
-    hostname: api02
