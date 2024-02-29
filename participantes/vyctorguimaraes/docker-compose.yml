@@ -1,0 +1,74 @@
+version: "3.9"
+services:
+  nginx:
+    restart: always
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "20MB"
+  db:
+    container_name: db
+    restart: always
+    hostname: db
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.80"
+          memory: "290MB"
+  api1:
+    restart: always
+    hostname: api1
+    container_name: api1
+    image: vyctorguimaraes/rinha-de-backend-2024-q1
+    ports:
+      - 4100:4100
+    environment:
+      - APP_PORT=4100
+      - DATABASE_URL=postgresql://admin:123@db:5432/rinha?schema=public
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "120MB"
+    depends_on:
+      - db
+  api2:
+    restart: always
+    hostname: api2
+    container_name: api2
+    image: vyctorguimaraes/rinha-de-backend-2024-q1
+    ports:
+      - 4200:4200
+    environment:
+      - APP_PORT=4200
+      - DATABASE_URL=postgresql://admin:123@db:5432/rinha?schema=public
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "120MB"
+    depends_on:
+      - db
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-backend

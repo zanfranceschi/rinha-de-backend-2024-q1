@@ -4,8 +4,8 @@
  Container tagliatti-db-1  Created
  Container tagliatti-api1-1  Creating
  Container tagliatti-api2-1  Creating
- Container tagliatti-api1-1  Created
  Container tagliatti-api2-1  Created
+ Container tagliatti-api1-1  Created
  Container tagliatti-nginx-1  Creating
  Container tagliatti-nginx-1  Created
 Attaching to api1-1, api2-1, db-1, nginx-1
@@ -26,32 +26,34 @@ db-1     | selecting default shared_buffers ... 128MB
 db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
+db-1     | performing post-bootstrap initialization ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
-nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
-nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-db-1     | performing post-bootstrap initialization ... ok
 api2-1   | info: Microsoft.Hosting.Lifetime[14]
 api2-1   |       Now listening on: http://[::]:80
 api2-1   | info: Microsoft.Hosting.Lifetime[0]
 api2-1   |       Application started. Press Ctrl+C to shut down.
-api1-1   | info: Microsoft.Hosting.Lifetime[14]
-api1-1   |       Now listening on: http://[::]:80
 api2-1   | info: Microsoft.Hosting.Lifetime[0]
 api2-1   |       Hosting environment: Production
 api2-1   | info: Microsoft.Hosting.Lifetime[0]
 api2-1   |       Content root path: /app
+api1-1   | info: Microsoft.Hosting.Lifetime[14]
+api1-1   |       Now listening on: http://[::]:80
 api1-1   | info: Microsoft.Hosting.Lifetime[0]
 api1-1   |       Application started. Press Ctrl+C to shut down.
 api1-1   | info: Microsoft.Hosting.Lifetime[0]
 api1-1   |       Hosting environment: Production
 api1-1   | info: Microsoft.Hosting.Lifetime[0]
 api1-1   |       Content root path: /app
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -59,12 +61,10 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-25 21:10:26.788 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-25 21:10:26.790 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-25 21:10:26.799 UTC [51] LOG:  database system was shut down at 2024-02-25 21:10:25 UTC
-db-1     | 2024-02-25 21:10:26.811 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-28 21:09:21.478 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-28 21:09:21.481 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-28 21:09:21.491 UTC [51] LOG:  database system was shut down at 2024-02-28 21:09:20 UTC
+db-1     | 2024-02-28 21:09:21.507 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -77,424 +77,39 @@ db-1     | CREATE TABLE
 db-1     | CREATE INDEX
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-25 21:10:27.008 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-02-25 21:10:27.011 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-25 21:10:27.013 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-25 21:10:27.014 UTC [49] LOG:  shutting down
-db-1     | 2024-02-25 21:10:27.017 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-25 21:10:27.490 UTC [49] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.377 s, sync=0.087 s, total=0.476 s; sync files=307, longest=0.061 s, average=0.001 s; distance=4291 kB, estimate=4291 kB; lsn=0/191B708, redo lsn=0/191B708
-db-1     | 2024-02-25 21:10:27.497 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down....2024-02-28 21:09:21.696 UTC [48] LOG:  received fast shutdown request
+db-1     | 2024-02-28 21:09:21.698 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-28 21:09:21.700 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-28 21:09:21.700 UTC [49] LOG:  shutting down
+db-1     | 2024-02-28 21:09:21.702 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-28 21:09:22.200 UTC [49] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.363 s, sync=0.124 s, total=0.501 s; sync files=307, longest=0.054 s, average=0.001 s; distance=4291 kB, estimate=4291 kB; lsn=0/191B708, redo lsn=0/191B708
+db-1     | 2024-02-28 21:09:22.207 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-25 21:10:27.537 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-25 21:10:27.537 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-25 21:10:27.537 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-25 21:10:27.542 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-25 21:10:27.548 UTC [66] LOG:  database system was shut down at 2024-02-25 21:10:27 UTC
-db-1     | 2024-02-25 21:10:27.554 UTC [1] LOG:  database system is ready to accept connections
-db-1     | 2024-02-25 21:12:39.530 UTC [104] FATAL:  terminating connection due to unexpected postmaster exit
-db-1     | 2024-02-25 21:12:39.530 UTC [101] FATAL:  terminating connection due to unexpected postmaster exit
-db-1     | 2024-02-25 21:12:39.530 UTC [129] FATAL:  terminating connection due to unexpected postmaster exit
-db-1     | 2024-02-25 21:12:39.539 UTC [82] FATAL:  terminating connection due to unexpected postmaster exit
-db-1     | 2024-02-25 21:12:39.539 UTC [105] FATAL:  terminating connection due to unexpected postmaster exit
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIR6", Request id "0HN1M8OOSBIR6:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Exception while reading from stream
-api1-1   |        ---> System.IO.IOException: Unable to read data from the transport connection: Connection reset by peer.
-api1-1   |        ---> System.Net.Sockets.SocketException (104): Connection reset by peer
-api1-1   |          at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
-api1-1   |          --- End of inner exception stack trace ---
-api1-1   |          at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
-api1-1   |          at Npgsql.Internal.NpgsqlReadBuffer.<Ensure>g__EnsureLong|54_0(NpgsqlReadBuffer buffer, Int32 count, Boolean async, Boolean readingNotifications)
-api1-1   |          at Npgsql.Internal.NpgsqlReadBuffer.<Ensure>g__EnsureLong|54_0(NpgsqlReadBuffer buffer, Int32 count, Boolean async, Boolean readingNotifications)
-api1-1   |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIR7", Request id "0HN1M8OOSBIR7:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 172.24.0.2:5432
-api1-1   |        ---> System.Net.Sockets.SocketException (111): Connection refused
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIR8", Request id "0HN1M8OOSBIR8:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 172.24.0.2:5432
-api1-1   |        ---> System.Net.Sockets.SocketException (111): Connection refused
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIR4", Request id "0HN1M8OOSBIR4:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Exception while reading from stream
-api1-1   |        ---> System.IO.EndOfStreamException: Attempted to read past the end of the stream.
-api1-1   |          at Npgsql.Internal.NpgsqlReadBuffer.<Ensure>g__EnsureLong|54_0(NpgsqlReadBuffer buffer, Int32 count, Boolean async, Boolean readingNotifications)
-api1-1   |          at Npgsql.Internal.NpgsqlReadBuffer.<Ensure>g__EnsureLong|54_0(NpgsqlReadBuffer buffer, Int32 count, Boolean async, Boolean readingNotifications)
-api1-1   |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
-api1-1   |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIR5", Request id "0HN1M8OOSBIR5:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Exception while reading from stream
-api1-1   |        ---> System.IO.EndOfStreamException: Attempted to read past the end of the stream.
-api1-1   |          at Npgsql.Internal.NpgsqlReadBuffer.<Ensure>g__EnsureLong|54_0(NpgsqlReadBuffer buffer, Int32 count, Boolean async, Boolean readingNotifications)
-api1-1   |          at Npgsql.Internal.NpgsqlReadBuffer.<Ensure>g__EnsureLong|54_0(NpgsqlReadBuffer buffer, Int32 count, Boolean async, Boolean readingNotifications)
-api1-1   |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
-api1-1   |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIRA", Request id "0HN1M8OOSBIRA:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 172.24.0.2:5432
-api1-1   |        ---> System.Net.Sockets.SocketException (111): Connection refused
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIRB", Request id "0HN1M8OOSBIRB:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 172.24.0.2:5432
-api1-1   |        ---> System.Net.Sockets.SocketException (111): Connection refused
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIR9", Request id "0HN1M8OOSBIR9:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 172.24.0.2:5432
-api1-1   |        ---> System.Net.Sockets.SocketException (111): Connection refused
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIRC", Request id "0HN1M8OOSBIRC:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 172.24.0.2:5432
-api1-1   |        ---> System.Net.Sockets.SocketException (111): Connection refused
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIRD", Request id "0HN1M8OOSBIRD:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 172.24.0.2:5432
-api1-1   |        ---> System.Net.Sockets.SocketException (111): Connection refused
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIRE", Request id "0HN1M8OOSBIRE:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 172.24.0.2:5432
-api1-1   |        ---> System.Net.Sockets.SocketException (111): Connection refused
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIRG", Request id "0HN1M8OOSBIRG:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 172.24.0.2:5432
-api1-1   |        ---> System.Net.Sockets.SocketException (111): Connection refused
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api2-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api2-1   |       Connection id "0HN1M8OP257UB", Request id "0HN1M8OP257UB:00000001": An unhandled exception was thrown by the application.
-api2-1   |       Npgsql.NpgsqlException (0x80004005): Exception while reading from stream
-api2-1   |        ---> System.IO.EndOfStreamException: Attempted to read past the end of the stream.
-api2-1   |          at Npgsql.Internal.NpgsqlReadBuffer.<Ensure>g__EnsureLong|54_0(NpgsqlReadBuffer buffer, Int32 count, Boolean async, Boolean readingNotifications)
-api2-1   |          at Npgsql.Internal.NpgsqlReadBuffer.<Ensure>g__EnsureLong|54_0(NpgsqlReadBuffer buffer, Int32 count, Boolean async, Boolean readingNotifications)
-api2-1   |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api2-1   |          at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
-api2-1   |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
-api2-1   |          at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
-api2-1   |          at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api2-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api2-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api2-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api2-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api2-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api2-1   |          at Npgsql.NpgsqlConnection.Open()
-api2-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api2-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api2-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api2-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api2-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api2-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api2-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api2-1   |       --- End of stack trace from previous location ---
-api2-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api2-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api2-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api2-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api2-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api2-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIRH", Request id "0HN1M8OOSBIRH:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 172.24.0.2:5432
-api1-1   |        ---> System.Net.Sockets.SocketException (111): Connection refused
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api1-1   |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api1-1   |          at Npgsql.NpgsqlConnection.Open()
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at ResolveService(ILEmitResolverBuilderRuntimeContext, ServiceProviderEngineScope)
-api1-1   |          at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
-api1-1   |          at lambda_method16(Closure, IServiceProvider, Object[])
-api1-1   |          at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
-api1-1   |       --- End of stack trace from previous location ---
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
-api1-1   |          at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-api1-1   |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api1-1   | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api1-1   |       Connection id "0HN1M8OOSBIRF", Request id "0HN1M8OOSBIRF:00000001": An unhandled exception was thrown by the application.
-api1-1   |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 172.24.0.2:5432
-api1-1   |        ---> System.Net.Sockets.SocketException (111): Connection refused
+db-1     | 2024-02-28 21:09:22.326 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-28 21:09:22.326 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-28 21:09:22.326 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-28 21:09:22.331 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-28 21:09:22.338 UTC [66] LOG:  database system was shut down at 2024-02-28 21:09:22 UTC
+db-1     | 2024-02-28 21:09:22.345 UTC [1] LOG:  database system is ready to accept connections
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api1-1   | info: Microsoft.Hosting.Lifetime[0]
+api1-1   |       Application is shutting down...
+api2-1   | info: Microsoft.Hosting.Lifetime[0]
+api2-1   |       Application is shutting down...
+api1-1 exited with code 0
+api1-1 exited with code 0
+api2-1 exited with code 0
+api2-1 exited with code 0
+db-1     | 2024-02-28 21:13:38.610 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-28 21:13:38.613 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-28 21:13:38.615 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-02-28 21:13:38.615 UTC [64] LOG:  shutting down
+db-1     | 2024-02-28 21:13:38.618 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-28 21:13:38.781 UTC [64] LOG:  checkpoint complete: wrote 698 buffers (4.3%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.010 s, sync=0.137 s, total=0.166 s; sync files=31, longest=0.130 s, average=0.005 s; distance=19989 kB, estimate=19989 kB; lsn=0/2CA0E90, redo lsn=0/2CA0E90
+db-1     | 2024-02-28 21:13:38.787 UTC [1] LOG:  database system is shut down
+db-1 exited with code 0
