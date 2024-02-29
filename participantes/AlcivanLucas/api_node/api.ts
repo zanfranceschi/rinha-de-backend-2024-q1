@@ -9,6 +9,7 @@ app.use(express.json());
 
 
 app.get('/clientes/:id/extrato', async  (req: Request, res: Response) => {
+    let statuscode = 200; // só para exibir o statuscode no console
     try{
         const clienteId = parseInt(req.params.id);
         const data_extrato = new Date();
@@ -46,14 +47,27 @@ app.get('/clientes/:id/extrato', async  (req: Request, res: Response) => {
             res.status(404).send('ID de cliente inválido');
         }
     }catch{
-        res.status(404).json({ error:'deu erro' });
+        res.status(404).json({ error:'deu erro em alguma coisa dentro do try' });
+    } finally{
+        console.log("id do cliente:",parseInt(req.params.id), "status",statuscode);
     }
 })
 
+
+
 // Rota para criar transações de um cliente específico
 app.post('/clientes/:id/transacoes', async  (req: Request, res: Response) => {
+    let statuscode = 200; // só para exibir o statuscode no console
+    let {saldo, limite} = {saldo: 0, limite: 0};
     try {
+        // recebe i ID do cliente na requisição
         const clienteId = parseInt(req.params.id);
+    
+        // Verificando se o corpo da requisição não está vazio
+        if (!req.body) {
+            throw new Error('Corpo da requisição está vazio');
+        }      
+
         // Verificando se o ID do cliente está dentro do intervalo esperado
         if (clienteId >= 1 && clienteId <= 5) {
             const createClienteBody = z.object({
@@ -65,71 +79,80 @@ app.post('/clientes/:id/transacoes', async  (req: Request, res: Response) => {
             // desestrutura o corpo da requisição 
             const { valor, tipo, descricao } = createClienteBody.parse(req.body);
 
-
-            // Verificando se o corpo da requisição não está vazio
-            if (!req.body) {
-                throw new Error('Corpo da requisição está vazio');
-            }
-            
             // Busca o cliente no banco de dados
             const cliente = await prisma.cliente.findUnique({
                 where:{id: clienteId}
             })
-
 
             // Verifica se o cliente foi encontrado
             if (!cliente) {
                 throw new Error('Cliente não encontrado');
             }
 
-            // Cria a transação utilizando o Prisma Client
-            await prisma.transacao.create({
-                data: {
-                    valor: valor,
-                    tipo: tipo,
-                    descricao: descricao,
-                    cliente_id: clienteId,
-                    realizada_em: new Date()
+            let newBalance = 0;
+            // Verifica se o cliente foi encontrado
+            if (tipo === 'd' || tipo === 'c') {
+                // Calcula o novo saldo com base no tipo de transação
+                if (tipo === 'd') {
+                    newBalance = cliente.saldo - valor;
+                } else if (tipo === 'c') {
+                    newBalance = cliente.saldo + valor;
                 }
-            });
 
-            // Calcula o novo saldo com base no tipo de transação
-            let newBalance;
-            if (tipo === 'd') {
-                newBalance =  cliente.saldo - valor ;
-            } else if (tipo === 'c') {
-                newBalance =  cliente.saldo + valor ;
-            } else {
+                saldo = newBalance;
+                limite = cliente?.limite;
+
+                // Verifica se o novo saldo excede o limite
+                if ((-1 * cliente.limite) > newBalance) {
+                    statuscode = 422;
+                    return res.status(422).json({ error: 'Transação não permitida pois excede o limite' });
+                }
+                
+                await Promise.all([
+                    // Cria a transação utilizando o Prisma Client
+                    prisma.transacao.create({
+                        data: {
+                            valor: valor,
+                            tipo: tipo,
+                            descricao: descricao,
+                            cliente_id: clienteId,
+                            realizada_em: new Date()
+                        }
+                    }),
+
+                    // Atualiza o saldo do cliente no banco de dados
+                    prisma.cliente.update({
+                        where: { id: clienteId },
+                        data: { saldo: newBalance }
+                    })                    
+                ])
+
+
+                // Retorna o saldo e o limite do cliente
+                res.status(200).json( {limite: cliente.limite, saldo: newBalance});
+
+            } else{
+                statuscode = 422;
                 throw new Error('Tipo de transação inválido');
             }
-
-            if ((-1 * cliente.limite) > newBalance){
-                console.log("transação não permitida pois execede o limite")
-                return res.status(422).json({ error: 'Transação não permitida pois excede o limite' });
-            }
-
-            // Atualiza o saldo do cliente no banco de dados
-            await prisma.cliente.update({
-                where: { id: clienteId },
-                data: { saldo: newBalance }
-            });
-
-            res.status(200).json( {limite: cliente.limite,
-                                    saldo: newBalance       
-            });
-            // console.log(clienteId) // mostra o id od cliente 
-            // console.log(req.body) // mostra o corpo da requisição
-
         } else {
             // Caso contrário, lançamos um erro com status 400 (Bad Request)
+            console.log('ID de cliente inválido')
+            statuscode = 404;            
             res.status(404).send('ID de cliente inválido');
         }
+
     } catch (error) {
         // Caso ocorra algum erro, retornamos uma resposta de erro
-        console.error('Erro ao criar transação:', error);
-        res.status(404).json({ error: 'Erro ao criar transação.' });
+        console.error( error);
+        statuscode = 404;
+        res.status(404).json({ error: 'Erro ao criar transação, no catch.' });
+    } finally{
+        console.log('-------------------------------info da transação--------------------------------------- \n ', req.body," statuscode:",statuscode," \n -----------------------------Dados do cliente:",parseFloat(req.params.id),"------------------------------------ \n Saldo: ",saldo,"      Limite:",limite,"   \n  --------------------------------------------------------------------------------------");
     }
 })
+
+
 
 try {
     app.listen(8080,() =>{

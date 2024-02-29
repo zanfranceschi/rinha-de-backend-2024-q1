@@ -58,6 +58,8 @@ services:
       - "5432:5432"
     volumes:
       - ./api_node/db/script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf  
     deploy:
       resources:
         limits:
