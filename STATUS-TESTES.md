@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Feb 29 00:27:41 UTC 2024** com **401** submissões.
+Atualizada **Thu Feb 29 00:44:33 UTC 2024** com **402** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -34,6 +34,7 @@ Atualizada **Thu Feb 29 00:27:41 UTC 2024** com **401** submissões.
 | [antunesleo-python](./participantes/antunesleo-python) | ok | 4 |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | ok | 6 |
 | [arrudaricardo-02](./participantes/arrudaricardo-02) | ok | 2 |
+| [arthurzapparoli](./participantes/arthurzapparoli) | ok | 1 |
 | [asfernandes-cpp-haproxy-mongoose-pgsql](./participantes/asfernandes-cpp-haproxy-mongoose-pgsql) | ok | 1 |
 | [avalonbits](./participantes/avalonbits) | ok | 2 |
 | [avinho](./participantes/avinho) | ok | 3 |
