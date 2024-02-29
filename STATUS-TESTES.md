@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Feb 29 16:48:07 UTC 2024** com **410** submissões.
+Atualizada **Thu Feb 29 17:00:04 UTC 2024** com **411** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -220,6 +220,7 @@ Atualizada **Thu Feb 29 16:48:07 UTC 2024** com **410** submissões.
 | [jpaf](./participantes/jpaf) | ok | 2 |
 | [jpcairesf-go](./participantes/jpcairesf-go) | ok | 1 |
 | [jpcairesf-java](./participantes/jpcairesf-java) | falha - [logs](./participantes/jpcairesf-java/docker-compose.logs) | -- |
+| [jrblatt](./participantes/jrblatt) | ok | 1 |
 | [julianojj](./participantes/julianojj) | ok | 7 |
 | [julioriffel-django](./participantes/julioriffel-django) | ok | 6 |
 | [juliorovesta](./participantes/juliorovesta) | ok | 1 |
