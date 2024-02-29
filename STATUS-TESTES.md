@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Feb 29 01:31:03 UTC 2024** com **402** submissões.
+Atualizada **Thu Feb 29 01:42:41 UTC 2024** com **402** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -342,7 +342,7 @@ Atualizada **Thu Feb 29 01:31:03 UTC 2024** com **402** submissões.
 | [rigottig](./participantes/rigottig) | ok | 6 |
 | [ritilopes](./participantes/ritilopes) | ok | 1 |
 | [rizzo-nodejs](./participantes/rizzo-nodejs) | falha - [logs](./participantes/rizzo-nodejs/docker-compose.logs) | -- |
-| [rmauro](./participantes/rmauro) | falha - [logs](./participantes/rmauro/docker-compose.logs) | -- |
+| [rmauro](./participantes/rmauro) | ok | 2 |
 | [robsoncassol](./participantes/robsoncassol) | ok | 4 |
 | [rodolphovs-c-db](./participantes/rodolphovs-c-db) | ok | 1 |
 | [rodolphovs-rs](./participantes/rodolphovs-rs) | ok | 1 |
