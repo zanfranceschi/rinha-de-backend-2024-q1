@@ -1,10 +1,10 @@
 version: '3.9'
 services:
   api01: &api
-    image: abrantedevops/apirinhabackend:1.0.0
+    image: abrantedevops/apirinhabackend:latest
     hostname: api01
     environment:
-      - DATABASE_URL=mysql://root:rinha@db:3306/db?schema=public
+      DATABASE_URL: ${DATABASE_URL}
     ports:
       - 3001:3000
     depends_on:
@@ -40,13 +40,10 @@ services:
     container_name: db
     image: mariadb:10
     restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=rinha
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=rinha
-      - MYSQL_DATABASE=db
-    # volumes:
-    #   - db_data:/var/lib/mysql
+    env_file:
+      - .env
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 3306:3306
     deploy:
@@ -54,9 +51,6 @@ services:
         limits:
           cpus: "1"
           memory: "400MB"
-
-# volumes:
-#   db_data:
 
 networks:
   default:

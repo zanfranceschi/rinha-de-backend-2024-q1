@@ -3,7 +3,7 @@
 __Nome__: Antonio del Rio
 
 __Tecnologias__:
-- Node.js (Express)
+- Node.js (HyperExpress)
 - PostgreSQL
 - NGINX
 

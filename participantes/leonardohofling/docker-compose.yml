@@ -4,8 +4,10 @@ services:
   api01: &api
     image: leonardohof/rinhabackend-2401:latest
     hostname: api01
-    environment:
-      - ConnectionStrings__Default=Host=db;Database=postgres;User Id=postgres;Password=postgres;Pooling=true;Minimum Pool Size=100;Maximum Pool Size=1000;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+    # network_mode: host
+    environment: &env
+      ConnectionStrings__Default: Host=db;Database=postgres;User Id=postgres;Password=postgres;Pooling=true;Minimum Pool Size=100;Maximum Pool Size=1000;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+      #ASPNETCORE_URLS: http://*:8081
     ports:
       - "8081:8080"
     ulimits:
@@ -24,11 +26,15 @@ services:
     # Essa sintaxe reusa o que foi declarado em 'api01'.
     <<: *api 
     hostname: api02
+    environment:
+      <<: *env
+      #ASPNETCORE_URLS: http://*:8082
     ports:
       - "8082:8080"
  
   nginx:
     image: nginx:latest
+    # network_mode: host
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
@@ -50,6 +56,7 @@ services:
   db:
     image: postgres:latest
     hostname: db
+    # network_mode: host
     command: 'postgres -c max_connections=1000 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off'
     environment:
       - POSTGRES_PASSWORD=postgres
