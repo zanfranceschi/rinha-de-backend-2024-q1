@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Feb 29 15:26:29 UTC 2024** com **402** submissões.
+Atualizada **Thu Feb 29 16:02:18 UTC 2024** com **407** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -22,6 +22,7 @@ Atualizada **Thu Feb 29 15:26:29 UTC 2024** com **402** submissões.
 | [alfredomorais](./participantes/alfredomorais) | falha - [logs](./participantes/alfredomorais/docker-compose.logs) | -- |
 | [alissonsleal](./participantes/alissonsleal) | ok | 3 |
 | [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
+| [allissonazevedo-golang](./participantes/allissonazevedo-golang) | ok | 1 |
 | [allissonazevedo-python](./participantes/allissonazevedo-python) | ok | 2 |
 | [anderkonzen](./participantes/anderkonzen) | ok | 1 |
 | [andersonfernandes-ruby](./participantes/andersonfernandes-ruby) | ok | 5 |
@@ -47,6 +48,7 @@ Atualizada **Thu Feb 29 15:26:29 UTC 2024** com **402** submissões.
 | [bgskurono](./participantes/bgskurono) | ok | 1 |
 | [biigode](./participantes/biigode) | ok | 4 |
 | [bine-golang](./participantes/bine-golang) | ok | 2 |
+| [bine-php-hyperf](./participantes/bine-php-hyperf) | ok | 5 |
 | [bine-php-laravel](./participantes/bine-php-laravel) | ok | 4 |
 | [bine-php-road-runner](./participantes/bine-php-road-runner) | ok | 2 |
 | [bine-php-swoole](./participantes/bine-php-swoole) | ok | 2 |
@@ -96,6 +98,7 @@ Atualizada **Thu Feb 29 15:26:29 UTC 2024** com **402** submissões.
 | [diego-coronel](./participantes/diego-coronel) | ok | 2 |
 | [diegoalexandrooliveira](./participantes/diegoalexandrooliveira) | ok | 5 |
 | [diogoviana](./participantes/diogoviana) | falha - [logs](./participantes/diogoviana/docker-compose.logs) | -- |
+| [dionesvfreitas](./participantes/dionesvfreitas) | ok | 2 |
 | [direisc](./participantes/direisc) | ok | 4 |
 | [dksedlak](./participantes/dksedlak) | ok | 3 |
 | [doceazedo](./participantes/doceazedo) | falha - [logs](./participantes/doceazedo/docker-compose.logs) | -- |
@@ -356,7 +359,7 @@ Atualizada **Thu Feb 29 15:26:29 UTC 2024** com **402** submissões.
 | [ronistone-go](./participantes/ronistone-go) | ok | 2 |
 | [ronistone-spring](./participantes/ronistone-spring) | falha - [logs](./participantes/ronistone-spring/docker-compose.logs) | -- |
 | [rschio](./participantes/rschio) | ok | 5 |
-| [ruhtar](./participantes/ruhtar) | falha - [logs](./participantes/ruhtar/docker-compose.logs) | -- |
+| [ruhtar](./participantes/ruhtar) | ok | 1 |
 | [rwillians-elixir](./participantes/rwillians-elixir) | ok | 4 |
 | [samluiz](./participantes/samluiz) | ok | 2 |
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
@@ -371,6 +374,8 @@ Atualizada **Thu Feb 29 15:26:29 UTC 2024** com **402** submissões.
 | [thiagosantana_go](./participantes/thiagosantana_go) | ok | 10 |
 | [thiagotn](./participantes/thiagotn) | ok | 2 |
 | [thicsilva](./participantes/thicsilva) | ok | 5 |
+| [thiper01-django](./participantes/thiper01-django) | ok | 4057 |
+| [thiper01-fastapi](./participantes/thiper01-fastapi) | ok | 2395 |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
