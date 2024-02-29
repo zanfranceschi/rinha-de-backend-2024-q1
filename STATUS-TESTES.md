@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Feb 29 20:06:00 UTC 2024** com **411** submissões.
+Atualizada **Thu Feb 29 20:17:35 UTC 2024** com **412** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -203,6 +203,7 @@ Atualizada **Thu Feb 29 20:06:00 UTC 2024** com **411** submissões.
 | [jairoandre](./participantes/jairoandre) | ok | 1106 |
 | [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 4 |
 | [jcrjuliano](./participantes/jcrjuliano) | ok | 1 |
+| [jeifersonalmeida-spring](./participantes/jeifersonalmeida-spring) | ok | 4 |
 | [jfilipedias](./participantes/jfilipedias) | ok | 4 |
 | [jhonnyboy](./participantes/jhonnyboy) | ok | 1 |
 | [jjeanjacques10](./participantes/jjeanjacques10) | ok | 2 |
