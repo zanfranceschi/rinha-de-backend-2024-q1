@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  1 02:04:40 UTC 2024** com **418** submissões.
+Atualizada **Fri Mar  1 02:16:33 UTC 2024** com **419** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -400,6 +400,7 @@ Atualizada **Fri Mar  1 02:04:40 UTC 2024** com **418** submissões.
 | [victor99z](./participantes/victor99z) | ok | 8 |
 | [victornfb](./participantes/victornfb) | ok | 4 |
 | [victorverdoodt](./participantes/victorverdoodt) | ok | 2 |
+| [viniciusamc-golang](./participantes/viniciusamc-golang) | ok | 3 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [viniciusgferreira](./participantes/viniciusgferreira) | ok | 3 |
 | [vitorlacerda-dotnet](./participantes/vitorlacerda-dotnet) | ok | 15 |
