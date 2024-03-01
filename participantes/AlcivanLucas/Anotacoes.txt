@@ -1,0 +1,260 @@
+---------Rotas---------
+POST /clientes/[id]/transacoes
+GET /clientes/[id]/extrato
+
+----------tecnologias-------
+Nginx 
+Node.js
+
+comandos 
+docker image ls : exibi as immagens criadas 
+
+docker-compose up -d
+
+--------COAMNDOS PRISMA MIGRATE----------
+npx prisma migrate dev --name init: criar as tabelas correspondentes no banco de dados usando o Prisma Migrate, Este comando cria uma nova migração SQL em seu sistema de arquivos e a envia ao banco de dados. O --name initA opção fornecida ao comando especifica o nome da migração e será usada para nomear a pasta de migração criada em seu sistema de arquivos. 
+npm install @prisma/client
+
+
+docker build -t postgreSQL -f api_node/Dockerfile . 
+-t significa tag , e da o nome da imagem 
+- f é onde fica o arquivo de instruções Dockerfile 
+e "." é diretorio atual  
+
+docker run -d --rm --name mysql-container mysql-image  : cria o conteiner 
+ -d é dectected, faz rodar o conteiner em segundo plano 
+--rm seguinifica que se existir um conteiner com esse nome ele sera removido e outra sera criado no lugar 
+
+
+
+docker-compose up --force-recreate -d : re lê o docker-compose.yml e salva as alterações 
+
+docker-compose ps
+
+docker exec -i postgres-container postgres uroot -rinha < api_node/db/script.sql : executa o script.sql
+exec  : vamos executar comando dentro de um conteiner qu esta rodando
+-i    : significa que extamos executando o comando no modo impertivo pois iremos usar o terminal 
+uroot : 
+
+
+
+--------COMANDOS DB PostgreSQL--------------------
+docker exec -it alcivanlucas-db-1 psql -U admin -d rinha -c "SELECT * FROM clientes;"
+docker exec -it alcivanlucas-db-1 psql -U admin -d rinha -c "DELETE FROM transacoes WHERE cliente_id BETWEEN 1 AND 5;"
+docker exec -it alcivanlucas-db-1 psql -U admin -d rinha -c "UPDATE clientes SET saldo = 0  WHERE id BETWEEN 1 AND 5;"
+docker exec -it postgres-conteiner /bin/bash
+-it : significa que vamos usar o terminal bash 
+docker exec -it alcivanlucas-db-1 psql -U admin -l : Isso irá listar todos os bancos de dados disponíveis
+docker exec -it alcivanlucas-db-1 psql -U admin -d rinha : entra do conteiner do db  rinha pra executar comandos dentro dele 
+\dt : lista as tabelas do db rinha
+
+------criando imagem docker--------
+docker build -t alcivanlucas/rinha-backend-2024-q1-nodejs:latest --no-cache .
+docker push alcivanlucas/rinha-backend-2024-q1-nodejs:latest
+docker run -p 8081:8080 rinha-backend-2024-q1-nodejs:latest : Mapear a porta 8080 do container para a porta 8081 do host. 
+
+docker ps -q lista todos os IDs de containers executando 
+docker stop $(docker ps -q) , encerra todos os container em execução
+
+
+descrição do repo nno hub.dockers
+Tecnologias: Node.js, Docker-compose, PostgreSQL, NGINX LinkedIn: alcivan-lucas
+alcivanlucas/rinha-backend-2024-q1-nodejs
+
+
+docker stop $(docker ps -q) && docker rm $(docker ps -a -q) : remmove e limpa
+docker rmi $(docker images -q)
+OBS: uso do host "localhost" na sua URL de conexão do banco de dados. Quando você usa "localhost" dentro do contêiner da API, ele se refere ao próprio contêiner, não ao contêiner do banco de dados.
+Em vez de usar "localhost", você deve usar o nome do serviço do contêiner do banco de dados conforme definido no docker-compose.yml. Nesse caso, o nome do serviço é "db".
+
+
+----------Variaveis ambiente-------- 
+ export GATLING_HOME=/home/galingds/Downloads/gatling_3.10.4
+ export JAVA_HOME=/opt/java-sdk-21
+ ./executar-teste-local.sh
+
+docker system prune --volumes  
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all volumes not used by at least one container
+  - all dangling images
+  - all dangling build cache
+
+
+
+ teste 28/02 as 20:48
+
+ ---- Errors --------------------------------------------------------------------
+> status.find.in(200,422), but actually found 502                 30020 (51,21%)
+> status.find.in(200), but actually found 502                     15004 (25,59%)
+> j.i.IOException: Premature close                                 8151 (13,90%)
+> status.find.in(200,422), but actually found 504                  2648 ( 4,52%)
+> status.find.in([200, 209], 304), found 502                       1453 ( 2,48%)
+> status.find.in(200), but actually found 504                      1279 ( 2,18%)
+> status.find.in([200, 209], 304), found 504                         42 ( 0,07%)
+> status.find.in(422), but actually found 404                        20 ( 0,03%)
+> status.find.in(422,400), but actually found 404                     5 ( 0,01%)
+> jmesPath(saldo.total).find.is(0), but actually found -2             2 ( 0,00%)
+> jmesPath(saldo.total).find.is(-25), but actually found -5           1 ( 0,00%)
+================================================================================
+
+ teste 28/02 as 21:18
+
+ ---- Errors --------------------------------------------------------------------
+> j.i.IOException: Premature close                                30877 (99,91%)
+> status.find.in(422), but actually found 404                        20 ( 0,06%)
+> status.find.in(422,400), but actually found 404                     5 ( 0,02%)
+> jmesPath(saldo.total).find.is(0), but actually found 2              2 ( 0,01%)
+> jmesPath(saldo.total).find.is(-25), but actually found -3           1 ( 0,00%)
+================================================================================
+
+---- Errors --------------------------------------------------------------------
+> j.i.IOException: Premature close                                32764 (99,91%)
+> status.find.in(422), but actually found 404                        20 ( 0,06%)
+> status.find.in(422,400), but actually found 404                     5 ( 0,02%)
+> jmesPath(saldo.total).find.is(0), but actually found 7              2 ( 0,01%)
+> jmesPath(saldo.total).find.is(-25), but actually found -2           1 ( 0,00%)
+================================================================================
+
+ teste 28/02 as 22:18 , timeout nginx conf 300s ou 5 minutos 
+
+---- Errors --------------------------------------------------------------------
+> j.i.IOException: Premature close                                28292 (99,90%)
+> status.find.in(422), but actually found 404                        20 ( 0,07%)
+> status.find.in(422,400), but actually found 404                     5 ( 0,02%)
+> jmesPath(saldo.total).find.is(0), but actually found 2              2 ( 0,01%)
+> jmesPath(saldo.total).find.is(-25), but actually found -2           1 ( 0,00%)
+================================================================================
+
+ teste 28/02 as 23:18 , timeout nginx conf 10s , OBS: acho que o container não esta lendo o arquivo nginx.conf
+  
+================================================================================
+---- Global Information --------------------------------------------------------
+> request count                                      61503 (OK=33360  KO=28143 )
+> min response time                                      0 (OK=6      KO=0     )
+> max response time                                   8158 (OK=8158   KO=529   )
+> mean response time                                  1511 (OK=2662   KO=148   )
+> std deviation                                       2077 (OK=2247   KO=127   )
+> response time 50th percentile                        331 (OK=2343   KO=133   )
+> response time 75th percentile                       2666 (OK=4230   KO=255   )
+> response time 95th percentile                       6213 (OK=6489   KO=362   )
+> response time 99th percentile                       6830 (OK=7303   KO=415   )
+> mean requests/sec                                    247 (OK=133.976 KO=113.024)
+---- Response Time Distribution ------------------------------------------------
+> t < 800 ms                                          9943 ( 16%)
+> 800 ms <= t < 1200 ms                               3675 (  6%)
+> t >= 1200 ms                                       19742 ( 32%)
+> failed                                             28143 ( 46%)
+---- Errors --------------------------------------------------------------------
+> j.i.IOException: Premature close                                27640 (98,21%)
+> status.find.in(200,422), but actually found 500                   313 ( 1,11%)
+> status.find.in(200), but actually found 500                       152 ( 0,54%)
+> status.find.in(422), but actually found 404                        20 ( 0,07%)
+> status.find.in([200, 209], 304), found 500                         10 ( 0,04%)
+> status.find.in(422,400), but actually found 404                     5 ( 0,02%)
+> jmesPath(saldo.total).find.is(0), but actually found 1              2 ( 0,01%)
+> jmesPath(saldo.total).find.is(-25), but actually found -2           1 ( 0,00%)
+================================================================================
+
+
+teste dia 29/02 as 16: 23, sem timout e limit de conexões na url do prisma-postgreSQL
+
+---- Errors --------------------------------------------------------------------
+> j.i.IOException: Premature close                                29530 (98,79%)
+> status.find.in(200,422), but actually found 500                   212 ( 0,71%)
+> status.find.in(200), but actually found 500                       114 ( 0,38%)
+> status.find.in(422), but actually found 404                        20 ( 0,07%)
+> status.find.in([200, 209], 304), found 500                          7 ( 0,02%)
+> status.find.in(422,400), but actually found 404                     5 ( 0,02%)
+> jmesPath(saldo.total).find.is(0), but actually found 2              2 ( 0,01%)
+> jmesPath(saldo.total).find.is(-25), but actually found -2           1 ( 0,00%)
+================================================================================
+
+ teste 29/02 as 19:30 , como o postgres.conf max conetions 100
+================================================================================
+---- Global Information --------------------------------------------------------
+> request count                                      61503 (OK=38572  KO=22931 )
+> min response time                                      0 (OK=4      KO=0     )
+> max response time                                   6753 (OK=6753   KO=754   )
+> mean response time                                  1474 (OK=2285   KO=111   )
+> std deviation                                       1709 (OK=1699   KO=122   )
+> response time 50th percentile                        721 (OK=1727   KO=65    )
+> response time 75th percentile                       2301 (OK=3965   KO=199   )
+> response time 95th percentile                       4839 (OK=4974   KO=326   )
+> response time 99th percentile                       5316 (OK=5816   KO=467   )
+> mean requests/sec                                    247 (OK=154.908 KO=92.092)
+---- Response Time Distribution ------------------------------------------------
+> t < 800 ms                                          8764 ( 14%)
+> 800 ms <= t < 1200 ms                               4415 (  7%)
+> t >= 1200 ms                                       25393 ( 41%)
+> failed                                             22931 ( 37%)
+---- Errors --------------------------------------------------------------------
+> j.i.IOException: Premature close                                22620 (98,64%)
+> status.find.in(200,422), but actually found 500                   185 ( 0,81%)
+> status.find.in(200), but actually found 500                        91 ( 0,40%)
+> status.find.in(422), but actually found 404                        20 ( 0,09%)
+> status.find.in([200, 209], 304), found 500                          7 ( 0,03%)
+> status.find.in(422,400), but actually found 404                     5 ( 0,02%)
+> jmesPath(saldo.total).find.is(0), but actually found 1              2 ( 0,01%)
+> jmesPath(saldo.total).find.is(-25), but actually found -3           1 ( 0,00%)
+================================================================================
+
+ teste 29/02 as 19:50 , como o postgres.conf max conetions 1000
+================================================================================
+---- Global Information --------------------------------------------------------
+> request count                                      61503 (OK=39261  KO=22242 )
+> min response time                                      0 (OK=4      KO=0     )
+> max response time                                   6434 (OK=6434   KO=632   )
+> mean response time                                  1464 (OK=2232   KO=107   )
+> std deviation                                       1696 (OK=1693   KO=112   )
+> response time 50th percentile                        690 (OK=2030   KO=68    )
+> response time 75th percentile                       2579 (OK=3524   KO=195   )
+> response time 95th percentile                       4927 (OK=5106   KO=308   )
+> response time 99th percentile                       5413 (OK=5543   KO=390   )
+> mean requests/sec                                245.032 (OK=156.418 KO=88.614)
+---- Response Time Distribution ------------------------------------------------
+> t < 800 ms                                         10094 ( 16%)
+> 800 ms <= t < 1200 ms                               5060 (  8%)
+> t >= 1200 ms                                       24107 ( 39%)
+> failed                                             22242 ( 36%)
+---- Errors --------------------------------------------------------------------
+> j.i.IOException: Premature close                                22001 (98,92%)
+> status.find.in(200,422), but actually found 500                   134 ( 0,60%)
+> status.find.in(200), but actually found 500                        75 ( 0,34%)
+> status.find.in(422), but actually found 404                        20 ( 0,09%)
+> status.find.in(422,400), but actually found 404                     5 ( 0,02%)
+> status.find.in([200, 209], 304), found 500                          4 ( 0,02%)
+> jmesPath(saldo.total).find.is(0), but actually found 2              2 ( 0,01%)
+> jmesPath(saldo.total).find.is(-25), but actually found -3           1 ( 0,00%)
+================================================================================
+
+
+ teste 29/02 as 19:50 , como o postgres.conf max conetions 1000 and connection_limit=1000&pool_timeout=500 url prisma 
+================================================================================
+---- Global Information --------------------------------------------------------
+> request count                                      61503 (OK=39307  KO=22196 )
+> min response time                                      0 (OK=4      KO=0     )
+> max response time                                   7414 (OK=7414   KO=526   )
+> mean response time                                  1425 (OK=2169   KO=109   )
+> std deviation                                       1774 (OK=1839   KO=112   )
+> response time 50th percentile                        669 (OK=1320   KO=74    )
+> response time 75th percentile                       2033 (OK=4224   KO=192   )
+> response time 95th percentile                       4942 (OK=5094   KO=311   )
+> response time 99th percentile                       5924 (OK=6226   KO=417   )
+> mean requests/sec                                    247 (OK=157.859 KO=89.141)
+---- Response Time Distribution ------------------------------------------------
+> t < 800 ms                                         11469 ( 19%)
+> 800 ms <= t < 1200 ms                               6900 ( 11%)
+> t >= 1200 ms                                       20938 ( 34%)
+> failed                                             22196 ( 36%)
+---- Errors --------------------------------------------------------------------
+> j.i.IOException: Premature close                                21885 (98,60%)
+> status.find.in(200,422), but actually found 500                   189 ( 0,85%)
+> status.find.in(200), but actually found 500                        82 ( 0,37%)
+> status.find.in(422), but actually found 404                        20 ( 0,09%)
+> status.find.in([200, 209], 304), found 500                         12 ( 0,05%)
+> status.find.in(422,400), but actually found 404                     5 ( 0,02%)
+> jmesPath(saldo.total).find.is(0), but actually found 4              2 ( 0,01%)
+> jmesPath(saldo.total).find.is(-25), but actually found -2           1 ( 0,00%)
+================================================================================
