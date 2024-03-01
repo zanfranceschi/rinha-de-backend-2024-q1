@@ -1,11 +1,8 @@
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   limite INTEGER NOT NULL,
-  saldo INTEGER NOT NULL,
-  CHECK (saldo > -limite)
+  saldo INTEGER NOT NULL
 );
-
-CREATE INDEX ON users (id);
 
 INSERT INTO users(limite, saldo)
 VALUES
@@ -25,25 +22,59 @@ CREATE TABLE ledger (
   FOREIGN KEY (id_cliente) REFERENCES users(id)
 );
 
-CREATE INDEX cliente_idx ON ledger(id_cliente);
-CREATE INDEX realizada_idx ON ledger(realizada_em DESC);
-CREATE PROCEDURE atualiza_livro_caixa(
-  id_cliente INTEGER,
-  valor INTEGER,
-  valor_extrato INTEGER, 
-  tipo tipot,
-  descricao VARCHAR(10),
-  OUT saldo_atual INTEGER,
-  OUT limite_atual INTEGER
+CREATE INDEX realizada_idx ON ledger(realizada_em DESC, id_cliente);
+CREATE FUNCTION poe(
+  idc INTEGER,
+  v INTEGER,
+  d VARCHAR(10),
+  INOUT saldo_atual INTEGER = NULL,
+  INOUT limite_atual INTEGER = NULL
 )
 LANGUAGE plpgsql AS
 $$
 BEGIN
-  INSERT INTO ledger (id_cliente, valor, tipo, descricao) VALUES (id_cliente, valor, tipo, descricao);
+  INSERT INTO ledger (
+    id_cliente,
+    valor,
+    tipo,
+    descricao
+  ) VALUES (idc, v, 'C', d);
+
   UPDATE users
-  SET saldo = saldo + valor_extrato
-    WHERE id = id_cliente RETURNING saldo, limite INTO saldo_atual, limite_atual;
-  COMMIT;
-  RETURN;
+  SET saldo = saldo + v
+    WHERE users.id = idc
+    RETURNING saldo, limite INTO saldo_atual, limite_atual;
+END;
+$$;
+
+CREATE FUNCTION tira(
+  idc INTEGER,
+  v INTEGER,
+  d VARCHAR(10),
+  INOUT saldo_atual INTEGER = NULL,
+  INOUT limite_atual INTEGER = NULL
+)
+LANGUAGE plpgsql AS
+$$
+BEGIN
+  SELECT limite, saldo INTO limite_atual, saldo_atual
+  FROM users
+  WHERE id = idc;
+
+  IF saldo_atual - v >= limite_atual * -1 THEN
+    INSERT INTO ledger (
+      id_cliente,
+      valor,
+      tipo,
+      descricao
+    ) VALUES (idc, v, 'D', d);
+
+    UPDATE users
+    SET saldo = saldo - v
+      WHERE users.id = idc
+      RETURNING saldo, limite INTO saldo_atual, limite_atual;
+  ELSE
+    SELECT -1, -1 INTO saldo_atual, limite_atual;
+  END IF;
 END;
 $$;

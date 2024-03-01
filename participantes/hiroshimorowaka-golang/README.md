@@ -3,12 +3,12 @@
 # Hiroshi Morowaka
 
 ### Essa aplicação foi feita com:
-- Golang 
-- Gin-Gonic (Web Server)
-- pgx-pool (Connection Pool)
+- Golang
+- Gin-Gonic (Framework WEB)
+- pgxpool (Pool de conexões)
 - Postgres (Banco de dados relacional)
 - Nginx (Balanceador de carga)
-- [Repositório da API](https://github.com/hiroshimorowaka/rinha-backend-2024-golang)
+- [Respositório da API](https://github.com/hiroshimorowaka/rinha-backend-2024-golang)
 
 <hr>
 <div style="display: flex; gap: 15px;">

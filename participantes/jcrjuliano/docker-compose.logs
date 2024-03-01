@@ -1,0 +1,500 @@
+ Network jcrjuliano_rinha-q1  Creating
+ Network jcrjuliano_rinha-q1  Created
+ Container jcrjuliano-api02-1  Creating
+ Container jcrjuliano-postgres-1  Creating
+ Container jcrjuliano-api01-1  Creating
+ Container jcrjuliano-api02-1  Created
+ Container jcrjuliano-api01-1  Created
+ Container jcrjuliano-nginx-1  Creating
+ Container jcrjuliano-postgres-1  Created
+ Container jcrjuliano-nginx-1  Created
+Attaching to api01-1, api02-1, nginx-1, postgres-1
+postgres-1  | The files belonging to this database system will be owned by user "postgres".
+postgres-1  | This user must also own the server process.
+postgres-1  | 
+postgres-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgres-1  | The default database encoding has accordingly been set to "UTF8".
+postgres-1  | The default text search configuration will be set to "english".
+postgres-1  | 
+postgres-1  | Data page checksums are disabled.
+postgres-1  | 
+postgres-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres-1  | creating subdirectories ... ok
+postgres-1  | selecting dynamic shared memory implementation ... posix
+postgres-1  | selecting default max_connections ... 100
+postgres-1  | selecting default shared_buffers ... 128MB
+postgres-1  | selecting default time zone ... UTC
+postgres-1  | creating configuration files ... ok
+nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
+postgres-1  | running bootstrap script ... ok
+postgres-1  | sh: locale: not found
+postgres-1  | 2024-02-29 18:16:09.361 UTC [30] WARNING:  no usable system locales were found
+postgres-1  | performing post-bootstrap initialization ... ok
+postgres-1  | syncing data to disk ... ok
+postgres-1  | 
+postgres-1  | 
+postgres-1  | Success. You can now start the database server using:
+postgres-1  | 
+postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres-1  | 
+postgres-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres-1  | waiting for server to start....2024-02-29 18:16:10.712 UTC [36] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+postgres-1  | 2024-02-29 18:16:10.722 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2024-02-29 18:16:10.732 UTC [39] LOG:  database system was shut down at 2024-02-29 18:16:10 UTC
+postgres-1  | 2024-02-29 18:16:10.738 UTC [36] LOG:  database system is ready to accept connections
+postgres-1  |  done
+postgres-1  | server started
+postgres-1  | 2024-02-29 18:16:10.801 UTC [45] LOG:  statement: SELECT 1 FROM pg_database WHERE datname = 'rinha' ;
+postgres-1  | 2024-02-29 18:16:10.806 UTC [47] LOG:  statement: CREATE DATABASE "rinha" ;
+postgres-1  | CREATE DATABASE
+postgres-1  | 
+postgres-1  | 
+postgres-1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/01_ddl.sql
+postgres-1  | 2024-02-29 18:16:10.872 UTC [49] LOG:  statement: DROP TABLE IF EXISTS TB_TRANSACTIONS CASCADE;
+postgres-1  | psql:/docker-entrypoint-initdb.d/01_ddl.sql:1: NOTICE:  table "tb_transactions" does not exist, skipping
+postgres-1  | DROP TABLE
+postgres-1  | 2024-02-29 18:16:10.872 UTC [49] LOG:  statement: DROP TABLE IF EXISTS TB_CLIENTES CASCADE;
+postgres-1  | psql:/docker-entrypoint-initdb.d/01_ddl.sql:2: NOTICE:  table "tb_clientes" does not exist, skipping
+postgres-1  | DROP TABLE
+postgres-1  | 2024-02-29 18:16:10.872 UTC [49] LOG:  statement: CREATE TABLE TB_CLIENTES (
+postgres-1  | 		id bigserial NOT NULL,
+postgres-1  | 		name VARCHAR(50) NOT NULL,
+postgres-1  | 		limite INT8 NULL,
+postgres-1  | 		saldo INT8 NULL DEFAULT 0,
+postgres-1  | 		transactions text[] DEFAULT '{}',
+postgres-1  | 		CONSTRAINT CLIENTE_PKEY PRIMARY KEY (id),
+postgres-1  | 		CHECK (saldo >= -limite)
+postgres-1  | 	);
+postgres-1  | CREATE TABLE
+postgres-1  | 
+postgres-1  | 
+postgres-1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/02_dml.sql
+postgres-1  | 2024-02-29 18:16:10.925 UTC [51] LOG:  statement: DO $$
+postgres-1  | 	BEGIN
+postgres-1  | 	  INSERT INTO TB_CLIENTES ("name", "limite")
+postgres-1  | 	  VALUES
+postgres-1  | 	    ('o barato sai caro', 1000 * 100),
+postgres-1  | 	    ('zan corp ltda', 800 * 100),
+postgres-1  | 	    ('les cruders', 10000 * 100),
+postgres-1  | 	    ('padaria joia de cocaia', 100000 * 100),
+postgres-1  | 	    ('kid mais', 5000 * 100);
+postgres-1  | 	END; $$
+postgres-1  | DO
+postgres-1  | 
+postgres-1  | 
+postgres-1  | waiting for server to shut down....2024-02-29 18:16:10.933 UTC [36] LOG:  received fast shutdown request
+postgres-1  | 2024-02-29 18:16:10.937 UTC [36] LOG:  aborting any active transactions
+postgres-1  | 2024-02-29 18:16:10.940 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
+postgres-1  | 2024-02-29 18:16:10.941 UTC [37] LOG:  shutting down
+postgres-1  | 2024-02-29 18:16:10.944 UTC [37] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2024-02-29 18:16:11.414 UTC [37] LOG:  checkpoint complete: wrote 935 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.370 s, sync=0.086 s, total=0.474 s; sync files=306, longest=0.062 s, average=0.001 s; distance=4294 kB, estimate=4294 kB; lsn=0/1921FF8, redo lsn=0/1921FF8
+postgres-1  | 2024-02-29 18:16:11.422 UTC [36] LOG:  database system is shut down
+postgres-1  |  done
+postgres-1  | server stopped
+postgres-1  | 
+postgres-1  | PostgreSQL init process complete; ready for start up.
+postgres-1  | 
+postgres-1  | 2024-02-29 18:16:11.459 UTC [1] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+postgres-1  | 2024-02-29 18:16:11.459 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2024-02-29 18:16:11.459 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2024-02-29 18:16:11.467 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2024-02-29 18:16:11.474 UTC [56] LOG:  database system was shut down at 2024-02-29 18:16:11 UTC
+postgres-1  | 2024-02-29 18:16:11.484 UTC [1] LOG:  database system is ready to accept connections
+nginx-1     | 2024/02/29 18:16:12 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.31.0.2:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/02/29 18:16:12 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.31.0.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:12 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 2024/02/29 18:16:14 [error] 30#30: *4 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:14 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+api01-1     | 
+api01-1     |   .   ____          _            __ _ _
+api01-1     |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+api01-1     | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+api01-1     |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+api01-1     |   '  |____| .__|_| |_|_| |_\__, | / / / /
+api01-1     |  =========|_|==============|___/=/_/_/_/
+api01-1     |  :: Spring Boot ::                (v3.2.2)
+api01-1     | 
+api02-1     | 
+api02-1     |   .   ____          _            __ _ _
+api02-1     |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+api02-1     | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+api02-1     |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+api02-1     |   '  |____| .__|_| |_|_| |_\__, | / / / /
+api02-1     |  =========|_|==============|___/=/_/_/_/
+api02-1     |  :: Spring Boot ::                (v3.2.2)
+api02-1     | 
+api01-1     | 2024-02-29T18:16:15.526Z  INFO 1 --- [           main] br.com.rinhaq1.RinhaQ1Application        : Starting RinhaQ1Application v0.0.1-SNAPSHOT using Java 21.0.2 with PID 1 (/app/app.war started by root in /app)
+api01-1     | 2024-02-29T18:16:15.529Z  INFO 1 --- [           main] br.com.rinhaq1.RinhaQ1Application        : No active profile set, falling back to 1 default profile: "default"
+api02-1     | 2024-02-29T18:16:15.633Z  INFO 1 --- [           main] br.com.rinhaq1.RinhaQ1Application        : Starting RinhaQ1Application v0.0.1-SNAPSHOT using Java 21.0.2 with PID 1 (/app/app.war started by root in /app)
+api02-1     | 2024-02-29T18:16:15.636Z  INFO 1 --- [           main] br.com.rinhaq1.RinhaQ1Application        : No active profile set, falling back to 1 default profile: "default"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:16 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 2024/02/29 18:16:16 [error] 30#30: *5 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/02/29 18:16:18 [error] 30#30: *6 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:18 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+api01-1     | 2024-02-29T18:16:19.717Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+api01-1     | 2024-02-29T18:16:19.822Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 95 ms. Found 0 JPA repository interfaces.
+api02-1     | 2024-02-29T18:16:20.121Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:20 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 2024/02/29 18:16:20 [error] 30#30: *7 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1     | 2024-02-29T18:16:20.225Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 96 ms. Found 0 JPA repository interfaces.
+nginx-1     | 2024/02/29 18:16:22 [error] 30#30: *8 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:22 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 2024/02/29 18:16:24 [error] 30#30: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.31.0.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/02/29 18:16:24 [error] 30#30: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.31.0.2:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:24 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+api01-1     | 2024-02-29T18:16:24.418Z  INFO 1 --- [           main] o.s.b.w.e.j.JettyServletWebServerFactory : Server initialized with port: 8080
+api01-1     | 2024-02-29T18:16:24.424Z  INFO 1 --- [           main] org.eclipse.jetty.server.Server          : jetty-12.0.5; built: 2023-12-18T14:06:32.502Z; git: 3aed62e4959bb8c01f5975fe81e078e3ff626126; jvm 21.0.2+14-LTS
+api01-1     | 2024-02-29T18:16:24.726Z  WARN 1 --- [           main] o.e.j.e.servlet.ServletContextHandler    : BaseResource jar:file:/app/app.war!/ is aliased to jar:file:///app/app.war!/ in osbwej.JettyEmbeddedWebAppContext@427ae189{application,/,b=jar:file:/app/app.war!/,a=STOPPED,h=oeje10s.SessionHandler@16a9eb2e{STOPPED}}. May not be supported in future releases.
+api01-1     | 2024-02-29T18:16:24.732Z  INFO 1 --- [           main] o.e.j.s.h.ContextHandler.application     : Initializing Spring embedded WebApplicationContext
+api01-1     | 2024-02-29T18:16:24.733Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8915 ms
+api02-1     | 2024-02-29T18:16:25.125Z  INFO 1 --- [           main] o.s.b.w.e.j.JettyServletWebServerFactory : Server initialized with port: 8080
+api02-1     | 2024-02-29T18:16:25.132Z  INFO 1 --- [           main] org.eclipse.jetty.server.Server          : jetty-12.0.5; built: 2023-12-18T14:06:32.502Z; git: 3aed62e4959bb8c01f5975fe81e078e3ff626126; jvm 21.0.2+14-LTS
+api02-1     | 2024-02-29T18:16:25.420Z  WARN 1 --- [           main] o.e.j.e.servlet.ServletContextHandler    : BaseResource jar:file:/app/app.war!/ is aliased to jar:file:///app/app.war!/ in osbwej.JettyEmbeddedWebAppContext@427ae189{application,/,b=jar:file:/app/app.war!/,a=STOPPED,h=oeje10s.SessionHandler@16a9eb2e{STOPPED}}. May not be supported in future releases.
+api02-1     | 2024-02-29T18:16:25.426Z  INFO 1 --- [           main] o.e.j.s.h.ContextHandler.application     : Initializing Spring embedded WebApplicationContext
+api02-1     | 2024-02-29T18:16:25.429Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 9412 ms
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:26 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 2024/02/29 18:16:26 [error] 30#30: *12 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1     | 2024-02-29T18:16:26.531Z  INFO 1 --- [           main] o.e.j.session.DefaultSessionIdManager    : Session workerName=node0
+api01-1     | 2024-02-29T18:16:26.615Z  INFO 1 --- [           main] o.e.jetty.server.handler.ContextHandler  : Started osbwej.JettyEmbeddedWebAppContext@427ae189{application,/,b=jar:file:/app/app.war!/,a=AVAILABLE,h=oeje10s.SessionHandler@16a9eb2e{STARTED}}
+api01-1     | 2024-02-29T18:16:26.615Z  INFO 1 --- [           main] o.e.j.e.servlet.ServletContextHandler    : Started osbwej.JettyEmbeddedWebAppContext@427ae189{application,/,b=jar:file:/app/app.war!/,a=AVAILABLE,h=oeje10s.SessionHandler@16a9eb2e{STARTED}}
+api01-1     | 2024-02-29T18:16:26.625Z  INFO 1 --- [           main] org.eclipse.jetty.server.Server          : Started oejs.Server@70730db{STARTING}[12.0.5,sto=0] @18276ms
+api02-1     | 2024-02-29T18:16:27.023Z  INFO 1 --- [           main] o.e.j.session.DefaultSessionIdManager    : Session workerName=node0
+api02-1     | 2024-02-29T18:16:27.033Z  INFO 1 --- [           main] o.e.jetty.server.handler.ContextHandler  : Started osbwej.JettyEmbeddedWebAppContext@427ae189{application,/,b=jar:file:/app/app.war!/,a=AVAILABLE,h=oeje10s.SessionHandler@16a9eb2e{STARTED}}
+api02-1     | 2024-02-29T18:16:27.114Z  INFO 1 --- [           main] o.e.j.e.servlet.ServletContextHandler    : Started osbwej.JettyEmbeddedWebAppContext@427ae189{application,/,b=jar:file:/app/app.war!/,a=AVAILABLE,h=oeje10s.SessionHandler@16a9eb2e{STARTED}}
+api02-1     | 2024-02-29T18:16:27.124Z  INFO 1 --- [           main] org.eclipse.jetty.server.Server          : Started oejs.Server@70730db{STARTING}[12.0.5,sto=0] @18720ms
+api01-1     | 2024-02-29T18:16:27.234Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+api02-1     | 2024-02-29T18:16:27.818Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+postgres-1  | 2024-02-29 18:16:28.128 UTC [60] LOG:  execute <unnamed>: SET extra_float_digits = 3
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:28 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 2024/02/29 18:16:28 [error] 30#30: *13 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+postgres-1  | 2024-02-29 18:16:28.215 UTC [60] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+postgres-1  | 2024-02-29 18:16:28.234 UTC [60] LOG:  execute <unnamed>: SHOW TRANSACTION ISOLATION LEVEL
+api01-1     | 2024-02-29T18:16:28.316Z  INFO 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@67d4c48d
+api01-1     | 2024-02-29T18:16:28.318Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+postgres-1  | 2024-02-29 18:16:28.821 UTC [61] LOG:  execute <unnamed>: SET extra_float_digits = 3
+postgres-1  | 2024-02-29 18:16:28.822 UTC [61] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+postgres-1  | 2024-02-29 18:16:28.846 UTC [62] LOG:  execute <unnamed>: SET extra_float_digits = 3
+postgres-1  | 2024-02-29 18:16:28.846 UTC [62] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+api01-1     | 2024-02-29T18:16:28.847Z  INFO 1 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+postgres-1  | 2024-02-29 18:16:28.922 UTC [61] LOG:  execute <unnamed>: SHOW TRANSACTION ISOLATION LEVEL
+api02-1     | 2024-02-29T18:16:28.930Z  INFO 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@67d4c48d
+api02-1     | 2024-02-29T18:16:28.931Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+postgres-1  | 2024-02-29 18:16:29.016 UTC [63] LOG:  execute <unnamed>: SET extra_float_digits = 3
+postgres-1  | 2024-02-29 18:16:29.022 UTC [63] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+postgres-1  | 2024-02-29 18:16:29.215 UTC [64] LOG:  execute <unnamed>: SET extra_float_digits = 3
+postgres-1  | 2024-02-29 18:16:29.215 UTC [64] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+api01-1     | 2024-02-29T18:16:29.222Z  INFO 1 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+api02-1     | 2024-02-29T18:16:29.254Z  INFO 1 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+postgres-1  | 2024-02-29 18:16:29.327 UTC [66] LOG:  execute <unnamed>: SET extra_float_digits = 3
+postgres-1  | 2024-02-29 18:16:29.329 UTC [66] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+postgres-1  | 2024-02-29 18:16:29.426 UTC [65] LOG:  execute <unnamed>: SET extra_float_digits = 3
+postgres-1  | 2024-02-29 18:16:29.426 UTC [65] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+api01-1     | 2024-02-29T18:16:29.430Z  INFO 1 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+postgres-1  | 2024-02-29 18:16:29.621 UTC [67] LOG:  execute <unnamed>: SET extra_float_digits = 3
+postgres-1  | 2024-02-29 18:16:29.622 UTC [67] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+api02-1     | 2024-02-29T18:16:29.716Z  INFO 1 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+postgres-1  | 2024-02-29 18:16:29.727 UTC [68] LOG:  execute <unnamed>: SET extra_float_digits = 3
+postgres-1  | 2024-02-29 18:16:29.727 UTC [68] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+api02-1     | 2024-02-29T18:16:29.838Z  INFO 1 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+postgres-1  | 2024-02-29 18:16:30.025 UTC [69] LOG:  execute <unnamed>: SET extra_float_digits = 3
+postgres-1  | 2024-02-29 18:16:30.033 UTC [69] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:30 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 2024/02/29 18:16:30 [error] 30#30: *14 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1     | 2024-02-29T18:16:30.736Z  INFO 1 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+postgres-1  | 2024-02-29 18:16:30.927 UTC [60] LOG:  execute <unnamed>: select string_agg(word, ',') from pg_catalog.pg_get_keywords() where word <> ALL ('{a,abs,absolute,action,ada,add,admin,after,all,allocate,alter,always,and,any,are,array,as,asc,asensitive,assertion,assignment,asymmetric,at,atomic,attribute,attributes,authorization,avg,before,begin,bernoulli,between,bigint,binary,blob,boolean,both,breadth,by,c,call,called,cardinality,cascade,cascaded,case,cast,catalog,catalog_name,ceil,ceiling,chain,char,char_length,character,character_length,character_set_catalog,character_set_name,character_set_schema,characteristics,characters,check,checked,class_origin,clob,close,coalesce,cobol,code_units,collate,collation,collation_catalog,collation_name,collation_schema,collect,column,column_name,command_function,command_function_code,commit,committed,condition,condition_number,connect,connection_name,constraint,constraint_catalog,constraint_name,constraint_schema,constraints,constructors,contains,continue,convert,corr,corresponding,count,covar_pop,covar_samp,create,cross,cube,cume_dist,current,current_collation,current_date,current_default_transform_group,current_path,current_role,current_time,current_timestamp,current_transform_group_for_type,current_user,cursor,cursor_name,cycle,data,date,datetime_interval_code,datetime_interval_precision,day,deallocate,dec,decimal,declare,default,defaults,deferrable,deferred,defined,definer,degree,delete,dense_rank,depth,deref,derived,desc,describe,descriptor,deterministic,diagnostics,disconnect,dispatch,distinct,domain,double,drop,dynamic,dynamic_function,dynamic_function_code,each,element,else,end,end-exec,equals,escape,every,except,exception,exclude,excluding,exec,execute,exists,exp,external,extract,false,fetch,filter,final,first,float,floor,following,for,foreign,fortran,found,free,from,full,function,fusion,g,general,get,global,go,goto,grant,granted,group,grouping,having,hierarchy,hold,hour,identity,immediate,implementation,in,including,increment,indicator,initially,inner,inout,input,insensitive,insert,instance,instantiable,int,integer,intersect,intersection,interval,into,invoker,is,isolation,join,k,key,key_member,key_type,language,large,last,lateral,leading,left,length,level,like,ln,local,localtime,localtimestamp,locator,lower,m,map,match,matched,max,maxvalue,member,merge,message_length,message_octet_length,message_text,method,min,minute,minvalue,mod,modifies,module,month,more,multiset,mumps,name,names,national,natural,nchar,nclob,nesting,new,next,no,none,normalize,normalized,not,"null",nullable,nullif,nulls,number,numeric,object,octet_length,octets,of,old,on,only,open,option,options,or,order,ordering,ordinality,others,out,outer,output,over,overlaps,overlay,overriding,pad,parameter,parameter_mode,parameter_name,parameter_ordinal_position,parameter_specific_catalog,parameter_specific_name,parameter_specific_schema,partial,partition,pascal,path,percent_rank,percentile_cont,percentile_disc,placing,pli,position,power,preceding,precision,prepare,preserve,primary,prior,privileges,procedure,public,range,rank,read,reads,real,recursive,ref,references,referencing,regr_avgx,regr_avgy,regr_count,regr_intercept,regr_r2,regr_slope,regr_sxx,regr_sxy,regr_syy,relative,release,repeatable,restart,result,return,returned_cardinality,returned_length,returned_octet_length,returned_sqlstate,returns,revoke,right,role,rollback,rollup,routine,routine_catalog,routine_name,routine_schema,row,row_count,row_number,rows,savepoint,scale,schema,schema_name,scope_catalog,scope_name,scope_schema,scroll,search,second,section,security,select,self,sensitive,sequence,serializable,server_name,session,session_user,set,sets,similar,simple,size,smallint,some,source,space,specific,specific_name,specifictype,sql,sqlexception,sqlstate,sqlwarning,sqrt,start,state,statement,static,stddev_pop,stddev_samp,structure,style,subclass_origin,submultiset,substring,sum,symmetric,system,system_user,table,table_name,tablesample,temporary,then,ties,time,timestamp,timezone_hour,timezone_minute,to,top_level_count,trailing,transaction,transaction_active,transactions_committed,transactions_rolled_back,transform,transforms,translate,translation,treat,trigger,trigger_catalog,trigger_name,trigger_schema,trim,true,type,uescape,unbounded,uncommitted,under,union,unique,unknown,unnamed,unnest,update,upper,usage,user,user_defined_type_catalog,user_defined_type_code,user_defined_type_name,user_defined_type_schema,using,value,values,var_pop,var_samp,varchar,varying,view,when,whenever,where,width_bucket,window,with,within,without,work,write,year,zone}'::text[])
+api01-1     | 2024-02-29T18:16:31.020Z  WARN 1 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+postgres-1  | 2024-02-29 18:16:31.029 UTC [60] LOG:  execute <unnamed>: select current_schema()
+postgres-1  | 2024-02-29 18:16:31.029 UTC [60] LOG:  execute <unnamed>: select current_schema()
+api02-1     | 2024-02-29T18:16:31.228Z  INFO 1 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+postgres-1  | 2024-02-29 18:16:31.425 UTC [61] LOG:  execute <unnamed>: select string_agg(word, ',') from pg_catalog.pg_get_keywords() where word <> ALL ('{a,abs,absolute,action,ada,add,admin,after,all,allocate,alter,always,and,any,are,array,as,asc,asensitive,assertion,assignment,asymmetric,at,atomic,attribute,attributes,authorization,avg,before,begin,bernoulli,between,bigint,binary,blob,boolean,both,breadth,by,c,call,called,cardinality,cascade,cascaded,case,cast,catalog,catalog_name,ceil,ceiling,chain,char,char_length,character,character_length,character_set_catalog,character_set_name,character_set_schema,characteristics,characters,check,checked,class_origin,clob,close,coalesce,cobol,code_units,collate,collation,collation_catalog,collation_name,collation_schema,collect,column,column_name,command_function,command_function_code,commit,committed,condition,condition_number,connect,connection_name,constraint,constraint_catalog,constraint_name,constraint_schema,constraints,constructors,contains,continue,convert,corr,corresponding,count,covar_pop,covar_samp,create,cross,cube,cume_dist,current,current_collation,current_date,current_default_transform_group,current_path,current_role,current_time,current_timestamp,current_transform_group_for_type,current_user,cursor,cursor_name,cycle,data,date,datetime_interval_code,datetime_interval_precision,day,deallocate,dec,decimal,declare,default,defaults,deferrable,deferred,defined,definer,degree,delete,dense_rank,depth,deref,derived,desc,describe,descriptor,deterministic,diagnostics,disconnect,dispatch,distinct,domain,double,drop,dynamic,dynamic_function,dynamic_function_code,each,element,else,end,end-exec,equals,escape,every,except,exception,exclude,excluding,exec,execute,exists,exp,external,extract,false,fetch,filter,final,first,float,floor,following,for,foreign,fortran,found,free,from,full,function,fusion,g,general,get,global,go,goto,grant,granted,group,grouping,having,hierarchy,hold,hour,identity,immediate,implementation,in,including,increment,indicator,initially,inner,inout,input,insensitive,insert,instance,instantiable,int,integer,intersect,intersection,interval,into,invoker,is,isolation,join,k,key,key_member,key_type,language,large,last,lateral,leading,left,length,level,like,ln,local,localtime,localtimestamp,locator,lower,m,map,match,matched,max,maxvalue,member,merge,message_length,message_octet_length,message_text,method,min,minute,minvalue,mod,modifies,module,month,more,multiset,mumps,name,names,national,natural,nchar,nclob,nesting,new,next,no,none,normalize,normalized,not,"null",nullable,nullif,nulls,number,numeric,object,octet_length,octets,of,old,on,only,open,option,options,or,order,ordering,ordinality,others,out,outer,output,over,overlaps,overlay,overriding,pad,parameter,parameter_mode,parameter_name,parameter_ordinal_position,parameter_specific_catalog,parameter_specific_name,parameter_specific_schema,partial,partition,pascal,path,percent_rank,percentile_cont,percentile_disc,placing,pli,position,power,preceding,precision,prepare,preserve,primary,prior,privileges,procedure,public,range,rank,read,reads,real,recursive,ref,references,referencing,regr_avgx,regr_avgy,regr_count,regr_intercept,regr_r2,regr_slope,regr_sxx,regr_sxy,regr_syy,relative,release,repeatable,restart,result,return,returned_cardinality,returned_length,returned_octet_length,returned_sqlstate,returns,revoke,right,role,rollback,rollup,routine,routine_catalog,routine_name,routine_schema,row,row_count,row_number,rows,savepoint,scale,schema,schema_name,scope_catalog,scope_name,scope_schema,scroll,search,second,section,security,select,self,sensitive,sequence,serializable,server_name,session,session_user,set,sets,similar,simple,size,smallint,some,source,space,specific,specific_name,specifictype,sql,sqlexception,sqlstate,sqlwarning,sqrt,start,state,statement,static,stddev_pop,stddev_samp,structure,style,subclass_origin,submultiset,substring,sum,symmetric,system,system_user,table,table_name,tablesample,temporary,then,ties,time,timestamp,timezone_hour,timezone_minute,to,top_level_count,trailing,transaction,transaction_active,transactions_committed,transactions_rolled_back,transform,transforms,translate,translation,treat,trigger,trigger_catalog,trigger_name,trigger_schema,trim,true,type,uescape,unbounded,uncommitted,under,union,unique,unknown,unnamed,unnest,update,upper,usage,user,user_defined_type_catalog,user_defined_type_code,user_defined_type_name,user_defined_type_schema,using,value,values,var_pop,var_samp,varchar,varying,view,when,whenever,where,width_bucket,window,with,within,without,work,write,year,zone}'::text[])
+api02-1     | 2024-02-29T18:16:31.520Z  WARN 1 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+postgres-1  | 2024-02-29 18:16:31.528 UTC [61] LOG:  execute <unnamed>: select current_schema()
+postgres-1  | 2024-02-29 18:16:31.529 UTC [61] LOG:  execute <unnamed>: select current_schema()
+nginx-1     | 2024/02/29 18:16:32 [error] 30#30: *15 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:32 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 2024/02/29 18:16:34 [error] 30#30: *16 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:34 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+api01-1     | 2024-02-29T18:16:35.330Z  INFO 1 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+api01-1     | 2024-02-29T18:16:35.419Z  INFO 1 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+api02-1     | 2024-02-29T18:16:35.431Z  INFO 1 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+api02-1     | 2024-02-29T18:16:35.517Z  INFO 1 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+api01-1     | 2024-02-29T18:16:35.933Z  WARN 1 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+api02-1     | 2024-02-29T18:16:36.117Z  WARN 1 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+nginx-1     | 2024/02/29 18:16:36 [error] 30#30: *17 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.31.0.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/02/29 18:16:36 [error] 30#30: *17 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.31.0.2:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:36 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 2024/02/29 18:16:38 [error] 30#30: *20 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:38 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+api01-1     | 2024-02-29T18:16:38.419Z  INFO 1 --- [           main] o.e.j.s.h.ContextHandler.application     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+api01-1     | 2024-02-29T18:16:38.420Z  INFO 1 --- [           main] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+api01-1     | 2024-02-29T18:16:38.423Z  INFO 1 --- [           main] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+api01-1     | 2024-02-29T18:16:38.515Z  INFO 1 --- [           main] o.e.jetty.server.AbstractConnector       : Started ServerConnector@8dc3019{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+api01-1     | 2024-02-29T18:16:38.517Z  INFO 1 --- [           main] o.s.b.web.embedded.jetty.JettyWebServer  : Jetty started on port 8080 (http/1.1) with context path '/'
+api01-1     | 2024-02-29T18:16:38.616Z  INFO 1 --- [           main] br.com.rinhaq1.RinhaQ1Application        : Started RinhaQ1Application in 26.387 seconds (process running for 30.268)
+api02-1     | 2024-02-29T18:16:38.819Z  INFO 1 --- [           main] o.e.j.s.h.ContextHandler.application     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+api02-1     | 2024-02-29T18:16:38.820Z  INFO 1 --- [           main] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+api02-1     | 2024-02-29T18:16:38.822Z  INFO 1 --- [           main] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+api02-1     | 2024-02-29T18:16:38.916Z  INFO 1 --- [           main] o.e.jetty.server.AbstractConnector       : Started ServerConnector@75e3c6e{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+api02-1     | 2024-02-29T18:16:38.918Z  INFO 1 --- [           main] o.s.b.web.embedded.jetty.JettyWebServer  : Jetty started on port 8080 (http/1.1) with context path '/'
+api02-1     | 2024-02-29T18:16:38.928Z  INFO 1 --- [           main] br.com.rinhaq1.RinhaQ1Application        : Started RinhaQ1Application in 26.61 seconds (process running for 30.524)
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:40 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 2024/02/29 18:16:40 [error] 30#30: *21 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/02/29 18:16:42 [error] 30#30: *22 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:42 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 2024/02/29 18:16:44 [error] 30#30: *23 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:44 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:46 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1     | 2024/02/29 18:16:46 [error] 30#30: *24 no live upstreams while connecting to upstream, client: 172.31.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+postgres-1  | 2024-02-29 18:16:48.717 UTC [61] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:48.717 UTC [61] DETAIL:  parameters: $1 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:49 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 120 "-" "curl/7.81.0"
+postgres-1  | 2024-02-29 18:16:49.136 UTC [61] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:49.136 UTC [61] DETAIL:  parameters: $1 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:49 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 120 "-" "curl/7.81.0"
+postgres-1  | 2024-02-29 18:16:54.525 UTC [68] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.525 UTC [68] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.525 UTC [69] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.525 UTC [69] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.526 UTC [68] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.526 UTC [68] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.527 UTC [69] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.527 UTC [69] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.527 UTC [61] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.527 UTC [61] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.528 UTC [61] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.528 UTC [61] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.528 UTC [69] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.528 UTC [69] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.529 UTC [69] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.529 UTC [69] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.529 UTC [61] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.529 UTC [61] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.529 UTC [61] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.529 UTC [61] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.530 UTC [68] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.530 UTC [68] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.531 UTC [65] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.531 UTC [65] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.615 UTC [69] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.615 UTC [69] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.616 UTC [61] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.616 UTC [61] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.617 UTC [65] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.617 UTC [65] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.618 UTC [67] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.618 UTC [67] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.623 UTC [61] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.623 UTC [61] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.624 UTC [65] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.624 UTC [65] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.624 UTC [61] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.624 UTC [61] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.625 UTC [69] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.625 UTC [69] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.626 UTC [68] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.626 UTC [68] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.528571929Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.528571929Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:54.626 UTC [67] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.626 UTC [67] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.625816875Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.625816875Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:54.628 UTC [69] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.628 UTC [69] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.627411543Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.627411543Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:54.629 UTC [61] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.629 UTC [61] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.629016760Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.629016760Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:54.631 UTC [65] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.631 UTC [65] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.630650406Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.630650406Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:54.632 UTC [67] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.632 UTC [67] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.527632343Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.527632343Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.632 UTC [68] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.632 UTC [68] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.529632757Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.529632757Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.633 UTC [61] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.633 UTC [61] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.527611156Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.527611156Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.640 UTC [65] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.640 UTC [65] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.626764415Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.626764415Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.643 UTC [61] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.643 UTC [61] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.529462862Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.529462862Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:54.715 UTC [67] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.715 UTC [67] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.626891788Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.626891788Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.718 UTC [69] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.718 UTC [69] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.617970913Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.617970913Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:54.718 UTC [61] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.718 UTC [61] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.719 UTC [65] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.719 UTC [65] DETAIL:  parameters: $1 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.719 UTC [67] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.719 UTC [67] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.626271261Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.626271261Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:54.719 UTC [65] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.719 UTC [65] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.526319879Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.526319879Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:54.720 UTC [68] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.720 UTC [68] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.720107981Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.720107981Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.721 UTC [69] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.721 UTC [69] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.526428891Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.526428891Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.723 UTC [61] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.723 UTC [61] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.722775533Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.722775533Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:54.723 UTC [67] LOG:  execute S_1: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.723 UTC [67] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.615482132Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.615482132Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.725 UTC [65] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.725 UTC [65] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.529543043Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.529543043Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.726 UTC [67] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.726 UTC [67] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.727 UTC [68] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.727 UTC [68] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.617240059Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.617240059Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:54.727 UTC [67] LOG:  execute S_1: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.727 UTC [67] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.727150153Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.727150153Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.728 UTC [61] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.728 UTC [61] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:54.729 UTC [68] LOG:  execute S_1: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.729 UTC [68] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.626761125Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.626761125Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:54.729 UTC [61] LOG:  execute S_2: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.729 UTC [61] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.528332545Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.528332545Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.732 UTC [67] LOG:  execute S_1: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:54.732 UTC [67] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.730012957Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.730012957Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.743 UTC [72] LOG:  execute <unnamed>: SET extra_float_digits = 3
+postgres-1  | 2024-02-29 18:16:54.743 UTC [72] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:54 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:54.930 UTC [60] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:54.930 UTC [60] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:55.020 UTC [60] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:55.020 UTC [60] DETAIL:  parameters: $1 = '-1', $2 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.936727941Z"}', $3 = '{"tipo":"d", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:54.936727941Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:55 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:56.111 UTC [61] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:56.111 UTC [61] DETAIL:  parameters: $1 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:56 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1072 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:57.116 UTC [60] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.116 UTC [60] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.117 UTC [60] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.117 UTC [60] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.116786619Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.116786619Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.119 UTC [61] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.119 UTC [61] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.119 UTC [62] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.119 UTC [62] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.120 UTC [62] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.120 UTC [62] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.120062451Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.120062451Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.121 UTC [65] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.121 UTC [65] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.124 UTC [62] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.124 UTC [62] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.124 UTC [67] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.124 UTC [67] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.124 UTC [61] LOG:  execute S_2: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.124 UTC [61] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.120886595Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.120886595Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.124 UTC [64] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.124 UTC [64] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.125 UTC [65] LOG:  execute S_2: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.125 UTC [65] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.124528561Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.124528561Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.126 UTC [67] LOG:  execute S_1: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.126 UTC [67] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.125902323Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.125902323Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.126 UTC [63] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.126 UTC [63] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.126 UTC [69] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.126 UTC [69] DETAIL:  parameters: $1 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:57.127 UTC [69] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.127 UTC [69] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.127363705Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.127363705Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.128 UTC [64] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.128 UTC [64] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.127349375Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.127349375Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.129 UTC [72] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.129 UTC [72] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.129 UTC [63] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.129 UTC [63] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.128619456Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.128619456Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.131 UTC [61] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.131 UTC [61] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.131 UTC [68] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.131 UTC [68] DETAIL:  parameters: $1 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:57.132 UTC [72] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.132 UTC [72] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.131266521Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.131266521Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.132 UTC [68] LOG:  execute S_1: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.132 UTC [68] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.132065890Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.132065890Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.132 UTC [62] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.132 UTC [62] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.132476247Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.132476247Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:57.138 UTC [61] LOG:  execute S_2: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.138 UTC [61] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.138046556Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.138046556Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.140 UTC [67] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.140 UTC [67] DETAIL:  parameters: $1 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:57.140 UTC [73] LOG:  execute <unnamed>: SET extra_float_digits = 3
+postgres-1  | 2024-02-29 18:16:57.141 UTC [72] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.141 UTC [72] DETAIL:  parameters: $1 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:57.144 UTC [65] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.144 UTC [65] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.145 UTC [60] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.145 UTC [60] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.145 UTC [60] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.145 UTC [60] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.145473353Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.145473353Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.146 UTC [73] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:57.155 UTC [60] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.155 UTC [60] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.155 UTC [62] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.155 UTC [62] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.155 UTC [60] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.155 UTC [60] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.155445892Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.155445892Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.156 UTC [64] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.156 UTC [64] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.156 UTC [62] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.156 UTC [62] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.155993335Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.155993335Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.156 UTC [63] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.156 UTC [63] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.157 UTC [63] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.157 UTC [63] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.156997832Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.156997832Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.217 UTC [66] LOG:  execute <unnamed>: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.217 UTC [66] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.218 UTC [64] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.218 UTC [64] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.217994731Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.217994731Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:57.222 UTC [66] LOG:  execute <unnamed>: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.222 UTC [66] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.220695664Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.220695664Z"}', $4 = '1'
+postgres-1  | 2024-02-29 18:16:57.224 UTC [60] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.224 UTC [60] DETAIL:  parameters: $1 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:57.226 UTC [60] LOG:  execute S_2: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.226 UTC [60] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.225963673Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.225963673Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 39 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:57.231 UTC [60] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.231 UTC [60] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.233 UTC [61] LOG:  execute S_1: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1
+postgres-1  | 2024-02-29 18:16:57.233 UTC [61] DETAIL:  parameters: $1 = '1'
+postgres-1  | 2024-02-29 18:16:57.235 UTC [60] LOG:  execute S_2: UPDATE tb_clientes SET saldo = saldo + $1, transactions = CASE WHEN array_length(transactions, 1) >= 10 THEN array_prepend($2, transactions[1:9]) ELSE array_prepend($3, transactions) END WHERE id = $4 RETURNING limite, saldo
+postgres-1  | 2024-02-29 18:16:57.235 UTC [60] DETAIL:  parameters: $1 = '1', $2 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.235042986Z"}', $3 = '{"tipo":"c", "valor":1, "descricao":"validacao", "realizadaEm":"2024-02-29T18:16:57.235042986Z"}', $4 = '1'
+nginx-1     | 172.31.0.1 - - [29/Feb/2024:18:16:57 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 40 "-" "Agente do Caos - 2024/Q1"
+postgres-1  | 2024-02-29 18:16:57.237 UTC [67] LOG:  execute S_2: SELECT id, name, limite, saldo, transactions FROM tb_clientes WHERE id = $1

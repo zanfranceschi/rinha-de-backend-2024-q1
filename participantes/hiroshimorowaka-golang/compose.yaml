@@ -7,6 +7,7 @@ services:
     network_mode: host
     container_name: api01-golang
     environment:
+      - DATABASE_URL=postgres://docker:docker@localhost:5432/rinha?sslmode=disable
       - HTTP_PORT=8081
     depends_on:
       postgres:
@@ -14,14 +15,15 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
-          memory: '150MB'
+          cpus: '0.2'
+          memory: '50MB'
 
   api02:
     <<: *app
     hostname: api02
     container_name: api02-golang
     environment:
+      - DATABASE_URL=postgres://docker:docker@localhost:5432/rinha?sslmode=disable
       - HTTP_PORT=8082
 
 
@@ -45,8 +47,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.4'
-          memory: '200MB'
+          cpus: '0.6'
+          memory: '350MB'
 
   nginx:
     image: nginx:1.25.3-alpine
@@ -60,6 +62,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.1'
-          memory: '50MB'
+          cpus: '0.5'
+          memory: '100MB'
         

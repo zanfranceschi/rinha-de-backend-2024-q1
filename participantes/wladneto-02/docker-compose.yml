@@ -15,7 +15,11 @@ services:
       - crebito-network
     depends_on:
       mongodb:
-        condition: service_healthy 
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
     deploy:
       resources:
         limits:
@@ -35,7 +39,7 @@ services:
 
   mongodb:
     #image: mongo
-    image: mongo:7-jammy
+    image: mongo:latest
     restart: always
     command: mongod --quiet --logpath /dev/null
     environment:
