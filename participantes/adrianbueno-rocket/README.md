@@ -11,3 +11,7 @@
 ## Repositório
 
 - [adrian7123/rinha-backend-2024-q1-rocketrs/](https://github.com/adrian7123/rinha-backend-2024-q1-rocketrs/)
+
+## Contato
+
+adrian.s.bueno1@gmail.com
