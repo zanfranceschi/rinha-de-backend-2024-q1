@@ -1,4 +1,3 @@
-
 CREATE UNLOGGED TABLE IF NOT EXISTS clientes (
 	id SERIAL PRIMARY KEY,
 	limite INTEGER NOT NULL,
@@ -100,7 +99,7 @@ CREATE OR REPLACE FUNCTION transacao(
     _valor INTEGER,
     _tipo CHAR,
     _descricao VARCHAR(10),
-    OUT codigo_erro SMALLINT,
+    OUT status SMALLINT,
     OUT resultado JSON
 )
 RETURNS record AS
@@ -113,7 +112,7 @@ BEGIN
             RETURNING json_build_object('limite', limite, 'saldo', saldo) INTO resultado;
             INSERT INTO transacoes(cliente_id, valor, tipo, descricao)
             VALUES (_cliente_id, _valor, _tipo, _descricao);
-            RETURN;
+            status := 200;
         ELSIF _tipo = 'd' THEN
             UPDATE clientes
             SET saldo = saldo - _valor
@@ -123,18 +122,21 @@ BEGIN
             IF FOUND THEN 
               INSERT INTO transacoes(cliente_id, valor, tipo, descricao)
               VALUES (_cliente_id, _valor, _tipo, _descricao);
+              status := 200;
             ELSE 
-              codigo_erro := 2;
-              resultado := NULL;
+              status := 422;
+              resultado := '';
             END IF;
-
-            RETURN;
         ELSE
-            codigo_erro := 2;
-            resultado := NULL;
-            RETURN;
+            status := 422;
+            resultado := '';
         END IF;
 END;
 $$
 LANGUAGE plpgsql;
 
+CREATE EXTENSION IF NOT EXISTS pg_prewarm;
+SELECT pg_prewarm('clientes');
+SELECT pg_prewarm('transacoes');
+SELECT pg_prewarm('idx_clientes');
+SELECT pg_prewarm('idx_transacoes_cliente_id');
