@@ -15,6 +15,13 @@ CREATE UNLOGGED TABLE transactions (
 		FOREIGN KEY (account_id) REFERENCES accounts(id)
 );
 
+CREATE INDEX idx_accounts_id ON accounts (id);
+CREATE INDEX idx_transactions_account_created ON transactions (account_id, created_at DESC);
+
+CREATE EXTENSION IF NOT EXISTS pg_prewarm;
+SELECT pg_prewarm('accounts');
+SELECT pg_prewarm( 'transactions');
+
 DO $$
 BEGIN
 	INSERT INTO accounts (account_limit, balance) 

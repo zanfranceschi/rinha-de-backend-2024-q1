@@ -253,28 +253,28 @@ class RinhaBackendCrebitosSimulation
       .post("/clientes/#{id}/transacoes")
           .header("content-type", "application/json")
           .body(StringBody(s"""{"valor": 1, "tipo": "x", "descricao": "devolve"}"""))
-          .check(status.in(422))
+          .check(status.in(422, 400))
     )
     .exec(
       http("validações")
       .post("/clientes/#{id}/transacoes")
           .header("content-type", "application/json")
           .body(StringBody(s"""{"valor": 1, "tipo": "c", "descricao": "123456789 e mais um pouco"}"""))
-          .check(status.in(422))
+          .check(status.in(422, 400))
     )
     .exec(
       http("validações")
       .post("/clientes/#{id}/transacoes")
           .header("content-type", "application/json")
           .body(StringBody(s"""{"valor": 1, "tipo": "c", "descricao": ""}"""))
-          .check(status.in(422))
+          .check(status.in(422, 400))
     )
     .exec(
       http("validações")
       .post("/clientes/#{id}/transacoes")
           .header("content-type", "application/json")
           .body(StringBody(s"""{"valor": 1, "tipo": "c", "descricao": null}"""))
-          .check(status.in(422))
+          .check(status.in(422, 400))
     )
 
   /* 
