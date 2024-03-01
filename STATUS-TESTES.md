@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  1 01:33:12 UTC 2024** com **415** submissões.
+Atualizada **Fri Mar  1 02:04:40 UTC 2024** com **418** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -31,6 +31,7 @@ Atualizada **Fri Mar  1 01:33:12 UTC 2024** com **415** submissões.
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
 | [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
+| [andrew-vasco](./participantes/andrew-vasco) | ok | 3 |
 | [antoniogdelrio](./participantes/antoniogdelrio) | ok | 3 |
 | [antunesleo-python](./participantes/antunesleo-python) | ok | 4 |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | ok | 6 |
@@ -132,6 +133,7 @@ Atualizada **Fri Mar  1 01:33:12 UTC 2024** com **415** submissões.
 | [felipe-alcantara-actor-model](./participantes/felipe-alcantara-actor-model) | ok | 1 |
 | [felipebossolani-dotnet](./participantes/felipebossolani-dotnet) | ok | 2 |
 | [felipebossolani-dotnet9-preview](./participantes/felipebossolani-dotnet9-preview) | ok | 2 |
+| [felipefrmelo](./participantes/felipefrmelo) | ok | 1 |
 | [felipemarkson](./participantes/felipemarkson) | ok | 2 |
 | [felipeymn](./participantes/felipeymn) | ok | 2 |
 | [felipma-rust-rataria-version](./participantes/felipma-rust-rataria-version) | ok | 1 |
@@ -143,6 +145,7 @@ Atualizada **Fri Mar  1 01:33:12 UTC 2024** com **415** submissões.
 | [flpStrri](./participantes/flpStrri) | ok | 2 |
 | [fraidev](./participantes/fraidev) | falha - [logs](./participantes/fraidev/docker-compose.logs) | -- |
 | [franklaercio](./participantes/franklaercio) | ok | 4 |
+| [ftathiago-blogdoft-csharp-aot](./participantes/ftathiago-blogdoft-csharp-aot) | falha - [logs](./participantes/ftathiago-blogdoft-csharp-aot/docker-compose.logs) | -- |
 | [ftathiago-blogdoft-csharp](./participantes/ftathiago-blogdoft-csharp) | ok | 2 |
 | [gabriel-roque](./participantes/gabriel-roque) | ok | 4 |
 | [gabrielfmagalhaes](./participantes/gabrielfmagalhaes) | ok | 5 |
@@ -200,7 +203,7 @@ Atualizada **Fri Mar  1 01:33:12 UTC 2024** com **415** submissões.
 | [itujo-minimal-node-uws](./participantes/itujo-minimal-node-uws) | ok | 2 |
 | [itujo](./participantes/itujo) | ok | 7 |
 | [ivmello](./participantes/ivmello) | ok | 2 |
-| [jairoandre](./participantes/jairoandre) | ok | 1106 |
+| [jairoandre](./participantes/jairoandre) | ok | 312 |
 | [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 4 |
 | [jcrjuliano](./participantes/jcrjuliano) | ok | 1 |
 | [jeifersonalmeida-spring](./participantes/jeifersonalmeida-spring) | ok | 4 |
