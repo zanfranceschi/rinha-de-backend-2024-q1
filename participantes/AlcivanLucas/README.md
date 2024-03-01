@@ -1,6 +1,6 @@
 <h1 align="center">Submissão para Rinha de Backend - Controle de Concorrência</h1>
 
-> **O repositório com o código-fonte está disponível [aqui](#).**
+> **O repositório com o código-fonte está disponível [aqui](https://github.com/AlcivanLucas/Rinha-de-backend-2024-q1-NodeJS).**
 
 - [**Node**](https://golang.org): Node.js
 - [**pgx**](https://github.com/jackc/pgx): PostgreSQL driver and toolkit
