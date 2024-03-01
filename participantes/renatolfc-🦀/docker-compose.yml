@@ -1,0 +1,69 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: renatolfc/ferrugem:0.1
+    command: /app/rinha -d postgres://postgres:postgres@127.0.0.1/rinha --min-pool 5 --max-pool 5
+    hostname: api01
+    environment:
+      - PORT=9997
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "15MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - PORT=9998
+
+  balanco:
+    image: renatolfc/ferrugem:0.1
+    restart: always
+    depends_on:
+      - api01
+      - api02
+    environment:
+      - PORT=9999
+      - SERVERS=127.0.0.1:9997,127.0.0.1:9998
+    command: ["/app/balanço"]
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "25MB"
+
+  postgres:
+    image: postgres:latest
+    hostname: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinha
+    network_mode: host
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: >
+      postgres -c checkpoint_timeout=1200 -c max_wal_size=64MB -c wal_writer_delay=600
+               -c wal_buffers=8MB -c log_min_messages='panic' -c log_min_messages='panic'
+               -c log_min_error_statement='panic' -c synchronous_commit=off
+               -c full_page_writes=0 -c max_connections=64 -c shared_buffers=128MB
+               -c work_mem=256MB -c effective_cache_size=200MB
+               -c autovacuum_vacuum_scale_factor=.5 -c log_statement=none
+               -c log_checkpoints=0 -c log_duration=off -c fsync=off
+               -c temp_buffers=2MB -c commit_delay=1200
+    healthcheck:                                     
+      test: ["CMD", "pg_isready", "--username", "postgres"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "495MB"

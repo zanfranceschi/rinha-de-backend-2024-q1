@@ -1,0 +1,60 @@
+version: "3.7"
+services:
+
+  crdb:
+    hostname: crdb
+    image: cockroachdb/cockroach:v21.2.17
+    command: start-single-node --store=cockroach-rinha-data --cluster-name=rinha-backend-cluster --insecure
+    ports:
+      - "26257:26257"
+    networks:
+     - rinha_backend_network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.60"
+          memory: "260MB"
+
+  api1: &app
+    image: bourguignon/rinha-backend-2024-q1-java-micronaut:0.1
+    hostname: api1
+    restart: unless-stopped
+    environment:
+      - JDBC_URL=jdbc:postgresql://crdb:26257/postgres
+    networks:
+     - rinha_backend_network
+    depends_on:
+      - crdb
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "140MB"
+
+  api2:
+    <<: *app
+    hostname: api2
+    environment:
+      - JDBC_URL=jdbc:postgresql://crdb:26257/postgres
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999" 
+    networks:
+     - rinha_backend_network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "10MB"
+
+networks:
+  rinha_backend_network:
+    driver: bridge
+    name: rinha_backend_network

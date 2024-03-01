@@ -1,0 +1,500 @@
+ Network julianojj_default  Creating
+ Network julianojj_default  Created
+ Volume "julianojj_postgres_volume"  Creating
+ Volume "julianojj_postgres_volume"  Created
+ Container db  Creating
+ Container db  Created
+ Container api01  Creating
+ Container api02  Creating
+ Container api01  Created
+ Container api02  Created
+ Container proxy  Creating
+ Container proxy  Created
+Attaching to api01, api02, db, proxy
+db     | The files belonging to this database system will be owned by user "postgres".
+db     | This user must also own the server process.
+db     | 
+db     | The database cluster will be initialized with locale "en_US.utf8".
+db     | The default database encoding has accordingly been set to "UTF8".
+db     | The default text search configuration will be set to "english".
+db     | 
+db     | Data page checksums are disabled.
+db     | 
+db     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db     | creating subdirectories ... ok
+db     | selecting dynamic shared memory implementation ... posix
+db     | selecting default max_connections ... 100
+db     | selecting default shared_buffers ... 128MB
+db     | selecting default time zone ... Etc/UTC
+db     | creating configuration files ... ok
+db     | running bootstrap script ... ok
+db     | performing post-bootstrap initialization ... ok
+api02  | [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+api02  | 
+api02  | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+api01  | [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+api01  | 
+api01  | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+api01  |  - using env:	export GIN_MODE=release
+api01  |  - using code:	gin.SetMode(gin.ReleaseMode)
+api01  | 
+api01  | [GIN-debug] POST   /clientes/:id/transacoes  --> main.main.func1 (4 handlers)
+api01  | [GIN-debug] GET    /clientes/:id/extrato     --> main.main.func2 (4 handlers)
+api01  | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+api01  | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+api01  | [GIN-debug] Listening and serving HTTP on :8080
+api02  |  - using env:	export GIN_MODE=release
+api02  |  - using code:	gin.SetMode(gin.ReleaseMode)
+api02  | 
+api02  | [GIN-debug] POST   /clientes/:id/transacoes  --> main.main.func1 (4 handlers)
+api02  | [GIN-debug] GET    /clientes/:id/extrato     --> main.main.func2 (4 handlers)
+api02  | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+api02  | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+api02  | [GIN-debug] Listening and serving HTTP on :8080
+db     | initdb: warning: enabling "trust" authentication for local connections
+db     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db     | syncing data to disk ... ok
+db     | 
+db     | 
+db     | Success. You can now start the database server using:
+db     | 
+db     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db     | 
+db     | waiting for server to start....2024-02-19 09:20:32.760 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db     | 2024-02-19 09:20:32.764 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db     | 2024-02-19 09:20:32.777 UTC [51] LOG:  database system was shut down at 2024-02-19 09:20:31 UTC
+db     | 2024-02-19 09:20:32.784 UTC [48] LOG:  database system is ready to accept connections
+db     |  done
+db     | server started
+proxy  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+proxy  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+proxy  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+proxy  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+db     | CREATE DATABASE
+db     | 
+db     | 
+db     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
+db     | CREATE TABLE
+db     | CREATE TABLE
+db     | INSERT 0 5
+db     | 
+db     | 
+db     | waiting for server to shut down....2024-02-19 09:20:32.997 UTC [48] LOG:  received fast shutdown request
+db     | 2024-02-19 09:20:33.001 UTC [48] LOG:  aborting any active transactions
+db     | 2024-02-19 09:20:33.003 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db     | 2024-02-19 09:20:33.004 UTC [49] LOG:  shutting down
+db     | 2024-02-19 09:20:33.007 UTC [49] LOG:  checkpoint starting: shutdown immediate
+proxy  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+proxy  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+proxy  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+proxy  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+proxy  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db     | 2024-02-19 09:20:33.480 UTC [49] LOG:  checkpoint complete: wrote 930 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.369 s, sync=0.083 s, total=0.477 s; sync files=304, longest=0.059 s, average=0.001 s; distance=4274 kB, estimate=4274 kB; lsn=0/1917440, redo lsn=0/1917440
+db     | 2024-02-19 09:20:33.485 UTC [48] LOG:  database system is shut down
+db     |  done
+db     | server stopped
+db     | 
+db     | PostgreSQL init process complete; ready for start up.
+db     | 
+db     | 2024-02-19 09:20:33.524 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db     | 2024-02-19 09:20:33.524 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db     | 2024-02-19 09:20:33.524 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db     | 2024-02-19 09:20:33.530 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db     | 2024-02-19 09:20:33.537 UTC [66] LOG:  database system was shut down at 2024-02-19 09:20:33 UTC
+db     | 2024-02-19 09:20:33.544 UTC [1] LOG:  database system is ready to accept connections
+api01  | [GIN] 2024/02/19 - 09:20:34 | 200 |    8.504435ms |    192.168.16.5 | GET      "/clientes/1/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:34 | 200 |     5.58846ms |    192.168.16.5 | GET      "/clientes/1/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   23.912636ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:39 | 200 |   26.469366ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   40.052963ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:39 | 200 |    38.12068ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:39 | 200 |   17.231253ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:39 | 200 |   47.405245ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:39 | 200 |   47.283826ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:39 | 200 |   47.932252ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:39 | 200 |   47.183076ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   57.257523ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   61.691283ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:39 | 200 |   64.272092ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   45.581712ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   70.911367ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   73.019104ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:39 | 200 |   74.266647ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:39 | 200 |   73.647178ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   75.484498ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:39 | 200 |   57.314752ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   77.215505ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   60.876608ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   82.346011ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:39 | 200 |   84.825641ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   65.301926ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:39 | 200 |   87.785964ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:40 | 200 |     832.675µs |    192.168.16.5 | GET      "/clientes/1/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |    6.956794ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |    6.228965ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |     9.31135ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:41 | 200 |   12.300567ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |   10.760446ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:41 | 200 |   16.554453ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:41 | 200 |    9.338204ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |   14.952443ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:41 | 200 |   20.724826ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |   25.382183ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:41 | 200 |   16.661072ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |   18.314256ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |   20.534588ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |   26.666892ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:41 | 200 |   26.733206ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:41 | 200 |   24.358315ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:41 | 200 |   30.201559ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |   24.571363ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:41 | 200 |   34.586249ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |    37.68896ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:41 | 200 |   36.531397ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |   30.550265ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:41 | 200 |    43.43552ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:41 | 200 |   37.582858ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:41 | 200 |    36.00885ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:42 | 200 |     1.08314ms |    192.168.16.5 | GET      "/clientes/1/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 404 |     525.723µs |    192.168.16.5 | GET      "/clientes/6/extrato"
+api01  | Error #01: customer not found
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |     791.973µs |    192.168.16.5 | GET      "/clientes/2/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |    1.312305ms |    192.168.16.5 | GET      "/clientes/1/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |     609.099µs |    192.168.16.5 | GET      "/clientes/3/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     550.811µs |    192.168.16.5 | GET      "/clientes/4/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     1.30226ms |    192.168.16.5 | GET      "/clientes/5/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |     5.24521ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |    5.138747ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |    6.662552ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |    5.687627ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     4.64217ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |    4.827607ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |    5.259756ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |    6.358084ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |      779.22µs |    192.168.16.5 | GET      "/clientes/2/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     5.89386ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |    5.810416ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |    1.108672ms |    192.168.16.5 | GET      "/clientes/3/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     754.408µs |    192.168.16.5 | GET      "/clientes/4/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |     966.552µs |    192.168.16.5 | GET      "/clientes/1/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     708.576µs |    192.168.16.5 | GET      "/clientes/5/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |    5.380683ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |    6.095775ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |    6.262848ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |    6.626452ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |    5.802706ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |      564.92µs |    192.168.16.5 | GET      "/clientes/2/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |      944.63µs |    192.168.16.5 | GET      "/clientes/5/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |    1.538415ms |    192.168.16.5 | GET      "/clientes/3/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |     621.746µs |    192.168.16.5 | GET      "/clientes/1/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |     435.246µs |    192.168.16.5 | GET      "/clientes/2/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     495.667µs |    192.168.16.5 | GET      "/clientes/4/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     636.034µs |    192.168.16.5 | GET      "/clientes/2/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |    1.045743ms |    192.168.16.5 | GET      "/clientes/1/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |     486.351µs |    192.168.16.5 | GET      "/clientes/3/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |      592.45µs |    192.168.16.5 | GET      "/clientes/3/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     586.057µs |    192.168.16.5 | GET      "/clientes/2/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |     601.671µs |    192.168.16.5 | GET      "/clientes/1/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     550.955µs |    192.168.16.5 | GET      "/clientes/1/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |     505.258µs |    192.168.16.5 | GET      "/clientes/4/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |      839.12µs |    192.168.16.5 | GET      "/clientes/4/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     573.947µs |    192.168.16.5 | GET      "/clientes/4/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     605.175µs |    192.168.16.5 | GET      "/clientes/3/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |      790.78µs |    192.168.16.5 | GET      "/clientes/5/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 200 |     925.786µs |    192.168.16.5 | GET      "/clientes/5/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 200 |     892.666µs |    192.168.16.5 | GET      "/clientes/5/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |     100.559µs |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 422 |     104.644µs |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 422 |      28.698µs |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |      37.213µs |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |      44.657µs |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 422 |     341.752µs |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | Error #01: invalid transaction type
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |     314.102µs |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | Error #01: invalid transaction type
+api02  | [GIN] 2024/02/19 - 09:20:43 | 422 |     334.301µs |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | Error #01: invalid transaction type
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |     272.046µs |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | Error #01: invalid description
+api02  | [GIN] 2024/02/19 - 09:20:43 | 422 |     313.223µs |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | Error #01: invalid transaction type
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |     287.268µs |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | Error #01: invalid description
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |     270.176µs |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | Error #01: invalid description
+api02  | [GIN] 2024/02/19 - 09:20:43 | 422 |     405.748µs |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | Error #01: invalid transaction type
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |     785.728µs |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | Error #01: invalid description
+api02  | [GIN] 2024/02/19 - 09:20:43 | 422 |     950.085µs |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | Error #01: invalid description
+api02  | [GIN] 2024/02/19 - 09:20:43 | 422 |     312.934µs |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | Error #01: invalid description
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |     401.861µs |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | Error #01: invalid description
+api02  | [GIN] 2024/02/19 - 09:20:43 | 422 |     403.603µs |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | Error #01: invalid description
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |     260.435µs |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | Error #01: invalid description
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |     362.344µs |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:43 | 422 |     488.734µs |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | Error #01: invalid description
+api02  | [GIN] 2024/02/19 - 09:20:43 | 422 |     387.512µs |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | Error #01: invalid description
+api01  | Error #01: invalid description
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |      356.92µs |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | Error #01: invalid description
+api02  | [GIN] 2024/02/19 - 09:20:43 | 422 |     357.137µs |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | Error #01: invalid description
+api01  | [GIN] 2024/02/19 - 09:20:43 | 422 |     280.308µs |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | Error #01: invalid description
+api02  | [GIN] 2024/02/19 - 09:20:44 | 200 |    1.818174ms |    192.168.16.5 | GET      "/clientes/3/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:44 | 200 |    5.110294ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:44 | 200 |    6.128651ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:45 | 200 |     756.879µs |    192.168.16.5 | GET      "/clientes/2/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:46 | 200 |  304.941434ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:46 | 200 |    415.1827ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:46 | 200 |  168.249087ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:46 | 200 |    6.359168ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:46 | 200 |    7.352337ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:46 | 200 |    3.999454ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:46 | 200 |     881.699µs |    192.168.16.5 | GET      "/clientes/3/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:46 | 200 |    6.697073ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:46 | 200 |    6.276726ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:46 | 200 |    4.210564ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:46 | 200 |    3.813764ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:47 | 200 |    4.203553ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:47 | 200 |    5.219983ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:47 | 200 |    5.214836ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:47 | 200 |    4.528926ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:47 | 200 |    5.775206ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:47 | 200 |    7.752078ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:47 | 200 |     963.522µs |    192.168.16.5 | GET      "/clientes/2/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:47 | 200 |    5.686858ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:47 | 200 |    6.918842ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:47 | 200 |    4.911298ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:47 | 200 |    3.966687ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:48 | 200 |    3.742423ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:48 | 200 |    3.851399ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:48 | 200 |    3.967177ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:48 | 200 |    4.569996ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:48 | 200 |    3.894616ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:48 | 200 |    3.524317ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:48 | 200 |    6.134733ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:48 | 200 |    1.046061ms |    192.168.16.5 | GET      "/clientes/1/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:48 | 200 |    6.213128ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:48 | 200 |    7.927714ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:48 | 200 |    4.901128ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:48 | 200 |    4.203089ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:48 | 200 |    4.267018ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:49 | 200 |    4.018983ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:49 | 200 |    5.561281ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:49 | 200 |    6.200753ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:49 | 200 |    5.517935ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:49 | 200 |    4.694957ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:49 | 200 |    4.142242ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:49 | 200 |      4.5721ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:49 | 200 |    3.804178ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:49 | 200 |    3.777974ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:49 | 200 |     926.902µs |    192.168.16.5 | GET      "/clientes/3/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:49 | 200 |    4.771761ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:49 | 200 |    6.842016ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:49 | 200 |    7.571485ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:49 | 200 |    4.065183ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:49 | 200 |    3.923623ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:50 | 200 |    4.191364ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:50 | 200 |    4.658255ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:50 | 200 |    3.672788ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:50 | 200 |    5.903797ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:50 | 200 |     826.283µs |    192.168.16.5 | GET      "/clientes/5/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:50 | 200 |    7.224961ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:50 | 200 |    5.223337ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:50 | 200 |     5.06393ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:50 | 200 |    3.511319ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:50 | 200 |  188.807607ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:50 | 200 |    7.457898ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:50 | 200 |   98.437035ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:50 | 200 |    84.91509ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:50 | 200 |     598.801µs |    192.168.16.5 | GET      "/clientes/2/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:50 | 200 |    5.875261ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:50 | 200 |    8.235316ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:50 | 200 |    4.075521ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:50 | 200 |    3.906132ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:50 | 200 |    3.310805ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:50 | 200 |    3.483431ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:51 | 200 |    3.645723ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:51 | 200 |    4.014167ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:51 | 200 |    4.149143ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:51 | 200 |     4.25508ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:51 | 200 |     4.47996ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:51 | 200 |     4.30234ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:51 | 200 |    3.893586ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:51 | 200 |    4.337027ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:51 | 200 |    4.372255ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:51 | 200 |    6.818122ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:51 | 200 |    4.069081ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:51 | 200 |    5.288636ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:51 | 200 |    6.023918ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:51 | 200 |     3.70497ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:51 | 200 |     881.737µs |    192.168.16.5 | GET      "/clientes/4/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:51 | 200 |    7.538307ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:51 | 200 |    9.456335ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:51 | 200 |    4.061332ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:51 | 200 |    3.441357ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:51 | 200 |    4.007123ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:51 | 200 |    6.963792ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:51 | 200 |    4.152112ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:51 | 200 |    4.248262ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |    4.740991ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:52 | 200 |    4.233862ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |    4.071464ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:52 | 200 |      3.7024ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |       627.7µs |    192.168.16.5 | GET      "/clientes/5/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:52 | 200 |    4.143977ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |    3.544605ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:52 | 200 |     3.93711ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |    4.130614ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:52 | 200 |    6.961097ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |    3.967058ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:52 | 200 |    3.635654ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |    3.784641ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:52 | 200 |     3.83058ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |    3.305199ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:52 | 200 |    3.530962ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |     597.459µs |    192.168.16.5 | GET      "/clientes/5/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |    5.229916ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:52 | 200 |    6.512439ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:52 | 200 |    4.107577ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |    5.196412ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:52 | 200 |    5.425523ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |    3.538379ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:52 | 200 |    4.529574ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:52 | 200 |    5.904913ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |    4.649774ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    5.335481ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |    6.014497ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    3.244318ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |     618.895µs |    192.168.16.5 | GET      "/clientes/5/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |    5.265035ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    6.231425ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    3.884472ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |    5.100427ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    7.799881ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |    3.995263ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    5.062635ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |    6.115075ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    3.597568ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |    4.948492ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    6.347114ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |    3.895974ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |     991.568µs |    192.168.16.5 | GET      "/clientes/4/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    6.037011ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    7.084886ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |    3.727057ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    9.076903ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |    8.201733ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    3.371388ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |   10.225591ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:53 | 200 |    3.466071ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:53 | 200 |    4.192789ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    5.091595ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    3.160557ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    5.067728ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    4.362443ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    4.522015ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    4.163029ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    4.046662ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 422 |     429.779µs |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | Error #01: insufficient funds
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    4.494512ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    5.348114ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    3.519004ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    3.860256ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    3.970971ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    3.530169ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    3.953922ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    3.797885ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    9.166721ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    3.572883ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    6.226431ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    5.315294ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |      770.68µs |    192.168.16.5 | GET      "/clientes/4/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |     5.38764ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |     5.99176ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    4.262324ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    7.737049ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    8.527541ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    3.570695ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    4.929495ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:54 | 200 |    6.443096ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:54 | 200 |    5.377034ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 422 |     461.641µs |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | Error #01: insufficient funds
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    4.821156ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    4.129031ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    4.367181ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    5.837642ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    3.970029ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |      599.78µs |    192.168.16.5 | GET      "/clientes/2/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    5.000416ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    5.990532ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    3.606716ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    3.608914ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    4.805662ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    5.434986ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    4.704118ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    6.339032ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    5.729697ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    4.943047ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    6.148254ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    4.329671ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    4.430937ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    5.617047ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    3.603067ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |      709.97µs |    192.168.16.5 | GET      "/clientes/4/extrato"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    4.996843ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    5.674971ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    4.102314ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    3.948146ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    6.598295ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    7.428586ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |    3.867761ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |    9.545759ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 200 |     3.69574ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:55 | 200 |     4.89421ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:55 | 422 |     401.651µs |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | Error #01: insufficient funds
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |    3.682517ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    3.789872ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |    3.523843ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    3.970698ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |    4.041997ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    3.884313ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |     870.848µs |    192.168.16.5 | GET      "/clientes/3/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    5.519257ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |    6.865467ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |     5.04047ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |    6.273831ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    4.364181ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |    4.183895ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    7.577903ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |    7.771971ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    4.994723ms |    192.168.16.5 | POST     "/clientes/4/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |     3.90083ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    4.196056ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 422 |     331.727µs |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | Error #01: insufficient funds
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    3.267906ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |    3.740526ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    3.585605ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |    3.627255ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    3.585989ms |    192.168.16.5 | POST     "/clientes/5/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |     856.653µs |    192.168.16.5 | GET      "/clientes/4/extrato"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 422 |     338.042µs |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | Error #01: insufficient funds
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |    5.229432ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    4.356471ms |    192.168.16.5 | POST     "/clientes/2/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    4.294592ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |    5.591174ms |    192.168.16.5 | POST     "/clientes/3/transacoes"
+api01  | [GIN] 2024/02/19 - 09:20:56 | 200 |    3.663913ms |    192.168.16.5 | POST     "/clientes/1/transacoes"
+api02  | [GIN] 2024/02/19 - 09:20:56 | 200 |    5.159143ms |    192.168.16.5 | POST     "/clientes/1/transacoes"

@@ -1,0 +1,78 @@
+version: '3.0'
+
+services:
+
+  rinha-db:
+    image: mariadb:11.2.3
+    container_name: rinha-db
+    restart: always
+    network_mode: host
+    environment:
+      - MARIADB_DATABASE=rinha-db
+      - MARIADB_USER=admin
+      - MARIADB_PASSWORD=qwerty
+      - MARIADB_ROOT_PASSWORD=qwerty
+    volumes:
+      - ./configs/mysql.conf:/etc/my.cnf
+      - ./scripts/init_mysql.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '1.05'
+          memory: 350M 
+  
+  rinha-api-1:
+    image: jhonatanrs/rinha-backend-2024-q1-mysql:latest
+    container_name: rinha-api-1
+    restart: always
+    network_mode: host
+    environment:
+      - API_PORT=9910
+      - DB_HOST=127.0.0.1
+      - DB_PORT=3306
+      - DB_USER=admin
+      - DB_PASSWORD=qwerty
+      - DB_NAME=rinha-db
+    depends_on:
+      - rinha-db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: 50M
+
+  rinha-api-2:
+    image: jhonatanrs/rinha-backend-2024-q1-mysql:latest
+    container_name: rinha-api-2
+    restart: always
+    network_mode: host
+    environment:
+      - API_PORT=9920
+      - DB_HOST=127.0.0.1
+      - DB_PORT=3306
+      - DB_USER=admin
+      - DB_PASSWORD=qwerty
+      - DB_NAME=rinha-db
+    depends_on:
+      - rinha-db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: 50M
+  
+  nginx:
+    image: nginx:latest
+    container_name: rinha-nginx
+    restart: always
+    network_mode: host
+    volumes:
+      - ./configs/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - rinha-api-1
+      - rinha-api-2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: 100M

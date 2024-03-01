@@ -2,8 +2,8 @@
  Network rinhav2  Created
  Container gavageovanni-db-1  Creating
  Container gavageovanni-db-1  Created
- Container gavageovanni-api02-1  Creating
  Container gavageovanni-api01-1  Creating
+ Container gavageovanni-api02-1  Creating
  Container gavageovanni-api01-1  Created
  Container gavageovanni-api02-1  Created
  Container gavageovanni-nginx-1  Creating
@@ -30,7 +30,7 @@ api02-1  | panic: runtime error: invalid memory address or nil pointer dereferen
 api02-1  | [signal SIGSEGV: segmentation violation code=0x1 addr=0x50 pc=0x85255c]
 api02-1  | 
 api02-1  | goroutine 1 [running]:
-api02-1  | github.com/labstack/echo/v4.(*Echo).Use(0x0, {0xc0000b5e98?, 0x1?, 0x1?})
+api02-1  | github.com/labstack/echo/v4.(*Echo).Use(0x0, {0xc000517e98?, 0x1?, 0x1?})
 api02-1  | 	/go/pkg/mod/github.com/labstack/echo/v4@v4.11.4/echo.go:474 +0x1c
 api02-1  | main.main()
 api02-1  | 	/app/main.go:12 +0x1e9
@@ -38,7 +38,7 @@ api01-1  | panic: runtime error: invalid memory address or nil pointer dereferen
 api01-1  | [signal SIGSEGV: segmentation violation code=0x1 addr=0x50 pc=0x85255c]
 api01-1  | 
 api01-1  | goroutine 1 [running]:
-api01-1  | github.com/labstack/echo/v4.(*Echo).Use(0x0, {0xc0004a7e98?, 0x1?, 0x1?})
+api01-1  | github.com/labstack/echo/v4.(*Echo).Use(0x0, {0xc0000ade98?, 0x1?, 0x1?})
 api01-1  | 	/go/pkg/mod/github.com/labstack/echo/v4@v4.11.4/echo.go:474 +0x1c
 api01-1  | main.main()
 api01-1  | 	/app/main.go:12 +0x1e9
@@ -52,19 +52,12 @@ db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-13 23:13:05.561 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-13 23:13:05.561 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-13 23:13:05.564 UTC [51] LOG:  database system was shut down at 2024-02-13 23:13:04 UTC
-db-1     | 2024-02-13 23:13:05.569 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 06:12:23.366 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 06:12:23.366 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 06:12:23.368 UTC [51] LOG:  database system was shut down at 2024-02-19 06:12:22 UTC
+db-1     | 2024-02-19 06:12:23.371 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
-nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
-nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
-nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 db-1     | CREATE DATABASE
 db-1     | 
 db-1     | 
@@ -73,65 +66,48 @@ db-1     | DO
 db-1     | CREATE FUNCTION
 db-1     | 
 db-1     | 
-db-1     | 2024-02-13 23:13:05.889 UTC [48] LOG:  received fast shutdown request
-db-1     | waiting for server to shut down...2024-02-13 23:13:05.889 UTC [48] LOG:  aborting any active transactions
-nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-db-1     | .2024-02-13 23:13:05.899 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-13 23:13:05.900 UTC [49] LOG:  shutting down
-db-1     | 2024-02-13 23:13:05.900 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-13 23:13:05.909 UTC [49] LOG:  checkpoint complete: wrote 934 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.001 s, total=0.009 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4286 kB, estimate=4286 kB; lsn=0/191A3B8, redo lsn=0/191A3B8
-db-1     | 2024-02-13 23:13:05.923 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-02-19 06:12:23.950 UTC [48] LOG:  received fast shutdown request
+db-1     | .2024-02-19 06:12:23.950 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-19 06:12:23.952 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-19 06:12:23.953 UTC [49] LOG:  shutting down
+db-1     | 2024-02-19 06:12:23.953 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 06:12:24.051 UTC [49] LOG:  checkpoint complete: wrote 934 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.001 s, total=0.098 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4286 kB, estimate=4286 kB; lsn=0/191A3B8, redo lsn=0/191A3B8
+db-1     | 2024-02-19 06:12:24.058 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-13 23:13:06.054 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-13 23:13:06.054 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-13 23:13:06.054 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-13 23:13:06.054 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-13 23:13:06.057 UTC [66] LOG:  database system was shut down at 2024-02-13 23:13:05 UTC
-db-1     | 2024-02-13 23:13:06.062 UTC [1] LOG:  database system is ready to accept connections
-nginx-1  | 2024/02/13 23:13:06 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.29.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.29.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:13:06 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.29.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.29.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+db-1     | 2024-02-19 06:12:24.211 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 06:12:24.211 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 06:12:24.211 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 06:12:24.212 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 06:12:24.213 UTC [66] LOG:  database system was shut down at 2024-02-19 06:12:24 UTC
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+db-1     | 2024-02-19 06:12:24.248 UTC [1] LOG:  database system is ready to accept connections
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+nginx-1  | 2024/02/19 06:12:24 [emerg] 1#1: host not found in upstream "api01:8080" in /etc/nginx/nginx.conf:9
+nginx-1  | nginx: [emerg] host not found in upstream "api01:8080" in /etc/nginx/nginx.conf:9
 api01-1 exited with code 0
 api02-1 exited with code 0
-api02-1  | 
-api02-1  |    ____    __
-api02-1  |   / __/___/ /  ___
-api02-1  |  / _// __/ _ \/ _ \
-api02-1  | /___/\__/_//_/\___/ v4.11.4
-api02-1  | High performance, minimalist Go web framework
-api02-1  | https://echo.labstack.com
-api02-1  | ____________________________________O/_______
-api02-1  |                                     O\
-api02-1  | ⇨ http server started on [::]:8080
-api01-1  | 
-api01-1  |    ____    __
-api01-1  |   / __/___/ /  ___
-api01-1  |  / _// __/ _ \/ _ \
-api01-1  | /___/\__/_//_/\___/ v4.11.4
-api01-1  | High performance, minimalist Go web framework
-api01-1  | https://echo.labstack.com
-api01-1  | ____________________________________O/_______
-api01-1  |                                     O\
-api01-1  | ⇨ http server started on [::]:8080
-nginx-1  | 2024/02/13 23:13:08 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.29.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:13:10 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.29.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:13:12 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.29.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:13:14 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.29.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:13:16 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.29.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1 exited with code 0
 nginx-1 exited with code 0
 nginx-1 exited with code 0
 api01-1 exited with code 0
 api01-1 exited with code 2
 api02-1 exited with code 0
 api02-1 exited with code 2
-db-1     | 2024-02-13 23:17:36.739 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-13 23:17:36.739 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-13 23:17:36.742 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-02-13 23:17:36.743 UTC [64] LOG:  shutting down
-db-1     | 2024-02-13 23:17:36.743 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-13 23:17:36.749 UTC [64] LOG:  checkpoint complete: wrote 831 buffers (5.1%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.006 s, sync=0.001 s, total=0.007 s; sync files=0, longest=0.000 s, average=0.000 s; distance=16058 kB, estimate=16058 kB; lsn=0/28C8E08, redo lsn=0/28C8E08
-db-1     | 2024-02-13 23:17:36.762 UTC [1] LOG:  database system is shut down
+db-1     | 2024-02-19 06:16:42.009 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-19 06:16:42.009 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-19 06:16:42.011 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-02-19 06:16:42.011 UTC [64] LOG:  shutting down
+db-1     | 2024-02-19 06:16:42.012 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 06:16:42.015 UTC [64] LOG:  checkpoint complete: wrote 829 buffers (5.1%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.004 s, sync=0.001 s, total=0.004 s; sync files=0, longest=0.000 s, average=0.000 s; distance=16032 kB, estimate=16032 kB; lsn=0/28C24D8, redo lsn=0/28C24D8
+db-1     | 2024-02-19 06:16:42.022 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0

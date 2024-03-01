@@ -1,0 +1,74 @@
+version: "3.5"
+
+## cpus
+## API 0.1 * 1 = 0.2
+## LB  0.1     = 0.1
+## DB  1.0     = 1.2
+## 1.5
+
+## memory
+## API 075 * 2 = 150
+## LB  050     = 050
+## DB  350     = 350
+## 550
+
+services:
+  api01: &api
+    # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
+    # publicamente acessível! Ex.: hub.docker.com
+    image: docker.io/alanlviana/rinha-2024-q1-aspnet:1.0
+    network_mode: host
+    hostname: api01
+    environment:
+      - ASPNETCORE_HTTP_PORTS=8081
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "75MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api 
+    network_mode: host
+    hostname: api02
+    environment:
+      - ASPNETCORE_HTTP_PORTS=8082
+ 
+  nginx:
+    image: nginx:latest
+    network_mode: host
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "50MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    network_mode: host
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          # Note que a soma de todos os limites dos serviços
+          # aqui declarados é de 1.5 unidades de CPU e 550MB
+          # de memória. A distribuição feita aqui é apenas
+          # um exemplo – distribua como quiser.
+          cpus: "1.2"
+          memory: "350MB"

@@ -1,5 +1,8 @@
 version: "3.5"
 
+networks:
+  rinhabackend:
+
 services:
   api01: &api
     image: buemura/rinha-backend-2024-q1-go-echo:latest
@@ -9,6 +12,8 @@ services:
       - DATABASE_URL=postgresql://admin:123@db:5432/rinha
     depends_on:
       - db
+    networks:
+      - rinhabackend
     deploy:
       resources:
         limits:
@@ -28,6 +33,8 @@ services:
       - api02
     ports:
       - "9999:9999"
+    networks:
+      - rinhabackend
     deploy:
       resources:
         limits:
@@ -46,13 +53,10 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096
+    networks:
+      - rinhabackend
     deploy:
       resources:
         limits:
           cpus: "0.7"
           memory: "350MB"
-
-networks:
-  default:
-    driver: bridge
-    name: rinha-nginx-2024q1

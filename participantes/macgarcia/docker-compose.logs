@@ -4,8 +4,8 @@
  Container banco_rinha  Created
  Container api2  Creating
  Container api1  Creating
- Container api1  Created
  Container api2  Created
+ Container api1  Created
  Container macgarcia-nginx-1  Creating
  Container macgarcia-nginx-1  Created
 Attaching to api1, api2, banco_rinha, nginx-1
@@ -26,6 +26,7 @@ banco_rinha  | selecting default shared_buffers ... 128MB
 banco_rinha  | selecting default time zone ... Etc/UTC
 banco_rinha  | creating configuration files ... ok
 banco_rinha  | running bootstrap script ... ok
+banco_rinha  | performing post-bootstrap initialization ... ok
 nginx-1      | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1      | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -35,9 +36,6 @@ nginx-1      | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-res
 nginx-1      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1      | /docker-entrypoint.sh: Configuration complete; ready for start up
-banco_rinha  | performing post-bootstrap initialization ... ok
-banco_rinha  | initdb: warning: enabling "trust" authentication for local connections
-banco_rinha  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 banco_rinha  | syncing data to disk ... ok
 banco_rinha  | 
 banco_rinha  | 
@@ -45,10 +43,17 @@ banco_rinha  | Success. You can now start the database server using:
 banco_rinha  | 
 banco_rinha  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 banco_rinha  | 
-banco_rinha  | waiting for server to start....2024-02-12 17:38:45.632 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-banco_rinha  | 2024-02-12 17:38:45.634 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-banco_rinha  | 2024-02-12 17:38:45.643 UTC [51] LOG:  database system was shut down at 2024-02-12 17:38:45 UTC
-banco_rinha  | 2024-02-12 17:38:45.650 UTC [48] LOG:  database system is ready to accept connections
+banco_rinha  | initdb: warning: enabling "trust" authentication for local connections
+banco_rinha  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+banco_rinha  | waiting for server to start....2024-02-19 11:13:27.493 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+banco_rinha  | 2024-02-19 11:13:27.496 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+banco_rinha  | 2024-02-19 11:13:27.506 UTC [51] LOG:  database system was shut down at 2024-02-19 11:13:27 UTC
+banco_rinha  | 2024-02-19 11:13:27.512 UTC [48] LOG:  database system is ready to accept connections
+api1         |  __  __ _                                  _   
+api1         | |  \/  (_) ___ _ __ ___  _ __   __ _ _   _| |_ 
+api1         | | |\/| | |/ __| '__/ _ \| '_ \ / _` | | | | __|
+api1         | | |  | | | (__| | | (_) | | | | (_| | |_| | |_ 
+api1         | |_|  |_|_|\___|_|  \___/|_| |_|\__,_|\__,_|\__|
 banco_rinha  |  done
 banco_rinha  | server started
 banco_rinha  | CREATE DATABASE
@@ -56,445 +61,73 @@ banco_rinha  |
 banco_rinha  | 
 banco_rinha  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
 banco_rinha  | 
-banco_rinha  | 2024-02-12 17:38:46.011 UTC [48] LOG:  received fast shutdown request
-banco_rinha  | waiting for server to shut down....2024-02-12 17:38:46.014 UTC [48] LOG:  aborting any active transactions
-banco_rinha  | 2024-02-12 17:38:46.017 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-banco_rinha  | 2024-02-12 17:38:46.020 UTC [49] LOG:  shutting down
-banco_rinha  | 2024-02-12 17:38:46.023 UTC [49] LOG:  checkpoint starting: shutdown immediate
-banco_rinha  | 2024-02-12 17:38:46.189 UTC [49] LOG:  checkpoint complete: wrote 923 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.131 s, sync=0.027 s, total=0.170 s; sync files=301, longest=0.004 s, average=0.001 s; distance=4257 kB, estimate=4257 kB; lsn=0/1913078, redo lsn=0/1913078
-banco_rinha  | 2024-02-12 17:38:46.201 UTC [48] LOG:  database system is shut down
-banco_rinha  |  done
-banco_rinha  | server stopped
-banco_rinha  | 
-banco_rinha  | PostgreSQL init process complete; ready for start up.
-banco_rinha  | 
-banco_rinha  | 2024-02-12 17:38:46.254 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-banco_rinha  | 2024-02-12 17:38:46.254 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-banco_rinha  | 2024-02-12 17:38:46.254 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-banco_rinha  | 2024-02-12 17:38:46.278 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-banco_rinha  | 2024-02-12 17:38:46.296 UTC [64] LOG:  database system was shut down at 2024-02-12 17:38:46 UTC
-banco_rinha  | 2024-02-12 17:38:46.307 UTC [1] LOG:  database system is ready to accept connections
-api1         |  __  __ _                                  _   
-api1         | |  \/  (_) ___ _ __ ___  _ __   __ _ _   _| |_ 
-api1         | | |\/| | |/ __| '__/ _ \| '_ \ / _` | | | | __|
-api1         | | |  | | | (__| | | (_) | | | | (_| | |_| | |_ 
-api1         | |_|  |_|_|\___|_|  \___/|_| |_|\__,_|\__,_|\__|
+banco_rinha  | waiting for server to shut down....2024-02-19 11:13:27.694 UTC [48] LOG:  received fast shutdown request
+banco_rinha  | 2024-02-19 11:13:27.698 UTC [48] LOG:  aborting any active transactions
+banco_rinha  | 2024-02-19 11:13:27.716 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+banco_rinha  | 2024-02-19 11:13:27.717 UTC [49] LOG:  shutting down
+banco_rinha  | 2024-02-19 11:13:27.723 UTC [49] LOG:  checkpoint starting: shutdown immediate
 api2         |  __  __ _                                  _   
 api2         | |  \/  (_) ___ _ __ ___  _ __   __ _ _   _| |_ 
 api2         | | |\/| | |/ __| '__/ _ \| '_ \ / _` | | | | __|
 api2         | | |  | | | (__| | | (_) | | | | (_| | |_| | |_ 
 api2         | |_|  |_|_|\___|_|  \___/|_| |_|\__,_|\__,_|\__|
-nginx-1      | 2024/02/12 17:38:47 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:38:47 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:38:49 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api2         | [36m17:38:51.401[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
-api1         | [36m17:38:51.401[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
-nginx-1      | 2024/02/12 17:38:51 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:38:53 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api2         | [36m17:38:53.501[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@30e92cb9
-api2         | [36m17:38:53.506[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
-api1         | [36m17:38:53.594[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1d2644e3
-api1         | [36m17:38:53.597[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
-nginx-1      | 2024/02/12 17:38:55 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api1         | [36m17:38:56.920[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35morg.hibernate.Version[0;39m - HHH000412: Hibernate ORM core version [WORKING]
-api2         | [36m17:38:57.095[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35morg.hibernate.Version[0;39m - HHH000412: Hibernate ORM core version [WORKING]
-api1         | [36m17:38:57.345[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mo.h.c.i.RegionFactoryInitiator[0;39m - HHH000026: Second-level cache disabled
-nginx-1      | 2024/02/12 17:38:57 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api2         | [36m17:38:57.849[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mo.h.c.i.RegionFactoryInitiator[0;39m - HHH000026: Second-level cache disabled
-nginx-1      | 2024/02/12 17:38:59 [error] 29#29: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:38:59 [error] 29#29: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:39:01 [error] 29#29: *12 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:39:03 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:39:05 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:39:07 [error] 29#29: *15 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:39:09 [error] 29#29: *16 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:39:11 [error] 29#29: *17 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:39:11 [error] 29#29: *17 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/1/extrato", host: "localhost:9999"
-api2         | [36m17:39:12.621[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.e.jdbc.spi.SqlExceptionHelper[0;39m - SQL Warning Code: 0, SQLState: 00000
-api2         | [36m17:39:12.698[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.e.jdbc.spi.SqlExceptionHelper[0;39m - relation "transacao" does not exist, skipping
-api2         | [36m17:39:12.700[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.e.jdbc.spi.SqlExceptionHelper[0;39m - SQL Warning Code: 0, SQLState: 00000
-api2         | [36m17:39:12.700[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.e.jdbc.spi.SqlExceptionHelper[0;39m - table "cliente" does not exist, skipping
-api2         | [36m17:39:12.701[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.e.jdbc.spi.SqlExceptionHelper[0;39m - SQL Warning Code: 0, SQLState: 00000
-api2         | [36m17:39:12.701[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.e.jdbc.spi.SqlExceptionHelper[0;39m - table "transacao" does not exist, skipping
-api1         | [36m17:39:12.842[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.e.jdbc.spi.SqlExceptionHelper[0;39m - SQL Warning Code: 0, SQLState: 00000
-api1         | [36m17:39:12.907[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.e.jdbc.spi.SqlExceptionHelper[0;39m - relation "transacao" does not exist, skipping
-api1         | [36m17:39:12.912[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.e.jdbc.spi.SqlExceptionHelper[0;39m - SQL Warning Code: 0, SQLState: 00000
-api1         | [36m17:39:12.912[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.e.jdbc.spi.SqlExceptionHelper[0;39m - drop cascades to constraint fkk44khwkynm4lmqa4ewiaaprdb on table transacao
-banco_rinha  | 2024-02-12 17:39:12.929 UTC [68] ERROR:  relation "cliente" does not exist at character 13
-banco_rinha  | 2024-02-12 17:39:12.929 UTC [68] STATEMENT:  insert into cliente(id, limite, saldo_inicial) values(1, 100000, 0)
-api2         | [36m17:39:12.984[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.t.s.i.ExceptionHandlerLoggedImpl[0;39m - GenerationTarget encountered exception accepting command : Error executing DDL "insert into cliente(id, limite, saldo_inicial) values(1, 100000, 0)" via JDBC [ERROR: relation "cliente" does not exist
-api2         |   Position: 13]
-api2         | org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "insert into cliente(id, limite, saldo_inicial) values(1, 100000, 0)" via JDBC [ERROR: relation "cliente" does not exist
-api2         |   Position: 13]
-api2         | 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
-api2         | 	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:233)
-api2         | 	at org.hibernate.tool.schema.internal.Helper.applyScript(Helper.java:255)
-api2         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applyImportFiles(SchemaCreatorImpl.java:665)
-api2         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applyImportSources(SchemaCreatorImpl.java:584)
-api2         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:184)
-api2         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:142)
-api2         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:118)
-api2         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:256)
-api2         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145)
-api2         | 	at java.base/java.util.HashMap.forEach(HashMap.java:1425)
-api2         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142)
-api2         | 	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
-api2         | 	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
-api2         | 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315)
-api2         | 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
-api2         | 	at io.micronaut.configuration.hibernate.jpa.conf.AbstractHibernateFactory.buildHibernateSessionFactory(AbstractHibernateFactory.java:105)
-api2         | 	at io.micronaut.configuration.hibernate.jpa.conf.SessionFactoryPerDataSourceFactory.buildHibernateSessionFactoryBuilder(SessionFactoryPerDataSourceFactory.java:107)
-api2         | 	at io.micronaut.configuration.hibernate.jpa.conf.$SessionFactoryPerDataSourceFactory$BuildHibernateSessionFactoryBuilder4$Definition.instantiate(Unknown Source)
-api2         | 	at io.micronaut.context.BeanDefinitionDelegate.instantiate(BeanDefinitionDelegate.java:159)
-api2         | 	at io.micronaut.context.DefaultBeanContext.resolveByBeanFactory(DefaultBeanContext.java:2330)
-api2         | 	at io.micronaut.context.DefaultBeanContext.doCreateBean(DefaultBeanContext.java:2300)
-api2         | 	at io.micronaut.context.DefaultBeanContext.doCreateBean(DefaultBeanContext.java:2312)
-api2         | 	at io.micronaut.context.DefaultBeanContext.createRegistration(DefaultBeanContext.java:3114)
-api2         | 	at io.micronaut.context.SingletonScope.getOrCreate(SingletonScope.java:80)
-api2         | 	at io.micronaut.context.DefaultBeanContext.findOrCreateSingletonBeanRegistration(DefaultBeanContext.java:3016)
-api2         | 	at io.micronaut.context.DefaultBeanContext.initializeEagerBean(DefaultBeanContext.java:2688)
-api2         | 	at io.micronaut.context.DefaultBeanContext.initializeContext(DefaultBeanContext.java:1995)
-api2         | 	at io.micronaut.context.DefaultApplicationContext.initializeContext(DefaultApplicationContext.java:292)
-api2         | 	at io.micronaut.context.DefaultBeanContext.readAllBeanDefinitionClasses(DefaultBeanContext.java:3382)
-api2         | 	at io.micronaut.context.DefaultBeanContext.finalizeConfiguration(DefaultBeanContext.java:3737)
-api2         | 	at io.micronaut.context.DefaultBeanContext.start(DefaultBeanContext.java:361)
-api2         | 	at io.micronaut.context.DefaultApplicationContext.start(DefaultApplicationContext.java:200)
-api2         | 	at io.micronaut.runtime.Micronaut.start(Micronaut.java:72)
-api2         | 	at io.micronaut.runtime.Micronaut.run(Micronaut.java:326)
-api2         | 	at io.micronaut.runtime.Micronaut.run(Micronaut.java:312)
-api2         | 	at com.macgarcia.github.rinha2024.Application.main(Application.java:8)
-api2         | Caused by: org.postgresql.util.PSQLException: ERROR: relation "cliente" does not exist
-api2         |   Position: 13
-api2         | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2712)
-api2         | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2400)
-api2         | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:367)
-api2         | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
-api2         | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
-api2         | 	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335)
-api2         | 	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321)
-api2         | 	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297)
-api2         | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292)
-api2         | 	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
-api2         | 	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
-api2         | 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
-api2         | 	... 36 common frames omitted
-banco_rinha  | 2024-02-12 17:39:13.011 UTC [69] ERROR:  duplicate key value violates unique constraint "cliente_pkey"
-banco_rinha  | 2024-02-12 17:39:13.011 UTC [69] DETAIL:  Key (id)=(2) already exists.
-banco_rinha  | 2024-02-12 17:39:13.011 UTC [69] STATEMENT:  insert into cliente(id, limite, saldo_inicial) values(2, 80000, 0)
-api1         | [36m17:39:13.067[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.t.s.i.ExceptionHandlerLoggedImpl[0;39m - GenerationTarget encountered exception accepting command : Error executing DDL "insert into cliente(id, limite, saldo_inicial) values(2, 80000, 0)" via JDBC [ERROR: duplicate key value violates unique constraint "cliente_pkey"
-api1         |   Detail: Key (id)=(2) already exists.]
-api1         | org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "insert into cliente(id, limite, saldo_inicial) values(2, 80000, 0)" via JDBC [ERROR: duplicate key value violates unique constraint "cliente_pkey"
-api1         |   Detail: Key (id)=(2) already exists.]
-api1         | 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
-api1         | 	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:233)
-api1         | 	at org.hibernate.tool.schema.internal.Helper.applyScript(Helper.java:255)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applyImportFiles(SchemaCreatorImpl.java:665)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applyImportSources(SchemaCreatorImpl.java:584)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:184)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:142)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:118)
-api1         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:256)
-api1         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145)
-api1         | 	at java.base/java.util.HashMap.forEach(HashMap.java:1425)
-api1         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142)
-api1         | 	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
-api1         | 	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
-api1         | 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315)
-api1         | 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
-api1         | 	at io.micronaut.configuration.hibernate.jpa.conf.AbstractHibernateFactory.buildHibernateSessionFactory(AbstractHibernateFactory.java:105)
-api1         | 	at io.micronaut.configuration.hibernate.jpa.conf.SessionFactoryPerDataSourceFactory.buildHibernateSessionFactoryBuilder(SessionFactoryPerDataSourceFactory.java:107)
-api1         | 	at io.micronaut.configuration.hibernate.jpa.conf.$SessionFactoryPerDataSourceFactory$BuildHibernateSessionFactoryBuilder4$Definition.instantiate(Unknown Source)
-api1         | 	at io.micronaut.context.BeanDefinitionDelegate.instantiate(BeanDefinitionDelegate.java:159)
-api1         | 	at io.micronaut.context.DefaultBeanContext.resolveByBeanFactory(DefaultBeanContext.java:2330)
-api1         | 	at io.micronaut.context.DefaultBeanContext.doCreateBean(DefaultBeanContext.java:2300)
-api1         | 	at io.micronaut.context.DefaultBeanContext.doCreateBean(DefaultBeanContext.java:2312)
-api1         | 	at io.micronaut.context.DefaultBeanContext.createRegistration(DefaultBeanContext.java:3114)
-api1         | 	at io.micronaut.context.SingletonScope.getOrCreate(SingletonScope.java:80)
-api1         | 	at io.micronaut.context.DefaultBeanContext.findOrCreateSingletonBeanRegistration(DefaultBeanContext.java:3016)
-api1         | 	at io.micronaut.context.DefaultBeanContext.initializeEagerBean(DefaultBeanContext.java:2688)
-api1         | 	at io.micronaut.context.DefaultBeanContext.initializeContext(DefaultBeanContext.java:1995)
-api1         | 	at io.micronaut.context.DefaultApplicationContext.initializeContext(DefaultApplicationContext.java:292)
-api1         | 	at io.micronaut.context.DefaultBeanContext.readAllBeanDefinitionClasses(DefaultBeanContext.java:3382)
-api1         | 	at io.micronaut.context.DefaultBeanContext.finalizeConfiguration(DefaultBeanContext.java:3737)
-api1         | 	at io.micronaut.context.DefaultBeanContext.start(DefaultBeanContext.java:361)
-api1         | 	at io.micronaut.context.DefaultApplicationContext.start(DefaultApplicationContext.java:200)
-api1         | 	at io.micronaut.runtime.Micronaut.start(Micronaut.java:72)
-api1         | 	at io.micronaut.runtime.Micronaut.run(Micronaut.java:326)
-api1         | 	at io.micronaut.runtime.Micronaut.run(Micronaut.java:312)
-api1         | 	at com.macgarcia.github.rinha2024.Application.main(Application.java:8)
-api1         | Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "cliente_pkey"
-api1         |   Detail: Key (id)=(2) already exists.
-api1         | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2712)
-api1         | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2400)
-api1         | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:367)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
-api1         | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297)
-api1         | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292)
-api1         | 	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
-api1         | 	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
-api1         | 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
-api1         | 	... 36 common frames omitted
-banco_rinha  | 2024-02-12 17:39:13.083 UTC [69] ERROR:  duplicate key value violates unique constraint "cliente_pkey"
-banco_rinha  | 2024-02-12 17:39:13.083 UTC [69] DETAIL:  Key (id)=(3) already exists.
-banco_rinha  | 2024-02-12 17:39:13.083 UTC [69] STATEMENT:  insert into cliente(id, limite, saldo_inicial) values(3, 1000000, 0)
-api1         | [36m17:39:13.083[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.t.s.i.ExceptionHandlerLoggedImpl[0;39m - GenerationTarget encountered exception accepting command : Error executing DDL "insert into cliente(id, limite, saldo_inicial) values(3, 1000000, 0)" via JDBC [ERROR: duplicate key value violates unique constraint "cliente_pkey"
-api1         |   Detail: Key (id)=(3) already exists.]
-api1         | org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "insert into cliente(id, limite, saldo_inicial) values(3, 1000000, 0)" via JDBC [ERROR: duplicate key value violates unique constraint "cliente_pkey"
-api1         |   Detail: Key (id)=(3) already exists.]
-api1         | 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
-api1         | 	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:233)
-api1         | 	at org.hibernate.tool.schema.internal.Helper.applyScript(Helper.java:255)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applyImportFiles(SchemaCreatorImpl.java:665)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applyImportSources(SchemaCreatorImpl.java:584)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:184)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:142)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:118)
-api1         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:256)
-api1         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145)
-api1         | 	at java.base/java.util.HashMap.forEach(HashMap.java:1425)
-api1         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142)
-api1         | 	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
-api1         | 	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
-api1         | 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315)
-api1         | 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
-api1         | 	at io.micronaut.configuration.hibernate.jpa.conf.AbstractHibernateFactory.buildHibernateSessionFactory(AbstractHibernateFactory.java:105)
-api1         | 	at io.micronaut.configuration.hibernate.jpa.conf.SessionFactoryPerDataSourceFactory.buildHibernateSessionFactoryBuilder(SessionFactoryPerDataSourceFactory.java:107)
-api1         | 	at io.micronaut.configuration.hibernate.jpa.conf.$SessionFactoryPerDataSourceFactory$BuildHibernateSessionFactoryBuilder4$Definition.instantiate(Unknown Source)
-api1         | 	at io.micronaut.context.BeanDefinitionDelegate.instantiate(BeanDefinitionDelegate.java:159)
-api1         | 	at io.micronaut.context.DefaultBeanContext.resolveByBeanFactory(DefaultBeanContext.java:2330)
-api1         | 	at io.micronaut.context.DefaultBeanContext.doCreateBean(DefaultBeanContext.java:2300)
-api1         | 	at io.micronaut.context.DefaultBeanContext.doCreateBean(DefaultBeanContext.java:2312)
-api1         | 	at io.micronaut.context.DefaultBeanContext.createRegistration(DefaultBeanContext.java:3114)
-api1         | 	at io.micronaut.context.SingletonScope.getOrCreate(SingletonScope.java:80)
-api1         | 	at io.micronaut.context.DefaultBeanContext.findOrCreateSingletonBeanRegistration(DefaultBeanContext.java:3016)
-api1         | 	at io.micronaut.context.DefaultBeanContext.initializeEagerBean(DefaultBeanContext.java:2688)
-api1         | 	at io.micronaut.context.DefaultBeanContext.initializeContext(DefaultBeanContext.java:1995)
-api1         | 	at io.micronaut.context.DefaultApplicationContext.initializeContext(DefaultApplicationContext.java:292)
-api1         | 	at io.micronaut.context.DefaultBeanContext.readAllBeanDefinitionClasses(DefaultBeanContext.java:3382)
-api1         | 	at io.micronaut.context.DefaultBeanContext.finalizeConfiguration(DefaultBeanContext.java:3737)
-api1         | 	at io.micronaut.context.DefaultBeanContext.start(DefaultBeanContext.java:361)
-api1         | 	at io.micronaut.context.DefaultApplicationContext.start(DefaultApplicationContext.java:200)
-api1         | 	at io.micronaut.runtime.Micronaut.start(Micronaut.java:72)
-api1         | 	at io.micronaut.runtime.Micronaut.run(Micronaut.java:326)
-api1         | 	at io.micronaut.runtime.Micronaut.run(Micronaut.java:312)
-api1         | 	at com.macgarcia.github.rinha2024.Application.main(Application.java:8)
-api1         | Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "cliente_pkey"
-api1         |   Detail: Key (id)=(3) already exists.
-api1         | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2712)
-api1         | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2400)
-api1         | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:367)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
-api1         | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297)
-api1         | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292)
-api1         | 	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
-api1         | 	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
-api1         | 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
-api1         | 	... 36 common frames omitted
-banco_rinha  | 2024-02-12 17:39:13.084 UTC [69] ERROR:  duplicate key value violates unique constraint "cliente_pkey"
-banco_rinha  | 2024-02-12 17:39:13.084 UTC [69] DETAIL:  Key (id)=(4) already exists.
-banco_rinha  | 2024-02-12 17:39:13.084 UTC [69] STATEMENT:  insert into cliente(id, limite, saldo_inicial) values(4, 10000000, 0)
-api1         | [36m17:39:13.085[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.t.s.i.ExceptionHandlerLoggedImpl[0;39m - GenerationTarget encountered exception accepting command : Error executing DDL "insert into cliente(id, limite, saldo_inicial) values(4, 10000000, 0)" via JDBC [ERROR: duplicate key value violates unique constraint "cliente_pkey"
-api1         |   Detail: Key (id)=(4) already exists.]
-api1         | org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "insert into cliente(id, limite, saldo_inicial) values(4, 10000000, 0)" via JDBC [ERROR: duplicate key value violates unique constraint "cliente_pkey"
-api1         |   Detail: Key (id)=(4) already exists.]
-api1         | 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
-api1         | 	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:233)
-api1         | 	at org.hibernate.tool.schema.internal.Helper.applyScript(Helper.java:255)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applyImportFiles(SchemaCreatorImpl.java:665)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applyImportSources(SchemaCreatorImpl.java:584)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:184)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:142)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:118)
-api1         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:256)
-api1         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145)
-api1         | 	at java.base/java.util.HashMap.forEach(HashMap.java:1425)
-api1         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142)
-api1         | 	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
-api1         | 	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
-api1         | 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315)
-api1         | 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
-api1         | 	at io.micronaut.configuration.hibernate.jpa.conf.AbstractHibernateFactory.buildHibernateSessionFactory(AbstractHibernateFactory.java:105)
-api1         | 	at io.micronaut.configuration.hibernate.jpa.conf.SessionFactoryPerDataSourceFactory.buildHibernateSessionFactoryBuilder(SessionFactoryPerDataSourceFactory.java:107)
-api1         | 	at io.micronaut.configuration.hibernate.jpa.conf.$SessionFactoryPerDataSourceFactory$BuildHibernateSessionFactoryBuilder4$Definition.instantiate(Unknown Source)
-api1         | 	at io.micronaut.context.BeanDefinitionDelegate.instantiate(BeanDefinitionDelegate.java:159)
-api1         | 	at io.micronaut.context.DefaultBeanContext.resolveByBeanFactory(DefaultBeanContext.java:2330)
-api1         | 	at io.micronaut.context.DefaultBeanContext.doCreateBean(DefaultBeanContext.java:2300)
-api1         | 	at io.micronaut.context.DefaultBeanContext.doCreateBean(DefaultBeanContext.java:2312)
-api1         | 	at io.micronaut.context.DefaultBeanContext.createRegistration(DefaultBeanContext.java:3114)
-api1         | 	at io.micronaut.context.SingletonScope.getOrCreate(SingletonScope.java:80)
-api1         | 	at io.micronaut.context.DefaultBeanContext.findOrCreateSingletonBeanRegistration(DefaultBeanContext.java:3016)
-api1         | 	at io.micronaut.context.DefaultBeanContext.initializeEagerBean(DefaultBeanContext.java:2688)
-api1         | 	at io.micronaut.context.DefaultBeanContext.initializeContext(DefaultBeanContext.java:1995)
-api1         | 	at io.micronaut.context.DefaultApplicationContext.initializeContext(DefaultApplicationContext.java:292)
-api1         | 	at io.micronaut.context.DefaultBeanContext.readAllBeanDefinitionClasses(DefaultBeanContext.java:3382)
-api1         | 	at io.micronaut.context.DefaultBeanContext.finalizeConfiguration(DefaultBeanContext.java:3737)
-api1         | 	at io.micronaut.context.DefaultBeanContext.start(DefaultBeanContext.java:361)
-api1         | 	at io.micronaut.context.DefaultApplicationContext.start(DefaultApplicationContext.java:200)
-api1         | 	at io.micronaut.runtime.Micronaut.start(Micronaut.java:72)
-api1         | 	at io.micronaut.runtime.Micronaut.run(Micronaut.java:326)
-api1         | 	at io.micronaut.runtime.Micronaut.run(Micronaut.java:312)
-api1         | 	at com.macgarcia.github.rinha2024.Application.main(Application.java:8)
-api1         | Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "cliente_pkey"
-api1         |   Detail: Key (id)=(4) already exists.
-api1         | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2712)
-api1         | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2400)
-api1         | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:367)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
-api1         | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297)
-api1         | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292)
-api1         | 	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
-api1         | 	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
-api1         | 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
-api1         | 	... 36 common frames omitted
-banco_rinha  | 2024-02-12 17:39:13.086 UTC [69] ERROR:  duplicate key value violates unique constraint "cliente_pkey"
-banco_rinha  | 2024-02-12 17:39:13.086 UTC [69] DETAIL:  Key (id)=(5) already exists.
-banco_rinha  | 2024-02-12 17:39:13.086 UTC [69] STATEMENT:  insert into cliente(id, limite, saldo_inicial) values(5, 500000, 0)
-api1         | [36m17:39:13.087[0;39m [1;30m[main][0;39m [31mWARN [0;39m [35mo.h.t.s.i.ExceptionHandlerLoggedImpl[0;39m - GenerationTarget encountered exception accepting command : Error executing DDL "insert into cliente(id, limite, saldo_inicial) values(5, 500000, 0)" via JDBC [ERROR: duplicate key value violates unique constraint "cliente_pkey"
-api1         |   Detail: Key (id)=(5) already exists.]
-api1         | org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "insert into cliente(id, limite, saldo_inicial) values(5, 500000, 0)" via JDBC [ERROR: duplicate key value violates unique constraint "cliente_pkey"
-api1         |   Detail: Key (id)=(5) already exists.]
-api1         | 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
-api1         | 	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:233)
-api1         | 	at org.hibernate.tool.schema.internal.Helper.applyScript(Helper.java:255)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applyImportFiles(SchemaCreatorImpl.java:665)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applyImportSources(SchemaCreatorImpl.java:584)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:184)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:142)
-api1         | 	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:118)
-api1         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:256)
-api1         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145)
-api1         | 	at java.base/java.util.HashMap.forEach(HashMap.java:1425)
-api1         | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142)
-api1         | 	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
-api1         | 	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
-api1         | 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315)
-api1         | 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
-api1         | 	at io.micronaut.configuration.hibernate.jpa.conf.AbstractHibernateFactory.buildHibernateSessionFactory(AbstractHibernateFactory.java:105)
-api1         | 	at io.micronaut.configuration.hibernate.jpa.conf.SessionFactoryPerDataSourceFactory.buildHibernateSessionFactoryBuilder(SessionFactoryPerDataSourceFactory.java:107)
-api1         | 	at io.micronaut.configuration.hibernate.jpa.conf.$SessionFactoryPerDataSourceFactory$BuildHibernateSessionFactoryBuilder4$Definition.instantiate(Unknown Source)
-api1         | 	at io.micronaut.context.BeanDefinitionDelegate.instantiate(BeanDefinitionDelegate.java:159)
-api1         | 	at io.micronaut.context.DefaultBeanContext.resolveByBeanFactory(DefaultBeanContext.java:2330)
-api1         | 	at io.micronaut.context.DefaultBeanContext.doCreateBean(DefaultBeanContext.java:2300)
-api1         | 	at io.micronaut.context.DefaultBeanContext.doCreateBean(DefaultBeanContext.java:2312)
-api1         | 	at io.micronaut.context.DefaultBeanContext.createRegistration(DefaultBeanContext.java:3114)
-api1         | 	at io.micronaut.context.SingletonScope.getOrCreate(SingletonScope.java:80)
-api1         | 	at io.micronaut.context.DefaultBeanContext.findOrCreateSingletonBeanRegistration(DefaultBeanContext.java:3016)
-api1         | 	at io.micronaut.context.DefaultBeanContext.initializeEagerBean(DefaultBeanContext.java:2688)
-api1         | 	at io.micronaut.context.DefaultBeanContext.initializeContext(DefaultBeanContext.java:1995)
-api1         | 	at io.micronaut.context.DefaultApplicationContext.initializeContext(DefaultApplicationContext.java:292)
-api1         | 	at io.micronaut.context.DefaultBeanContext.readAllBeanDefinitionClasses(DefaultBeanContext.java:3382)
-api1         | 	at io.micronaut.context.DefaultBeanContext.finalizeConfiguration(DefaultBeanContext.java:3737)
-api1         | 	at io.micronaut.context.DefaultBeanContext.start(DefaultBeanContext.java:361)
-api1         | 	at io.micronaut.context.DefaultApplicationContext.start(DefaultApplicationContext.java:200)
-api1         | 	at io.micronaut.runtime.Micronaut.start(Micronaut.java:72)
-api1         | 	at io.micronaut.runtime.Micronaut.run(Micronaut.java:326)
-api1         | 	at io.micronaut.runtime.Micronaut.run(Micronaut.java:312)
-api1         | 	at com.macgarcia.github.rinha2024.Application.main(Application.java:8)
-api1         | Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "cliente_pkey"
-api1         |   Detail: Key (id)=(5) already exists.
-api1         | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2712)
-api1         | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2400)
-api1         | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:367)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
-api1         | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321)
-api1         | 	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297)
-api1         | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292)
-api1         | 	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
-api1         | 	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
-api1         | 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
-api1         | 	... 36 common frames omitted
-nginx-1      | 2024/02/12 17:39:13 [error] 29#29: *20 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:39:15 [error] 29#29: *21 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:39:17 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api1         | [36m17:39:19.214[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mio.micronaut.runtime.Micronaut[0;39m - Startup completed in 32972ms. Server Running: http://8cc34f64c528:8080
-api2         | [36m17:39:19.213[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mio.micronaut.runtime.Micronaut[0;39m - Startup completed in 32970ms. Server Running: http://caa9a00a1fd3:8080
-nginx-1      | 2024/02/12 17:39:19 [error] 29#29: *23 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:39:21 [error] 29#29: *24 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1351 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "GET /clientes/2/extrato HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/2/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1347 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1343 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1339 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1335 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1331 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1327 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1323 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1319 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1314 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1310 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1307 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1303 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1299 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1295 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1291 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1287 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1283 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1279 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1275 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1271 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1267 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1263 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1259 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1255 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1251 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1363 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1247 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1243 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1239 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1235 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1231 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1227 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1223 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1219 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1215 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1210 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1207 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1202 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1199 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1195 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1191 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1187 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1183 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1179 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1175 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1171 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1167 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1163 upstream prematurely closed connection while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1359 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1159 upstream prematurely closed connection while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1355 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1367 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1371 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1375 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1379 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1383 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1387 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1391 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1395 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1399 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:13 [error] 29#29: *1403 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/transacoes", host: "localhost:9999"
+banco_rinha  | 2024-02-19 11:13:28.224 UTC [49] LOG:  checkpoint complete: wrote 923 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.212 s, sync=0.275 s, total=0.507 s; sync files=301, longest=0.212 s, average=0.001 s; distance=4257 kB, estimate=4257 kB; lsn=0/1913078, redo lsn=0/1913078
+banco_rinha  | 2024-02-19 11:13:28.231 UTC [48] LOG:  database system is shut down
+banco_rinha  |  done
+banco_rinha  | server stopped
+banco_rinha  | 
+banco_rinha  | PostgreSQL init process complete; ready for start up.
+banco_rinha  | 
+banco_rinha  | 2024-02-19 11:13:28.322 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+banco_rinha  | 2024-02-19 11:13:28.322 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+banco_rinha  | 2024-02-19 11:13:28.322 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+banco_rinha  | 2024-02-19 11:13:28.331 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+banco_rinha  | 2024-02-19 11:13:28.340 UTC [64] LOG:  database system was shut down at 2024-02-19 11:13:28 UTC
+banco_rinha  | 2024-02-19 11:13:28.350 UTC [1] LOG:  database system is ready to accept connections
+nginx-1      | 2024/02/19 11:13:29 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:13:29 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+api1         | [36m11:13:30.937[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
+api2         | [36m11:13:31.338[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
+nginx-1      | 2024/02/19 11:13:31 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api1         | [36m11:13:32.331[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@705202d1
+api1         | [36m11:13:32.332[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
+api2         | [36m11:13:32.834[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@46baf579
+api2         | [36m11:13:32.835[0;39m [1;30m[main][0;39m [34mINFO [0;39m [35mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
+nginx-1      | 2024/02/19 11:13:33 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:13:35 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 api2 exited with code 137
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1365 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1361 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1357 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/5/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1353 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1349 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/3/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1249 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1245 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1241 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1237 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1233 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/1/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1229 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1225 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/2/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1221 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/4/transacoes", host: "localhost:9999"
-nginx-1      | 2024/02/12 17:40:15 [error] 29#29: *1217 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.32.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/4/transacoes", host: "localhost:9999"
+api1 exited with code 137
+nginx-1      | 2024/02/19 11:13:37 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:13:39 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:14:41 [error] 29#29: *9 upstream timed out (110: Connection timed out) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:00 [error] 29#29: *9 connect() failed (113: No route to host) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:05 [error] 29#29: *12 connect() failed (113: No route to host) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:05 [error] 29#29: *12 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:07 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:09 [error] 29#29: *15 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:14 [error] 29#29: *16 connect() failed (113: No route to host) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:14 [error] 29#29: *16 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:19 [error] 29#29: *18 connect() failed (113: No route to host) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:19 [error] 29#29: *18 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:21 [error] 29#29: *20 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:23 [error] 29#29: *21 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:28 [error] 29#29: *22 connect() failed (113: No route to host) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:28 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:33 [error] 29#29: *24 connect() failed (113: No route to host) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:33 [error] 29#29: *24 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:35 [error] 29#29: *26 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:37 [error] 29#29: *27 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:42 [error] 29#29: *28 connect() failed (113: No route to host) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:42 [error] 29#29: *28 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:47 [error] 29#29: *30 connect() failed (113: No route to host) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1      | 2024/02/19 11:15:47 [error] 29#29: *30 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+banco_rinha  | 2024-02-19 11:15:50.410 UTC [1] LOG:  received fast shutdown request
+banco_rinha  | 2024-02-19 11:15:50.414 UTC [1] LOG:  aborting any active transactions
+banco_rinha  | 2024-02-19 11:15:50.416 UTC [1] LOG:  background worker "logical replication launcher" (PID 67) exited with exit code 1
+banco_rinha  | 2024-02-19 11:15:50.416 UTC [62] LOG:  shutting down
+banco_rinha  | 2024-02-19 11:15:50.419 UTC [62] LOG:  checkpoint starting: shutdown immediate
+banco_rinha  | 2024-02-19 11:15:50.461 UTC [62] LOG:  checkpoint complete: wrote 45 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.020 s, total=0.045 s; sync files=12, longest=0.008 s, average=0.002 s; distance=261 kB, estimate=261 kB; lsn=0/1954478, redo lsn=0/1954478
+banco_rinha  | 2024-02-19 11:15:50.464 UTC [1] LOG:  database system is shut down
+banco_rinha exited with code 0

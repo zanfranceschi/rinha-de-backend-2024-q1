@@ -1,0 +1,51 @@
+services:
+  db:
+    image: postgres
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/01-create.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    environment:
+      - POSTGRES_USER=rbe
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=rbe
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "300MB"   
+  api1: &api
+    image: picklesdog70/rbe-api-go:20240218121800
+    environment:
+      - RBE_DB_MAX_CONNS=14
+      - RBE_DB_MAX_IDLE_CONNS=4
+      - APP_PORT=8889
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "110MB"      
+    depends_on:
+      - db
+  api2:
+    <<: *api
+    environment:
+      - RBE_DB_MAX_CONNS=14
+      - RBE_DB_MAX_IDLE_CONNS=4
+      - APP_PORT=8888
+    network_mode: host
+  lb:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "30MB"       
+    depends_on:
+      - api1
+      - api2     

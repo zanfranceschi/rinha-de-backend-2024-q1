@@ -2,8 +2,8 @@
  Network rinha-nginx-2024q1  Created
  Container bcaua-db-1  Creating
  Container bcaua-db-1  Created
- Container api01  Creating
  Container api02  Creating
+ Container api01  Creating
  Container api02  Created
  Container api01  Created
  Container bcaua-nginx-1  Creating
@@ -26,18 +26,10 @@ db-1     | selecting default shared_buffers ... 128MB
 db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
-api01    | warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
-api01    |       Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:3000'.
 api02    | warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
 api02    |       Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:3000'.
-api01    | info: Microsoft.Hosting.Lifetime[14]
-api01    |       Now listening on: http://[::]:3000
-api01    | info: Microsoft.Hosting.Lifetime[0]
-api01    |       Application started. Press Ctrl+C to shut down.
-api01    | info: Microsoft.Hosting.Lifetime[0]
-api01    |       Hosting environment: Production
-api01    | info: Microsoft.Hosting.Lifetime[0]
-api01    |       Content root path: /app
+api01    | warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
+api01    |       Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:3000'.
 api02    | info: Microsoft.Hosting.Lifetime[14]
 api02    |       Now listening on: http://[::]:3000
 api02    | info: Microsoft.Hosting.Lifetime[0]
@@ -46,6 +38,15 @@ api02    | info: Microsoft.Hosting.Lifetime[0]
 api02    |       Hosting environment: Production
 api02    | info: Microsoft.Hosting.Lifetime[0]
 api02    |       Content root path: /app
+api01    | info: Microsoft.Hosting.Lifetime[14]
+api01    |       Now listening on: http://[::]:3000
+api01    | info: Microsoft.Hosting.Lifetime[0]
+api01    |       Application started. Press Ctrl+C to shut down.
+api01    | info: Microsoft.Hosting.Lifetime[0]
+api01    |       Hosting environment: Production
+api01    | info: Microsoft.Hosting.Lifetime[0]
+api01    |       Content root path: /app
+db-1     | performing post-bootstrap initialization ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -55,7 +56,6 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-db-1     | performing post-bootstrap initialization ... ok
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -65,10 +65,10 @@ db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-12 20:14:31.308 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-12 20:14:31.311 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-12 20:14:31.318 UTC [51] LOG:  database system was shut down at 2024-02-12 20:14:30 UTC
-db-1     | 2024-02-12 20:14:31.325 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 01:30:12.880 UTC [47] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 01:30:12.882 UTC [47] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 01:30:12.895 UTC [50] LOG:  database system was shut down at 2024-02-19 01:30:11 UTC
+db-1     | 2024-02-19 01:30:12.900 UTC [47] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -83,418 +83,39 @@ db-1     | INSERT 0 5
 db-1     | CREATE PROCEDURE
 db-1     | 
 db-1     | 
-db-1     | 2024-02-12 20:14:31.616 UTC [48] LOG:  received fast shutdown request
-db-1     | waiting for server to shut down....2024-02-12 20:14:31.619 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-12 20:14:31.622 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-12 20:14:31.622 UTC [49] LOG:  shutting down
-db-1     | 2024-02-12 20:14:31.624 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-12 20:14:31.788 UTC [49] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.123 s, sync=0.034 s, total=0.167 s; sync files=313, longest=0.004 s, average=0.001 s; distance=4296 kB, estimate=4296 kB; lsn=0/191CC90, redo lsn=0/191CC90
-db-1     | 2024-02-12 20:14:31.796 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-02-19 01:30:13.133 UTC [47] LOG:  received fast shutdown request
+db-1     | .2024-02-19 01:30:13.136 UTC [47] LOG:  aborting any active transactions
+db-1     | 2024-02-19 01:30:13.137 UTC [47] LOG:  background worker "logical replication launcher" (PID 53) exited with exit code 1
+db-1     | 2024-02-19 01:30:13.138 UTC [48] LOG:  shutting down
+db-1     | 2024-02-19 01:30:13.141 UTC [48] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 01:30:13.646 UTC [48] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.287 s, sync=0.206 s, total=0.508 s; sync files=313, longest=0.152 s, average=0.001 s; distance=4296 kB, estimate=4296 kB; lsn=0/191CC90, redo lsn=0/191CC90
+db-1     | 2024-02-19 01:30:13.651 UTC [47] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-12 20:14:31.854 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-12 20:14:31.854 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-12 20:14:31.854 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-12 20:14:31.859 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-12 20:14:31.866 UTC [66] LOG:  database system was shut down at 2024-02-12 20:14:31 UTC
-db-1     | 2024-02-12 20:14:31.873 UTC [1] LOG:  database system is ready to accept connections
-db-1     | 2024-02-12 20:17:44.799 UTC [167] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:44.799 UTC [165] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:44.816 UTC [181] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:44.817 UTC [183] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:44.817 UTC [182] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:44.894 UTC [184] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:44.903 UTC [187] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:44.903 UTC [189] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:44.903 UTC [190] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:44.906 UTC [185] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:44.907 UTC [188] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:44.917 UTC [186] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:44.927 UTC [196] FATAL:  sorry, too many clients already
-api02    | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02    |       Connection id "0HN1C0ST7LDCD", Request id "0HN1C0ST7LDCD:00000001": An unhandled exception was thrown by the application.
-api02    |       Npgsql.PostgresException (0x80004005): 53300: sorry, too many clients already
-api02    |          at Npgsql.Internal.NpgsqlConnector.<ReadMessageLong>d__233.MoveNext() + 0x995
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.ThrowForFailedGetResult() + 0x16
-api02    |          at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.GetResult(Int16) + 0x3e
-api02    |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16) + 0x2c
-api02    |          at Npgsql.Internal.NpgsqlConnector.<Authenticate>d__0.MoveNext() + 0x1f6
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x531
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x6d9
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x54b
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0x1c7
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.NpgsqlConnection.<<Open>g__OpenAsync|42_0>d.MoveNext() + 0x3de
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at api.services.ClienteRepository.<CreateTransacao>d__3.MoveNext() + 0x14e
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at api.services.ClientesService.<Transacao>d__4.MoveNext() + 0x7a5
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Program.<>c.<<<Main>$>b__0_1>d.MoveNext() + 0xbd
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Microsoft.AspNetCore.Http.Generated.<GeneratedRouteBuilderExtensions_g>FB49A76E00958A78ED8A3DC031D4149080B37ED6EB129C512F9112A3DB80F087D__GeneratedRouteBuilderExtensionsCore.<>c__DisplayClass3_0.<<MapPost0>g__RequestHandler|4>d.MoveNext() + 0x593
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.<ProcessRequests>d__238`1.MoveNext() + 0x46f
-api02    |         Exception data:
-api02    |           Severity: FATAL
-api02    |           SqlState: 53300
-api02    |           MessageText: sorry, too many clients already
-api02    |           File: proc.c
-api02    |           Line: 351
-api02    |           Routine: InitProcess
-api02    | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02    |       Connection id "0HN1C0ST7LDCE", Request id "0HN1C0ST7LDCE:00000001": An unhandled exception was thrown by the application.
-api02    |       Npgsql.PostgresException (0x80004005): 53300: sorry, too many clients already
-api02    |          at Npgsql.Internal.NpgsqlConnector.<ReadMessageLong>d__233.MoveNext() + 0x995
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.ThrowForFailedGetResult() + 0x16
-api02    |          at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.GetResult(Int16) + 0x3e
-api02    |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16) + 0x2c
-api02    |          at Npgsql.Internal.NpgsqlConnector.<Authenticate>d__0.MoveNext() + 0x1f6
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x531
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x6d9
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x54b
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0x1c7
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.NpgsqlConnection.<<Open>g__OpenAsync|42_0>d.MoveNext() + 0x3de
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at api.services.ClienteRepository.<CreateTransacao>d__3.MoveNext() + 0x14e
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at api.services.ClientesService.<Transacao>d__4.MoveNext() + 0x7a5
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Program.<>c.<<<Main>$>b__0_1>d.MoveNext() + 0xbd
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Microsoft.AspNetCore.Http.Generated.<GeneratedRouteBuilderExtensions_g>FB49A76E00958A78ED8A3DC031D4149080B37ED6EB129C512F9112A3DB80F087D__GeneratedRouteBuilderExtensionsCore.<>c__DisplayClass3_0.<<MapPost0>g__RequestHandler|4>d.MoveNext() + 0x593
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.<ProcessRequests>d__238`1.MoveNext() + 0x46f
-api02    |         Exception data:
-api02    |           Severity: FATAL
-api02    |           SqlState: 53300
-api02    |           MessageText: sorry, too many clients already
-api02    |           File: proc.c
-api02    |           Line: 351
-api02    |           Routine: InitProcess
-db-1     | 2024-02-12 20:17:45.098 UTC [200] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:45.099 UTC [203] FATAL:  sorry, too many clients already
-api02    | 53300: sorry, too many clients already
-api02    | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02    |       Connection id "0HN1C0ST7LDCG", Request id "0HN1C0ST7LDCG:00000001": An unhandled exception was thrown by the application.
-api02    |       Npgsql.PostgresException (0x80004005): 53300: sorry, too many clients already
-api02    |          at Npgsql.Internal.NpgsqlConnector.<ReadMessageLong>d__233.MoveNext() + 0x995
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.ThrowForFailedGetResult() + 0x16
-api02    |          at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.GetResult(Int16) + 0x3e
-api02    |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16) + 0x2c
-api02    |          at Npgsql.Internal.NpgsqlConnector.<Authenticate>d__0.MoveNext() + 0x1f6
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x531
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x6d9
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x54b
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0x1c7
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.NpgsqlConnection.<<Open>g__OpenAsync|42_0>d.MoveNext() + 0x3de
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at api.services.ClienteRepository.<CreateTransacao>d__3.MoveNext() + 0x14e
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at api.services.ClientesService.<Transacao>d__4.MoveNext() + 0x7a5
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Program.<>c.<<<Main>$>b__0_1>d.MoveNext() + 0xbd
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Microsoft.AspNetCore.Http.Generated.<GeneratedRouteBuilderExtensions_g>FB49A76E00958A78ED8A3DC031D4149080B37ED6EB129C512F9112A3DB80F087D__GeneratedRouteBuilderExtensionsCore.<>c__DisplayClass3_0.<<MapPost0>g__RequestHandler|4>d.MoveNext() + 0x593
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.<ProcessRequests>d__238`1.MoveNext() + 0x46f
-api02    |         Exception data:
-api02    |           Severity: FATAL
-api02    |           SqlState: 53300
-api02    |           MessageText: sorry, too many clients already
-api02    |           File: proc.c
-api02    |           Line: 351
-api02    |           Routine: InitProcess
-api02    | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02    |       Connection id "0HN1C0ST7LDCF", Request id "0HN1C0ST7LDCF:00000001": An unhandled exception was thrown by the application.
-api02    |       Npgsql.PostgresException (0x80004005): 53300: sorry, too many clients already
-api02    |          at Npgsql.Internal.NpgsqlConnector.<ReadMessageLong>d__233.MoveNext() + 0x995
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.ThrowForFailedGetResult() + 0x16
-api02    |          at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.GetResult(Int16) + 0x3e
-api02    |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16) + 0x2c
-api02    |          at Npgsql.Internal.NpgsqlConnector.<Authenticate>d__0.MoveNext() + 0x1f6
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x531
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x6d9
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x54b
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0x1c7
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.NpgsqlConnection.<<Open>g__OpenAsync|42_0>d.MoveNext() + 0x3de
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at api.services.ClienteRepository.<CreateTransacao>d__3.MoveNext() + 0x14e
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at api.services.ClientesService.<Transacao>d__4.MoveNext() + 0x7a5
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Program.<>c.<<<Main>$>b__0_1>d.MoveNext() + 0xbd
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Microsoft.AspNetCore.Http.Generated.<GeneratedRouteBuilderExtensions_g>FB49A76E00958A78ED8A3DC031D4149080B37ED6EB129C512F9112A3DB80F087D__GeneratedRouteBuilderExtensionsCore.<>c__DisplayClass3_0.<<MapPost0>g__RequestHandler|4>d.MoveNext() + 0x593
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.<ProcessRequests>d__238`1.MoveNext() + 0x46f
-api02    |         Exception data:
-api02    |           Severity: FATAL
-api02    |           SqlState: 53300
-api02    |           MessageText: sorry, too many clients already
-api02    |           File: proc.c
-api02    |           Line: 351
-api02    |           Routine: InitProcess
-db-1     | 2024-02-12 20:17:45.114 UTC [195] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:45.114 UTC [194] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:45.115 UTC [191] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:45.115 UTC [199] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:45.115 UTC [192] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:45.115 UTC [208] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:45.118 UTC [214] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:45.118 UTC [202] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:45.119 UTC [212] FATAL:  sorry, too many clients already
-api02    | 53300: sorry, too many clients already
-api02    | 53300: sorry, too many clients already
-api02    | 53300: sorry, too many clients already
-api02    | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02    |       Connection id "0HN1C0ST7LDCI", Request id "0HN1C0ST7LDCI:00000001": An unhandled exception was thrown by the application.
-api02    |       Npgsql.PostgresException (0x80004005): 53300: sorry, too many clients already
-api02    |          at Npgsql.Internal.NpgsqlConnector.<ReadMessageLong>d__233.MoveNext() + 0x995
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.ThrowForFailedGetResult() + 0x16
-api02    |          at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.GetResult(Int16) + 0x3e
-api02    |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16) + 0x2c
-api02    |          at Npgsql.Internal.NpgsqlConnector.<Authenticate>d__0.MoveNext() + 0x1f6
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x531
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-db-1     | 2024-02-12 20:17:45.141 UTC [210] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:45.141 UTC [215] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:45.141 UTC [216] FATAL:  sorry, too many clients already
-db-1     | 2024-02-12 20:17:45.141 UTC [209] FATAL:  sorry, too many clients already
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x6d9
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x54b
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0x1c7
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.NpgsqlConnection.<<Open>g__OpenAsync|42_0>d.MoveNext() + 0x3de
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at api.services.ClienteRepository.<CreateTransacao>d__3.MoveNext() + 0x14e
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at api.services.ClientesService.<Transacao>d__4.MoveNext() + 0x7a5
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Program.<>c.<<<Main>$>b__0_1>d.MoveNext() + 0xbd
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Microsoft.AspNetCore.Http.Generated.<GeneratedRouteBuilderExtensions_g>FB49A76E00958A78ED8A3DC031D4149080B37ED6EB129C512F9112A3DB80F087D__GeneratedRouteBuilderExtensionsCore.<>c__DisplayClass3_0.<<MapPost0>g__RequestHandler|4>d.MoveNext() + 0x593
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.<ProcessRequests>d__238`1.MoveNext() + 0x46f
-api02    |         Exception data:
-api02    |           Severity: FATAL
-api02    |           SqlState: 53300
-api02    |           MessageText: sorry, too many clients already
-api02    |           File: proc.c
-api02    |           Line: 351
-api02    |           Routine: InitProcess
-api02    | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02    |       Connection id "0HN1C0ST7LDCJ", Request id "0HN1C0ST7LDCJ:00000001": An unhandled exception was thrown by the application.
-api02    |       Npgsql.PostgresException (0x80004005): 53300: sorry, too many clients already
-api02    |          at Npgsql.Internal.NpgsqlConnector.<ReadMessageLong>d__233.MoveNext() + 0x995
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.ThrowForFailedGetResult() + 0x16
-api02    |          at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.GetResult(Int16) + 0x3e
-api02    |          at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16) + 0x2c
-api02    |          at Npgsql.Internal.NpgsqlConnector.<Authenticate>d__0.MoveNext() + 0x1f6
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x531
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x6d9
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x54b
-api02    |       --- End of stack trace from previous location ---
-api02    |          at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0xbe
-api02    |          at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
-api02    |          at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0x1c7
+db-1     | 2024-02-19 01:30:13.758 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 01:30:13.758 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 01:30:13.758 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 01:30:13.763 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 01:30:13.772 UTC [65] LOG:  database system was shut down at 2024-02-19 01:30:13 UTC
+db-1     | 2024-02-19 01:30:13.778 UTC [1] LOG:  database system is ready to accept connections
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api02    | info: Microsoft.Hosting.Lifetime[0]
+api02    |       Application is shutting down...
+api01    | info: Microsoft.Hosting.Lifetime[0]
+api01    |       Application is shutting down...
+api02 exited with code 0
+api02 exited with code 0
+api01 exited with code 0
+api01 exited with code 0
+db-1     | 2024-02-19 01:34:28.664 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-19 01:34:28.668 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-19 01:34:28.670 UTC [1] LOG:  background worker "logical replication launcher" (PID 68) exited with exit code 1
+db-1     | 2024-02-19 01:34:28.670 UTC [63] LOG:  shutting down
+db-1     | 2024-02-19 01:34:28.674 UTC [63] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 01:34:28.806 UTC [63] LOG:  checkpoint complete: wrote 771 buffers (4.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.110 s, total=0.136 s; sync files=32, longest=0.105 s, average=0.004 s; distance=2641 kB, estimate=2641 kB; lsn=0/1BB1208, redo lsn=0/1BB1208
+db-1     | 2024-02-19 01:34:28.810 UTC [1] LOG:  database system is shut down
+db-1 exited with code 0

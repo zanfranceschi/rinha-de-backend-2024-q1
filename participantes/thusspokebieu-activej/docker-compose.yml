@@ -8,20 +8,16 @@ services:
       - HOSTNAME=0.0.0.0
       - PORT=8081
     network_mode: host
+    volumes: 
+       - pg-volume:/var/run/postgresql
     depends_on:
       db:
          condition: service_healthy
     deploy:
       resources:
        limits:
-         cpus: "0.25"
-         memory: "100MB"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "-s", "-o", "/dev/null", "http://localhost:8081/health-check"]
-      start_period: 2s
-      interval: 2s
-      timeout: 5s
-      retries: 5
+         cpus: "0.2"
+         memory: "90MB"
 
   api02:
     <<: *api 
@@ -33,13 +29,6 @@ services:
     depends_on:
       db:
          condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "-s", "-o", "/dev/null", "http://localhost:8082/health-check"]
-      start_period: 2s
-      interval: 2s
-      timeout: 5s
-      retries: 5
-
 
   db:
     image: postgres:latest
@@ -50,8 +39,9 @@ services:
       - POSTGRES_USER=rinha
       - POSTGRES_DB=crebito
     volumes:
-      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pg-volume:/var/run/postgresql
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready" ]
       interval: 10m
@@ -59,12 +49,12 @@ services:
       start_period: 15s
       start_interval: 2s
       retries: 3
-    command: [ "postgres", "-c", "config_file=/etc/postgresql/postgresql.conf" ]
+    command: [ "postgres", "-c", "config_file=/docker-entrypoint-initdb.d/postgresql.conf" ]
     deploy:
        resources:
          limits:
-           cpus: "0.8"
-           memory: "300MB"
+           cpus: "0.9"
+           memory: "330MB"
 
   nginx:
     image: nginx:latest
@@ -72,13 +62,14 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      api01:
-        condition: service_healthy
-      api02:
-        condition: service_healthy
+      - api01
+      - api02
     deploy:
       resources:
         limits:
           cpus: "0.2"
-          memory: "50MB"
+          memory: "40MB"
+
+volumes:
+  pg-volume: 
 

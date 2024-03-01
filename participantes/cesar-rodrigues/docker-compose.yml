@@ -1,0 +1,67 @@
+version: "3.5"
+
+services:
+
+  api-01: &api
+    image: cesarodrigues/rinha-de-backend:latest
+    hostname: api-01
+    environment:
+      - DB_HOSTNAME=db
+    volumes:
+      - ./api/src/:/var/www/html/
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mongo
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+  api-02:
+    <<: *api
+    hostname: api-02
+    volumes:
+      - ./api/src/:/var/www/html/
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8082:8080"
+ 
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api-01
+      - api-02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "10MB"
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: "123"
+      MONGO_INITDB_DATABASE: admin
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./database/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "0.13"
+          memory: "140MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

@@ -1,0 +1,81 @@
+version: "3.8"
+
+services:
+  database:
+    image: postgres:16.2-alpine
+    container_name: postgres
+    command: ["postgres", "-c", "config_file=/etc/postgresql.conf"]
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=backend_fight
+    ports:
+      - 5432:5432
+    volumes:
+      - ./containers/postgresql.conf:/etc/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "200MB"
+
+  api1: &api
+    image: kauancarvalhocalasans/rinha-de-backend-2024-q1-elixir:0.0.1
+    container_name: api1
+    environment: &api_env
+      MIX_ENV: prod
+      PHX_SERVER: true
+      DATABASE_URL: postgres://postgres:postgres@database/backend_fight
+      PORT: 3000
+      SECRET_KEY_BASE: 7VEPFiqSBvMCcmYjUbt45ulgjalZbBkcLy6qZ9BNW7FVC984h7VNaaLFZaQxORCc
+      DATABASE_PATH: /data/prod.db
+      DATABASE_POOL_SIZE: 5
+      DATABASE_TIMEOUT: 20000
+      DATABASE_QUEUE_TARGET: 5000
+      DATABASE_QUEUE_INTERVAL: 10000
+      ERL_MAX_PORTS: 2046
+      RELEASE_DISTRIBUTION: name
+      RELEASE_NODE: api1@127.0.0.1
+    ports:
+      - "3001:3000"
+    depends_on:
+      - database
+    command: ["migrate_and_release"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "150MB"
+
+  api2:
+    <<: *api
+    container_name: api2
+    environment:
+      <<: *api_env
+      RELEASE_NODE: api2@127.0.0.1
+    ports:
+      - "3002:3000"
+    depends_on:
+    - api1
+    command: ["release"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "150MB"
+
+  nginx:
+    image: nginx:1.25.3-alpine 
+    container_name: nginx
+    volumes:
+      - ./containers/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 9999:9999
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'

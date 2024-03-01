@@ -1,9 +1,7 @@
- Network rinha-nginx-2024q1  Creating
- Network rinha-nginx-2024q1  Created
  Container lucianovilela-db-1  Creating
  Container lucianovilela-db-1  Created
- Container lucianovilela-api01-1  Creating
  Container lucianovilela-api02-1  Creating
+ Container lucianovilela-api01-1  Creating
  Container lucianovilela-api02-1  Created
  Container lucianovilela-api01-1  Created
  Container lucianovilela-nginx-1  Creating
@@ -25,9 +23,6 @@ db-1     | selecting default max_connections ... 100
 db-1     | selecting default shared_buffers ... 128MB
 db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
-api01-1  | Servidor rodando na porta 9000
-api02-1  | Servidor rodando na porta 9001
-db-1     | running bootstrap script ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -37,43 +32,10 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-api01-1  | /app/node_modules/pg-pool/index.js:45
-api01-1  |     Error.captureStackTrace(err);
-api01-1  |           ^
-api01-1  | 
-api01-1  | Error: connect ECONNREFUSED 192.168.112.2:5432
-api01-1  |     at /app/node_modules/pg-pool/index.js:45:11
-api01-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api01-1  |     at async /app/index.js:32:25 {
-api01-1  |   errno: -111,
-api01-1  |   code: 'ECONNREFUSED',
-api01-1  |   syscall: 'connect',
-api01-1  |   address: '192.168.112.2',
-api01-1  |   port: 5432
-api01-1  | }
-api01-1  | 
-api01-1  | Node.js v20.11.0
-nginx-1  | 2024/02/14 05:26:29 [error] 30#30: *1 upstream prematurely closed connection while reading response header from upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.3:9000/clientes/1/extrato", host: "localhost:9999"
-api02-1  | /app/node_modules/pg-pool/index.js:45
-api02-1  |     Error.captureStackTrace(err);
-api02-1  |           ^
-api02-1  | 
-api02-1  | Error: connect ECONNREFUSED 192.168.112.2:5432
-api02-1  |     at /app/node_modules/pg-pool/index.js:45:11
-api02-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-api02-1  |     at async /app/index.js:32:25 {
-api02-1  |   errno: -111,
-api02-1  |   code: 'ECONNREFUSED',
-api02-1  |   syscall: 'connect',
-api02-1  |   address: '192.168.112.2',
-api02-1  |   port: 5432
-api02-1  | }
-api02-1  | 
-api02-1  | Node.js v20.11.0
-nginx-1  | 2024/02/14 05:26:29 [error] 30#30: *1 upstream prematurely closed connection while reading response header from upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.4:9001/clientes/1/extrato", host: "localhost:9999"
+api02-1  | Erro ao conectar com o banco de dados 2024-02-27T03:22:23.130Z
+api01-1  | Erro ao conectar com o banco de dados 2024-02-27T03:22:23.141Z
+db-1     | running bootstrap script ... ok
 db-1     | performing post-bootstrap initialization ... ok
-api01-1 exited with code 1
-api02-1 exited with code 1
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -83,73 +45,60 @@ db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-14 05:26:31.099 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-14 05:26:31.110 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-14 05:26:31.122 UTC [51] LOG:  database system was shut down at 2024-02-14 05:26:30 UTC
-db-1     | 2024-02-14 05:26:31.134 UTC [48] LOG:  database system is ready to accept connections
-db-1     |  done
+db-1     | waiting for server to start.... done
 db-1     | server started
 db-1     | CREATE DATABASE
 db-1     | 
 db-1     | 
 db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
 db-1     | CREATE TABLE
+api02-1  | Erro ao conectar com o banco de dados 2024-02-27T03:22:25.135Z
 db-1     | CREATE TABLE
+db-1     | CREATE INDEX
 db-1     | CREATE TABLE
+api01-1  | Erro ao conectar com o banco de dados 2024-02-27T03:22:25.146Z
 db-1     | DO
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-14 05:26:31.818 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-02-14 05:26:31.826 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-14 05:26:31.829 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-14 05:26:31.830 UTC [49] LOG:  shutting down
-db-1     | 2024-02-14 05:26:31.848 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-14 05:26:32.297 UTC [49] LOG:  checkpoint complete: wrote 944 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.370 s, sync=0.035 s, total=0.467 s; sync files=310, longest=0.012 s, average=0.001 s; distance=4313 kB, estimate=4313 kB; lsn=0/19211D8, redo lsn=0/19211D8
-db-1     | 2024-02-14 05:26:32.305 UTC [48] LOG:  database system is shut down
-db-1     |  done
+db-1     | waiting for server to shut down.... done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-14 05:26:32.396 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-14 05:26:32.396 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-14 05:26:32.396 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-14 05:26:32.414 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-14 05:26:32.440 UTC [66] LOG:  database system was shut down at 2024-02-14 05:26:32 UTC
-db-1     | 2024-02-14 05:26:32.452 UTC [1] LOG:  database system is ready to accept connections
-nginx-1  | 2024/02/14 05:27:31 [error] 32#32: *4 upstream timed out (110: Connection timed out) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.3:9000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:27:50 [error] 32#32: *4 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.4:9001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:10 [error] 33#33: *7 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.3:9000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:13 [error] 33#33: *7 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.4:9001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:18 [error] 31#31: *10 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.3:9000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:21 [error] 31#31: *10 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.4:9001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:25 [error] 30#30: *13 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.4:9001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:28 [error] 30#30: *13 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.3:9000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:30 [error] 30#30: *16 no live upstreams while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:32 [error] 30#30: *17 no live upstreams while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:34 [error] 30#30: *18 no live upstreams while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:39 [error] 30#30: *19 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.4:9001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:42 [error] 30#30: *19 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.3:9000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:44 [error] 30#30: *22 no live upstreams while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:46 [error] 30#30: *23 no live upstreams while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:48 [error] 30#30: *24 no live upstreams while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:53 [error] 30#30: *25 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.4:9001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:56 [error] 30#30: *25 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.3:9000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:28:58 [error] 30#30: *28 no live upstreams while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:29:00 [error] 30#30: *29 no live upstreams while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:29:02 [error] 30#30: *30 no live upstreams while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:29:07 [error] 30#30: *31 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.4:9001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:29:10 [error] 30#30: *31 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.112.3:9000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:29:12 [error] 30#30: *34 no live upstreams while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:29:14 [error] 30#30: *35 no live upstreams while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 05:29:16 [error] 30#30: *36 no live upstreams while connecting to upstream, client: 192.168.112.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:26 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:26 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/extrato", host: "localhost:9999"
+api02-1  | Conexão com o banco de dados estabelecida com sucesso
+api02-1  | Servidor rodando na porta 9001
+api01-1  | Conexão com o banco de dados estabelecida com sucesso
+api01-1  | Servidor rodando na porta 9000
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *12 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *13 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *14 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *19 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *24 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *15 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *16 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *17 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *9 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *25 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *20 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *10 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *11 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *21 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *22 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *23 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *29 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *30 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *31 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:35 [error] 30#30: *85 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:35 [error] 30#30: *86 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:35 [error] 30#30: *87 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:37 [error] 30#30: *96 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/5/extrato HTTP/1.1", upstream: "http://api/clientes/5/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:37 [error] 30#30: *97 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/4/extrato HTTP/1.1", upstream: "http://api/clientes/4/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/27 03:22:37 [error] 30#30: *98 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-db-1     | 2024-02-14 05:29:19.303 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-14 05:29:19.305 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-14 05:29:19.308 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-02-14 05:29:19.311 UTC [64] LOG:  shutting down
-db-1     | 2024-02-14 05:29:19.313 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-14 05:29:19.334 UTC [64] LOG:  checkpoint complete: wrote 44 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.007 s, total=0.024 s; sync files=13, longest=0.005 s, average=0.001 s; distance=250 kB, estimate=250 kB; lsn=0/195FA00, redo lsn=0/195FA00
-db-1     | 2024-02-14 05:29:19.342 UTC [1] LOG:  database system is shut down
+api02-1 exited with code 0
+api01-1 exited with code 0
+api01-1 exited with code 137
 db-1 exited with code 0

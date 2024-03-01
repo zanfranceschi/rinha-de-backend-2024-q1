@@ -1,0 +1,60 @@
+version: '3.5'
+
+services:
+  app01: &app
+    network_mode: host
+    image: oliveiratheone/rinha-backend-q1-rust:latest
+    environment: &env
+      DB_PASSWORD: 1234
+      DB_USER: admin
+      DB_NAME: rinha
+      DB_HOST: localhost
+      PORT: 8080
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.12'
+          memory: '150MB'
+
+  app02:
+    <<: *app
+    network_mode: host
+    environment:
+      <<: *env
+      PORT: 8081
+
+  nginx:
+    image: nginx:alpine
+    network_mode: host
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app01
+      - app02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '80MB'
+
+  db:
+    image: postgres:alpine
+    network_mode: host
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    command: 'postgres -c max_connections=60 -c shared_buffers=96MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=16MB'
+    deploy:
+      resources:
+        limits:
+          cpus: "0.9"
+          memory: "230MB"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

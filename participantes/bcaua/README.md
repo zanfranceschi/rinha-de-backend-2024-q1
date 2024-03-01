@@ -2,7 +2,7 @@
 
 ### 🛠 Tecnologias
 
-- ASP.NET Core (Native AOT)
+- .NET Core 
 - Nginx
 - PostgreSQL
 
