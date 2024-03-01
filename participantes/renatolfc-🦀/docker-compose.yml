@@ -3,7 +3,7 @@ version: "3.5"
 services:
   api01: &api
     image: renatolfc/ferrugem:0.1
-    command: /app/rinha -d postgres://postgres:postgres@postgres/rinha --min-pool 4 --max-pool 4 
+    command: /app/rinha -d postgres://postgres:postgres@postgres/rinha --min-pool 5 --max-pool 5
     hostname: api01
     ports:
       - "9998:9999"
@@ -14,8 +14,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.3"
-          memory: "100MB"
+          cpus: "0.2"
+          memory: "15MB"
 
   api02:
     <<: *api
@@ -27,7 +27,7 @@ services:
         aliases:
           - api02
 
-  nginx:
+  balanco:
     image: renatolfc/ferrugem:0.1
     restart: always
     depends_on:
@@ -40,7 +40,7 @@ services:
       resources:
         limits:
           cpus: "0.4"
-          memory: "50MB"
+          memory: "25MB"
 
   postgres:
     image: postgres:latest
@@ -53,16 +53,22 @@ services:
       - "5432:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - type: tmpfs
-        target: /var/lib/postgresql/data
-    command: postgres -c checkpoint_timeout=1200 -c max_wal_size=32MB -c wal_writer_delay=600 -c wal_buffers=16MB -c log_min_messages='panic' -c log_min_messages='panic' -c log_min_error_statement='panic' -c synchronous_commit=off -c full_page_writes=0 -c max_connections=64 -c shared_buffers=64MB -c work_mem=8MB -c effective_cache_size=200MB -c autovacuum_vacuum_scale_factor=.5
+    command: >
+      postgres -c checkpoint_timeout=1200 -c max_wal_size=64MB -c wal_writer_delay=600
+               -c wal_buffers=8MB -c log_min_messages='panic' -c log_min_messages='panic'
+               -c log_min_error_statement='panic' -c synchronous_commit=off
+               -c full_page_writes=0 -c max_connections=64 -c shared_buffers=128MB
+               -c work_mem=256MB -c effective_cache_size=200MB
+               -c autovacuum_vacuum_scale_factor=.5 -c log_statement=none
+               -c log_checkpoints=0 -c log_duration=off -c fsync=off
+               -c temp_buffers=2MB -c commit_delay=1200
     healthcheck:                                     
       test: ["CMD", "pg_isready", "--username", "postgres"]
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "300MB"
+          cpus: "0.7"
+          memory: "495MB"
 
 networks:
   default:
