@@ -3,14 +3,15 @@ version: "3.5"
 services:
   api01: &api
     image: renatolfc/ferrugem:0.1
-    command: /app/rinha -d postgres://postgres:postgres@postgres/rinha --min-pool 5 --max-pool 5
+    command: /app/rinha -d postgres://postgres:postgres@127.0.0.1/rinha --min-pool 5 --max-pool 5
     hostname: api01
-    ports:
-      - "9998:9999"
+    environment:
+      - PORT=9997
     ulimits:
       nofile:
         soft: 1000000
         hard: 1000000
+    network_mode: host
     deploy:
       resources:
         limits:
@@ -20,12 +21,8 @@ services:
   api02:
     <<: *api
     hostname: api02
-    ports:
-      - "9997:9999"
-    networks:
-      default:
-        aliases:
-          - api02
+    environment:
+      - PORT=9998
 
   balanco:
     image: renatolfc/ferrugem:0.1
@@ -33,9 +30,11 @@ services:
     depends_on:
       - api01
       - api02
-    ports:
-      - "9999:1108"
+    environment:
+      - PORT=9999
+      - SERVERS=127.0.0.1:9997,127.0.0.1:9998
     command: ["/app/balanço"]
+    network_mode: host
     deploy:
       resources:
         limits:
@@ -49,8 +48,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=rinha
-    ports:
-      - "5432:5432"
+    network_mode: host
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     command: >
@@ -69,8 +67,3 @@ services:
         limits:
           cpus: "0.7"
           memory: "495MB"
-
-networks:
-  default:
-    driver: bridge
-    name: rinha-nginx-2024q1
