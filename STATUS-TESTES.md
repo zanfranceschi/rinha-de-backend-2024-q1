@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  1 00:40:23 UTC 2024** com **412** submissões.
+Atualizada **Fri Mar  1 01:05:18 UTC 2024** com **415** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -212,6 +212,7 @@ Atualizada **Fri Mar  1 00:40:23 UTC 2024** com **412** submissões.
 | [johnpgr_vlang](./participantes/johnpgr_vlang) | ok | 2 |
 | [jojodev](./participantes/jojodev) | ok | 1554 |
 | [jonatasoli](./participantes/jonatasoli) | ok | 1 |
+| [jonathanperis-xgh](./participantes/jonathanperis-xgh) | ok | 5 |
 | [jonathanperis](./participantes/jonathanperis) | ok | 6 |
 | [jonattas_bunjs](./participantes/jonattas_bunjs) | ok | 17 |
 | [jorgehrique-dotnet](./participantes/jorgehrique-dotnet) | ok | 3 |
@@ -404,10 +405,12 @@ Atualizada **Fri Mar  1 00:40:23 UTC 2024** com **412** submissões.
 | [vitorsalgado](./participantes/vitorsalgado) | ok | 1 |
 | [vkobinski](./participantes/vkobinski) | ok | 5 |
 | [vyctorguimaraes](./participantes/vyctorguimaraes) | ok | 6 |
+| [wdmatheus](./participantes/wdmatheus) | ok | 2 |
 | [welitonfreitas](./participantes/welitonfreitas) | falha - [logs](./participantes/welitonfreitas/docker-compose.logs) | -- |
 | [wesleyegberto](./participantes/wesleyegberto) | ok | 2 |
 | [weversonl](./participantes/weversonl) | ok | 2 |
 | [whyakari](./participantes/whyakari) | ok | 8 |
+| [wiliamvj](./participantes/wiliamvj) | ok | 1 |
 | [williammaia](./participantes/williammaia) | ok | 7 |
 | [williansugiyama](./participantes/williansugiyama) | ok | 1 |
 | [wladneto-02](./participantes/wladneto-02) | falha - [logs](./participantes/wladneto-02/docker-compose.logs) | -- |
