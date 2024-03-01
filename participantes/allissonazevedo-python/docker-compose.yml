@@ -12,7 +12,8 @@ services:
     #   - "5432:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/script.sql:ro
-    command: postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=off -c log_min_messages=PANIC -c autovacuum=off
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U rinha"]
       interval: 5s
