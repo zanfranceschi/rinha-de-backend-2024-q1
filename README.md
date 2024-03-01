@@ -384,11 +384,3 @@ Surpresa! :)
 
 [Link do status parcial da Rinha de Backend](./STATUS-TESTES.md).
  
- 
-https://github.com/zanfranceschi/rinha-de-backend-2024-q1
- 
- 
-https://github.com/zanfranceschi/rinha-de-backend-2024-q1
- 
- 
-https://github.com/zanfranceschi/rinha-de-backend-2024-q1

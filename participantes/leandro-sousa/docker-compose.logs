@@ -1,26 +1,101 @@
  Network leandro-sousa_default  Creating
  Network leandro-sousa_default  Created
- Volume "leandro-sousa_database"  Creating
- Volume "leandro-sousa_database"  Created
+ Container leandro-sousa-db-1  Creating
+ Container leandro-sousa-db-1  Created
  Container leandro-sousa-service-02-1  Creating
  Container leandro-sousa-service-01-1  Creating
  Container leandro-sousa-service-01-1  Created
  Container leandro-sousa-service-02-1  Created
  Container leandro-sousa-load-balancer-1  Creating
  Container leandro-sousa-load-balancer-1  Created
-Attaching to load-balancer-1, service-01-1, service-02-1
-load-balancer-1  | [NOTICE]   (1) : New worker (8) forked
-load-balancer-1  | [NOTICE]   (1) : Loading success.
-load-balancer-1  | [NOTICE]   (1) : haproxy version is 2.9.4-4e071ad
-load-balancer-1  | [WARNING]  (1) : Exiting Master process...
-load-balancer-1  | [WARNING]  (8) : Proxy frontend stopped (cumulated conns: FE: 61440, BE: 0).
-load-balancer-1  | [WARNING]  (8) : Proxy backend stopped (cumulated conns: FE: 0, BE: 61480).
-load-balancer-1  | [WARNING]  (1) : Current worker (8) exited with code 0 (Exit)
-load-balancer-1  | [WARNING]  (1) : All workers exited. Exiting... (0)
-load-balancer-1 exited with code 0
-load-balancer-1 exited with code 0
-service-02-1     | 20240212 20:41:13.293382 UTC 1 WARN  SIGTERM signal received. - HttpAppFrameworkImpl.cc:172
-service-02-1 exited with code 0
-service-02-1 exited with code 0
-service-01-1     | 20240212 20:41:13.293366 UTC 1 WARN  SIGTERM signal received. - HttpAppFrameworkImpl.cc:172
-service-01-1 exited with code 0
+Attaching to db-1, load-balancer-1, service-01-1, service-02-1
+db-1             | The files belonging to this database system will be owned by user "postgres".
+db-1             | This user must also own the server process.
+db-1             | 
+db-1             | The database cluster will be initialized with locale "en_US.utf8".
+db-1             | The default database encoding has accordingly been set to "UTF8".
+db-1             | The default text search configuration will be set to "english".
+db-1             | 
+db-1             | Data page checksums are disabled.
+db-1             | 
+db-1             | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1             | creating subdirectories ... ok
+db-1             | selecting dynamic shared memory implementation ... posix
+db-1             | selecting default max_connections ... 100
+db-1             | selecting default shared_buffers ... 128MB
+db-1             | selecting default time zone ... Etc/UTC
+db-1             | creating configuration files ... ok
+db-1             | running bootstrap script ... ok
+service-01-1     | terminate called after throwing an instance of 'std::logic_error'
+service-01-1     |   what():  basic_string: construction from null is not valid
+service-02-1     | terminate called after throwing an instance of 'std::logic_error'
+service-02-1     |   what():  basic_string: construction from null is not valid
+db-1             | performing post-bootstrap initialization ... ok
+service-01-1 exited with code 139
+service-02-1 exited with code 139
+db-1             | syncing data to disk ... ok
+db-1             | 
+db-1             | 
+db-1             | Success. You can now start the database server using:
+db-1             | 
+db-1             |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1             | 
+db-1             | initdb: warning: enabling "trust" authentication for local connections
+db-1             | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1             | waiting for server to start....2024-02-19 09:58:12.383 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1             | 2024-02-19 09:58:12.386 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1             | 2024-02-19 09:58:12.396 UTC [51] LOG:  database system was shut down at 2024-02-19 09:58:09 UTC
+db-1             | 2024-02-19 09:58:12.403 UTC [48] LOG:  database system is ready to accept connections
+db-1             |  done
+db-1             | server started
+db-1             | CREATE DATABASE
+db-1             | 
+db-1             | 
+db-1             | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+db-1             | CREATE TABLE
+db-1             | CREATE TABLE
+db-1             | CREATE TABLE
+db-1             | CREATE INDEX
+db-1             | INSERT 0 1
+db-1             | INSERT 0 1
+db-1             | INSERT 0 1
+db-1             | INSERT 0 1
+db-1             | INSERT 0 1
+db-1             | INSERT 0 1
+db-1             | INSERT 0 1
+db-1             | INSERT 0 1
+db-1             | INSERT 0 1
+db-1             | INSERT 0 1
+db-1             | 
+db-1             | 
+db-1             | waiting for server to shut down....2024-02-19 09:58:12.633 UTC [48] LOG:  received fast shutdown request
+db-1             | 2024-02-19 09:58:12.636 UTC [48] LOG:  aborting any active transactions
+db-1             | 2024-02-19 09:58:12.638 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1             | 2024-02-19 09:58:12.638 UTC [49] LOG:  shutting down
+db-1             | 2024-02-19 09:58:12.641 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1             | 2024-02-19 09:58:13.120 UTC [49] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.375 s, sync=0.085 s, total=0.482 s; sync files=309, longest=0.060 s, average=0.001 s; distance=4299 kB, estimate=4299 kB; lsn=0/191D968, redo lsn=0/191D968
+db-1             | 2024-02-19 09:58:13.125 UTC [48] LOG:  database system is shut down
+db-1             |  done
+db-1             | server stopped
+db-1             | 
+db-1             | PostgreSQL init process complete; ready for start up.
+db-1             | 
+db-1             | 2024-02-19 09:58:13.158 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1             | 2024-02-19 09:58:13.158 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1             | 2024-02-19 09:58:13.158 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1             | 2024-02-19 09:58:13.164 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1             | 2024-02-19 09:58:13.172 UTC [66] LOG:  database system was shut down at 2024-02-19 09:58:13 UTC
+db-1             | 2024-02-19 09:58:13.178 UTC [1] LOG:  database system is ready to accept connections
+load-balancer-1  | [NOTICE]   (1) : haproxy version is 2.9.5-260dbb8
+load-balancer-1  | [ALERT]    (1) : config : [/usr/local/etc/haproxy/haproxy.cfg:17] : 'server backend/service-01' : could not resolve address 'service-01'.
+load-balancer-1  | [ALERT]    (1) : config : [/usr/local/etc/haproxy/haproxy.cfg:18] : 'server backend/service-02' : could not resolve address 'service-02'.
+load-balancer-1  | [ALERT]    (1) : config : Failed to initialize server(s) addr.
+load-balancer-1 exited with code 1
+db-1             | 2024-02-19 09:58:53.311 UTC [1] LOG:  received fast shutdown request
+db-1             | 2024-02-19 09:58:53.316 UTC [1] LOG:  aborting any active transactions
+db-1             | 2024-02-19 09:58:53.318 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1             | 2024-02-19 09:58:53.319 UTC [64] LOG:  shutting down
+db-1             | 2024-02-19 09:58:53.324 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1             | 2024-02-19 09:58:53.380 UTC [64] LOG:  checkpoint complete: wrote 45 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.030 s, total=0.061 s; sync files=14, longest=0.006 s, average=0.003 s; distance=238 kB, estimate=238 kB; lsn=0/1959500, redo lsn=0/1959500
+db-1             | 2024-02-19 09:58:53.383 UTC [1] LOG:  database system is shut down
+db-1 exited with code 0

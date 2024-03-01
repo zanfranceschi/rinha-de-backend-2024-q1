@@ -1,0 +1,85 @@
+version: '3.5'
+services:
+  api1: &api
+    image: viniciusgferreira/rinha-api-q1-2024:latest
+    container_name: rinha-api1
+    hostname: rinha-api1
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_PORT: 3000
+    ports:
+      - "3000:3000"
+    networks:
+      - rinhanet
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+
+  api2:
+    <<: *api
+    container_name: rinha-api2
+    hostname: rinha-api2
+    networks:
+      - rinhanet
+    ports:
+      - "3001:3001"
+    environment:
+      APP_PORT: 3001
+
+  nginx:
+    container_name: rinha-nginx
+    image: nginx:alpine
+    restart: always
+    depends_on:
+      - api1
+      - api2
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "9999:9999"
+    networks:
+      - rinhanet
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '30MB'
+
+  db: # Banco de dados
+    image: postgres
+    container_name: rinha-db
+    hostname: rinha-db
+    restart: always
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-Upostgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    networks:
+        - rinhanet
+    ports:
+      - "5432:5432"
+    command: postgres -c 'max_connections=150' -c 'log_error_verbosity=terse' -c 'checkpoint_timeout=800' -c 'max_wal_size=10GB' -c 'effective_cache_size=128MB' -c 'shared_buffers=128MB'
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: rinhadb
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '420MB'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+volumes:
+  pg_data:
+    driver: local
+networks:
+  rinhanet:
+    driver: bridge

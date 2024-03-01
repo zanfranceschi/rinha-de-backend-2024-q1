@@ -25,7 +25,7 @@ services:
 
   instance_1:
     hostname: instance_1.rinha2024.local
-    image: elioenaiferrari/rinha_2024:latest
+    image: elioenaiferrari/rinha2024:elixir
     ports:
       - "4000:4000"
     depends_on:
@@ -41,12 +41,14 @@ services:
 
   instance_2:
     hostname: instance_2.rinha2024.local
-    image: elioenaiferrari/rinha_2024:latest
+    image: elioenaiferrari/rinha2024:elixir
     ports:
       - "4001:4000"
     depends_on:
       postgres:
         condition: service_healthy
+      instance_1:
+        condition: service_started
     networks:
       - rinha2024
     deploy:

@@ -2,19 +2,18 @@
  Container rinha-db  Created
  Container rinha-api-2  Creating
  Container rinha-api-1  Creating
- Container rinha-api-2  Created
  Container rinha-api-1  Created
+ Container rinha-api-2  Created
  Container rinha-nginx  Creating
  Container rinha-nginx  Created
 Attaching to rinha-api-1, rinha-api-2, rinha-db, rinha-nginx
-rinha-db     | 2024-02-15 14:20:01+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.36-1.el8 started.
-rinha-db     | 2024-02-15 14:20:01+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
-rinha-db     | 2024-02-15 14:20:01+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.36-1.el8 started.
-rinha-db     | 2024-02-15 14:20:01+00:00 [Note] [Entrypoint]: Initializing database files
-rinha-db     | 2024-02-15T14:20:01.569324Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
-rinha-db     | 2024-02-15T14:20:01.569467Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.36) initializing of server in progress as process 80
-rinha-db     | 2024-02-15T14:20:01.604907Z 0 [Warning] [MY-000081] [Server] option 'innodb-io-capacity': unsigned value 50 adjusted to 100.
-rinha-db     | 2024-02-15T14:20:01.606895Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+rinha-db     | 2024-02-22 13:20:14+00:00 [Note] [Entrypoint]: Entrypoint script for MariaDB Server 1:11.2.3+maria~ubu2204 started.
+rinha-db     | 2024-02-22 13:20:14+00:00 [Warn] [Entrypoint]: /sys/fs/cgroup///memory.pressure not writable, functionality unavailable to MariaDB
+rinha-db     | 2024-02-22 13:20:14+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+rinha-db     | 2024-02-22 13:20:14+00:00 [Note] [Entrypoint]: Entrypoint script for MariaDB Server 1:11.2.3+maria~ubu2204 started.
+rinha-db     | 2024-02-22 13:20:14+00:00 [Note] [Entrypoint]: Initializing database files
+rinha-db     | 2024-02-22 13:20:14 0 [Warning] mariadbd: io_uring_queue_init() failed with errno 1
+rinha-db     | 2024-02-22 13:20:14 0 [Warning] InnoDB: liburing disabled: falling back to innodb_use_native_aio=OFF
 rinha-nginx  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 rinha-nginx  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 rinha-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -24,107 +23,139 @@ rinha-nginx  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-res
 rinha-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 rinha-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 rinha-nginx  | /docker-entrypoint.sh: Configuration complete; ready for start up
-rinha-nginx  | 2024/02/15 14:20:02 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9910/clientes/1/extrato", host: "localhost:9999"
-rinha-nginx  | 2024/02/15 14:20:02 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9920/clientes/1/extrato", host: "localhost:9999"
-rinha-api-1  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-api-2  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-db     | 2024-02-15T14:20:02.643376Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
-rinha-api-1 exited with code 0
-rinha-api-2 exited with code 0
-rinha-api-2  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-api-1  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-nginx  | 2024/02/15 14:20:04 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-api-2 exited with code 0
-rinha-api-1 exited with code 0
-rinha-db     | 2024-02-15T14:20:05.451276Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
-rinha-api-2  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-api-1  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-api-2 exited with code 0
-rinha-api-1 exited with code 0
-rinha-nginx  | 2024/02/15 14:20:06 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-api-1  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-api-2  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-api-2 exited with code 0
-rinha-api-1 exited with code 0
-rinha-nginx  | 2024/02/15 14:20:08 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-api-1  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-api-2  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-nginx  | 2024/02/15 14:20:10 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-nginx  | 2024/02/15 14:20:12 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-nginx  | 2024/02/15 14:20:14 [error] 29#29: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9920/clientes/1/extrato", host: "localhost:9999"
-rinha-nginx  | 2024/02/15 14:20:14 [error] 29#29: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9910/clientes/1/extrato", host: "localhost:9999"
-rinha-nginx  | 2024/02/15 14:20:16 [error] 29#29: *12 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-db     | 2024-02-15 14:20:17+00:00 [Note] [Entrypoint]: Database files initialized
-rinha-db     | 2024-02-15 14:20:17+00:00 [Note] [Entrypoint]: Starting temporary server
-rinha-db     | 2024-02-15T14:20:18.157960Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
-rinha-db     | 2024-02-15T14:20:18.160145Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.36) starting as process 119
-rinha-db     | 2024-02-15T14:20:18.219960Z 0 [Warning] [MY-000081] [Server] option 'innodb-io-capacity': unsigned value 50 adjusted to 100.
-rinha-db     | 2024-02-15T14:20:18.224059Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
-rinha-nginx  | 2024/02/15 14:20:18 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-api-1 exited with code 0
-rinha-api-2 exited with code 0
-rinha-db     | 2024-02-15T14:20:19.599600Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
-rinha-api-1  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-api-1 exited with code 0
-rinha-db     | 2024-02-15T14:20:20.203785Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
-rinha-db     | 2024-02-15T14:20:20.203817Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
-rinha-db     | 2024-02-15T14:20:20.211246Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
-rinha-db     | 2024-02-15T14:20:20.262564Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
-rinha-db     | 2024-02-15T14:20:20.262613Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.36'  socket: '/var/lib/mysql/mysql.sock'  port: 0  MySQL Community Server - GPL.
-rinha-db     | 2024-02-15 14:20:20+00:00 [Note] [Entrypoint]: Temporary server started.
-rinha-api-2  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-nginx  | 2024/02/15 14:20:20 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-api-2 exited with code 0
-rinha-db     | Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
-rinha-db     | Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
-rinha-db     | Warning: Unable to load '/usr/share/zoneinfo/leapseconds' as time zone. Skipping it.
-rinha-nginx  | 2024/02/15 14:20:22 [error] 29#29: *15 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-db     | Warning: Unable to load '/usr/share/zoneinfo/tzdata.zi' as time zone. Skipping it.
-rinha-db     | Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
-rinha-db     | Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
-rinha-db     | 2024-02-15 14:20:23+00:00 [Note] [Entrypoint]: Creating database rinha-db
-rinha-db     | 2024-02-15 14:20:23+00:00 [Note] [Entrypoint]: Creating user admin
-rinha-db     | 2024-02-15 14:20:23+00:00 [Note] [Entrypoint]: Giving user admin access to schema rinha-db
-rinha-db     | 
-rinha-db     | 2024-02-15 14:20:23+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+rinha-api-2  | [34m[  DEBUG ] - failed to connect to the database. Attemp [0]. Cause: failed to connect to the database (write). Cause: dial tcp 127.0.0.1:3306: connect: connection refused
+rinha-api-1  | [34m[  DEBUG ] - failed to connect to the database. Attemp [0]. Cause: failed to connect to the database (write). Cause: dial tcp 127.0.0.1:3306: connect: connection refused
+rinha-api-2  | [34m[  DEBUG ] - failed to connect to the database. Attemp [1]. Cause: failed to connect to the database (write). Cause: dial tcp 127.0.0.1:3306: connect: connection refused
+rinha-api-1  | [34m[  DEBUG ] - failed to connect to the database. Attemp [1]. Cause: failed to connect to the database (write). Cause: dial tcp 127.0.0.1:3306: connect: connection refused
+rinha-api-2  | [34m[  DEBUG ] - failed to connect to the database. Attemp [2]. Cause: failed to connect to the database (write). Cause: dial tcp 127.0.0.1:3306: connect: connection refused
+rinha-api-1  | [34m[  DEBUG ] - failed to connect to the database. Attemp [2]. Cause: failed to connect to the database (write). Cause: dial tcp 127.0.0.1:3306: connect: connection refused
 rinha-db     | 
 rinha-db     | 
-rinha-db     | 2024-02-15 14:20:23+00:00 [Note] [Entrypoint]: Stopping temporary server
-rinha-db     | 2024-02-15T14:20:23.447383Z 14 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.36).
-rinha-api-1  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-nginx  | 2024/02/15 14:20:24 [error] 29#29: *16 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-api-1 exited with code 0
-rinha-db     | 2024-02-15T14:20:24.617564Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.36)  MySQL Community Server - GPL.
-rinha-api-2  | [31m[  ERROR ] - failed to connect to the database (write). Cause: dial tcp 127.0.0.1:9930: connect: connection refused
-rinha-api-2 exited with code 0
-rinha-db     | 2024-02-15 14:20:25+00:00 [Note] [Entrypoint]: Temporary server stopped
+rinha-db     | PLEASE REMEMBER TO SET A PASSWORD FOR THE MariaDB root USER !
+rinha-db     | To do so, start the server, then issue the following command:
 rinha-db     | 
-rinha-db     | 2024-02-15 14:20:25+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+rinha-db     | '/usr/bin/mariadb-secure-installation'
 rinha-db     | 
-rinha-db     | 2024-02-15T14:20:25.749120Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
-rinha-db     | 2024-02-15T14:20:25.751279Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.36) starting as process 1
-rinha-db     | 2024-02-15T14:20:25.764002Z 0 [Warning] [MY-000081] [Server] option 'innodb-io-capacity': unsigned value 50 adjusted to 100.
-rinha-db     | 2024-02-15T14:20:25.768975Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
-rinha-db     | 2024-02-15T14:20:26.164468Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
-rinha-nginx  | 2024/02/15 14:20:26 [error] 29#29: *17 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9920/clientes/1/extrato", host: "localhost:9999"
-rinha-nginx  | 2024/02/15 14:20:26 [error] 29#29: *17 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9910/clientes/1/extrato", host: "localhost:9999"
-rinha-db     | 2024-02-15T14:20:27.411813Z 0 [ERROR] [MY-011300] [Server] Plugin mysqlx reported: 'Setup of bind-address: '*' port: 33060 failed, `bind()` failed with error: Address already in use (98). Do you already have another mysqld server running with Mysqlx ?'
-rinha-db     | 2024-02-15T14:20:27.411840Z 0 [ERROR] [MY-013597] [Server] Plugin mysqlx reported: 'Value '*' set to `Mysqlx_bind_address`, X Plugin can't bind to it. Skipping this value.'
-rinha-db     | 2024-02-15T14:20:27.616859Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
-rinha-db     | 2024-02-15T14:20:27.616908Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
-rinha-db     | 2024-02-15T14:20:27.622951Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
-rinha-db     | 2024-02-15T14:20:27.689816Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
-rinha-db     | 2024-02-15T14:20:27.689937Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.36'  socket: '/var/lib/mysql/mysql.sock'  port: 9930  MySQL Community Server - GPL.
-rinha-nginx  | 2024/02/15 14:20:28 [error] 29#29: *20 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-nginx  | 2024/02/15 14:20:30 [error] 29#29: *21 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-nginx  | 2024/02/15 14:20:32 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-nginx  | 2024/02/15 14:20:34 [error] 29#29: *23 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-rinha-nginx  | 2024/02/15 14:20:36 [error] 29#29: *24 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+rinha-db     | which will also give you the option of removing the test
+rinha-db     | databases and anonymous user created by default.  This is
+rinha-db     | strongly recommended for production servers.
+rinha-db     | 
+rinha-db     | See the MariaDB Knowledgebase at https://mariadb.com/kb
+rinha-db     | 
+rinha-db     | Please report any problems at https://mariadb.org/jira
+rinha-db     | 
+rinha-db     | The latest information about MariaDB is available at https://mariadb.org/.
+rinha-db     | 
+rinha-db     | Consider joining MariaDB's strong and vibrant community:
+rinha-db     | https://mariadb.org/get-involved/
+rinha-db     | 
+rinha-db     | 2024-02-22 13:20:17+00:00 [Note] [Entrypoint]: Database files initialized
+rinha-db     | 2024-02-22 13:20:17+00:00 [Note] [Entrypoint]: Starting temporary server
+rinha-db     | 2024-02-22 13:20:17+00:00 [Note] [Entrypoint]: Waiting for server startup
+rinha-db     | 2024-02-22 13:20:17 0 [Note] Starting MariaDB 11.2.3-MariaDB-1:11.2.3+maria~ubu2204-log source revision 79580f4f96fc2547711f674eb8dd514abd312b4a as process 102
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: Using transactional memory
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: Number of transaction pools: 1
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
+rinha-db     | 2024-02-22 13:20:17 0 [Note] mariadbd: O_TMPFILE is not supported on /tmp (disabling future attempts)
+rinha-db     | 2024-02-22 13:20:17 0 [Warning] mariadbd: io_uring_queue_init() failed with errno 1
+rinha-db     | 2024-02-22 13:20:17 0 [Warning] InnoDB: liburing disabled: falling back to innodb_use_native_aio=OFF
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: Initializing buffer pool, total size = 50.000MiB, chunk size = 1.000MiB
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: Completed initialization of buffer pool
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: Buffered log writes (block size=4096 bytes)
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: End of log at LSN=47763
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: Opened 3 undo tablespaces
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: 128 rollback segments in 3 undo tablespaces are active.
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+rinha-db     | 2024-02-22 13:20:17 0 [Note] InnoDB: log sequence number 47763; transaction id 14
+rinha-db     | 2024-02-22 13:20:17 0 [Note] Plugin 'FEEDBACK' is disabled.
+rinha-db     | 2024-02-22 13:20:17 0 [Note] Plugin 'wsrep-provider' is disabled.
+rinha-db     | 2024-02-22 13:20:17 0 [Warning] 'user' entry 'root@rinha' ignored in --skip-name-resolve mode.
+rinha-db     | 2024-02-22 13:20:17 0 [Warning] 'proxies_priv' entry '@% root@rinha' ignored in --skip-name-resolve mode.
+rinha-db     | 2024-02-22 13:20:17 0 [Note] mariadbd: Event Scheduler: Loaded 0 events
+rinha-db     | 2024-02-22 13:20:17 0 [Note] mariadbd: ready for connections.
+rinha-db     | Version: '11.2.3-MariaDB-1:11.2.3+maria~ubu2204-log'  socket: '/run/mysqld/mysqld.sock'  port: 0  mariadb.org binary distribution
+rinha-nginx  | 2024/02/22 13:20:18 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9910/clientes/1/extrato", host: "localhost:9999"
+rinha-nginx  | 2024/02/22 13:20:18 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9920/clientes/1/extrato", host: "localhost:9999"
+rinha-api-2  | [34m[  DEBUG ] - failed to connect to the database. Attemp [3]. Cause: failed to connect to the database (write). Cause: dial tcp 127.0.0.1:3306: connect: connection refused
+rinha-api-1  | [34m[  DEBUG ] - failed to connect to the database. Attemp [3]. Cause: failed to connect to the database (write). Cause: dial tcp 127.0.0.1:3306: connect: connection refused
+rinha-db     | 2024-02-22 13:20:18+00:00 [Note] [Entrypoint]: Temporary server started.
+rinha-api-2  | [34m[  DEBUG ] - failed to connect to the database. Attemp [4]. Cause: failed to connect to the database (write). Cause: dial tcp 127.0.0.1:3306: connect: connection refused
+rinha-api-1  | [34m[  DEBUG ] - failed to connect to the database. Attemp [4]. Cause: failed to connect to the database (write). Cause: dial tcp 127.0.0.1:3306: connect: connection refused
+rinha-db     | 2024-02-22 13:20:20+00:00 [Note] [Entrypoint]: Creating database rinha-db
+rinha-db     | 2024-02-22 13:20:20+00:00 [Note] [Entrypoint]: Creating user admin
+rinha-db     | 2024-02-22 13:20:20+00:00 [Note] [Entrypoint]: Giving user admin access to schema rinha-db
+rinha-db     | 2024-02-22 13:20:20+00:00 [Note] [Entrypoint]: Securing system users (equivalent to running mysql_secure_installation)
+rinha-db     | 
+rinha-db     | 2024-02-22 13:20:20+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+rinha-db     | 
+rinha-db     | 
+rinha-db     | 2024-02-22 13:20:20+00:00 [Note] [Entrypoint]: Stopping temporary server
+rinha-db     | 2024-02-22 13:20:20 0 [Note] mariadbd (initiated by: unknown): Normal shutdown
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: FTS optimize thread exiting.
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Starting shutdown...
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Buffer pool(s) dump completed at 240222 13:20:20
+rinha-nginx  | 2024/02/22 13:20:20 [error] 30#30: *4 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Shutdown completed; log sequence number 56230; transaction id 27
+rinha-db     | 2024-02-22 13:20:20 0 [Note] mariadbd: Shutdown complete
+rinha-db     | 
+rinha-db     | 2024-02-22 13:20:20+00:00 [Note] [Entrypoint]: Temporary server stopped
+rinha-db     | 
+rinha-db     | 2024-02-22 13:20:20+00:00 [Note] [Entrypoint]: MariaDB init process done. Ready for start up.
+rinha-db     | 
+rinha-db     | 2024-02-22 13:20:20 0 [Note] Starting MariaDB 11.2.3-MariaDB-1:11.2.3+maria~ubu2204-log source revision 79580f4f96fc2547711f674eb8dd514abd312b4a as process 1
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Using transactional memory
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Number of transaction pools: 1
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
+rinha-db     | 2024-02-22 13:20:20 0 [Note] mariadbd: O_TMPFILE is not supported on /tmp (disabling future attempts)
+rinha-db     | 2024-02-22 13:20:20 0 [Warning] mariadbd: io_uring_queue_init() failed with errno 1
+rinha-db     | 2024-02-22 13:20:20 0 [Warning] InnoDB: liburing disabled: falling back to innodb_use_native_aio=OFF
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Initializing buffer pool, total size = 50.000MiB, chunk size = 1.000MiB
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Completed initialization of buffer pool
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Buffered log writes (block size=4096 bytes)
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: End of log at LSN=56230
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Opened 3 undo tablespaces
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: 128 rollback segments in 3 undo tablespaces are active.
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: log sequence number 56230; transaction id 28
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+rinha-db     | 2024-02-22 13:20:20 0 [Note] Plugin 'FEEDBACK' is disabled.
+rinha-db     | 2024-02-22 13:20:20 0 [Note] Plugin 'wsrep-provider' is disabled.
+rinha-db     | 2024-02-22 13:20:20 0 [Note] InnoDB: Buffer pool(s) load completed at 240222 13:20:20
+rinha-db     | 2024-02-22 13:20:20 0 [Note] Server socket created on IP: '0.0.0.0'.
+rinha-db     | 2024-02-22 13:20:20 0 [Note] Server socket created on IP: '::'.
+rinha-db     | 2024-02-22 13:20:20 0 [Note] mariadbd: Event Scheduler: Loaded 0 events
+rinha-db     | 2024-02-22 13:20:20 0 [Note] mariadbd: ready for connections.
+rinha-db     | Version: '11.2.3-MariaDB-1:11.2.3+maria~ubu2204-log'  socket: '/run/mysqld/mysqld.sock'  port: 3306  mariadb.org binary distribution
+rinha-api-2  | [34m[  DEBUG ] - failed to connect to the database. Attemp [5]. Cause: failed to connect to the database (write). Cause: dial tcp 127.0.0.1:3306: connect: connection refused
+rinha-api-1  | [34m[  DEBUG ] - failed to connect to the database. Attemp [5]. Cause: failed to connect to the database (write). Cause: dial tcp 127.0.0.1:3306: connect: connection refused
+rinha-nginx  | 2024/02/22 13:20:22 [error] 30#30: *5 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+rinha-api-2  | [32m[  INFO  ] - starting the server...
+rinha-api-1  | [32m[  INFO  ] - starting the server...
+rinha-nginx  | 2024/02/22 13:20:24 [error] 30#30: *6 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+rinha-nginx  | 2024/02/22 13:20:26 [error] 30#30: *7 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+rinha-nginx  | 2024/02/22 13:20:28 [error] 30#30: *8 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 rinha-nginx exited with code 0
 rinha-nginx exited with code 0
-rinha-api-2 exited with code 0
+rinha-db     | 2024-02-22 13:24:42 42 [Warning] Aborted connection 42 to db: 'rinha-db' user: 'admin' host: '127.0.0.1' (Got an error reading communication packets)
+rinha-db     | 2024-02-22 13:24:42 41 [Warning] Aborted connection 41 to db: 'rinha-db' user: 'admin' host: '127.0.0.1' (Got an error reading communication packets)
 rinha-api-1 exited with code 0
+rinha-api-2 exited with code 0
+rinha-api-2 exited with code 2
 rinha-api-1 exited with code 2
-rinha-db     | 2024-02-15T14:24:55.600722Z 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.36).
-rinha-db     | 2024-02-15T14:24:57.201552Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.36)  MySQL Community Server - GPL.
+rinha-db     | 2024-02-22 13:24:42 0 [Note] mariadbd (initiated by: unknown): Normal shutdown
+rinha-db     | 2024-02-22 13:24:42 0 [Note] InnoDB: FTS optimize thread exiting.
+rinha-db     | 2024-02-22 13:24:42 0 [Note] InnoDB: Starting shutdown...
+rinha-db     | 2024-02-22 13:24:42 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+rinha-db     | 2024-02-22 13:24:42 0 [Note] InnoDB: Restricted to 787 pages due to innodb_buf_pool_dump_pct=25
+rinha-db     | 2024-02-22 13:24:42 0 [Note] InnoDB: Buffer pool(s) dump completed at 240222 13:24:42
+rinha-db     | 2024-02-22 13:24:43 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
+rinha-db     | 2024-02-22 13:24:43 0 [Note] InnoDB: Shutdown completed; log sequence number 24924095; transaction id 107377
+rinha-db     | 2024-02-22 13:24:43 0 [Note] mariadbd: Shutdown complete
+rinha-db     | 
 rinha-db exited with code 0

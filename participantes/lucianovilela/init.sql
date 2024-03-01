@@ -14,6 +14,10 @@ CREATE TABLE transacoes (
 	CONSTRAINT fk_clientes_transacoes_id
 		FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
+-- Creating an index on the "transacoes" table
+CREATE INDEX CONCURRENTLY idx_transacoes_cliente_realizada
+ON transacoes (cliente_id, realizada_em DESC);
+
 
 CREATE TABLE saldos (
 	id SERIAL PRIMARY KEY,

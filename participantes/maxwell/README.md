@@ -1,13 +1,13 @@
-# Stack
-
-- PostgreSQL
-- NGINX
-- C
-
 # Autor
 
 **Maxwell Monteiro**
 maxwell.monteiro@gmail.com
+
+# Stack
+
+- PostgreSQL
+- NGINX
+- C (llhttp, jansson)
 
 # Como Executar
 

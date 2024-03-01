@@ -18,10 +18,8 @@ CREATE UNLOGGED TABLE transacoes (
 
 CREATE INDEX ix_transacoes_cliente_id_realizada_em ON transacoes (cliente_id, realizada_em DESC);
 
-CREATE TYPE resultado_transacao as (cliente_novo_saldo integer, cliente_limite integer);
-
 CREATE FUNCTION debito(cliente_id INTEGER, valor_transacao INTEGER, descricao_transacao TEXT)
-RETURNS SETOF resultado_transacao
+RETURNS SETOF INTEGER -- retorna saldo do cliente apos a transacao
 LANGUAGE plpgsql
 AS $BODY$
 	DECLARE cliente_novo_saldo INTEGER;
@@ -40,32 +38,28 @@ BEGIN
 	INSERT INTO transacoes (cliente_id, valor, tipo, descricao)
 	VALUES (cliente_id, valor_transacao, 'd', descricao_transacao);
 
+	RETURN QUERY
 	UPDATE clientes
 	SET saldo = cliente_novo_saldo
 	WHERE id = cliente_id
-	returning saldo, limite
-	INTO cliente_novo_saldo, cliente_limite;
-
-	RETURN query SELECT cliente_novo_saldo, cliente_limite;
+	RETURNING saldo;
 END;
 $BODY$;
 
 CREATE FUNCTION credito(cliente_id INTEGER, valor_transacao INTEGER, descricao_transacao TEXT)
-RETURNS SETOF resultado_transacao
+RETURNS SETOF INTEGER -- retorna saldo do cliente apos a transacao
 LANGUAGE plpgsql
 AS $BODY$
 	DECLARE cliente_novo_saldo INTEGER;
-	DECLARE cliente_limite INTEGER;
 BEGIN
 	INSERT INTO transacoes (cliente_id, valor, tipo, descricao)
 	VALUES (cliente_id, valor_transacao, 'c', descricao_transacao);
 
+	RETURN QUERY
 	UPDATE clientes
 	SET saldo = saldo + valor_transacao
 	WHERE id = cliente_id
-	returning saldo, limite INTO cliente_novo_saldo, cliente_limite;
-
-	RETURN query SELECT cliente_novo_saldo, cliente_limite;
+	RETURNING saldo;
 END;
 $BODY$;
 

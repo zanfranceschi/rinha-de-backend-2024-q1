@@ -8,8 +8,8 @@ services:
       - "4000:4000"
     environment:
       - PORT=4000
-      - POOL_SIZE=20
-      - THREADS=4
+      - POOL_SIZE=10
+      - THREAD_POOL_SIZE=5
       - CONNECTION_STRING=postgres://postgres:postgres@db:5432/rinha_backend
     depends_on:
       db:
@@ -17,25 +17,18 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.6"
-          memory: "100MB"
-    ulimits:
-      nproc: 65535
-      nofile:
-        soft: 65535
-        hard: 65535
+          cpus: "0.55"
+          memory: "50MB"
 
   api02:
     <<: *api
     hostname: api02
     ports:
       - "4001:4001"
-    depends_on:
-      - api01
     environment:
       - PORT=4001
-      - POOL_SIZE=20
-      - THREADS=4
+      - POOL_SIZE=10
+      - THREAD_POOL_SIZE=5
       - CONNECTION_STRING=postgres://postgres:postgres@db:5432/rinha_backend
 
   nginx:
@@ -52,12 +45,6 @@ services:
         limits:
           cpus: "0.1"
           memory: "50MB"
-    ulimits:
-      nproc: 65535
-      nofile:
-        soft: 65535
-        hard: 65535
-
 
   db:
     image: postgres:latest
@@ -71,16 +58,17 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.2"
-          memory: "300MB"
-    command: postgres -c max_connections=100 -c effective_io_concurrency=100
+          cpus: "0.3"
+          memory: "400MB"
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres -d rinha_backend" ]
-      interval: 5s
-      timeout: 6s
-      retries: 5
+      interval: 3s
+      timeout: 2s
+      retries: 10
 
 networks:
   default:

@@ -1,14 +1,14 @@
 # Submissão para Rinha de Backend, Segunda Edição: 2024/Q1 - Controle de Concorrência
 
 <div style="display:flex; vertical-align:middle; align-itens:center;">
-    <img src="https://upload.wikimedia.org/wikipedia/en/8/87/Caddy_2_lock_icon_and_wordmark_logo.svg" alt="logo caddy" height="80" width="auto" style="padding-right:30px;">
+    <img src="https://en.wikipedia.org/wiki/Nginx#/media/File:Nginx_logo.svg" alt="logo nginx" height="80" width="auto" style="padding-right:30px;">
     <img src="https://bun.sh/logo.svg" alt="logo bun" height="80" width="auto" style="padding-right:30px;">
     <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="logo Postgresql_elephant" height="80" width="auto" style="padding-right:30px;">
 </div>
 
 ## Stack
 
-- `Caddy` load balancer
+- `nginx` load balancer
 - `PostgreSQL` Database 
 - `Bun` javascript API runtime 
 

@@ -1,0 +1,84 @@
+version: "3.5"
+
+services:
+  api01: &api
+    # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
+    # publicamente acessível! Ex.: hub.docker.com
+    image: gateixeira/rdb24q1:latest
+    hostname: api01
+    environment:
+      - DB_HOST=db
+      - DB_USER=admin
+      - DB_PASSWORD=rdb24q1
+      - DB_NAME=rdb24q1
+      - DB_PORT=5432
+    
+    # Não é necessário expor qualquer porta além da porta do load balancer,
+    # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
+    # ao banco de dados na fase de desenvolvimento.
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "115MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api 
+    hostname: api02
+    ports:
+      - "8082:8080"
+ 
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.config:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+        # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "20MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=rdb24q1
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rdb24q1
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          # Note que a soma de todos os limites dos serviços
+          # aqui declarados é de 1.5 unidades de CPU e 550MB
+          # de memória. A distribuição feita aqui é apenas
+          # um exemplo – distribua como quiser.
+          cpus: "0.5"
+          memory: "300MB"
+
+# O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
+# A edição anterior se beneficiou do modo host pois o volume de requisições
+# era relativamente alto e a virtualização da rede se tornou um gargalo, mas
+# este modo é mais complexo de ser configurado. Fique à vontade para usar o
+# modo que quiser desde que não conflite com portas trivialmente usadas em um
+# SO.
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

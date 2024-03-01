@@ -1,0 +1,70 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: renatolfc/ferrugem:0.1
+    command: /app/rinha -d postgres://postgres:postgres@postgres/rinha --min-pool 4 --max-pool 4 
+    hostname: api01
+    ports:
+      - "9998:9999"
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "100MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "9997:9999"
+    networks:
+      default:
+        aliases:
+          - api02
+
+  nginx:
+    image: renatolfc/ferrugem:0.1
+    restart: always
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:1108"
+    command: ["/app/balanço"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "50MB"
+
+  postgres:
+    image: postgres:latest
+    hostname: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - type: tmpfs
+        target: /var/lib/postgresql/data
+    command: postgres -c checkpoint_timeout=1200 -c max_wal_size=32MB -c wal_writer_delay=600 -c wal_buffers=16MB -c log_min_messages='panic' -c log_min_messages='panic' -c log_min_error_statement='panic' -c synchronous_commit=off -c full_page_writes=0 -c max_connections=64 -c shared_buffers=64MB -c work_mem=8MB -c effective_cache_size=200MB -c autovacuum_vacuum_scale_factor=.5
+    healthcheck:                                     
+      test: ["CMD", "pg_isready", "--username", "postgres"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "300MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

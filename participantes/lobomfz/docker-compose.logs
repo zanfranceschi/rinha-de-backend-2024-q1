@@ -4,8 +4,8 @@
  Container lobomfz-db-1  Created
  Container lobomfz-api02-1  Creating
  Container lobomfz-api01-1  Creating
- Container lobomfz-api01-1  Created
  Container lobomfz-api02-1  Created
+ Container lobomfz-api01-1  Created
  Container lobomfz-nginx-1  Creating
  Container lobomfz-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -36,6 +36,8 @@ nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
 db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -43,12 +45,10 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-11 23:36:24.537 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-11 23:36:24.540 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-11 23:36:24.549 UTC [51] LOG:  database system was shut down at 2024-02-11 23:36:24 UTC
-db-1     | 2024-02-11 23:36:24.556 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 10:15:23.151 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 10:15:23.155 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 10:15:23.166 UTC [51] LOG:  database system was shut down at 2024-02-19 10:15:22 UTC
+db-1     | 2024-02-19 10:15:23.214 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -63,35 +63,35 @@ db-1     | CREATE INDEX
 db-1     | INSERT 0 5
 db-1     | 
 db-1     | 
-db-1     | 2024-02-11 23:36:25.035 UTC [48] LOG:  received fast shutdown request
-db-1     | waiting for server to shut down....2024-02-11 23:36:25.037 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-11 23:36:25.098 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-11 23:36:25.099 UTC [49] LOG:  shutting down
-db-1     | 2024-02-11 23:36:25.101 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-11 23:36:25.230 UTC [49] LOG:  checkpoint complete: wrote 943 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.094 s, sync=0.027 s, total=0.132 s; sync files=308, longest=0.004 s, average=0.001 s; distance=4299 kB, estimate=4299 kB; lsn=0/191D9E8, redo lsn=0/191D9E8
-db-1     | 2024-02-11 23:36:25.238 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down....2024-02-19 10:15:23.547 UTC [48] LOG:  received fast shutdown request
+db-1     | 2024-02-19 10:15:23.550 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-19 10:15:23.552 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-19 10:15:23.552 UTC [49] LOG:  shutting down
+db-1     | 2024-02-19 10:15:23.555 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 10:15:24.072 UTC [49] LOG:  checkpoint complete: wrote 943 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.412 s, sync=0.092 s, total=0.520 s; sync files=308, longest=0.063 s, average=0.001 s; distance=4299 kB, estimate=4299 kB; lsn=0/191D9E8, redo lsn=0/191D9E8
+db-1     | 2024-02-19 10:15:24.077 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-11 23:36:25.369 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-11 23:36:25.369 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-11 23:36:25.369 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-11 23:36:25.373 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-11 23:36:25.381 UTC [66] LOG:  database system was shut down at 2024-02-11 23:36:25 UTC
-db-1     | 2024-02-11 23:36:25.388 UTC [1] LOG:  database system is ready to accept connections
+db-1     | 2024-02-19 10:15:24.173 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 10:15:24.173 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 10:15:24.173 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 10:15:24.179 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 10:15:24.186 UTC [66] LOG:  database system was shut down at 2024-02-19 10:15:24 UTC
+db-1     | 2024-02-19 10:15:24.195 UTC [1] LOG:  database system is ready to accept connections
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api02-1 exited with code 0
-api02-1 exited with code 137
 api01-1 exited with code 0
 api01-1 exited with code 137
-db-1     | 2024-02-11 23:40:53.291 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-11 23:40:53.294 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-11 23:40:53.297 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-02-11 23:40:53.297 UTC [64] LOG:  shutting down
-db-1     | 2024-02-11 23:40:53.299 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-11 23:40:53.361 UTC [64] LOG:  checkpoint complete: wrote 910 buffers (5.6%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.042 s, sync=0.011 s, total=0.065 s; sync files=31, longest=0.006 s, average=0.001 s; distance=21636 kB, estimate=21636 kB; lsn=0/2E3EA08, redo lsn=0/2E3EA08
-db-1     | 2024-02-11 23:40:53.369 UTC [1] LOG:  database system is shut down
+api02-1 exited with code 0
+api02-1 exited with code 137
+db-1     | 2024-02-19 10:19:48.952 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-19 10:19:48.956 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-19 10:19:48.959 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-02-19 10:19:48.959 UTC [64] LOG:  shutting down
+db-1     | 2024-02-19 10:19:48.962 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 10:19:49.133 UTC [64] LOG:  checkpoint complete: wrote 930 buffers (5.7%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.014 s, sync=0.141 s, total=0.175 s; sync files=31, longest=0.133 s, average=0.005 s; distance=21406 kB, estimate=21406 kB; lsn=0/2E05570, redo lsn=0/2E05570
+db-1     | 2024-02-19 10:19:49.138 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0

@@ -2,8 +2,8 @@
  Network rinha-nginx-2024q1  Created
  Container gldmelo-db-1  Creating
  Container gldmelo-db-1  Created
- Container gldmelo-api01-1  Creating
  Container gldmelo-api02-1  Creating
+ Container gldmelo-api01-1  Creating
  Container gldmelo-api01-1  Created
  Container gldmelo-api02-1  Created
  Container gldmelo-nginx-1  Creating
@@ -26,24 +26,6 @@ db-1     | selecting default shared_buffers ... 128MB
 db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
-nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
-nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
-nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
-nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-api01-1  | info: Microsoft.Hosting.Lifetime[14]
-api01-1  |       Now listening on: http://[::]:8080
-api01-1  | info: Microsoft.Hosting.Lifetime[0]
-api01-1  |       Application started. Press Ctrl+C to shut down.
-api01-1  | info: Microsoft.Hosting.Lifetime[0]
-api01-1  |       Hosting environment: Production
-api01-1  | info: Microsoft.Hosting.Lifetime[0]
-api01-1  |       Content root path: /app
-db-1     | performing post-bootstrap initialization ... ok
 api02-1  | info: Microsoft.Hosting.Lifetime[14]
 api02-1  |       Now listening on: http://[::]:8080
 api02-1  | info: Microsoft.Hosting.Lifetime[0]
@@ -52,6 +34,24 @@ api02-1  | info: Microsoft.Hosting.Lifetime[0]
 api02-1  |       Hosting environment: Production
 api02-1  | info: Microsoft.Hosting.Lifetime[0]
 api02-1  |       Content root path: /app
+api01-1  | info: Microsoft.Hosting.Lifetime[14]
+api01-1  |       Now listening on: http://[::]:8080
+api01-1  | info: Microsoft.Hosting.Lifetime[0]
+api01-1  |       Application started. Press Ctrl+C to shut down.
+api01-1  | info: Microsoft.Hosting.Lifetime[0]
+api01-1  |       Hosting environment: Production
+api01-1  | info: Microsoft.Hosting.Lifetime[0]
+api01-1  |       Content root path: /app
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+db-1     | performing post-bootstrap initialization ... ok
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -61,10 +61,10 @@ db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-15 22:19:26.026 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-15 22:19:26.030 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-15 22:19:26.044 UTC [52] LOG:  database system was shut down at 2024-02-15 22:19:25 UTC
-db-1     | 2024-02-15 22:19:26.057 UTC [49] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 07:04:34.601 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 07:04:34.601 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 07:04:34.603 GMT [51] LOG:  database system was shut down at 2024-02-19 07:04:32 GMT
+db-1     | 2024-02-19 07:04:34.605 GMT [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -76,425 +76,42 @@ db-1     | CREATE TABLE
 db-1     | DO
 db-1     | CREATE FUNCTION
 db-1     | CREATE FUNCTION
+db-1     | CREATE INDEX
 db-1     | 
 db-1     | 
-db-1     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/postgresql.conf
-db-1     | 
-db-1     | 2024-02-15 22:19:26.378 UTC [49] LOG:  received fast shutdown request
-db-1     | waiting for server to shut down....2024-02-15 22:19:26.387 UTC [49] LOG:  aborting any active transactions
-db-1     | 2024-02-15 22:19:26.397 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-db-1     | 2024-02-15 22:19:26.397 UTC [50] LOG:  shutting down
-db-1     | 2024-02-15 22:19:26.404 UTC [50] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-15 22:19:26.709 UTC [50] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.224 s, sync=0.062 s, total=0.312 s; sync files=313, longest=0.011 s, average=0.001 s; distance=4299 kB, estimate=4299 kB; lsn=0/191D9A8, redo lsn=0/191D9A8
-db-1     | 2024-02-15 22:19:26.717 UTC [49] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-02-19 07:04:34.827 GMT [48] LOG:  received fast shutdown request
+db-1     | .2024-02-19 07:04:34.827 GMT [48] LOG:  aborting any active transactions
+db-1     | 2024-02-19 07:04:34.830 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-19 07:04:34.830 GMT [49] LOG:  shutting down
+db-1     | 2024-02-19 07:04:34.830 GMT [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 07:04:34.835 GMT [49] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4297 kB, estimate=4297 kB; lsn=0/191CDF0, redo lsn=0/191CDF0
+db-1     | 2024-02-19 07:04:34.839 GMT [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-15 22:19:26.814 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-15 22:19:26.814 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-15 22:19:26.814 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-15 22:19:26.819 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-15 22:19:26.826 UTC [67] LOG:  database system was shut down at 2024-02-15 22:19:26 UTC
-db-1     | 2024-02-15 22:19:26.833 UTC [1] LOG:  database system is ready to accept connections
-api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73C", Request id "0HN1EEGM3M73C:00000001": An unhandled exception was thrown by the application.
-api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api01-1  |       --- End of stack trace from previous location ---
-api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PK", Request id "0HN1EEGMUM4PK:00000001": An unhandled exception was thrown by the application.
-api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api02-1  |       --- End of stack trace from previous location ---
-api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73D", Request id "0HN1EEGM3M73D:00000001": An unhandled exception was thrown by the application.
-api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api01-1  |       --- End of stack trace from previous location ---
-api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PL", Request id "0HN1EEGMUM4PL:00000001": An unhandled exception was thrown by the application.
-api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api02-1  |       --- End of stack trace from previous location ---
-api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73E", Request id "0HN1EEGM3M73E:00000001": An unhandled exception was thrown by the application.
-api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api01-1  |       --- End of stack trace from previous location ---
-api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PM", Request id "0HN1EEGMUM4PM:00000001": An unhandled exception was thrown by the application.
-api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api02-1  |       --- End of stack trace from previous location ---
-api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73F", Request id "0HN1EEGM3M73F:00000001": An unhandled exception was thrown by the application.
-api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api01-1  |       --- End of stack trace from previous location ---
-api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PN", Request id "0HN1EEGMUM4PN:00000001": An unhandled exception was thrown by the application.
-api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api02-1  |       --- End of stack trace from previous location ---
-api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73G", Request id "0HN1EEGM3M73G:00000001": An unhandled exception was thrown by the application.
-api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api01-1  |       --- End of stack trace from previous location ---
-api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PO", Request id "0HN1EEGMUM4PO:00000001": An unhandled exception was thrown by the application.
-api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api02-1  |       --- End of stack trace from previous location ---
-api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73H", Request id "0HN1EEGM3M73H:00000001": An unhandled exception was thrown by the application.
-api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api01-1  |       --- End of stack trace from previous location ---
-api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PP", Request id "0HN1EEGMUM4PP:00000001": An unhandled exception was thrown by the application.
-api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api02-1  |       --- End of stack trace from previous location ---
-api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73I", Request id "0HN1EEGM3M73I:00000001": An unhandled exception was thrown by the application.
-api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api01-1  |       --- End of stack trace from previous location ---
-api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PQ", Request id "0HN1EEGMUM4PQ:00000001": An unhandled exception was thrown by the application.
-api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api02-1  |       --- End of stack trace from previous location ---
-api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73J", Request id "0HN1EEGM3M73J:00000001": An unhandled exception was thrown by the application.
-api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api01-1  |       --- End of stack trace from previous location ---
-api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PR", Request id "0HN1EEGMUM4PR:00000001": An unhandled exception was thrown by the application.
-api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api02-1  |       --- End of stack trace from previous location ---
-api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73K", Request id "0HN1EEGM3M73K:00000001": An unhandled exception was thrown by the application.
-api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api01-1  |       --- End of stack trace from previous location ---
-api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api02-1  |       Connection id "0HN1EEGMUM4PS", Request id "0HN1EEGMUM4PS:00000001": An unhandled exception was thrown by the application.
-api02-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api02-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api02-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api02-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api02-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api02-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api02-1  |       --- End of stack trace from previous location ---
-api02-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api02-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api02-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api01-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
-api01-1  |       Connection id "0HN1EEGM3M73L", Request id "0HN1EEGM3M73L:00000001": An unhandled exception was thrown by the application.
-api01-1  |       Npgsql.NpgsqlException (0x80004005): Failed to connect to 192.168.0.10:5432
-api01-1  |        ---> System.Net.Sockets.SocketException (113): Host is unreachable
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
-api01-1  |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
-api01-1  |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-api01-1  |          at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
-api01-1  |          at Program.<>c.<<<Main>$>b__0_2>d.MoveNext() in /src/RinhaBackendCrebito/Program.cs:line 65
-api01-1  |       --- End of stack trace from previous location ---
-api01-1  |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
-api01-1  |          at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
-api01-1  |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
-api02-1  | fail: Microsoft.AspNetCore.Server.Kestrel[13]
+db-1     | 2024-02-19 07:04:34.943 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 07:04:34.943 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 07:04:34.943 GMT [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 07:04:34.943 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 07:04:34.944 GMT [66] LOG:  database system was shut down at 2024-02-19 07:04:34 GMT
+db-1     | 2024-02-19 07:04:34.947 GMT [1] LOG:  database system is ready to accept connections
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api02-1  | info: Microsoft.Hosting.Lifetime[0]
+api02-1  |       Application is shutting down...
+api01-1  | info: Microsoft.Hosting.Lifetime[0]
+api01-1  |       Application is shutting down...
+api02-1 exited with code 0
+api02-1 exited with code 0
+api01-1 exited with code 0
+api01-1 exited with code 0
+db-1     | 2024-02-19 07:08:52.714 GMT [1] LOG:  received fast shutdown request
+db-1     | 2024-02-19 07:08:52.714 GMT [1] LOG:  aborting any active transactions
+db-1     | 2024-02-19 07:08:52.716 GMT [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-02-19 07:08:52.717 GMT [64] LOG:  shutting down
+db-1     | 2024-02-19 07:08:52.717 GMT [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 07:08:52.720 GMT [64] LOG:  checkpoint complete: wrote 861 buffers (5.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.001 s, total=0.004 s; sync files=0, longest=0.000 s, average=0.000 s; distance=1927 kB, estimate=1927 kB; lsn=0/1AFED98, redo lsn=0/1AFED98
+db-1     | 2024-02-19 07:08:52.724 GMT [1] LOG:  database system is shut down
+db-1 exited with code 0
