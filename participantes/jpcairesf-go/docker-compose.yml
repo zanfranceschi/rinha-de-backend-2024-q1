@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   postgres:
@@ -12,7 +12,7 @@ services:
     volumes:
       - ./script.sql:/docker-entrypoint-initdb.d/script.sql
     healthcheck:
-      test: [ "CMD", "pg_isready", "--username", "rinha" ]
+      test: ["CMD", "pg_isready", "--username", "rinha"]
       interval: 2s
       timeout: 5s
       retries: 5
@@ -21,46 +21,46 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.58"
+          cpus: "0.62"
           memory: "390MB"
 
   rinha1:
-   container_name: rinhago1
-   hostname: rinha1
-   image: jpcairesf/rinha-2024-q1-go:latest
-   network_mode: host
-   environment:
-     RINHA_PORT: 8081
-   pull_policy: always
-#   ports:
-#     - "8081:8080"
-   depends_on:
-     postgres:
-       condition: service_healthy
-   deploy:
-     resources:
-       limits:
-         cpus: "0.3"
-         memory: "70MB"
+    container_name: rinhago1
+    hostname: rinha1
+    image: jpcairesf/rinha-2024-q1-go:latest
+    network_mode: host
+    environment:
+      RINHA_PORT: 8081
+    pull_policy: always
+    #   ports:
+    #     - "8081:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.32"
+          memory: "70MB"
 
   rinha2:
-   container_name: rinhago2
-   hostname: rinha2
-   image: jpcairesf/rinha-2024-q1-go:latest
-   network_mode: host
-   environment:
-     RINHA_PORT: 8082
-   pull_policy: always
-#   ports:
-#     - "8082:8080"
-   depends_on:
-     postgres:
-       condition: service_healthy
-   deploy:
-     resources:
-       limits:
-         cpus: "0.3"
-         memory: "70MB"
+    container_name: rinhago2
+    hostname: rinha2
+    image: jpcairesf/rinha-2024-q1-go:latest
+    network_mode: host
+    environment:
+      RINHA_PORT: 8082
+    pull_policy: always
+    #   ports:
+    #     - "8082:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.32"
+          memory: "70MB"
 
   nginx:
     image: nginx:1.25.3-alpine
@@ -75,5 +75,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.22"
+          cpus: "0.24"
           memory: "20MB"
+
