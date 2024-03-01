@@ -9,10 +9,10 @@ services:
     image: ftathiago/blog-do-ft-rinha2024q1-aot
     hostname: api01
     environment: &env
-      ASPNETCORE_URLS: http://0.0.0.0:3001
+      ASPNETCORE_URLS: http://0.0.0.0:8080
       ConnectionStrings__Database: Host=db;Port=5432;Database=RinhaBackend;User Id=postgres;Password=123;Pooling=true;MinPoolSize=50;MaxPoolSize=150; Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
     ports:
-      - "3001:3001"
+      - "8080:8080"
     depends_on:
       - db
     restart: on-failure
@@ -27,9 +27,9 @@ services:
     hostname: api02
     environment:
       <<: *env
-      ASPNETCORE_URLS: http://*:3002
+      ASPNETCORE_URLS: http://*:8081
     ports:
-      - "3002:3002"      
+      - "8081:8081"     
 
   nginx:
     image: nginx:latest
