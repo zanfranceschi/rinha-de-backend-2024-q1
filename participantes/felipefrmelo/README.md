@@ -12,7 +12,7 @@ Tecnologias utilizadas:
 - `postgres` como banco de dados
 - `fastapi` para api
 
-- [repositório](https://github.com/felipefrmelo/rinha-de-backend-2024-q1)
+- [repositório](https://github.com/felipefrmelo/rinha-backend-q1)
 
 [Linkedin para Contato](https://www.linkedin.com/in/felipe-francisco-de-melo/)
 
