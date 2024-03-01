@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  1 21:38:02 UTC 2024** com **432** submissões.
+Atualizada **Fri Mar  1 21:50:39 UTC 2024** com **434** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -13,6 +13,7 @@ Atualizada **Fri Mar  1 21:38:02 UTC 2024** com **432** submissões.
 | [LuisKpBeta](./participantes/LuisKpBeta) | ok | 2 |
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
 | [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 3 |
+| [accerqueira-bash](./participantes/accerqueira-bash) | falha - [logs](./participantes/accerqueira-bash/docker-compose.logs) | -- |
 | [accerqueira-redbean-atw-down](./participantes/accerqueira-redbean-atw-down) | ok | 1 |
 | [acdesouza](./participantes/acdesouza) | ok | 30 |
 | [acerola](./participantes/acerola) | ok | 4 |
@@ -359,6 +360,7 @@ Atualizada **Fri Mar  1 21:38:02 UTC 2024** com **432** submissões.
 | [rdenadai_rust](./participantes/rdenadai_rust) | ok | 5 |
 | [recoba](./participantes/recoba) | ok | 2 |
 | [renan-norba](./participantes/renan-norba) | ok | 1 |
+| [renant](./participantes/renant) | ok | 1 |
 | [renatolfc-🦀](./participantes/renatolfc-🦀) | ok | 1 |
 | [reonardoleis](./participantes/reonardoleis) | ok | 1 |
 | [rhsobr-bun](./participantes/rhsobr-bun) | ok | 2 |
