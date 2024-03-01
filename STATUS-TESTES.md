@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  1 20:50:39 UTC 2024** com **427** submissões.
+Atualizada **Fri Mar  1 22:04:40 UTC 2024** com **434** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -13,6 +13,7 @@ Atualizada **Fri Mar  1 20:50:39 UTC 2024** com **427** submissões.
 | [LuisKpBeta](./participantes/LuisKpBeta) | ok | 2 |
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
 | [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 3 |
+| [accerqueira-bash](./participantes/accerqueira-bash) | falha - [logs](./participantes/accerqueira-bash/docker-compose.logs) | -- |
 | [accerqueira-redbean-atw-down](./participantes/accerqueira-redbean-atw-down) | ok | 1 |
 | [acdesouza](./participantes/acdesouza) | ok | 30 |
 | [acerola](./participantes/acerola) | ok | 4 |
@@ -39,7 +40,7 @@ Atualizada **Fri Mar  1 20:50:39 UTC 2024** com **427** submissões.
 | [antunesleo-python](./participantes/antunesleo-python) | ok | 4 |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | ok | 6 |
 | [arrudaricardo-02](./participantes/arrudaricardo-02) | ok | 2 |
-| [arthurqueiroz4](./participantes/arthurqueiroz4) | falha - [logs](./participantes/arthurqueiroz4/docker-compose.logs) | -- |
+| [arthurqueiroz4](./participantes/arthurqueiroz4) | ok | 2 |
 | [arthurzapparoli](./participantes/arthurzapparoli) | ok | 1 |
 | [asfernandes-cpp-haproxy-mongoose-firebird](./participantes/asfernandes-cpp-haproxy-mongoose-firebird) | ok | 1 |
 | [asfernandes-cpp-haproxy-mongoose-pgsql](./participantes/asfernandes-cpp-haproxy-mongoose-pgsql) | ok | 1 |
@@ -132,6 +133,7 @@ Atualizada **Fri Mar  1 20:50:39 UTC 2024** com **427** submissões.
 | [erickreis](./participantes/erickreis) | ok | 3 |
 | [eu_fountai](./participantes/eu_fountai) | ok | 2 |
 | [exemplo](./participantes/exemplo) | ok | 2 |
+| [fabianoflorentino](./participantes/fabianoflorentino) | ok | 7 |
 | [fabiokleis](./participantes/fabiokleis) | ok | 3 |
 | [fabionaspolini-sync](./participantes/fabionaspolini-sync) | ok | 1 |
 | [fabionaspolini](./participantes/fabionaspolini) | ok | 1 |
@@ -158,6 +160,9 @@ Atualizada **Fri Mar  1 20:50:39 UTC 2024** com **427** submissões.
 | [gabrielfmagalhaes](./participantes/gabrielfmagalhaes) | ok | 5 |
 | [gabrielluciano-vertx](./participantes/gabrielluciano-vertx) | ok | 1 |
 | [gasparbarancelli-h2-database](./participantes/gasparbarancelli-h2-database) | ok | 2 |
+| [gasparbarancelli-java-sem-framework](./participantes/gasparbarancelli-java-sem-framework) | ok | 1 |
+| [gasparbarancelli-nginx](./participantes/gasparbarancelli-nginx) | ok | 2 |
+| [gasparbarancelli-procedure](./participantes/gasparbarancelli-procedure) | ok | 1 |
 | [gasparbarancelli](./participantes/gasparbarancelli) | ok | 2 |
 | [gateixeira](./participantes/gateixeira) | ok | 4 |
 | [gavageovanni](./participantes/gavageovanni) | ok | 2 |
@@ -310,6 +315,7 @@ Atualizada **Fri Mar  1 20:50:39 UTC 2024** com **427** submissões.
 | [matheusleal](./participantes/matheusleal) | ok | 4 |
 | [matheuswilliam-java](./participantes/matheuswilliam-java) | ok | 2 |
 | [matheuswilliam](./participantes/matheuswilliam) | ok | 2 |
+| [maxwell-fs](./participantes/maxwell-fs) | ok | 0 |
 | [maxwell](./participantes/maxwell) | ok | 1 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [mgenteluci](./participantes/mgenteluci) | ok | 2 |
@@ -354,6 +360,7 @@ Atualizada **Fri Mar  1 20:50:39 UTC 2024** com **427** submissões.
 | [rdenadai_rust](./participantes/rdenadai_rust) | ok | 5 |
 | [recoba](./participantes/recoba) | ok | 2 |
 | [renan-norba](./participantes/renan-norba) | ok | 1 |
+| [renant](./participantes/renant) | ok | 1 |
 | [renatolfc-🦀](./participantes/renatolfc-🦀) | ok | 1 |
 | [reonardoleis](./participantes/reonardoleis) | ok | 1 |
 | [rhsobr-bun](./participantes/rhsobr-bun) | ok | 2 |
