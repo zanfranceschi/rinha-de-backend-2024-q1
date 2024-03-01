@@ -1,11 +1,12 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  1 22:25:40 UTC 2024** com **434** submissões.
+Atualizada **Fri Mar  1 22:34:00 UTC 2024** com **435** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
 | [1garo](./participantes/1garo) | ok | 5 |
+| [AlcivanLucas](./participantes/AlcivanLucas) | falha - [logs](./participantes/AlcivanLucas/docker-compose.logs) | -- |
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 5 |
 | [Fabricio-net8](./participantes/Fabricio-net8) | ok | 2 |
 | [FaelLima98](./participantes/FaelLima98) | ok | 5 |
