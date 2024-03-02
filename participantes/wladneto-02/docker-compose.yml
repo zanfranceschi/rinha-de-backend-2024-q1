@@ -15,12 +15,12 @@ services:
       - crebito-network
     depends_on:
       mongodb:
-        condition: service_healthy 
+        condition: service_healthy
     deploy:
       resources:
         limits:
           cpus: "0.40"
-          memory: "165MB"
+          memory: "180MB"
   
   api02:
     <<: *api
@@ -34,8 +34,7 @@ services:
       - DB_PORT=27017
 
   mongodb:
-    #image: mongo
-    image: mongo:7-jammy
+    image: mongo:latest
     restart: always
     command: mongod --quiet --logpath /dev/null
     environment:
@@ -47,19 +46,23 @@ services:
       - "27017:27017"
     expose:
       - "27017"
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
     networks:
       - crebito-network
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
       interval: 5s
-      timeout: 15s
+      timeout: 20s
       retries: 5
-      start_period: 15s
+      start_period: 20s
     deploy:
       resources:
         limits:
           cpus: "0.55"
-          memory: "200MB"
+          memory: "170MB"
 
   nginx:
     image: nginx:latest
