@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  2 13:45:20 UTC 2024** com **445** submissões.
+Atualizada **Sat Mar  2 13:59:46 UTC 2024** com **445** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -82,6 +82,7 @@ Atualizada **Sat Mar  2 13:45:20 UTC 2024** com **445** submissões.
 | [carijo-slim](./participantes/carijo-slim) | ok | 4 |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 1 |
 | [carlsonsantana-springboot](./participantes/carlsonsantana-springboot) | ok | 2 |
+| [casanje](./participantes/casanje) | falha - [logs](./participantes/casanje/docker-compose.logs) | -- |
 | [cassiano-manuelzinho-golang](./participantes/cassiano-manuelzinho-golang) | ok | 2 |
 | [cassiano-pedrinho-rust](./participantes/cassiano-pedrinho-rust) | ok | 2 |
 | [cesar-rodrigues](./participantes/cesar-rodrigues) | falha - [logs](./participantes/cesar-rodrigues/docker-compose.logs) | -- |
@@ -427,7 +428,7 @@ Atualizada **Sat Mar  2 13:45:20 UTC 2024** com **445** submissões.
 | [viniciusamc-golang](./participantes/viniciusamc-golang) | ok | 3 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [viniciusgferreira](./participantes/viniciusgferreira) | ok | 3 |
-| [vitor_weirich_java](./participantes/vitor_weirich_java) | falha - [logs](./participantes/vitor_weirich_java/docker-compose.logs) | -- |
+| [vitor_weirich_java](./participantes/vitor_weirich_java) | ok | 153 |
 | [vitorlacerda-dotnet](./participantes/vitorlacerda-dotnet) | ok | 15 |
 | [vitornorberto](./participantes/vitornorberto) | ok | 4 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
