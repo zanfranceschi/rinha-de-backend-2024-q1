@@ -14,6 +14,12 @@ Implementação usando o framework Qt
 - QSqlDatabase: para abstrair as conexões com o banco de dados
 - QtConcurrent: para lidar com concorrência no atendimento das requisições
 
+# Autor
+
+Daniel Vaz
+
+[github](https://github.com/ddanielvaz) - [twitter](https://twitter.com/daniel_vaz1986)
+
 # Agradecimentos
 
 Obrigado [@leandronsp](https://github.com/leandronsp), aprendi muito lendo, reusando e modificando a parte de infra.
