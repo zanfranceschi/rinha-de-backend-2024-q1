@@ -2,12 +2,13 @@ version: "3"
 ## run command: docker-compose --compatibility --file docker-compose-stress-test.yml up --force-recreate --buid
 services:
   app1: &app
-    image: docker.io/weirichvitor/java-rinha-2024-q1:latest
+    image: docker.io/weirichvitor/java-rinha-2024-q1-graalvm:latest
     hostname: app1
     expose:
       - "8080"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/postgres"
     ulimits:
@@ -18,8 +19,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.240"
-          memory: "176MB"
+          cpus: "0.230"
+          memory: "128MB"
   app2:
     <<: *app
     hostname: app2
@@ -33,6 +34,8 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - 5432:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
       interval: 5s
@@ -42,7 +45,7 @@ services:
       resources:
         limits:
           cpus: "1"
-          memory: "156MB"
+          memory: "252MB"
 
   nginx: # Load Balancer
     image: nginx:latest
@@ -61,5 +64,5 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.02"
-          memory: "32MB"
+          cpus: "0.04"
+          memory: "42MB"
