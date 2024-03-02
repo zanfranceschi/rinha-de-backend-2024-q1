@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  2 16:11:16 UTC 2024** com **446** submissões.
+Atualizada **Sat Mar  2 16:28:41 UTC 2024** com **447** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -14,7 +14,7 @@ Atualizada **Sat Mar  2 16:11:16 UTC 2024** com **446** submissões.
 | [LuisKpBeta](./participantes/LuisKpBeta) | ok | 2 |
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
 | [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 3 |
-| [accerqueira-bash](./participantes/accerqueira-bash) | falha - [logs](./participantes/accerqueira-bash/docker-compose.logs) | -- |
+| [accerqueira-bash](./participantes/accerqueira-bash) | ok | 1474 |
 | [accerqueira-redbean-atw-down](./participantes/accerqueira-redbean-atw-down) | ok | 1 |
 | [acdesouza](./participantes/acdesouza) | ok | 30 |
 | [acerola](./participantes/acerola) | ok | 4 |
@@ -123,6 +123,7 @@ Atualizada **Sat Mar  2 16:11:16 UTC 2024** com **446** submissões.
 | [dsinmsdj](./participantes/dsinmsdj) | ok | 2 |
 | [ecsbjunior-actix-rust](./participantes/ecsbjunior-actix-rust) | ok | 3 |
 | [ed1000](./participantes/ed1000) | ok | 2 |
+| [eddcp-nodejs](./participantes/eddcp-nodejs) | ok | 4 |
 | [edimarlnx](./participantes/edimarlnx) | ok | 4 |
 | [edubarbieri](./participantes/edubarbieri) | ok | 1 |
 | [eigr](./participantes/eigr) | ok | 0 |
