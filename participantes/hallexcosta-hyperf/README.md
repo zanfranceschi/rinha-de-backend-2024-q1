@@ -7,13 +7,13 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="logo postgres" width="200" height="auto">
 
 
-## Francisco Zanfranceschi
+## Hállex Costa
 Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `php` para api com o framework `hyperf`
 - [repositório da api](https://github.com/hallexcosta/rinha-backend-2024-hyperf)
 
-[@linkedin](https://linkedin.com/in/hallexcosta)
+[@linkedin](https://linkedin.com/in/hallexcosta)  
 [@website](https://hallexcosta.com)
 
