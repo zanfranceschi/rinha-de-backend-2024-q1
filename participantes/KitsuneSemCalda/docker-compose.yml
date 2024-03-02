@@ -5,6 +5,7 @@ services:
     image: docker.io/kitsunesemcalda/rinha-backend:latest
     hostname: api01
     privileged: true
+    restart: on-failure
     environment:
       - PORT=8081
       - DB_HOST=db
@@ -22,6 +23,7 @@ services:
   api02:
     <<: *api 
     hostname: api02
+    restart: on-failure
     privileged: true
     environment:
       - PORT=8082
@@ -32,6 +34,7 @@ services:
 
   nginx:
     image: nginx:latest
+    restart: on-failure
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf
     ports:
@@ -47,6 +50,7 @@ services:
   db:
     image: postgres:latest
     hostname: db
+    restart: on-failure
     privileged: true 
     environment:
       - POSTGRES_USER=postgres
