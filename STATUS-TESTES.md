@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  2 01:53:00 UTC 2024** com **438** submissões.
+Atualizada **Sat Mar  2 02:27:30 UTC 2024** com **439** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -200,6 +200,7 @@ Atualizada **Sat Mar  2 01:53:00 UTC 2024** com **438** submissões.
 | [gwoliveira-no-db-lock](./participantes/gwoliveira-no-db-lock) | ok | 4 |
 | [h4ad](./participantes/h4ad) | ok | 2 |
 | [halexv](./participantes/halexv) | falha - [logs](./participantes/halexv/docker-compose.logs) | -- |
+| [hallexcosta-hyperf](./participantes/hallexcosta-hyperf) | ok | 3 |
 | [heitor-ps](./participantes/heitor-ps) | ok | 2 |
 | [hendrikaraujo](./participantes/hendrikaraujo) | ok | 3 |
 | [henriqueccapozzi-django-01](./participantes/henriqueccapozzi-django-01) | ok | 1183 |
