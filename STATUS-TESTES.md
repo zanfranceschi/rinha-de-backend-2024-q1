@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  2 04:01:58 UTC 2024** com **439** submissões.
+Atualizada **Sat Mar  2 04:25:32 UTC 2024** com **443** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -134,6 +134,7 @@ Atualizada **Sat Mar  2 04:01:58 UTC 2024** com **439** submissões.
 | [erickreis](./participantes/erickreis) | ok | 3 |
 | [eu_fountai](./participantes/eu_fountai) | ok | 2 |
 | [exemplo](./participantes/exemplo) | ok | 2 |
+| [fabianoaono-java](./participantes/fabianoaono-java) | ok | 1 |
 | [fabianoflorentino](./participantes/fabianoflorentino) | ok | 7 |
 | [fabiokleis](./participantes/fabiokleis) | ok | 3 |
 | [fabionaspolini-sync](./participantes/fabionaspolini-sync) | ok | 1 |
@@ -218,7 +219,7 @@ Atualizada **Sat Mar  2 04:01:58 UTC 2024** com **439** submissões.
 | [italopussi](./participantes/italopussi) | ok | 2 |
 | [itujo-minimal-node-uws](./participantes/itujo-minimal-node-uws) | ok | 2 |
 | [itujo](./participantes/itujo) | ok | 7 |
-| [ives-samuel-powershell](./participantes/ives-samuel-powershell) | falha - [logs](./participantes/ives-samuel-powershell/docker-compose.logs) | -- |
+| [ives-samuel-powershell](./participantes/ives-samuel-powershell) | ok | 1421 |
 | [ivmello](./participantes/ivmello) | ok | 2 |
 | [jairoandre](./participantes/jairoandre) | ok | 312 |
 | [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 4 |
@@ -396,6 +397,7 @@ Atualizada **Sat Mar  2 04:01:58 UTC 2024** com **439** submissões.
 | [santannaf_webflux](./participantes/santannaf_webflux) | ok | 3 |
 | [silmar-alberti-franken-php](./participantes/silmar-alberti-franken-php) | ok | 2 |
 | [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
+| [stefannovasky-kitajs](./participantes/stefannovasky-kitajs) | ok | 2 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [tagliatti](./participantes/tagliatti) | ok | 4 |
@@ -423,6 +425,7 @@ Atualizada **Sat Mar  2 04:01:58 UTC 2024** com **439** submissões.
 | [viniciusamc-golang](./participantes/viniciusamc-golang) | ok | 3 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [viniciusgferreira](./participantes/viniciusgferreira) | ok | 3 |
+| [vitor_weirich_java](./participantes/vitor_weirich_java) | falha - [logs](./participantes/vitor_weirich_java/docker-compose.logs) | -- |
 | [vitorlacerda-dotnet](./participantes/vitorlacerda-dotnet) | ok | 15 |
 | [vitornorberto](./participantes/vitornorberto) | ok | 4 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
@@ -442,6 +445,7 @@ Atualizada **Sat Mar  2 04:01:58 UTC 2024** com **439** submissões.
 | [yMarceloMaia](./participantes/yMarceloMaia) | ok | 9 |
 | [yanpgabriel](./participantes/yanpgabriel) | ok | 4 |
 | [yanpitangui](./participantes/yanpitangui) | ok | 1 |
+| [ydotnet](./participantes/ydotnet) | ok | 3 |
 | [ygorcarmo](./participantes/ygorcarmo) | ok | 8 |
 | [zan-clojure-01](./participantes/zan-clojure-01) | ok | 2 |
 | [zan-dotnet](./participantes/zan-dotnet) | ok | 2 |
