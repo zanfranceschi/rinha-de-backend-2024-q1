@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
+Atualizada **Sat Mar  2 22:32:48 UTC 2024** com **454** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -276,6 +276,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [lipe1994_dotnet](./participantes/lipe1994_dotnet) | ok | 29 |
 | [lipe1994_drogon](./participantes/lipe1994_drogon) | ok | 2 |
 | [lipe1994_spring](./participantes/lipe1994_spring) | ok | 1 |
+| [lm-bunsh](./participantes/lm-bunsh) | ok | 2 |
 | [lmtani](./participantes/lmtani) | ok | 1 |
 | [lobomfz-rust](./participantes/lobomfz-rust) | ok | 4 |
 | [lobomfz](./participantes/lobomfz) | ok | 5 |
@@ -419,6 +420,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [thiper01-fastapi](./participantes/thiper01-fastapi) | ok | 2395 |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
+| [tiagoguerreirodev-go](./participantes/tiagoguerreirodev-go) | ok | 1 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
 | [tonico](./participantes/tonico) | ok | 80 |
 | [tortuga](./participantes/tortuga) | ok | 4 |
