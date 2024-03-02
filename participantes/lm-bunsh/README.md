@@ -2,19 +2,6 @@
 
 ### Criador: Leonardo machado
 
-## Serviços utilizados
-
-## [NGINX](https://www.nginx.com)
-<img src="https://1.bp.blogspot.com/-7BqYl5lhvBg/Wh-p4mABnYI/AAAAAAAABGI/nhlUdr-AvaQ4M4P8yRyEwWbZ9R4ulEdQgCLcBGAs/s1600/NGINX_logo_rgb-01.png" alt="drawing" width="300"/>
-
-## [Bun.sh](https://bun.sh)
-<div style="flex-direction: row;">
-    <img src="https://bun.sh/logo.svg" alt="drawing" width="200"/>
-</div>
-
-## [SQLite 3](https://www.sqlite.org/)
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SQLite370.svg/2560px-SQLite370.svg.png" alt="drawing" width="300"/>
-
 Tecnologias utilizadas para a criação desse projeto
 
 -   `nginx` como load balancer
