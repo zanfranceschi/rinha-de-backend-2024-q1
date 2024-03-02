@@ -6,5 +6,5 @@ Submissão feita com:
 
 - `nginx` como load balancer
 - `postgres` como banco de dados
-- `go` para api
-- [repositório da api](https://github.com/ygorcarmo/transactions-poc)
+- `.net` para api
+- [repositório da api](https://github.com/ygorcarmo/dotnet-transaction-poc)
