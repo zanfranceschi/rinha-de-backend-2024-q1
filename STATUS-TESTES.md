@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  2 21:44:59 UTC 2024** com **447** submissões.
+Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -33,6 +33,7 @@ Atualizada **Sat Mar  2 21:44:59 UTC 2024** com **447** submissões.
 | [andersonfernandes-ruby](./participantes/andersonfernandes-ruby) | ok | 5 |
 | [andersonhqds-node](./participantes/andersonhqds-node) | ok | 3 |
 | [andre-gbi-aspnet](./participantes/andre-gbi-aspnet) | ok | 1 |
+| [andre1999lopes](./participantes/andre1999lopes) | ok | 13 |
 | [andreluizsgf](./participantes/andreluizsgf) | falha - [logs](./participantes/andreluizsgf/docker-compose.logs) | -- |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
@@ -102,6 +103,7 @@ Atualizada **Sat Mar  2 21:44:59 UTC 2024** com **447** submissões.
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [david-silva](./participantes/david-silva) | ok | 2 |
 | [ddanielsantos](./participantes/ddanielsantos) | ok | 3 |
+| [ddanielvaz-cpp-qt](./participantes/ddanielvaz-cpp-qt) | ok | 4 |
 | [ddanielvaz](./participantes/ddanielvaz) | ok | 4 |
 | [delzin](./participantes/delzin) | ok | 0 |
 | [deno-cassiogangrel](./participantes/deno-cassiogangrel) | ok | 4 |
@@ -135,6 +137,7 @@ Atualizada **Sat Mar  2 21:44:59 UTC 2024** com **447** submissões.
 | [engylemure](./participantes/engylemure) | ok | 3 |
 | [erickmarx](./participantes/erickmarx) | ok | 2 |
 | [erickreis](./participantes/erickreis) | ok | 3 |
+| [eriksilva](./participantes/eriksilva) | ok | 1 |
 | [eu_fountai](./participantes/eu_fountai) | ok | 2 |
 | [exemplo](./participantes/exemplo) | ok | 2 |
 | [fabianoaono-java](./participantes/fabianoaono-java) | ok | 1 |
@@ -231,6 +234,7 @@ Atualizada **Sat Mar  2 21:44:59 UTC 2024** com **447** submissões.
 | [jfilipedias](./participantes/jfilipedias) | ok | 4 |
 | [jhonnyboy](./participantes/jhonnyboy) | ok | 1 |
 | [jjeanjacques10](./participantes/jjeanjacques10) | ok | 2 |
+| [jnariai](./participantes/jnariai) | falha - [logs](./participantes/jnariai/docker-compose.logs) | -- |
 | [joaopaulosg](./participantes/joaopaulosg) | ok | 2 |
 | [joaopmerlin](./participantes/joaopmerlin) | ok | 3 |
 | [johnpgr_vlang](./participantes/johnpgr_vlang) | ok | 2 |
@@ -311,6 +315,7 @@ Atualizada **Sat Mar  2 21:44:59 UTC 2024** com **447** submissões.
 | [marcusadriano-go](./participantes/marcusadriano-go) | ok | 4 |
 | [marcusantunius](./participantes/marcusantunius) | ok | 1 |
 | [marcusdacoregio](./participantes/marcusdacoregio) | ok | 7 |
+| [marcusxavierr](./participantes/marcusxavierr) | ok | 3 |
 | [mari-souza](./participantes/mari-souza) | falha - [logs](./participantes/mari-souza/docker-compose.logs) | -- |
 | [marincor](./participantes/marincor) | ok | 8274 |
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
@@ -371,7 +376,7 @@ Atualizada **Sat Mar  2 21:44:59 UTC 2024** com **447** submissões.
 | [recoba](./participantes/recoba) | ok | 2 |
 | [renan-norba](./participantes/renan-norba) | ok | 1 |
 | [renant](./participantes/renant) | ok | 1 |
-| [renanvy-crystal](./participantes/renanvy-crystal) | ok | 3 |
+| [renanvy-crystal](./participantes/renanvy-crystal) | ok | 2 |
 | [renatolfc-🦀](./participantes/renatolfc-🦀) | ok | 1 |
 | [reonardoleis](./participantes/reonardoleis) | ok | 1 |
 | [rhsobr-bun](./participantes/rhsobr-bun) | ok | 2 |
