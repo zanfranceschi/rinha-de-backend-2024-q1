@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  2 14:41:56 UTC 2024** com **445** submissões.
+Atualizada **Sat Mar  2 14:53:59 UTC 2024** com **446** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -28,6 +28,7 @@ Atualizada **Sat Mar  2 14:41:56 UTC 2024** com **445** submissões.
 | [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
 | [allissonazevedo-golang](./participantes/allissonazevedo-golang) | ok | 1 |
 | [allissonazevedo-python](./participantes/allissonazevedo-python) | ok | 2 |
+| [andarilhoz](./participantes/andarilhoz) | ok | 2 |
 | [anderkonzen](./participantes/anderkonzen) | ok | 1 |
 | [andersonfernandes-ruby](./participantes/andersonfernandes-ruby) | ok | 5 |
 | [andersonhqds-node](./participantes/andersonhqds-node) | ok | 3 |
