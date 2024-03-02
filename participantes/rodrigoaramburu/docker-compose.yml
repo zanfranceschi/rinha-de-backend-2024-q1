@@ -1,0 +1,81 @@
+version: "3.5"
+
+services: 
+  api1:
+    image: rodrigoaramburu/rinha-backend-swoole
+    container_name: 'rinha_api1'
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=rinha_db
+      - DB_USER=root
+      - DB_PASS=rinha
+      - DB_NAME=rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "100MB"
+
+  api2:
+    image: rodrigoaramburu/rinha-backend-swoole
+    container_name: 'rinha_api2'
+    ports:
+      - '8001:8000'
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=rinha_db
+      - DB_USER=root
+      - DB_PASS=rinha
+      - DB_NAME=rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "100MB"
+
+  nginx:
+    image: 'nginx:alpine'
+    container_name: "rinha_nginx"
+    working_dir: '/app'
+    depends_on:
+      - api1
+      - api2
+    volumes:
+      - './:/application'
+      - './docker/nginx/nginx.conf:/etc/nginx/nginx.conf'
+    ports:
+      - 9999:80
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "100MB"
+  
+  db: 
+    image: postgres
+    container_name: 'rinha_db'
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: rinha
+      POSTGRES_DB: rinha
+    ports:
+      - 5432:5432
+    volumes:
+      - ./sql/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+      - ./sql/dml.sql:/docker-entrypoint-initdb.d/dml.sql
+      - ./docker/postgres/postgres.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.13"
+          memory: "190MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-2024q1

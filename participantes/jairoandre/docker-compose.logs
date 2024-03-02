@@ -1,1 +1,500 @@
-service "pgadmin" depends on unknown service "postgres"
+ Network rinha-nginx-2024q1  Creating
+ Network rinha-nginx-2024q1  Created
+ Container jairoandre-db-1  Creating
+ Container jairoandre-db-1  Created
+ Container jairoandre-api01-1  Creating
+ Container jairoandre-api02-1  Creating
+ Container jairoandre-api01-1  Created
+ Container jairoandre-api02-1  Created
+ Container jairoandre-nginx-1  Creating
+ Container jairoandre-nginx-1  Created
+Attaching to api01-1, api02-1, db-1, nginx-1
+db-1     | The files belonging to this database system will be owned by user "postgres".
+db-1     | This user must also own the server process.
+db-1     | 
+db-1     | The database cluster will be initialized with locale "en_US.utf8".
+db-1     | The default database encoding has accordingly been set to "UTF8".
+db-1     | The default text search configuration will be set to "english".
+db-1     | 
+db-1     | Data page checksums are disabled.
+db-1     | 
+db-1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1     | creating subdirectories ... ok
+db-1     | selecting dynamic shared memory implementation ... posix
+api01-1  | Trying to connect to the database: postgres://root:root@db:5432/rb2024
+api02-1  | Trying to connect to the database: postgres://root:root@db:5432/rb2024
+db-1     | selecting default max_connections ... 100
+db-1     | selecting default shared_buffers ... 128MB
+db-1     | selecting default time zone ... Etc/UTC
+db-1     | creating configuration files ... ok
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db-1     | running bootstrap script ... ok
+db-1     | performing post-bootstrap initialization ... ok
+nginx-1  | 2024/03/01 01:59:30 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.144.3:9999/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/01 01:59:30 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.144.4:9999/clientes/1/extrato", host: "localhost:9999"
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | You can change this by editing pg_hba.conf or using the option -A, or
+db-1     | --auth-local and --auth-host, the next time you run initdb.
+db-1     | syncing data to disk ... ok
+db-1     | 
+db-1     | 
+db-1     | Success. You can now start the database server using:
+db-1     | 
+db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1     | 
+db-1     | waiting for server to start....2024-03-01 01:59:30.729 UTC [49] LOG:  starting PostgreSQL 13.14 (Debian 13.14-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-01 01:59:30.732 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-01 01:59:30.826 UTC [50] LOG:  database system was shut down at 2024-03-01 01:59:29 UTC
+db-1     | 2024-03-01 01:59:30.832 UTC [49] LOG:  database system is ready to accept connections
+db-1     |  done
+db-1     | server started
+db-1     | CREATE DATABASE
+db-1     | 
+db-1     | 
+db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/ddl.sql
+db-1     | CREATE TABLE
+db-1     | CREATE TABLE
+db-1     | INSERT 0 5
+db-1     | 
+db-1     | 
+db-1     | 2024-03-01 01:59:32.018 UTC [49] LOG:  received fast shutdown request
+db-1     | waiting for server to shut down....2024-03-01 01:59:32.021 UTC [49] LOG:  aborting any active transactions
+db-1     | 2024-03-01 01:59:32.023 UTC [49] LOG:  background worker "logical replication launcher" (PID 56) exited with exit code 1
+db-1     | 2024-03-01 01:59:32.023 UTC [51] LOG:  shutting down
+nginx-1  | 2024/03/01 01:59:32 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-1     | 2024-03-01 01:59:32.121 UTC [49] LOG:  database system is shut down
+db-1     |  done
+db-1     | server stopped
+db-1     | 
+db-1     | PostgreSQL init process complete; ready for start up.
+db-1     | 
+db-1     | 2024-03-01 01:59:32.241 UTC [1] LOG:  starting PostgreSQL 13.14 (Debian 13.14-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-01 01:59:32.241 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-03-01 01:59:32.241 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-03-01 01:59:32.317 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-01 01:59:32.326 UTC [66] LOG:  database system was shut down at 2024-03-01 01:59:32 UTC
+db-1     | 2024-03-01 01:59:32.332 UTC [1] LOG:  database system is ready to accept connections
+nginx-1  | 2024/03/01 01:59:34 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/01 01:59:36 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1  | [2024-03-01T01:59:36Z INFO  actix_server::builder] starting 1 workers
+api01-1  | [2024-03-01T01:59:36Z INFO  actix_server::server] Actix runtime found; starting in Actix runtime
+api02-1  | [2024-03-01T01:59:36Z INFO  actix_server::builder] starting 1 workers
+api02-1  | [2024-03-01T01:59:36Z INFO  actix_server::server] Actix runtime found; starting in Actix runtime
+nginx-1  | 2024/03/01 01:59:38 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/01 01:59:40 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | [2024-03-01T01:59:42Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 114 "-" "curl/7.81.0" 0.004919
+api02-1  | [2024-03-01T01:59:42Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 114 "-" "curl/7.81.0" 0.000538
+api01-1  | [2024-03-01T01:59:46Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.005818
+api02-1  | [2024-03-01T01:59:46Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.011410
+api01-1  | [2024-03-01T01:59:46Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.013135
+api02-1  | [2024-03-01T01:59:46Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.024622
+api02-1  | [2024-03-01T01:59:46Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.006668
+api02-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.115222
+api01-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.097919
+api01-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.295670
+api01-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.296206
+api02-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.323148
+api01-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.283340
+api02-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.305421
+api01-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.394676
+api02-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.418777
+api02-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.380849
+api02-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.421632
+api02-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.408086
+api01-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.408499
+api02-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.391310
+api02-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.413412
+api02-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.426548
+api02-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.397662
+api02-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.399466
+api01-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.476466
+api01-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.478827
+api01-1  | [2024-03-01T01:59:47Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 1005 "-" "Agente do Caos - 2024/Q1" 0.001391
+api02-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.004482
+api02-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.007819
+api02-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.008163
+api01-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.012381
+api02-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.034367
+api01-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.035481
+api01-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.037021
+api01-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.042085
+api01-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.043156
+api02-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.047657
+api01-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.048660
+api02-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.051414
+api02-1  | [2024-03-01T01:59:48Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.049908
+api02-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.136477
+api02-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.138843
+api02-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.137205
+api01-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.141337
+api02-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.140249
+api02-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.142849
+api01-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.145692
+api01-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.147724
+api01-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.151743
+api02-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.151169
+api01-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.153306
+api01-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 27 "-" "Agente do Caos - 2024/Q1" 0.154581
+api01-1  | [2024-03-01T01:59:49Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 1003 "-" "Agente do Caos - 2024/Q1" 0.001441
+api02-1  | no rows returned by a query that expected to return at least one row
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/6/extrato HTTP/1.0" 404 16 "-" "Agente do Caos - 2024/Q1" 0.001201
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/3/extrato HTTP/1.0" 200 115 "-" "Agente do Caos - 2024/Q1" 0.001008
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/2/extrato HTTP/1.0" 200 113 "-" "Agente do Caos - 2024/Q1" 0.001876
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/4/extrato HTTP/1.0" 200 116 "-" "Agente do Caos - 2024/Q1" 0.001689
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 1003 "-" "Agente do Caos - 2024/Q1" 0.003871
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/5/extrato HTTP/1.0" 200 114 "-" "Agente do Caos - 2024/Q1" 0.005461
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 26 "-" "Agente do Caos - 2024/Q1" 0.002705
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.003161
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.005705
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 27 "-" "Agente do Caos - 2024/Q1" 0.004701
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 27 "-" "Agente do Caos - 2024/Q1" 0.003629
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 26 "-" "Agente do Caos - 2024/Q1" 0.003744
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.004627
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 27 "-" "Agente do Caos - 2024/Q1" 0.003037
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 27 "-" "Agente do Caos - 2024/Q1" 0.003014
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.003509
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/2/extrato HTTP/1.0" 200 283 "-" "Agente do Caos - 2024/Q1" 0.000744
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/4/extrato HTTP/1.0" 200 286 "-" "Agente do Caos - 2024/Q1" 0.001620
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/3/extrato HTTP/1.0" 200 285 "-" "Agente do Caos - 2024/Q1" 0.001364
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/5/extrato HTTP/1.0" 200 284 "-" "Agente do Caos - 2024/Q1" 0.013280
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 996 "-" "Agente do Caos - 2024/Q1" 0.013519
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 28 "-" "Agente do Caos - 2024/Q1" 0.007159
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.007996
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 26 "-" "Agente do Caos - 2024/Q1" 0.008731
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 27 "-" "Agente do Caos - 2024/Q1" 0.002330
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 27 "-" "Agente do Caos - 2024/Q1" 0.002500
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/5/extrato HTTP/1.0" 200 370 "-" "Agente do Caos - 2024/Q1" 0.001614
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/2/extrato HTTP/1.0" 200 369 "-" "Agente do Caos - 2024/Q1" 0.001683
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/2/extrato HTTP/1.0" 200 369 "-" "Agente do Caos - 2024/Q1" 0.001609
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/5/extrato HTTP/1.0" 200 370 "-" "Agente do Caos - 2024/Q1" 0.001792
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/5/extrato HTTP/1.0" 200 370 "-" "Agente do Caos - 2024/Q1" 0.002952
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 993 "-" "Agente do Caos - 2024/Q1" 0.003854
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/5/extrato HTTP/1.0" 200 370 "-" "Agente do Caos - 2024/Q1" 0.005486
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/4/extrato HTTP/1.0" 200 372 "-" "Agente do Caos - 2024/Q1" 0.002007
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/4/extrato HTTP/1.0" 200 372 "-" "Agente do Caos - 2024/Q1" 0.001719
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/2/extrato HTTP/1.0" 200 369 "-" "Agente do Caos - 2024/Q1" 0.001774
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/2/extrato HTTP/1.0" 200 369 "-" "Agente do Caos - 2024/Q1" 0.002032
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/3/extrato HTTP/1.0" 200 371 "-" "Agente do Caos - 2024/Q1" 0.003341
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/3/extrato HTTP/1.0" 200 371 "-" "Agente do Caos - 2024/Q1" 0.006328
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/4/extrato HTTP/1.0" 200 372 "-" "Agente do Caos - 2024/Q1" 0.006493
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 400 92 "-" "Agente do Caos - 2024/Q1" 0.000064
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 400 92 "-" "Agente do Caos - 2024/Q1" 0.000042
+api02-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 422 17 "-" "Agente do Caos - 2024/Q1" 0.000035
+api01-1  | [2024-03-01T01:59:50Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 422 17 "-" "Agente do Caos - 2024/Q1" 0.000034
+db-1     | 2024-03-01 01:59:51.014 UTC [75] ERROR:  value too long for type character varying(10)
+db-1     | 2024-03-01 01:59:51.014 UTC [75] STATEMENT:  INSERT INTO transactions (client_id, amount, transaction_type, details) VALUES ($1, $2, $3, $4)
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 422 21 "-" "Agente do Caos - 2024/Q1" 0.057075
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/4/extrato HTTP/1.0" 200 372 "-" "Agente do Caos - 2024/Q1" 0.073848
+db-1     | 2024-03-01 01:59:51.016 UTC [90] ERROR:  value too long for type character varying(10)
+db-1     | 2024-03-01 01:59:51.016 UTC [90] STATEMENT:  INSERT INTO transactions (client_id, amount, transaction_type, details) VALUES ($1, $2, $3, $4)
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/3/extrato HTTP/1.0" 200 371 "-" "Agente do Caos - 2024/Q1" 0.075585
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 993 "-" "Agente do Caos - 2024/Q1" 0.080522
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 422 21 "-" "Agente do Caos - 2024/Q1" 0.056918
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 993 "-" "Agente do Caos - 2024/Q1" 0.081001
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 993 "-" "Agente do Caos - 2024/Q1" 0.081038
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/3/extrato HTTP/1.0" 200 371 "-" "Agente do Caos - 2024/Q1" 0.076186
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 422 24 "-" "Agente do Caos - 2024/Q1" 0.000049
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 422 24 "-" "Agente do Caos - 2024/Q1" 0.000041
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 400 92 "-" "Agente do Caos - 2024/Q1" 0.000067
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 400 92 "-" "Agente do Caos - 2024/Q1" 0.000051
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 422 24 "-" "Agente do Caos - 2024/Q1" 0.000035
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 422 24 "-" "Agente do Caos - 2024/Q1" 0.000034
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 400 92 "-" "Agente do Caos - 2024/Q1" 0.000042
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 422 17 "-" "Agente do Caos - 2024/Q1" 0.000035
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 422 17 "-" "Agente do Caos - 2024/Q1" 0.000035
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 422 17 "-" "Agente do Caos - 2024/Q1" 0.000036
+db-1     | 2024-03-01 01:59:51.029 UTC [86] ERROR:  value too long for type character varying(10)
+db-1     | 2024-03-01 01:59:51.029 UTC [86] STATEMENT:  INSERT INTO transactions (client_id, amount, transaction_type, details) VALUES ($1, $2, $3, $4)
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 422 21 "-" "Agente do Caos - 2024/Q1" 0.000901
+db-1     | 2024-03-01 01:59:51.031 UTC [88] ERROR:  value too long for type character varying(10)
+db-1     | 2024-03-01 01:59:51.031 UTC [88] STATEMENT:  INSERT INTO transactions (client_id, amount, transaction_type, details) VALUES ($1, $2, $3, $4)
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 422 21 "-" "Agente do Caos - 2024/Q1" 0.000981
+db-1     | 2024-03-01 01:59:51.032 UTC [83] ERROR:  value too long for type character varying(10)
+db-1     | 2024-03-01 01:59:51.032 UTC [83] STATEMENT:  INSERT INTO transactions (client_id, amount, transaction_type, details) VALUES ($1, $2, $3, $4)
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 422 24 "-" "Agente do Caos - 2024/Q1" 0.000035
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 422 21 "-" "Agente do Caos - 2024/Q1" 0.000926
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 422 24 "-" "Agente do Caos - 2024/Q1" 0.000034
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 422 24 "-" "Agente do Caos - 2024/Q1" 0.000035
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 422 24 "-" "Agente do Caos - 2024/Q1" 0.000033
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 422 24 "-" "Agente do Caos - 2024/Q1" 0.000035
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 422 24 "-" "Agente do Caos - 2024/Q1" 0.000034
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/5/extrato HTTP/1.0" 200 370 "-" "Agente do Caos - 2024/Q1" 0.001613
+api02-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003147
+api01-1  | [2024-03-01T01:59:51Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.003321
+api02-1  | [2024-03-01T01:59:52Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/3/extrato HTTP/1.0" 200 466 "-" "Agente do Caos - 2024/Q1" 0.001894
+api02-1  | [2024-03-01T01:59:52Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 30 "-" "Agente do Caos - 2024/Q1" 0.002289
+api01-1  | [2024-03-01T01:59:52Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003567
+api01-1  | [2024-03-01T01:59:53Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002377
+api02-1  | [2024-03-01T01:59:53Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 30 "-" "Agente do Caos - 2024/Q1" 0.002679
+api01-1  | [2024-03-01T01:59:53Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003733
+api02-1  | [2024-03-01T01:59:53Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002144
+api01-1  | [2024-03-01T01:59:53Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/4/extrato HTTP/1.0" 200 469 "-" "Agente do Caos - 2024/Q1" 0.001107
+api02-1  | [2024-03-01T01:59:53Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 30 "-" "Agente do Caos - 2024/Q1" 0.003010
+api01-1  | [2024-03-01T01:59:53Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003229
+api02-1  | [2024-03-01T01:59:54Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002584
+api01-1  | [2024-03-01T01:59:54Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 30 "-" "Agente do Caos - 2024/Q1" 0.002221
+api02-1  | [2024-03-01T01:59:54Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002268
+api01-1  | [2024-03-01T01:59:54Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 30 "-" "Agente do Caos - 2024/Q1" 0.002900
+api02-1  | [2024-03-01T01:59:54Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003978
+api01-1  | [2024-03-01T01:59:54Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002404
+api02-1  | [2024-03-01T01:59:54Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002429
+api01-1  | [2024-03-01T01:59:54Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002294
+api02-1  | [2024-03-01T01:59:54Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/3/extrato HTTP/1.0" 200 837 "-" "Agente do Caos - 2024/Q1" 0.000859
+api01-1  | [2024-03-01T01:59:54Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.003074
+api02-1  | [2024-03-01T01:59:54Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.004781
+api01-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002137
+api02-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002379
+api01-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002201
+api02-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002270
+api01-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002082
+api02-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002086
+api01-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002085
+api02-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002317
+api01-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002264
+api02-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/4/extrato HTTP/1.0" 200 934 "-" "Agente do Caos - 2024/Q1" 0.001195
+api01-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.003158
+api02-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 29 "-" "Agente do Caos - 2024/Q1" 0.003686
+api01-1  | [2024-03-01T01:59:55Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002326
+api02-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002566
+api01-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002853
+api02-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002276
+api01-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002740
+api02-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002037
+api01-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002107
+api02-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002155
+api01-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002489
+api02-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002338
+api01-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002167
+api02-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002264
+api01-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/5/extrato HTTP/1.0" 200 1024 "-" "Agente do Caos - 2024/Q1" 0.001210
+api01-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002345
+api02-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.003817
+api02-1  | [2024-03-01T01:59:56Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002448
+api01-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002255
+api02-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002165
+api01-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002178
+api02-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.001966
+api01-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002251
+api02-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.001909
+api01-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/5/extrato HTTP/1.0" 200 1033 "-" "Agente do Caos - 2024/Q1" 0.001311
+api02-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002343
+api01-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002016
+api02-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002090
+api01-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002084
+api02-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002239
+api01-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002511
+api02-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002210
+api01-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002541
+api01-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/3/extrato HTTP/1.0" 200 1047 "-" "Agente do Caos - 2024/Q1" 0.001118
+api02-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002317
+api02-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.003652
+api01-1  | [2024-03-01T01:59:57Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002167
+api02-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002356
+api01-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002320
+api02-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002404
+api01-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002399
+api02-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002291
+api01-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002547
+api02-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002461
+api01-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002416
+api02-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002601
+api01-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.001999
+api02-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002418
+api01-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002143
+api02-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.001955
+api01-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002123
+api02-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002109
+api01-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.001917
+api02-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.001931
+api02-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/5/extrato HTTP/1.0" 200 1048 "-" "Agente do Caos - 2024/Q1" 0.001059
+api01-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002366
+api01-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003761
+api02-1  | [2024-03-01T01:59:58Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002201
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.001996
+api02-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.001914
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002437
+api02-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002145
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002018
+api02-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002355
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002033
+api02-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.001896
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002046
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 1048 "-" "Agente do Caos - 2024/Q1" 0.001076
+api02-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002176
+api02-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.001933
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002154
+api02-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.001938
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002005
+api02-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002196
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002652
+api02-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002023
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002126
+api02-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002097
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002432
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 1048 "-" "Agente do Caos - 2024/Q1" 0.001470
+api02-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002423
+api02-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002840
+api01-1  | [2024-03-01T01:59:59Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002027
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002283
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.003757
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.003572
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002392
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003767
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002226
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002327
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.009835
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002445
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/2/extrato HTTP/1.0" 200 1046 "-" "Agente do Caos - 2024/Q1" 0.001029
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002355
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002620
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002085
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.003310
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003356
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002267
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002658
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.003840
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002111
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002978
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.003347
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002058
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 1048 "-" "Agente do Caos - 2024/Q1" 0.001279
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002362
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.003877
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002448
+api02-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002143
+api01-1  | [2024-03-01T02:00:00Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.001832
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002249
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002297
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002275
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002488
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002622
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.001897
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002053
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002176
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002138
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002017
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 30 "-" "Agente do Caos - 2024/Q1" 0.001950
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002507
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002099
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002077
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002249
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002208
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002122
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002014
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.001905
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002007
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002040
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002709
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 30 "-" "Agente do Caos - 2024/Q1" 0.001798
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002350
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/1/extrato HTTP/1.0" 200 1048 "-" "Agente do Caos - 2024/Q1" 0.001141
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002544
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002568
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002274
+api02-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002283
+api01-1  | [2024-03-01T02:00:01Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.003528
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002107
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002411
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002384
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002189
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002467
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003652
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002505
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002366
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.003621
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002236
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/4/extrato HTTP/1.0" 200 1049 "-" "Agente do Caos - 2024/Q1" 0.000824
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002635
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.004389
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002408
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002771
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002740
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.003053
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.003733
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.005196
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003393
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002917
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.004134
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002488
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.004130
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.004109
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002887
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/5/extrato HTTP/1.0" 200 1044 "-" "Agente do Caos - 2024/Q1" 0.001759
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.003553
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.004155
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.004210
+api02-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002772
+api01-1  | [2024-03-01T02:00:02Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002062
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002651
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002273
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002319
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002332
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002152
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002197
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002327
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002196
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002168
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002250
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002021
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002204
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/4/extrato HTTP/1.0" 200 1050 "-" "Agente do Caos - 2024/Q1" 0.000913
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002854
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003436
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002189
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002180
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002038
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.041596
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.013055
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002284
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002043
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002604
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002029
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.001947
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002177
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002289
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002133
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.001835
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002130
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/2/extrato HTTP/1.0" 200 1046 "-" "Agente do Caos - 2024/Q1" 0.001110
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002703
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003577
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002387
+api02-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002492
+api01-1  | [2024-03-01T02:00:03Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002465
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002247
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002195
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003648
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002319
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002524
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.003848
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002271
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002268
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.003417
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002051
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002327
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003913
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002421
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "GET /clientes/3/extrato HTTP/1.0" 200 1048 "-" "Agente do Caos - 2024/Q1" 0.001292
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002315
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.003705
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002573
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002463
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002675
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002138
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002436
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.003453
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/1/transacoes HTTP/1.0" 200 32 "-" "Agente do Caos - 2024/Q1" 0.002497
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/4/transacoes HTTP/1.0" 200 34 "-" "Agente do Caos - 2024/Q1" 0.002568
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/5/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.003598
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.002145
+api01-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/3/transacoes HTTP/1.0" 200 33 "-" "Agente do Caos - 2024/Q1" 0.002530
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 200 31 "-" "Agente do Caos - 2024/Q1" 0.003516
+api02-1  | [2024-03-01T02:00:04Z INFO  actix_web::middleware::logger] 192.168.144.5 "POST /clientes/2/transacoes HTTP/1.0" 422 13 "-" "Agente do Caos - 2024/Q1" 0.000447

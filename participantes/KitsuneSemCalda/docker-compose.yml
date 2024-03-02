@@ -1,0 +1,73 @@
+version: '3.5'
+
+services:
+  api01: &api
+    image: docker.io/kitsunesemcalda/rinha-backend:latest
+    hostname: api01
+    privileged: true
+    restart: on-failure
+    environment:
+      - PORT=8081
+      - DB_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rinha
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "100MB"
+  
+  api02:
+    <<: *api 
+    hostname: api02
+    restart: on-failure
+    privileged: true
+    environment:
+      - PORT=8082
+      - DB_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rinha
+
+  nginx:
+    image: nginx:latest
+    restart: on-failure
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "9999:9999"
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "20MB"
+  db:
+    image: postgres:latest
+    hostname: db
+    restart: on-failure
+    privileged: true 
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./config/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./config/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits: 
+          cpus: "0.3"
+          memory: "330MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

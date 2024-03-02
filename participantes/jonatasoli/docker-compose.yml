@@ -2,10 +2,11 @@ version: "3.8"
 
 services:
   api1: &app1
-    image: jonatasoli/rinha-q1-2024-fastapi:v1
+    image: jonatasoli/rinha-q1-2024-fastapi:v2
     hostname: api1
     network_mode: host
-    entrypoint: 'poetry run uvicorn src.main:main --host 0.0.0.0 --port 8000 --workers 1 --log-level critical'
+    entrypoint: 'poetry run gunicorn src.main:main --bind 0.0.0.0:8000 --worker-class uvicorn.workers.UvicornWorker --workers 1 --log-level critical'
+
     environment:
       PORT: 8000
       DATABASE_URL: postgres://rinha:rinha@localhost:5432/rinha
@@ -18,12 +19,12 @@ services:
       resources:
         limits:
           cpus: "0.45"
-          memory: "165MB"
+          memory: "170MB"
 
   api2:
     <<: *app1
     hostname: api2
-    entrypoint: 'poetry run uvicorn src.main:main --host 0.0.0.0 --port 8001 --workers 1 --log-level critical'
+    entrypoint: 'poetry run gunicorn src.main:main --bind 0.0.0.0:8001 --worker-class uvicorn.workers.UvicornWorker --workers 1 --log-level critical'
     environment:
       PORT: 8001
       DATABASE_URL: postgres://rinha:rinha@localhost:5432/rinha
@@ -43,7 +44,7 @@ services:
       resources:
         limits:
           cpus: "0.10"
-          memory: "40MB"
+          memory: "50MB"
 
   db:
     image: docker.io/postgres:16
@@ -61,4 +62,4 @@ services:
       resources:
         limits:
           cpus: "0.5"
-          memory: "180MB"
+          memory: "160MB"

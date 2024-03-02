@@ -1,17 +1,11 @@
 version: "3.8"
 
-x-build: &default-build
-  context: .
-  dockerfile: Dockerfile
-
 services:
   host1: &api
-    build: *default-build
-    env_file: .env
     image: isaquealves/zebrito:latest
     hostname: host1
     environment:
-      - DB_HOSTNAME=${DATABASE_HOST}
+      - DB_HOSTNAME=db
     ports:
       - "8081:8080"
     depends_on:
@@ -21,14 +15,13 @@ services:
       resources:
         limits:
           cpus: "0.20"
-          memory: "60MB"
+          memory: "70MB"
 
   host2:
     <<: *api
-    build: *default-build
     hostname: host2
     environment:
-      - DB_HOSTNAME=${DATABASE_HOST}
+      - DB_HOSTNAME=db
     ports:
       - "8082:8080"
 
@@ -45,28 +38,28 @@ services:
       resources:
         limits:
           cpus: "0.30"
-          memory: "70MB"
+          memory: "80MB"
   db:
     image: postgres:latest
     hostname: db
     environment:
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
-      - POSTGRES_USER=${DATABASE_USER}
-      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_PASSWORD=default
+      - POSTGRES_USER=user
+      - POSTGRES_DB=rinha
     ports:
       - "5432:5432"
     volumes:
       - ./config/postgres.conf:/etc/postgresql.conf
-      - ./scripts/init.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/script.sql
     command: postgres -c config_file=/etc/postgresql.conf
     healthcheck:
       interval: 3s
-      test: pg_isready -U ${DATABASE_USER} -d rinha
+      test: pg_isready -U user -d rinha
     deploy:
       resources:
         limits:
           cpus: "0.8"
-          memory: "310MB"
+          memory: "320MB"
 
 
 networks:

@@ -1,0 +1,65 @@
+version: '3.9'
+name: 'rinha2-jonathanperis-xgh'
+
+services:
+  webapi1: &webapi1
+    image: jonathanperis/rinha2-back-end-bora-dale-xgh:latest
+    hostname: webapi1
+    container_name: webapi-1
+    depends_on: 
+      - db
+    restart: always      
+    environment:
+      ConnectionStrings__DefaultConnection: Host=db;Username=postgres;Password=postgres;Database=rinha;No Reset On Close=true;Max Auto Prepare=10;Auto Prepare Min Usages=1;Pooling=true;Maximum Pool Size=50;
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "200MB"
+  
+  webapi2:
+    <<: *webapi1
+    hostname: webapi2
+    container_name: webapi-2
+
+  db:
+    image: postgres
+    hostname: db
+    container_name: db-rinha
+    restart: always
+    ports:
+      - "5432:5432"        
+    volumes:
+      - ./conf/rinha.dump.sql:/docker-entrypoint-initdb.d/rinha.dump.sql:ro
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "130MB"
+    command: postgres -c max_connections=150
+
+  nginx:
+    image: nginx
+    hostname: nginx
+    container_name: nginx-rinha
+    volumes:
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on: 
+      - webapi1
+      - webapi2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "20MB"
+
+networks: 
+  default:
+    driver: bridge
+    name: network-bora-dale-xgh

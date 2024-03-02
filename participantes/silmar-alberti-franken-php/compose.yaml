@@ -1,29 +1,35 @@
 version: '3'
 services:
   php-1: &php
-    image: silmaralberti/rinha-frankenphp:latest
+    image: silmaralberti/rinha-frankenphp:1.2
+    network_mode: host
     deploy:
       resources:
         limits:
           cpus: "0.36"
           memory: "150MB"
     restart: unless-stopped
-    ports:
-      - target: 80
-        protocol: tcp
+    environment:
+      DATABASE_URL: "postgresql://rinha:rinha-2024@127.0.0.1:5432/rinha?serverVersion=16&charset=utf8&persistent=true"
+      LISTEN_PORT: 8001
 
   php-2:
     <<: *php
+    environment:
+      DATABASE_URL: "postgresql://rinha:rinha-2024@127.0.0.1:5432/rinha?serverVersion=16&charset=utf8&persistent=true"
+      LISTEN_PORT: 8002
 
-  ngnix:
-    image: nginx:stable-alpine3.17
+
+  haproxy:
+    image: haproxy:2.9-alpine
+    network_mode: host
     deploy:
       resources:
         limits:
           cpus: "0.17"
           memory: "50MB"
     volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/haproxy/:/usr/local/etc/haproxy/:ro
     depends_on:
       - php-1
       - php-2
@@ -32,6 +38,7 @@ services:
 
   database:
     image: postgres:16-alpine
+    network_mode: host
     restart: unless-stopped
     deploy:
       resources:
@@ -47,7 +54,3 @@ services:
       - ./docker/postgresql/postgres.conf:/etc/postgresql.conf:ro
       - ./docker/postgresql/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
       
-networks:
-  default:
-    driver: bridge
-    name: rinha-nginx-2024q1

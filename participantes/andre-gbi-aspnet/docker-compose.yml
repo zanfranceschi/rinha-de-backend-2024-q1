@@ -13,7 +13,7 @@ services:
       resources:
         limits:
           cpus: "0.4"
-          memory: "120MB"
+          memory: "110MB"
     network_mode: host
 
 
@@ -48,10 +48,16 @@ services:
       POSTGRES_DB: db_rinha
     volumes:
       - ./script.sql:/docker-entrypoint-initdb.d/script.sql
-    command: 'postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c max_connections=1000 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off' 
+    command: 'postgres -c max_connections=100 -c log_min_error_statement=panic -c log_min_duration_statement=-1 -c log_min_duration_sample=-1 -c log_min_messages=panic -c synchronous_commit=off -c fsync=off -c listen_addresses="*"' 
     network_mode: host
     deploy:
       resources:
         limits:
           cpus: "0.5"
-          memory: "290MB"  
+          memory: "310MB"  
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "rinha", "--port", "5432"]
+      interval: 3s
+      timeout: 2s
+      retries: 10
+      start_period: 3s
