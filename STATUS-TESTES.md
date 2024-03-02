@@ -1,11 +1,12 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  1 21:50:39 UTC 2024** com **434** submissões.
+Atualizada **Sat Mar  2 03:09:32 UTC 2024** com **439** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
 | [1garo](./participantes/1garo) | ok | 5 |
+| [AlcivanLucas](./participantes/AlcivanLucas) | falha - [logs](./participantes/AlcivanLucas/docker-compose.logs) | -- |
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 5 |
 | [Fabricio-net8](./participantes/Fabricio-net8) | ok | 2 |
 | [FaelLima98](./participantes/FaelLima98) | ok | 5 |
@@ -189,6 +190,7 @@ Atualizada **Fri Mar  1 21:50:39 UTC 2024** com **434** submissões.
 | [gmrms](./participantes/gmrms) | ok | 2 |
 | [grilario](./participantes/grilario) | ok | 6 |
 | [guaracy-nim](./participantes/guaracy-nim) | ok | 1 |
+| [gui9394](./participantes/gui9394) | ok | 4 |
 | [guihbc](./participantes/guihbc) | ok | 277 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
 | [gustavonovaes-go](./participantes/gustavonovaes-go) | ok | 2 |
@@ -198,6 +200,7 @@ Atualizada **Fri Mar  1 21:50:39 UTC 2024** com **434** submissões.
 | [gwoliveira-no-db-lock](./participantes/gwoliveira-no-db-lock) | ok | 4 |
 | [h4ad](./participantes/h4ad) | ok | 2 |
 | [halexv](./participantes/halexv) | falha - [logs](./participantes/halexv/docker-compose.logs) | -- |
+| [hallexcosta-hyperf](./participantes/hallexcosta-hyperf) | ok | 3 |
 | [heitor-ps](./participantes/heitor-ps) | ok | 2 |
 | [hendrikaraujo](./participantes/hendrikaraujo) | ok | 3 |
 | [henriqueccapozzi-django-01](./participantes/henriqueccapozzi-django-01) | ok | 1183 |
@@ -215,6 +218,7 @@ Atualizada **Fri Mar  1 21:50:39 UTC 2024** com **434** submissões.
 | [italopussi](./participantes/italopussi) | ok | 2 |
 | [itujo-minimal-node-uws](./participantes/itujo-minimal-node-uws) | ok | 2 |
 | [itujo](./participantes/itujo) | ok | 7 |
+| [ives-samuel-powershell](./participantes/ives-samuel-powershell) | falha - [logs](./participantes/ives-samuel-powershell/docker-compose.logs) | -- |
 | [ivmello](./participantes/ivmello) | ok | 2 |
 | [jairoandre](./participantes/jairoandre) | ok | 312 |
 | [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 4 |
@@ -349,6 +353,7 @@ Atualizada **Fri Mar  1 21:50:39 UTC 2024** com **434** submissões.
 | [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
 | [rafaelpadovezi-mongo](./participantes/rafaelpadovezi-mongo) | ok | 2 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
+| [rafaelrcamargo](./participantes/rafaelrcamargo) | falha - [logs](./participantes/rafaelrcamargo/docker-compose.logs) | -- |
 | [rafaeltorquato-saitama](./participantes/rafaeltorquato-saitama) | ok | 1 |
 | [raiane-dev](./participantes/raiane-dev) | ok | 1 |
 | [raissadev](./participantes/raissadev) | ok | 2 |
