@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  2 04:46:42 UTC 2024** com **443** submissões.
+Atualizada **Sat Mar  2 05:02:59 UTC 2024** com **445** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -320,6 +320,7 @@ Atualizada **Sat Mar  2 04:46:42 UTC 2024** com **443** submissões.
 | [matheusleal](./participantes/matheusleal) | ok | 4 |
 | [matheuswilliam-java](./participantes/matheuswilliam-java) | ok | 2 |
 | [matheuswilliam](./participantes/matheuswilliam) | ok | 2 |
+| [mauriciorosa-net8](./participantes/mauriciorosa-net8) | ok | 2 |
 | [maxwell-fs](./participantes/maxwell-fs) | ok | 0 |
 | [maxwell](./participantes/maxwell) | ok | 1 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
@@ -367,6 +368,7 @@ Atualizada **Sat Mar  2 04:46:42 UTC 2024** com **443** submissões.
 | [recoba](./participantes/recoba) | ok | 2 |
 | [renan-norba](./participantes/renan-norba) | ok | 1 |
 | [renant](./participantes/renant) | ok | 1 |
+| [renanvy-crystal](./participantes/renanvy-crystal) | ok | 3 |
 | [renatolfc-🦀](./participantes/renatolfc-🦀) | ok | 1 |
 | [reonardoleis](./participantes/reonardoleis) | ok | 1 |
 | [rhsobr-bun](./participantes/rhsobr-bun) | ok | 2 |
