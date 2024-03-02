@@ -2,10 +2,10 @@
  Network rafaelpadovezi_default  Created
  Container rafaelpadovezi-db-1  Creating
  Container rafaelpadovezi-db-1  Created
- Container rafaelpadovezi-api2-1  Creating
  Container rafaelpadovezi-api1-1  Creating
- Container rafaelpadovezi-api1-1  Created
+ Container rafaelpadovezi-api2-1  Creating
  Container rafaelpadovezi-api2-1  Created
+ Container rafaelpadovezi-api1-1  Created
  Container rafaelpadovezi-nginx-1  Creating
  Container rafaelpadovezi-nginx-1  Created
 Attaching to api1-1, api2-1, db-1, nginx-1
@@ -35,23 +35,9 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-api1-1   | info: Microsoft.Hosting.Lifetime[14]
-api1-1   |       Now listening on: http://[::]:8080
-api1-1   | info: Microsoft.Hosting.Lifetime[0]
-api1-1   |       Application started. Press Ctrl+C to shut down.
-api1-1   | info: Microsoft.Hosting.Lifetime[0]
-api1-1   |       Hosting environment: Production
-api1-1   | info: Microsoft.Hosting.Lifetime[0]
-api1-1   |       Content root path: /app
-api2-1   | info: Microsoft.Hosting.Lifetime[14]
-api2-1   |       Now listening on: http://[::]:8080
-api2-1   | info: Microsoft.Hosting.Lifetime[0]
-api2-1   |       Application started. Press Ctrl+C to shut down.
-api2-1   | info: Microsoft.Hosting.Lifetime[0]
-api2-1   |       Hosting environment: Production
-api2-1   | info: Microsoft.Hosting.Lifetime[0]
-api2-1   |       Content root path: /app
 db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -59,12 +45,10 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-12 02:58:37.748 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-12 02:58:37.762 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-12 02:58:37.785 UTC [51] LOG:  database system was shut down at 2024-02-12 02:58:37 UTC
-db-1     | 2024-02-12 02:58:37.805 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 15:28:08.523 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 15:28:08.526 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 15:28:08.535 UTC [51] LOG:  database system was shut down at 2024-02-19 15:28:07 UTC
+db-1     | 2024-02-19 15:28:08.542 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -111,390 +95,55 @@ db-1     | CREATE INDEX
 db-1     | ALTER TABLE
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-12 02:58:38.309 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-02-12 02:58:38.314 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-12 02:58:38.317 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-12 02:58:38.317 UTC [49] LOG:  shutting down
-db-1     | 2024-02-12 02:58:38.324 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-12 02:58:38.629 UTC [49] LOG:  checkpoint complete: wrote 934 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.236 s, sync=0.044 s, total=0.313 s; sync files=310, longest=0.014 s, average=0.001 s; distance=4300 kB, estimate=4300 kB; lsn=0/191DCB8, redo lsn=0/191DCB8
-db-1     | 2024-02-12 02:58:38.639 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-02-19 15:28:08.883 UTC [48] LOG:  received fast shutdown request
+db-1     | .2024-02-19 15:28:08.886 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-19 15:28:08.888 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-19 15:28:08.915 UTC [49] LOG:  shutting down
+db-1     | 2024-02-19 15:28:08.918 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 15:28:09.389 UTC [49] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.282 s, sync=0.180 s, total=0.475 s; sync files=310, longest=0.156 s, average=0.001 s; distance=4301 kB, estimate=4301 kB; lsn=0/191E100, redo lsn=0/191E100
+db-1     | 2024-02-19 15:28:09.394 UTC [48] LOG:  database system is shut down
+api2-1   | info: Microsoft.Hosting.Lifetime[14]
+api2-1   |       Now listening on: http://[::]:8080
+api2-1   | info: Microsoft.Hosting.Lifetime[0]
+api2-1   |       Application started. Press Ctrl+C to shut down.
+api2-1   | info: Microsoft.Hosting.Lifetime[0]
+api2-1   |       Hosting environment: Production
+api2-1   | info: Microsoft.Hosting.Lifetime[0]
+api2-1   |       Content root path: /app
+api1-1   | info: Microsoft.Hosting.Lifetime[14]
+api1-1   |       Now listening on: http://[::]:8080
+api1-1   | info: Microsoft.Hosting.Lifetime[0]
+api1-1   |       Application started. Press Ctrl+C to shut down.
+api1-1   | info: Microsoft.Hosting.Lifetime[0]
+api1-1   |       Hosting environment: Production
+api1-1   | info: Microsoft.Hosting.Lifetime[0]
+api1-1   |       Content root path: /app
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-12 02:58:38.768 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-12 02:58:38.768 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-12 02:58:38.768 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-12 02:58:38.803 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-12 02:58:38.829 UTC [66] LOG:  database system was shut down at 2024-02-12 02:58:38 UTC
-db-1     | 2024-02-12 02:58:38.841 UTC [1] LOG:  database system is ready to accept connections
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:45 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:46 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
-nginx-1  | 2024/02/12 02:59:47 [alert] 29#29: 256 worker_connections are not enough
+db-1     | 2024-02-19 15:28:09.511 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 15:28:09.511 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 15:28:09.511 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 15:28:09.517 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 15:28:09.524 UTC [66] LOG:  database system was shut down at 2024-02-19 15:28:09 UTC
+db-1     | 2024-02-19 15:28:09.532 UTC [1] LOG:  database system is ready to accept connections
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api1-1   | info: Microsoft.Hosting.Lifetime[0]
+api1-1   |       Application is shutting down...
+api2-1   | info: Microsoft.Hosting.Lifetime[0]
+api2-1   |       Application is shutting down...
+api1-1 exited with code 0
+api1-1 exited with code 0
+api2-1 exited with code 0
+api2-1 exited with code 0
+db-1     | 2024-02-19 15:32:26.918 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-19 15:32:26.924 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-19 15:32:26.926 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-02-19 15:32:26.927 UTC [64] LOG:  shutting down
+db-1     | 2024-02-19 15:32:26.930 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 15:32:27.085 UTC [64] LOG:  checkpoint complete: wrote 689 buffers (4.2%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.012 s, sync=0.117 s, total=0.159 s; sync files=31, longest=0.109 s, average=0.004 s; distance=19075 kB, estimate=19075 kB; lsn=0/2BBEDA8, redo lsn=0/2BBEDA8
+db-1     | 2024-02-19 15:32:27.089 UTC [1] LOG:  database system is shut down
+db-1 exited with code 0

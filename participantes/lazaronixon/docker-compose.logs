@@ -20,33 +20,12 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1  | 2024/02/12 16:59:55 [crit] 29#29: *1 connect() to unix:/rails/tmp/sockets/api01.sock failed (2: No such file or directory) while connecting to upstream, client: 172.28.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/rails/tmp/sockets/api01.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/12 16:59:55 [crit] 29#29: *1 connect() to unix:/rails/tmp/sockets/api02.sock failed (2: No such file or directory) while connecting to upstream, client: 172.28.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/rails/tmp/sockets/api02.sock:/clientes/1/extrato", host: "localhost:9999"
-api02-1  | bin/rails aborted!
-api02-1  | ActiveRecord::StatementInvalid: SQLite3::BusyException: database is locked (ActiveRecord::StatementInvalid)
-api02-1  | /rails/config/initializers/sqlite3.rb:4:in `configure_connection'
-api02-1  | 
-api02-1  | Caused by:
-api02-1  | SQLite3::BusyException: database is locked (SQLite3::BusyException)
-api02-1  | /rails/config/initializers/sqlite3.rb:4:in `configure_connection'
-api02-1  | Tasks: TOP => db:prepare
-api02-1  | (See full trace by running task with --trace)
-nginx-1  | 2024/02/12 16:59:57 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.28.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | => Booting Puma
-api02-1  | => Rails 7.2.0.alpha application starting in production 
-api02-1  | => Run `bin/rails server --help` for more startup options
 api01-1  | => Booting Puma
 api01-1  | => Rails 7.2.0.alpha application starting in production 
 api01-1  | => Run `bin/rails server --help` for more startup options
-nginx-1  | 2024/02/12 16:59:59 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.28.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | Puma starting in single mode...
-api02-1  | * Puma version: 6.4.2 (ruby 3.3.0-p0) ("The Eagle of Durango")
-api02-1  | *  Min threads: 5
-api02-1  | *  Max threads: 5
-api02-1  | *  Environment: production
-api02-1  | *          PID: 1
-api02-1  | * Listening on unix:///rails/tmp/sockets/api02.sock
-api02-1  | Use Ctrl-C to stop
+api02-1  | => Booting Puma
+api02-1  | => Rails 7.2.0.alpha application starting in production 
+api02-1  | => Run `bin/rails server --help` for more startup options
 api01-1  | Puma starting in single mode...
 api01-1  | * Puma version: 6.4.2 (ruby 3.3.0-p0) ("The Eagle of Durango")
 api01-1  | *  Min threads: 5
@@ -55,19 +34,24 @@ api01-1  | *  Environment: production
 api01-1  | *          PID: 1
 api01-1  | * Listening on unix:///rails/tmp/sockets/api01.sock
 api01-1  | Use Ctrl-C to stop
-nginx-1  | 2024/02/12 17:00:01 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.28.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/12 17:00:03 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.28.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/12 17:00:05 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.28.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | E, [2024-02-12T17:00:19.626723 #1] ERROR -- :   
+api02-1  | Puma starting in single mode...
+api02-1  | * Puma version: 6.4.2 (ruby 3.3.0-p0) ("The Eagle of Durango")
+api02-1  | *  Min threads: 5
+api02-1  | *  Max threads: 5
+api02-1  | *  Environment: production
+api02-1  | *          PID: 1
+api02-1  | * Listening on unix:///rails/tmp/sockets/api02.sock
+api02-1  | Use Ctrl-C to stop
+api01-1  | E, [2024-02-19T09:48:08.868515 #1] ERROR -- :   
 api01-1  | ActiveRecord::RecordNotFound (Couldn't find Cliente with 'id'=6):
 api01-1  |   
 api01-1  | app/controllers/extratos_controller.rb:3:in `show'
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api02-1  | - Gracefully stopping, waiting for requests to finish
 api01-1  | - Gracefully stopping, waiting for requests to finish
-api02-1  | Exiting
 api01-1  | Exiting
-api02-1 exited with code 0
-api02-1 exited with code 1
+api02-1  | - Gracefully stopping, waiting for requests to finish
+api02-1  | Exiting
 api01-1 exited with code 0
+api01-1 exited with code 1
+api02-1 exited with code 0

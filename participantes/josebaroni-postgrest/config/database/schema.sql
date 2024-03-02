@@ -69,7 +69,7 @@ IF _client_id > 5 THEN
     RAISE sqlstate 'PT404';
 END IF;
 
-SELECT account_limit, balance INTO _account_limit, _account_balance FROM clients WHERE id = _client_id;
+SELECT account_limit, balance INTO _account_limit, _account_balance FROM clients WHERE id = _client_id FOR UPDATE;
 
 IF _operation = 'c' THEN
     _account_new_balance := _account_balance + _amount;

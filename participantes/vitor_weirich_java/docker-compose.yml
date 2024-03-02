@@ -1,0 +1,68 @@
+version: "3"
+## run command: docker-compose --compatibility --file docker-compose-stress-test.yml up --force-recreate --buid
+services:
+  app1: &app
+    image: docker.io/weirichvitor/java-rinha-2024-q1-graalvm:latest
+    hostname: app1
+    expose:
+      - "8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/postgres"
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.230"
+          memory: "128MB"
+  app2:
+    <<: *app
+    hostname: app2
+
+  postgres:
+    image: postgres:latest
+    command: "postgres -c max_connections=200 -c shared_buffers=512MB -c effective_cache_size=1536MB -c maintenance_work_mem=128MB -c checkpoint_completion_target=0.9 -c wal_buffers=16MB -c default_statistics_target=100 -c random_page_cost=1.1 -c effective_io_concurrency=200 -c work_mem=1310kB -c huge_pages=off -c min_wal_size=1GB -c max_wal_size=4GB"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "252MB"
+
+  nginx: # Load Balancer
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app1
+      - app2
+    ports:
+      - "9999:9999"
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.04"
+          memory: "42MB"

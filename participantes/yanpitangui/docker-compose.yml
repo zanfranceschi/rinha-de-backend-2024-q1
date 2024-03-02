@@ -1,0 +1,78 @@
+version: '3.9'
+name: 'rinha-yanpitangui'
+
+services:
+  api1: &api
+    image: ghcr.io/yanpitangui/rinha-2024-q01:latest
+    hostname: api1
+    container_name: rinhaapi1
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Cluster__Ip=localhost
+      - Cluster__Port=5213
+      - Cluster__Seeds__0=akka.tcp://Rinha@localhost:5213
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__Db=Host=localhost;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Maximum Pool Size=128;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+    depends_on:
+      db:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '130MB'
+
+  api2:
+    <<: *api
+    hostname: api2
+    container_name: rinhaapi2
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Cluster__Ip=localhost
+      - Cluster__Port=5214
+      - Cluster__Seeds__0=akka.tcp://Rinha@localhost:5213
+      - ASPNETCORE_URLS=http://+:8081
+      - ConnectionStrings__Db=Host=localhost;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Maximum Pool Size=128;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '20MB'
+
+  db:
+    image: postgres:latest
+    container_name: rinhadb
+    command: 'postgres -c max_connections=1000 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off'
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '270MB'
+    network_mode: host
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "rinha"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s

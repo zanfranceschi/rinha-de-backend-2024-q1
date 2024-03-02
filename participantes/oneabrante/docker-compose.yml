@@ -1,0 +1,58 @@
+version: '3.9'
+services:
+  api01: &api
+    image: abrantedevops/apirinhabackend:latest
+    hostname: api01
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    ports:
+      - 3001:3000
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.55"
+          memory: "50MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "3002:3000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "40MB"
+
+  db:
+    container_name: db
+    image: mariadb:10
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 3306:3306
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "400MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

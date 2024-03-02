@@ -4,8 +4,8 @@
  Container ilosamart-db-1  Created
  Container ilosamart-app-2  Creating
  Container ilosamart-app-1  Creating
- Container ilosamart-app-2  Created
  Container ilosamart-app-1  Created
+ Container ilosamart-app-2  Created
  Container ilosamart-nginx-1  Creating
  Container ilosamart-nginx-1  Created
 Attaching to app-1, app-2, db-1, nginx-1
@@ -23,6 +23,12 @@ db-1     | creating subdirectories ... ok
 db-1     | selecting dynamic shared memory implementation ... posix
 db-1     | selecting default max_connections ... 100
 db-1     | selecting default shared_buffers ... 128MB
+db-1     | selecting default time zone ... UTC
+db-1     | creating configuration files ... ok
+db-1     | running bootstrap script ... ok
+db-1     | sh: locale: not found
+db-1     | 2024-02-19 08:00:40.235 UTC [30] WARNING:  no usable system locales were found
+db-1     | performing post-bootstrap initialization ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -32,16 +38,6 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-db-1     | selecting default time zone ... UTC
-db-1     | creating configuration files ... ok
-db-1     | running bootstrap script ... ok
-nginx-1  | 2024/02/13 23:37:02 [error] 32#32: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.4:8000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:02 [error] 32#32: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.3:8000/clientes/1/extrato", host: "localhost:9999"
-db-1     | sh: locale: not found
-db-1     | 2024-02-13 23:37:02.946 UTC [30] WARNING:  no usable system locales were found
-db-1     | performing post-bootstrap initialization ... ok
-nginx-1  | 2024/02/13 23:37:04 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.4:8000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:04 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.3:8000/clientes/1/extrato", host: "localhost:9999"
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
@@ -51,10 +47,10 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | waiting for server to start....2024-02-13 23:37:05.050 UTC [36] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
-db-1     | 2024-02-13 23:37:05.058 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-13 23:37:05.066 UTC [39] LOG:  database system was shut down at 2024-02-13 23:37:04 UTC
-db-1     | 2024-02-13 23:37:05.082 UTC [36] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 08:00:41.613 UTC [36] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+db-1     | 2024-02-19 08:00:41.622 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 08:00:41.642 UTC [39] LOG:  database system was shut down at 2024-02-19 08:00:41 UTC
+db-1     | 2024-02-19 08:00:41.653 UTC [36] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -66,435 +62,439 @@ db-1     | CREATE TABLE
 db-1     | DO
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down....2024-02-13 23:37:05.375 UTC [36] LOG:  received fast shutdown request
-db-1     | 2024-02-13 23:37:05.377 UTC [36] LOG:  aborting any active transactions
-db-1     | 2024-02-13 23:37:05.381 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
-db-1     | 2024-02-13 23:37:05.382 UTC [37] LOG:  shutting down
-db-1     | 2024-02-13 23:37:05.386 UTC [37] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-13 23:37:05.558 UTC [37] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.138 s, sync=0.027 s, total=0.177 s; sync files=309, longest=0.004 s, average=0.001 s; distance=4307 kB, estimate=4307 kB; lsn=0/19250F0, redo lsn=0/19250F0
-db-1     | 2024-02-13 23:37:05.569 UTC [36] LOG:  database system is shut down
+db-1     | waiting for server to shut down....2024-02-19 08:00:41.810 UTC [36] LOG:  received fast shutdown request
+db-1     | 2024-02-19 08:00:41.813 UTC [36] LOG:  aborting any active transactions
+db-1     | 2024-02-19 08:00:41.826 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
+db-1     | 2024-02-19 08:00:41.827 UTC [37] LOG:  shutting down
+db-1     | 2024-02-19 08:00:41.831 UTC [37] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 08:00:42.354 UTC [37] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.274 s, sync=0.234 s, total=0.528 s; sync files=309, longest=0.173 s, average=0.001 s; distance=4307 kB, estimate=4307 kB; lsn=0/19250F0, redo lsn=0/19250F0
+db-1     | 2024-02-19 08:00:42.360 UTC [36] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-13 23:37:05.621 UTC [1] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
-db-1     | 2024-02-13 23:37:05.621 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-13 23:37:05.621 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-13 23:37:05.630 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-13 23:37:05.636 UTC [54] LOG:  database system was shut down at 2024-02-13 23:37:05 UTC
-db-1     | 2024-02-13 23:37:05.644 UTC [1] LOG:  database system is ready to accept connections
-nginx-1  | 2024/02/13 23:37:06 [error] 29#29: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.4:8000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:06 [error] 29#29: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.3:8000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:08 [error] 31#31: *10 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.4:8000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:08 [error] 31#31: *10 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.3:8000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:10 [error] 32#32: *13 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:12 [error] 32#32: *14 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:14 [error] 32#32: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.3:8000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:14 [error] 32#32: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.4:8000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:16 [error] 32#32: *18 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:18 [error] 32#32: *19 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:20 [error] 32#32: *20 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:22 [error] 32#32: *21 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:24 [error] 32#32: *22 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 30#30: *31 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 29#29: *49 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 30#30: *51 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 29#29: *53 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 29#29: *46 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 29#29: *47 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 29#29: *45 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 30#30: *34 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 30#30: *35 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 30#30: *48 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 30#30: *33 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 30#30: *32 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 30#30: *27 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 30#30: *29 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:35 [error] 30#30: *44 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:39 [error] 31#31: *65 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:39 [error] 31#31: *68 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:39 [error] 31#31: *74 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:39 [error] 31#31: *75 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:39 [error] 31#31: *76 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:39 [error] 31#31: *91 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:39 [error] 31#31: *101 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:39 [error] 31#31: *102 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:39 [error] 31#31: *93 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:37:39 [error] 31#31: *92 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:07 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 30#30: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:08 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:09 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:10 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 32#32: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:11 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:12 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:12 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:12 [alert] 31#31: 256 worker_connections are not enough
-nginx-1  | 2024/02/13 23:38:12 [alert] 31#31: 256 worker_connections are not enough
+db-1     | 2024-02-19 08:00:42.454 UTC [1] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+db-1     | 2024-02-19 08:00:42.454 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 08:00:42.454 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 08:00:42.459 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 08:00:42.466 UTC [54] LOG:  database system was shut down at 2024-02-19 08:00:42 UTC
+db-1     | 2024-02-19 08:00:42.473 UTC [1] LOG:  database system is ready to accept connections
+nginx-1  | 2024/02/19 08:00:43 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.19.0.3:8000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:43 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.19.0.4:8000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:45 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.19.0.3:8000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:45 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.19.0.4:8000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:47 [error] 31#31: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.19.0.3:8000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:47 [error] 31#31: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.19.0.4:8000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:49 [error] 32#32: *10 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.19.0.3:8000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:49 [error] 32#32: *10 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.19.0.4:8000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:51 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:53 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:55 [error] 29#29: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.19.0.4:8000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:55 [error] 29#29: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.19.0.3:8000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:57 [error] 29#29: *18 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:00:59 [error] 29#29: *19 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:01 [error] 29#29: *20 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:03 [error] 29#29: *21 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:05 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *36 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *33 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *32 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *28 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *29 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *37 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *35 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *41 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *42 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *43 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *44 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *45 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *46 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *30 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *39 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *40 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *53 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *54 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *52 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 30#30: *51 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:12 [error] 31#31: *48 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:14 [error] 32#32: *95 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:14 [error] 32#32: *98 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/02/19 08:01:14 [error] 32#32: *97 no live upstreams while connecting to upstream, client: 172.19.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+app-2    | ERROR:    Exception in ASGI application
+app-2    | Traceback (most recent call last):
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/uvicorn/protocols/http/h11_impl.py", line 412, in run_asgi
+app-2    |     result = await app(  # type: ignore[func-returns-value]
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+app-2    |     return await self.app(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/fastapi/applications.py", line 1054, in __call__
+app-2    |     await super().__call__(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/applications.py", line 123, in __call__
+app-2    |     await self.middleware_stack(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/middleware/errors.py", line 186, in __call__
+app-2    |     raise exc
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/middleware/errors.py", line 164, in __call__
+app-2    |     await self.app(scope, receive, _send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+app-2    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+app-2    |     raise exc
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+app-2    |     await app(scope, receive, sender)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 758, in __call__
+app-2    |     await self.middleware_stack(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 778, in app
+app-2    |     await route.handle(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 299, in handle
+app-2    |     await self.app(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 79, in app
+app-2    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+app-2    |     raise exc
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+app-2    |     await app(scope, receive, sender)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 74, in app
+app-2    |     response = await func(request)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/fastapi/routing.py", line 299, in app
+app-2    |     raise e
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/fastapi/routing.py", line 294, in app
+app-2    |     raw_response = await run_endpoint_function(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+app-2    |     return await dependant.call(**values)
+app-2    |   File "/app/main.py", line 62, in transacoes
+app-2    |     cliente = await session.get(models.Cliente, id, with_for_update=True)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 595, in get
+app-2    |     return await greenlet_spawn(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 197, in greenlet_spawn
+app-2    |     result = context.throw(*sys.exc_info())
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3637, in get
+app-2    |     return self._get_impl(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3817, in _get_impl
+app-2    |     return db_load_fn(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/loading.py", line 694, in load_on_pk_identity
+app-2    |     session.execute(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+app-2    |     return self._execute_internal(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2181, in _execute_internal
+app-2    |     conn = self._connection_for_bind(bind)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2050, in _connection_for_bind
+app-2    |     return trans._connection_for_bind(engine, execution_options)
+app-2    |   File "<string>", line 2, in _connection_for_bind
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+app-2    |     ret_value = fn(self, *arg, **kw)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1144, in _connection_for_bind
+app-2    |     conn = bind.connect()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3258, in connect
+app-2    |     return self._connection_cls(self)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 145, in __init__
+app-2    |     self._dbapi_connection = engine.raw_connection()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3282, in raw_connection
+app-2    |     return self.pool.connect()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+app-2    |     return _ConnectionFairy._checkout(self)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 1263, in _checkout
+app-2    |     fairy = _ConnectionRecord.checkout(pool)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+app-2    |     rec = pool._do_get()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/impl.py", line 168, in _do_get
+app-2    |     with util.safe_reraise():
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+app-2    |     raise exc_value.with_traceback(exc_tb)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/impl.py", line 166, in _do_get
+app-2    |     return self._create_connection()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+app-2    |     return _ConnectionRecord(self)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+app-2    |     self.__connect()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+app-2    |     with util.safe_reraise():
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+app-2    |     raise exc_value.with_traceback(exc_tb)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+app-2    |     self.dbapi_connection = connection = pool._invoke_creator(self)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/create.py", line 643, in connect
+app-2    |     return dialect.connect(*cargs, **cparams)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 616, in connect
+app-2    |     return self.loaded_dbapi.connect(*cargs, **cparams)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 933, in connect
+app-2    |     await_only(creator_fn(*arg, **kw)),
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 127, in await_only
+app-2    |     return current.driver.switch(awaitable)  # type: ignore[no-any-return]
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 192, in greenlet_spawn
+app-2    |     value = await result
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/connection.py", line 2329, in connect
+app-2    |     return await connect_utils._connect(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/connect_utils.py", line 1017, in _connect
+app-2    |     raise last_error or exceptions.TargetServerAttributeNotMatched(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/connect_utils.py", line 991, in _connect
+app-2    |     conn = await _connect_addr(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/connect_utils.py", line 828, in _connect_addr
+app-2    |     return await __connect_addr(params, True, *args)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/connect_utils.py", line 873, in __connect_addr
+app-2    |     tr, pr = await connector
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/connect_utils.py", line 744, in _create_ssl_connection
+app-2    |     tr, pr = await loop.create_connection(
+app-2    |   File "uvloop/loop.pyx", line 2039, in create_connection
+app-2    |   File "uvloop/loop.pyx", line 2016, in uvloop.loop.Loop.create_connection
+app-2    | ConnectionResetError: [Errno 104] Connection reset by peer
+app-2    | ERROR:    Exception in ASGI application
+app-2    | Traceback (most recent call last):
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/uvicorn/protocols/http/h11_impl.py", line 412, in run_asgi
+app-2    |     result = await app(  # type: ignore[func-returns-value]
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+app-2    |     return await self.app(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/fastapi/applications.py", line 1054, in __call__
+app-2    |     await super().__call__(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/applications.py", line 123, in __call__
+app-2    |     await self.middleware_stack(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/middleware/errors.py", line 186, in __call__
+app-2    |     raise exc
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/middleware/errors.py", line 164, in __call__
+app-2    |     await self.app(scope, receive, _send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+app-2    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+app-2    |     raise exc
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+app-2    |     await app(scope, receive, sender)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 758, in __call__
+app-2    |     await self.middleware_stack(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 778, in app
+app-2    |     await route.handle(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 299, in handle
+app-2    |     await self.app(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 79, in app
+app-2    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+app-2    |     raise exc
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+app-2    |     await app(scope, receive, sender)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 74, in app
+app-2    |     response = await func(request)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/fastapi/routing.py", line 299, in app
+app-2    |     raise e
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/fastapi/routing.py", line 294, in app
+app-2    |     raw_response = await run_endpoint_function(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+app-2    |     return await dependant.call(**values)
+app-2    |   File "/app/main.py", line 62, in transacoes
+app-2    |     cliente = await session.get(models.Cliente, id, with_for_update=True)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 595, in get
+app-2    |     return await greenlet_spawn(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 197, in greenlet_spawn
+app-2    |     result = context.throw(*sys.exc_info())
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3637, in get
+app-2    |     return self._get_impl(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3817, in _get_impl
+app-2    |     return db_load_fn(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/loading.py", line 694, in load_on_pk_identity
+app-2    |     session.execute(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+app-2    |     return self._execute_internal(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2181, in _execute_internal
+app-2    |     conn = self._connection_for_bind(bind)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2050, in _connection_for_bind
+app-2    |     return trans._connection_for_bind(engine, execution_options)
+app-2    |   File "<string>", line 2, in _connection_for_bind
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+app-2    |     ret_value = fn(self, *arg, **kw)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1144, in _connection_for_bind
+app-2    |     conn = bind.connect()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3258, in connect
+app-2    |     return self._connection_cls(self)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 145, in __init__
+app-2    |     self._dbapi_connection = engine.raw_connection()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3282, in raw_connection
+app-2    |     return self.pool.connect()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+app-2    |     return _ConnectionFairy._checkout(self)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 1263, in _checkout
+app-2    |     fairy = _ConnectionRecord.checkout(pool)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+app-2    |     rec = pool._do_get()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/impl.py", line 168, in _do_get
+app-2    |     with util.safe_reraise():
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+app-2    |     raise exc_value.with_traceback(exc_tb)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/impl.py", line 166, in _do_get
+app-2    |     return self._create_connection()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+app-2    |     return _ConnectionRecord(self)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+app-2    |     self.__connect()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+app-2    |     with util.safe_reraise():
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+app-2    |     raise exc_value.with_traceback(exc_tb)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+app-2    |     self.dbapi_connection = connection = pool._invoke_creator(self)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/create.py", line 643, in connect
+app-2    |     return dialect.connect(*cargs, **cparams)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 616, in connect
+app-2    |     return self.loaded_dbapi.connect(*cargs, **cparams)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 933, in connect
+app-2    |     await_only(creator_fn(*arg, **kw)),
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 127, in await_only
+app-2    |     return current.driver.switch(awaitable)  # type: ignore[no-any-return]
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 192, in greenlet_spawn
+app-2    |     value = await result
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/connection.py", line 2329, in connect
+app-2    |     return await connect_utils._connect(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/connect_utils.py", line 1017, in _connect
+app-2    |     raise last_error or exceptions.TargetServerAttributeNotMatched(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/connect_utils.py", line 991, in _connect
+app-2    |     conn = await _connect_addr(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/connect_utils.py", line 828, in _connect_addr
+app-2    |     return await __connect_addr(params, True, *args)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/connect_utils.py", line 873, in __connect_addr
+app-2    |     tr, pr = await connector
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/connect_utils.py", line 744, in _create_ssl_connection
+app-2    |     tr, pr = await loop.create_connection(
+app-2    |   File "uvloop/loop.pyx", line 2039, in create_connection
+app-2    |   File "uvloop/loop.pyx", line 2016, in uvloop.loop.Loop.create_connection
+app-2    | ConnectionResetError: [Errno 104] Connection reset by peer
+app-2    | ERROR:    Exception in ASGI application
+app-2    | Traceback (most recent call last):
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 538, in _prepare_and_execute
+app-2    |     self._rows = await prepared_stmt.fetch(*parameters)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+app-2    |     data = await self.__bind_execute(args, 0, timeout)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 241, in __bind_execute
+app-2    |     data, status, _ = await self.__do_execute(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 230, in __do_execute
+app-2    |     return await executor(protocol)
+app-2    |   File "asyncpg/protocol/protocol.pyx", line 207, in bind_execute
+app-2    | asyncpg.exceptions.ConnectionDoesNotExistError: connection was closed in the middle of operation
+app-2    | 
+app-2    | The above exception was the direct cause of the following exception:
+app-2    | 
+app-2    | Traceback (most recent call last):
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+app-2    |     self.dialect.do_execute(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+app-2    |     cursor.execute(statement, parameters)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 572, in execute
+app-2    |     self._adapt_connection.await_(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 127, in await_only
+app-2    |     return current.driver.switch(awaitable)  # type: ignore[no-any-return]
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 192, in greenlet_spawn
+app-2    |     value = await result
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+app-2    |     self._handle_exception(error)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 501, in _handle_exception
+app-2    |     self._adapt_connection._handle_exception(error)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 789, in _handle_exception
+app-2    |     raise translated_error from error
+app-2    | sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.Error: <class 'asyncpg.exceptions.ConnectionDoesNotExistError'>: connection was closed in the middle of operation
+app-2    | 
+app-2    | The above exception was the direct cause of the following exception:
+app-2    | 
+app-2    | Traceback (most recent call last):
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/uvicorn/protocols/http/h11_impl.py", line 412, in run_asgi
+app-2    |     result = await app(  # type: ignore[func-returns-value]
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+app-2    |     return await self.app(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/fastapi/applications.py", line 1054, in __call__
+app-2    |     await super().__call__(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/applications.py", line 123, in __call__
+app-2    |     await self.middleware_stack(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/middleware/errors.py", line 186, in __call__
+app-2    |     raise exc
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/middleware/errors.py", line 164, in __call__
+app-2    |     await self.app(scope, receive, _send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+app-2    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+app-2    |     raise exc
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+app-2    |     await app(scope, receive, sender)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 758, in __call__
+app-2    |     await self.middleware_stack(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 778, in app
+app-2    |     await route.handle(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 299, in handle
+app-2    |     await self.app(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 79, in app
+app-2    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+app-2    |     raise exc
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+app-2    |     await app(scope, receive, sender)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/starlette/routing.py", line 74, in app
+app-2    |     response = await func(request)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/fastapi/routing.py", line 299, in app
+app-2    |     raise e
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/fastapi/routing.py", line 294, in app
+app-2    |     raw_response = await run_endpoint_function(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+app-2    |     return await dependant.call(**values)
+app-2    |   File "/app/main.py", line 61, in transacoes
+app-2    |     async with db.begin() as session:
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1799, in __aexit__
+app-2    |     await asyncio.shield(task)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1795, in go
+app-2    |     await self.trans.__aexit__(type_, value, traceback)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1867, in __aexit__
+app-2    |     await greenlet_spawn(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 199, in greenlet_spawn
+app-2    |     result = context.switch(value)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/util.py", line 146, in __exit__
+app-2    |     with util.safe_reraise():
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+app-2    |     raise exc_value.with_traceback(exc_tb)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/util.py", line 144, in __exit__
+app-2    |     self.commit()
+app-2    |   File "<string>", line 2, in commit
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+app-2    |     ret_value = fn(self, *arg, **kw)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1257, in commit
+app-2    |     self._prepare_impl()
+app-2    |   File "<string>", line 2, in _prepare_impl
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+app-2    |     ret_value = fn(self, *arg, **kw)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1232, in _prepare_impl
+app-2    |     self.session.flush()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4296, in flush
+app-2    |     self._flush(objects)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4431, in _flush
+app-2    |     with util.safe_reraise():
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+app-2    |     raise exc_value.with_traceback(exc_tb)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4392, in _flush
+app-2    |     flush_context.execute()
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+app-2    |     rec.execute(self)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+app-2    |     util.preloaded.orm_persistence.save_obj(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 85, in save_obj
+app-2    |     _emit_update_statements(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 912, in _emit_update_statements
+app-2    |     c = connection.execute(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+app-2    |     return meth(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+app-2    |     return connection._execute_clauseelement(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+app-2    |     ret = self._execute_context(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+app-2    |     return self._exec_single_context(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+app-2    |     self._handle_dbapi_exception(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+app-2    |     raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+app-2    |     self.dialect.do_execute(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+app-2    |     cursor.execute(statement, parameters)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 572, in execute
+app-2    |     self._adapt_connection.await_(
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 127, in await_only
+app-2    |     return current.driver.switch(awaitable)  # type: ignore[no-any-return]
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 192, in greenlet_spawn
+app-2    |     value = await result
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+app-2    |     self._handle_exception(error)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 501, in _handle_exception
+app-2    |     self._adapt_connection._handle_exception(error)
+app-2    |   File "/app/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 789, in _handle_exception
+app-2    |     raise translated_error from error

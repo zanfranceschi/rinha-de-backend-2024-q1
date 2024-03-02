@@ -9,7 +9,7 @@ services:
       ERL_MAX_PORTS: 512
       DATABASE_URL: postgres://postgres:password@db/rinha_backend
       PORT: 4000
-      POOL_SIZE: 20
+      POOL_SIZE: 25
       SECRET_KEY_BASE: h7EdRgV1JsTFlxJ9pC2Gyihln66em+VWx2EOFNnk9Yy3yCxYNsXyRGEjdLJPNuHO
     depends_on:
       db:
@@ -18,17 +18,17 @@ services:
       resources:
         limits:
           cpus: "0.3"
-          memory: "100MB"
+          memory: "200MB"
 
   api02:
     <<: *api 
     hostname: api02
     environment:
-      PHX_HOST: api02
+      PHX_HOST: api01
       ERL_MAX_PORTS: 512
       DATABASE_URL: postgres://postgres:password@db/rinha_backend
       PORT: 4000
-      POOL_SIZE: 20
+      POOL_SIZE: 25
       SECRET_KEY_BASE: h7EdRgV1JsTFlxJ9pC2Gyihln66em+VWx2EOFNnk9Yy3yCxYNsXyRGEjdLJPNuHO
  
   nginx:
@@ -44,7 +44,7 @@ services:
       resources:
         limits:
           cpus: "0.1"
-          memory: "50MB"
+          memory: "20MB"
 
   db:
     image: postgres:14.1-alpine
@@ -63,13 +63,12 @@ services:
       resources:
         limits:
           cpus: "0.8"
-          memory: "300MB"
+          memory: "130MB"
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres -d rinha_backend" ]
       interval: 3s
       timeout: 1s
       retries: 10
-
 networks:
   default:
     driver: bridge

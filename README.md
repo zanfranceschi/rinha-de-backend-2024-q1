@@ -383,3 +383,4 @@ Surpresa! :)
 ## Acompanhamento do Status das Execuções dos Testes
 
 [Link do status parcial da Rinha de Backend](./STATUS-TESTES.md).
+ 

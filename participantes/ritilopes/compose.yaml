@@ -1,0 +1,85 @@
+version: "3.5"
+
+services:
+  envoy:
+    image: envoyproxy/envoy:v1.29-latest
+    container_name: rinhaproxy
+    volumes:
+      - ./envoy.yml:/etc/envoy/envoy.yaml:ro
+    depends_on:
+      - app1
+      - app2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '40MB'
+
+  postgres:
+    image: 'postgres:latest'
+    command:
+      [
+        'postgres',
+        '-c',
+        'max_connections=800',
+        '-c',
+        'shared_buffers=128MB',
+        '-c',
+        'synchronous_commit=off',
+        '-c',
+        'fsync=off',
+        '-c',
+        'full_page_writes=off',
+      ]
+    hostname: db
+    environment:
+      - 'POSTGRES_DB=rinhadatabase'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=user'
+    ports:
+      - '5432:5432'
+    volumes:
+      - './init.sql:/docker-entrypoint-initdb.d/init.sql'
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '100MB'
+  app1: &api
+    image: 'ritilopes/rinhabackend:latest'
+    hostname: app1
+    environment:
+        - 'DB_HOSTNAME=db'
+        - 'MAX_POOL_SIZE=400'
+    ports:
+      - '8081:8080'
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: '205MB'
+  app2:
+    <<: *api
+    hostname: app2
+    ports:
+      - '8082:8080'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1-host

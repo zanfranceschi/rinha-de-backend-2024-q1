@@ -1,3 +1,9 @@
+# volumes:
+#   db-data:
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
 services:
   loadbalancer:
     image: nginx:latest
@@ -14,7 +20,7 @@ services:
           cpus: "0.2"
           memory: "50MB"
   db:
-    image: ghcr.io/lucasew/playground/rinha202401-tigerbeetle:latest
+    image: ghcr.io/lucasew/playground-rinha202401-tigerbeetle:20240222
     # build:
     #   dockerfile: ./Dockerfile.tigerbeetle-lowram
     entrypoint: /tigerbeetle-start.sh
@@ -23,46 +29,50 @@ services:
         limits:
           cpus: "0.7"
           memory: "400MB"
+    security_opt:
+      - seccomp:unconfined
     # deploy:
       # resources:
       #   limits:
       #     memory: 1024M
     volumes:
-    - ./data:/data
+    # - db-data:/data
     - ./tigerbeetle-start.sh:/tigerbeetle-start.sh
   backend1:
-    image: ghcr.io/lucasew/playground/rinha202401-backend:latest
+    image: ghcr.io/lucasew/playground-rinha202401-backend:20240222
     restart: always
     environment:
       - "TB_ADDRESS=db:3000"
       - "TIGERBEETLE_MAX_CONCURRENCY=320"
-      - "GOMEMLIMIT=45MiB"
-      - "GOGC=1000"
+      - GOGC=off
 
     deploy:
       resources:
         limits:
           cpus: "0.3"
           memory: "50MB"
+    security_opt:
+      - seccomp:unconfined
     # build:
     #   dockerfile: ./Dockerfile.go-backend
     depends_on:
       - db
 
   backend2:
-    image: ghcr.io/lucasew/playground/rinha202401-backend:latest
+    image: ghcr.io/lucasew/playground-rinha202401-backend:20240222
     restart: always
     environment:
       - "TB_ADDRESS=db:3000"
       - "TIGERBEETLE_MAX_CONCURRENCY=320"
-      - "GOMEMLIMIT=45MiB"
-      - "GOGC=1000"
+      - GOGC=off
 
     deploy:
       resources:
         limits:
           cpus: "0.3"
           memory: "50MB"
+    security_opt:
+      - seccomp:unconfined
     # build:
     #   dockerfile: ./Dockerfile.go-backend
     depends_on:

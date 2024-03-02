@@ -1,0 +1,59 @@
+version: "3.5"
+
+services:
+  db:
+    image: postgres:16.2
+    hostname: db
+    environment:
+      - POSTGRES_DB=rinha
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "220MB"
+
+  api01: &api
+    image: gui9394/rinha-de-backend-2024-q1:1.0.0
+    hostname: api01
+    environment:
+      - SERVER_PORT=8080
+      - POSTGRES_DB=rinha
+      - POSTGRES_HOST=db:5432
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "150MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+
+  gateway:
+    image: nginx:1.25.4
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "30MB"
+
+networks:
+  default:
+    driver: bridge

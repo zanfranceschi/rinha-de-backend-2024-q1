@@ -4,8 +4,8 @@
  Container marcoagpegoraro-db-1  Created
  Container marcoagpegoraro-api02-1  Creating
  Container marcoagpegoraro-api01-1  Creating
- Container marcoagpegoraro-api01-1  Created
  Container marcoagpegoraro-api02-1  Created
+ Container marcoagpegoraro-api01-1  Created
  Container marcoagpegoraro-nginx-1  Creating
  Container marcoagpegoraro-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -23,20 +23,26 @@ db-1     | creating subdirectories ... ok
 db-1     | selecting dynamic shared memory implementation ... posix
 db-1     | selecting default max_connections ... 100
 db-1     | selecting default shared_buffers ... 128MB
+db-1     | selecting default time zone ... UTC
+db-1     | creating configuration files ... ok
+db-1     | running bootstrap script ... ok
 api02-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api02-1  | 	Is the server running on host "192.168.0.2" and accepting
+api02-1  | 	Is the server running on host "db" (192.168.80.2) and accepting
 api02-1  | 	TCP/IP connections on port 5432?
 api02-1  | 
-api02-1  | v hash: 9f532f1
+api02-1  | v hash: 2190b60
 api02-1  | backtrace_symbols is missing => printing backtraces is not available.
 api02-1  | Some libc implementations like musl simply do not provide it.
 api01-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api01-1  | 	Is the server running on host "192.168.0.2" and accepting
+api01-1  | 	Is the server running on host "db" (192.168.80.2) and accepting
 api01-1  | 	TCP/IP connections on port 5432?
 api01-1  | 
-api01-1  | v hash: 9f532f1
+api01-1  | v hash: 2190b60
 api01-1  | backtrace_symbols is missing => printing backtraces is not available.
 api01-1  | Some libc implementations like musl simply do not provide it.
+db-1     | sh: locale: not found
+db-1     | 2024-02-20 02:14:19.641 UTC [30] WARNING:  no usable system locales were found
+db-1     | performing post-bootstrap initialization ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -46,23 +52,8 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-db-1     | selecting default time zone ... UTC
-db-1     | creating configuration files ... ok
-db-1     | running bootstrap script ... ok
-api02-1 exited with code 0
-db-1     | sh: locale: not found
-db-1     | 2024-02-13 23:52:01.569 UTC [30] WARNING:  no usable system locales were found
-api01-1 exited with code 1
-nginx-1  | 2024/02/13 23:52:02 [error] 31#31: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:52:02 [error] 31#31: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-api01-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api01-1  | 	Is the server running on host "192.168.0.2" and accepting
-api01-1  | 	TCP/IP connections on port 5432?
-api01-1  | 
-api01-1  | v hash: 9f532f1
-api01-1  | backtrace_symbols is missing => printing backtraces is not available.
-api01-1  | Some libc implementations like musl simply do not provide it.
-db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -70,189 +61,59 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-13 23:52:03.733 UTC [36] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
-db-1     | 2024-02-13 23:52:03.737 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-13 23:52:03.749 UTC [39] LOG:  database system was shut down at 2024-02-13 23:52:02 UTC
-db-1     | 2024-02-13 23:52:03.761 UTC [36] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-20 02:14:22.641 UTC [36] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+db-1     | 2024-02-20 02:14:22.644 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-20 02:14:22.657 UTC [39] LOG:  database system was shut down at 2024-02-20 02:14:20 UTC
+db-1     | 2024-02-20 02:14:22.664 UTC [36] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
 db-1     | 
 db-1     | 
 db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
+api02-1 exited with code 0
 db-1     | CREATE TABLE
 db-1     | CREATE TABLE
-db-1     | psql:/docker-entrypoint-initdb.d/script.sql:20: NOTICE:  relation "idx_transacoes_id_desc" already exists, skipping
 db-1     | CREATE INDEX
 db-1     | CREATE INDEX
 db-1     | CREATE FUNCTION
 db-1     | INSERT 0 5
 db-1     | 
 db-1     | 
-db-1     | 2024-02-13 23:52:04.013 UTC [36] LOG:  received fast shutdown request
-db-1     | waiting for server to shut down....2024-02-13 23:52:04.015 UTC [36] LOG:  aborting any active transactions
-db-1     | 2024-02-13 23:52:04.024 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
-db-1     | 2024-02-13 23:52:04.026 UTC [37] LOG:  shutting down
-db-1     | 2024-02-13 23:52:04.028 UTC [37] LOG:  checkpoint starting: shutdown immediate
-api02-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api02-1  | 	Is the server running on host "192.168.0.2" and accepting
-api02-1  | 	TCP/IP connections on port 5432?
-api02-1  | 
-api02-1  | v hash: 9f532f1
-api02-1  | backtrace_symbols is missing => printing backtraces is not available.
-api02-1  | Some libc implementations like musl simply do not provide it.
-db-1     | 2024-02-13 23:52:04.163 UTC [37] LOG:  checkpoint complete: wrote 942 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.090 s, sync=0.036 s, total=0.137 s; sync files=308, longest=0.012 s, average=0.001 s; distance=4307 kB, estimate=4307 kB; lsn=0/19250F8, redo lsn=0/19250F8
-db-1     | 2024-02-13 23:52:04.173 UTC [36] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-02-20 02:14:22.837 UTC [36] LOG:  received fast shutdown request
+db-1     | .2024-02-20 02:14:22.840 UTC [36] LOG:  aborting any active transactions
+db-1     | 2024-02-20 02:14:22.843 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
+db-1     | 2024-02-20 02:14:22.843 UTC [37] LOG:  shutting down
+db-1     | 2024-02-20 02:14:22.848 UTC [37] LOG:  checkpoint starting: shutdown immediate
+api01-1 exited with code 0
+db-1     | 2024-02-20 02:14:23.402 UTC [37] LOG:  checkpoint complete: wrote 945 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.233 s, sync=0.307 s, total=0.559 s; sync files=317, longest=0.212 s, average=0.001 s; distance=4311 kB, estimate=4311 kB; lsn=0/1926408, redo lsn=0/1926408
+db-1     | 2024-02-20 02:14:23.408 UTC [36] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-13 23:52:04.248 UTC [1] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
-db-1     | 2024-02-13 23:52:04.249 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-13 23:52:04.249 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-13 23:52:04.257 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-13 23:52:04.264 UTC [54] LOG:  database system was shut down at 2024-02-13 23:52:04 UTC
-db-1     | 2024-02-13 23:52:04.273 UTC [1] LOG:  database system is ready to accept connections
-api01-1 exited with code 1
-api02-1 exited with code 1
-api01-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api01-1  | 	Is the server running on host "192.168.0.2" and accepting
-api01-1  | 	TCP/IP connections on port 5432?
-api01-1  | 
-api01-1  | v hash: 9f532f1
-api01-1  | backtrace_symbols is missing => printing backtraces is not available.
-api01-1  | Some libc implementations like musl simply do not provide it.
-api01-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api01-1  | 	Is the server running on host "192.168.0.2" and accepting
-api01-1  | 	TCP/IP connections on port 5432?
-api01-1  | 
-api01-1  | v hash: 9f532f1
-api01-1  | backtrace_symbols is missing => printing backtraces is not available.
-api01-1  | Some libc implementations like musl simply do not provide it.
-api01-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api01-1  | 	Is the server running on host "192.168.0.2" and accepting
-api01-1  | 	TCP/IP connections on port 5432?
-api01-1  | 
-api01-1  | v hash: 9f532f1
-api01-1  | backtrace_symbols is missing => printing backtraces is not available.
-api01-1  | Some libc implementations like musl simply do not provide it.
-api01-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api01-1  | 	Is the server running on host "192.168.0.2" and accepting
-api01-1  | 	TCP/IP connections on port 5432?
-api01-1  | 
-api01-1  | v hash: 9f532f1
-api01-1  | backtrace_symbols is missing => printing backtraces is not available.
-api01-1  | Some libc implementations like musl simply do not provide it.
-api02-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api02-1  | 	Is the server running on host "192.168.0.2" and accepting
-api02-1  | 	TCP/IP connections on port 5432?
-api02-1  | 
-api02-1  | v hash: 9f532f1
-api02-1  | backtrace_symbols is missing => printing backtraces is not available.
-api02-1  | Some libc implementations like musl simply do not provide it.
-api02-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api02-1  | 	Is the server running on host "192.168.0.2" and accepting
-api02-1  | 	TCP/IP connections on port 5432?
-api02-1  | 
-api02-1  | v hash: 9f532f1
-api02-1  | backtrace_symbols is missing => printing backtraces is not available.
-api02-1  | Some libc implementations like musl simply do not provide it.
-api02-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api02-1  | 	Is the server running on host "192.168.0.2" and accepting
-api02-1  | 	TCP/IP connections on port 5432?
-api02-1  | 
-api02-1  | v hash: 9f532f1
-api02-1  | backtrace_symbols is missing => printing backtraces is not available.
-api02-1  | Some libc implementations like musl simply do not provide it.
-api02-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api02-1  | 	Is the server running on host "192.168.0.2" and accepting
-api02-1  | 	TCP/IP connections on port 5432?
-api02-1  | 
-api02-1  | v hash: 9f532f1
-api02-1  | backtrace_symbols is missing => printing backtraces is not available.
-api02-1  | Some libc implementations like musl simply do not provide it.
-api01-1 exited with code 1
-api02-1 exited with code 1
-api01-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api01-1  | 	Is the server running on host "192.168.0.2" and accepting
-api01-1  | 	TCP/IP connections on port 5432?
-api01-1  | 
-api01-1  | v hash: 9f532f1
-api01-1  | backtrace_symbols is missing => printing backtraces is not available.
-api01-1  | Some libc implementations like musl simply do not provide it.
-api01-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api01-1  | 	Is the server running on host "192.168.0.2" and accepting
-api01-1  | 	TCP/IP connections on port 5432?
-api01-1  | 
-api01-1  | v hash: 9f532f1
-api01-1  | backtrace_symbols is missing => printing backtraces is not available.
-api01-1  | Some libc implementations like musl simply do not provide it.
-api01-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api01-1  | 	Is the server running on host "192.168.0.2" and accepting
-api01-1  | 	TCP/IP connections on port 5432?
-api01-1  | 
-api01-1  | v hash: 9f532f1
-api01-1  | backtrace_symbols is missing => printing backtraces is not available.
-api01-1  | Some libc implementations like musl simply do not provide it.
-api01-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api01-1  | 	Is the server running on host "192.168.0.2" and accepting
-api01-1  | 	TCP/IP connections on port 5432?
-api01-1  | 
-api01-1  | v hash: 9f532f1
-api01-1  | backtrace_symbols is missing => printing backtraces is not available.
-api01-1  | Some libc implementations like musl simply do not provide it.
-api02-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api02-1  | 	Is the server running on host "192.168.0.2" and accepting
-api02-1  | 	TCP/IP connections on port 5432?
-api02-1  | 
-api02-1  | v hash: 9f532f1
-api02-1  | backtrace_symbols is missing => printing backtraces is not available.
-api02-1  | Some libc implementations like musl simply do not provide it.
-api02-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api02-1  | 	Is the server running on host "192.168.0.2" and accepting
-api02-1  | 	TCP/IP connections on port 5432?
-api02-1  | 
-api02-1  | v hash: 9f532f1
-api02-1  | backtrace_symbols is missing => printing backtraces is not available.
-api02-1  | Some libc implementations like musl simply do not provide it.
-api02-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api02-1  | 	Is the server running on host "192.168.0.2" and accepting
-api02-1  | 	TCP/IP connections on port 5432?
-api02-1  | 
-api02-1  | v hash: 9f532f1
-api02-1  | backtrace_symbols is missing => printing backtraces is not available.
-api02-1  | Some libc implementations like musl simply do not provide it.
-api02-1  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api02-1  | 	Is the server running on host "192.168.0.2" and accepting
-api02-1  | 	TCP/IP connections on port 5432?
-api02-1  | 
-api02-1  | v hash: 9f532f1
-api02-1  | backtrace_symbols is missing => printing backtraces is not available.
-api02-1  | Some libc implementations like musl simply do not provide it.
-api02-1 exited with code 1
-api01-1 exited with code 1
-nginx-1  | 2024/02/13 23:52:04 [error] 31#31: *4 no live upstreams while connecting to upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | [Vweb] Running app on http://0.0.0.0:8080/
-api01-1  | [Vweb] We have 3 workers
+db-1     | 2024-02-20 02:14:23.994 UTC [1] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+db-1     | 2024-02-20 02:14:23.994 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-20 02:14:23.994 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-20 02:14:24.009 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-20 02:14:24.055 UTC [54] LOG:  database system was shut down at 2024-02-20 02:14:23 UTC
+db-1     | 2024-02-20 02:14:24.062 UTC [1] LOG:  database system is ready to accept connections
+api02-1 exited with code 0
+api01-1 exited with code 0
+api02-1  | [Vweb] Running app on http://0.0.0.0:8080/
 api02-1  | [Vweb] Running app on http://0.0.0.0:8080/
 api02-1  | [Vweb] We have 3 workers
-nginx-1  | 2024/02/13 23:52:06 [error] 31#31: *5 no live upstreams while connecting to upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:52:08 [error] 31#31: *6 no live upstreams while connecting to upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:52:10 [error] 31#31: *7 no live upstreams while connecting to upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/13 23:52:12 [error] 31#31: *8 no live upstreams while connecting to upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | [Vweb] We have 3 workers
 nginx-1 exited with code 0
 nginx-1 exited with code 0
 api01-1 exited with code 0
-api02-1 exited with code 0
-api02-1 exited with code 137
-db-1     | 2024-02-13 23:56:46.217 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-13 23:56:46.225 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-13 23:56:46.229 UTC [1] LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
-db-1     | 2024-02-13 23:56:46.230 UTC [52] LOG:  shutting down
-db-1     | 2024-02-13 23:56:46.236 UTC [52] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-13 23:56:46.399 UTC [52] LOG:  checkpoint complete: wrote 718 buffers (4.4%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.104 s, sync=0.044 s, total=0.169 s; sync files=29, longest=0.017 s, average=0.002 s; distance=18712 kB, estimate=18712 kB; lsn=0/2B6B1E0, redo lsn=0/2B6B1E0
-db-1     | 2024-02-13 23:56:46.406 UTC [1] LOG:  database system is shut down
+api01-1 exited with code 137
+db-1     | 2024-02-20 02:18:49.171 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-20 02:18:49.175 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-20 02:18:49.178 UTC [1] LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
+db-1     | 2024-02-20 02:18:49.178 UTC [52] LOG:  shutting down
+db-1     | 2024-02-20 02:18:49.181 UTC [52] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-20 02:18:49.328 UTC [52] LOG:  checkpoint complete: wrote 938 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.015 s, sync=0.117 s, total=0.151 s; sync files=31, longest=0.109 s, average=0.004 s; distance=4449 kB, estimate=4449 kB; lsn=0/1D7EAF0, redo lsn=0/1D7EAF0
+db-1     | 2024-02-20 02:18:49.333 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0

@@ -1,0 +1,60 @@
+version: "3.5"
+services:
+  api1: &api
+    image: docker.io/vgdss/crebito:latest
+    hostname: api1
+    container_name: rinha-api1
+    depends_on:
+      - postgres
+    network_mode: host
+    environment:
+      PORT: 8001
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "100MB"      
+     
+  api2:
+    <<: *api
+    hostname: api2
+    container_name: rinha-api2
+    environment:
+      PORT: 8002    
+
+  nginx:
+    image: nginx:latest
+    container_name: rinha-nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "50MB"  
+
+  postgres:
+    image: postgres:latest
+    container_name: rinhadb
+    environment:
+      POSTGRES_DB: crebito
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    network_mode: host
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pgdata:/var/lib/postgresql/data
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "300MB"        
+
+volumes:
+  pgdata:
