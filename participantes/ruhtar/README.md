@@ -15,10 +15,10 @@ Submissão feita com:
 - `dapper`
 - [Repositório da minha implementação](https://github.com/ruhtar/rinha-de-backend)
 
-[@404rthvr](https://twitter.com/404rthvr) Meu twitter, me segue lá! Prometo que sou legal :D
+[@omgtuca](https://twitter.com/omgtuca) Meu twitter, me segue lá pae.
 
 ## Social
 
-[![twitter](https://img.shields.io/twitter/url?style=for-the-badge&logo=x&logoColor=white&url=https://twitter.com/ffabriicioo)](https://twitter.com/404rthvr)
+[![twitter](https://img.shields.io/twitter/url?style=for-the-badge&logo=x&logoColor=white&url=https://twitter.com/ffabriicioo)](https://twitter.com/omgtuca)
 [![Github](https://img.shields.io/badge/GitHub-181717.svg?style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/ruhtar)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2.svg?style=for-the-badge&logo=LinkedIn&logoColor=white)](https://www.linkedin.com/in/arthur-amorim-bs/)
