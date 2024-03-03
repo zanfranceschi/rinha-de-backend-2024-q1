@@ -1,0 +1,93 @@
+version: '3.9'
+
+services:
+  api1:
+    image: ricardomauro/rinha-2024q1-dotnet-postgresql:latest
+    container_name: rapi1
+    network_mode: host
+    environment: 
+      ConnectionStrings__Default: Host=localhost;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=2000;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;;
+      DOTNET_URLS: http://*:9997
+      ASPNETCORE_ENVIRONMENT: Production
+    depends_on:
+      db:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '80MB'
+
+  api2:
+    image: ricardomauro/rinha-2024q1-dotnet-postgresql:latest
+    container_name: rapi2
+    network_mode: host
+    environment: 
+      ConnectionStrings__Default: Host=localhost;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=2000;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;;
+      DOTNET_URLS: http://*:9998
+      ASPNETCORE_ENVIRONMENT: Production
+    depends_on:
+      db:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '80MB'
+
+  envoy:
+    image: envoyproxy/envoy:v1.29-latest
+    container_name: rproxy
+    network_mode: host
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '134MB'
+
+  db:
+    image: postgres:16.2
+    container_name: rinhadb
+    network_mode: host
+    command: 'postgres -c max_connections=300 -c shared_buffers=96MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=16MB'
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./postgresql/ddl-postgresql.sql:/docker-entrypoint-initdb.d/01-ddl.sql:ro
+      - type: tmpfs
+        target: /var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '256MB'
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "rinha"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+      # start_interval: 1s # only available in Docker engine 25+
+
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+
+
