@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar  3 01:12:32 UTC 2024** com **454** submissões.
+Atualizada **Sun Mar  3 01:51:33 UTC 2024** com **460** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -22,6 +22,7 @@ Atualizada **Sun Mar  3 01:12:32 UTC 2024** com **454** submissões.
 | [agostinho](./participantes/agostinho) | ok | 4 |
 | [agpsl](./participantes/agpsl) | ok | 2 |
 | [alan_albuquerque](./participantes/alan_albuquerque) | ok | 1 |
+| [alan_albuquerque_capivara](./participantes/alan_albuquerque_capivara) | falha - [logs](./participantes/alan_albuquerque_capivara/docker-compose.logs) | -- |
 | [alanlviana-aspnet](./participantes/alanlviana-aspnet) | ok | 1 |
 | [alfredomorais](./participantes/alfredomorais) | falha - [logs](./participantes/alfredomorais/docker-compose.logs) | -- |
 | [alissonsleal](./participantes/alissonsleal) | ok | 3 |
@@ -100,6 +101,7 @@ Atualizada **Sun Mar  3 01:12:32 UTC 2024** com **454** submissões.
 | [daniel-goncalves](./participantes/daniel-goncalves) | falha - [logs](./participantes/daniel-goncalves/docker-compose.logs) | -- |
 | [danielwisky](./participantes/danielwisky) | ok | 3 |
 | [danilo-nodejs](./participantes/danilo-nodejs) | ok | 3 |
+| [daniloflorenzano](./participantes/daniloflorenzano) | ok | 4 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [david-silva](./participantes/david-silva) | ok | 2 |
 | [ddanielsantos](./participantes/ddanielsantos) | ok | 3 |
@@ -107,6 +109,7 @@ Atualizada **Sun Mar  3 01:12:32 UTC 2024** com **454** submissões.
 | [ddanielvaz](./participantes/ddanielvaz) | ok | 4 |
 | [delzin](./participantes/delzin) | ok | 0 |
 | [deno-cassiogangrel](./participantes/deno-cassiogangrel) | ok | 4 |
+| [devblack21](./participantes/devblack21) | ok | 2 |
 | [devkemc-node](./participantes/devkemc-node) | ok | 6605 |
 | [diego-coronel](./participantes/diego-coronel) | ok | 2 |
 | [diegoalexandrooliveira](./participantes/diegoalexandrooliveira) | ok | 5 |
@@ -135,6 +138,7 @@ Atualizada **Sun Mar  3 01:12:32 UTC 2024** com **454** submissões.
 | [emanuel-xavier](./participantes/emanuel-xavier) | ok | 2 |
 | [emiliosheinz-fumegalli-node](./participantes/emiliosheinz-fumegalli-node) | ok | 4 |
 | [engylemure](./participantes/engylemure) | ok | 3 |
+| [erickcestari](./participantes/erickcestari) | ok | 5 |
 | [erickmarx](./participantes/erickmarx) | ok | 2 |
 | [erickreis](./participantes/erickreis) | ok | 3 |
 | [eriksilva](./participantes/eriksilva) | ok | 1 |
@@ -289,7 +293,7 @@ Atualizada **Sun Mar  3 01:12:32 UTC 2024** com **454** submissões.
 | [lubien-multi-tenant-sqlite](./participantes/lubien-multi-tenant-sqlite) | ok | 2 |
 | [lubien-phoenixqlite](./participantes/lubien-phoenixqlite) | ok | 2 |
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 4 |
-| [lucasSSalgado](./participantes/lucasSSalgado) | ok | 4 |
+| [lucasSSalgado](./participantes/lucasSSalgado) | ok | 2 |
 | [lucasdev2005](./participantes/lucasdev2005) | ok | 5 |
 | [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | ok | 3353 |
 | [lucassperez-go-crebito](./participantes/lucassperez-go-crebito) | ok | 4 |
@@ -322,6 +326,7 @@ Atualizada **Sun Mar  3 01:12:32 UTC 2024** com **454** submissões.
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 4 |
 | [mateusdeitos-node](./participantes/mateusdeitos-node) | ok | 2 |
+| [mateusdeitos-php-swoole](./participantes/mateusdeitos-php-swoole) | ok | 2 |
 | [matheus-trindade](./participantes/matheus-trindade) | ok | 2 |
 | [matheusdojava](./participantes/matheusdojava) | ok | 142 |
 | [matheusfbosa](./participantes/matheusfbosa) | ok | 1 |
@@ -354,6 +359,7 @@ Atualizada **Sun Mar  3 01:12:32 UTC 2024** com **454** submissões.
 | [otonielsilva](./participantes/otonielsilva) | ok | 2 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
 | [paulohenriquesn-python](./participantes/paulohenriquesn-python) | ok | 3 |
+| [pedro-azevedo-e-matheus-gomes-nodejs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs) | falha - [logs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs/docker-compose.logs) | -- |
 | [pedrohenriquea](./participantes/pedrohenriquea) | ok | 3 |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
