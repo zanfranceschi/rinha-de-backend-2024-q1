@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar  3 07:11:20 UTC 2024** com **466** submissões.
+Atualizada **Sun Mar  3 07:29:07 UTC 2024** com **466** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -437,7 +437,7 @@ Atualizada **Sun Mar  3 07:11:20 UTC 2024** com **466** submissões.
 | [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
-| [vgdss](./participantes/vgdss) | ok | 5 |
+| [vgdss](./participantes/vgdss) | ok | 3 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-132](./participantes/victor-132) | ok | 2 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
