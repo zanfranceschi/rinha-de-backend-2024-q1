@@ -1,0 +1,69 @@
+version: '3'
+
+services:
+  api01: &api
+    image: jonasfeanor/rinha-backend-2024-q1:latest
+    environment:
+      - API_PORT=3000
+      - LOGIN_DATABASE=admin
+      - PASSWORD_DATABASE=123
+      - HOST_DATABASE=db
+      - PORT_DATABASE=5432
+    restart: unless-stopped
+    ports:
+      - 8081:8080
+    networks:
+      - default
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 50MB
+
+  api02: 
+    <<: *api
+    ports:
+      - 8082:8080
+
+  nginx:
+    image: docker.io/nginx:1.25
+    volumes:
+      - ./conf/nginx:/etc/nginx/
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - 9999:80
+    restart: unless-stopped
+    networks:
+      - default
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 50MB
+
+  db:
+    image: postgres:latest
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    volumes:
+      - ./conf/postgresql/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./conf/postgresql/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    ports:
+      - 5431:5432
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    restart: unless-stopped
+    networks:
+      - default
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 400MB
+
+networks:
+  default:
+    driver: bridge
