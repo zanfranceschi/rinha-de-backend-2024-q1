@@ -21,6 +21,8 @@ INSERT INTO clientes (limite, saldo) VALUES
     ( 100000 * 100, 0),
     (5000 * 100, 0);
 
+CREATE EXTENSION IF NOT EXISTS pg_prewarm;
+
 -- Carregar a tabela clientes
 SELECT pg_prewarm('clientes');
 
