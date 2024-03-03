@@ -1,6 +1,8 @@
 
     create sequence saldo_SEQ start with 1 increment by 50;
 
+    create sequence transacao_SEQ start with 1 increment by 50;
+
     create table saldo (
         limite integer,
         total integer,
@@ -8,18 +10,18 @@
         primary key (id)
     );
 
-    create table transacoes (
-        id serial not null,
+    create table transacao (
+        tipo varchar(1),
         valor integer,
+        id bigint not null,
+        realizada_em timestamp(6) with time zone,
         saldo_id bigint,
-        descricao varchar(255),
-        realizadaEm varchar(255),
-        tipo varchar(255),
+        descricao varchar(10),
         primary key (id)
     );
 
-    alter table if exists transacoes 
-       add constraint FK5glwy1bhv9crnua3fowa6ursf 
+    alter table if exists transacao 
+       add constraint FKf375low74a2iyfxep0bk2maek 
        foreign key (saldo_id) 
        references saldo;
 insert into saldo (id, total, limite) values (1, 0, 100000);

@@ -1,0 +1,66 @@
+version: '3'
+
+services:
+  proxy:
+    image: nginx:latest
+    ports:
+      - "9999:80"
+    depends_on:
+      - api1
+      - api2
+      - bancoRinha
+    networks:
+      - rinhaBe
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "20MB"
+
+  api1:
+    image: bbeluco/rinhabe-image:latest
+    ports:
+      - "20001:8080"
+    networks:
+      - rinhaBe
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "155MB"
+
+  api2:
+    image: bbeluco/rinhabe-image:latest
+    ports:
+      - "20002:8080"
+    networks:
+      - rinhaBe
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "155MB"
+
+  bancoRinha:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: pass
+    ports:
+      - "5432:5432"
+    networks:
+      - rinhaBe
+    volumes:
+      - ./population.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c fsync=0
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "150MB"
+
+networks:
+  rinhaBe:
+    name: rinhaBe_network
+    driver: bridge

@@ -1,0 +1,62 @@
+version: "3.5"
+
+services:
+  api01:
+    #build: .
+    &api
+    image: diogoviana/rinhadebackend
+    volumes:
+      - .:/app
+      - shared-volume:/app/storage
+      - sockets:/app/tmp
+    hostname: api01
+    ports:
+      - "3001:3000"
+    environment:
+      #- RACK_ENV=production
+      - RACK_ENV=development
+      - RACK_MAX_THREADS=3
+      - WEB_CONCURRENCY=0
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "225MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api
+    hostname: api02
+    ports:
+      - "3002:3000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - sockets:/app/tmp
+    depends_on:
+      - api01
+      - api02
+    ports:
+      # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "100MB"
+    # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
+    # A edição anterior se beneficiou do modo host pois o volume de requisições
+    # era relativamente alto e a virtualização da rede se tornou um gargalo, mas
+    # este modo é mais complexo de ser configurado. Fique à vontade para usar o
+    # modo que quiser desde que não conflite com portas trivialmente usadas em um
+    # SO.
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
+
+volumes:
+  shared-volume:
+  sockets:

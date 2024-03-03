@@ -1,0 +1,61 @@
+version: '3'
+services:
+
+  nginx:
+    image: nginx:1.15-alpine
+    hostname: nginx
+    restart: unless-stopped
+    ports:
+      - "9999:9999"
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf:ro"
+    depends_on:
+      - app0
+      - app1
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "14MB"
+    
+
+  app0: &app
+    image: zelnatal/rinhabackend2024q1rust:latest
+    restart: unless-stopped
+    hostname: app0
+    environment:
+      - DATABASE_URL=postgresql://admin:admin@db:5432/rinha
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "18MB"
+  
+  app1:
+    <<: *app
+    hostname: app2
+
+  db:
+    image: postgres:16-alpine
+    hostname: database
+    restart: unless-stopped
+    command: postgres -c config_file=/etc/postgresql.conf
+    volumes:
+      - "./banco.sql:/docker-entrypoint-initdb.d/1.sql:ro"
+      - "./postgresql.conf:/etc/postgresql.conf:ro"
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "500MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha

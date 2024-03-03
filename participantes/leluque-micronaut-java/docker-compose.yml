@@ -1,0 +1,139 @@
+version: "3.9"
+services:
+  nginx:
+    image: nginx:latest
+    hostname: nginx
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "80MB"
+    sysctls:
+      net.core.somaxconn: 4096
+    networks:
+      - backend-network
+    restart: "no"
+
+  api1: &api-template
+    container_name: api1
+    image: leluque/rinha2024q1:latest
+    environment:
+      BD_URL: r2dbc:postgresql://postgresql:5432/bd
+      BD_DIALECT: POSTGRES
+      BD_TYPE: postgres
+      BD_USUARIO: usuario
+      BD_SENHA: abc12345
+      BD_INITIAL_CONS: 19
+      BD_MAX_CONS: 20
+      REDIS_THREAD_POOL_SIZE: 370
+      REDIS_URL: redis://redis
+    depends_on:
+      - postgresql
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    networks:
+      - backend-network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "130MB"
+    restart: "no"
+
+  api2:
+    <<: *api-template
+    container_name: api2
+
+  postgresql:
+    container_name: postgresql
+    image: postgres:13.0-alpine
+    environment:
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: abc12345
+      POSTGRES_DB: bd
+#    ports:
+#      - "5432:5432"
+    command: >
+      postgres -c checkpoint_completion_target=0.9
+               -c checkpoint_timeout=1d
+               -c check_function_bodies=false
+               -c client_encoding=UTF8
+               -c client_min_messages=warning
+               -c default_statistics_target=100
+               -c default_table_access_method=heap
+               -c default_tablespace=''
+               -c effective_cache_size=75MB
+               -c effective_io_concurrency=200
+               -c fsync=off
+               -c full_page_writes=off
+               -c huge_pages=off
+               -c idle_in_transaction_session_timeout=0
+               -c lock_timeout=0
+               -c maintenance_work_mem=6400kB
+               -c max_connections=50
+               -c max_wal_size=4GB
+               -c min_wal_size=1GB
+               -c pg_stat_statements.max=10000
+               -c random_page_cost=1.1
+               -c row_security=off
+               -c shared_buffers=38MB
+               -c shared_preload_libraries="pg_stat_statements"
+               -c standard_conforming_strings=on
+               -c statement_timeout=0
+               -c synchronous_commit=off
+               -c wal_buffers=768kB
+               -c work_mem=1024kB
+               -c xmloption=content
+
+    volumes:
+      - ./docker/postgresql/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    networks:
+      - backend-network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "160MB"
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    restart: "no"
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    networks:
+      - backend-network
+#    ports:
+#      - "6379:6379"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "50MB"
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    restart: "no"
+
+networks:
+  backend-network:
