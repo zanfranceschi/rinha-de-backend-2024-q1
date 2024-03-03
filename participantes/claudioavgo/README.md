@@ -7,4 +7,4 @@ Submissão feita com:
 - `quarkus` como core da api
 - [repositório da api](https://github.com/claudioavgo/rinha-de-backend-quarkus)
 
-[@1garo](https://twitter.com/claudioavgo) @ twitter
+[@claudioavgo](https://twitter.com/claudioavgo) @ twitter
