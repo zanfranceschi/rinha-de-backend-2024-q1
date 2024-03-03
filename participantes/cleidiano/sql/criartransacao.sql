@@ -1,43 +1,34 @@
 CREATE
-OR REPLACE FUNCTION criartransacao(
+    OR REPLACE FUNCTION criartransacao(
     IN idcliente integer,
     IN valor integer,
     IN descricao varchar(10)
-) RETURNS RECORD AS $$
+) RETURNS RECORD AS
+$$
 DECLARE
-clienteencontrado cliente%rowtype;
-    ret
-RECORD;
+    clienteencontrado cliente%rowtype;
+    ret RECORD;
 BEGIN
-SELECT *
-FROM cliente INTO clienteencontrado
-WHERE id = idcliente;
+    SELECT * FROM cliente INTO clienteencontrado WHERE id = idcliente;
 
-IF
-not found THEN
+    IF not found THEN
         --raise notice'Id do Cliente % não encontrado.', idcliente;
-select -1, cast(null as integer)
-into ret;
-RETURN ret;
-END IF;
+        select -1, cast(null as integer) into ret;
+        RETURN ret;
+    END IF;
 
-UPDATE cliente
-SET saldo = saldo + valor
-WHERE id = idcliente
-  AND (valor > 0 OR saldo + valor >= limite) RETURNING saldo, limite
-INTO ret;
-raise
-notice'Ret: %', ret;
-    IF
-ret.limite is NOT NULL THEN
-       --raise notice'Criando transacao para cliente %.', idcliente;
+    UPDATE cliente SET saldo = saldo + valor
+    WHERE id = idcliente AND (valor > 0 OR saldo + valor >= limite)
+    RETURNING saldo, limite INTO ret;
+    raise notice 'Ret: %', ret;
+    IF ret.limite is NOT NULL THEN
+        --raise notice'Criando transacao para cliente %.', idcliente;
         INSERT INTO transacao (valor, descricao, realizadaem, idcliente)
         VALUES (valor, descricao, now() at time zone 'utc', idcliente);
-ELSE
+    ELSE
         --raise notice'Id do Cliente % não encontrado.', idcliente;
-select -2, cast(null as integer)
-into ret;
-END IF;
-RETURN ret;
-END;$$
-LANGUAGE plpgsql;
+        select -2, cast(null as integer) into ret;
+    END IF;
+    RETURN ret;
+END;
+$$LANGUAGE plpgsql;
