@@ -2,15 +2,13 @@ version: "3.9"
 
 services:
   api01: &api
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
-    image: rinha:latest
+    image: oliveiraeliel/rinha:latest
     hostname: api01
     ports:
       - "3001:3000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -55,6 +53,12 @@ services:
         limits:
           cpus: "0.25"
           memory: "140MB"
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d rinha'"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
 
 networks:
   default:
