@@ -3,7 +3,7 @@
 Stack: 
  - Node.js
  - Express 
- - MySQL
+ - PostgreSQL
  - Nginx
 
 
