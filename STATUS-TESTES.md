@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar  3 02:55:10 UTC 2024** com **460** submissões.
+Atualizada **Sun Mar  3 03:27:28 UTC 2024** com **464** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -244,7 +244,7 @@ Atualizada **Sun Mar  3 02:55:10 UTC 2024** com **460** submissões.
 | [johnpgr_vlang](./participantes/johnpgr_vlang) | ok | 2 |
 | [jojodev](./participantes/jojodev) | ok | 1554 |
 | [jonatasoli](./participantes/jonatasoli) | ok | 1 |
-| [jonathanperis-xgh](./participantes/jonathanperis-xgh) | ok | 5 |
+| [jonathanperis-xgh](./participantes/jonathanperis-xgh) | ok | 2 |
 | [jonathanperis](./participantes/jonathanperis) | ok | 6 |
 | [jonattas_bunjs](./participantes/jonattas_bunjs) | ok | 17 |
 | [jorgehrique-dotnet](./participantes/jorgehrique-dotnet) | ok | 3 |
@@ -350,6 +350,7 @@ Atualizada **Sun Mar  3 02:55:10 UTC 2024** com **460** submissões.
 | [nmessias](./participantes/nmessias) | ok | 1 |
 | [normanfrieman](./participantes/normanfrieman) | ok | 2 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
+| [oliveiraeliel](./participantes/oliveiraeliel) | falha - [logs](./participantes/oliveiraeliel/docker-compose.logs) | -- |
 | [oliveiratheone-rust](./participantes/oliveiratheone-rust) | ok | 1 |
 | [oloko64](./participantes/oloko64) | ok | 1 |
 | [olukkas](./participantes/olukkas) | ok | 4 |
@@ -392,6 +393,9 @@ Atualizada **Sun Mar  3 02:55:10 UTC 2024** com **460** submissões.
 | [rigottig](./participantes/rigottig) | ok | 6 |
 | [ritilopes](./participantes/ritilopes) | ok | 1 |
 | [rizzo-nodejs](./participantes/rizzo-nodejs) | falha - [logs](./participantes/rizzo-nodejs/docker-compose.logs) | -- |
+| [rmauro-mysql-yarp](./participantes/rmauro-mysql-yarp) | ok | 1 |
+| [rmauro-postgresql-yarp](./participantes/rmauro-postgresql-yarp) | ok | 1 |
+| [rmauro-postgresql](./participantes/rmauro-postgresql) | ok | 1 |
 | [rmauro](./participantes/rmauro) | ok | 2 |
 | [robsoncassol](./participantes/robsoncassol) | ok | 4 |
 | [rodolphovs-c-db](./participantes/rodolphovs-c-db) | ok | 1 |
@@ -443,7 +447,7 @@ Atualizada **Sun Mar  3 02:55:10 UTC 2024** com **460** submissões.
 | [viniciusamc-golang](./participantes/viniciusamc-golang) | ok | 3 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [viniciusgferreira](./participantes/viniciusgferreira) | ok | 3 |
-| [vitor_weirich_java](./participantes/vitor_weirich_java) | ok | 153 |
+| [vitor_weirich_java](./participantes/vitor_weirich_java) | ok | 148 |
 | [vitorlacerda-dotnet](./participantes/vitorlacerda-dotnet) | ok | 15 |
 | [vitornorberto](./participantes/vitornorberto) | ok | 4 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
