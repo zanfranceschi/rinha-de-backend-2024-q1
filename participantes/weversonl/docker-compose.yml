@@ -6,17 +6,26 @@ services:
     hostname: api1
     container_name: api1-rb
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     network_mode: host
     env_file:
       - ./config/.env
     environment:
       SERVER_PORT: 8080
+
     deploy:
       resources:
         limits:
-          cpus: "0.40"
-          memory: "100MB"
+          cpus: "0.45"
+          memory: "125MB"
+
+    healthcheck:
+      test: ["CMD", "true"]
+      start_interval: 0.20s
+      retries: 40
+      interval: 4s
+      timeout: 0.20s
 
   api2:
     <<: *api
@@ -31,13 +40,15 @@ services:
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api1
-      - api2
+      api1:
+        condition: service_healthy
+      api2:
+        condition: service_healthy
     network_mode: host
     deploy:
       resources:
         limits:
-          cpus: "0.20"
+          cpus: "0.10"
           memory: "50MB"
 
   postgres:
@@ -60,7 +71,14 @@ services:
       resources:
         limits:
           cpus: "0.50"
-          memory: "300MB"
+          memory: "250MB"
+
+    healthcheck:
+      test: ["CMD", "true"]
+      start_interval: 1s
+      retries: 20
+      interval: 4s
+      timeout: 0.50s
 
 volumes:
   postgres-data:

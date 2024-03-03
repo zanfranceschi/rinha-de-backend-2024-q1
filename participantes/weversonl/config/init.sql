@@ -20,3 +20,12 @@ INSERT INTO clientes (limite, saldo) VALUES
     (10000 * 100, 0),
     ( 100000 * 100, 0),
     (5000 * 100, 0);
+
+-- Carregar a tabela clientes
+SELECT pg_prewarm('clientes');
+
+-- Carregar a tabela transacoes
+SELECT pg_prewarm('transacoes');
+
+-- Carregar o índice transacao_order_idx
+SELECT pg_prewarm('transacao_order_idx');
