@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar  3 19:26:39 UTC 2024** com **470** submissões.
+Atualizada **Sun Mar  3 20:00:31 UTC 2024** com **473** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -93,6 +93,7 @@ Atualizada **Sun Mar  3 19:26:39 UTC 2024** com **470** submissões.
 | [claudio-silva](./participantes/claudio-silva) | ok | 3 |
 | [claudioavgo](./participantes/claudioavgo) | falha - [logs](./participantes/claudioavgo/docker-compose.logs) | -- |
 | [claudioneves1981](./participantes/claudioneves1981) | ok | 1 |
+| [cleidiano](./participantes/cleidiano) | ok | 1 |
 | [cleitinif](./participantes/cleitinif) | ok | 4 |
 | [cleverton-rocha-java](./participantes/cleverton-rocha-java) | falha - [logs](./participantes/cleverton-rocha-java/docker-compose.logs) | -- |
 | [cleverton-rocha](./participantes/cleverton-rocha) | ok | 4 |
@@ -225,6 +226,7 @@ Atualizada **Sun Mar  3 19:26:39 UTC 2024** com **470** submissões.
 | [ilosamart](./participantes/ilosamart) | ok | 1755 |
 | [impedro29-performance](./participantes/impedro29-performance) | ok | 39 |
 | [ircnelson](./participantes/ircnelson) | ok | 2 |
+| [isadora-souza-mongodb](./participantes/isadora-souza-mongodb) | ok | 1 |
 | [isadora-souza](./participantes/isadora-souza) | ok | 3 |
 | [isaquealves](./participantes/isaquealves) | ok | 4 |
 | [italobbarros](./participantes/italobbarros) | ok | 2 |
@@ -342,6 +344,7 @@ Atualizada **Sun Mar  3 19:26:39 UTC 2024** com **470** submissões.
 | [maxwell](./participantes/maxwell) | ok | 1 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [mgenteluci](./participantes/mgenteluci) | ok | 2 |
+| [michaelalves204](./participantes/michaelalves204) | ok | 8 |
 | [mourishitz-nest-js](./participantes/mourishitz-nest-js) | falha - [logs](./participantes/mourishitz-nest-js/docker-compose.logs) | -- |
 | [murilochianfa](./participantes/murilochianfa) | ok | 1 |
 | [mvellasco](./participantes/mvellasco) | ok | 9 |
@@ -458,7 +461,7 @@ Atualizada **Sun Mar  3 19:26:39 UTC 2024** com **470** submissões.
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
 | [vitorsalgado](./participantes/vitorsalgado) | ok | 1 |
 | [vkobinski](./participantes/vkobinski) | ok | 5 |
-| [vyctorguimaraes](./participantes/vyctorguimaraes) | ok | 6 |
+| [vyctorguimaraes](./participantes/vyctorguimaraes) | ok | 7 |
 | [wdmatheus](./participantes/wdmatheus) | ok | 2 |
 | [welitonfreitas](./participantes/welitonfreitas) | falha - [logs](./participantes/welitonfreitas/docker-compose.logs) | -- |
 | [wesleyegberto](./participantes/wesleyegberto) | ok | 2 |
