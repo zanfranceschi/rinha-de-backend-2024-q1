@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar  3 15:06:13 UTC 2024** com **467** submissões.
+Atualizada **Sun Mar  3 15:18:33 UTC 2024** com **469** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -446,6 +446,8 @@ Atualizada **Sun Mar  3 15:06:13 UTC 2024** com **467** submissões.
 | [victor99z](./participantes/victor99z) | ok | 8 |
 | [victornfb](./participantes/victornfb) | ok | 4 |
 | [victorverdoodt](./participantes/victorverdoodt) | ok | 2 |
+| [vineboneto-go](./participantes/vineboneto-go) | falha - [logs](./participantes/vineboneto-go/docker-compose.logs) | -- |
+| [vineboneto-js](./participantes/vineboneto-js) | ok | 1 |
 | [viniciusamc-golang](./participantes/viniciusamc-golang) | ok | 3 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [viniciusgferreira](./participantes/viniciusgferreira) | ok | 3 |
