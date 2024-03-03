@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar  3 16:29:24 UTC 2024** com **469** submissões.
+Atualizada **Sun Mar  3 16:45:47 UTC 2024** com **469** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -475,6 +475,6 @@ Atualizada **Sun Mar  3 16:29:24 UTC 2024** com **469** submissões.
 | [ygorcarmo](./participantes/ygorcarmo) | ok | 8 |
 | [zan-clojure-01](./participantes/zan-clojure-01) | ok | 2 |
 | [zan-dotnet](./participantes/zan-dotnet) | ok | 2 |
-| [zelnatal](./participantes/zelnatal) | ok | 3 |
+| [zelnatal](./participantes/zelnatal) | ok | 4 |
 | [zetos-node](./participantes/zetos-node) | ok | 2 |
 | [zsantana](./participantes/zsantana) | ok | 2 |
