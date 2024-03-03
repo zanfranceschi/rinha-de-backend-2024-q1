@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar  3 05:53:34 UTC 2024** com **464** submissões.
+Atualizada **Sun Mar  3 06:31:17 UTC 2024** com **466** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -243,6 +243,7 @@ Atualizada **Sun Mar  3 05:53:34 UTC 2024** com **464** submissões.
 | [joaopmerlin](./participantes/joaopmerlin) | ok | 3 |
 | [johnpgr_vlang](./participantes/johnpgr_vlang) | ok | 2 |
 | [jojodev](./participantes/jojodev) | ok | 1554 |
+| [jonasfeanor](./participantes/jonasfeanor) | ok | 2 |
 | [jonatasoli](./participantes/jonatasoli) | ok | 1 |
 | [jonathanperis-xgh](./participantes/jonathanperis-xgh) | ok | 2 |
 | [jonathanperis](./participantes/jonathanperis) | ok | 6 |
@@ -472,4 +473,5 @@ Atualizada **Sun Mar  3 05:53:34 UTC 2024** com **464** submissões.
 | [zan-clojure-01](./participantes/zan-clojure-01) | ok | 2 |
 | [zan-dotnet](./participantes/zan-dotnet) | ok | 2 |
 | [zelnatal](./participantes/zelnatal) | ok | 3 |
+| [zetos-node](./participantes/zetos-node) | ok | 2 |
 | [zsantana](./participantes/zsantana) | ok | 2 |
