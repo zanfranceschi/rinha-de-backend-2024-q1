@@ -1,16 +1,44 @@
 version: "3.5"
 
 services:
+  db:
+    image: postgres:16.2
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=gorinha
+      - POSTGRES_USER=gorinha
+      - POSTGRES_DB=gorinha
+    volumes:
+      - ./boot.sql:/docker-entrypoint-initdb.d/boot.sql
+    networks:
+      - rinha-nginx
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gorinha -d gorinha"]
+      interval: 2s
+      timeout: 2s
+      retries: 25
+    deploy:
+      resources:
+        limits:
+          cpus: "0.53"
+          memory: "200MB"
+
   api01: &api
     hostname: api01
-    image: andreluizsgf/rinha-de-backend-2024-q1
+    image: andreluizsgf/rinha-de-backend-2024-q1:0.0.5
+    platform: linux/amd64
     environment:
       - PG_HOST=db
       - PG_USER=gorinha
       - PG_PASSWORD=gorinha
       - PG_DB=gorinha
-    ports:
-      - "3000:3000"
+    networks:
+      - rinha-nginx
+    healthcheck:
+      test: ["CMD-SHELL", "true"]
+      interval: 2s
+      timeout: 2s
+      retries: 25
     depends_on:
       db:
         condition: service_healthy
@@ -23,53 +51,25 @@ services:
   api02:
     <<: *api
     hostname: api02
-    environment:
-      - PG_HOST=db
-      - PG_USER=gorinha
-      - PG_PASSWORD=gorinha
-      - PG_DB=gorinha
-    ports:
-      - "3001:3000"
  
   nginx:
     image: nginx:1.25.4
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api01
-      - api02
+      api01:
+        condition: service_healthy
+      api02:
+        condition: service_healthy
     ports:
-        # Obrigatório expor/usar a porta 9999 no load balancer! 
-      - "9999:9999" 
+      - "9999:9999"
+    networks:
+      - rinha-nginx
     deploy:
       resources:
         limits:
           cpus: "0.17"
           memory: "10MB"
 
-  db:
-    image: postgres:16.2
-    hostname: db
-    environment:
-      - POSTGRES_PASSWORD=gorinha
-      - POSTGRES_USER=gorinha
-      - POSTGRES_DB=gorinha
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./boot.sql:/docker-entrypoint-initdb.d/boot.sql
-    deploy:
-      resources:
-        limits:
-          cpus: "0.53"
-          memory: "200MB"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U gorinha -d gorinha"]
-      interval: 2s
-      timeout: 2s
-      retries: 25
-
 networks:
-  default:
-    driver: bridge
-    name: rinha-nginx-2024q1
+  rinha-nginx:

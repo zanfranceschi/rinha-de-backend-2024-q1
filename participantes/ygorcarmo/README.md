@@ -8,5 +8,3 @@ Submissão feita com:
 - `postgres` como banco de dados
 - `go` para api
 - [repositório da api](https://github.com/ygorcarmo/transactions-poc)
-
-[@zanfranceschi](https://twitter.com/zanfranceschi) @ twitter

@@ -26,14 +26,6 @@ db-rinha     | selecting default shared_buffers ... 128MB
 db-rinha     | selecting default time zone ... Etc/UTC
 db-rinha     | creating configuration files ... ok
 db-rinha     | running bootstrap script ... ok
-webapi-2     | info: Microsoft.Hosting.Lifetime[14]
-webapi-2     |       Now listening on: http://[::]:8080
-webapi-2     | info: Microsoft.Hosting.Lifetime[0]
-webapi-2     |       Application started. Press Ctrl+C to shut down.
-webapi-2     | info: Microsoft.Hosting.Lifetime[0]
-webapi-2     |       Hosting environment: Production
-webapi-2     | info: Microsoft.Hosting.Lifetime[0]
-webapi-2     |       Content root path: /app
 webapi-1     | info: Microsoft.Hosting.Lifetime[14]
 webapi-1     |       Now listening on: http://[::]:8080
 webapi-1     | info: Microsoft.Hosting.Lifetime[0]
@@ -42,6 +34,14 @@ webapi-1     | info: Microsoft.Hosting.Lifetime[0]
 webapi-1     |       Hosting environment: Production
 webapi-1     | info: Microsoft.Hosting.Lifetime[0]
 webapi-1     |       Content root path: /app
+webapi-2     | info: Microsoft.Hosting.Lifetime[14]
+webapi-2     |       Now listening on: http://[::]:8080
+webapi-2     | info: Microsoft.Hosting.Lifetime[0]
+webapi-2     |       Application started. Press Ctrl+C to shut down.
+webapi-2     | info: Microsoft.Hosting.Lifetime[0]
+webapi-2     |       Hosting environment: Production
+webapi-2     | info: Microsoft.Hosting.Lifetime[0]
+webapi-2     |       Content root path: /app
 nginx-rinha  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-rinha  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-rinha  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -52,8 +52,6 @@ nginx-rinha  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst
 nginx-rinha  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-rinha  | /docker-entrypoint.sh: Configuration complete; ready for start up
 db-rinha     | performing post-bootstrap initialization ... ok
-db-rinha     | initdb: warning: enabling "trust" authentication for local connections
-db-rinha     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-rinha     | syncing data to disk ... ok
 db-rinha     | 
 db-rinha     | 
@@ -61,10 +59,12 @@ db-rinha     | Success. You can now start the database server using:
 db-rinha     | 
 db-rinha     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-rinha     | 
-db-rinha     | waiting for server to start....2024-02-28 21:27:53.854 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-rinha     | 2024-02-28 21:27:53.856 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-rinha     | 2024-02-28 21:27:53.865 UTC [51] LOG:  database system was shut down at 2024-02-28 21:27:53 UTC
-db-rinha     | 2024-02-28 21:27:53.875 UTC [48] LOG:  database system is ready to accept connections
+db-rinha     | initdb: warning: enabling "trust" authentication for local connections
+db-rinha     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-rinha     | waiting for server to start....2024-03-01 00:51:25.785 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-rinha     | 2024-03-01 00:51:25.789 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-rinha     | 2024-03-01 00:51:25.798 UTC [52] LOG:  database system was shut down at 2024-03-01 00:51:24 UTC
+db-rinha     | 2024-03-01 00:51:25.810 UTC [49] LOG:  database system is ready to accept connections
 db-rinha     |  done
 db-rinha     | server started
 db-rinha     | CREATE DATABASE
@@ -111,39 +111,390 @@ db-rinha     | CREATE INDEX
 db-rinha     | ALTER TABLE
 db-rinha     | 
 db-rinha     | 
-db-rinha     | waiting for server to shut down...2024-02-28 21:27:54.155 UTC [48] LOG:  received fast shutdown request
-db-rinha     | .2024-02-28 21:27:54.157 UTC [48] LOG:  aborting any active transactions
-db-rinha     | 2024-02-28 21:27:54.159 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-rinha     | 2024-02-28 21:27:54.159 UTC [49] LOG:  shutting down
-db-rinha     | 2024-02-28 21:27:54.168 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-rinha     | 2024-02-28 21:27:54.664 UTC [49] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.389 s, sync=0.097 s, total=0.506 s; sync files=310, longest=0.069 s, average=0.001 s; distance=4301 kB, estimate=4301 kB; lsn=0/191E138, redo lsn=0/191E138
-db-rinha     | 2024-02-28 21:27:54.669 UTC [48] LOG:  database system is shut down
+db-rinha     | waiting for server to shut down...2024-03-01 00:51:26.063 UTC [49] LOG:  received fast shutdown request
+db-rinha     | .2024-03-01 00:51:26.066 UTC [49] LOG:  aborting any active transactions
+db-rinha     | 2024-03-01 00:51:26.068 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+db-rinha     | 2024-03-01 00:51:26.068 UTC [50] LOG:  shutting down
+db-rinha     | 2024-03-01 00:51:26.070 UTC [50] LOG:  checkpoint starting: shutdown immediate
+db-rinha     | 2024-03-01 00:51:26.571 UTC [50] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.363 s, sync=0.128 s, total=0.503 s; sync files=310, longest=0.102 s, average=0.001 s; distance=4301 kB, estimate=4301 kB; lsn=0/191E138, redo lsn=0/191E138
+db-rinha     | 2024-03-01 00:51:26.576 UTC [49] LOG:  database system is shut down
 db-rinha     |  done
 db-rinha     | server stopped
 db-rinha     | 
 db-rinha     | PostgreSQL init process complete; ready for start up.
 db-rinha     | 
-db-rinha     | 2024-02-28 21:27:54.779 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-rinha     | 2024-02-28 21:27:54.780 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-rinha     | 2024-02-28 21:27:54.780 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-rinha     | 2024-02-28 21:27:54.785 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-rinha     | 2024-02-28 21:27:54.793 UTC [66] LOG:  database system was shut down at 2024-02-28 21:27:54 UTC
-db-rinha     | 2024-02-28 21:27:54.799 UTC [1] LOG:  database system is ready to accept connections
-nginx-rinha exited with code 0
-nginx-rinha exited with code 0
-webapi-1     | info: Microsoft.Hosting.Lifetime[0]
-webapi-1     |       Application is shutting down...
-webapi-2     | info: Microsoft.Hosting.Lifetime[0]
-webapi-2     |       Application is shutting down...
-webapi-1 exited with code 0
-webapi-1 exited with code 0
-webapi-2 exited with code 0
-webapi-2 exited with code 0
-db-rinha     | 2024-02-28 21:32:10.133 UTC [1] LOG:  received fast shutdown request
-db-rinha     | 2024-02-28 21:32:10.136 UTC [1] LOG:  aborting any active transactions
-db-rinha     | 2024-02-28 21:32:10.138 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-rinha     | 2024-02-28 21:32:10.138 UTC [64] LOG:  shutting down
-db-rinha     | 2024-02-28 21:32:10.141 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-rinha     | 2024-02-28 21:32:10.302 UTC [64] LOG:  checkpoint complete: wrote 871 buffers (5.3%); 0 WAL file(s) added, 0 removed, 2 recycled; write=0.015 s, sync=0.123 s, total=0.164 s; sync files=31, longest=0.112 s, average=0.004 s; distance=25568 kB, estimate=25568 kB; lsn=0/3216428, redo lsn=0/3216428
-db-rinha     | 2024-02-28 21:32:10.307 UTC [1] LOG:  database system is shut down
-db-rinha exited with code 0
+db-rinha     | 2024-03-01 00:51:26.688 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-rinha     | 2024-03-01 00:51:26.688 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-rinha     | 2024-03-01 00:51:26.688 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-rinha     | 2024-03-01 00:51:26.693 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-rinha     | 2024-03-01 00:51:26.700 UTC [67] LOG:  database system was shut down at 2024-03-01 00:51:26 UTC
+db-rinha     | 2024-03-01 00:51:26.707 UTC [1] LOG:  database system is ready to accept connections
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "SaldoInicial" AS Total, "Limite" AS Limite, NOW() AS data_extrato
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Valor", "Tipo", "Descricao", "RealizadoEm"
+webapi-1     |                                   FROM public."Transacoes"
+webapi-1     |                                   WHERE "ClienteId" = $1
+webapi-1     |                                   ORDER BY "Id" DESC
+webapi-1     |                                   LIMIT 10
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "SaldoInicial" AS Total, "Limite" AS Limite, NOW() AS data_extrato
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Valor", "Tipo", "Descricao", "RealizadoEm"
+webapi-1     |                                   FROM public."Transacoes"
+webapi-1     |                                   WHERE "ClienteId" = $1
+webapi-1     |                                   ORDER BY "Id" DESC
+webapi-1     |                                   LIMIT 10
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=2ms): 
+webapi-1     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-1     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=1ms): 
+webapi-1     |                                   UPDATE public."Clientes"
+webapi-1     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-1     |                                   WHERE "Id" = $2
+webapi-1     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=6ms): 
+webapi-1     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-1     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=1ms): 
+webapi-1     |                                   UPDATE public."Clientes"
+webapi-1     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-1     |                                   WHERE "Id" = $2
+webapi-1     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=16ms): 
+webapi-1     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-1     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=1ms): 
+webapi-1     |                                   UPDATE public."Clientes"
+webapi-1     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-1     |                                   WHERE "Id" = $2
+webapi-1     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=22ms): 
+webapi-1     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-1     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=5ms): 
+webapi-1     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-1     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=8ms): 
+webapi-1     |                                   UPDATE public."Clientes"
+webapi-1     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-1     |                                   WHERE "Id" = $2
+webapi-1     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=6ms): 
+webapi-1     |                                   UPDATE public."Clientes"
+webapi-1     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-1     |                                   WHERE "Id" = $2
+webapi-1     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=7ms): 
+webapi-1     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-1     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=1ms): 
+webapi-1     |                                   UPDATE public."Clientes"
+webapi-1     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-1     |                                   WHERE "Id" = $2
+webapi-1     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=2ms): 
+webapi-1     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-1     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=2ms): 
+webapi-1     |                                   UPDATE public."Clientes"
+webapi-1     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-1     |                                   WHERE "Id" = $2
+webapi-1     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=4ms): 
+webapi-2     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-2     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=4ms): 
+webapi-2     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-2     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=1ms): 
+webapi-1     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-1     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=2ms): 
+webapi-2     |                                   UPDATE public."Clientes"
+webapi-2     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-2     |                                   WHERE "Id" = $2
+webapi-2     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=0ms): 
+webapi-2     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-2     |                                   FROM public."Clientes"
+webapi-2     |                                   WHERE "Id" = $1
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=3ms): 
+webapi-2     |                                   UPDATE public."Clientes"
+webapi-2     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-2     |                                   WHERE "Id" = $2
+webapi-2     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=0ms): 
+webapi-2     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-2     |                                   FROM public."Clientes"
+webapi-2     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=3ms): 
+webapi-1     |                                   UPDATE public."Clientes"
+webapi-1     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-1     |                                   WHERE "Id" = $2
+webapi-1     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=3ms): 
+webapi-2     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-2     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=3ms): 
+webapi-2     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-2     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=2ms): 
+webapi-1     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-1     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=2ms): 
+webapi-2     |                                   UPDATE public."Clientes"
+webapi-2     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-2     |                                   WHERE "Id" = $2
+webapi-2     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=0ms): 
+webapi-2     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-2     |                                   FROM public."Clientes"
+webapi-2     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=2ms): 
+webapi-1     |                                   UPDATE public."Clientes"
+webapi-1     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-1     |                                   WHERE "Id" = $2
+webapi-1     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=2ms): 
+webapi-2     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-2     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=4ms): 
+webapi-2     |                                   UPDATE public."Clientes"
+webapi-2     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-2     |                                   WHERE "Id" = $2
+webapi-2     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=1ms): 
+webapi-1     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-1     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=0ms): 
+webapi-2     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-2     |                                   FROM public."Clientes"
+webapi-2     |                                   WHERE "Id" = $1
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=2ms): 
+webapi-2     |                                   UPDATE public."Clientes"
+webapi-2     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-2     |                                   WHERE "Id" = $2
+webapi-2     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=0ms): 
+webapi-2     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-2     |                                   FROM public."Clientes"
+webapi-2     |                                   WHERE "Id" = $1
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=3ms): 
+webapi-2     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-2     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=5ms): 
+webapi-1     |                                   UPDATE public."Clientes"
+webapi-1     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-1     |                                   WHERE "Id" = $2
+webapi-1     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=3ms): 
+webapi-2     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-2     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=2ms): 
+webapi-2     |                                   UPDATE public."Clientes"
+webapi-2     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-2     |                                   WHERE "Id" = $2
+webapi-2     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=0ms): 
+webapi-2     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-2     |                                   FROM public."Clientes"
+webapi-2     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=1ms): 
+webapi-1     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-1     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=2ms): 
+webapi-2     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-2     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=3ms): 
+webapi-2     |                                   UPDATE public."Clientes"
+webapi-2     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-2     |                                   WHERE "Id" = $2
+webapi-2     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=0ms): 
+webapi-2     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-2     |                                   FROM public."Clientes"
+webapi-2     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=5ms): 
+webapi-1     |                                   UPDATE public."Clientes"
+webapi-1     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-1     |                                   WHERE "Id" = $2
+webapi-1     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=5ms): 
+webapi-2     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-2     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=4ms): 
+webapi-1     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-1     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=9ms): 
+webapi-2     |                                   UPDATE public."Clientes"
+webapi-2     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-2     |                                   WHERE "Id" = $2
+webapi-2     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=0ms): 
+webapi-2     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-2     |                                   FROM public."Clientes"
+webapi-2     |                                   WHERE "Id" = $1
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=2ms): 
+webapi-2     |                                   UPDATE public."Clientes"
+webapi-2     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-2     |                                   WHERE "Id" = $2
+webapi-2     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=0ms): 
+webapi-2     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-2     |                                   FROM public."Clientes"
+webapi-2     |                                   WHERE "Id" = $1
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=5ms): 
+webapi-1     |                                   UPDATE public."Clientes"
+webapi-1     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-1     |                                   WHERE "Id" = $2
+webapi-1     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-1     | info: Npgsql.Command[2001]
+webapi-1     |       Command execution completed (duration=0ms): 
+webapi-1     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-1     |                                   FROM public."Clientes"
+webapi-1     |                                   WHERE "Id" = $1
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=6ms): 
+webapi-2     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-2     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=7ms): 
+webapi-2     |                                   INSERT INTO public."Transacoes" ("Valor", "Tipo", "Descricao", "ClienteId", "RealizadoEm")
+webapi-2     |                                   VALUES ($1, $2, $3, $4, $5)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=2ms): 
+webapi-2     |                                   UPDATE public."Clientes"
+webapi-2     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-2     |                                   WHERE "Id" = $2
+webapi-2     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=0ms): 
+webapi-2     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-2     |                                   FROM public."Clientes"
+webapi-2     |                                   WHERE "Id" = $1
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=4ms): 
+webapi-2     |                                   UPDATE public."Clientes"
+webapi-2     |                                   SET "SaldoInicial" = "SaldoInicial" + $1
+webapi-2     |                                   WHERE "Id" = $2
+webapi-2     |                                   AND ("SaldoInicial" + $1 >= "Limite" * -1 OR $1 > 0)
+webapi-2     | info: Npgsql.Command[2001]
+webapi-2     |       Command execution completed (duration=0ms): 
+webapi-2     |                                   SELECT "Id", "Limite", "SaldoInicial" AS Saldo
+webapi-2     |                                   FROM public."Clientes"
+webapi-2     |                                   WHERE "Id" = $1

@@ -1,22 +1,17 @@
 version: "3.5"
 
 services:
-  api01: &api # image: ruhtar/rinha-de-backend2
-    # image: ${DOCKER_REGISTRY-}rinha-api
+  api01: &api 
     image: ruhtar/rinha-de-backend2:latest
     restart: unless-stopped
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
     hostname: api01
     environment:
-      - DB_HOSTNAME=db
-      - PORT=8080
+      - DB_CONNECTION_STRING=Host=db;Username=admin;Password=123;Database=rinha;Pooling=true;Minimum Pool Size=30;Maximum Pool Size=30;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1
     ports:
       - "3001:8080"
-      # - "3001:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -26,17 +21,15 @@ services:
   api02:
     <<: *api
     hostname: api02
-    environment:
-      - DB_HOSTNAME=db
-      - PORT=8080
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
       - "3002:8080"
-      # - "3002:8080"
 
   nginx:
     image: nginx:latest
     restart: unless-stopped
-    # network_mode: "host"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
@@ -56,27 +49,25 @@ services:
     restart: unless-stopped
     environment:
       - POSTGRES_PASSWORD=123
-      - POSTGRES_USER=postgres
+      - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
-      # - POSTGRES_MAX_CONNECTIONS=150
-      # - POSTGRES_SHARED_BUFFERS=256MB
-      # - POSTGRES_MAX_WAL_SIZE=1GB 
-      # - POSTGRES_FSYNC=off
-      # - POSTGRES_SYNCHRONOUS_COMMIT=off
-      # - POSTGRES_CHECKPOINT_TIMEOUT=1d
-      # - POSTGRES_FULL_PAGE_WRITES=false
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./postgresql.conf:/etc/postgresql/postgresql.conf
-    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c fsync=0 -c full_page_writes=0
+    command: 'postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c max_connections=1000 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off' 
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U admin -d rinha']
+      interval: 3s
+      timeout: 5s
+      retries: 10
     deploy:
       resources:
         limits:
           cpus: "0.7"
           memory: "270MB"
-# networks:
-#   default:
-#     driver: bridge
-#     name: rinha-nginx-2024q1
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

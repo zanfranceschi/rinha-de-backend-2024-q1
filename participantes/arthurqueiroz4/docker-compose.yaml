@@ -1,0 +1,68 @@
+version: "3.5"
+
+services:
+  api01: &api
+    container_name: api01
+    image: arthurqueiroz04/rinha:latest
+    hostname: api01
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@localhost:5432/rinha
+      - APP_PORT=:8889
+    depends_on:
+      db:
+        condition: service_healthy
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "100MB"
+
+  api02:
+    <<: *api
+    container_name: api02
+    hostname: api02
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@localhost:5432/rinha
+      - APP_PORT=:8888
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    network_mode: "host"
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+
+  db:
+    image: postgres:latest
+    hostname: database
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    network_mode: "host"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: "300MB"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  rinha-v:

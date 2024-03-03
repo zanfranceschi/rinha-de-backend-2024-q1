@@ -1,0 +1,68 @@
+services:
+
+  api1:
+    container_name: api1
+    image: gasparbarancelli/rinha-2024-java-nativo:latest
+    network_mode: host
+    environment:
+      - HTTP_PORT=8081
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "80MB"
+
+  api2:
+    container_name: api2
+    image: gasparbarancelli/rinha-2024-java-nativo:latest
+    network_mode: host
+    environment:
+      - HTTP_PORT=8082
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "80MB"
+
+  nginx:
+    image: nginx:latest
+    network_mode: host
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+  db:
+    container_name: db
+    image: postgres:latest
+    network_mode: host
+    environment:
+      - POSTGRES_PASSWORD=backend
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha-backend
+    command: 'postgres -c max_connections=1000 -c work_mem=8MB -c hot_standby=off -c shared_buffers=155MB -c checkpoint_timeout=1d -c wal_level=minimal -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c max_wal_senders=0'
+    volumes:
+      - ./import.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "340MB"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
