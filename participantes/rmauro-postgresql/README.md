@@ -6,7 +6,7 @@ Submissão feita com:
 
 * Envoy 1.29 (proxy)
 
-* `mysql` como banco de dados
+* `postgresql` como banco de dados
 
 * `dotnet 8.0 - C#` para api
 
