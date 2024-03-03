@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar  3 01:00:43 UTC 2024** com **454** submissões.
+Atualizada **Sun Mar  3 01:12:32 UTC 2024** com **454** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -34,7 +34,7 @@ Atualizada **Sun Mar  3 01:00:43 UTC 2024** com **454** submissões.
 | [andersonhqds-node](./participantes/andersonhqds-node) | ok | 3 |
 | [andre-gbi-aspnet](./participantes/andre-gbi-aspnet) | ok | 1 |
 | [andre1999lopes](./participantes/andre1999lopes) | ok | 13 |
-| [andreluizsgf](./participantes/andreluizsgf) | falha - [logs](./participantes/andreluizsgf/docker-compose.logs) | -- |
+| [andreluizsgf](./participantes/andreluizsgf) | ok | 1 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
 | [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
