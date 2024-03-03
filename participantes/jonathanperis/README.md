@@ -1,18 +1,17 @@
-﻿# Submissão by Jonathan Peris (@jonathanperis)
+﻿# Submissão by Jonathan Peris (@jonathanperis) XGH MODE ON
 
 Rinha de Backend 2024/01
 
 ## Stack
 
 - net8
-- Dapper
-- Mediator
 - Postgresql
 - nginx
+- ódio
 
 ## Repositório
 
-https://github.com/jonathanperis/rinha2-back-end-bora-dale
+https://github.com/jonathanperis/rinha2-back-end-bora-dale-xgh
 
 ## Site/Twitter
 
