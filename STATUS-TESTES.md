@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar  3 13:59:13 UTC 2024** com **467** submissões.
+Atualizada **Sun Mar  3 14:16:38 UTC 2024** com **467** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -352,7 +352,7 @@ Atualizada **Sun Mar  3 13:59:13 UTC 2024** com **467** submissões.
 | [nmessias](./participantes/nmessias) | ok | 1 |
 | [normanfrieman](./participantes/normanfrieman) | ok | 2 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
-| [oliveiraeliel](./participantes/oliveiraeliel) | falha - [logs](./participantes/oliveiraeliel/docker-compose.logs) | -- |
+| [oliveiraeliel](./participantes/oliveiraeliel) | ok | 2 |
 | [oliveiratheone-rust](./participantes/oliveiratheone-rust) | ok | 1 |
 | [oloko64](./participantes/oloko64) | ok | 1 |
 | [olukkas](./participantes/olukkas) | ok | 4 |
@@ -363,7 +363,7 @@ Atualizada **Sun Mar  3 13:59:13 UTC 2024** com **467** submissões.
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
 | [paulohenriquesn-python](./participantes/paulohenriquesn-python) | ok | 3 |
 | [pedro-azevedo-e-matheus-gomes-nodejs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs) | falha - [logs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs/docker-compose.logs) | -- |
-| [pedrohenriquea](./participantes/pedrohenriquea) | ok | 3 |
+| [pedrohenriquea](./participantes/pedrohenriquea) | ok | 2 |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
