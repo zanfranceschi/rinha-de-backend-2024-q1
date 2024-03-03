@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar  3 17:56:36 UTC 2024** com **469** submissões.
+Atualizada **Sun Mar  3 18:08:43 UTC 2024** com **470** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -24,6 +24,7 @@ Atualizada **Sun Mar  3 17:56:36 UTC 2024** com **469** submissões.
 | [alan_albuquerque](./participantes/alan_albuquerque) | ok | 1 |
 | [alan_albuquerque_capivara](./participantes/alan_albuquerque_capivara) | ok | 1 |
 | [alanlviana-aspnet](./participantes/alanlviana-aspnet) | ok | 1 |
+| [alcides-kotlin](./participantes/alcides-kotlin) | ok | 2 |
 | [alfredomorais](./participantes/alfredomorais) | falha - [logs](./participantes/alfredomorais/docker-compose.logs) | -- |
 | [alissonsleal](./participantes/alissonsleal) | ok | 3 |
 | [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
