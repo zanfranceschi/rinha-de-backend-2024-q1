@@ -2,6 +2,7 @@ version: "3.5"
 services:
   api1: &api
     image: docker.io/vgdss/crebito:latest
+    pull_policy: always
     hostname: api1
     container_name: rinha-api1
     depends_on:
@@ -23,7 +24,7 @@ services:
       PORT: 8002    
 
   nginx:
-    image: nginx:latest
+    image: nginx:1.25
     container_name: rinha-nginx
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
@@ -38,7 +39,7 @@ services:
           memory: "50MB"  
 
   postgres:
-    image: postgres:latest
+    image: postgres:16.2
     container_name: rinhadb
     environment:
       POSTGRES_DB: crebito
