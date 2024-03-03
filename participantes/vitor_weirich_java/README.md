@@ -4,8 +4,9 @@
 
 _Submissão feita com:_
 
-- Java 17
-- Spring boot - 3.2.2
+- Java 21
+- Graalvm 21
+- Spring boot - 3.2.1 - Native Image
 - Postgresql
 - Nginx
 

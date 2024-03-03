@@ -2,6 +2,7 @@ version: '3.9'
 services:
   api01: &api
     image: abrantedevops/apirinhabackend:latest
+    container_name: api01
     hostname: api01
     environment:
       DATABASE_URL: ${DATABASE_URL}
@@ -13,11 +14,12 @@ services:
       resources:
         limits:
           cpus: "0.55"
-          memory: "50MB"
+          memory: "200MB"
 
   api02:
     <<: *api
     hostname: api02
+    container_name: api02
     ports:
       - "3002:3000"
 
@@ -33,24 +35,26 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.2"
-          memory: "40MB"
+          cpus: "0.15"
+          memory: "10MB"
 
   db:
     container_name: db
-    image: mariadb:10
+    hostname: db
+    image: postgres:latest
     restart: always
     env_file:
       - .env
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c full_page_writes=0
     ports:
-      - 3306:3306
+      - 5433:5432
     deploy:
       resources:
         limits:
-          cpus: "1"
-          memory: "400MB"
+          cpus: "0.25"
+          memory: "140MB"
 
 networks:
   default:
