@@ -1,0 +1,30 @@
+CREATE UNLOGGED TABLE customers (
+  id SERIAL PRIMARY KEY,
+  balance_limit INTEGER NOT NULL,
+  current_balance INTEGER NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  deleted_at TIMESTAMP
+);
+
+CREATE UNLOGGED TABLE transactions (
+  id SERIAL PRIMARY KEY,
+  customer_id INTEGER NOT NULL,
+  amount INTEGER NOT NULL,
+  kind CHAR(1) NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  deleted_at TIMESTAMP
+);
+
+CREATE INDEX transactions_customer_id_index ON transactions(customer_id);
+CREATE INDEX transactions_created_at_index ON transactions(created_at);
+
+INSERT INTO customers(balance_limit, current_balance, created_at, updated_at, deleted_at)
+VALUES
+  (100000, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL),
+  (80000, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL),
+  (1000000, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL),
+  (10000000, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL),
+  (500000, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL);
