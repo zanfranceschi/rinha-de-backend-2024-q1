@@ -103,22 +103,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION public.GetUltimasTransacoes(IN id INTEGER)
-RETURNS TABLE (
-    Valor INTEGER,
-    Tipo varchar(1),
-    Descricao text,
-    RealizadoEm TIMESTAMP
-  ) AS $$BEGIN
-  RETURN QUERY
-  SELECT "Valor" AS Valor, "Tipo" AS Tipo, "Descricao" AS Descricao, "RealizadoEm" AS RealizadoEm
-  FROM public."Transacoes"
-  WHERE "ClienteId" = $1
-  ORDER BY "Id" DESC
-  LIMIT 10;
-END;
-$$ LANGUAGE plpgsql;
-
 CREATE OR REPLACE FUNCTION public.InsertTransacao(IN id INTEGER, IN valor INTEGER, IN tipo VARCHAR(1), IN descricao VARCHAR(10))
 RETURNS INTEGER AS $$
 BEGIN
