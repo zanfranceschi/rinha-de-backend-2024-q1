@@ -27,3 +27,5 @@ ALTER TABLE
   transactions
 SET
   (autovacuum_enabled = false);
+
+CREATE INDEX idx_transactions ON transactions (customer_id asc);
