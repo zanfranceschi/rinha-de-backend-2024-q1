@@ -1,4 +1,4 @@
-﻿# Submissão by Jonathan Peris (@jonathanperis) XGH MODE ON
+﻿# Submissão by Jonathan Peris (XGH MODE ON)
 
 Rinha de Backend 2024/01
 
