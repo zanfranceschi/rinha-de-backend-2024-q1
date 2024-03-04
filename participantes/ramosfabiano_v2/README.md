@@ -1,5 +1,6 @@
 # Submissão para Rinha de Backend, Segunda Edição: 2024/Q1 - Controle de Concorrência
 
+V2 - Sharding
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="logo nginx" width="300" height="auto">
 <br />
@@ -14,5 +15,5 @@ Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `drogon` web framework
-- [Repositório](https://github.com/ramosfabiano/rinha-de-backend-2024-q1) (tag: v1)
+- [Repositório](https://github.com/ramosfabiano/rinha-de-backend-2024-q1) (tag: v2)
 
