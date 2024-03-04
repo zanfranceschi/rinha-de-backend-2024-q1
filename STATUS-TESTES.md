@@ -1,10 +1,11 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar  3 23:00:58 UTC 2024** com **478** submissões.
+Atualizada **Mon Mar  4 02:40:40 UTC 2024** com **482** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
+| [0000-golang](./participantes/0000-golang) | ok | 2 |
 | [1garo](./participantes/1garo) | ok | 5 |
 | [AlcivanLucas](./participantes/AlcivanLucas) | falha - [logs](./participantes/AlcivanLucas/docker-compose.logs) | -- |
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 5 |
@@ -26,6 +27,7 @@ Atualizada **Sun Mar  3 23:00:58 UTC 2024** com **478** submissões.
 | [alanlviana-aspnet](./participantes/alanlviana-aspnet) | ok | 1 |
 | [alcides-kotlin](./participantes/alcides-kotlin) | ok | 2 |
 | [alcides-quarkus](./participantes/alcides-quarkus) | ok | 2 |
+| [alexsiilvaa](./participantes/alexsiilvaa) | ok | 1 |
 | [alfredomorais](./participantes/alfredomorais) | falha - [logs](./participantes/alfredomorais/docker-compose.logs) | -- |
 | [alissonsleal](./participantes/alissonsleal) | ok | 3 |
 | [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
@@ -75,6 +77,7 @@ Atualizada **Sun Mar  3 23:00:58 UTC 2024** com **478** submissões.
 | [brunocamarggo](./participantes/brunocamarggo) | ok | 2 |
 | [brunodelucasbarbosa](./participantes/brunodelucasbarbosa) | ok | 4 |
 | [brunolipe-a](./participantes/brunolipe-a) | ok | 4 |
+| [brunoquinelato](./participantes/brunoquinelato) | falha - [logs](./participantes/brunoquinelato/docker-compose.logs) | -- |
 | [buemura-nestjs](./participantes/buemura-nestjs) | ok | 4 |
 | [buemura-quarkus](./participantes/buemura-quarkus) | ok | 3 |
 | [buemura](./participantes/buemura) | ok | 2 |
@@ -252,7 +255,7 @@ Atualizada **Sun Mar  3 23:00:58 UTC 2024** com **478** submissões.
 | [jonasfeanor](./participantes/jonasfeanor) | ok | 2 |
 | [jonatasoli](./participantes/jonatasoli) | ok | 1 |
 | [jonathanperis-xgh](./participantes/jonathanperis-xgh) | ok | 2 |
-| [jonathanperis](./participantes/jonathanperis) | ok | 6 |
+| [jonathanperis](./participantes/jonathanperis) | ok | 2 |
 | [jonattas_bunjs](./participantes/jonattas_bunjs) | ok | 17 |
 | [jorgehrique-dotnet](./participantes/jorgehrique-dotnet) | ok | 3 |
 | [josebaroni-postgrest](./participantes/josebaroni-postgrest) | ok | 2 |
@@ -370,12 +373,13 @@ Atualizada **Sun Mar  3 23:00:58 UTC 2024** com **478** submissões.
 | [paulohenriquesn-python](./participantes/paulohenriquesn-python) | ok | 3 |
 | [pedro-azevedo-e-matheus-gomes-nodejs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs) | falha - [logs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs/docker-compose.logs) | -- |
 | [pedrohenriquea](./participantes/pedrohenriquea) | ok | 2 |
+| [pedrolzoliveira-postgrest](./participantes/pedrolzoliveira-postgrest) | falha - [logs](./participantes/pedrolzoliveira-postgrest/docker-compose.logs) | -- |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
 | [quarkusclub](./participantes/quarkusclub) | ok | 3 |
 | [quokka](./participantes/quokka) | ok | 5 |
-| [rafaelktakahashi](./participantes/rafaelktakahashi) | falha - [logs](./participantes/rafaelktakahashi/docker-compose.logs) | -- |
+| [rafaelktakahashi](./participantes/rafaelktakahashi) | ok | 2 |
 | [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
 | [rafaelpadovezi-mongo](./participantes/rafaelpadovezi-mongo) | ok | 2 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
@@ -439,6 +443,7 @@ Atualizada **Sun Mar  3 23:00:58 UTC 2024** com **478** submissões.
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
 | [tiagoguerreirodev-go](./participantes/tiagoguerreirodev-go) | ok | 1 |
+| [tiagoguerreirodev-python](./participantes/tiagoguerreirodev-python) | ok | 2 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
 | [tonico](./participantes/tonico) | ok | 80 |
 | [tortuga](./participantes/tortuga) | ok | 4 |
