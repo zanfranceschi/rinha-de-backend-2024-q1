@@ -1,26 +1,22 @@
 version: "3.5"
 services:
   api1: &api
-    image: geraldojrcg/rinha-backend-2024-q1-elixir
+    image: geraldojrcg/rinha-backend-2024-q1-elixir:latest
     depends_on:
       - database
     hostname: api1
+    restart: unless-stopped
     environment:
       PHX_HOST: api1
       ERL_MAX_PORTS: 512
       DATABASE_URL: postgres://postgres:postgres@database/rinha_backend
       PORT: 3000
-      POOL_SIZE: 20
       SECRET_KEY_BASE: N1Bgi5I4wbP5J8I4V4UmE5VlkWSIH/8mBAGkiHeF+h1OkQGWnCulI71yKsFxi0MS
-    ulimits:
-      nofile:
-        soft: 1000000
-        hard: 1000000
     deploy:
       resources:
         limits:
-          cpus: "0.3"
-          memory: "100MB"
+          cpus: "0.6"
+          memory: "210MB"
 
   api2:
     <<: *api
@@ -29,8 +25,7 @@ services:
       PHX_HOST: api2
       ERL_MAX_PORTS: 512
       DATABASE_URL: postgres://postgres:postgres@database/rinha_backend
-      PORT: 3000
-      POOL_SIZE: 20
+      PORT: 3001
       SECRET_KEY_BASE: N1Bgi5I4wbP5J8I4V4UmE5VlkWSIH/8mBAGkiHeF+h1OkQGWnCulI71yKsFxi0MS
 
   database:
@@ -48,8 +43,9 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.8"
-          memory: "300MB"
+          cpus: "0.4"
+          memory: "100MB"
+
 
   nginx:
     image: nginx:latest
@@ -64,4 +60,9 @@ services:
       resources:
         limits:
           cpus: "0.1"
-          memory: "50MB"
+          memory: "30MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha_backend_2024_q1
