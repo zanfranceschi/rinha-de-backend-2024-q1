@@ -1,13 +1,19 @@
-version: '3.8'
+version: '3.5'
 services:
-  api1:
+  api1: &api
     image: rafaelktakahashi/ferrugem:latest
+    restart: always
+    hostname: api1
     environment:
       DATABASE_URL: postgres://postgres:999@db:5432/postgres?schema=public&sslmode=disable
-      MAX_DB_CONNECTIONS: 12
+      MAX_DB_CONNECTIONS: 9
       KEEPALIVE_DURATION: 5
-      DB_POOL_TIMEOUT: 58000
+      DB_POOL_TIMEOUT: 20000
       PORT: 3000
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
     depends_on:
       - db
     expose:
@@ -19,25 +25,14 @@ services:
       resources:
         limits:
           cpus: '0.11'
-          memory: '10MB'
+          memory: '20MB'
 
   api2:
+    <<: *api
     image: rafaelktakahashi/ferrugem:latest
-    environment:
-      DATABASE_URL: postgres://postgres:999@db:5432/postgres?schema=public&sslmode=disable
-      MAX_DB_CONNECTIONS: 12
-      KEEPALIVE_DURATION: 5
-      DB_POOL_TIMEOUT: 58000
-      PORT: 3000
-    depends_on:
-      - db
-    expose:
-      - "3000"
-    deploy:
-      resources:
-        limits:
-          cpus: '0.11'
-          memory: '10MB'
+    hostname: api2
+    ports:
+      - "3001:3000"
 
   nginx:
     image: nginx:latest
@@ -71,6 +66,6 @@ services:
       resources:
         limits:
           cpus: "1.1"
-          memory: "500MB"
+          memory: "480MB"
 
 # 1.5 CPU, 550MB total
