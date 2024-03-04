@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Mar  4 18:31:00 UTC 2024** com **490** submissões.
+Atualizada **Mon Mar  4 18:54:31 UTC 2024** com **491** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -393,6 +393,7 @@ Atualizada **Mon Mar  4 18:31:00 UTC 2024** com **490** submissões.
 | [raiane-dev](./participantes/raiane-dev) | ok | 1 |
 | [raissadev](./participantes/raissadev) | ok | 2 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
+| [ramonmelod-node-express](./participantes/ramonmelod-node-express) | ok | 7 |
 | [ramosfabiano](./participantes/ramosfabiano) | ok | 4 |
 | [ramosfabiano_v2](./participantes/ramosfabiano_v2) | falha - [logs](./participantes/ramosfabiano_v2/docker-compose.logs) | -- |
 | [raphaelmonticello](./participantes/raphaelmonticello) | ok | 3 |
@@ -477,7 +478,7 @@ Atualizada **Mon Mar  4 18:31:00 UTC 2024** com **490** submissões.
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
 | [vitorsalgado-custom-lb](./participantes/vitorsalgado-custom-lb) | ok | 1 |
 | [vitorsalgado](./participantes/vitorsalgado) | ok | 1 |
-| [vkobinski](./participantes/vkobinski) | ok | 5 |
+| [vkobinski](./participantes/vkobinski) | ok | 4 |
 | [vyctorguimaraes](./participantes/vyctorguimaraes) | ok | 7 |
 | [wdmatheus](./participantes/wdmatheus) | ok | 2 |
 | [welitonfreitas](./participantes/welitonfreitas) | falha - [logs](./participantes/welitonfreitas/docker-compose.logs) | -- |
