@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  api1: &api
+    image: michaalves404/rinha
+    container_name: api1
+    environment:
+      - PORT=3000
+    depends_on:
+      - postgres_rinha
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '150MB'
+
+  api2: 
+    <<: *api
+    container_name: api2
+    environment:
+      - PORT=3001
+
+  postgres_rinha:
+    image: postgres:12.14-alpine
+    hostname: postgres_rinha
+    container_name: postgres_rinha
+    environment:
+      - POSTGRES_DB=rinha_database
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '200MB'
+
+  nginx:
+    image: nginx 
+    container_name: nginx
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 9999:9999
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
