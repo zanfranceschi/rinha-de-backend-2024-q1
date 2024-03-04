@@ -254,6 +254,7 @@ Atualizada **Mon Mar  4 02:40:40 UTC 2024** com **482** submissões.
 | [jojodev](./participantes/jojodev) | ok | 1554 |
 | [jonasfeanor](./participantes/jonasfeanor) | ok | 2 |
 | [jonatasoli](./participantes/jonatasoli) | ok | 1 |
+| [jonathanperis-xgh](./participantes/jonathanperis-xgh) | ok | 2 |
 | [jonathanperis](./participantes/jonathanperis) | ok | 2 |
 | [jonattas_bunjs](./participantes/jonattas_bunjs) | ok | 17 |
 | [jorgehrique-dotnet](./participantes/jorgehrique-dotnet) | ok | 3 |
