@@ -5,13 +5,14 @@ services:
     image: vitorsalgado/rinha-2024q1-api
     container_name: api01
     hostname: api01
+    pull_policy: always
     network_mode: host
     environment:
       - DB_CONN_STRING=user=rinha password=rinha dbname=rinha host=0.0.0.0 port=6432 sslmode=disable pool_min_conns=5 pool_max_conns=5
-      - GOMAXPROCS=2
       - ADDR=:8081
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -25,7 +26,6 @@ services:
     network_mode: host
     environment:
       - DB_CONN_STRING=user=rinha password=rinha dbname=rinha host=0.0.0.0 port=6432 sslmode=disable pool_min_conns=5 pool_max_conns=5
-      - GOMAXPROCS=2
       - ADDR=:8082
 
   envoy:
@@ -35,15 +35,16 @@ services:
     expose:
       - "9999"
     volumes:
-      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+      - ./conf/envoy.yaml:/etc/envoy/envoy.yaml:ro
+    command: /usr/local/bin/envoy -c /etc/envoy/envoy.yaml --concurrency 1
     depends_on:
       - api01
       - api02
     deploy:
       resources:
         limits:
-          cpus: "0.4"
-          memory: "180MB"
+          cpus: "0.3"
+          memory: "80MB"
 
   db:
     image: postgres:16.2
@@ -56,17 +57,27 @@ services:
     expose:
       - "5432"
     volumes:
-      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
-      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+      - ./conf/script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./conf/postgresql.conf:/etc/postgresql/postgresql.conf
+    tmpfs:
+      - /var/lib/postgresql/data
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "rinha"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 10s
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "200MB"
+          cpus: "0.6"
+          memory: "300MB"
 
   bouncer:
     image: vitorsalgado/rinha-2024q1-bouncer
     container_name: bouncer
+    pull_policy: always
     environment:
       PGB_DATABASES: rinha = host=0.0.0.0 port=5432 pool_mode=statement pool_size=20
       PGB_ADMIN_USERS: rinha
@@ -74,10 +85,11 @@ services:
     network_mode: host
     expose:
       - "6432"
+    depends_on:
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
           cpus: "0.2"
           memory: "20MB"
-    depends_on:
-      - db

@@ -39,8 +39,7 @@ services:
       retries: 5
     volumes:
       - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./config/postgresql.conf:/etc/postgresql/postgresql.conf
-    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c fsync=0 -c full_page_writes=0
     deploy:
       resources:
         limits:

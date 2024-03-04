@@ -1,10 +1,11 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
+Atualizada **Mon Mar  4 02:33:34 UTC 2024** com **482** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
+| [0000-golang](./participantes/0000-golang) | ok | 2 |
 | [1garo](./participantes/1garo) | ok | 5 |
 | [AlcivanLucas](./participantes/AlcivanLucas) | falha - [logs](./participantes/AlcivanLucas/docker-compose.logs) | -- |
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 5 |
@@ -22,7 +23,11 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [agostinho](./participantes/agostinho) | ok | 4 |
 | [agpsl](./participantes/agpsl) | ok | 2 |
 | [alan_albuquerque](./participantes/alan_albuquerque) | ok | 1 |
+| [alan_albuquerque_capivara](./participantes/alan_albuquerque_capivara) | ok | 1 |
 | [alanlviana-aspnet](./participantes/alanlviana-aspnet) | ok | 1 |
+| [alcides-kotlin](./participantes/alcides-kotlin) | ok | 2 |
+| [alcides-quarkus](./participantes/alcides-quarkus) | ok | 2 |
+| [alexsiilvaa](./participantes/alexsiilvaa) | ok | 1 |
 | [alfredomorais](./participantes/alfredomorais) | falha - [logs](./participantes/alfredomorais/docker-compose.logs) | -- |
 | [alissonsleal](./participantes/alissonsleal) | ok | 3 |
 | [alissonsleal_go](./participantes/alissonsleal_go) | ok | 2 |
@@ -34,7 +39,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [andersonhqds-node](./participantes/andersonhqds-node) | ok | 3 |
 | [andre-gbi-aspnet](./participantes/andre-gbi-aspnet) | ok | 1 |
 | [andre1999lopes](./participantes/andre1999lopes) | ok | 13 |
-| [andreluizsgf](./participantes/andreluizsgf) | falha - [logs](./participantes/andreluizsgf/docker-compose.logs) | -- |
+| [andreluizsgf](./participantes/andreluizsgf) | ok | 1 |
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
 | [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
@@ -63,6 +68,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [bine-php-road-runner](./participantes/bine-php-road-runner) | ok | 2 |
 | [bine-php-swoole](./participantes/bine-php-swoole) | ok | 2 |
 | [bine-reactphp](./participantes/bine-reactphp) | ok | 2 |
+| [boaglio-canabrava-procs](./participantes/boaglio-canabrava-procs) | ok | 1 |
 | [boaglio-jaiminho](./participantes/boaglio-jaiminho) | ok | 44 |
 | [boaglio](./participantes/boaglio) | falha - [logs](./participantes/boaglio/docker-compose.logs) | -- |
 | [breno5g](./participantes/breno5g) | ok | 4 |
@@ -71,6 +77,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [brunocamarggo](./participantes/brunocamarggo) | ok | 2 |
 | [brunodelucasbarbosa](./participantes/brunodelucasbarbosa) | ok | 4 |
 | [brunolipe-a](./participantes/brunolipe-a) | ok | 4 |
+| [brunoquinelato](./participantes/brunoquinelato) | falha - [logs](./participantes/brunoquinelato/docker-compose.logs) | -- |
 | [buemura-nestjs](./participantes/buemura-nestjs) | ok | 4 |
 | [buemura-quarkus](./participantes/buemura-quarkus) | ok | 3 |
 | [buemura](./participantes/buemura) | ok | 2 |
@@ -89,7 +96,9 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [cassiano-pedrinho-rust](./participantes/cassiano-pedrinho-rust) | ok | 2 |
 | [cesar-rodrigues](./participantes/cesar-rodrigues) | falha - [logs](./participantes/cesar-rodrigues/docker-compose.logs) | -- |
 | [claudio-silva](./participantes/claudio-silva) | ok | 3 |
+| [claudioavgo](./participantes/claudioavgo) | falha - [logs](./participantes/claudioavgo/docker-compose.logs) | -- |
 | [claudioneves1981](./participantes/claudioneves1981) | ok | 1 |
+| [cleidiano](./participantes/cleidiano) | ok | 1 |
 | [cleitinif](./participantes/cleitinif) | ok | 4 |
 | [cleverton-rocha-java](./participantes/cleverton-rocha-java) | falha - [logs](./participantes/cleverton-rocha-java/docker-compose.logs) | -- |
 | [cleverton-rocha](./participantes/cleverton-rocha) | ok | 4 |
@@ -100,6 +109,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [daniel-goncalves](./participantes/daniel-goncalves) | falha - [logs](./participantes/daniel-goncalves/docker-compose.logs) | -- |
 | [danielwisky](./participantes/danielwisky) | ok | 3 |
 | [danilo-nodejs](./participantes/danilo-nodejs) | ok | 3 |
+| [daniloflorenzano](./participantes/daniloflorenzano) | ok | 4 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [david-silva](./participantes/david-silva) | ok | 2 |
 | [ddanielsantos](./participantes/ddanielsantos) | ok | 3 |
@@ -107,6 +117,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [ddanielvaz](./participantes/ddanielvaz) | ok | 4 |
 | [delzin](./participantes/delzin) | ok | 0 |
 | [deno-cassiogangrel](./participantes/deno-cassiogangrel) | ok | 4 |
+| [devblack21](./participantes/devblack21) | ok | 2 |
 | [devkemc-node](./participantes/devkemc-node) | ok | 6605 |
 | [diego-coronel](./participantes/diego-coronel) | ok | 2 |
 | [diegoalexandrooliveira](./participantes/diegoalexandrooliveira) | ok | 5 |
@@ -135,6 +146,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [emanuel-xavier](./participantes/emanuel-xavier) | ok | 2 |
 | [emiliosheinz-fumegalli-node](./participantes/emiliosheinz-fumegalli-node) | ok | 4 |
 | [engylemure](./participantes/engylemure) | ok | 3 |
+| [erickcestari](./participantes/erickcestari) | ok | 5 |
 | [erickmarx](./participantes/erickmarx) | ok | 2 |
 | [erickreis](./participantes/erickreis) | ok | 3 |
 | [eriksilva](./participantes/eriksilva) | ok | 1 |
@@ -219,6 +231,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [ilosamart](./participantes/ilosamart) | ok | 1755 |
 | [impedro29-performance](./participantes/impedro29-performance) | ok | 39 |
 | [ircnelson](./participantes/ircnelson) | ok | 2 |
+| [isadora-souza-mongodb](./participantes/isadora-souza-mongodb) | ok | 1 |
 | [isadora-souza](./participantes/isadora-souza) | ok | 3 |
 | [isaquealves](./participantes/isaquealves) | ok | 4 |
 | [italobbarros](./participantes/italobbarros) | ok | 2 |
@@ -239,9 +252,10 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [joaopmerlin](./participantes/joaopmerlin) | ok | 3 |
 | [johnpgr_vlang](./participantes/johnpgr_vlang) | ok | 2 |
 | [jojodev](./participantes/jojodev) | ok | 1554 |
+| [jonasfeanor](./participantes/jonasfeanor) | ok | 2 |
 | [jonatasoli](./participantes/jonatasoli) | ok | 1 |
-| [jonathanperis-xgh](./participantes/jonathanperis-xgh) | ok | 5 |
-| [jonathanperis](./participantes/jonathanperis) | ok | 6 |
+| [jonathanperis-xgh](./participantes/jonathanperis-xgh) | ok | 2 |
+| [jonathanperis](./participantes/jonathanperis) | ok | 2 |
 | [jonattas_bunjs](./participantes/jonattas_bunjs) | ok | 17 |
 | [jorgehrique-dotnet](./participantes/jorgehrique-dotnet) | ok | 3 |
 | [josebaroni-postgrest](./participantes/josebaroni-postgrest) | ok | 2 |
@@ -276,6 +290,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [lipe1994_dotnet](./participantes/lipe1994_dotnet) | ok | 29 |
 | [lipe1994_drogon](./participantes/lipe1994_drogon) | ok | 2 |
 | [lipe1994_spring](./participantes/lipe1994_spring) | ok | 1 |
+| [lm-bunsh](./participantes/lm-bunsh) | ok | 2 |
 | [lmtani](./participantes/lmtani) | ok | 1 |
 | [lobomfz-rust](./participantes/lobomfz-rust) | ok | 4 |
 | [lobomfz](./participantes/lobomfz) | ok | 5 |
@@ -288,7 +303,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [lubien-multi-tenant-sqlite](./participantes/lubien-multi-tenant-sqlite) | ok | 2 |
 | [lubien-phoenixqlite](./participantes/lubien-phoenixqlite) | ok | 2 |
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 4 |
-| [lucasSSalgado](./participantes/lucasSSalgado) | ok | 4 |
+| [lucasSSalgado](./participantes/lucasSSalgado) | ok | 2 |
 | [lucasdev2005](./participantes/lucasdev2005) | ok | 5 |
 | [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | ok | 3353 |
 | [lucassperez-go-crebito](./participantes/lucassperez-go-crebito) | ok | 4 |
@@ -321,6 +336,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 4 |
 | [mateusdeitos-node](./participantes/mateusdeitos-node) | ok | 2 |
+| [mateusdeitos-php-swoole](./participantes/mateusdeitos-php-swoole) | ok | 2 |
 | [matheus-trindade](./participantes/matheus-trindade) | ok | 2 |
 | [matheusdojava](./participantes/matheusdojava) | ok | 142 |
 | [matheusfbosa](./participantes/matheusfbosa) | ok | 1 |
@@ -333,6 +349,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [maxwell](./participantes/maxwell) | ok | 1 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [mgenteluci](./participantes/mgenteluci) | ok | 2 |
+| [michaelalves204](./participantes/michaelalves204) | ok | 8 |
 | [mourishitz-nest-js](./participantes/mourishitz-nest-js) | falha - [logs](./participantes/mourishitz-nest-js/docker-compose.logs) | -- |
 | [murilochianfa](./participantes/murilochianfa) | ok | 1 |
 | [mvellasco](./participantes/mvellasco) | ok | 9 |
@@ -344,6 +361,7 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [nmessias](./participantes/nmessias) | ok | 1 |
 | [normanfrieman](./participantes/normanfrieman) | ok | 2 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
+| [oliveiraeliel](./participantes/oliveiraeliel) | ok | 2 |
 | [oliveiratheone-rust](./participantes/oliveiratheone-rust) | ok | 1 |
 | [oloko64](./participantes/oloko64) | ok | 1 |
 | [olukkas](./participantes/olukkas) | ok | 4 |
@@ -353,13 +371,15 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [otonielsilva](./participantes/otonielsilva) | ok | 2 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
 | [paulohenriquesn-python](./participantes/paulohenriquesn-python) | ok | 3 |
-| [pedrohenriquea](./participantes/pedrohenriquea) | ok | 3 |
+| [pedro-azevedo-e-matheus-gomes-nodejs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs) | falha - [logs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs/docker-compose.logs) | -- |
+| [pedrohenriquea](./participantes/pedrohenriquea) | ok | 2 |
+| [pedrolzoliveira-postgrest](./participantes/pedrolzoliveira-postgrest) | falha - [logs](./participantes/pedrolzoliveira-postgrest/docker-compose.logs) | -- |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
 | [quarkusclub](./participantes/quarkusclub) | ok | 3 |
 | [quokka](./participantes/quokka) | ok | 5 |
-| [rafaelktakahashi](./participantes/rafaelktakahashi) | falha - [logs](./participantes/rafaelktakahashi/docker-compose.logs) | -- |
+| [rafaelktakahashi](./participantes/rafaelktakahashi) | ok | 2 |
 | [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
 | [rafaelpadovezi-mongo](./participantes/rafaelpadovezi-mongo) | ok | 2 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
@@ -385,6 +405,9 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [rigottig](./participantes/rigottig) | ok | 6 |
 | [ritilopes](./participantes/ritilopes) | ok | 1 |
 | [rizzo-nodejs](./participantes/rizzo-nodejs) | falha - [logs](./participantes/rizzo-nodejs/docker-compose.logs) | -- |
+| [rmauro-mysql-yarp](./participantes/rmauro-mysql-yarp) | ok | 1 |
+| [rmauro-postgresql-yarp](./participantes/rmauro-postgresql-yarp) | ok | 1 |
+| [rmauro-postgresql](./participantes/rmauro-postgresql) | ok | 1 |
 | [rmauro](./participantes/rmauro) | ok | 2 |
 | [robsoncassol](./participantes/robsoncassol) | ok | 4 |
 | [rodolphovs-c-db](./participantes/rodolphovs-c-db) | ok | 1 |
@@ -419,12 +442,14 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [thiper01-fastapi](./participantes/thiper01-fastapi) | ok | 2395 |
 | [thusspokebieu-activej](./participantes/thusspokebieu-activej) | ok | 1 |
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
+| [tiagoguerreirodev-go](./participantes/tiagoguerreirodev-go) | ok | 1 |
+| [tiagoguerreirodev-python](./participantes/tiagoguerreirodev-python) | ok | 2 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
 | [tonico](./participantes/tonico) | ok | 80 |
 | [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
-| [vgdss](./participantes/vgdss) | ok | 5 |
+| [vgdss](./participantes/vgdss) | ok | 3 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-132](./participantes/victor-132) | ok | 2 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
@@ -432,16 +457,21 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [victor99z](./participantes/victor99z) | ok | 8 |
 | [victornfb](./participantes/victornfb) | ok | 4 |
 | [victorverdoodt](./participantes/victorverdoodt) | ok | 2 |
+| [vineboneto-go](./participantes/vineboneto-go) | falha - [logs](./participantes/vineboneto-go/docker-compose.logs) | -- |
+| [vineboneto-js](./participantes/vineboneto-js) | ok | 1 |
+| [vinicius-julio](./participantes/vinicius-julio) | ok | 2 |
 | [viniciusamc-golang](./participantes/viniciusamc-golang) | ok | 3 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [viniciusgferreira](./participantes/viniciusgferreira) | ok | 3 |
-| [vitor_weirich_java](./participantes/vitor_weirich_java) | ok | 153 |
+| [vitor_weirich_java](./participantes/vitor_weirich_java) | ok | 148 |
+| [vitorascorrea](./participantes/vitorascorrea) | ok | 2 |
 | [vitorlacerda-dotnet](./participantes/vitorlacerda-dotnet) | ok | 15 |
 | [vitornorberto](./participantes/vitornorberto) | ok | 4 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
+| [vitorsalgado-custom-lb](./participantes/vitorsalgado-custom-lb) | ok | 1 |
 | [vitorsalgado](./participantes/vitorsalgado) | ok | 1 |
 | [vkobinski](./participantes/vkobinski) | ok | 5 |
-| [vyctorguimaraes](./participantes/vyctorguimaraes) | ok | 6 |
+| [vyctorguimaraes](./participantes/vyctorguimaraes) | ok | 7 |
 | [wdmatheus](./participantes/wdmatheus) | ok | 2 |
 | [welitonfreitas](./participantes/welitonfreitas) | falha - [logs](./participantes/welitonfreitas/docker-compose.logs) | -- |
 | [wesleyegberto](./participantes/wesleyegberto) | ok | 2 |
@@ -459,5 +489,6 @@ Atualizada **Sat Mar  2 22:16:19 UTC 2024** com **452** submissões.
 | [ygorcarmo](./participantes/ygorcarmo) | ok | 8 |
 | [zan-clojure-01](./participantes/zan-clojure-01) | ok | 2 |
 | [zan-dotnet](./participantes/zan-dotnet) | ok | 2 |
-| [zelnatal](./participantes/zelnatal) | ok | 3 |
+| [zelnatal](./participantes/zelnatal) | ok | 4 |
+| [zetos-node](./participantes/zetos-node) | ok | 2 |
 | [zsantana](./participantes/zsantana) | ok | 2 |
