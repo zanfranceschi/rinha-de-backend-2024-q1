@@ -1,5 +1,5 @@
- Network geraldojrcg-elixir_default  Creating
- Network geraldojrcg-elixir_default  Created
+ Network rinha_backend_2024_q1  Creating
+ Network rinha_backend_2024_q1  Created
  Container geraldojrcg-elixir-database-1  Creating
  Container geraldojrcg-elixir-database-1  Created
  Container geraldojrcg-elixir-api1-1  Creating
@@ -25,10 +25,9 @@ database-1  | selecting default max_connections ... 100
 database-1  | selecting default shared_buffers ... 128MB
 database-1  | selecting default time zone ... Etc/UTC
 database-1  | creating configuration files ... ok
-database-1  | running bootstrap script ... ok
 api1-1      | wait-for-it.sh: waiting 15 seconds for database:5432
 api2-1      | wait-for-it.sh: waiting 15 seconds for database:5432
-database-1  | performing post-bootstrap initialization ... ok
+database-1  | running bootstrap script ... ok
 nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -38,6 +37,7 @@ nginx-1     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-reso
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
+database-1  | performing post-bootstrap initialization ... ok
 database-1  | initdb: warning: enabling "trust" authentication for local connections
 database-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 database-1  | syncing data to disk ... ok
@@ -47,10 +47,10 @@ database-1  | Success. You can now start the database server using:
 database-1  | 
 database-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 database-1  | 
-database-1  | waiting for server to start....2024-02-19 06:38:48.157 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-database-1  | 2024-02-19 06:38:48.160 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-database-1  | 2024-02-19 06:38:48.168 GMT [51] LOG:  database system was shut down at 2024-02-19 06:38:46 GMT
-database-1  | 2024-02-19 06:38:48.178 GMT [48] LOG:  database system is ready to accept connections
+database-1  | waiting for server to start....2024-03-04 17:57:31.368 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+database-1  | 2024-03-04 17:57:31.368 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+database-1  | 2024-03-04 17:57:31.370 GMT [51] LOG:  database system was shut down at 2024-03-04 17:57:31 GMT
+database-1  | 2024-03-04 17:57:31.372 GMT [48] LOG:  database system is ready to accept connections
 database-1  |  done
 database-1  | server started
 database-1  | CREATE DATABASE
@@ -62,37 +62,439 @@ database-1  | CREATE TABLE
 database-1  | DO
 database-1  | 
 database-1  | 
-database-1  | waiting for server to shut down...2024-02-19 06:38:48.380 GMT [48] LOG:  received fast shutdown request
-database-1  | .2024-02-19 06:38:48.383 GMT [48] LOG:  aborting any active transactions
-database-1  | 2024-02-19 06:38:48.385 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-database-1  | 2024-02-19 06:38:48.385 GMT [49] LOG:  shutting down
-database-1  | 2024-02-19 06:38:48.388 GMT [49] LOG:  checkpoint starting: shutdown immediate
-database-1  | 2024-02-19 06:38:48.884 GMT [49] LOG:  checkpoint complete: wrote 938 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.305 s, sync=0.179 s, total=0.500 s; sync files=307, longest=0.156 s, average=0.001 s; distance=4291 kB, estimate=4291 kB; lsn=0/191B780, redo lsn=0/191B780
-database-1  | 2024-02-19 06:38:48.889 GMT [48] LOG:  database system is shut down
+database-1  | waiting for server to shut down...2024-03-04 17:57:31.644 GMT [48] LOG:  received fast shutdown request
+database-1  | .2024-03-04 17:57:31.644 GMT [48] LOG:  aborting any active transactions
+database-1  | 2024-03-04 17:57:31.646 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+database-1  | 2024-03-04 17:57:31.715 GMT [49] LOG:  shutting down
+database-1  | 2024-03-04 17:57:31.715 GMT [49] LOG:  checkpoint starting: shutdown immediate
+database-1  | 2024-03-04 17:57:31.732 GMT [49] LOG:  checkpoint complete: wrote 938 buffers (7.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.017 s, sync=0.001 s, total=0.017 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4290 kB, estimate=4290 kB; lsn=0/191B400, redo lsn=0/191B400
+database-1  | 2024-03-04 17:57:31.736 GMT [48] LOG:  database system is shut down
 database-1  |  done
 database-1  | server stopped
 database-1  | 
 database-1  | PostgreSQL init process complete; ready for start up.
 database-1  | 
-database-1  | 2024-02-19 06:38:49.003 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-database-1  | 2024-02-19 06:38:49.003 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-database-1  | 2024-02-19 06:38:49.003 GMT [1] LOG:  listening on IPv6 address "::", port 5432
-database-1  | 2024-02-19 06:38:49.008 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-database-1  | 2024-02-19 06:38:49.016 GMT [66] LOG:  database system was shut down at 2024-02-19 06:38:48 GMT
-database-1  | 2024-02-19 06:38:49.022 GMT [1] LOG:  database system is ready to accept connections
-api1-1      | wait-for-it.sh: database:5432 is available after 3 seconds
+database-1  | 2024-03-04 17:57:31.757 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+database-1  | 2024-03-04 17:57:31.757 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+database-1  | 2024-03-04 17:57:31.757 GMT [1] LOG:  listening on IPv6 address "::", port 5432
+database-1  | 2024-03-04 17:57:31.757 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+database-1  | 2024-03-04 17:57:31.759 GMT [66] LOG:  database system was shut down at 2024-03-04 17:57:31 GMT
+database-1  | 2024-03-04 17:57:31.761 GMT [1] LOG:  database system is ready to accept connections
+api1-1      | wait-for-it.sh: database:5432 is available after 2 seconds
 api1-1      | Starting application
-api2-1      | wait-for-it.sh: database:5432 is available after 3 seconds
+api2-1      | wait-for-it.sh: database:5432 is available after 2 seconds
 api2-1      | Starting application
-api1-1 exited with code 137
-api2-1 exited with code 137
-nginx-1 exited with code 0
-nginx-1 exited with code 0
-database-1  | 2024-02-19 06:40:45.124 GMT [1] LOG:  received fast shutdown request
-database-1  | 2024-02-19 06:40:45.128 GMT [1] LOG:  aborting any active transactions
-database-1  | 2024-02-19 06:40:45.130 GMT [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-database-1  | 2024-02-19 06:40:45.130 GMT [64] LOG:  shutting down
-database-1  | 2024-02-19 06:40:45.135 GMT [64] LOG:  checkpoint starting: shutdown immediate
-database-1  | 2024-02-19 06:40:45.172 GMT [64] LOG:  checkpoint complete: wrote 46 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.014 s, total=0.042 s; sync files=13, longest=0.008 s, average=0.002 s; distance=261 kB, estimate=261 kB; lsn=0/195CB80, redo lsn=0/195CB80
-database-1  | 2024-02-19 06:40:45.175 GMT [1] LOG:  database system is shut down
-database-1 exited with code 0
+nginx-1     | 2024/03/04 17:57:33 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.64.3:3000/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/03/04 17:57:33 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.64.4:3001/clientes/1/extrato", host: "localhost:9999"
+api1-1      | 14:57:34.276 [info] Running RinhaBackendWeb.Endpoint with cowboy 2.10.0 at :::3000 (http)
+api1-1      | 14:57:34.278 [info] Access RinhaBackendWeb.Endpoint at https://api1
+database-1  | 2024-03-04 17:57:34.285 GMT [92] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.286 GMT [94] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.286 GMT [93] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.286 GMT [96] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.288 GMT [95] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.290 GMT [98] FATAL:  sorry, too many clients already
+api1-1      | 14:57:34.292 [error] Postgrex.Protocol (#PID<0.1493.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api2-1      | 14:57:34.295 [info] Running RinhaBackendWeb.Endpoint with cowboy 2.10.0 at :::3001 (http)
+api2-1      | 14:57:34.296 [info] Access RinhaBackendWeb.Endpoint at https://api2
+api1-1      | 14:57:34.292 [error] Postgrex.Protocol (#PID<0.1492.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api1-1      | 14:57:34.293 [error] Postgrex.Protocol (#PID<0.1489.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api1-1      | 14:57:34.293 [error] Postgrex.Protocol (#PID<0.1490.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api1-1      | 14:57:34.293 [error] Postgrex.Protocol (#PID<0.1491.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api1-1      | 14:57:34.294 [error] Postgrex.Protocol (#PID<0.1495.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.319 GMT [100] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.320 GMT [99] FATAL:  sorry, too many clients already
+api1-1      | 14:57:34.320 [error] Postgrex.Protocol (#PID<0.1497.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api1-1      | 14:57:34.320 [error] Postgrex.Protocol (#PID<0.1496.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.324 GMT [103] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.324 [error] Postgrex.Protocol (#PID<0.1472.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.325 GMT [104] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.325 [error] Postgrex.Protocol (#PID<0.1467.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.324 GMT [102] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.325 [error] Postgrex.Protocol (#PID<0.1471.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.418 GMT [105] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.418 [error] Postgrex.Protocol (#PID<0.1468.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.419 GMT [109] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.419 [error] Postgrex.Protocol (#PID<0.1476.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.423 GMT [118] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.424 [error] Postgrex.Protocol (#PID<0.1485.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.424 GMT [119] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.424 [error] Postgrex.Protocol (#PID<0.1486.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.425 GMT [115] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.425 [error] Postgrex.Protocol (#PID<0.1482.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.425 GMT [120] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.426 [error] Postgrex.Protocol (#PID<0.1487.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.514 GMT [97] FATAL:  sorry, too many clients already
+api1-1      | 14:57:34.515 [error] Postgrex.Protocol (#PID<0.1494.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.516 GMT [110] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.517 GMT [113] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.517 GMT [121] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.517 GMT [112] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.517 GMT [111] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.517 [error] Postgrex.Protocol (#PID<0.1488.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api2-1      | 14:57:34.518 [error] Postgrex.Protocol (#PID<0.1478.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.518 GMT [116] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.518 [error] Postgrex.Protocol (#PID<0.1477.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api2-1      | 14:57:34.518 [error] Postgrex.Protocol (#PID<0.1480.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api2-1      | 14:57:34.518 [error] Postgrex.Protocol (#PID<0.1479.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api2-1      | 14:57:34.518 [error] Postgrex.Protocol (#PID<0.1483.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.519 GMT [114] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.519 [error] Postgrex.Protocol (#PID<0.1481.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.519 GMT [122] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.519 [error] Postgrex.Protocol (#PID<0.1489.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.521 GMT [117] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.521 [error] Postgrex.Protocol (#PID<0.1484.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.522 GMT [131] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.522 GMT [124] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.522 [error] Postgrex.Protocol (#PID<0.1491.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api2-1      | 14:57:34.522 [error] Postgrex.Protocol (#PID<0.1498.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.524 GMT [125] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.524 [error] Postgrex.Protocol (#PID<0.1492.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.524 GMT [123] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.525 [error] Postgrex.Protocol (#PID<0.1490.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.525 GMT [126] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.526 [error] Postgrex.Protocol (#PID<0.1493.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.526 GMT [128] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.526 [error] Postgrex.Protocol (#PID<0.1495.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.527 GMT [101] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.527 GMT [107] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.527 [error] Postgrex.Protocol (#PID<0.1474.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api1-1      | 14:57:34.527 [error] Postgrex.Protocol (#PID<0.1498.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.527 GMT [106] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.527 GMT [108] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.527 [error] Postgrex.Protocol (#PID<0.1473.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api2-1      | 14:57:34.527 [error] Postgrex.Protocol (#PID<0.1475.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.615 GMT [129] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.615 [error] Postgrex.Protocol (#PID<0.1496.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.617 GMT [127] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:34.617 GMT [130] FATAL:  sorry, too many clients already
+api2-1      | 14:57:34.617 [error] Postgrex.Protocol (#PID<0.1494.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api2-1      | 14:57:34.617 [error] Postgrex.Protocol (#PID<0.1497.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:35.473 GMT [132] FATAL:  sorry, too many clients already
+api2-1      | 14:57:35.473 [error] Postgrex.Protocol (#PID<0.1476.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+nginx-1     | 2024/03/04 17:57:35 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+database-1  | 2024-03-04 17:57:35.640 GMT [133] FATAL:  sorry, too many clients already
+api1-1      | 14:57:35.640 [error] Postgrex.Protocol (#PID<0.1492.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:35.646 GMT [134] FATAL:  sorry, too many clients already
+api2-1      | 14:57:35.646 [error] Postgrex.Protocol (#PID<0.1479.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:35.683 GMT [135] FATAL:  sorry, too many clients already
+api2-1      | 14:57:35.683 [error] Postgrex.Protocol (#PID<0.1486.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:35.841 GMT [136] FATAL:  sorry, too many clients already
+api2-1      | 14:57:35.842 [error] Postgrex.Protocol (#PID<0.1490.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:35.854 GMT [137] FATAL:  sorry, too many clients already
+api2-1      | 14:57:35.855 [error] Postgrex.Protocol (#PID<0.1472.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:35.865 GMT [138] FATAL:  sorry, too many clients already
+api1-1      | 14:57:35.866 [error] Postgrex.Protocol (#PID<0.1498.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:35.873 GMT [139] FATAL:  sorry, too many clients already
+api2-1      | 14:57:35.873 [error] Postgrex.Protocol (#PID<0.1467.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:35.948 GMT [140] FATAL:  sorry, too many clients already
+api2-1      | 14:57:35.948 [error] Postgrex.Protocol (#PID<0.1468.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:35.957 GMT [141] FATAL:  sorry, too many clients already
+api2-1      | 14:57:35.957 [error] Postgrex.Protocol (#PID<0.1491.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:35.989 GMT [142] FATAL:  sorry, too many clients already
+api2-1      | 14:57:35.989 [error] Postgrex.Protocol (#PID<0.1481.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.016 GMT [143] FATAL:  sorry, too many clients already
+api2-1      | 14:57:36.016 [error] Postgrex.Protocol (#PID<0.1496.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.212 GMT [144] FATAL:  sorry, too many clients already
+api1-1      | 14:57:36.212 [error] Postgrex.Protocol (#PID<0.1496.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.258 GMT [145] FATAL:  sorry, too many clients already
+api1-1      | 14:57:36.259 [error] Postgrex.Protocol (#PID<0.1489.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.292 GMT [146] FATAL:  sorry, too many clients already
+api2-1      | 14:57:36.292 [error] Postgrex.Protocol (#PID<0.1473.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.331 GMT [147] FATAL:  sorry, too many clients already
+api2-1      | 14:57:36.331 [error] Postgrex.Protocol (#PID<0.1493.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.368 GMT [148] FATAL:  sorry, too many clients already
+api1-1      | 14:57:36.368 [error] Postgrex.Protocol (#PID<0.1497.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.378 GMT [149] FATAL:  sorry, too many clients already
+api2-1      | 14:57:36.378 [error] Postgrex.Protocol (#PID<0.1478.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.514 GMT [150] FATAL:  sorry, too many clients already
+api2-1      | 14:57:36.514 [error] Postgrex.Protocol (#PID<0.1497.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.707 GMT [151] FATAL:  sorry, too many clients already
+api2-1      | 14:57:36.707 [error] Postgrex.Protocol (#PID<0.1487.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.707 GMT [152] FATAL:  sorry, too many clients already
+api2-1      | 14:57:36.707 [error] Postgrex.Protocol (#PID<0.1474.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.801 GMT [153] FATAL:  sorry, too many clients already
+api2-1      | 14:57:36.801 [error] Postgrex.Protocol (#PID<0.1482.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.833 GMT [154] FATAL:  sorry, too many clients already
+api2-1      | 14:57:36.833 [error] Postgrex.Protocol (#PID<0.1488.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.894 GMT [155] FATAL:  sorry, too many clients already
+api1-1      | 14:57:36.894 [error] Postgrex.Protocol (#PID<0.1490.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.930 GMT [156] FATAL:  sorry, too many clients already
+api2-1      | 14:57:36.930 [error] Postgrex.Protocol (#PID<0.1475.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.933 GMT [157] FATAL:  sorry, too many clients already
+api2-1      | 14:57:36.934 [error] Postgrex.Protocol (#PID<0.1494.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.946 GMT [158] FATAL:  sorry, too many clients already
+api2-1      | 14:57:36.946 [error] Postgrex.Protocol (#PID<0.1483.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:36.990 GMT [159] FATAL:  sorry, too many clients already
+api1-1      | 14:57:36.991 [error] Postgrex.Protocol (#PID<0.1491.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.003 GMT [160] FATAL:  sorry, too many clients already
+api2-1      | 14:57:37.004 [error] Postgrex.Protocol (#PID<0.1471.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.011 GMT [161] FATAL:  sorry, too many clients already
+api2-1      | 14:57:37.012 [error] Postgrex.Protocol (#PID<0.1479.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.079 GMT [162] FATAL:  sorry, too many clients already
+api2-1      | 14:57:37.079 [error] Postgrex.Protocol (#PID<0.1489.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.098 GMT [163] FATAL:  sorry, too many clients already
+api2-1      | 14:57:37.098 [error] Postgrex.Protocol (#PID<0.1480.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.119 GMT [164] FATAL:  sorry, too many clients already
+api1-1      | 14:57:37.120 [error] Postgrex.Protocol (#PID<0.1495.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.132 GMT [165] FATAL:  sorry, too many clients already
+api1-1      | 14:57:37.132 [error] Postgrex.Protocol (#PID<0.1493.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.151 GMT [166] FATAL:  sorry, too many clients already
+api2-1      | 14:57:37.151 [error] Postgrex.Protocol (#PID<0.1484.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.166 GMT [167] FATAL:  sorry, too many clients already
+api1-1      | 14:57:37.166 [error] Postgrex.Protocol (#PID<0.1494.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.172 GMT [168] FATAL:  sorry, too many clients already
+api2-1      | 14:57:37.173 [error] Postgrex.Protocol (#PID<0.1477.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.206 GMT [169] FATAL:  sorry, too many clients already
+api2-1      | 14:57:37.206 [error] Postgrex.Protocol (#PID<0.1485.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.221 GMT [170] FATAL:  sorry, too many clients already
+api2-1      | 14:57:37.222 [error] Postgrex.Protocol (#PID<0.1498.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.260 GMT [171] FATAL:  sorry, too many clients already
+api2-1      | 14:57:37.260 [error] Postgrex.Protocol (#PID<0.1492.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.278 GMT [172] FATAL:  sorry, too many clients already
+api2-1      | 14:57:37.278 [error] Postgrex.Protocol (#PID<0.1495.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.315 GMT [173] FATAL:  sorry, too many clients already
+api2-1      | 14:57:37.315 [error] Postgrex.Protocol (#PID<0.1486.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.388 GMT [174] FATAL:  sorry, too many clients already
+api2-1      | 14:57:37.388 [error] Postgrex.Protocol (#PID<0.1472.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:37.454 GMT [175] FATAL:  sorry, too many clients already
+api1-1      | 14:57:37.455 [error] Postgrex.Protocol (#PID<0.1498.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+nginx-1     | 2024/03/04 17:57:37 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+database-1  | 2024-03-04 17:57:38.335 GMT [176] FATAL:  sorry, too many clients already
+api1-1      | 14:57:38.335 [error] Postgrex.Protocol (#PID<0.1496.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:38.503 GMT [177] FATAL:  sorry, too many clients already
+api2-1      | 14:57:38.503 [error] Postgrex.Protocol (#PID<0.1476.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:38.838 GMT [178] FATAL:  sorry, too many clients already
+api1-1      | 14:57:38.838 [error] Postgrex.Protocol (#PID<0.1492.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:39.088 GMT [179] FATAL:  sorry, too many clients already
+api2-1      | 14:57:39.088 [error] Postgrex.Protocol (#PID<0.1490.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:39.158 GMT [180] FATAL:  sorry, too many clients already
+api2-1      | 14:57:39.158 [error] Postgrex.Protocol (#PID<0.1491.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:39.299 GMT [181] FATAL:  sorry, too many clients already
+api2-1      | 14:57:39.299 [error] Postgrex.Protocol (#PID<0.1472.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:39.522 GMT [182] FATAL:  sorry, too many clients already
+api2-1      | 14:57:39.522 [error] Postgrex.Protocol (#PID<0.1488.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:39.568 GMT [183] FATAL:  sorry, too many clients already
+api1-1      | 14:57:39.569 [error] Postgrex.Protocol (#PID<0.1489.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:39.594 GMT [184] FATAL:  sorry, too many clients already
+api1-1      | 14:57:39.595 [error] Postgrex.Protocol (#PID<0.1497.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+nginx-1     | 2024/03/04 17:57:39 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+database-1  | 2024-03-04 17:57:39.691 GMT [185] FATAL:  sorry, too many clients already
+api2-1      | 14:57:39.691 [error] Postgrex.Protocol (#PID<0.1473.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:39.705 GMT [186] FATAL:  sorry, too many clients already
+api2-1      | 14:57:39.705 [error] Postgrex.Protocol (#PID<0.1493.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:39.711 GMT [187] FATAL:  sorry, too many clients already
+api2-1      | 14:57:39.712 [error] Postgrex.Protocol (#PID<0.1481.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:39.898 GMT [188] FATAL:  sorry, too many clients already
+api2-1      | 14:57:39.898 [error] Postgrex.Protocol (#PID<0.1467.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:40.000 GMT [189] FATAL:  sorry, too many clients already
+api2-1      | 14:57:40.000 [error] Postgrex.Protocol (#PID<0.1496.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:40.054 GMT [190] FATAL:  sorry, too many clients already
+api2-1      | 14:57:40.054 [error] Postgrex.Protocol (#PID<0.1497.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:40.224 GMT [191] FATAL:  sorry, too many clients already
+database-1  | 2024-03-04 17:57:40.224 GMT [192] FATAL:  sorry, too many clients already
+api2-1      | 14:57:40.224 [error] Postgrex.Protocol (#PID<0.1468.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api2-1      | 14:57:40.225 [error] Postgrex.Protocol (#PID<0.1494.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:40.906 GMT [193] FATAL:  sorry, too many clients already
+api2-1      | 14:57:40.907 [error] Postgrex.Protocol (#PID<0.1479.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:41.023 GMT [194] FATAL:  sorry, too many clients already
+api2-1      | 14:57:41.023 [error] Postgrex.Protocol (#PID<0.1486.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:41.363 GMT [195] FATAL:  sorry, too many clients already
+api1-1      | 14:57:41.363 [error] Postgrex.Protocol (#PID<0.1495.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:41.394 GMT [196] FATAL:  sorry, too many clients already
+api2-1      | 14:57:41.394 [error] Postgrex.Protocol (#PID<0.1474.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:41.514 GMT [197] FATAL:  sorry, too many clients already
+api2-1      | 14:57:41.514 [error] Postgrex.Protocol (#PID<0.1487.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:41.600 GMT [198] FATAL:  sorry, too many clients already
+api1-1      | 14:57:41.600 [error] Postgrex.Protocol (#PID<0.1494.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:41.613 GMT [199] FATAL:  sorry, too many clients already
+api1-1      | 14:57:41.613 [error] Postgrex.Protocol (#PID<0.1491.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+nginx-1     | 2024/03/04 17:57:41 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+database-1  | 2024-03-04 17:57:41.714 GMT [200] FATAL:  sorry, too many clients already
+api1-1      | 14:57:41.714 [error] Postgrex.Protocol (#PID<0.1498.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:41.826 GMT [201] FATAL:  sorry, too many clients already
+api2-1      | 14:57:41.826 [error] Postgrex.Protocol (#PID<0.1478.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:41.950 GMT [202] FATAL:  sorry, too many clients already
+api2-1      | 14:57:41.950 [error] Postgrex.Protocol (#PID<0.1476.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:42.184 GMT [203] FATAL:  sorry, too many clients already
+api2-1      | 14:57:42.185 [error] Postgrex.Protocol (#PID<0.1482.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:42.322 GMT [204] FATAL:  sorry, too many clients already
+api2-1      | 14:57:42.322 [error] Postgrex.Protocol (#PID<0.1483.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:42.406 GMT [205] FATAL:  sorry, too many clients already
+api2-1      | 14:57:42.406 [error] Postgrex.Protocol (#PID<0.1495.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:42.866 GMT [206] FATAL:  sorry, too many clients already
+api2-1      | 14:57:42.867 [error] Postgrex.Protocol (#PID<0.1480.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:42.919 GMT [207] FATAL:  sorry, too many clients already
+api2-1      | 14:57:42.919 [error] Postgrex.Protocol (#PID<0.1498.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:43.093 GMT [208] FATAL:  sorry, too many clients already
+api2-1      | 14:57:43.093 [error] Postgrex.Protocol (#PID<0.1484.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:43.156 GMT [209] FATAL:  sorry, too many clients already
+api2-1      | 14:57:43.156 [error] Postgrex.Protocol (#PID<0.1471.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:43.192 GMT [210] FATAL:  sorry, too many clients already
+api2-1      | 14:57:43.192 [error] Postgrex.Protocol (#PID<0.1489.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:43.211 GMT [211] FATAL:  sorry, too many clients already
+api2-1      | 14:57:43.211 [error] Postgrex.Protocol (#PID<0.1472.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:43.491 GMT [212] FATAL:  sorry, too many clients already
+api2-1      | 14:57:43.491 [error] Postgrex.Protocol (#PID<0.1492.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:43.618 GMT [213] FATAL:  sorry, too many clients already
+api1-1      | 14:57:43.618 [error] Postgrex.Protocol (#PID<0.1496.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+nginx-1     | 2024/03/04 17:57:43 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+database-1  | 2024-03-04 17:57:43.733 GMT [214] FATAL:  sorry, too many clients already
+api1-1      | 14:57:43.733 [error] Postgrex.Protocol (#PID<0.1490.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:43.745 GMT [215] FATAL:  sorry, too many clients already
+api2-1      | 14:57:43.745 [error] Postgrex.Protocol (#PID<0.1485.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:43.795 GMT [216] FATAL:  sorry, too many clients already
+api2-1      | 14:57:43.795 [error] Postgrex.Protocol (#PID<0.1475.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:44.188 GMT [217] FATAL:  sorry, too many clients already
+api2-1      | 14:57:44.188 [error] Postgrex.Protocol (#PID<0.1477.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:44.251 GMT [218] FATAL:  sorry, too many clients already
+api1-1      | 14:57:44.252 [error] Postgrex.Protocol (#PID<0.1493.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:44.477 GMT [219] FATAL:  sorry, too many clients already
+api1-1      | 14:57:44.477 [error] Postgrex.Protocol (#PID<0.1497.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:44.803 GMT [220] FATAL:  sorry, too many clients already
+api2-1      | 14:57:44.803 [error] Postgrex.Protocol (#PID<0.1494.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:45.715 GMT [221] FATAL:  sorry, too many clients already
+api2-1      | 14:57:45.715 [error] Postgrex.Protocol (#PID<0.1486.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:45.962 GMT [222] FATAL:  sorry, too many clients already
+api2-1      | 14:57:45.962 [error] Postgrex.Protocol (#PID<0.1491.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:46.018 GMT [223] FATAL:  sorry, too many clients already
+api2-1      | 14:57:46.018 [error] Postgrex.Protocol (#PID<0.1488.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:46.229 GMT [224] FATAL:  sorry, too many clients already
+api2-1      | 14:57:46.229 [error] Postgrex.Protocol (#PID<0.1473.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:46.959 GMT [225] FATAL:  sorry, too many clients already
+api1-1      | 14:57:46.960 [error] Postgrex.Protocol (#PID<0.1492.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:47.538 GMT [226] FATAL:  sorry, too many clients already
+api2-1      | 14:57:47.538 [error] Postgrex.Protocol (#PID<0.1496.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:48.128 GMT [227] FATAL:  sorry, too many clients already
+api1-1      | 14:57:48.128 [error] Postgrex.Protocol (#PID<0.1489.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api2-1      | 14:57:48.295 [error] #PID<0.1608.0> running RinhaBackendWeb.Endpoint (connection #PID<0.1607.0>, stream id 1) terminated
+api2-1      | Server: api:80 (http)
+api2-1      | Request: GET /clientes/1/extrato
+api2-1      | ** (exit) an exception was raised:
+api2-1      |     ** (DBConnection.ConnectionError) connection not available and request was dropped from queue after 2639ms. This means requests are coming in and your connection pool cannot serve them fast enough. You can address this by:
+api2-1      | 
+api2-1      |   1. Ensuring your database is available and that you can connect to it
+api2-1      |   2. Tracking down slow queries and making sure they are running fast enough
+api2-1      |   3. Increasing the pool_size (although this increases resource consumption)
+api2-1      |   4. Allowing requests to wait longer by increasing :queue_target and :queue_interval
+api2-1      | 
+api2-1      | See DBConnection.start_link/2 for more information
+api2-1      | 
+api2-1      |         (ecto_sql 3.11.1) lib/ecto/adapters/sql.ex:1054: Ecto.Adapters.SQL.raise_sql_call_error/1
+api2-1      |         (ecto_sql 3.11.1) lib/ecto/adapters/sql.ex:952: Ecto.Adapters.SQL.execute/6
+api2-1      |         (ecto 3.11.1) lib/ecto/repo/queryable.ex:232: Ecto.Repo.Queryable.execute/4
+api2-1      |         (ecto 3.11.1) lib/ecto/repo/queryable.ex:19: Ecto.Repo.Queryable.all/3
+api2-1      |         (ecto 3.11.1) lib/ecto/repo/queryable.ex:154: Ecto.Repo.Queryable.one/3
+api2-1      |         (rinha_backend 0.1.0) lib/rinha_backend/operation.ex:25: RinhaBackend.Operation.get_client_statement/1
+api2-1      |         (rinha_backend 0.1.0) lib/rinha_backend_web/controllers/operation_controller.ex:24: RinhaBackendWeb.OperationController.get_client_statement/2
+api2-1      |         (rinha_backend 0.1.0) lib/rinha_backend_web/controllers/operation_controller.ex:1: RinhaBackendWeb.OperationController.action/2
+database-1  | 2024-03-04 17:57:48.361 GMT [228] FATAL:  sorry, too many clients already
+api2-1      | 14:57:48.361 [error] Postgrex.Protocol (#PID<0.1497.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:48.429 GMT [229] FATAL:  sorry, too many clients already
+api2-1      | 14:57:48.429 [error] Postgrex.Protocol (#PID<0.1493.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:48.510 GMT [230] FATAL:  sorry, too many clients already
+api2-1      | 14:57:48.510 [error] Postgrex.Protocol (#PID<0.1490.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:48.697 GMT [231] FATAL:  sorry, too many clients already
+api2-1      | 14:57:48.697 [error] Postgrex.Protocol (#PID<0.1482.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:48.829 GMT [232] FATAL:  sorry, too many clients already
+api2-1      | 14:57:48.829 [error] Postgrex.Protocol (#PID<0.1481.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:48.959 GMT [233] FATAL:  sorry, too many clients already
+api2-1      | 14:57:48.960 [error] Postgrex.Protocol (#PID<0.1487.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:49.322 GMT [234] FATAL:  sorry, too many clients already
+api2-1      | 14:57:49.323 [error] Postgrex.Protocol (#PID<0.1467.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:49.606 GMT [235] FATAL:  sorry, too many clients already
+api2-1      | 14:57:49.607 [error] Postgrex.Protocol (#PID<0.1479.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:49.803 GMT [236] FATAL:  sorry, too many clients already
+api1-1      | 14:57:49.803 [error] Postgrex.Protocol (#PID<0.1491.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:49.899 GMT [237] FATAL:  sorry, too many clients already
+api1-1      | 14:57:49.899 [error] Postgrex.Protocol (#PID<0.1497.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:50.028 GMT [238] FATAL:  sorry, too many clients already
+api1-1      | 14:57:50.028 [error] Postgrex.Protocol (#PID<0.1494.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:50.827 GMT [239] FATAL:  sorry, too many clients already
+api2-1      | 14:57:50.828 [error] Postgrex.Protocol (#PID<0.1472.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:51.182 GMT [240] FATAL:  sorry, too many clients already
+api2-1      | 14:57:51.183 [error] Postgrex.Protocol (#PID<0.1478.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:51.363 GMT [241] FATAL:  sorry, too many clients already
+api2-1      | 14:57:51.364 [error] Postgrex.Protocol (#PID<0.1495.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:51.690 GMT [242] FATAL:  sorry, too many clients already
+api2-1      | 14:57:51.690 [error] Postgrex.Protocol (#PID<0.1476.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:51.742 GMT [243] FATAL:  sorry, too many clients already
+api2-1      | 14:57:51.742 [error] Postgrex.Protocol (#PID<0.1474.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:51.776 GMT [244] FATAL:  sorry, too many clients already
+api2-1      | 14:57:51.776 [error] Postgrex.Protocol (#PID<0.1468.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:51.948 GMT [246] FATAL:  sorry, too many clients already
+api2-1      | 14:57:51.948 [error] Postgrex.Protocol (#PID<0.1498.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:52.159 GMT [247] FATAL:  sorry, too many clients already
+api2-1      | 14:57:52.159 [error] Postgrex.Protocol (#PID<0.1492.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api2-1      | 14:57:52.295 [error] #PID<0.1609.0> running RinhaBackendWeb.Endpoint (connection #PID<0.1607.0>, stream id 2) terminated
+api2-1      | Server: api:80 (http)
+api2-1      | Request: GET /clientes/1/extrato
+api2-1      | ** (exit) an exception was raised:
+api2-1      |     ** (DBConnection.ConnectionError) connection not available and request was dropped from queue after 1992ms. This means requests are coming in and your connection pool cannot serve them fast enough. You can address this by:
+api2-1      | 
+api2-1      |   1. Ensuring your database is available and that you can connect to it
+api2-1      |   2. Tracking down slow queries and making sure they are running fast enough
+api2-1      |   3. Increasing the pool_size (although this increases resource consumption)
+api2-1      |   4. Allowing requests to wait longer by increasing :queue_target and :queue_interval
+api2-1      | 
+api2-1      | See DBConnection.start_link/2 for more information
+api2-1      | 
+api2-1      |         (ecto_sql 3.11.1) lib/ecto/adapters/sql.ex:1054: Ecto.Adapters.SQL.raise_sql_call_error/1
+api2-1      |         (ecto_sql 3.11.1) lib/ecto/adapters/sql.ex:952: Ecto.Adapters.SQL.execute/6
+api2-1      |         (ecto 3.11.1) lib/ecto/repo/queryable.ex:232: Ecto.Repo.Queryable.execute/4
+api2-1      |         (ecto 3.11.1) lib/ecto/repo/queryable.ex:19: Ecto.Repo.Queryable.all/3
+api2-1      |         (ecto 3.11.1) lib/ecto/repo/queryable.ex:154: Ecto.Repo.Queryable.one/3
+api2-1      |         (rinha_backend 0.1.0) lib/rinha_backend/operation.ex:25: RinhaBackend.Operation.get_client_statement/1
+api2-1      |         (rinha_backend 0.1.0) lib/rinha_backend_web/controllers/operation_controller.ex:24: RinhaBackendWeb.OperationController.get_client_statement/2
+api2-1      |         (rinha_backend 0.1.0) lib/rinha_backend_web/controllers/operation_controller.ex:1: RinhaBackendWeb.OperationController.action/2
+database-1  | 2024-03-04 17:57:52.435 GMT [248] FATAL:  sorry, too many clients already
+api1-1      | 14:57:52.435 [error] Postgrex.Protocol (#PID<0.1495.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:52.527 GMT [249] FATAL:  sorry, too many clients already
+api2-1      | 14:57:52.528 [error] Postgrex.Protocol (#PID<0.1485.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:52.662 GMT [250] FATAL:  sorry, too many clients already
+api2-1      | 14:57:52.663 [error] Postgrex.Protocol (#PID<0.1484.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:52.801 GMT [251] FATAL:  sorry, too many clients already
+api2-1      | 14:57:52.801 [error] Postgrex.Protocol (#PID<0.1491.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:52.908 GMT [252] FATAL:  sorry, too many clients already
+api2-1      | 14:57:52.908 [error] Postgrex.Protocol (#PID<0.1471.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:53.611 GMT [253] FATAL:  sorry, too many clients already
+api1-1      | 14:57:53.611 [error] Postgrex.Protocol (#PID<0.1498.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:53.675 GMT [254] FATAL:  sorry, too many clients already
+api2-1      | 14:57:53.675 [error] Postgrex.Protocol (#PID<0.1494.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:54.435 GMT [255] FATAL:  sorry, too many clients already
+api2-1      | 14:57:54.435 [error] Postgrex.Protocol (#PID<0.1480.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:55.392 GMT [256] FATAL:  sorry, too many clients already
+api1-1      | 14:57:55.392 [error] Postgrex.Protocol (#PID<0.1490.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:56.058 GMT [257] FATAL:  sorry, too many clients already
+api2-1      | 14:57:56.059 [error] Postgrex.Protocol (#PID<0.1488.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+api2-1      | 14:57:56.295 [error] #PID<0.1610.0> running RinhaBackendWeb.Endpoint (connection #PID<0.1607.0>, stream id 3) terminated
+api2-1      | Server: api:80 (http)
+api2-1      | Request: GET /clientes/1/extrato
+api2-1      | ** (exit) an exception was raised:
+api2-1      |     ** (DBConnection.ConnectionError) connection not available and request was dropped from queue after 1985ms. This means requests are coming in and your connection pool cannot serve them fast enough. You can address this by:
+api2-1      | 
+api2-1      |   1. Ensuring your database is available and that you can connect to it
+api2-1      |   2. Tracking down slow queries and making sure they are running fast enough
+api2-1      |   3. Increasing the pool_size (although this increases resource consumption)
+api2-1      |   4. Allowing requests to wait longer by increasing :queue_target and :queue_interval
+api2-1      | 
+api2-1      | See DBConnection.start_link/2 for more information
+api2-1      | 
+api2-1      |         (ecto_sql 3.11.1) lib/ecto/adapters/sql.ex:1054: Ecto.Adapters.SQL.raise_sql_call_error/1
+api2-1      |         (ecto_sql 3.11.1) lib/ecto/adapters/sql.ex:952: Ecto.Adapters.SQL.execute/6
+api2-1      |         (ecto 3.11.1) lib/ecto/repo/queryable.ex:232: Ecto.Repo.Queryable.execute/4
+api2-1      |         (ecto 3.11.1) lib/ecto/repo/queryable.ex:19: Ecto.Repo.Queryable.all/3
+api2-1      |         (ecto 3.11.1) lib/ecto/repo/queryable.ex:154: Ecto.Repo.Queryable.one/3
+api2-1      |         (rinha_backend 0.1.0) lib/rinha_backend/operation.ex:25: RinhaBackend.Operation.get_client_statement/1
+api2-1      |         (rinha_backend 0.1.0) lib/rinha_backend_web/controllers/operation_controller.ex:24: RinhaBackendWeb.OperationController.get_client_statement/2
+api2-1      |         (rinha_backend 0.1.0) lib/rinha_backend_web/controllers/operation_controller.ex:1: RinhaBackendWeb.OperationController.action/2
+database-1  | 2024-03-04 17:57:56.913 GMT [258] FATAL:  sorry, too many clients already
+api2-1      | 14:57:56.913 [error] Postgrex.Protocol (#PID<0.1497.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:57.326 GMT [259] FATAL:  sorry, too many clients already
+api2-1      | 14:57:57.326 [error] Postgrex.Protocol (#PID<0.1473.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:57.613 GMT [260] FATAL:  sorry, too many clients already
+api2-1      | 14:57:57.613 [error] Postgrex.Protocol (#PID<0.1475.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:57.902 GMT [261] FATAL:  sorry, too many clients already
+api2-1      | 14:57:57.902 [error] Postgrex.Protocol (#PID<0.1483.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already
+database-1  | 2024-03-04 17:57:58.026 GMT [262] FATAL:  sorry, too many clients already
+api2-1      | 14:57:58.026 [error] Postgrex.Protocol (#PID<0.1486.0>) failed to connect: ** (Postgrex.Error) FATAL 53300 (too_many_connections) sorry, too many clients already

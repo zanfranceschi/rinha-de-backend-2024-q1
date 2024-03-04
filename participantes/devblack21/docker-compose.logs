@@ -4,8 +4,8 @@
  Container postgres-db  Created
  Container api02  Creating
  Container api01  Creating
- Container api01  Created
  Container api02  Created
+ Container api01  Created
  Container loadbalancer  Creating
  Container loadbalancer  Created
 Attaching to api01, api02, loadbalancer, postgres-db
@@ -25,24 +25,15 @@ postgres-db   | selecting default max_connections ... 100
 postgres-db   | selecting default shared_buffers ... 128MB
 postgres-db   | selecting default time zone ... Etc/UTC
 postgres-db   | creating configuration files ... ok
-api01         | OpenJDK 64-Bit Server VM warning: Options -Xverify:none and -noverify were deprecated in JDK 13 and will likely be removed in a future release.
 api02         | OpenJDK 64-Bit Server VM warning: Options -Xverify:none and -noverify were deprecated in JDK 13 and will likely be removed in a future release.
+api01         | OpenJDK 64-Bit Server VM warning: Options -Xverify:none and -noverify were deprecated in JDK 13 and will likely be removed in a future release.
+api02         | SLF4J(W): No SLF4J providers were found.
+api02         | SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+api02         | SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
 api01         | SLF4J(W): No SLF4J providers were found.
 api01         | SLF4J(W): Defaulting to no-operation (NOP) logger implementation
 api01         | SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
 postgres-db   | running bootstrap script ... ok
-api02         | SLF4J(W): No SLF4J providers were found.
-api02         | SLF4J(W): Defaulting to no-operation (NOP) logger implementation
-api02         | SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
-api01         | 
-api01         |   .   ____          _            __ _ _
-api01         |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-api01         | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
-api01         |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-api01         |   '  |____| .__|_| |_|_| |_\__, | / / / /
-api01         |  =========|_|==============|___/=/_/_/_/
-api01         |  :: Spring Boot ::                (v3.2.3)
-api01         | 
 api02         | 
 api02         |   .   ____          _            __ _ _
 api02         |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -52,7 +43,18 @@ api02         |   '  |____| .__|_| |_|_| |_\__, | / / / /
 api02         |  =========|_|==============|___/=/_/_/_/
 api02         |  :: Spring Boot ::                (v3.2.3)
 api02         | 
+api01         | 
+api01         |   .   ____          _            __ _ _
+api01         |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+api01         | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+api01         |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+api01         |   '  |____| .__|_| |_|_| |_\__, | / / / /
+api01         |  =========|_|==============|___/=/_/_/_/
+api01         |  :: Spring Boot ::                (v3.2.3)
+api01         | 
 postgres-db   | performing post-bootstrap initialization ... ok
+loadbalancer  | 2024/03/04 17:47:05 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.4:20000/clientes/1/extrato", host: "localhost:9999"
+loadbalancer  | 2024/03/04 17:47:05 [error] 6#6: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.3:20000/clientes/1/extrato", host: "localhost:9999"
 postgres-db   | syncing data to disk ... ok
 postgres-db   | 
 postgres-db   | 
@@ -62,14 +64,12 @@ postgres-db   |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 postgres-db   | 
 postgres-db   | initdb: warning: enabling "trust" authentication for local connections
 postgres-db   | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-postgres-db   | waiting for server to start....2024-03-04 02:56:10.227 UTC [48] LOG:  starting PostgreSQL 15.3 (Debian 15.3-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
-postgres-db   | 2024-03-04 02:56:10.231 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres-db   | 2024-03-04 02:56:10.243 UTC [51] LOG:  database system was shut down at 2024-03-04 02:56:09 UTC
-postgres-db   | 2024-03-04 02:56:10.250 UTC [48] LOG:  database system is ready to accept connections
+postgres-db   | waiting for server to start....2024-03-04 17:47:05.919 UTC [48] LOG:  starting PostgreSQL 15.3 (Debian 15.3-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+postgres-db   | 2024-03-04 17:47:05.925 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-db   | 2024-03-04 17:47:05.953 UTC [51] LOG:  database system was shut down at 2024-03-04 17:47:05 UTC
+postgres-db   | 2024-03-04 17:47:05.962 UTC [48] LOG:  database system is ready to accept connections
 postgres-db   |  done
 postgres-db   | server started
-loadbalancer  | 2024/03/04 02:56:10 [error] 8#8: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.24.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.24.0.3:20000/clientes/1/extrato", host: "localhost:9999"
-loadbalancer  | 2024/03/04 02:56:10 [error] 8#8: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.24.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.24.0.4:20000/clientes/1/extrato", host: "localhost:9999"
 postgres-db   | CREATE DATABASE
 postgres-db   | 
 postgres-db   | 
@@ -87,414 +87,414 @@ postgres-db   | CREATE FUNCTION
 postgres-db   | CREATE FUNCTION
 postgres-db   | 
 postgres-db   | 
-postgres-db   | waiting for server to shut down....2024-03-04 02:56:11.123 UTC [48] LOG:  received fast shutdown request
-postgres-db   | 2024-03-04 02:56:11.126 UTC [48] LOG:  aborting any active transactions
-postgres-db   | 2024-03-04 02:56:11.128 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-postgres-db   | 2024-03-04 02:56:11.128 UTC [49] LOG:  shutting down
-postgres-db   | 2024-03-04 02:56:11.131 UTC [49] LOG:  checkpoint starting: shutdown immediate
-api01         | Mar 03, 2024 11:56:11 PM org.apache.catalina.core.StandardService startInternal
-api01         | INFO: Starting service [Tomcat]
-api01         | Mar 03, 2024 11:56:11 PM org.apache.catalina.core.StandardEngine startInternal
-api01         | INFO: Starting Servlet engine: [Apache Tomcat/10.1.19]
-api02         | Mar 03, 2024 11:56:11 PM org.apache.catalina.core.StandardService startInternal
+postgres-db   | 2024-03-04 17:47:06.821 UTC [48] LOG:  received fast shutdown request
+postgres-db   | waiting for server to shut down....2024-03-04 17:47:06.825 UTC [48] LOG:  aborting any active transactions
+postgres-db   | 2024-03-04 17:47:06.827 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres-db   | 2024-03-04 17:47:06.828 UTC [49] LOG:  shutting down
+postgres-db   | 2024-03-04 17:47:06.832 UTC [49] LOG:  checkpoint starting: shutdown immediate
+api02         | Mar 04, 2024 2:47:06 PM org.apache.catalina.core.StandardService startInternal
 api02         | INFO: Starting service [Tomcat]
-api02         | Mar 03, 2024 11:56:11 PM org.apache.catalina.core.StandardEngine startInternal
+api02         | Mar 04, 2024 2:47:07 PM org.apache.catalina.core.StandardEngine startInternal
 api02         | INFO: Starting Servlet engine: [Apache Tomcat/10.1.19]
-postgres-db   | 2024-03-04 02:56:11.849 UTC [49] LOG:  checkpoint complete: wrote 933 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.574 s, sync=0.129 s, total=0.721 s; sync files=260, longest=0.066 s, average=0.001 s; distance=4265 kB, estimate=4265 kB
-postgres-db   | 2024-03-04 02:56:11.855 UTC [48] LOG:  database system is shut down
+api01         | Mar 04, 2024 2:47:07 PM org.apache.catalina.core.StandardService startInternal
+api01         | INFO: Starting service [Tomcat]
+api01         | Mar 04, 2024 2:47:07 PM org.apache.catalina.core.StandardEngine startInternal
+api01         | INFO: Starting Servlet engine: [Apache Tomcat/10.1.19]
+api02         | Mar 04, 2024 2:47:07 PM org.apache.catalina.core.ApplicationContext log
+api02         | INFO: Initializing Spring embedded WebApplicationContext
+api01         | Mar 04, 2024 2:47:07 PM org.apache.catalina.core.ApplicationContext log
+api01         | INFO: Initializing Spring embedded WebApplicationContext
+postgres-db   | 2024-03-04 17:47:07.541 UTC [49] LOG:  checkpoint complete: wrote 933 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.598 s, sync=0.095 s, total=0.714 s; sync files=260, longest=0.062 s, average=0.001 s; distance=4265 kB, estimate=4265 kB
+postgres-db   | 2024-03-04 17:47:07.548 UTC [48] LOG:  database system is shut down
 postgres-db   |  done
 postgres-db   | server stopped
 postgres-db   | 
 postgres-db   | PostgreSQL init process complete; ready for start up.
 postgres-db   | 
-postgres-db   | 2024-03-04 02:56:11.948 UTC [1] LOG:  starting PostgreSQL 15.3 (Debian 15.3-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
-postgres-db   | 2024-03-04 02:56:11.948 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres-db   | 2024-03-04 02:56:11.948 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-postgres-db   | 2024-03-04 02:56:11.954 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres-db   | 2024-03-04 02:56:12.015 UTC [66] LOG:  database system was shut down at 2024-03-04 02:56:11 UTC
-postgres-db   | 2024-03-04 02:56:12.025 UTC [1] LOG:  database system is ready to accept connections
-api01         | Mar 03, 2024 11:56:12 PM org.apache.catalina.core.ApplicationContext log
-api01         | INFO: Initializing Spring embedded WebApplicationContext
-api02         | Mar 03, 2024 11:56:12 PM org.apache.catalina.core.ApplicationContext log
-api02         | INFO: Initializing Spring embedded WebApplicationContext
-loadbalancer  | 2024/03/04 02:56:12 [error] 8#8: *4 no live upstreams while connecting to upstream, client: 172.24.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01         | Mar 03, 2024 11:56:12 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
-api01         | INFO: HHH000204: Processing PersistenceUnitInfo [name: default]
-api02         | Mar 03, 2024 11:56:12 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+postgres-db   | 2024-03-04 17:47:07.648 UTC [1] LOG:  starting PostgreSQL 15.3 (Debian 15.3-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+postgres-db   | 2024-03-04 17:47:07.648 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-db   | 2024-03-04 17:47:07.648 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-db   | 2024-03-04 17:47:07.653 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-db   | 2024-03-04 17:47:07.662 UTC [66] LOG:  database system was shut down at 2024-03-04 17:47:07 UTC
+postgres-db   | 2024-03-04 17:47:07.722 UTC [1] LOG:  database system is ready to accept connections
+loadbalancer  | 2024/03/04 17:47:07 [error] 6#6: *4 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02         | Mar 04, 2024 2:47:07 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
 api02         | INFO: HHH000204: Processing PersistenceUnitInfo [name: default]
-api01         | Mar 03, 2024 11:56:12 PM org.hibernate.Version logVersion
-api01         | INFO: HHH000412: Hibernate ORM core version 6.4.4.Final
-api02         | Mar 03, 2024 11:56:13 PM org.hibernate.Version logVersion
+api02         | Mar 04, 2024 2:47:08 PM org.hibernate.Version logVersion
 api02         | INFO: HHH000412: Hibernate ORM core version 6.4.4.Final
-api01         | Mar 03, 2024 11:56:13 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
-api01         | INFO: HHH000026: Second-level cache disabled
-api02         | Mar 03, 2024 11:56:13 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+api01         | Mar 04, 2024 2:47:08 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+api01         | INFO: HHH000204: Processing PersistenceUnitInfo [name: default]
+api02         | Mar 04, 2024 2:47:08 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
 api02         | INFO: HHH000026: Second-level cache disabled
-api02         | Mar 03, 2024 11:56:13 PM org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl constructDialect
+api01         | Mar 04, 2024 2:47:08 PM org.hibernate.Version logVersion
+api01         | INFO: HHH000412: Hibernate ORM core version 6.4.4.Final
+api01         | Mar 04, 2024 2:47:08 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+api01         | INFO: HHH000026: Second-level cache disabled
+api02         | Mar 04, 2024 2:47:08 PM org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl constructDialect
 api02         | WARN: HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-api01         | Mar 03, 2024 11:56:13 PM org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl constructDialect
+api01         | Mar 04, 2024 2:47:08 PM org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl constructDialect
 api01         | WARN: HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-loadbalancer  | 2024/03/04 02:56:14 [error] 8#8: *5 no live upstreams while connecting to upstream, client: 172.24.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01         | Mar 03, 2024 11:56:14 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
-api01         | INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-api02         | Mar 03, 2024 11:56:14 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+loadbalancer  | 2024/03/04 17:47:09 [error] 6#6: *5 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02         | Mar 04, 2024 2:47:09 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 api02         | INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-loadbalancer  | 2024/03/04 02:56:16 [error] 8#8: *6 no live upstreams while connecting to upstream, client: 172.24.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-loadbalancer  | 2024/03/04 02:56:18 [error] 8#8: *7 no live upstreams while connecting to upstream, client: 172.24.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-loadbalancer  | 2024/03/04 02:56:20 [error] 8#8: *8 no live upstreams while connecting to upstream, client: 172.24.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02         | Mar 03, 2024 11:56:22 PM org.apache.catalina.core.ApplicationContext log
+api01         | Mar 04, 2024 2:47:09 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+api01         | INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+loadbalancer  | 2024/03/04 17:47:11 [error] 6#6: *6 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+loadbalancer  | 2024/03/04 17:47:13 [error] 6#6: *7 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+loadbalancer  | 2024/03/04 17:47:15 [error] 6#6: *8 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02         | Mar 04, 2024 2:47:17 PM org.apache.catalina.core.ApplicationContext log
 api02         | INFO: Initializing Spring DispatcherServlet 'dispatcherServlet'
-api01         | Mar 03, 2024 11:56:27 PM org.apache.catalina.core.ApplicationContext log
+api01         | Mar 04, 2024 2:47:22 PM org.apache.catalina.core.ApplicationContext log
 api01         | INFO: Initializing Spring DispatcherServlet 'dispatcherServlet'
-postgres-db   | 2024-03-04 02:56:31.653 UTC [70] ERROR:  Não existe um cliente com o id informado
-postgres-db   | 2024-03-04 02:56:31.653 UTC [70] CONTEXT:  PL/pgSQL function get_transacoes(integer) line 9 at RAISE
-postgres-db   | 2024-03-04 02:56:31.653 UTC [70] STATEMENT:  select public.get_transacoes($1)
-api01         | Mar 03, 2024 11:56:31 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:31 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api01         | ERROR: ERROR: Não existe um cliente com o id informado
-api01         |   Where: PL/pgSQL function get_transacoes(integer) line 9 at RAISE
-postgres-db   | 2024-03-04 02:56:41.586 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:41.586 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:41.586 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:41 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:26.761 UTC [72] ERROR:  Não existe um cliente com o id informado
+postgres-db   | 2024-03-04 17:47:26.761 UTC [72] CONTEXT:  PL/pgSQL function get_transacoes(integer) line 9 at RAISE
+postgres-db   | 2024-03-04 17:47:26.761 UTC [72] STATEMENT:  select public.get_transacoes($1)
+api02         | Mar 04, 2024 2:47:26 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:41 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:41.857 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:41.857 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:41.857 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:41 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:41 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:41.911 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:41.911 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:41.911 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:41 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | Mar 04, 2024 2:47:26 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: Não existe um cliente com o id informado
+api02         |   Where: PL/pgSQL function get_transacoes(integer) line 9 at RAISE
+postgres-db   | 2024-03-04 17:47:37.177 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:37.177 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:37.177 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:37 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:41 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:37 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:42.698 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:42.698 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:42.698 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:43.828 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:43.828 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:43.828 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:39.619 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:39.619 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:39.619 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:39 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:39 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:44.375 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:44.375 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:44.375 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:40.422 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:40.422 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:40.422 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:44.419 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:44.419 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:44.419 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:40.464 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:40.464 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:40.464 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | WARN: SQL Error: 0, SQLState: P0001
+api02         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:40.630 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:40.630 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:40.630 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | WARN: SQL Error: 0, SQLState: P0001
+api02         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:40.672 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:40.672 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:40.672 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:45.808 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:45.808 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:45.808 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:45 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:40.713 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:40.713 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:40.713 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | WARN: SQL Error: 0, SQLState: P0001
+api02         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:40.757 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:40.757 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:40.757 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:45 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:45.928 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:45.928 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:45.928 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:45 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:40.875 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:40.875 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:40.875 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | WARN: SQL Error: 0, SQLState: P0001
+api02         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:40.996 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:40.996 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:40.996 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:45 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:46.048 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:46.048 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:46.048 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:46 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:41.515 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:41.515 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:41.515 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:41 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:46 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | Mar 04, 2024 2:47:41 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:46.932 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:46.932 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:46.932 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:46 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:41.827 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:41.827 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:41.827 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:41 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | WARN: SQL Error: 0, SQLState: P0001
+api02         | Mar 04, 2024 2:47:41 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:41.862 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:41.862 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:41.862 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:41 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:46 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:41 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:47.005 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:47.005 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:47.005 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:47 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:42.184 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:42.184 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:42.184 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:47 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:47.888 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:47.888 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:47.888 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:47 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:42.326 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:42.326 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:42.326 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:47 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:48.129 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:48.129 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:48.129 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:48 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:42.397 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:42.397 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:42.397 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:48 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:49.260 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:49.260 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:49.260 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:49 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:42.684 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:42.684 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:42.684 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:49 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:49.293 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:49.293 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:49.293 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:49 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:42.719 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:42.719 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:42.719 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | WARN: SQL Error: 0, SQLState: P0001
+api02         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:42.823 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:42.823 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:42.823 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:49 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:49.453 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:49.453 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:49.453 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:49 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:49 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:49.677 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:49.677 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:49.677 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:49 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:49 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:49.767 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:49.767 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:49.767 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:49 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:49 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:49.919 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:49.919 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:49.919 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:49 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:42.863 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:42.863 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:42.863 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:49 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:50.040 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:50.040 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:50.040 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:50 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:42.892 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:42.892 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:42.892 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:50 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:50.222 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:50.222 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:50.222 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:50 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:42.927 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:42.927 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:42.927 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:50 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | Mar 04, 2024 2:47:42 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:50.586 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:50.586 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:50.586 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:50 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:50 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:50.932 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:50.932 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:50.932 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:50 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:43.030 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:43.030 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:43.030 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:50 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:50.989 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:50.989 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:50.989 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:50 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:43.272 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:43.272 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:43.272 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:50 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | Mar 04, 2024 2:47:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:51.104 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:51.104 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:51.104 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:51 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:43.444 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:43.444 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:43.444 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:51 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | Mar 04, 2024 2:47:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:51.889 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:51.889 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:51.889 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:51 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:43.548 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:43.548 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:43.548 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | WARN: SQL Error: 0, SQLState: P0001
+api02         | Mar 04, 2024 2:47:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:43.787 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:43.787 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:43.787 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | WARN: SQL Error: 0, SQLState: P0001
+api02         | Mar 04, 2024 2:47:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:44.143 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:44.143 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:44.143 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | WARN: SQL Error: 0, SQLState: P0001
+api02         | Mar 04, 2024 2:47:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:44.174 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:44.174 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:44.174 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:51 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:52.186 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:52.186 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:52.186 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:52 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:44.303 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:44.303 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:44.303 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:52 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:52.376 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:52.376 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:52.376 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:52 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:44.497 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:44.497 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:44.497 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:52 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | Mar 04, 2024 2:47:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:52.592 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:52.592 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:52.592 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:52 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:52 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:53.409 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:53.409 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:53.409 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:53 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:53 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:53.488 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:53.488 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:53.488 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:53 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:53 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:53.947 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:53.947 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:53.947 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:53 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:53 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:54.021 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:54.021 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:54.021 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:54 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:54 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:55.896 UTC [75] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:55.896 UTC [75] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:55.896 UTC [75] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:55 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:55 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:55.986 UTC [74] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:55.986 UTC [74] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:55.986 UTC [74] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:55 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:44.875 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:44.875 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:44.875 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:55 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:56.055 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:56.055 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:56.055 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:56 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:56 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:56.305 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:56.305 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:56.305 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:56 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:45.329 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:45.329 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:45.329 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:45 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:56 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:45 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:56.623 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:56.623 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:56.623 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:56 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:45.420 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:45.420 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:45.420 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:45 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:56 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | Mar 04, 2024 2:47:45 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:56.732 UTC [75] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:56.732 UTC [75] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:56.732 UTC [75] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:56 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:45.782 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:45.782 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:45.782 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:45 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:56 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | Mar 04, 2024 2:47:45 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:56.776 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:56.776 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:56.776 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:56 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:56 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:57.059 UTC [75] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:57.059 UTC [75] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:57.059 UTC [75] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api02         | Mar 03, 2024 11:56:57 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | WARN: SQL Error: 0, SQLState: P0001
-api02         | Mar 03, 2024 11:56:57 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
-api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:57.124 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
-postgres-db   | 2024-03-04 02:56:57.124 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
-postgres-db   | 2024-03-04 02:56:57.124 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
-api01         | Mar 03, 2024 11:56:57 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+postgres-db   | 2024-03-04 17:47:45.869 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:45.869 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:45.869 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:45 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | WARN: SQL Error: 0, SQLState: P0001
-api01         | Mar 03, 2024 11:56:57 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | Mar 04, 2024 2:47:45 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
 api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:46.043 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:46.043 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:46.043 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:46 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | WARN: SQL Error: 0, SQLState: P0001
+api01         | Mar 04, 2024 2:47:46 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:46.239 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:46.239 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:46.239 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:46 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | WARN: SQL Error: 0, SQLState: P0001
+api02         | Mar 04, 2024 2:47:46 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:46.325 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:46.325 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:46.325 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:46 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | WARN: SQL Error: 0, SQLState: P0001
+api01         | Mar 04, 2024 2:47:46 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:47.565 UTC [73] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:47.565 UTC [73] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:47.565 UTC [73] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:47 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | WARN: SQL Error: 0, SQLState: P0001
+api01         | Mar 04, 2024 2:47:47 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:47.592 UTC [70] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:47.592 UTC [70] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:47.592 UTC [70] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:47 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | WARN: SQL Error: 0, SQLState: P0001
+api02         | Mar 04, 2024 2:47:47 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:47.672 UTC [71] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:47.672 UTC [71] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:47.672 UTC [71] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api01         | Mar 04, 2024 2:47:47 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | WARN: SQL Error: 0, SQLState: P0001
+api01         | Mar 04, 2024 2:47:47 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api01         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api01         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:47.859 UTC [72] ERROR:  O cliente não tem limite para executar essa transação.
+postgres-db   | 2024-03-04 17:47:47.859 UTC [72] CONTEXT:  PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
+postgres-db   | 2024-03-04 17:47:47.859 UTC [72] STATEMENT:  select public.envio_transacao($1,$2,$3,$4)
+api02         | Mar 04, 2024 2:47:47 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | WARN: SQL Error: 0, SQLState: P0001
+api02         | Mar 04, 2024 2:47:47 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+api02         | ERROR: ERROR: O cliente não tem limite para executar essa transação.
+api02         |   Where: PL/pgSQL function envio_transacao(integer,text,text,bigint) line 27 at RAISE
