@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Mar  4 17:03:41 UTC 2024** com **484** submissões.
+Atualizada **Mon Mar  4 17:31:02 UTC 2024** com **486** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -255,7 +255,6 @@ Atualizada **Mon Mar  4 17:03:41 UTC 2024** com **484** submissões.
 | [jojodev](./participantes/jojodev) | ok | 1554 |
 | [jonasfeanor](./participantes/jonasfeanor) | ok | 2 |
 | [jonatasoli](./participantes/jonatasoli) | ok | 1 |
-| [jonathanperis-xgh](./participantes/jonathanperis-xgh) | ok | 2 |
 | [jonathanperis](./participantes/jonathanperis) | ok | 2 |
 | [jonattas_bunjs](./participantes/jonattas_bunjs) | ok | 17 |
 | [jorgehrique-dotnet](./participantes/jorgehrique-dotnet) | ok | 3 |
@@ -378,6 +377,7 @@ Atualizada **Mon Mar  4 17:03:41 UTC 2024** com **484** submissões.
 | [pedrolzoliveira-postgrest](./participantes/pedrolzoliveira-postgrest) | falha - [logs](./participantes/pedrolzoliveira-postgrest/docker-compose.logs) | -- |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
+| [pietrohl](./participantes/pietrohl) | ok | 2 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
 | [quarkusclub](./participantes/quarkusclub) | ok | 3 |
 | [quokka](./participantes/quokka) | ok | 5 |
@@ -390,7 +390,8 @@ Atualizada **Mon Mar  4 17:03:41 UTC 2024** com **484** submissões.
 | [raiane-dev](./participantes/raiane-dev) | ok | 1 |
 | [raissadev](./participantes/raissadev) | ok | 2 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
-| [ramosfabiano](./participantes/ramosfabiano) | ok | 3 |
+| [ramosfabiano](./participantes/ramosfabiano) | ok | 4 |
+| [ramosfabiano_v2](./participantes/ramosfabiano_v2) | falha - [logs](./participantes/ramosfabiano_v2/docker-compose.logs) | -- |
 | [raphaelmonticello](./participantes/raphaelmonticello) | ok | 3 |
 | [rdenadai_bun_sqlite](./participantes/rdenadai_bun_sqlite) | ok | 2 |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
@@ -466,7 +467,7 @@ Atualizada **Mon Mar  4 17:03:41 UTC 2024** com **484** submissões.
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [viniciusgferreira](./participantes/viniciusgferreira) | ok | 3 |
 | [vitor_weirich_java](./participantes/vitor_weirich_java) | ok | 148 |
-| [vitorascorrea](./participantes/vitorascorrea) | ok | 2 |
+| [vitorascorrea](./participantes/vitorascorrea) | ok | 1 |
 | [vitorlacerda-dotnet](./participantes/vitorlacerda-dotnet) | ok | 15 |
 | [vitornorberto](./participantes/vitornorberto) | ok | 4 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
