@@ -6,11 +6,11 @@ services:
     hostname: api01
     environment:
       - DB_HOSTNAME=db
-      - DB_POOL_SIZE=10
+      - DB_POOL_SIZE=5
       - WARMUP_ENABLED=true
-      - WARMUP_HOST=http://api01:8080
+      - WARMUP_HOST=http://0.0.0.0:8080
       - WARMUP_DELAY_SECONDS=3
-      - WARMUP_REQUESTS=10
+      - WARMUP_REQUESTS=50
     ports:
       - "8081:8080"
     depends_on:
@@ -19,18 +19,18 @@ services:
       resources:
         limits:
           cpus: "0.45"
-          memory: "220MB"
+          memory: "100MB"
 
   api02:
     <<: *api
     hostname: api02
     environment:
       - DB_HOSTNAME=db
-      - DB_POOL_SIZE=10
+      - DB_POOL_SIZE=5
       - WARMUP_ENABLED=true
-      - WARMUP_HOST=http://api02:8080
+      - WARMUP_HOST=http://0.0.0.0:8080
       - WARMUP_DELAY_SECONDS=3
-      - WARMUP_REQUESTS=10
+      - WARMUP_REQUESTS=50
     ports:
       - "8082:8080"
 
@@ -47,11 +47,11 @@ services:
       resources:
         limits:
           cpus: "0.20"
-          memory: "15MB"
+          memory: "30MB"
 
   db:
     image: postgres:latest
-    command: 'postgres -c max_connections=22 -c shared_buffers=16MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=4MB'
+    command: 'postgres -c max_connections=12 -c shared_buffers=16MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=4MB'
     hostname: db
     environment:
       - POSTGRES_DB=rinhadb
@@ -65,7 +65,7 @@ services:
       resources:
         limits:
           cpus: "0.40"
-          memory: "95MB"
+          memory: "220MB"
 
 networks:
   default:
