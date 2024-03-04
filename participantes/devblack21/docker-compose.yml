@@ -5,6 +5,7 @@ services:
     image: devblack21/rinha-backend-crebito:latest
     container_name: api01
     hostname: api01
+    platform: linux/amd64
     restart: on-failure
     environment:
       - DB_HOST=postgres-db
@@ -17,8 +18,8 @@ services:
       - MAX_NEW_SIZE=5m
       - MIN_HEAP_FREE_RATIO=30
       - MAX_HEAP_FREE_RATIO=70
-      - MIN_POOL_CONNECTION=2
-      - MAX_POOL_CONNECTION=2
+      - MIN_POOL_CONNECTION=3
+      - MAX_POOL_CONNECTION=3
     depends_on:
       - postgres-db
     deploy:
@@ -42,13 +43,14 @@ services:
       - CONTAINER_MEMORY=110m
       - MIN_HEAP_FREE_RATIO=30
       - MAX_HEAP_FREE_RATIO=70
-      - MIN_POOL_CONNECTION=2
-      - MAX_POOL_CONNECTION=2
+      - MIN_POOL_CONNECTION=3
+      - MAX_POOL_CONNECTION=3
 
   nginx:
-    image: nginx:latest
+    image: nginx:1.15.0-alpine
     restart: on-failure
     container_name: loadbalancer
+    platform: linux/amd64
     depends_on:
       - api01
       - api02
@@ -60,19 +62,20 @@ services:
       resources:
         limits:
           cpus: "0.1"
-          memory: "15MB"
+          memory: "16MB"
     networks:
       - default
         
   postgres-db:
     image:  postgres:15.3-bullseye
     container_name: postgres-db
+    platform: linux/amd64
     restart: on-failure
     deploy:
       resources:
         limits:
           cpus: '0.2'
-          memory: '67MB'
+          memory: '66MB'
     ports:
       - "5433:5432"
     volumes:
