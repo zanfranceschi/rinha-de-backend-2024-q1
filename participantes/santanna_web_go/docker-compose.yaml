@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.6'
 services:
   postgres:
     image: postgres:latest
@@ -11,15 +11,14 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     command: postgres -c max_connections=200 -c shared_buffers=100MB
-    network_mode: host
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready" ]
       interval: 5s
       timeout: 5s
       retries: 20
       start_period: 10s
-    expose:
-      - "5432"
+    ports:
+      - "5432:5432"
     deploy:
       resources:
         limits:
@@ -32,12 +31,11 @@ services:
     container_name: api01
     environment:
       - PORT=30001
-      - DB_HOSTNAME=localhost
+      - DB_HOSTNAME=postgres
       - POOL_MAX=10
       - POOL_MIN=5
-    network_mode: host
-    expose:
-      - "30001"
+    ports:
+      - "30001:30001"
     depends_on:
       postgres:
         condition: service_healthy
@@ -53,26 +51,30 @@ services:
     container_name: api02
     environment:
       - PORT=30002
-      - DB_HOSTNAME=localhost
+      - DB_HOSTNAME=postgres
       - POOL_MAX=10
       - POOL_MIN=5
-    expose:
-      - "30002"
+    ports:
+      - "30002:30002"
 
   nginx:
     image: nginx:latest
     hostname: nginx
     container_name: nginx
-    network_mode: host
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - api01
       - api02
-    expose:
-      - "9999"
+    ports:
+      - "9999:9999"
     deploy:
       resources:
         limits:
           cpus: "0.20"
           memory: 128MB
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1-golang
