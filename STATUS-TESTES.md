@@ -1,10 +1,11 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Mar  4 00:55:44 UTC 2024** com **480** submissões.
+Atualizada **Mon Mar  4 01:22:24 UTC 2024** com **482** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
+| [0000-golang](./participantes/0000-golang) | ok | 2 |
 | [1garo](./participantes/1garo) | ok | 5 |
 | [AlcivanLucas](./participantes/AlcivanLucas) | falha - [logs](./participantes/AlcivanLucas/docker-compose.logs) | -- |
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 5 |
@@ -76,6 +77,7 @@ Atualizada **Mon Mar  4 00:55:44 UTC 2024** com **480** submissões.
 | [brunocamarggo](./participantes/brunocamarggo) | ok | 2 |
 | [brunodelucasbarbosa](./participantes/brunodelucasbarbosa) | ok | 4 |
 | [brunolipe-a](./participantes/brunolipe-a) | ok | 4 |
+| [brunoquinelato](./participantes/brunoquinelato) | falha - [logs](./participantes/brunoquinelato/docker-compose.logs) | -- |
 | [buemura-nestjs](./participantes/buemura-nestjs) | ok | 4 |
 | [buemura-quarkus](./participantes/buemura-quarkus) | ok | 3 |
 | [buemura](./participantes/buemura) | ok | 2 |
@@ -377,7 +379,7 @@ Atualizada **Mon Mar  4 00:55:44 UTC 2024** com **480** submissões.
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
 | [quarkusclub](./participantes/quarkusclub) | ok | 3 |
 | [quokka](./participantes/quokka) | ok | 5 |
-| [rafaelktakahashi](./participantes/rafaelktakahashi) | falha - [logs](./participantes/rafaelktakahashi/docker-compose.logs) | -- |
+| [rafaelktakahashi](./participantes/rafaelktakahashi) | ok | 2 |
 | [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
 | [rafaelpadovezi-mongo](./participantes/rafaelpadovezi-mongo) | ok | 2 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
