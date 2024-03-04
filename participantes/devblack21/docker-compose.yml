@@ -18,8 +18,8 @@ services:
       - MAX_NEW_SIZE=5m
       - MIN_HEAP_FREE_RATIO=30
       - MAX_HEAP_FREE_RATIO=70
-      - MIN_POOL_CONNECTION=3
-      - MAX_POOL_CONNECTION=3
+      - MIN_POOL_CONNECTION=2
+      - MAX_POOL_CONNECTION=2
     depends_on:
       - postgres-db
     deploy:
@@ -43,8 +43,8 @@ services:
       - CONTAINER_MEMORY=110m
       - MIN_HEAP_FREE_RATIO=30
       - MAX_HEAP_FREE_RATIO=70
-      - MIN_POOL_CONNECTION=3
-      - MAX_POOL_CONNECTION=3
+      - MIN_POOL_CONNECTION=2
+      - MAX_POOL_CONNECTION=2
 
   nginx:
     image: nginx:1.15.0-alpine
@@ -76,8 +76,6 @@ services:
         limits:
           cpus: '0.2'
           memory: '66MB'
-    ports:
-      - "5433:5432"
     volumes:
       - ./conf/postgres.conf:/etc/postgresql/postgresql.conf:z
       - ./data/init-sql.sql:/docker-entrypoint-initdb.d/init.sql
