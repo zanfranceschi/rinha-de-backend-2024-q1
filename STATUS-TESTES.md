@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
+Atualizada **Mon Mar  4 19:49:41 UTC 2024** com **493** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -215,6 +215,7 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [gui9394](./participantes/gui9394) | ok | 4 |
 | [guihbc](./participantes/guihbc) | ok | 277 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
+| [gustavofbreunig](./participantes/gustavofbreunig) | falha - [logs](./participantes/gustavofbreunig/docker-compose.logs) | -- |
 | [gustavonovaes-go](./participantes/gustavonovaes-go) | ok | 2 |
 | [gustavoramos00-spring-trsfree](./participantes/gustavoramos00-spring-trsfree) | ok | 2 |
 | [gustavoramos00](./participantes/gustavoramos00) | ok | 2 |
@@ -388,7 +389,7 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
 | [rafaelpadovezi-mongo](./participantes/rafaelpadovezi-mongo) | ok | 2 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
-| [rafaelrcamargo](./participantes/rafaelrcamargo) | falha - [logs](./participantes/rafaelrcamargo/docker-compose.logs) | -- |
+| [rafaelrcamargo](./participantes/rafaelrcamargo) | ok | 1 |
 | [rafaeltorquato-saitama](./participantes/rafaeltorquato-saitama) | ok | 1 |
 | [raiane-dev](./participantes/raiane-dev) | ok | 1 |
 | [raissadev](./participantes/raissadev) | ok | 2 |
@@ -434,6 +435,7 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [ryrden](./participantes/ryrden) | ok | 2 |
 | [samluiz](./participantes/samluiz) | ok | 2 |
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
+| [santanna_web_go](./participantes/santanna_web_go) | falha - [logs](./participantes/santanna_web_go/docker-compose.logs) | -- |
 | [santannaf_web](./participantes/santannaf_web) | ok | 2 |
 | [santannaf_webflux](./participantes/santannaf_webflux) | ok | 3 |
 | [silmar-alberti-franken-php](./participantes/silmar-alberti-franken-php) | ok | 2 |
