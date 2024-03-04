@@ -4,11 +4,11 @@ services:
   api01: &api
     image: docker.io/kitsunesemcalda/rinha-backend:latest
     hostname: api01
-    privileged: true
     ports:
       - "8081:8081"
     restart: on-failure
     environment:
+      - CGO_ENABLE=0
       - PORT=8081
       - DB_HOST=db
       - POSTGRES_USER=admin   
@@ -25,11 +25,11 @@ services:
   api02:
     <<: *api 
     hostname: api02
-    privileged: true
     ports:
       - "8082:8082"
     restart: on-failure
     environment:
+      - CGO_ENABLE=0
       - PORT=8082
       - DB_HOST=db
       - POSTGRES_USER=admin
@@ -53,10 +53,9 @@ services:
           memory: "20MB"
   
   db:
-    image: postgres:latest
+    image: postgres:11.16-bullseye
     hostname: db
     restart: on-failure
-    privileged: true
     ports:
       - "5432:5432"
     command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096
