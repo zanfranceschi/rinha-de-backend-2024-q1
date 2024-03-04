@@ -16,8 +16,10 @@
 
 ## Autor
 
-- Ramon Melo — Linkedin: [/in/ramonmelod](https://www.linkedin.com/in/ramonmelod/)
+### Ramon Melo
 
+- Linkedin: [/in/ramonmelod](https://www.linkedin.com/in/ramonmelod/)
+- e-mail: `ramonmelo.com@gmail.com`
 - [repositório da api](https://github.com/Ramonmelod/rinha-de-backend-2024-q1-nodejs)
 
 ## instruções
