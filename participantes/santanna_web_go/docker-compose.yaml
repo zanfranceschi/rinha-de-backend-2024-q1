@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.6'
 services:
   postgres:
     image: postgres:latest
@@ -37,7 +37,8 @@ services:
     ports:
       - "30001:30001"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     deploy:
       resources:
         limits:
