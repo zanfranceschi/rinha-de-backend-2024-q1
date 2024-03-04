@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Mar  4 20:18:15 UTC 2024** com **493** submissões.
+Atualizada **Mon Mar  4 20:27:07 UTC 2024** com **494** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -380,6 +380,7 @@ Atualizada **Mon Mar  4 20:18:15 UTC 2024** com **493** submissões.
 | [pedrohenriquea](./participantes/pedrohenriquea) | ok | 2 |
 | [pedrolzoliveira-postgrest](./participantes/pedrolzoliveira-postgrest) | falha - [logs](./participantes/pedrolzoliveira-postgrest/docker-compose.logs) | -- |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
+| [pedrovsn](./participantes/pedrovsn) | falha - [logs](./participantes/pedrovsn/docker-compose.logs) | -- |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
 | [pietrohl](./participantes/pietrohl) | ok | 2 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
