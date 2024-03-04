@@ -1,0 +1,66 @@
+version: '3.8'
+
+networks:
+
+  default:
+    driver: bridge
+    name: rinha-2024-q1
+    
+services:
+
+  postgres01:
+    container_name: postgres01
+    hostname: postgres01
+    image: docker.io/ramosfabiano/rinha-de-backend-2024-q1_postgres01:v2
+    env_file:
+      - ./postgres_vars.env
+    deploy:
+      resources:
+        limits:
+          cpus: '0.48'
+          memory: '100MB'
+  
+  postgres02:
+    container_name: postgres02
+    hostname: postgres02
+    image: docker.io/ramosfabiano/rinha-de-backend-2024-q1_postgres02:v2
+    env_file:
+      - ./postgres_vars.env
+    deploy:
+      resources:
+        limits:
+          cpus: '0.47'
+          memory: '100MB'
+
+  api01: &api01
+    container_name: api01
+    hostname: api01
+    image: docker.io/ramosfabiano/rinha-de-backend-2024-q1_api:v2
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '75MB' 
+
+  api02:
+    <<: *api01
+    container_name: api02
+    hostname: api02
+
+  nginx:
+    container_name: nginx
+    hostname: nginx
+    image: docker.io/ramosfabiano/rinha-de-backend-2024-q1_nginx:v2
+    ports:
+      - "9999:9999"
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: '200MB'
+
