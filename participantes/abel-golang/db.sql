@@ -26,7 +26,7 @@ SET (autovacuum_enabled = false);
 
 CREATE INDEX idx_transacoes ON transacoes (idCliente ASC);
 
-CREATE OR REPLACE FUNCTION debit(
+CREATE OR REPLACE FUNCTION debitar(
     idClienteTx INTEGER,
     valorTx INT,
     descricaoTx VARCHAR(10))
@@ -65,7 +65,7 @@ BEGIN
 END;
 $$;
 
-CREATE OR REPLACE FUNCTION credit(
+CREATE OR REPLACE FUNCTION creditar(
     idClienteTx INTEGER,
     valorTx INT,
     descricaoTx VARCHAR(10))

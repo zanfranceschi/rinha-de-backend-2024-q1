@@ -37,6 +37,8 @@ services:
       - POSTGRES_DB=db
     volumes:
       - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.config_file
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.config_file
     deploy:
       resources:
         limits:
