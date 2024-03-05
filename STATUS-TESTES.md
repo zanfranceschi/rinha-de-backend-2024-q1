@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Mar  5 01:01:37 UTC 2024** com **503** submissões.
+Atualizada **Tue Mar  5 01:18:45 UTC 2024** com **503** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -387,7 +387,7 @@ Atualizada **Tue Mar  5 01:01:37 UTC 2024** com **503** submissões.
 | [pedrohenriquea](./participantes/pedrohenriquea) | ok | 2 |
 | [pedrolzoliveira-postgrest](./participantes/pedrolzoliveira-postgrest) | falha - [logs](./participantes/pedrolzoliveira-postgrest/docker-compose.logs) | -- |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
-| [pedrovsn](./participantes/pedrovsn) | falha - [logs](./participantes/pedrovsn/docker-compose.logs) | -- |
+| [pedrovsn](./participantes/pedrovsn) | ok | 2 |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
 | [pietrohl](./participantes/pietrohl) | ok | 2 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
@@ -404,7 +404,7 @@ Atualizada **Tue Mar  5 01:01:37 UTC 2024** com **503** submissões.
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
 | [ramonmelod-node-express](./participantes/ramonmelod-node-express) | ok | 7 |
 | [ramosfabiano](./participantes/ramosfabiano) | ok | 4 |
-| [ramosfabiano_v2](./participantes/ramosfabiano_v2) | falha - [logs](./participantes/ramosfabiano_v2/docker-compose.logs) | -- |
+| [ramosfabiano_v2](./participantes/ramosfabiano_v2) | ok | 3 |
 | [raphaelmonticello](./participantes/raphaelmonticello) | ok | 3 |
 | [rdenadai_bun_sqlite](./participantes/rdenadai_bun_sqlite) | ok | 2 |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
