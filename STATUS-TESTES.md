@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Mar  5 14:50:28 UTC 2024** com **512** submissões.
+Atualizada **Tue Mar  5 15:34:31 UTC 2024** com **517** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -290,6 +290,7 @@ Atualizada **Tue Mar  5 14:50:28 UTC 2024** com **512** submissões.
 | [kelvinromero-fastapi](./participantes/kelvinromero-fastapi) | ok | 5 |
 | [kiro-tagama](./participantes/kiro-tagama) | falha - [logs](./participantes/kiro-tagama/docker-compose.logs) | -- |
 | [klimber](./participantes/klimber) | ok | 5 |
+| [krymancer-zig](./participantes/krymancer-zig) | ok | 4 |
 | [krymancer](./participantes/krymancer) | ok | 4 |
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
 | [lbaesso-php](./participantes/lbaesso-php) | ok | 1 |
@@ -392,7 +393,7 @@ Atualizada **Tue Mar  5 14:50:28 UTC 2024** com **512** submissões.
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
 | [paulohenriquesn-python](./participantes/paulohenriquesn-python) | ok | 3 |
 | [pedro-azevedo-e-matheus-gomes-nodejs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs) | falha - [logs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs/docker-compose.logs) | -- |
-| [pedrohenriquea](./participantes/pedrohenriquea) | ok | 2 |
+| [pedrohenriquea](./participantes/pedrohenriquea) | ok | 1 |
 | [pedrolzoliveira-postgrest](./participantes/pedrolzoliveira-postgrest) | falha - [logs](./participantes/pedrolzoliveira-postgrest/docker-compose.logs) | -- |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
 | [pedrovsn](./participantes/pedrovsn) | ok | 2 |
@@ -407,7 +408,7 @@ Atualizada **Tue Mar  5 14:50:28 UTC 2024** com **512** submissões.
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
 | [rafaelrcamargo](./participantes/rafaelrcamargo) | ok | 1 |
 | [rafaeltorquato-saitama](./participantes/rafaeltorquato-saitama) | ok | 1 |
-| [raiane-dev](./participantes/raiane-dev) | ok | 1 |
+| [raiane-dev](./participantes/raiane-dev) | ok | 2 |
 | [raissadev](./participantes/raissadev) | ok | 2 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
 | [ramonmelod-node-express](./participantes/ramonmelod-node-express) | ok | 7 |
@@ -453,14 +454,18 @@ Atualizada **Tue Mar  5 14:50:28 UTC 2024** com **512** submissões.
 | [samuelfr7](./participantes/samuelfr7) | falha - [logs](./participantes/samuelfr7/docker-compose.logs) | -- |
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
 | [santanna_web_go](./participantes/santanna_web_go) | ok | 7 |
+| [santanna_web_wu](./participantes/santanna_web_wu) | ok | 4 |
 | [santannaf_web](./participantes/santannaf_web) | ok | 2 |
+| [santannaf_web_go_unlogged](./participantes/santannaf_web_go_unlogged) | ok | 2 |
 | [santannaf_webflux](./participantes/santannaf_webflux) | ok | 3 |
+| [santannaf_webflux_wu](./participantes/santannaf_webflux_wu) | ok | 5 |
 | [silmar-alberti-franken-php](./participantes/silmar-alberti-franken-php) | ok | 2 |
 | [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
 | [stefannovasky-kitajs](./participantes/stefannovasky-kitajs) | ok | 2 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [tagliatti](./participantes/tagliatti) | ok | 4 |
+| [thiagodamas-go-swagger-sqlc-postgres](./participantes/thiagodamas-go-swagger-sqlc-postgres) | ok | 1 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
 | [thiagosantana_go](./participantes/thiagosantana_go) | ok | 10 |
 | [thiagotn](./participantes/thiagotn) | ok | 2 |
