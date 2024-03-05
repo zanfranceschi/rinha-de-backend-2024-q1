@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Mar  5 23:30:48 UTC 2024** com **520** submissões.
+Atualizada **Tue Mar  5 23:42:55 UTC 2024** com **520** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -453,7 +453,7 @@ Atualizada **Tue Mar  5 23:30:48 UTC 2024** com **520** submissões.
 | [rwillians-elixir](./participantes/rwillians-elixir) | ok | 4 |
 | [ryrden](./participantes/ryrden) | ok | 2 |
 | [samluiz](./participantes/samluiz) | ok | 2 |
-| [samuelfr7](./participantes/samuelfr7) | falha - [logs](./participantes/samuelfr7/docker-compose.logs) | -- |
+| [samuelfr7](./participantes/samuelfr7) | ok | 7 |
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
 | [santanna_web_go](./participantes/santanna_web_go) | ok | 7 |
 | [santanna_web_wu](./participantes/santanna_web_wu) | ok | 4 |
