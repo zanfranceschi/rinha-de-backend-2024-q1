@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Mar  4 23:52:59 UTC 2024** com **501** submissões.
+Atualizada **Tue Mar  5 00:11:29 UTC 2024** com **503** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -90,6 +90,7 @@ Atualizada **Mon Mar  4 23:52:59 UTC 2024** com **501** submissões.
 | [canabrava](./participantes/canabrava) | ok | 1 |
 | [caravanacloud](./participantes/caravanacloud) | ok | 1 |
 | [carijo-slim](./participantes/carijo-slim) | ok | 4 |
+| [carlosdemarco](./participantes/carlosdemarco) | ok | 4 |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 1 |
 | [carlsonsantana-springboot](./participantes/carlsonsantana-springboot) | ok | 2 |
 | [casanje](./participantes/casanje) | falha - [logs](./participantes/casanje/docker-compose.logs) | -- |
@@ -199,7 +200,7 @@ Atualizada **Mon Mar  4 23:52:59 UTC 2024** com **501** submissões.
 | [gcrispino](./participantes/gcrispino) | ok | 184 |
 | [geffersonFerraz-http2](./participantes/geffersonFerraz-http2) | ok | 2 |
 | [geffersonFerraz-http3](./participantes/geffersonFerraz-http3) | ok | 2 |
-| [geraldojrcg-elixir](./participantes/geraldojrcg-elixir) | falha - [logs](./participantes/geraldojrcg-elixir/docker-compose.logs) | -- |
+| [geraldojrcg-elixir](./participantes/geraldojrcg-elixir) | ok | 2 |
 | [gfds-micronaut](./participantes/gfds-micronaut) | falha - [logs](./participantes/gfds-micronaut/docker-compose.logs) | -- |
 | [ghhernandes](./participantes/ghhernandes) | ok | 2 |
 | [ghost-in-the-machine-86](./participantes/ghost-in-the-machine-86) | ok | 1 |
@@ -441,6 +442,7 @@ Atualizada **Mon Mar  4 23:52:59 UTC 2024** com **501** submissões.
 | [rwillians-elixir](./participantes/rwillians-elixir) | ok | 4 |
 | [ryrden](./participantes/ryrden) | ok | 2 |
 | [samluiz](./participantes/samluiz) | ok | 2 |
+| [samuelfr7](./participantes/samuelfr7) | falha - [logs](./participantes/samuelfr7/docker-compose.logs) | -- |
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
 | [santanna_web_go](./participantes/santanna_web_go) | ok | 7 |
 | [santannaf_web](./participantes/santannaf_web) | ok | 2 |
