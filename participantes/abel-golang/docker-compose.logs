@@ -2,12 +2,10 @@
  Network abel-golang_default  Created
  Container abel-golang-db-1  Creating
  Container abel-golang-db-1  Created
- Container abel-golang-api01-1  Creating
  Container abel-golang-api02-1  Creating
- api02 The requested image's platform (linux/arm64) does not match the detected host platform (linux/amd64/v4) and no specific platform was requested 
- Container abel-golang-api02-1  Created
- api01 The requested image's platform (linux/arm64) does not match the detected host platform (linux/amd64/v4) and no specific platform was requested 
+ Container abel-golang-api01-1  Creating
  Container abel-golang-api01-1  Created
+ Container abel-golang-api02-1  Created
  Container abel-golang-nginx-1  Creating
  Container abel-golang-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -27,11 +25,15 @@ db-1     | selecting default max_connections ... 100
 db-1     | selecting default shared_buffers ... 128MB
 db-1     | selecting default time zone ... UTC
 db-1     | creating configuration files ... ok
-api01-1  | exec /main: exec format error
-api02-1  | exec /main: exec format error
 db-1     | running bootstrap script ... ok
+api01-1  | Rinha A1 - Go API
+api01-1  | Connected to DB
+api01-1  | Error pinging database: failed to connect to `host=db user=db database=db`: dial error (dial tcp 192.168.240.2:5432: connect: connection refused)
+api02-1  | Rinha A1 - Go API
+api02-1  | Connected to DB
+api02-1  | Error pinging database: failed to connect to `host=db user=db database=db`: dial error (dial tcp 192.168.240.2:5432: connect: connection refused)
 db-1     | sh: locale: not found
-db-1     | 2024-03-05 13:56:55.054 UTC [30] WARNING:  no usable system locales were found
+db-1     | 2024-03-05 18:49:00.133 UTC [30] WARNING:  no usable system locales were found
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -41,12 +43,7 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-api01-1 exited with code 1
-api02-1 exited with code 1
-nginx-1  | 2024/03/05 13:56:55 [emerg] 1#1: host not found in upstream "api01:8080" in /etc/nginx/nginx.conf:15
-nginx-1  | nginx: [emerg] host not found in upstream "api01:8080" in /etc/nginx/nginx.conf:15
 db-1     | performing post-bootstrap initialization ... ok
-nginx-1 exited with code 1
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -78,4 +75,12 @@ db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
+api02-1  | Server running on port 8080
+api01-1  | Server running on port 8080
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api02-1 exited with code 0
+api02-1 exited with code 2
+api01-1 exited with code 0
+api01-1 exited with code 2
 db-1 exited with code 0

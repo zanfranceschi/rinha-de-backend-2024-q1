@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Mar  5 18:42:29 UTC 2024** com **519** submissões.
+Atualizada **Tue Mar  5 18:54:15 UTC 2024** com **519** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -15,7 +15,7 @@ Atualizada **Tue Mar  5 18:42:29 UTC 2024** com **519** submissões.
 | [LuisKpBeta](./participantes/LuisKpBeta) | ok | 2 |
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
 | [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 3 |
-| [abel-golang](./participantes/abel-golang) | falha - [logs](./participantes/abel-golang/docker-compose.logs) | -- |
+| [abel-golang](./participantes/abel-golang) | ok | 2 |
 | [accerqueira-bash](./participantes/accerqueira-bash) | ok | 1474 |
 | [accerqueira-redbean-atw-down](./participantes/accerqueira-redbean-atw-down) | ok | 1 |
 | [acdesouza](./participantes/acdesouza) | ok | 30 |
