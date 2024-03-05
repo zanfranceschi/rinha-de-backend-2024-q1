@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
+Atualizada **Mon Mar  4 23:52:59 UTC 2024** com **501** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -111,6 +111,7 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [danielwisky](./participantes/danielwisky) | ok | 3 |
 | [danilo-nodejs](./participantes/danilo-nodejs) | ok | 3 |
 | [daniloflorenzano](./participantes/daniloflorenzano) | ok | 4 |
+| [daniloraisi](./participantes/daniloraisi) | ok | 2 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
 | [david-silva](./participantes/david-silva) | ok | 2 |
 | [ddanielsantos](./participantes/ddanielsantos) | ok | 3 |
@@ -130,6 +131,7 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [dowingows-phalcon-php](./participantes/dowingows-phalcon-php) | ok | 2 |
 | [dreamagici4n](./participantes/dreamagici4n) | ok | 0 |
 | [dridev](./participantes/dridev) | ok | 2 |
+| [dridev_java](./participantes/dridev_java) | ok | 69 |
 | [droderuan](./participantes/droderuan) | ok | 2 |
 | [dscamargo](./participantes/dscamargo) | ok | 2 |
 | [dscorzoni-django](./participantes/dscorzoni-django) | ok | 6317 |
@@ -181,6 +183,8 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [gabriel-roque](./participantes/gabriel-roque) | ok | 4 |
 | [gabrielSantosLima](./participantes/gabrielSantosLima) | falha - [logs](./participantes/gabrielSantosLima/docker-compose.logs) | -- |
 | [gabrielfmagalhaes](./participantes/gabrielfmagalhaes) | ok | 5 |
+| [gabrielhsferreira](./participantes/gabrielhsferreira) | ok | 222 |
+| [gabrielluciano-go](./participantes/gabrielluciano-go) | ok | 1 |
 | [gabrielluciano-vertx](./participantes/gabrielluciano-vertx) | ok | 1 |
 | [gasparbarancelli-h2-database](./participantes/gasparbarancelli-h2-database) | ok | 2 |
 | [gasparbarancelli-java-sem-framework](./participantes/gasparbarancelli-java-sem-framework) | ok | 1 |
@@ -215,6 +219,7 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [gui9394](./participantes/gui9394) | ok | 4 |
 | [guihbc](./participantes/guihbc) | ok | 277 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
+| [gustavofbreunig](./participantes/gustavofbreunig) | falha - [logs](./participantes/gustavofbreunig/docker-compose.logs) | -- |
 | [gustavonovaes-go](./participantes/gustavonovaes-go) | ok | 2 |
 | [gustavoramos00-spring-trsfree](./participantes/gustavoramos00-spring-trsfree) | ok | 2 |
 | [gustavoramos00](./participantes/gustavoramos00) | ok | 2 |
@@ -262,6 +267,7 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [jorgehrique-dotnet](./participantes/jorgehrique-dotnet) | ok | 3 |
 | [josebaroni-postgrest](./participantes/josebaroni-postgrest) | ok | 2 |
 | [josebaroni](./participantes/josebaroni) | ok | 2 |
+| [josimarz-golang](./participantes/josimarz-golang) | ok | 3 |
 | [jovitcorreia](./participantes/jovitcorreia) | ok | 1 |
 | [jpaf](./participantes/jpaf) | ok | 2 |
 | [jpcairesf-go](./participantes/jpcairesf-go) | ok | 1 |
@@ -306,6 +312,7 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [lubien-phoenixqlite](./participantes/lubien-phoenixqlite) | ok | 2 |
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 4 |
 | [lucasSSalgado](./participantes/lucasSSalgado) | ok | 2 |
+| [lucasSSalgadov2](./participantes/lucasSSalgadov2) | ok | 2 |
 | [lucasdev2005](./participantes/lucasdev2005) | ok | 5 |
 | [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | ok | 3353 |
 | [lucassperez-go-crebito](./participantes/lucassperez-go-crebito) | ok | 4 |
@@ -379,6 +386,7 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [pedrohenriquea](./participantes/pedrohenriquea) | ok | 2 |
 | [pedrolzoliveira-postgrest](./participantes/pedrolzoliveira-postgrest) | falha - [logs](./participantes/pedrolzoliveira-postgrest/docker-compose.logs) | -- |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
+| [pedrovsn](./participantes/pedrovsn) | falha - [logs](./participantes/pedrovsn/docker-compose.logs) | -- |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
 | [pietrohl](./participantes/pietrohl) | ok | 2 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
@@ -388,7 +396,7 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
 | [rafaelpadovezi-mongo](./participantes/rafaelpadovezi-mongo) | ok | 2 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
-| [rafaelrcamargo](./participantes/rafaelrcamargo) | falha - [logs](./participantes/rafaelrcamargo/docker-compose.logs) | -- |
+| [rafaelrcamargo](./participantes/rafaelrcamargo) | ok | 1 |
 | [rafaeltorquato-saitama](./participantes/rafaeltorquato-saitama) | ok | 1 |
 | [raiane-dev](./participantes/raiane-dev) | ok | 1 |
 | [raissadev](./participantes/raissadev) | ok | 2 |
@@ -434,6 +442,7 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [ryrden](./participantes/ryrden) | ok | 2 |
 | [samluiz](./participantes/samluiz) | ok | 2 |
 | [samueljansem](./participantes/samueljansem) | ok | 2 |
+| [santanna_web_go](./participantes/santanna_web_go) | ok | 7 |
 | [santannaf_web](./participantes/santannaf_web) | ok | 2 |
 | [santannaf_webflux](./participantes/santannaf_webflux) | ok | 3 |
 | [silmar-alberti-franken-php](./participantes/silmar-alberti-franken-php) | ok | 2 |
@@ -498,5 +507,6 @@ Atualizada **Mon Mar  4 19:30:13 UTC 2024** com **491** submissões.
 | [zan-clojure-01](./participantes/zan-clojure-01) | ok | 2 |
 | [zan-dotnet](./participantes/zan-dotnet) | ok | 2 |
 | [zelnatal](./participantes/zelnatal) | ok | 4 |
+| [zetos-bun](./participantes/zetos-bun) | ok | 2 |
 | [zetos-node](./participantes/zetos-node) | ok | 2 |
 | [zsantana](./participantes/zsantana) | ok | 2 |
