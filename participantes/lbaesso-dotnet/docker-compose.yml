@@ -21,7 +21,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.34"
+          cpus: "0.37"
           memory: "110MB"
 
   app2:
@@ -52,7 +52,7 @@ services:
       resources:
         limits:
           cpus: "0.26"
-          memory: "20MB"
+          memory: "40MB"
 
   postgres:
     container_name: postgres
@@ -67,7 +67,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: rinha
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
       interval: 5s
       timeout: 10s
       start_period: 5s
@@ -75,5 +75,5 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.56"
-          memory: "310MB"
+          cpus: "0.50"
+          memory: "290MB"
