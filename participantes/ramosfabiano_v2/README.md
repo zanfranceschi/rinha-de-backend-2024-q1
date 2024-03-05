@@ -1,6 +1,5 @@
 # Submissão para Rinha de Backend, Segunda Edição: 2024/Q1 - Controle de Concorrência
 
-V2 - Sharding
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="logo nginx" width="300" height="auto">
 <br />
@@ -11,9 +10,12 @@ V2 - Sharding
 <br />
 
 ## Fabiano Ramos
+
+V2 - Experimento com sharding
+
 Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `drogon` web framework
-- [Repositório](https://github.com/ramosfabiano/rinha-de-backend-2024-q1) (tag: v2)
+- [Repositório](https://github.com/ramosfabiano/rinha-de-backend-2024-q1/tree/sharding) (branch: sharding tag: v2)
 
