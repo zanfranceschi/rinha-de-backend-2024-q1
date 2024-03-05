@@ -1,7 +1,7 @@
 # Stack
 
 Nginx - load balancer
-Java - linguagem
+Java (raiz - sem frameworks ou libs utilitarias) - linguagem
 PostgreSQL - banco de dados
 
 # Código-fonte
