@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Mar  5 16:52:08 UTC 2024** com **517** submissões.
+Atualizada **Tue Mar  5 17:04:12 UTC 2024** com **518** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -515,6 +515,7 @@ Atualizada **Tue Mar  5 16:52:08 UTC 2024** com **517** submissões.
 | [williansugiyama](./participantes/williansugiyama) | ok | 1 |
 | [wladneto-02](./participantes/wladneto-02) | falha - [logs](./participantes/wladneto-02/docker-compose.logs) | -- |
 | [wladneto](./participantes/wladneto) | ok | 15 |
+| [wosteimer](./participantes/wosteimer) | ok | 3 |
 | [yMarceloMaia](./participantes/yMarceloMaia) | ok | 9 |
 | [yanpgabriel](./participantes/yanpgabriel) | ok | 4 |
 | [yanpitangui](./participantes/yanpitangui) | ok | 1 |
