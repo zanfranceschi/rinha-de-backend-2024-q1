@@ -1,6 +1,32 @@
 version: "3.5"
 
 services:
+  api01:
+    hostname: api01
+    image: gustavofbreunig/ddd-rinha-2023-q1:latest
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8081:8080"      
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "170MB"
+
+  api02:
+    hostname: api02
+    image: gustavofbreunig/ddd-rinha-2023-q1:latest
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8082:8080"        
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "170MB"
+
   db:
     image: postgres:latest
     environment:
@@ -17,62 +43,25 @@ services:
       resources:
         limits:
           cpus: "0.4"
-          memory: "220MB"
-    healthcheck:
-      test: ["CMD", "pg_isready", "--database", "clientes", "--username", "admin"]
-      interval: 15s
-      timeout: 5s
-      retries: 10
-      start_period: 15s
-      start_interval: 1s      
-
-  api_1:
-    container_name: api_1
-    image: gustavofbreunig/ddd-rinha-2023-q1:latest
-    environment:
-      - DB_HOSTNAME=db
-    depends_on:
-      - db
-    ports:
-      - "8081:8080"      
-    deploy:
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: "160MB"
-
-  api_2:
-    container_name: api_2
-    image: gustavofbreunig/ddd-rinha-2023-q1:latest
-    environment:
-      - DB_HOSTNAME=db    
-    depends_on:
-      - db
-    ports:
-      - "8082:8080"        
-    deploy:
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: "160MB"
+          memory: "200MB"
 
   nginx:
     container_name: nginx
     image: nginx:latest
     ports:
       - "9999:9999"
+    depends_on:
+      - api01
+      - api02
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - api_1
-      - api_2
     deploy:
       resources:
         limits:
           cpus: "0.1"
           memory: "10MB"    
 
-            #networks:
-            #  default:
-            #    driver: bridge
-            #    name: rinha-nginx-2024q1
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
