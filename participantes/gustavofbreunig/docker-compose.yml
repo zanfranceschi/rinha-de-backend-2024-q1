@@ -10,13 +10,14 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql    
-    command: postgres -c max_connections=500 -c shared_buffers=96MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=16MB
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.config_file
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.config_file
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "245MB"
+          cpus: "0.4"
+          memory: "220MB"
     healthcheck:
       test: ["CMD", "pg_isready", "--database", "clientes", "--username", "admin"]
       interval: 15s
@@ -37,8 +38,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.45"
-          memory: "130MB"
+          cpus: "0.5"
+          memory: "160MB"
 
   api_2:
     container_name: api_2
@@ -52,8 +53,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.45"
-          memory: "130MB"
+          cpus: "0.5"
+          memory: "160MB"
 
   nginx:
     container_name: nginx
@@ -69,9 +70,9 @@ services:
       resources:
         limits:
           cpus: "0.1"
-          memory: "45MB"    
+          memory: "10MB"    
 
-networks:
-  default:
-    driver: bridge
-    name: rinha-nginx-2024q1
+            #networks:
+            #  default:
+            #    driver: bridge
+            #    name: rinha-nginx-2024q1
