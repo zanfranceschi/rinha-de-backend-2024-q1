@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Tue Mar  5 17:04:12 UTC 2024** com **518** submissões.
+Atualizada **Tue Mar  5 17:16:04 UTC 2024** com **519** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -293,6 +293,7 @@ Atualizada **Tue Mar  5 17:04:12 UTC 2024** com **518** submissões.
 | [krymancer-zig](./participantes/krymancer-zig) | ok | 4 |
 | [krymancer](./participantes/krymancer) | ok | 4 |
 | [lazaronixon](./participantes/lazaronixon) | ok | 3 |
+| [lbaesso-dotnet](./participantes/lbaesso-dotnet) | ok | 1 |
 | [lbaesso-php](./participantes/lbaesso-php) | ok | 1 |
 | [leandro-sousa](./participantes/leandro-sousa) | falha - [logs](./participantes/leandro-sousa/docker-compose.logs) | -- |
 | [leluque-micronaut-java](./participantes/leluque-micronaut-java) | ok | 2 |
