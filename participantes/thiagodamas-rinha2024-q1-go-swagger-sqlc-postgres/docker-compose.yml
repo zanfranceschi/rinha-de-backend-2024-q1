@@ -1,0 +1,90 @@
+version: "3.5"
+
+services:
+  api01: &api
+    # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
+    # publicamente acessível! Ex.: hub.docker.com
+    image: tdamas/rinha2024q1goswaggersqlcpostgres:latest
+    hostname: api01
+    restart: always
+    environment:
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_NAME=rinha
+      - DB_PASSWORD=postgres
+    
+    # Não é necessário expor qualquer porta além da porta do load balancer,
+    # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
+    # ao banco de dados na fase de desenvolvimento.
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api 
+    hostname: api02
+    restart: always
+    environment:
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_NAME=rinha
+      - DB_PASSWORD=postgres
+    ports:
+      - "8082:8080"
+ 
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+        # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "10MB"
+
+  db:
+    image: postgres:latest
+    restart: always
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+      resources:
+        limits:
+          # Note que a soma de todos os limites dos serviços
+          # aqui declarados é de 1.5 unidades de CPU e 550MB
+          # de memória. A distribuição feita aqui é apenas
+          # um exemplo – distribua como quiser.
+          cpus: "0.13"
+          memory: "140MB"
+
+# O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
+# A edição anterior se beneficiou do modo host pois o volume de requisições
+# era relativamente alto e a virtualização da rede se tornou um gargalo, mas
+# este modo é mais complexo de ser configurado. Fique à vontade para usar o
+# modo que quiser desde que não conflite com portas trivialmente usadas em um
+# SO.
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
