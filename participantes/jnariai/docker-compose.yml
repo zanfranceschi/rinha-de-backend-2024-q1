@@ -1,12 +1,13 @@
 version: '3.5'
 services:
     api1: &api
-        image: jnariai/rinha-backend-2024-q1-laravel:latest
+        image: jnariai/rinha-backend-2024-q1-laravel:octane
         restart: always
         tty: true
         hostname: api1
         depends_on:
-            - db
+            db:
+                condition: service_healthy
         environment:
             DB_HOST: db
             DB_DATABASE: "rinha"
@@ -14,8 +15,6 @@ services:
             DB_PASSWORD: "explode"
             APP_ENV: "prod"
             APP_NAME: "Rinha de backend"
-        volumes:
-            - rinha-laravel:/var/www/html
         links:
             - db
         networks:
@@ -42,6 +41,12 @@ services:
             - "5432:5432"
         networks:
             - rinha-net
+        healthcheck:
+            test: [ "CMD-SHELL", "pg_isready" ]
+            interval: 5s
+            timeout: 5s
+            retries: 20
+            start_period: 10s
         deploy:
             resources:
                 limits:
@@ -53,7 +58,6 @@ services:
         tty: true
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-            - rinha-laravel:/var/www/html
         depends_on:
             - api1
             - api2
@@ -69,5 +73,3 @@ services:
 networks:
     rinha-net:
         driver: bridge
-volumes:
-    rinha-laravel:
