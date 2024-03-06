@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Mar  6 01:49:10 UTC 2024** com **521** submissões.
+Atualizada **Wed Mar  6 02:15:31 UTC 2024** com **523** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -147,6 +147,7 @@ Atualizada **Wed Mar  6 01:49:10 UTC 2024** com **521** submissões.
 | [edersonlima-dotnet8](./participantes/edersonlima-dotnet8) | ok | 2 |
 | [edimarlnx](./participantes/edimarlnx) | ok | 4 |
 | [edubarbieri](./participantes/edubarbieri) | ok | 1 |
+| [edy-elixir-e-ranger-de-dentes](./participantes/edy-elixir-e-ranger-de-dentes) | ok | 1 |
 | [eigr](./participantes/eigr) | ok | 0 |
 | [elioenaiferrari-rust](./participantes/elioenaiferrari-rust) | ok | 2 |
 | [elioenaiferrari](./participantes/elioenaiferrari) | falha - [logs](./participantes/elioenaiferrari/docker-compose.logs) | -- |
@@ -307,7 +308,7 @@ Atualizada **Wed Mar  6 01:49:10 UTC 2024** com **521** submissões.
 | [leonardsoncc-go](./participantes/leonardsoncc-go) | ok | 2 |
 | [leoralph](./participantes/leoralph) | ok | 2 |
 | [lfsmariz-go](./participantes/lfsmariz-go) | ok | 2 |
-| [lipe1994_dotnet](./participantes/lipe1994_dotnet) | ok | 29 |
+| [lipe1994_dotnet](./participantes/lipe1994_dotnet) | ok | 4 |
 | [lipe1994_drogon](./participantes/lipe1994_drogon) | ok | 4 |
 | [lipe1994_spring](./participantes/lipe1994_spring) | ok | 1 |
 | [lm-bunsh](./participantes/lm-bunsh) | ok | 2 |
@@ -479,6 +480,7 @@ Atualizada **Wed Mar  6 01:49:10 UTC 2024** com **521** submissões.
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
 | [tiagoguerreirodev-go](./participantes/tiagoguerreirodev-go) | ok | 1 |
 | [tiagoguerreirodev-python](./participantes/tiagoguerreirodev-python) | ok | 2 |
+| [tiagorconceicao-node](./participantes/tiagorconceicao-node) | ok | 1800 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
 | [tonico](./participantes/tonico) | ok | 80 |
 | [tortuga](./participantes/tortuga) | ok | 4 |
