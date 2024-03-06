@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Mar  6 01:23:48 UTC 2024** com **520** submissões.
+Atualizada **Wed Mar  6 01:49:10 UTC 2024** com **521** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -76,7 +76,7 @@ Atualizada **Wed Mar  6 01:23:48 UTC 2024** com **520** submissões.
 | [boaglio](./participantes/boaglio) | falha - [logs](./participantes/boaglio/docker-compose.logs) | -- |
 | [breno5g](./participantes/breno5g) | ok | 4 |
 | [brilvio](./participantes/brilvio) | ok | 2 |
-| [brunocamarggo-golang](./participantes/brunocamarggo-golang) | ok | 2 |
+| [brunocamarggo-golang](./participantes/brunocamarggo-golang) | ok | 1 |
 | [brunocamarggo](./participantes/brunocamarggo) | ok | 2 |
 | [brunodelucasbarbosa](./participantes/brunodelucasbarbosa) | ok | 4 |
 | [brunolipe-a](./participantes/brunolipe-a) | ok | 4 |
@@ -374,7 +374,7 @@ Atualizada **Wed Mar  6 01:23:48 UTC 2024** com **520** submissões.
 | [michaelalves204](./participantes/michaelalves204) | ok | 8 |
 | [mourishitz-nest-js](./participantes/mourishitz-nest-js) | ok | 1 |
 | [murilochianfa](./participantes/murilochianfa) | ok | 1 |
-| [mvellasco](./participantes/mvellasco) | ok | 9 |
+| [mvellasco](./participantes/mvellasco) | ok | 8 |
 | [my_way](./participantes/my_way) | ok | 23 |
 | [nathanbahiadev__golang](./participantes/nathanbahiadev__golang) | ok | 1 |
 | [newton](./participantes/newton) | ok | 3 |
@@ -406,6 +406,7 @@ Atualizada **Wed Mar  6 01:23:48 UTC 2024** com **520** submissões.
 | [quokka](./participantes/quokka) | ok | 5 |
 | [rafaelktakahashi](./participantes/rafaelktakahashi) | ok | 2 |
 | [rafaelleoni](./participantes/rafaelleoni) | ok | 4 |
+| [rafaelpadovezi-django](./participantes/rafaelpadovezi-django) | ok | 5 |
 | [rafaelpadovezi-mongo](./participantes/rafaelpadovezi-mongo) | ok | 2 |
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
 | [rafaelrcamargo](./participantes/rafaelrcamargo) | ok | 1 |
