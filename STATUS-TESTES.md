@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Mar  6 02:41:21 UTC 2024** com **525** submissões.
+Atualizada **Wed Mar  6 02:57:38 UTC 2024** com **526** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -264,6 +264,7 @@ Atualizada **Wed Mar  6 02:41:21 UTC 2024** com **525** submissões.
 | [jhonnyboy](./participantes/jhonnyboy) | ok | 1 |
 | [jjeanjacques10](./participantes/jjeanjacques10) | ok | 2 |
 | [jnariai](./participantes/jnariai) | falha - [logs](./participantes/jnariai/docker-compose.logs) | -- |
+| [joaojr13](./participantes/joaojr13) | ok | 3 |
 | [joaopaulosg](./participantes/joaopaulosg) | ok | 2 |
 | [joaopmerlin](./participantes/joaopmerlin) | ok | 3 |
 | [johnpgr_vlang](./participantes/johnpgr_vlang) | ok | 2 |
