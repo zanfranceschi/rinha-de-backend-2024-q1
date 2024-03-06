@@ -29,6 +29,11 @@ CREATE UNLOGGED TABLE transacoes (
                 FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
 
+CREATE INDEX ix_transacao_idcliente ON transacoes
+(
+    cliente_id ASC
+);
+
 DO $$
 BEGIN
         INSERT INTO clientes (limite, saldo)
