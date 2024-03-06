@@ -1,0 +1,69 @@
+version: "3.8"
+
+services:
+  api_1: &api
+    image: tiracotech/rinha-de-backend-2024-q1-nodejs:1.0.0
+    container_name: api_1
+    environment:
+      - PG_HOST=db
+      - PG_PORT=5432
+      - PG_USERNAME=admin
+      - PG_PASSWORD=123
+      - PG_DATABASE=rinha
+    ports:
+      - "3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "180MB"
+    
+  api_2:
+    <<: *api
+    container_name: api_2
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api_1
+      - api_2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "40MB"
+
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/1-ddl.sql:/docker-entrypoint-initdb.d/1-ddl.sql
+      - ./sql/2-dml.sql:/docker-entrypoint-initdb.d/2-dml.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "150MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
