@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Mar  6 04:17:08 UTC 2024** com **526** submissões.
+Atualizada **Wed Mar  6 04:33:57 UTC 2024** com **528** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -286,6 +286,7 @@ Atualizada **Wed Mar  6 04:17:08 UTC 2024** com **526** submissões.
 | [julianojj](./participantes/julianojj) | ok | 7 |
 | [julioriffel-django](./participantes/julioriffel-django) | ok | 6 |
 | [juliorovesta](./participantes/juliorovesta) | ok | 1 |
+| [juniorleaoo](./participantes/juniorleaoo) | ok | 46 |
 | [juniorzucareli-dotnet](./participantes/juniorzucareli-dotnet) | ok | 1 |
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 1861 |
 | [kalelMartinho_fastapi](./participantes/kalelMartinho_fastapi) | ok | 3 |
@@ -531,6 +532,7 @@ Atualizada **Wed Mar  6 04:17:08 UTC 2024** com **526** submissões.
 | [ygorcarmo](./participantes/ygorcarmo) | ok | 8 |
 | [zan-clojure-01](./participantes/zan-clojure-01) | ok | 2 |
 | [zan-dotnet](./participantes/zan-dotnet) | ok | 2 |
+| [zaqueu](./participantes/zaqueu) | ok | 2 |
 | [zelnatal](./participantes/zelnatal) | ok | 4 |
 | [zetos-bun](./participantes/zetos-bun) | ok | 2 |
 | [zetos-node](./participantes/zetos-node) | ok | 2 |
