@@ -2,9 +2,6 @@ version: "3.8"
 
 services:
   api01: &api
-    #  build:
-    #  context: .
-    #  dockerfile: Dockerfile
     image: whyakari/rinha:2.0
     hostname: api01
     environment:
@@ -13,8 +10,6 @@ services:
       - DB_PASSWORD=love
       - DB_NAME=rinha
       - DB_PORT=3306
-    # ports:
-    #   - "3000:3000"
     depends_on:
       db:
         condition: service_healthy
@@ -33,13 +28,9 @@ services:
       - DB_PASSWORD=love
       - DB_NAME=rinha
       - DB_PORT=3306
-    # ports:
-    #   - "3001:3000"
 
   shinsei:
-    build:
-      context: .
-      dockerfile: Dockerfile_shinsei
+    image: whyakari/shinsei:latest
     depends_on:
       - api01
       - api02
@@ -48,22 +39,6 @@ services:
         limits:
           cpus: "0.15"
           memory: "20MB"
-
-  # nginx:
-  #   image: nginx:latest
-  #   command: ["nginx", "-g", "daemon off;"]
-  #   volumes:
-  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
-  #   depends_on:
-  #     - api01
-  #     - api02
-  #   ports:
-  #     - "9999:9999"
-  #   deploy:
-  #     resources:
-  #       limits:
-  #         cpus: "0.15"
-  #         memory: "20MB"
 
   db:
     image: mariadb:latest
