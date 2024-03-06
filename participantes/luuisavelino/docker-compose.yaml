@@ -1,0 +1,78 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: luisavelino/system-bank:v1.0
+    hostname: api01
+    environment:
+      API_PORT: "8080"
+      LOG_LEVEL: "error"
+      LOG_OUTPUT: "stdout"
+      ALLOWED_ORIGINS: "*"
+      POSTGRES_HOST: "database"
+      POSTGRES_PORT: "5432"
+      POSTGRES_DB_NAME: "rinha"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "admin"
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "100MB"
+
+  api02:
+    <<: *api 
+    hostname: api02
+    ports:
+      - "8082:8080"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "100MB"
+
+  postgres:
+    hostname: database
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d:ro
+    environment:
+      POSTGRES_DB: rinha
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      PG_MAX_WAL_SIZE: '2GB'
+      PG_MIN_WAL_SIZE: '1GB'
+      PG_CHECKPOINT_TIMEOUT: '10min'
+      PG_WORK_MEM: '64MB'
+      PG_MAINTENANCE_WORK_MEM: '128MB'
+      PG_EFFECTIVE_CACHE_SIZE: '2GB'
+      PG_SHARED_BUFFERS: '512MB'
+      PG_MAX_CONNECTIONS: '100'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: "200MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
