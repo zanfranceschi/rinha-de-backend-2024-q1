@@ -4,6 +4,8 @@ services:
   api01:
     hostname: api01
     image: gustavofbreunig/ddd-rinha-2023-q1:latest
+    depends_on:
+      - db
     environment:
       - DB_HOSTNAME=db
     ports:
@@ -11,12 +13,14 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "170MB"
+          cpus: "0.6"
+          memory: "180MB"
 
   api02:
     hostname: api02
     image: gustavofbreunig/ddd-rinha-2023-q1:latest
+    depends_on:
+      - db
     environment:
       - DB_HOSTNAME=db
     ports:
@@ -24,8 +28,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "170MB"
+          cpus: "0.6"
+          memory: "180MB"
 
   db:
     image: postgres:latest
@@ -42,8 +46,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.4"
-          memory: "200MB"
+          cpus: "0.2"
+          memory: "175MB"
 
   nginx:
     container_name: nginx
@@ -59,7 +63,7 @@ services:
       resources:
         limits:
           cpus: "0.1"
-          memory: "10MB"    
+          memory: "15MB"    
 
 networks:
   default:
