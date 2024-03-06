@@ -6,5 +6,5 @@
 - [ ] Não estou incluindo arquivos desnecessários para a execução do teste no meu pull request tais como código fonte, scripts, e excesso de imagens.
 - [ ] Não estou alterando arquivos fora do ou dos meus diretórios de participação.
 - [ ] Testei pelo menos o funcionamento básico do `docker-compose.yml`, todos os serviços estão subindo e minha API respondendo na porta 9999.
-- [X] Todas imagens contidas no `docker-compose.yml` funcionam na arquitetura linux/amd64.
+- [ ] Todas imagens contidas no `docker-compose.yml` funcionam na arquitetura linux/amd64.
 
