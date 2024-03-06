@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Mar  6 23:22:28 UTC 2024** com **537** submissões.
+Atualizada **Wed Mar  6 23:44:11 UTC 2024** com **539** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -194,7 +194,7 @@ Atualizada **Wed Mar  6 23:22:28 UTC 2024** com **537** submissões.
 | [gabriel-roque](./participantes/gabriel-roque) | ok | 4 |
 | [gabrielSantosLima](./participantes/gabrielSantosLima) | falha - [logs](./participantes/gabrielSantosLima/docker-compose.logs) | -- |
 | [gabrielfmagalhaes](./participantes/gabrielfmagalhaes) | ok | 5 |
-| [gabrielhsferreira](./participantes/gabrielhsferreira) | ok | 222 |
+| [gabrielhsferreira](./participantes/gabrielhsferreira) | ok | 1 |
 | [gabrielluciano-go](./participantes/gabrielluciano-go) | ok | 1 |
 | [gabrielluciano-vertx](./participantes/gabrielluciano-vertx) | ok | 1 |
 | [gasparbarancelli-h2-database](./participantes/gasparbarancelli-h2-database) | ok | 2 |
@@ -387,6 +387,7 @@ Atualizada **Wed Mar  6 23:22:28 UTC 2024** com **537** submissões.
 | [mvellasco](./participantes/mvellasco) | ok | 8 |
 | [my_way](./participantes/my_way) | ok | 23 |
 | [nathanbahiadev__golang](./participantes/nathanbahiadev__golang) | ok | 1 |
+| [nathanbahiadev__python](./participantes/nathanbahiadev__python) | ok | 2 |
 | [newton](./participantes/newton) | ok | 3 |
 | [nicolasmmb-dart](./participantes/nicolasmmb-dart) | ok | 3 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
@@ -408,6 +409,7 @@ Atualizada **Wed Mar  6 23:22:28 UTC 2024** com **537** submissões.
 | [pedrohenriquea](./participantes/pedrohenriquea) | ok | 1 |
 | [pedrolzoliveira-postgrest](./participantes/pedrolzoliveira-postgrest) | falha - [logs](./participantes/pedrolzoliveira-postgrest/docker-compose.logs) | -- |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
+| [pedroter7](./participantes/pedroter7) | ok | 4 |
 | [pedrovsn](./participantes/pedrovsn) | ok | 2 |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
 | [pietrohl](./participantes/pietrohl) | ok | 2 |
