@@ -1,11 +1,13 @@
 # Submissão para Rinha de Backend, Segunda Edição: 2024/Q1 - Controle de Concorrência
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Microsoft_.NET_logo.svg/456px-Microsoft_.NET_logo.svg.png" alt="logo .NET" width="200" height="auto">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/C_Sharp_Logo_2023.svg/1280px-C_Sharp_Logo_2023.svg.png" alt="logo CSharp" width="200" height="auto">
-<br />
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="logo PostgreSql" width="200" height="auto">
-<br />
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="logo Nginx" width="300" height="auto">
+<table align=center>
+  <tr>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Microsoft_.NET_logo.svg/456px-Microsoft_.NET_logo.svg.png" alt="logo .NET" width="100" height="auto"></td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/C_Sharp_Logo_2023.svg/1280px-C_Sharp_Logo_2023.svg.png" alt="logo CSharp" width="100" height="auto"></td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="logo PostgreSql" width="100" height="auto"></td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="logo Nginx" width="100" height="auto"></td>
+  </tr>
+</table>
 
 ## Felipe Oriani
 
