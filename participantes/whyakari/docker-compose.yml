@@ -36,21 +36,34 @@ services:
     ports:
       - "3001:3000"
 
-  nginx:
-    image: nginx:latest
-    command: ["nginx", "-g", "daemon off;"]
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  shinsei:
+    build:
+      context: .
+      dockerfile: Dockerfile_shinsei
     depends_on:
       - api01
       - api02
-    ports:
-      - "9999:9999"
     deploy:
       resources:
         limits:
           cpus: "0.15"
           memory: "20MB"
+
+  # nginx:
+  #   image: nginx:latest
+  #   command: ["nginx", "-g", "daemon off;"]
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #   depends_on:
+  #     - api01
+  #     - api02
+  #   ports:
+  #     - "9999:9999"
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: "0.15"
+  #         memory: "20MB"
 
   db:
     image: mariadb:latest
