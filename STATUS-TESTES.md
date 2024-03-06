@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Wed Mar  6 22:55:21 UTC 2024** com **535** submissões.
+Atualizada **Wed Mar  6 23:22:28 UTC 2024** com **537** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -183,6 +183,7 @@ Atualizada **Wed Mar  6 22:55:21 UTC 2024** com **535** submissões.
 | [fernandofogliato-java](./participantes/fernandofogliato-java) | ok | 2 |
 | [fernandomedeiros](./participantes/fernandomedeiros) | falha - [logs](./participantes/fernandomedeiros/docker-compose.logs) | -- |
 | [fernanduandrade](./participantes/fernanduandrade) | ok | 2 |
+| [fhgm](./participantes/fhgm) | ok | 2 |
 | [fielcapao](./participantes/fielcapao) | falha - [logs](./participantes/fielcapao/docker-compose.logs) | -- |
 | [filipemacedo](./participantes/filipemacedo) | ok | 3 |
 | [flpStrri](./participantes/flpStrri) | ok | 2 |
@@ -368,7 +369,7 @@ Atualizada **Wed Mar  6 22:55:21 UTC 2024** com **535** submissões.
 | [mateusdeitos-node](./participantes/mateusdeitos-node) | ok | 2 |
 | [mateusdeitos-php-swoole](./participantes/mateusdeitos-php-swoole) | ok | 2 |
 | [matheus-trindade](./participantes/matheus-trindade) | ok | 2 |
-| [matheusdojava](./participantes/matheusdojava) | ok | 142 |
+| [matheusdojava](./participantes/matheusdojava) | ok | 74 |
 | [matheusfbosa](./participantes/matheusfbosa) | ok | 1 |
 | [matheuslao](./participantes/matheuslao) | ok | 7 |
 | [matheusleal](./participantes/matheusleal) | ok | 4 |
@@ -455,6 +456,7 @@ Atualizada **Wed Mar  6 22:55:21 UTC 2024** com **535** submissões.
 | [rodrigocaldeira](./participantes/rodrigocaldeira) | ok | 2 |
 | [rodrixl](./participantes/rodrixl) | ok | 3 |
 | [rof20004](./participantes/rof20004) | ok | 4 |
+| [rogerbu-java](./participantes/rogerbu-java) | ok | 3 |
 | [ronaldo_scardini](./participantes/ronaldo_scardini) | ok | 2 |
 | [ronistone-go](./participantes/ronistone-go) | ok | 2 |
 | [ronistone-spring](./participantes/ronistone-spring) | falha - [logs](./participantes/ronistone-spring/docker-compose.logs) | -- |
@@ -494,7 +496,7 @@ Atualizada **Wed Mar  6 22:55:21 UTC 2024** com **535** submissões.
 | [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
-| [vgdss](./participantes/vgdss) | ok | 3 |
+| [vgdss](./participantes/vgdss) | ok | 95 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-132](./participantes/victor-132) | ok | 2 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
