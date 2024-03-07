@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Mar  7 19:47:18 UTC 2024** com **551** submissões.
+Atualizada **Thu Mar  7 19:59:13 UTC 2024** com **552** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -234,6 +234,7 @@ Atualizada **Thu Mar  7 19:47:18 UTC 2024** com **551** submissões.
 | [grilario](./participantes/grilario) | ok | 6 |
 | [guaracy-nim](./participantes/guaracy-nim) | ok | 1 |
 | [gui9394](./participantes/gui9394) | ok | 4 |
+| [guiestimo](./participantes/guiestimo) | ok | 2 |
 | [guihbc](./participantes/guihbc) | ok | 277 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
 | [gustavofbreunig](./participantes/gustavofbreunig) | ok | 3 |
