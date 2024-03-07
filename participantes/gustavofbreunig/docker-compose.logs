@@ -1,14 +1,14 @@
  Network rinha-nginx-2024q1  Creating
  Network rinha-nginx-2024q1  Created
- Container gustavofbreunig-db-1  Creating
- Container gustavofbreunig-db-1  Created
- Container gustavofbreunig-api02-1  Creating
- Container gustavofbreunig-api01-1  Creating
- Container gustavofbreunig-api02-1  Created
- Container gustavofbreunig-api01-1  Created
+ Container rinha-gustavofbreunig-api02-1  Creating
+ Container rinha-gustavofbreunig-db-1  Creating
+ Container rinha-gustavofbreunig-api01-1  Creating
+ Container rinha-gustavofbreunig-api02-1  Created
+ Container rinha-gustavofbreunig-api01-1  Created
  Container nginx  Creating
+ Container rinha-gustavofbreunig-db-1  Created
  Container nginx  Created
-Attaching to api01-1, api02-1, db-1, nginx
+Attaching to nginx, api01-1, api02-1, db-1
 db-1     | The files belonging to this database system will be owned by user "postgres".
 db-1     | This user must also own the server process.
 db-1     | 
@@ -33,11 +33,9 @@ nginx    | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc
 nginx    | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
 nginx    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-nginx    | /docker-entrypoint.sh: Configuration complete; ready for start up
 db-1     | running bootstrap script ... ok
+nginx    | /docker-entrypoint.sh: Configuration complete; ready for start up
 db-1     | performing post-bootstrap initialization ... ok
-nginx    | 2024/03/06 01:36:55 [error] 31#31: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/06 01:36:55 [error] 31#31: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.3:8080/clientes/1/extrato", host: "localhost:9999"
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
@@ -47,6 +45,53 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
+db-1     | waiting for server to start....2024-03-06 22:03:22.238 UTC [60] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-06 22:03:22.239 UTC [60] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-06 22:03:22.241 UTC [63] LOG:  database system was shut down at 2024-03-06 22:03:21 UTC
+db-1     | 2024-03-06 22:03:22.244 UTC [60] LOG:  database system is ready to accept connections
+db-1     |  done
+db-1     | server started
+db-1     | CREATE DATABASE
+db-1     | 
+db-1     | 
+db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | CREATE TABLE
+db-1     | CREATE TABLE
+db-1     | CREATE INDEX
+db-1     | DO
+db-1     | 
+db-1     | 
+db-1     | waiting for server to shut down...2024-03-06 22:03:22.740 UTC [60] LOG:  received fast shutdown request
+db-1     | .2024-03-06 22:03:22.740 UTC [60] LOG:  aborting any active transactions
+db-1     | 2024-03-06 22:03:22.819 UTC [60] LOG:  background worker "logical replication launcher" (PID 66) exited with exit code 1
+db-1     | 2024-03-06 22:03:22.819 UTC [61] LOG:  shutting down
+db-1     | 2024-03-06 22:03:22.819 UTC [61] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-03-06 22:03:22.826 UTC [61] LOG:  checkpoint complete: wrote 940 buffers (7.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.001 s, total=0.007 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4290 kB, estimate=4290 kB; lsn=0/191B530, redo lsn=0/191B530
+db-1     | 2024-03-06 22:03:22.833 UTC [60] LOG:  database system is shut down
+db-1     |  done
+db-1     | server stopped
+db-1     | 
+db-1     | PostgreSQL init process complete; ready for start up.
+db-1     | 
+db-1     | 2024-03-06 22:03:22.918 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-06 22:03:22.919 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-03-06 22:03:22.919 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-03-06 22:03:22.919 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-06 22:03:22.922 UTC [78] LOG:  database system was shut down at 2024-03-06 22:03:22 UTC
+db-1     | 2024-03-06 22:03:22.926 UTC [1] LOG:  database system is ready to accept connections
+nginx    | 2024/03/06 22:03:23 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.144.2:8080/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:03:23 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.144.4:8080/clientes/1/extrato", host: "localhost:9999"
 api01-1  | 
 api01-1  |   .   ____          _            __ _ _
 api01-1  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -56,6 +101,8 @@ api01-1  |   '  |____| .__|_| |_|_| |_\__, | / / / /
 api01-1  |  =========|_|==============|___/=/_/_/_/
 api01-1  |  :: Spring Boot ::                (v3.2.2)
 api01-1  | 
+api01-1  | 2024-03-06T22:03:23.821Z  INFO 1 --- [           main] c.r.r.RinhadrivedesignApplication        : Starting RinhadrivedesignApplication v1.0.0 using Java 17.0.10 with PID 1 (/app.jar started by root in /)
+api01-1  | 2024-03-06T22:03:23.824Z  INFO 1 --- [           main] c.r.r.RinhadrivedesignApplication        : No active profile set, falling back to 1 default profile: "default"
 api02-1  | 
 api02-1  |   .   ____          _            __ _ _
 api02-1  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -65,322 +112,74 @@ api02-1  |   '  |____| .__|_| |_|_| |_\__, | / / / /
 api02-1  |  =========|_|==============|___/=/_/_/_/
 api02-1  |  :: Spring Boot ::                (v3.2.2)
 api02-1  | 
-db-1     | waiting for server to start.... done
-db-1     | server started
-api01-1  | 2024-03-06T01:36:56.440Z  INFO 1 --- [           main] c.r.r.RinhadrivedesignApplication        : Starting RinhadrivedesignApplication v1.0.0 using Java 17.0.10 with PID 1 (/app.jar started by root in /)
-api01-1  | 2024-03-06T01:36:56.445Z  INFO 1 --- [           main] c.r.r.RinhadrivedesignApplication        : No active profile set, falling back to 1 default profile: "default"
-api02-1  | 2024-03-06T01:36:56.520Z  INFO 1 --- [           main] c.r.r.RinhadrivedesignApplication        : Starting RinhadrivedesignApplication v1.0.0 using Java 17.0.10 with PID 1 (/app.jar started by root in /)
-api02-1  | 2024-03-06T01:36:56.524Z  INFO 1 --- [           main] c.r.r.RinhadrivedesignApplication        : No active profile set, falling back to 1 default profile: "default"
-nginx    | 2024/03/06 01:36:57 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/06 01:36:57 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-db-1     | CREATE DATABASE
-db-1     | 
-db-1     | 
-db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
-db-1     | psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: Connection refused
-db-1     | 	Is the server running locally and accepting connections on that socket?
-db-1 exited with code 2
-nginx    | 2024/03/06 01:36:59 [error] 31#31: *7 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-03-06T01:37:01.239Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-api01-1  | 2024-03-06T01:37:01.240Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-nginx    | 2024/03/06 01:37:01 [error] 31#31: *8 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-03-06T01:37:01.537Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 213 ms. Found 2 JPA repository interfaces.
-api01-1  | 2024-03-06T01:37:01.627Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 304 ms. Found 2 JPA repository interfaces.
-nginx    | 2024/03/06 01:37:03 [error] 31#31: *9 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-03-06T01:37:05.037Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-api02-1  | 2024-03-06T01:37:05.120Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-api02-1  | 2024-03-06T01:37:05.120Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-api01-1  | 2024-03-06T01:37:05.142Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-api01-1  | 2024-03-06T01:37:05.228Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-api01-1  | 2024-03-06T01:37:05.228Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-nginx    | 2024/03/06 01:37:05 [error] 31#31: *10 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-03-06T01:37:05.540Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-api02-1  | 2024-03-06T01:37:05.541Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8814 ms
-api01-1  | 2024-03-06T01:37:05.734Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-api01-1  | 2024-03-06T01:37:05.736Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 9017 ms
-nginx    | 2024/03/06 01:37:07 [error] 31#31: *11 connect() failed (111: Connection refused) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/06 01:37:07 [error] 31#31: *11 connect() failed (111: Connection refused) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-03-06T01:37:07.742Z  INFO 1 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-api01-1  | 2024-03-06T01:37:07.946Z  INFO 1 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-api02-1  | 2024-03-06T01:37:08.039Z  INFO 1 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-api02-1  | 2024-03-06T01:37:08.216Z  INFO 1 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-api01-1  | 2024-03-06T01:37:08.236Z  INFO 1 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-api01-1  | 2024-03-06T01:37:08.422Z  INFO 1 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-api02-1  | 2024-03-06T01:37:09.117Z  INFO 1 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-api02-1  | 2024-03-06T01:37:09.221Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-api01-1  | 2024-03-06T01:37:09.415Z  INFO 1 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-nginx    | 2024/03/06 01:37:09 [error] 31#31: *14 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | 2024-03-06T01:37:09.525Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-nginx    | 2024/03/06 01:37:11 [error] 31#31: *15 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/06 01:37:13 [error] 31#31: *16 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-03-06T01:37:15.354Z ERROR 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
-api02-1  | 
-api02-1  | org.postgresql.util.PSQLException: The connection attempt failed.
-api02-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:354) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.Driver.makeConnection(Driver.java:443) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.Driver.connect(Driver.java:297) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231) ~[spring-context-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949) ~[spring-context-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api02-1  | 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api02-1  | 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api02-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api02-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api02-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api02-1  | 	at com.rinha.rinhadrivedesign.RinhadrivedesignApplication.main(RinhadrivedesignApplication.java:10) ~[!/:1.0.0]
-api02-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-api02-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-api02-1  | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-api02-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-api02-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[app.jar:1.0.0]
-api02-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[app.jar:1.0.0]
-api02-1  | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[app.jar:1.0.0]
-api02-1  | Caused by: java.net.UnknownHostException: db
-api02-1  | 	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:572) ~[na:na]
-api02-1  | 	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
-api02-1  | 	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
-api02-1  | 	at org.postgresql.core.PGStream.createSocket(PGStream.java:243) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.core.PGStream.<init>(PGStream.java:98) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:132) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258) ~[postgresql-42.6.0.jar!/:42.6.0]
-api02-1  | 	... 57 common frames omitted
-api02-1  | 
-api02-1  | 2024-03-06T01:37:15.361Z  WARN 1 --- [           main] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
-api02-1  | 
-api02-1  | java.lang.NullPointerException: Cannot invoke "org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(java.sql.SQLException, String)" because the return value of "org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.sqlExceptionHelper()" is null
-api02-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api02-1  | 	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231) ~[spring-context-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949) ~[spring-context-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.3.jar!/:6.1.3]
-api02-1  | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api02-1  | 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api02-1  | 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api02-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api02-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api02-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api02-1  | 	at com.rinha.rinhadrivedesign.RinhadrivedesignApplication.main(RinhadrivedesignApplication.java:10) ~[!/:1.0.0]
-api02-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-api02-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-api02-1  | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-api02-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-api02-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[app.jar:1.0.0]
-api02-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[app.jar:1.0.0]
-api02-1  | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[app.jar:1.0.0]
-api02-1  | 
-api02-1  | 2024-03-06T01:37:15.381Z  WARN 1 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-nginx    | 2024/03/06 01:37:15 [error] 31#31: *17 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | 2024-03-06T01:37:15.649Z ERROR 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
-api01-1  | 
-api01-1  | org.postgresql.util.PSQLException: The connection attempt failed.
-api01-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:354) ~[postgresql-42.6.0.jar!/:42.6.0]
-api01-1  | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54) ~[postgresql-42.6.0.jar!/:42.6.0]
-api01-1  | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263) ~[postgresql-42.6.0.jar!/:42.6.0]
-api01-1  | 	at org.postgresql.Driver.makeConnection(Driver.java:443) ~[postgresql-42.6.0.jar!/:42.6.0]
-api01-1  | 	at org.postgresql.Driver.connect(Driver.java:297) ~[postgresql-42.6.0.jar!/:42.6.0]
-api01-1  | 	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar!/:na]
-api01-1  | 	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar!/:na]
-api01-1  | 	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar!/:na]
-api01-1  | 	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar!/:na]
-api01-1  | 	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar!/:na]
-api01-1  | 	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar!/:na]
-api01-1  | 	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar!/:na]
-api01-1  | 	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231) ~[spring-context-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949) ~[spring-context-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api01-1  | 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api01-1  | 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api01-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api01-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api01-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api01-1  | 	at com.rinha.rinhadrivedesign.RinhadrivedesignApplication.main(RinhadrivedesignApplication.java:10) ~[!/:1.0.0]
-api01-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-api01-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-api01-1  | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-api01-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-api01-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[app.jar:1.0.0]
-api01-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[app.jar:1.0.0]
-api01-1  | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[app.jar:1.0.0]
-api01-1  | Caused by: java.net.UnknownHostException: db
-api01-1  | 	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:572) ~[na:na]
-api01-1  | 	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
-api01-1  | 	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
-api01-1  | 	at org.postgresql.core.PGStream.createSocket(PGStream.java:243) ~[postgresql-42.6.0.jar!/:42.6.0]
-api01-1  | 	at org.postgresql.core.PGStream.<init>(PGStream.java:98) ~[postgresql-42.6.0.jar!/:42.6.0]
-api01-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:132) ~[postgresql-42.6.0.jar!/:42.6.0]
-api01-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258) ~[postgresql-42.6.0.jar!/:42.6.0]
-api01-1  | 	... 57 common frames omitted
-api01-1  | 
-api01-1  | 2024-03-06T01:37:15.656Z  WARN 1 --- [           main] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
-api01-1  | 
-api01-1  | java.lang.NullPointerException: Cannot invoke "org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(java.sql.SQLException, String)" because the return value of "org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.sqlExceptionHelper()" is null
-api01-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503) ~[hibernate-core-6.4.1.Final.jar!/:6.4.1.Final]
-api01-1  | 	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231) ~[spring-context-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949) ~[spring-context-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.3.jar!/:6.1.3]
-api01-1  | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api01-1  | 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api01-1  | 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api01-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api01-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api01-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.2.jar!/:3.2.2]
-api01-1  | 	at com.rinha.rinhadrivedesign.RinhadrivedesignApplication.main(RinhadrivedesignApplication.java:10) ~[!/:1.0.0]
-api01-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-api01-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-api01-1  | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-api01-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-api01-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[app.jar:1.0.0]
-api01-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[app.jar:1.0.0]
-api01-1  | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[app.jar:1.0.0]
-api01-1  | 
-api01-1  | 2024-03-06T01:37:15.680Z  WARN 1 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-nginx    | 2024/03/06 01:37:17 [error] 31#31: *18 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-03-06T01:37:18.654Z  INFO 1 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-api02-1  | 2024-03-06T01:37:18.717Z  INFO 1 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-nginx    | 2024/03/06 01:37:19 [error] 31#31: *19 connect() failed (111: Connection refused) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/06 01:37:19 [error] 31#31: *19 connect() failed (111: Connection refused) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-api01-1  | 2024-03-06T01:37:19.735Z  INFO 1 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-api01-1  | 2024-03-06T01:37:19.740Z  INFO 1 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-api02-1  | 2024-03-06T01:37:21.415Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-api02-1  | 2024-03-06T01:37:21.444Z  WARN 1 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-nginx    | 2024/03/06 01:37:21 [error] 31#31: *22 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | 2024-03-06T01:37:22.446Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-api01-1  | 2024-03-06T01:37:22.617Z  WARN 1 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-api02-1  | 2024-03-06T01:37:22.821Z  INFO 1 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-api02-1  | 2024-03-06T01:37:22.838Z  INFO 1 --- [           main] c.r.r.RinhadrivedesignApplication        : Started RinhadrivedesignApplication in 28.498 seconds (process running for 30.776)
-nginx    | 2024/03/06 01:37:23 [error] 31#31: *23 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | 2024-03-06T01:37:24.019Z  INFO 1 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-api01-1  | 2024-03-06T01:37:24.037Z  INFO 1 --- [           main] c.r.r.RinhadrivedesignApplication        : Started RinhadrivedesignApplication in 29.798 seconds (process running for 32.025)
+api02-1  | 2024-03-06T22:03:24.134Z  INFO 1 --- [           main] c.r.r.RinhadrivedesignApplication        : Starting RinhadrivedesignApplication v1.0.0 using Java 17.0.10 with PID 1 (/app.jar started by root in /)
+api02-1  | 2024-03-06T22:03:24.139Z  INFO 1 --- [           main] c.r.r.RinhadrivedesignApplication        : No active profile set, falling back to 1 default profile: "default"
+nginx    | 2024/03/06 22:03:25 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:03:27 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1  | 2024-03-06T22:03:27.626Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+api02-1  | 2024-03-06T22:03:27.937Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+api01-1  | 2024-03-06T22:03:27.937Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 298 ms. Found 2 JPA repository interfaces.
+api02-1  | 2024-03-06T22:03:28.330Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 305 ms. Found 2 JPA repository interfaces.
+nginx    | 2024/03/06 22:03:29 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1  | 2024-03-06T22:03:30.534Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+api01-1  | 2024-03-06T22:03:30.623Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+api01-1  | 2024-03-06T22:03:30.623Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+api02-1  | 2024-03-06T22:03:31.045Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+api02-1  | 2024-03-06T22:03:31.129Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+api02-1  | 2024-03-06T22:03:31.129Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+api01-1  | 2024-03-06T22:03:31.139Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+api01-1  | 2024-03-06T22:03:31.140Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7019 ms
+nginx    | 2024/03/06 22:03:31 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | 2024-03-06T22:03:31.634Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+api02-1  | 2024-03-06T22:03:31.636Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7204 ms
+api01-1  | 2024-03-06T22:03:32.637Z  INFO 1 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+api01-1  | 2024-03-06T22:03:32.937Z  INFO 1 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+api01-1  | 2024-03-06T22:03:33.134Z  INFO 1 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+nginx    | 2024/03/06 22:03:33 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | 2024-03-06T22:03:33.316Z  INFO 1 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+api02-1  | 2024-03-06T22:03:33.622Z  INFO 1 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+api02-1  | 2024-03-06T22:03:33.823Z  INFO 1 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+api01-1  | 2024-03-06T22:03:34.227Z  INFO 1 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+api01-1  | 2024-03-06T22:03:34.419Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+api02-1  | 2024-03-06T22:03:35.016Z  INFO 1 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+api02-1  | 2024-03-06T22:03:35.229Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+nginx    | 2024/03/06 22:03:35 [error] 29#29: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.144.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:03:35 [error] 29#29: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.144.2:8080/clientes/1/extrato", host: "localhost:9999"
+api01-1  | 2024-03-06T22:03:35.335Z  INFO 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@74eec640
+api01-1  | 2024-03-06T22:03:35.337Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+api01-1  | 2024-03-06T22:03:35.521Z  WARN 1 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+api02-1  | 2024-03-06T22:03:36.125Z  INFO 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@74eec640
+api02-1  | 2024-03-06T22:03:36.135Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+api02-1  | 2024-03-06T22:03:36.246Z  WARN 1 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+nginx    | 2024/03/06 22:03:37 [error] 29#29: *12 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:03:39 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 api01-1 exited with code 137
-nginx    | 2024/03/06 01:37:25 [error] 31#31: *24 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/06 01:37:27 [error] 31#31: *25 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/06 01:37:29 [error] 31#31: *26 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-03-06T01:37:31.624Z  INFO 1 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-api02-1  | 2024-03-06T01:37:31.625Z  INFO 1 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-api02-1  | 2024-03-06T01:37:32.014Z  INFO 1 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 317 ms
-nginx    | 2024/03/06 01:37:32 [error] 30#30: *27 upstream prematurely closed connection while reading response header from upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.3:8080/clientes/1/extrato", host: "localhost:9999"
+api02-1  | 2024-03-06T22:03:40.736Z  INFO 1 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+api02-1  | 2024-03-06T22:03:40.815Z  INFO 1 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+nginx    | 2024/03/06 22:03:41 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | 2024-03-06T22:03:42.423Z  WARN 1 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 api02-1 exited with code 137
-nginx    | 2024/03/06 01:37:50 [error] 30#30: *27 connect() failed (113: No route to host) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/06 01:38:27 [error] 30#30: *30 connect() failed (113: No route to host) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/06 01:38:30 [error] 30#30: *30 connect() failed (113: No route to host) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.23.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:03:43 [error] 29#29: *15 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:03:45 [error] 29#29: *16 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:04:21 [error] 29#29: *17 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.144.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:04:40 [error] 29#29: *17 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.144.2:8080/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:04:45 [error] 29#29: *20 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.144.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:04:45 [error] 29#29: *20 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:04:47 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:04:49 [error] 29#29: *23 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:04:54 [error] 29#29: *24 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.144.2:8080/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:04:54 [error] 29#29: *24 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:04:59 [error] 29#29: *26 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.144.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:04:59 [error] 29#29: *26 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:05:01 [error] 29#29: *28 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/06 22:05:03 [error] 29#29: *29 no live upstreams while connecting to upstream, client: 192.168.144.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-1     | 2024-03-06 22:05:05.551 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-03-06 22:05:05.551 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-03-06 22:05:05.553 UTC [1] LOG:  background worker "logical replication launcher" (PID 81) exited with exit code 1
+db-1     | 2024-03-06 22:05:05.553 UTC [76] LOG:  shutting down
+db-1     | 2024-03-06 22:05:05.554 UTC [76] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-03-06 22:05:05.554 UTC [76] LOG:  checkpoint complete: wrote 49 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.001 s; sync files=0, longest=0.000 s, average=0.000 s; distance=99 kB, estimate=99 kB; lsn=0/19341A8, redo lsn=0/19341A8
+db-1     | 2024-03-06 22:05:05.557 UTC [1] LOG:  database system is shut down
+db-1 exited with code 0
+db-1 exited with code 0
 nginx exited with code 0

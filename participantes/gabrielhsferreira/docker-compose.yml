@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: rinhabackend
       POSTGRES_PASSWORD: rinhabackend
       POSTGRES_DB: rinhabackend
-    command: 'postgres -c max_connections=300 -c shared_buffers=96MB'
+    command: 'postgres -c max_connections=350 -c shared_buffers=128MB -c work_mem=8MB'
     volumes:
       - ./sql/ddl.sql:/docker-entrypoint-initdb.d/01-ddl.sql:ro
     networks:
@@ -20,11 +20,12 @@ services:
       timeout: 5s
       retries: 20
       start_period: 10s
+    shm_size: 256MB
     deploy:
       resources:
         limits:
-          cpus: '0.7'
-          memory: '150MB'
+          cpus: '1'
+          memory: '400MB'
 
   api1: &api
     image: gabrielhsferreira/rinhabackend202401
@@ -40,8 +41,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.3'
-          memory: '175MB'
+          cpus: '0.2'
+          memory: '70MB'
   
   api2:
     <<: *api
@@ -63,8 +64,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.2'
-          memory: '50MB'
+          cpus: '0.1'
+          memory: '10MB'
 
 networks:
   rinhabackend-network:

@@ -95,8 +95,7 @@ begin
             tipo,
             descricao,
             cliente_id
-        );
-    
+        );    
     select
         "ClienteId","Limite", "Saldo", true
         into "ClienteId", "Limite", "Saldo", "TransacaoFoiCriada";
@@ -104,7 +103,7 @@ end
 $proc$;
 
 -------------------------- vw_extrato --------------------------
-create or replace view vw_extrato
+create materialized view public.vw_extrato
 as
 select
     j.id,
@@ -160,8 +159,9 @@ from
         from
             public.clientes c
 
-    ) j;
-
+    ) j
+with data;
+create unique index if not exists ix_vw_extrato_id on public.vw_extrato (id);
 
 -------------------------- carga inicial --------------------------
 DO $$
@@ -173,5 +173,7 @@ values
     (3, 'les cruders', 0, 1000000),
     (4, 'padaria joia de cocaia', 0, 10000000),
     (5, 'kid mais', 0, 500000);
+    refresh materialized view public.vw_extrato;
 end; $$
+
 

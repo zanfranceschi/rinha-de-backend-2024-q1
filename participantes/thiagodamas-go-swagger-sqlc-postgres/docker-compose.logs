@@ -4,8 +4,8 @@
  Container thiagodamas-go-swagger-sqlc-postgres-db-1  Created
  Container thiagodamas-go-swagger-sqlc-postgres-api02-1  Creating
  Container thiagodamas-go-swagger-sqlc-postgres-api01-1  Creating
- Container thiagodamas-go-swagger-sqlc-postgres-api02-1  Created
  Container thiagodamas-go-swagger-sqlc-postgres-api01-1  Created
+ Container thiagodamas-go-swagger-sqlc-postgres-api02-1  Created
  Container thiagodamas-go-swagger-sqlc-postgres-nginx-1  Creating
  Container thiagodamas-go-swagger-sqlc-postgres-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -21,28 +21,13 @@ db-1     |
 db-1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
 db-1     | creating subdirectories ... ok
 db-1     | selecting dynamic shared memory implementation ... posix
-api01-1  | panic: failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.192.2:5432: connect: connection refused)
-api01-1  | 
-api01-1  | goroutine 1 [running]:
-api01-1  | rinha/restapi.configureAPI(0xc0001eca00)
-api01-1  | 	/app/restapi/configure_rinha.go:58 +0x451
-api01-1  | rinha/restapi.(*Server).ConfigureAPI(...)
-api01-1  | 	/app/restapi/server.go:57
-api01-1  | main.main()
-api01-1  | 	/app/cmd/rinha-server/main.go:51 +0x390
-api02-1  | panic: failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.192.2:5432: connect: connection refused)
-api02-1  | 
-api02-1  | goroutine 1 [running]:
-api02-1  | rinha/restapi.configureAPI(0xc0001d6a00)
-api02-1  | 	/app/restapi/configure_rinha.go:58 +0x451
-api02-1  | rinha/restapi.(*Server).ConfigureAPI(...)
-api02-1  | 	/app/restapi/server.go:57
-api02-1  | main.main()
-api02-1  | 	/app/cmd/rinha-server/main.go:51 +0x390
 db-1     | selecting default max_connections ... 100
 db-1     | selecting default shared_buffers ... 128MB
 db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
+db-1     | running bootstrap script ... ok
+api01-1  | 2024/03/06 22:25:34 Serving rinha at http://[::]:8080
+api02-1  | 2024/03/06 22:25:34 Serving rinha at http://[::]:8080
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -50,16 +35,9 @@ nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/n
 nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
 nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+db-1     | performing post-bootstrap initialization ... ok
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1  | 2024/03/05 15:29:13 [emerg] 1#1: host not found in upstream "api01:8080" in /etc/nginx/nginx.conf:10
-nginx-1  | nginx: [emerg] host not found in upstream "api01:8080" in /etc/nginx/nginx.conf:10
-db-1     | running bootstrap script ... ok
-api01-1 exited with code 0
-db-1     | performing post-bootstrap initialization ... ok
-api02-1 exited with code 2
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -67,11 +45,12 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | waiting for server to start....2024-03-05 15:29:17.060 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-03-05 15:29:17.073 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-nginx-1 exited with code 1
-db-1     | 2024-03-05 15:29:17.126 UTC [51] LOG:  database system was shut down at 2024-03-05 15:29:15 UTC
-db-1     | 2024-03-05 15:29:17.159 UTC [48] LOG:  database system is ready to accept connections
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1     | waiting for server to start....2024-03-06 22:25:36.001 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-06 22:25:36.004 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-06 22:25:36.015 UTC [52] LOG:  database system was shut down at 2024-03-06 22:25:35 UTC
+db-1     | 2024-03-06 22:25:36.021 UTC [49] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -125,97 +104,39 @@ db-1     | ALTER TABLE
 db-1     | ALTER TABLE
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-03-05 15:29:18.544 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-03-05 15:29:18.550 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-03-05 15:29:18.614 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-03-05 15:29:18.614 UTC [49] LOG:  shutting down
-db-1     | 2024-03-05 15:29:18.618 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | .2024-03-05 15:29:19.891 UTC [49] LOG:  checkpoint complete: wrote 938 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.590 s, sync=0.640 s, total=1.277 s; sync files=312, longest=0.204 s, average=0.003 s; distance=4317 kB, estimate=4317 kB; lsn=0/1921FF8, redo lsn=0/1921FF8
-db-1     | 2024-03-05 15:29:19.898 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-03-06 22:25:36.306 UTC [49] LOG:  received fast shutdown request
+db-1     | .2024-03-06 22:25:36.310 UTC [49] LOG:  aborting any active transactions
+db-1     | 2024-03-06 22:25:36.312 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+db-1     | 2024-03-06 22:25:36.314 UTC [50] LOG:  shutting down
+db-1     | 2024-03-06 22:25:36.318 UTC [50] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-03-06 22:25:36.813 UTC [50] LOG:  checkpoint complete: wrote 938 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.387 s, sync=0.084 s, total=0.500 s; sync files=312, longest=0.052 s, average=0.001 s; distance=4317 kB, estimate=4317 kB; lsn=0/1921FF8, redo lsn=0/1921FF8
+db-1     | 2024-03-06 22:25:36.818 UTC [49] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-03-05 15:29:20.017 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-03-05 15:29:20.017 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-03-05 15:29:20.017 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-03-05 15:29:20.026 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-03-05 15:29:20.034 UTC [66] LOG:  database system was shut down at 2024-03-05 15:29:19 UTC
-db-1     | 2024-03-05 15:29:20.041 UTC [1] LOG:  database system is ready to accept connections
-api01-1  | panic: failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.192.2:5432: connect: connection refused)
-api01-1  | 
-api01-1  | goroutine 1 [running]:
-api01-1  | rinha/restapi.configureAPI(0xc0001eca00)
-api01-1  | 	/app/restapi/configure_rinha.go:58 +0x451
-api01-1  | rinha/restapi.(*Server).ConfigureAPI(...)
-api01-1  | 	/app/restapi/server.go:57
-api01-1  | main.main()
-api01-1  | 	/app/cmd/rinha-server/main.go:51 +0x390
-api01-1  | panic: failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.192.2:5432: connect: connection refused)
-api01-1  | 
-api01-1  | goroutine 1 [running]:
-api01-1  | rinha/restapi.configureAPI(0xc0001d6a00)
-api01-1  | 	/app/restapi/configure_rinha.go:58 +0x451
-api01-1  | rinha/restapi.(*Server).ConfigureAPI(...)
-api01-1  | 	/app/restapi/server.go:57
-api01-1  | main.main()
-api01-1  | 	/app/cmd/rinha-server/main.go:51 +0x390
-api01-1  | panic: failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.192.2:5432: connect: connection refused)
-api01-1  | 
-api01-1  | goroutine 1 [running]:
-api01-1  | rinha/restapi.configureAPI(0xc00017ca00)
-api01-1  | 	/app/restapi/configure_rinha.go:58 +0x451
-api01-1  | rinha/restapi.(*Server).ConfigureAPI(...)
-api01-1  | 	/app/restapi/server.go:57
-api01-1 exited with code 0
-api01-1  | main.main()
-api01-1  | 	/app/cmd/rinha-server/main.go:51 +0x390
-api01-1  | panic: failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.192.2:5432: connect: connection refused)
-api01-1  | 
-api01-1  | goroutine 1 [running]:
-api01-1  | rinha/restapi.configureAPI(0xc0001e4a00)
-api01-1  | 	/app/restapi/configure_rinha.go:58 +0x451
-api01-1  | rinha/restapi.(*Server).ConfigureAPI(...)
-api01-1  | 	/app/restapi/server.go:57
-api01-1  | main.main()
-api01-1  | 	/app/cmd/rinha-server/main.go:51 +0x390
-api02-1 exited with code 0
-api01-1  | 2024/03/05 15:29:21 Serving rinha at http://[::]:8080
-api01-1  | 2024/03/05 15:29:21 Serving rinha at http://[::]:8080
-nginx-1 exited with code 0
-api01-1 exited with code 0
-api02-1 exited with code 0
-nginx-1 exited with code 0
-api02-1 exited with code 0
-api01-1 exited with code 0
+db-1     | 2024-03-06 22:25:36.931 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-06 22:25:36.932 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-03-06 22:25:36.932 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-03-06 22:25:36.939 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-06 22:25:36.948 UTC [67] LOG:  database system was shut down at 2024-03-06 22:25:36 UTC
+db-1     | 2024-03-06 22:25:36.954 UTC [1] LOG:  database system is ready to accept connections
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api02-1  | 2024/03/05 15:33:34 Shutting down... 
-api02-1  | 2024/03/05 15:33:34 Shutting down... 
-api02-1  | 2024/03/05 15:33:34 Shutting down... 
-api02-1  | 2024/03/05 15:33:34 Shutting down... 
-api02-1  | 2024/03/05 15:33:34 Stopped serving rinha at http://[::]:8080
-api02-1  | 2024/03/05 15:33:34 Stopped serving rinha at http://[::]:8080
-api02-1  | 2024/03/05 15:33:34 Stopped serving rinha at http://[::]:8080
-api02-1  | 2024/03/05 15:33:34 Stopped serving rinha at http://[::]:8080
-api01-1  | 2024/03/05 15:33:34 Shutting down... 
-api01-1  | 2024/03/05 15:33:34 Stopped serving rinha at http://[::]:8080
-api01-1  | 2024/03/05 15:33:34 Shutting down... 
-api01-1  | 2024/03/05 15:33:34 Shutting down... 
-api01-1  | 2024/03/05 15:33:34 Stopped serving rinha at http://[::]:8080
-api01-1  | 2024/03/05 15:33:34 Shutting down... 
-api01-1  | 2024/03/05 15:33:34 Stopped serving rinha at http://[::]:8080
-api01-1  | 2024/03/05 15:33:34 Stopped serving rinha at http://[::]:8080
-api01-1 exited with code 0
-api01-1 exited with code 0
+api01-1  | 2024/03/06 22:29:50 Shutting down... 
+api01-1  | 2024/03/06 22:29:50 Stopped serving rinha at http://[::]:8080
+api02-1  | 2024/03/06 22:29:50 Shutting down... 
+api02-1  | 2024/03/06 22:29:50 Stopped serving rinha at http://[::]:8080
 api02-1 exited with code 0
 api02-1 exited with code 0
-db-1     | 2024-03-05 15:33:35.111 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-03-05 15:33:35.115 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-03-05 15:33:35.117 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-03-05 15:33:35.118 UTC [64] LOG:  shutting down
-db-1     | 2024-03-05 15:33:35.122 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-03-05 15:33:35.189 UTC [64] LOG:  checkpoint complete: wrote 50 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.036 s, total=0.072 s; sync files=21, longest=0.010 s, average=0.002 s; distance=172 kB, estimate=172 kB; lsn=0/194D290, redo lsn=0/194D290
-db-1     | 2024-03-05 15:33:35.193 UTC [1] LOG:  database system is shut down
+api01-1 exited with code 0
+api01-1 exited with code 0
+db-1     | 2024-03-06 22:29:51.808 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-03-06 22:29:51.819 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-03-06 22:29:51.821 UTC [1] LOG:  background worker "logical replication launcher" (PID 70) exited with exit code 1
+db-1     | 2024-03-06 22:29:51.822 UTC [65] LOG:  shutting down
+db-1     | 2024-03-06 22:29:51.828 UTC [65] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-03-06 22:29:51.959 UTC [65] LOG:  checkpoint complete: wrote 576 buffers (3.5%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.012 s, sync=0.097 s, total=0.138 s; sync files=30, longest=0.090 s, average=0.004 s; distance=19259 kB, estimate=19259 kB; lsn=0/2BF0CF0, redo lsn=0/2BF0CF0
+db-1     | 2024-03-06 22:29:51.963 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0
