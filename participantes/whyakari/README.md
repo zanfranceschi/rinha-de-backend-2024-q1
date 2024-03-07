@@ -9,7 +9,10 @@
 
 ### Submissão e Ferramentas feitas com:
 - golang como linguagem;
-- shinsei como load balancer e como proxy-reverse;
+- [shinsei](https://github.com/whyakari/shinsei) como load balancer e como proxy-reverse;
 - mariadb como banco de dados;
 - gin-gonic como web framework;
 - [repositório da api](https://github.com/whyakari/rinha-de-backend-v2).
+
+### Ressalvas
+- O framework Shinsei foi criado por mim e com a intenção de aprendizado sobre load-balancer e networking.
