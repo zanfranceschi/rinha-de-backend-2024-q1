@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Mar  7 17:31:55 UTC 2024** com **550** submissões.
+Atualizada **Thu Mar  7 17:53:25 UTC 2024** com **551** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -373,6 +373,7 @@ Atualizada **Thu Mar  7 17:31:55 UTC 2024** com **550** submissões.
 | [marcusxavierr](./participantes/marcusxavierr) | ok | 3 |
 | [mari-souza](./participantes/mari-souza) | falha - [logs](./participantes/mari-souza/docker-compose.logs) | -- |
 | [marincor](./participantes/marincor) | ok | 8274 |
+| [mariofronza-kotlin](./participantes/mariofronza-kotlin) | ok | 5 |
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 4 |
 | [mateusdeitos-node](./participantes/mateusdeitos-node) | ok | 2 |
@@ -526,7 +527,7 @@ Atualizada **Thu Mar  7 17:31:55 UTC 2024** com **550** submissões.
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [viniciusgferreira](./participantes/viniciusgferreira) | ok | 3 |
 | [vitor_weirich_java](./participantes/vitor_weirich_java) | ok | 148 |
-| [vitorascorrea](./participantes/vitorascorrea) | ok | 1 |
+| [vitorascorrea](./participantes/vitorascorrea) | ok | 2 |
 | [vitorlacerda-dotnet](./participantes/vitorlacerda-dotnet) | ok | 15 |
 | [vitornorberto](./participantes/vitornorberto) | ok | 4 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
