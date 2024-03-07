@@ -9,7 +9,7 @@
 
 ### Submissão e Ferramentas feitas com:
 - golang como linguagem;
-- nginx como load balancer;
+- shinsei como load balancer e como proxy-reverse;
 - mariadb como banco de dados;
 - gin-gonic como web framework;
 - [repositório da api](https://github.com/whyakari/rinha-de-backend-v2).
