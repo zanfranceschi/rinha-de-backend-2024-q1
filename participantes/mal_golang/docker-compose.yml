@@ -1,0 +1,65 @@
+version: "3.8"
+
+services:
+  api01: &api    
+    image: marcelospfcufc/rinha-backend-2024:v1
+    hostname: api01
+    environment:
+      - DB_URI=postgres://postgres:qpalzm@db_postgres/rinha_db?sslmode=disable&timezone=UTC
+    restart: always    
+    command: ["/api/main"]        
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db_postgres    
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "80MB"
+
+  api02:  
+    <<: *api 
+    hostname: api02
+    environment:
+      - DB_URI=postgres://postgres:qpalzm@db_postgres/rinha_db?sslmode=disable&timezone=UTC      
+    ports:
+      - "8082:8080"
+ 
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./configurations/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:  
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "20MB"
+
+  db_postgres:
+    image: postgres:latest
+    hostname: db_postgres    
+    environment:
+      - POSTGRES_DB=rinha_db            
+      - POSTGRES_PASSWORD=qpalzm
+    ports:
+      - "55432:5432"
+    volumes:
+    - ./configurations/docker-entrypoint-initdb.d/init.sql:/docker-entrypoint-initdb.d/init.sql
+    - ./configurations/docker-entrypoint-initdb.d/postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "370MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
