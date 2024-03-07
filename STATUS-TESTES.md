@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Mar  7 15:57:40 UTC 2024** com **549** submissões.
+Atualizada **Thu Mar  7 20:35:39 UTC 2024** com **552** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -12,7 +12,7 @@ Atualizada **Thu Mar  7 15:57:40 UTC 2024** com **549** submissões.
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 5 |
 | [Fabricio-net8](./participantes/Fabricio-net8) | ok | 2 |
 | [FaelLima98](./participantes/FaelLima98) | ok | 5 |
-| [KitsuneSemCalda](./participantes/KitsuneSemCalda) | ok | 183 |
+| [KitsuneSemCalda](./participantes/KitsuneSemCalda) | falha - [logs](./participantes/KitsuneSemCalda/docker-compose.logs) | -- |
 | [LuisKpBeta](./participantes/LuisKpBeta) | ok | 2 |
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
 | [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 3 |
@@ -215,6 +215,7 @@ Atualizada **Thu Mar  7 15:57:40 UTC 2024** com **549** submissões.
 | [gcrispino](./participantes/gcrispino) | ok | 184 |
 | [geffersonFerraz-http2](./participantes/geffersonFerraz-http2) | ok | 2 |
 | [geffersonFerraz-http3](./participantes/geffersonFerraz-http3) | ok | 2 |
+| [geo-aspnet](./participantes/geo-aspnet) | ok | 2 |
 | [geraldojrcg-elixir](./participantes/geraldojrcg-elixir) | ok | 2 |
 | [gfds-micronaut](./participantes/gfds-micronaut) | falha - [logs](./participantes/gfds-micronaut/docker-compose.logs) | -- |
 | [ghhernandes](./participantes/ghhernandes) | ok | 2 |
@@ -233,6 +234,7 @@ Atualizada **Thu Mar  7 15:57:40 UTC 2024** com **549** submissões.
 | [grilario](./participantes/grilario) | ok | 6 |
 | [guaracy-nim](./participantes/guaracy-nim) | ok | 1 |
 | [gui9394](./participantes/gui9394) | ok | 4 |
+| [guiestimo](./participantes/guiestimo) | ok | 2 |
 | [guihbc](./participantes/guihbc) | ok | 277 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
 | [gustavofbreunig](./participantes/gustavofbreunig) | ok | 3 |
@@ -346,7 +348,7 @@ Atualizada **Thu Mar  7 15:57:40 UTC 2024** com **549** submissões.
 | [lucassperez-go-crebito](./participantes/lucassperez-go-crebito) | ok | 4 |
 | [lucaswilliameufrasio](./participantes/lucaswilliameufrasio) | ok | 4 |
 | [lucaswojahn](./participantes/lucaswojahn) | falha - [logs](./participantes/lucaswojahn/docker-compose.logs) | -- |
-| [lucianovilela](./participantes/lucianovilela) | ok | 2 |
+| [lucianovilela](./participantes/lucianovilela) | ok | 1 |
 | [luisescosta](./participantes/luisescosta) | ok | 2 |
 | [luizfrra](./participantes/luizfrra) | ok | 2 |
 | [luizgribeiro-monGo](./participantes/luizgribeiro-monGo) | ok | 1 |
@@ -357,7 +359,7 @@ Atualizada **Thu Mar  7 15:57:40 UTC 2024** com **549** submissões.
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
 | [macielti](./participantes/macielti) | ok | 4 |
 | [maelalvi-quarkus](./participantes/maelalvi-quarkus) | ok | 2 |
-| [mal_golang](./participantes/mal_golang) | falha - [logs](./participantes/mal_golang/docker-compose.logs) | -- |
+| [mal_golang](./participantes/mal_golang) | ok | 4 |
 | [marcelo-lucas-dotnet-1](./participantes/marcelo-lucas-dotnet-1) | ok | 2 |
 | [marciocg-javaquarkus](./participantes/marciocg-javaquarkus) | ok | 2 |
 | [marciotoshio](./participantes/marciotoshio) | ok | 4 |
@@ -372,6 +374,7 @@ Atualizada **Thu Mar  7 15:57:40 UTC 2024** com **549** submissões.
 | [marcusxavierr](./participantes/marcusxavierr) | ok | 3 |
 | [mari-souza](./participantes/mari-souza) | falha - [logs](./participantes/mari-souza/docker-compose.logs) | -- |
 | [marincor](./participantes/marincor) | ok | 8274 |
+| [mariofronza-kotlin](./participantes/mariofronza-kotlin) | ok | 5 |
 | [mateus4k](./participantes/mateus4k) | ok | 7 |
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 4 |
 | [mateusdeitos-node](./participantes/mateusdeitos-node) | ok | 2 |
@@ -525,7 +528,7 @@ Atualizada **Thu Mar  7 15:57:40 UTC 2024** com **549** submissões.
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [viniciusgferreira](./participantes/viniciusgferreira) | ok | 3 |
 | [vitor_weirich_java](./participantes/vitor_weirich_java) | ok | 148 |
-| [vitorascorrea](./participantes/vitorascorrea) | ok | 1 |
+| [vitorascorrea](./participantes/vitorascorrea) | ok | 2 |
 | [vitorlacerda-dotnet](./participantes/vitorlacerda-dotnet) | ok | 15 |
 | [vitornorberto](./participantes/vitornorberto) | ok | 4 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
