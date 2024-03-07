@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Mar  7 22:39:28 UTC 2024** com **552** submissões.
+Atualizada **Thu Mar  7 23:14:38 UTC 2024** com **555** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -436,6 +436,7 @@ Atualizada **Thu Mar  7 22:39:28 UTC 2024** com **552** submissões.
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
 | [rafaelrcamargo](./participantes/rafaelrcamargo) | ok | 1 |
 | [rafaeltorquato-saitama](./participantes/rafaeltorquato-saitama) | ok | 1 |
+| [rafaqwe1](./participantes/rafaqwe1) | ok | 6 |
 | [raiane-dev](./participantes/raiane-dev) | ok | 2 |
 | [raissadev](./participantes/raissadev) | ok | 2 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
@@ -488,10 +489,12 @@ Atualizada **Thu Mar  7 22:39:28 UTC 2024** com **552** submissões.
 | [santannaf_web_go_unlogged](./participantes/santannaf_web_go_unlogged) | ok | 2 |
 | [santannaf_webflux](./participantes/santannaf_webflux) | ok | 3 |
 | [santannaf_webflux_wu](./participantes/santannaf_webflux_wu) | ok | 5 |
+| [sergipebackend-java](./participantes/sergipebackend-java) | ok | 2 |
 | [silmar-alberti-franken-php](./participantes/silmar-alberti-franken-php) | ok | 2 |
 | [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
 | [stefannovasky-kitajs](./participantes/stefannovasky-kitajs) | ok | 2 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
+| [sudo-victor-js](./participantes/sudo-victor-js) | ok | 4981 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [tagliatti](./participantes/tagliatti) | ok | 4 |
 | [thiagodamas-go-swagger-sqlc-postgres](./participantes/thiagodamas-go-swagger-sqlc-postgres) | ok | 5 |
