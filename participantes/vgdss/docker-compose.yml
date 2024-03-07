@@ -31,7 +31,7 @@ services:
       resources:
         limits:
           cpus: "0.5"
-          memory: "80MB"
+          memory: "125MB"
     healthcheck:
       <<: *default-healthcheck
       test: ["CMD-SHELL", "curl -f http://127.0.0.1:8001/clientes/1/extrato || exit 1"]
@@ -41,6 +41,11 @@ services:
     <<: *api
     hostname: api2
     container_name: rinha-api2
+    depends_on:
+      postgres:
+        condition: service_healthy
+      api1:
+        condition: service_healthy        
     environment:
       <<: *db-connection-settings
       PORT: 8002
@@ -53,6 +58,8 @@ services:
     container_name: rinha-nginx
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      #- ./logs/access.log:/var/log/nginx/access.log
+      #- ./logs/error.log:/var/log/nginx/error.log
     depends_on:
       api1:
         condition: service_healthy
@@ -62,8 +69,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.1"
-          memory: "25MB"
+          cpus: "0.10"
+          memory: "50MB"
     healthcheck:
       <<: *default-healthcheck
       test: ["CMD-SHELL", "curl -f http://127.0.0.1:9999/clientes/1/extrato || exit 1"]         
@@ -85,7 +92,7 @@ services:
       resources:
         limits:
           cpus: "0.4"
-          memory: "365MB"
+          memory: "250MB"
     healthcheck:
       <<: *default-healthcheck
       test: ["CMD", "pg_isready", "-U", "user", "-d", "crebito","-h", "127.0.0.1", "-p", "5432"]
