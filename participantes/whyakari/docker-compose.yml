@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   api01: &api
-    #  build:
+    #build:
     #  context: .
     #  dockerfile: Dockerfile
     image: whyakari/rinha:2.0
@@ -14,7 +14,7 @@ services:
       - DB_NAME=rinha
       - DB_PORT=3306
     ports:
-      - "3000:3000"
+      - "3001:3000"
     depends_on:
       db:
         condition: service_healthy
@@ -34,13 +34,13 @@ services:
       - DB_NAME=rinha
       - DB_PORT=3306
     ports:
-      - "3001:3000"
+      - "3002:3000"
 
-  nginx:
-    image: nginx:latest
-    command: ["nginx", "-g", "daemon off;"]
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  shinsei:
+    #build:
+    #  context: .
+    #  dockerfile: loadBalancer/Dockerfile
+    image: whyakari/shinsei:latest
     depends_on:
       - api01
       - api02
@@ -88,4 +88,3 @@ networks:
   default:
     driver: bridge
     name: rinha-nginx-2024q1
-
