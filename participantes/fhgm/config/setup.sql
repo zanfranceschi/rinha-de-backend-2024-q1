@@ -16,8 +16,8 @@ CREATE UNLOGGED TABLE Transaction
 	CreatedAt       TIMESTAMP NOT NULL
 );
 
-CREATE INDEX transactionId ON transaction (customerId);
-CREATE INDEX customerId ON balance (customerId);
+CREATE INDEX transaction_customerId ON transaction (customerId);
+CREATE INDEX balance_customerId ON balance (customerId);
 
 CREATE OR REPLACE FUNCTION AddTransaction
 (
