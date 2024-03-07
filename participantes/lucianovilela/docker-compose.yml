@@ -9,12 +9,12 @@ services:
       - HOSTDB=localhost
       - DB=rinha
       - PASSWORDDB=123
-      - PORT=9000
-      - UV_THREADPOOL_SIZE=20
+      - PORTS=9000,9001,9002
+#      - UV_THREADPOOL_SIZE=5
+      - MAX=10
     network_mode: host
     depends_on:
       - db
-    restart: on-failure
     deploy:
       resources:
         limits:
@@ -29,8 +29,9 @@ services:
       - HOSTDB=localhost
       - DB=rinha
       - PASSWORDDB=123
-      - PORT=9001
-      - UV_THREADPOOL_SIZE=20
+      - PORTS=9003,9004,9005
+#      - UV_THREADPOOL_SIZE=5
+      - MAX=10
 
   nginx:
     image: nginx:latest

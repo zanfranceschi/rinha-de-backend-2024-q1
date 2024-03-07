@@ -1,9 +1,9 @@
  Container lucianovilela-db-1  Creating
  Container lucianovilela-db-1  Created
- Container lucianovilela-api02-1  Creating
  Container lucianovilela-api01-1  Creating
- Container lucianovilela-api02-1  Created
+ Container lucianovilela-api02-1  Creating
  Container lucianovilela-api01-1  Created
+ Container lucianovilela-api02-1  Created
  Container lucianovilela-nginx-1  Creating
  Container lucianovilela-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -26,16 +26,22 @@ db-1     | creating configuration files ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+db-1     | running bootstrap script ... ok
 nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
 nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
 nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-api02-1  | Erro ao conectar com o banco de dados 2024-02-27T03:22:23.130Z
-api01-1  | Erro ao conectar com o banco de dados 2024-02-27T03:22:23.141Z
-db-1     | running bootstrap script ... ok
+api01-1  | Erro ao conectar com o banco de dados 2024-03-07T14:03:10.029Z
+api02-1  | Erro ao conectar com o banco de dados 2024-03-07T14:03:10.116Z
+api02-1  | Erro ao conectar com o banco de dados 2024-03-07T14:03:10.122Z
+api01-1  | Erro ao conectar com o banco de dados 2024-03-07T14:03:10.138Z
+api02-1  | Erro ao conectar com o banco de dados 2024-03-07T14:03:10.140Z
+api01-1  | Erro ao conectar com o banco de dados 2024-03-07T14:03:10.138Z
 db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -43,8 +49,6 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | waiting for server to start.... done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -52,53 +56,323 @@ db-1     |
 db-1     | 
 db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
 db-1     | CREATE TABLE
-api02-1  | Erro ao conectar com o banco de dados 2024-02-27T03:22:25.135Z
 db-1     | CREATE TABLE
 db-1     | CREATE INDEX
 db-1     | CREATE TABLE
-api01-1  | Erro ao conectar com o banco de dados 2024-02-27T03:22:25.146Z
 db-1     | DO
 db-1     | 
 db-1     | 
+api01-1  | Erro ao conectar com o banco de dados 2024-03-07T14:03:12.034Z
+api02-1  | Erro ao conectar com o banco de dados 2024-03-07T14:03:12.127Z
+api02-1  | Erro ao conectar com o banco de dados 2024-03-07T14:03:12.128Z
+api01-1  | Erro ao conectar com o banco de dados 2024-03-07T14:03:12.144Z
+api02-1  | Erro ao conectar com o banco de dados 2024-03-07T14:03:12.144Z
+api01-1  | Erro ao conectar com o banco de dados 2024-03-07T14:03:12.220Z
 db-1     | waiting for server to shut down.... done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-nginx-1  | 2024/02/27 03:22:26 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:26 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/extrato", host: "localhost:9999"
-api02-1  | Conexão com o banco de dados estabelecida com sucesso
-api02-1  | Servidor rodando na porta 9001
+nginx-1  | 2024/03/07 14:03:12 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:12 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:12 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:12 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:12 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:12 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9005/clientes/1/extrato", host: "localhost:9999"
 api01-1  | Conexão com o banco de dados estabelecida com sucesso
 api01-1  | Servidor rodando na porta 9000
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *12 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *13 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *14 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *19 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *24 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *15 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *16 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *17 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *9 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *25 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *20 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *10 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *11 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *21 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *22 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *23 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *29 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *30 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:33 [error] 30#30: *31 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:35 [error] 30#30: *85 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:35 [error] 30#30: *86 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:35 [error] 30#30: *87 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:37 [error] 30#30: *96 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/5/extrato HTTP/1.1", upstream: "http://api/clientes/5/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:37 [error] 30#30: *97 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/4/extrato HTTP/1.1", upstream: "http://api/clientes/4/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/27 03:22:37 [error] 30#30: *98 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | Conexão com o banco de dados estabelecida com sucesso
+api02-1  | Conexão com o banco de dados estabelecida com sucesso
+api02-1  | Servidor rodando na porta 9004
+api02-1  | Servidor rodando na porta 9003
+api01-1  | Conexão com o banco de dados estabelecida com sucesso
+api02-1  | Conexão com o banco de dados estabelecida com sucesso
+api01-1  | Servidor rodando na porta 9002
+api02-1  | Servidor rodando na porta 9005
+api01-1  | Conexão com o banco de dados estabelecida com sucesso
+api01-1  | Servidor rodando na porta 9001
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *24 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *21 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *22 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *15 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *23 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *27 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *28 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *18 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *19 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *20 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *25 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *26 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *13 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *14 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *16 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:19 [error] 30#30: *17 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:21 [error] 30#30: *83 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:21 [error] 30#30: *84 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:21 [error] 30#30: *85 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:21 [error] 30#30: *86 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:21 [error] 30#30: *87 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:21 [error] 30#30: *88 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:03:21 [error] 30#30: *89 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:17 [error] 31#31: *36705 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
+api02-1  | Processo filho terminou, terminando o processo pai...
+api02-1  | ChildProcess {
+api02-1  |   _events: [Object: null prototype] {
+api02-1  |     internalMessage: [Function (anonymous)],
+api02-1  |     newListener: [Function (anonymous)],
+api02-1  |     message: [Function (anonymous)],
+api02-1  |     exit: [Function (anonymous)]
+api02-1  |   },
+api02-1  |   _eventsCount: 4,
+api02-1  |   _maxListeners: undefined,
+api02-1  |   _closesNeeded: 2,
+api02-1  |   _closesGot: 1,
+api02-1  |   connected: false,
+api02-1  |   signalCode: 'SIGKILL',
+api02-1  |   exitCode: null,
+api02-1  |   killed: false,
+api02-1  |   spawnfile: '/usr/local/bin/node',
+api02-1  |   _handle: null,
+api02-1  |   spawnargs: [ '/usr/local/bin/node', './index.js', '9004' ],
+api02-1  |   pid: 16,
+api02-1  |   stdin: null,
+api02-1  |   stdout: null,
+api02-1  |   stderr: null,
+api02-1  |   stdio: [ null, null, null, null ],
+api02-1  |   channel: null,
+api02-1  |   _handleQueue: null,
+api02-1  |   _pendingMessage: null,
+api02-1  |   send: [Function (anonymous)],
+api02-1  |   _send: [Function (anonymous)],
+api02-1  |   disconnect: [Function (anonymous)],
+api02-1  |   _disconnect: [Function (anonymous)],
+api02-1  |   [Symbol(kCapture)]: false,
+api02-1  |   [Symbol(kChannelHandle)]: null
+api02-1  | }
+nginx-1  | 2024/03/07 14:05:17 [error] 33#33: *36717 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:17 [error] 32#32: *36756 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:17 [error] 30#30: *36767 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+api01-1  | Processo filho terminou, terminando o processo pai...
+nginx-1  | 2024/03/07 14:05:19 [error] 31#31: *38244 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+api01-1  | ChildProcess {
+api01-1  |   _events: [Object: null prototype] {
+api01-1  |     internalMessage: [Function (anonymous)],
+api01-1  |     newListener: [Function (anonymous)],
+api01-1  |     message: [Function (anonymous)],
+api01-1  |     exit: [Function (anonymous)]
+api01-1  |   },
+api01-1  |   _eventsCount: 4,
+api01-1  |   _maxListeners: undefined,
+api01-1  |   _closesNeeded: 2,
+api01-1  |   _closesGot: 1,
+api01-1  |   connected: false,
+api01-1  |   signalCode: 'SIGKILL',
+api01-1  |   exitCode: null,
+api01-1  |   killed: false,
+api01-1  |   spawnfile: '/usr/local/bin/node',
+api01-1  |   _handle: null,
+api01-1  |   spawnargs: [ '/usr/local/bin/node', './index.js', '9001' ],
+api01-1  |   pid: 15,
+api01-1  |   stdin: null,
+api01-1  |   stdout: null,
+api01-1  |   stderr: null,
+api01-1  |   stdio: [ null, null, null, null ],
+api01-1  |   channel: null,
+api01-1  |   _handleQueue: null,
+api01-1  |   _pendingMessage: null,
+api01-1  |   send: [Function (anonymous)],
+api01-1  |   _send: [Function (anonymous)],
+api01-1  |   disconnect: [Function (anonymous)],
+api01-1  |   _disconnect: [Function (anonymous)],
+api01-1  |   [Symbol(kCapture)]: false,
+api01-1  |   [Symbol(kChannelHandle)]: null
+api01-1  | }
+nginx-1  | 2024/03/07 14:05:19 [error] 33#33: *38259 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:19 [error] 32#32: *38286 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:19 [error] 30#30: *38323 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:28 [error] 31#31: *43862 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:28 [error] 33#33: *43899 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:28 [error] 32#32: *43932 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:28 [error] 30#30: *43965 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:30 [error] 32#32: *45232 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:30 [error] 30#30: *45247 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:30 [error] 31#31: *45284 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:30 [error] 33#33: *45315 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:39 [error] 32#32: *51362 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:39 [error] 30#30: *51395 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:39 [error] 31#31: *51429 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/4/extrato HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:39 [error] 33#33: *51436 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:41 [error] 31#31: *52718 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:41 [error] 33#33: *52743 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:41 [error] 32#32: *52776 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:41 [error] 30#30: *52809 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:50 [error] 30#30: *58842 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:50 [error] 31#31: *58859 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:50 [error] 33#33: *58892 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:50 [error] 32#32: *58927 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:52 [error] 32#32: *60208 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:52 [error] 30#30: *60239 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:52 [error] 31#31: *60274 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:05:52 [error] 33#33: *60297 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:01 [error] 33#33: *66334 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:01 [error] 32#32: *66359 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:01 [error] 30#30: *66388 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:01 [error] 31#31: *66417 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:03 [error] 30#30: *67694 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:03 [error] 31#31: *67715 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:03 [error] 33#33: *67725 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:03 [error] 32#32: *67770 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/4/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:12 [error] 30#30: *73832 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:12 [error] 31#31: *73849 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:12 [error] 32#32: *73886 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:12 [error] 33#33: *73889 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:14 [error] 33#33: *75182 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:14 [error] 32#32: *75199 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:14 [error] 30#30: *75232 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:14 [error] 31#31: *75265 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:23 [error] 33#33: *81314 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:23 [error] 32#32: *81347 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:23 [error] 30#30: *81379 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:23 [error] 31#31: *81405 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:25 [error] 30#30: *82670 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:25 [error] 31#31: *82695 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:25 [error] 33#33: *82728 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:25 [error] 32#32: *82761 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:34 [error] 32#32: *88794 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:34 [error] 30#30: *88811 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:34 [error] 31#31: *88844 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:34 [error] 33#33: *88879 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:36 [error] 33#33: *90160 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:36 [error] 32#32: *90193 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:36 [error] 30#30: *90224 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:36 [error] 31#31: *90257 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:45 [error] 31#31: *96284 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:45 [error] 33#33: *96307 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:45 [error] 32#32: *96342 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:45 [error] 30#30: *96373 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:47 [error] 30#30: *97660 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:47 [error] 31#31: *97687 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:47 [error] 32#32: *97720 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:47 [error] 33#33: *97721 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:56 [error] 32#32: *103772 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:56 [error] 30#30: *103803 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:56 [error] 31#31: *103837 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:56 [error] 33#33: *103867 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:57 [error] 31#31: *104602 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:57 [error] 33#33: *104610 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/4/transacoes", host: "localhost:9999"
+api01-1  | Processo filho terminou, terminando o processo pai...
+api01-1  | ChildProcess {
+api01-1  |   _events: [Object: null prototype] {
+api01-1  |     internalMessage: [Function (anonymous)],
+api01-1  |     newListener: [Function (anonymous)],
+api01-1  |     message: [Function (anonymous)],
+api01-1  |     exit: [Function (anonymous)]
+api01-1  |   },
+api01-1  |   _eventsCount: 4,
+api01-1  |   _maxListeners: undefined,
+api01-1  |   _closesNeeded: 2,
+api01-1  |   _closesGot: 1,
+api01-1  |   connected: false,
+api01-1  |   signalCode: 'SIGKILL',
+api01-1  |   exitCode: null,
+api01-1  |   killed: false,
+api01-1  |   spawnfile: '/usr/local/bin/node',
+api01-1  |   _handle: null,
+api01-1  |   spawnargs: [ '/usr/local/bin/node', './index.js', '9002' ],
+api01-1  |   pid: 16,
+api01-1  |   stdin: null,
+api01-1  |   stdout: null,
+api01-1  |   stderr: null,
+api01-1  |   stdio: [ null, null, null, null ],
+api01-1  |   channel: null,
+api01-1  |   _handleQueue: null,
+api01-1  |   _pendingMessage: null,
+api01-1  |   send: [Function (anonymous)],
+api01-1  |   _send: [Function (anonymous)],
+api01-1  |   disconnect: [Function (anonymous)],
+api01-1  |   _disconnect: [Function (anonymous)],
+api01-1  |   [Symbol(kCapture)]: false,
+api01-1  |   [Symbol(kChannelHandle)]: null
+api01-1  | }
+nginx-1  | 2024/03/07 14:06:57 [error] 30#30: *104671 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:57 [error] 32#32: *104665 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/4/extrato HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/4/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:57 [error] 31#31: *104881 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/2/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:57 [error] 33#33: *104885 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/4/transacoes", host: "localhost:9999"
+api02-1  | Processo filho terminou, terminando o processo pai...
+api02-1  | ChildProcess {
+api02-1  |   _events: [Object: null prototype] {
+api02-1  |     internalMessage: [Function (anonymous)],
+api02-1  |     newListener: [Function (anonymous)],
+api02-1  |     message: [Function (anonymous)],
+api02-1  |     exit: [Function (anonymous)]
+api02-1  |   },
+api02-1  |   _eventsCount: 4,
+api02-1  |   _maxListeners: undefined,
+api02-1  |   _closesNeeded: 2,
+api02-1  |   _closesGot: 1,
+api02-1  |   connected: false,
+api02-1  |   signalCode: 'SIGKILL',
+api02-1  |   exitCode: null,
+api02-1  |   killed: false,
+api02-1  |   spawnfile: '/usr/local/bin/node',
+api02-1  |   _handle: null,
+api02-1  |   spawnargs: [ '/usr/local/bin/node', './index.js', '9003' ],
+api02-1  |   pid: 15,
+api02-1  |   stdin: null,
+api02-1  |   stdout: null,
+api02-1  |   stderr: null,
+api02-1  |   stdio: [ null, null, null, null ],
+api02-1  |   channel: null,
+api02-1  |   _handleQueue: null,
+api02-1  |   _pendingMessage: null,
+api02-1  |   send: [Function (anonymous)],
+api02-1  |   _send: [Function (anonymous)],
+api02-1  |   disconnect: [Function (anonymous)],
+api02-1  |   _disconnect: [Function (anonymous)],
+api02-1  |   [Symbol(kCapture)]: false,
+api02-1  |   [Symbol(kChannelHandle)]: null
+api02-1  | }
+nginx-1  | 2024/03/07 14:06:57 [error] 32#32: *104902 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:57 [error] 30#30: *104946 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:58 [error] 31#31: *105140 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:58 [error] 33#33: *105161 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:58 [error] 32#32: *105183 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:06:58 [error] 30#30: *105223 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:07 [error] 30#30: *111262 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:07 [error] 31#31: *111273 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:07 [error] 33#33: *111302 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:07 [error] 32#32: *111337 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:08 [error] 31#31: *111942 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:08 [error] 31#31: *111942 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:08 [error] 33#33: *111953 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/2/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:08 [error] 33#33: *111952 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:08 [error] 32#32: *111970 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:08 [error] 32#32: *111970 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:08 [error] 30#30: *112013 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:08 [error] 30#30: *112013 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:09 [error] 32#32: *112634 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:09 [error] 30#30: *112659 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:09 [error] 31#31: *112694 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:09 [error] 33#33: *112712 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/4/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:18 [error] 33#33: *118757 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:18 [error] 32#32: *118775 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:18 [error] 30#30: *118806 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:18 [error] 31#31: *118839 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:19 [error] 32#32: *119444 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:19 [error] 32#32: *119444 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:19 [error] 30#30: *119456 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:19 [error] 30#30: *119456 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:19 [error] 31#31: *119477 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:19 [error] 31#31: *119477 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:19 [error] 33#33: *119518 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9002/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:19 [error] 33#33: *119518 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:20 [error] 31#31: *120132 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:20 [error] 33#33: *120163 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:20 [error] 32#32: *120196 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/07 14:07:20 [error] 30#30: *120223 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
 nginx-1 exited with code 0
 nginx-1 exited with code 0
 api02-1 exited with code 0
 api01-1 exited with code 0
-api01-1 exited with code 137
+api02-1 exited with code 137
 db-1 exited with code 0

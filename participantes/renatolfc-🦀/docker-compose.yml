@@ -3,7 +3,7 @@ version: "3.5"
 services:
   api01: &api
     image: renatolfc/ferrugem:0.1
-    command: /app/rinha -d postgres://postgres:postgres@127.0.0.1/rinha --min-pool 5 --max-pool 5
+    command: /app/rinha -d "postgresql://%2Fvar%2Frun%2Fpostgresql/rinha?user=postgres&password=postgres" --min-pool 2 --max-pool 2
     hostname: api01
     user: "999:999"
     environment:
@@ -20,7 +20,8 @@ services:
       resources:
         limits:
           cpus: "0.15"
-          memory: "15MB"
+          memory: "8MB"
+    restart: always
     volumes:
       - shared:/var/run/postgresql
 
@@ -45,7 +46,7 @@ services:
       resources:
         limits:
           cpus: "0.42"
-          memory: "25MB"
+          memory: "8MB"
 
   postgres:
     image: postgres:latest
@@ -78,7 +79,7 @@ services:
       resources:
         limits:
           cpus: "0.78"
-          memory: "495MB"
+          memory: "128MB"
 
 volumes:
   shared:
