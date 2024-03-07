@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Mar  7 16:19:29 UTC 2024** com **549** submissões.
+Atualizada **Thu Mar  7 17:17:17 UTC 2024** com **550** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -12,7 +12,7 @@ Atualizada **Thu Mar  7 16:19:29 UTC 2024** com **549** submissões.
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 5 |
 | [Fabricio-net8](./participantes/Fabricio-net8) | ok | 2 |
 | [FaelLima98](./participantes/FaelLima98) | ok | 5 |
-| [KitsuneSemCalda](./participantes/KitsuneSemCalda) | ok | 183 |
+| [KitsuneSemCalda](./participantes/KitsuneSemCalda) | falha - [logs](./participantes/KitsuneSemCalda/docker-compose.logs) | -- |
 | [LuisKpBeta](./participantes/LuisKpBeta) | ok | 2 |
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
 | [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 3 |
@@ -215,6 +215,7 @@ Atualizada **Thu Mar  7 16:19:29 UTC 2024** com **549** submissões.
 | [gcrispino](./participantes/gcrispino) | ok | 184 |
 | [geffersonFerraz-http2](./participantes/geffersonFerraz-http2) | ok | 2 |
 | [geffersonFerraz-http3](./participantes/geffersonFerraz-http3) | ok | 2 |
+| [geo-aspnet](./participantes/geo-aspnet) | ok | 2 |
 | [geraldojrcg-elixir](./participantes/geraldojrcg-elixir) | ok | 2 |
 | [gfds-micronaut](./participantes/gfds-micronaut) | falha - [logs](./participantes/gfds-micronaut/docker-compose.logs) | -- |
 | [ghhernandes](./participantes/ghhernandes) | ok | 2 |
@@ -346,7 +347,7 @@ Atualizada **Thu Mar  7 16:19:29 UTC 2024** com **549** submissões.
 | [lucassperez-go-crebito](./participantes/lucassperez-go-crebito) | ok | 4 |
 | [lucaswilliameufrasio](./participantes/lucaswilliameufrasio) | ok | 4 |
 | [lucaswojahn](./participantes/lucaswojahn) | falha - [logs](./participantes/lucaswojahn/docker-compose.logs) | -- |
-| [lucianovilela](./participantes/lucianovilela) | ok | 2 |
+| [lucianovilela](./participantes/lucianovilela) | ok | 1 |
 | [luisescosta](./participantes/luisescosta) | ok | 2 |
 | [luizfrra](./participantes/luizfrra) | ok | 2 |
 | [luizgribeiro-monGo](./participantes/luizgribeiro-monGo) | ok | 1 |
