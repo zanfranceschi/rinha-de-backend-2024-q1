@@ -3,6 +3,7 @@ version: "3.8"
 services:
   api01: &api    
     image: marcelospfcufc/rinha-backend-2024:v1
+    container_name: api01
     hostname: api01
     environment:
       - DB_URI=postgres://postgres:qpalzm@db_postgres/rinha_db?sslmode=disable&timezone=UTC
@@ -21,6 +22,7 @@ services:
   api02:  
     <<: *api 
     hostname: api02
+    container_name: api02
     environment:
       - DB_URI=postgres://postgres:qpalzm@db_postgres/rinha_db?sslmode=disable&timezone=UTC      
     ports:
@@ -43,16 +45,16 @@ services:
 
   db_postgres:
     image: postgres:latest
+    container_name: db_postgres
     hostname: db_postgres    
     environment:
       - POSTGRES_DB=rinha_db            
       - POSTGRES_PASSWORD=qpalzm
     ports:
-      - "55432:5432"
+      - "5432:5432"
     volumes:
     - ./configurations/docker-entrypoint-initdb.d/init.sql:/docker-entrypoint-initdb.d/init.sql
-    - ./configurations/docker-entrypoint-initdb.d/postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
-    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    - ./configurations/postgresql.conf:/etc/postgresql/postgresql.conf
     deploy:
       resources:
         limits:
