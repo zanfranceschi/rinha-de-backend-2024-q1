@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Mar  7 00:42:16 UTC 2024** com **539** submissões.
+Atualizada **Thu Mar  7 00:59:05 UTC 2024** com **540** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -388,6 +388,7 @@ Atualizada **Thu Mar  7 00:42:16 UTC 2024** com **539** submissões.
 | [my_way](./participantes/my_way) | ok | 23 |
 | [nathanbahiadev__golang](./participantes/nathanbahiadev__golang) | ok | 1 |
 | [nathanbahiadev__python](./participantes/nathanbahiadev__python) | ok | 2 |
+| [navarro](./participantes/navarro) | ok | 3 |
 | [newton](./participantes/newton) | ok | 3 |
 | [nicolasmmb-dart](./participantes/nicolasmmb-dart) | ok | 3 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
