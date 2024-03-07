@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Mar  7 18:00:45 UTC 2024** com **551** submissões.
+Atualizada **Thu Mar  7 18:12:38 UTC 2024** com **551** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -358,7 +358,7 @@ Atualizada **Thu Mar  7 18:00:45 UTC 2024** com **551** submissões.
 | [macgarcia](./participantes/macgarcia) | falha - [logs](./participantes/macgarcia/docker-compose.logs) | -- |
 | [macielti](./participantes/macielti) | ok | 4 |
 | [maelalvi-quarkus](./participantes/maelalvi-quarkus) | ok | 2 |
-| [mal_golang](./participantes/mal_golang) | falha - [logs](./participantes/mal_golang/docker-compose.logs) | -- |
+| [mal_golang](./participantes/mal_golang) | ok | 4 |
 | [marcelo-lucas-dotnet-1](./participantes/marcelo-lucas-dotnet-1) | ok | 2 |
 | [marciocg-javaquarkus](./participantes/marciocg-javaquarkus) | ok | 2 |
 | [marciotoshio](./participantes/marciotoshio) | ok | 4 |
