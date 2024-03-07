@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Mar  7 14:56:26 UTC 2024** com **546** submissões.
+Atualizada **Thu Mar  7 15:26:25 UTC 2024** com **549** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -49,6 +49,7 @@ Atualizada **Thu Mar  7 14:56:26 UTC 2024** com **546** submissões.
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
 | [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
 | [andrew-vasco](./participantes/andrew-vasco) | ok | 3 |
+| [anibal.ferreira](./participantes/anibal.ferreira) | ok | 2 |
 | [antoniogdelrio](./participantes/antoniogdelrio) | ok | 3 |
 | [antunesleo-python](./participantes/antunesleo-python) | ok | 4 |
 | [arrudaricardo-01](./participantes/arrudaricardo-01) | ok | 6 |
@@ -107,6 +108,7 @@ Atualizada **Thu Mar  7 14:56:26 UTC 2024** com **546** submissões.
 | [claudioneves1981](./participantes/claudioneves1981) | ok | 1 |
 | [cleidiano](./participantes/cleidiano) | ok | 1 |
 | [cleitinif](./participantes/cleitinif) | ok | 4 |
+| [cleverson-flask](./participantes/cleverson-flask) | ok | 4 |
 | [cleverton-rocha-java](./participantes/cleverton-rocha-java) | falha - [logs](./participantes/cleverton-rocha-java/docker-compose.logs) | -- |
 | [cleverton-rocha](./participantes/cleverton-rocha) | ok | 4 |
 | [crebitojs](./participantes/crebitojs) | ok | 2 |
@@ -183,6 +185,7 @@ Atualizada **Thu Mar  7 14:56:26 UTC 2024** com **546** submissões.
 | [felipma-rust](./participantes/felipma-rust) | ok | 3 |
 | [fernandofogliato-java](./participantes/fernandofogliato-java) | ok | 2 |
 | [fernandomedeiros](./participantes/fernandomedeiros) | falha - [logs](./participantes/fernandomedeiros/docker-compose.logs) | -- |
+| [fernandomorais](./participantes/fernandomorais) | ok | 2 |
 | [fernanduandrade](./participantes/fernanduandrade) | ok | 2 |
 | [fhgm](./participantes/fhgm) | ok | 2 |
 | [fielcapao](./participantes/fielcapao) | falha - [logs](./participantes/fielcapao/docker-compose.logs) | -- |
@@ -232,7 +235,7 @@ Atualizada **Thu Mar  7 14:56:26 UTC 2024** com **546** submissões.
 | [gui9394](./participantes/gui9394) | ok | 4 |
 | [guihbc](./participantes/guihbc) | ok | 277 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
-| [gustavofbreunig](./participantes/gustavofbreunig) | falha - [logs](./participantes/gustavofbreunig/docker-compose.logs) | -- |
+| [gustavofbreunig](./participantes/gustavofbreunig) | ok | 3 |
 | [gustavonovaes-go](./participantes/gustavonovaes-go) | ok | 2 |
 | [gustavoramos00-spring-trsfree](./participantes/gustavoramos00-spring-trsfree) | ok | 2 |
 | [gustavoramos00](./participantes/gustavoramos00) | ok | 2 |
@@ -456,7 +459,7 @@ Atualizada **Thu Mar  7 14:56:26 UTC 2024** com **546** submissões.
 | [rmauro-postgresql-yarp](./participantes/rmauro-postgresql-yarp) | ok | 1 |
 | [rmauro-postgresql](./participantes/rmauro-postgresql) | ok | 1 |
 | [rmauro](./participantes/rmauro) | ok | 2 |
-| [robsoncassol](./participantes/robsoncassol) | ok | 4 |
+| [robsoncassol](./participantes/robsoncassol) | ok | 5 |
 | [rodolphovs-c-db](./participantes/rodolphovs-c-db) | ok | 1 |
 | [rodolphovs-rs](./participantes/rodolphovs-rs) | ok | 1 |
 | [rodolphovs](./participantes/rodolphovs) | ok | 1 |
