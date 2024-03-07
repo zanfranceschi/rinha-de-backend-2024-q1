@@ -3,11 +3,12 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="logo nginx" width="300" height="auto">
 <br />
-<img src="https://en.wikipedia.org/wiki/.NET#/media/File:Microsoft_.NET_logo.svg" alt="logo dotnet" width="200" height="auto">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Microsoft_.NET_logo.svg/640px-Microsoft_.NET_logo.svg.png" alt="logo dotnet" width="200" height="auto">
+<br>
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="logo postgres" width="200" height="auto">
 
 
-## Francisco Zanfranceschi
+## Guilherme Estimo Salvador
 Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
