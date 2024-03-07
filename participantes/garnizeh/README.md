@@ -5,3 +5,5 @@
 - [**go**](https://golang.org): quem faz as coisas acontecerem
 - [**PostgreSQL**](https://www.postgresql.org): quem guarda as coisas
 - [**nginx**](https://nginx.org): quem encaminha as coisas aos seus devidos lugares
+
+- [repo](https://github.com/garnizeh/rinha2024q1) :)
