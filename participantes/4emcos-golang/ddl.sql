@@ -30,7 +30,7 @@ ALTER TABLE
     SET
         (autovacuum_enabled = false);
 
-CREATE INDEX idx_history ON rinha.history (user_id, do_at DESC);
+CREATE INDEX idx_history ON rinha.history (user_id);
 
 
 CREATE OR REPLACE FUNCTION rinha.credit(

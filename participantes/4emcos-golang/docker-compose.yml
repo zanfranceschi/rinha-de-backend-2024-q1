@@ -9,8 +9,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.6"
-          memory: "200MB"
+          cpus: "0.37"
+          memory: "55MB"
 
   api02:
     <<: *api
@@ -28,8 +28,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.17"
-          memory: "10MB"
+          cpus: "0.2"
+          memory: "30MB"
 
   db:
     image: postgres:latest
@@ -38,14 +38,10 @@ services:
       - POSTGRES_PASSWORD=oot123
       - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
-    ports:
-      - "5432:5432"
     volumes:
       - ./ddl.sql:/docker-entrypoint-initdb.d/script.sql
-      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.config_file
-    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.config_file
     deploy:
       resources:
         limits:
-          cpus: "0.13"
-          memory: "140MB"
+          cpus: "0.56"
+          memory: "410MB"
