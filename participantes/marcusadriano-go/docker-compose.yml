@@ -1,0 +1,58 @@
+version: '3.5'
+services:
+  api1: &api # API - Instância 01
+    image: marcusadriano/rinha-de-backend-2024-q1-go:latest
+    hostname: api1
+    depends_on:
+      - db
+    environment:
+      - SERVER_PORT=8080
+      - DATABASE_URL=postgres://postgres:mysecretpassword@db:5432/rinhabackend?pool_max_conns=6&pool_min_conns=6&pool_max_conn_lifetime=330s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: '75MB'
+
+  api2: # API - Instância 02
+    <<: *api
+    hostname: api2
+
+  nginx: # Load Balancer
+    image: nginx:1.25.3
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - db
+      - api1
+      - api2
+    expose:
+      - "9999"
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '200MB'
+
+  db: # Banco de dados
+    image: postgres:16.1
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_DB=rinhabackend
+    volumes:
+      - ./sql/init/:/docker-entrypoint-initdb.d/
+      - ./sql/postgres.conf:/etc/postgresql/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '200MB'
+    command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-net

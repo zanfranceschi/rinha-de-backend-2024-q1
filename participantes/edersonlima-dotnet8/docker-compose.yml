@@ -1,0 +1,65 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=backend
+      - POSTGRES_DB=RinhaBackend2024Q1
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c max_connections=200 -c checkpoint_timeout=300 -c max_wal_size=512 -c synchronous_commit=0 -c fsync=0 -c full_page_writes=0
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: "390MB"
+          
+  api01: &api
+    image: sonederbr/rinha-backend-dotnetcore8-24q1:latest
+    hostname: api01
+    environment:
+      - ASPNETCORE_URLS=http://+:8080;http://+:8081
+      - ASPNETCORE_ENVIRONMENT=Production
+      - CONNECTION_STRING=Server=db;Port=5432;Database=RinhaBackend2024Q1;User Id=rinha;Password=backend;Maximum Pool Size=200;Multiplexing=true;;Application Name=RinhaBackend2024Q1DotNetCore8
+    expose:
+      - "8080"
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "70MB"
+          
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "8082:8080"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "9999:9999"
+    depends_on:
+      - db
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "20MB"
+
+networks:
+  default:
+    driver: bridge
+    name: nw-rinha

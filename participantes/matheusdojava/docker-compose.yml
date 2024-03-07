@@ -1,0 +1,52 @@
+version: '3.5'
+services:
+  api1:
+    image: matheuspieropan/rinhabackend:semobjectmapper
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.525"
+          memory: "210MB"
+  api2:
+    image: matheuspieropan/rinhabackend:semobjectmapper
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.525"
+          memory: "210MB"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./scripts/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.05"
+          memory: "10MB"
+    ports:
+      - "9999:9999"
+  db:
+    image: postgres
+    logging:
+      driver: none
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: rinhabackend-java
+    command: "postgres -c synchronous_commit=0 -c full_page_writes=0"
+    volumes:
+      - ./scripts/script.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "120MB"

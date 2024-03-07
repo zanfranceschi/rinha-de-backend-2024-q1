@@ -1,0 +1,74 @@
+version: '3.1'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "27017:27017"
+    command: --quiet --logpath /dev/null
+    deploy:
+      resources:
+        limits:
+          cpus: "0.28"
+          memory: "280MB"
+  api-1:
+    image: ghcr.io/flpstrri/rinha-backend-2024-q1:1.0
+    depends_on:
+      - mongo
+    ports:
+      - "3001:3000"
+    environment:
+      RUST_LOG: "debug"
+      APP_DATABASE__HOST: "mongo"
+      APP_DATABASE__PORT: 27017
+      APP_DATABASE__USERNAME: "root"
+      APP_DATABASE__PASSWORD: "example"
+      APP_DATABASE__DATABASE_NAME: "test"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.52"
+          memory: "120MB"
+  api-2:
+    image: ghcr.io/flpstrri/rinha-backend-2024-q1:1.0
+    depends_on:
+      - mongo
+    ports:
+      - "3002:3000"
+    environment:
+      RUST_LOG: "info"
+      APP_DATABASE__HOST: "mongo"
+      APP_DATABASE__PORT: 27017
+      APP_DATABASE__USERNAME: "root"
+      APP_DATABASE__PASSWORD: "example"
+      APP_DATABASE__DATABASE_NAME: "test"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.52"
+          memory: "120MB"
+  setup:
+    image: quay.io/curl/curl:latest
+    volumes:
+      - ./env-setup.sh:/opt/env-setup.sh
+    depends_on:
+      - api-1
+      - api-2
+    command: [ "sh", "/opt/env-setup.sh" ]
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api-1
+      - api-2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.18"
+          memory: "30MB"

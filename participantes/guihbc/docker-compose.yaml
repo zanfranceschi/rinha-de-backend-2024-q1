@@ -1,0 +1,59 @@
+version: '3.5'
+services:
+  api1: &api
+    image: guihbc/rinha-de-backend-2024-q1
+    hostname: api1
+    network_mode: host
+    depends_on:
+      - database
+    environment:
+      - LISTEN_HTTP_PORT=:9997
+      - DB_URL=postgres://admin:123@localhost:5432/rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "100MB"
+
+  api2:
+    <<: *api
+    hostname: api2
+    environment:
+      - LISTEN_HTTP_PORT=:9998
+      - DB_URL=postgres://admin:123@localhost:5432/rinha
+
+  nginx:
+    image: nginx:1.25.4-alpine
+    hostname: api
+    network_mode: host
+    container_name: rinha-de-backend-2024-q1-nginx
+    volumes:
+      - ./scripts/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "30MB"
+
+  database:
+    image: postgres:latest
+    hostname: db
+    network_mode: host
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./scripts/postgres:/docker-entrypoint-initdb.d
+    deploy:
+      resources:
+        limits:
+          cpus: "0.13"
+          memory: "320MB"

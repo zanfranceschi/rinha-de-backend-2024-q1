@@ -2,27 +2,28 @@ version: "3.5"
 
 services:
   api01: &api
-    image: taniguti/rinha-2024-q1:v1
+    image: taniguti/rinha-2024-q1:v2
     hostname: api01
     environment:
-      - DB_HOSTNAME=postgres://admin:123@db/rinha
-    ports:
-      - "8081:8080"
+      - DB_HOSTNAME=postgres://admin:123@localhost/rinha
+      - PORT=8080
+
     depends_on:
       - db
+    network_mode: host
     deploy:
       resources:
         limits:
-          cpus: "0.4"
-          memory: "100MB"
+          cpus: "0.15"
+          memory: "110MB"
 
   api02:
     <<: *api
     hostname: api02
     environment:
-      - DB_HOSTNAME=postgres://admin:123@db/rinha
-    ports:
-      - "8082:8080"
+      - DB_HOSTNAME=postgres://admin:123@localhost/rinha
+      - PORT=8081
+
 
   nginx:
     image: nginx:latest
@@ -31,13 +32,13 @@ services:
     depends_on:
       - api01
       - api02
-    ports:
-      - "9999:9999"
+    network_mode: host
+
     deploy:
       resources:
         limits:
-          cpus: "0.17"
-          memory: "210MB"
+          cpus: "0.20"
+          memory: "30MB"
 
   db:
     image: postgres:latest
@@ -46,22 +47,12 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
-    ports:
-      - "5432:5432"
+    network_mode: host
+
     volumes:
       - ./sql/script.sql:/docker-entrypoint-initdb.d/script.sql
     deploy:
       resources:
         limits:
-          # Note que a soma de todos os limites dos serviços
-          # aqui declarados é de 1.5 unidades de CPU e 550MB
-          # de memória. A distribuição feita aqui é apenas
-          # um exemplo – distribua como quiser.
-          cpus: "0.53"
-          memory: "140MB"
-
-
-networks:
-  default:
-    driver: bridge
-    name: rinha-nginx-2024q1
+          cpus: "1"
+          memory: "300MB"

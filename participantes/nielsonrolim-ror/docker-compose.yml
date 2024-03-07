@@ -1,0 +1,67 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: nielsonrolim/credit-debit-api:latest
+    hostname: api01
+    environment:
+      - SECRET_KEY_BASE=316e3a0827a4a7d11a1c115ab0982221971b75eda88537e4b08226f4229eebe36a3f4eddeb187da1c908a9e7073fdc9d288f3a1b86156489543ce02276678208
+      - WEB_CONCURRENCY=2
+      - DATABASE_HOST=postgres
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=password
+      - DATABASE_PORT=5432
+    ports:
+      - "3001:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: "0.55"
+          memory: "200MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "3002:3000"
+
+  nginx:
+    image: nginx:1.25.3-alpine-slim
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "10MB"
+
+  postgres:
+    image: postgres:16.2-alpine
+    hostname: postgres
+    environment:
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 60s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "140MB"
+
+networks:
+  default:
+    driver: bridge

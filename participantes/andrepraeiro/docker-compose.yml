@@ -1,0 +1,75 @@
+version: '3.9'
+name: 'rinha-backend-praeiro'
+
+services:
+  api1: &api    
+    image: andrepraeiro/rinha-praeiro:latest
+    hostname: api1
+    container_name: rinhaapi1
+    environment:
+      - ConnectionStrings__rinha=Host=db;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Minimum Pool Size=10;Maximum Pool Size=15;Multiplexing=true;Timeout=120;Command Timeout=120;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.42'
+          memory: '70MB'
+  api2:
+    <<: *api
+    hostname: api2
+    container_name: rinhaapi2
+  db:
+    image: postgres:alpine
+    container_name: rinhadb
+    hostname: database
+    command: postgres -c max_connections=500 -c shared_buffers=50MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    volumes:
+      - ./Sql/init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./Sql/reset.sql:/docker-entrypoint-initdb.d/02-reset.sql
+      - ./Sql/criartransacao.sql:/docker-entrypoint-initdb.d/03-criartransacao.sql
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "rinha"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '390MB'
+  nginx:
+    image: nginx
+    container_name: rinha_nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '20MB'
+networks:
+  app-network:

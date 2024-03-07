@@ -1,0 +1,90 @@
+version: '3.5'
+
+services:
+  nginx: 
+    hostname: api
+    image: nginx:latest
+    user: "root:root"
+    volumes:
+      - unix_socket:/var/run:z
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - shinigami
+      - hollow
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '70MB'
+
+  db: 
+    image: postgres:latest
+    hostname: db
+    env_file:
+      - ./.env
+    volumes:
+      - unix_socket:/var/run
+      - ./postgresql.conf/:/docker-entrypoint-initdb.d/postgresql.conf
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+    - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d rinha_back"]
+      interval: 15s
+      timeout: 20s
+    command:
+      [
+        "postgres", "-c", "config_file=/docker-entrypoint-initdb.d/postgresql.conf",
+      ]
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '360MB'
+
+  shinigami:
+    container_name: shinigami
+    image: raissageek/rinha_backend:v2
+    volumes:
+      - unix_socket:/var/run/
+    environment:
+      - UNIX_SOCK_PATH=/var/run/unix_shinigami.sock
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: '60MB'
+
+
+  hollow: 
+    container_name: hollow
+    image: raissageek/rinha_backend:v2
+    depends_on:
+      - db
+    volumes:
+      - unix_socket:/var/run/
+    environment:
+      - UNIX_SOCK_PATH=/var/run/unix_hollow.sock
+    tty: true
+    stdin_open: true
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: '60MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-back
+
+volumes:
+  unix_socket:

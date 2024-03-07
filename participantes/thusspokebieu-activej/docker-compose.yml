@@ -8,13 +8,16 @@ services:
       - HOSTNAME=0.0.0.0
       - PORT=8081
     network_mode: host
+    volumes: 
+       - pg-volume:/var/run/postgresql
     depends_on:
-      - db
+      db:
+         condition: service_healthy
     deploy:
       resources:
        limits:
-         cpus: "0.30"
-         memory: "200MB"
+         cpus: "0.2"
+         memory: "90MB"
 
   api02:
     <<: *api 
@@ -24,7 +27,8 @@ services:
       - HOSTNAME=0.0.0.0
       - PORT=8082
     depends_on:
-      - db
+      db:
+         condition: service_healthy
 
   db:
     image: postgres:latest
@@ -35,13 +39,22 @@ services:
       - POSTGRES_USER=rinha
       - POSTGRES_DB=crebito
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql 
-    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pg-volume:/var/run/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10m
+      timeout: 5s
+      start_period: 15s
+      start_interval: 2s
+      retries: 3
+    command: [ "postgres", "-c", "config_file=/docker-entrypoint-initdb.d/postgresql.conf" ]
     deploy:
        resources:
          limits:
-           cpus: "0.75"
-           memory: "130MB"
+           cpus: "0.9"
+           memory: "330MB"
 
   nginx:
     image: nginx:latest
@@ -54,10 +67,9 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.15"
-          memory: "20MB"
+          cpus: "0.2"
+          memory: "40MB"
 
-            #networks:
-            #default:
-            #  driver: bridge
-            # name: rinha-nginx-2024q1
+volumes:
+  pg-volume: 
+

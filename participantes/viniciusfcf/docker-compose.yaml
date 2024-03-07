@@ -4,7 +4,7 @@ services:
   api01: &api
     # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
     # publicamente acessível! Ex.: hub.docker.com
-    image: viniciusfcf/rinha-backend-2024q1:v4
+    image: viniciusfcf/rinha-backend-2024q1:v7
     network_mode: host
     environment:
       - QUARKUS_HTTP_PORT=8081
@@ -12,6 +12,8 @@ services:
       - QUARKUS_DATASOURCE_JDBC_MIN_SIZE=3
       - QUARKUS_DATASOURCE_JDBC_INITIAL_SIZE=3
       - QUARKUS_HIBERNATE_ORM_LOG_SQL=false
+      - QUARKUS_LOG_CONSOLE_ENABLE=false
+      - QUARKUS_LOG_FILE_ENABLE=false
     depends_on:
       db:
         condition: service_healthy

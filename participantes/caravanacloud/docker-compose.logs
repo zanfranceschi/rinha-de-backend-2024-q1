@@ -1,68 +1,500 @@
- Network caravanacloud_rinha-network  Creating
- Network caravanacloud_rinha-network  Created
  Container db  Creating
+ Container warmup  Creating
+ Container warmup  Created
+ db Published ports are discarded when using host network mode 
  Container db  Created
- Container api01  Creating
- Container api01  Created
  Container api02  Creating
+ Container api01  Creating
+ api02 Published ports are discarded when using host network mode 
  Container api02  Created
+ api01 Published ports are discarded when using host network mode 
+ Container api01  Created
  Container lb  Creating
+ lb Published ports are discarded when using host network mode 
  Container lb  Created
-Attaching to api01, api02, db, lb
-db     | The files belonging to this database system will be owned by user "postgres".
-db     | This user must also own the server process.
-db     | 
-db     | The database cluster will be initialized with locale "en_US.utf8".
-db     | The default database encoding has accordingly been set to "UTF8".
-db     | The default text search configuration will be set to "english".
-db     | 
-db     | Data page checksums are disabled.
-db     | 
-db     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
-db     | creating subdirectories ... ok
-db     | selecting dynamic shared memory implementation ... posix
-db     | selecting default max_connections ... 100
-db     | selecting default shared_buffers ... 128MB
-db     | selecting default time zone ... Etc/UTC
-db     | creating configuration files ... ok
-db     | running bootstrap script ... ok
-db     | performing post-bootstrap initialization ... ok
-db     | syncing data to disk ... ok
-db     | 
-db     | 
-db     | Success. You can now start the database server using:
-db     | 
-db     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
-db     | 
-db     | initdb: warning: enabling "trust" authentication for local connections
-db     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db     | waiting for server to start....2024-02-13 19:49:10.718 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db     | 2024-02-13 19:49:10.719 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db     | 2024-02-13 19:49:10.721 UTC [51] LOG:  database system was shut down at 2024-02-13 19:49:09 UTC
-db     | 2024-02-13 19:49:10.726 UTC [48] LOG:  database system is ready to accept connections
-db     |  done
-db     | server started
-db     | CREATE DATABASE
-db     | 
-db     | 
-db     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
-db     | 
-db     | 2024-02-13 19:49:11.016 UTC [48] LOG:  received fast shutdown request
-db     | waiting for server to shut down...2024-02-13 19:49:11.016 UTC [48] LOG:  aborting any active transactions
-db     | .2024-02-13 19:49:11.019 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db     | 2024-02-13 19:49:11.021 UTC [49] LOG:  shutting down
-db     | 2024-02-13 19:49:11.021 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db     | 2024-02-13 19:49:11.030 UTC [49] LOG:  checkpoint complete: wrote 923 buffers (3.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.001 s, total=0.009 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4256 kB, estimate=4256 kB; lsn=0/1912D20, redo lsn=0/1912D20
-db     | 2024-02-13 19:49:11.104 UTC [48] LOG:  database system is shut down
-db     |  done
-db     | server stopped
-db     | 
-db     | PostgreSQL init process complete; ready for start up.
-db     | 
-db     | 2024-02-13 19:49:11.209 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db     | 2024-02-13 19:49:11.209 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5400
-db     | 2024-02-13 19:49:11.209 UTC [1] LOG:  listening on IPv6 address "::", port 5400
-db     | 2024-02-13 19:49:11.209 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5400"
-db     | 2024-02-13 19:49:11.212 UTC [64] LOG:  database system was shut down at 2024-02-13 19:49:11 UTC
-db     | 2024-02-13 19:49:11.217 UTC [1] LOG:  database system is ready to accept connections
-dependency failed to start: container api01 is unhealthy
+Attaching to api01, api02, db, lb, warmup
+db      | The files belonging to this database system will be owned by user "postgres".
+db      | This user must also own the server process.
+db      | 
+db      | The database cluster will be initialized with locale "en_US.utf8".
+db      | The default database encoding has accordingly been set to "UTF8".
+db      | The default text search configuration will be set to "english".
+db      | 
+db      | Data page checksums are disabled.
+db      | 
+db      | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db      | creating subdirectories ... ok
+db      | selecting dynamic shared memory implementation ... posix
+db      | selecting default max_connections ... 100
+db      | selecting default shared_buffers ... 128MB
+db      | selecting default time zone ... Etc/UTC
+db      | creating configuration files ... ok
+db      | running bootstrap script ... ok
+db      | performing post-bootstrap initialization ... ok
+warmup  | warmuping
+db      | syncing data to disk ... ok
+db      | 
+db      | 
+db      | Success. You can now start the database server using:
+db      | 
+db      |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db      | 
+db      | initdb: warning: enabling "trust" authentication for local connections
+db      | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db      | waiting for server to start....2024-02-26 19:11:54.001 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db      | 2024-02-26 19:11:54.005 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db      | 2024-02-26 19:11:54.014 GMT [51] LOG:  database system was shut down at 2024-02-26 19:11:53 GMT
+db      | 2024-02-26 19:11:54.020 GMT [48] LOG:  database system is ready to accept connections
+db      |  done
+db      | server started
+db      | CREATE DATABASE
+db      | 
+db      | 
+db      | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+db      | CREATE TABLE
+db      | CREATE TABLE
+db      | CREATE INDEX
+db      | INSERT 0 5
+db      | CREATE EXTENSION
+db      |  pg_prewarm 
+db      | ------------
+db      |           1
+db      | (1 row)
+db      | 
+db      |  pg_prewarm 
+db      | ------------
+db      |           0
+db      | (1 row)
+db      | 
+db      | CREATE TYPE
+db      | CREATE FUNCTION
+db      | CREATE FUNCTION
+db      | 
+db      | 
+db      | waiting for server to shut down...2024-02-26 19:11:54.815 GMT [48] LOG:  received fast shutdown request
+db      | .2024-02-26 19:11:54.825 GMT [48] LOG:  aborting any active transactions
+db      | 2024-02-26 19:11:54.827 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db      | 2024-02-26 19:11:54.827 GMT [49] LOG:  shutting down
+db      | 2024-02-26 19:11:54.830 GMT [49] LOG:  checkpoint starting: shutdown immediate
+db      | 2024-02-26 19:11:55.326 GMT [49] LOG:  checkpoint complete: wrote 936 buffers (11.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.366 s, sync=0.119 s, total=0.499 s; sync files=315, longest=0.057 s, average=0.001 s; distance=4298 kB, estimate=4298 kB; lsn=0/191D210, redo lsn=0/191D210
+db      | 2024-02-26 19:11:55.331 GMT [48] LOG:  database system is shut down
+db      |  done
+db      | server stopped
+db      | 
+db      | PostgreSQL init process complete; ready for start up.
+db      | 
+db      | 2024-02-26 19:11:55.438 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db      | 2024-02-26 19:11:55.438 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5400
+db      | 2024-02-26 19:11:55.438 GMT [1] LOG:  listening on IPv6 address "::", port 5400
+db      | 2024-02-26 19:11:55.443 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5400"
+db      | 2024-02-26 19:11:55.465 GMT [66] LOG:  database system was shut down at 2024-02-26 19:11:55 GMT
+db      | 2024-02-26 19:11:55.472 GMT [1] LOG:  database system is ready to accept connections
+api02   | StartupEvent shard[1] version[vertx-2tables-0.0.2] 🐔💥
+api02   | 2024-02-26 19:11:56,416 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api01   | 2024-02-26 19:11:56,416 DEBUG [io.qua.ver.cor.run.VertxCoreRecorder] (main) Vert.x Cache configured to: /tmp/vertx-cache/1725829443633696021
+api01   | 2024-02-26 19:11:56,417 DEBUG [io.qua.ver.cor.run.VertxCoreRecorder] (main) Vertx has Native Transport Enabled: false
+api01   | StartupEvent shard[0] version[vertx-2tables-0.0.2] 🐔💥
+api01   | 2024-02-26 19:11:56,418 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api02   | 2024-02-26 19:11:56,422 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api02   | 2024-02-26 19:11:56,422 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api02   | 2024-02-26 19:11:56,422 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api02   | 2024-02-26 19:11:56,422 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api02   | 2024-02-26 19:11:56,422 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api02   | 2024-02-26 19:11:56,422 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api02   | 2024-02-26 19:11:56,422 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api02   | 2024-02-26 19:11:56,422 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api02   | 2024-02-26 19:11:56,422 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api02   | 2024-02-26 19:11:56,422 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api02   | 2024-02-26 19:11:56,422 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api02   | 2024-02-26 19:11:56,423 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api02   | 2024-02-26 19:11:56,423 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api02   | 2024-02-26 19:11:56,423 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api02   | 2024-02-26 19:11:56,423 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api02   | 2024-02-26 19:11:56,423 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api02   | 2024-02-26 19:11:56,423 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api02   | 2024-02-26 19:11:56,423 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api02   | 2024-02-26 19:11:56,423 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api01   | 2024-02-26 19:11:56,423 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api01   | 2024-02-26 19:11:56,423 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api01   | 2024-02-26 19:11:56,423 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api01   | 2024-02-26 19:11:56,423 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api02   | 2024-02-26 19:11:56,424 INFO  [io.quarkus] (main) rinhadebackend 0.0.1 native (powered by Quarkus 3.7.3) started in 0.040s. Listening on: http://0.0.0.0:9002
+api02   | 2024-02-26 19:11:56,424 INFO  [io.quarkus] (main) Profile prod activated. 
+api02   | 2024-02-26 19:11:56,424 INFO  [io.quarkus] (main) Installed features: [cdi, reactive-pg-client, resteasy-reactive, resteasy-reactive-jackson, smallrye-context-propagation, vertx]
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup query: select 1+1;
+api01   | 2024-02-26 19:11:56,424 INFO  [car.ver.TwoTablesRoute] (main) Warmup done
+api01   | 2024-02-26 19:11:56,425 INFO  [io.quarkus] (main) rinhadebackend 0.0.1 native (powered by Quarkus 3.7.3) started in 0.042s. Listening on: http://0.0.0.0:9001
+api01   | 2024-02-26 19:11:56,425 INFO  [io.quarkus] (main) Profile prod activated. 
+api01   | 2024-02-26 19:11:56,425 INFO  [io.quarkus] (main) Installed features: [cdi, reactive-pg-client, resteasy-reactive, resteasy-reactive-jackson, smallrye-context-propagation, vertx]
+lb      | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+lb      | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+lb      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+lb      | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+lb      | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+lb      | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+lb      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+lb      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+lb      | /docker-entrypoint.sh: Configuration complete; ready for start up
+db      | 2024-02-26 19:12:22.525 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:22.525 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:22.525 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:22.525 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:22.525 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:22.776 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:22.776 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:22.776 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:22.776 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:22.776 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:22.985 GMT [78] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:22.985 GMT [78] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:22.985 GMT [78] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:22.985 GMT [78] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:22.985 GMT [78] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:24.109 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:24.109 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:24.109 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:24.109 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:24.109 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:24.430 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:24.430 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:24.430 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:24.430 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:24.430 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:24.537 GMT [78] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:24.537 GMT [78] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:24.537 GMT [78] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:24.537 GMT [78] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:24.537 GMT [78] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:24.787 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:24.787 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:24.787 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:24.787 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:24.787 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:25.350 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:25.350 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:25.350 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:25.350 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:25.350 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:25.695 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:25.695 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:25.695 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:25.695 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:25.695 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:25.971 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:25.971 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:25.971 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:25.971 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:25.971 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:26.040 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:26.040 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:26.040 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:26.040 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:26.040 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:26.172 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:26.172 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:26.172 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:26.172 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:26.172 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:26.237 GMT [78] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:26.237 GMT [78] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:26.237 GMT [78] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:26.237 GMT [78] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:26.237 GMT [78] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:26.334 GMT [78] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:26.334 GMT [78] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:26.334 GMT [78] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:26.334 GMT [78] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:26.334 GMT [78] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:27.380 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:27.380 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:27.380 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:27.380 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:27.380 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:27.714 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:27.714 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:27.714 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:27.714 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:27.714 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:27.745 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:27.745 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:27.745 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:27.745 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:27.745 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:28.850 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:28.850 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:28.850 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:28.850 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:28.850 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:29.135 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:29.135 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:29.135 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:29.135 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:29.135 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:29.324 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:29.324 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:29.324 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:29.324 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:29.324 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:29.352 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:29.352 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:29.352 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:29.352 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:29.352 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:29.487 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:29.487 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:29.487 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:29.487 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:29.487 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:29.514 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:29.514 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:29.514 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:29.514 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:29.514 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:29.675 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:29.675 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:29.675 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:29.675 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:29.675 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:29.837 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:29.837 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:29.837 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:29.837 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:29.837 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:29.972 GMT [78] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:29.972 GMT [78] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:29.972 GMT [78] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:29.972 GMT [78] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:29.972 GMT [78] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:30.714 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:30.714 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:30.714 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:30.714 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:30.714 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:30.766 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:30.766 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:30.766 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:30.766 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:30.766 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:30.819 GMT [78] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:30.819 GMT [78] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:30.819 GMT [78] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:30.819 GMT [78] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:30.819 GMT [78] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:30.845 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:30.845 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:30.845 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:30.845 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:30.845 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:31.056 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:31.056 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:31.056 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:31.056 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:31.056 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:31.082 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:31.082 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:31.082 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:31.082 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:31.082 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:31.233 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:31.233 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:31.233 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:31.233 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:31.233 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:31.283 GMT [78] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:31.283 GMT [78] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:31.283 GMT [78] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:31.283 GMT [78] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:31.283 GMT [78] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:31.308 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:31.308 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:31.308 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:31.308 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:31.308 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:31.483 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:31.483 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:31.483 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:31.483 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:31.483 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:31.633 GMT [78] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:31.633 GMT [78] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:31.633 GMT [78] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:31.633 GMT [78] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:31.633 GMT [78] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:31.759 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:31.759 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:31.759 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:31.759 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:31.759 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+warmup  | ..................................................warmup done
+db      | 2024-02-26 19:12:31.909 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:31.909 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:31.909 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:31.909 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:31.909 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:31.959 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:31.959 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:31.959 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:31.959 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:31.959 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:32.058 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:32.058 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:32.058 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:32.058 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:32.058 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:32.083 GMT [78] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:32.083 GMT [78] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:32.083 GMT [78] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:32.083 GMT [78] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:32.083 GMT [78] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:32.131 GMT [78] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:32.131 GMT [78] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:32.131 GMT [78] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:32.131 GMT [78] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:32.131 GMT [78] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:32.369 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:32.369 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:32.369 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:32.369 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:32.369 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+warmup exited with code 0
+db      | 2024-02-26 19:12:33.013 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:33.013 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:33.013 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:33.013 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:33.013 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:33.381 GMT [78] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:33.381 GMT [78] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:33.381 GMT [78] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:33.381 GMT [78] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:33.381 GMT [78] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:33.631 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:33.631 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:33.631 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:33.631 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:33.631 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:33.790 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:33.790 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:33.790 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:33.790 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:33.790 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:33.836 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:33.836 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:33.836 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:33.836 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:33.836 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:34.040 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:34.040 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:34.040 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:34.040 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:34.040 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:34.303 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:34.303 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:34.303 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:34.303 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:34.303 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:34.325 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:34.325 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:34.325 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:34.325 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:34.325 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:34.368 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:34.368 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:34.368 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:34.368 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:34.368 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:34.478 GMT [87] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:34.478 GMT [87] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:34.478 GMT [87] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:34.478 GMT [87] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:34.478 GMT [87] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:34.522 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:34.522 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:34.522 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:34.522 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:34.522 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:34.586 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:34.586 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:34.586 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:34.586 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:34.586 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:34.630 GMT [77] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:34.630 GMT [77] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:34.630 GMT [77] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:34.630 GMT [77] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:34.630 GMT [77] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)
+db      | 2024-02-26 19:12:34.848 GMT [86] ERROR:  invalid input syntax for type json at character 16
+db      | 2024-02-26 19:12:34.848 GMT [86] DETAIL:  Token "LIMITE_INDISPONIVEL" is invalid.
+db      | 2024-02-26 19:12:34.848 GMT [86] QUERY:  result.body := 'LIMITE_INDISPONIVEL'
+db      | 2024-02-26 19:12:34.848 GMT [86] CONTEXT:  JSON data, line 1: LIMITE_INDISPONIVEL
+db      | 	PL/pgSQL function proc_transacao(integer,integer,integer,character,character) line 25 at assignment
+db      | 2024-02-26 19:12:34.848 GMT [86] STATEMENT:  select * from proc_transacao($1, $2, $3, $4, $5)

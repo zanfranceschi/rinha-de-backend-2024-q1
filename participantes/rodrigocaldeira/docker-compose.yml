@@ -10,32 +10,27 @@ services:
       - PHX_HOST=api01
       - SECRET_KEY_BASE="vnbnYw4N0WzDuQieEpv0tzaZCAGfNOzk/M+naf87PNX3yd2fM4COTizm3yVwwHh7"
       - DATABASE_URL=postgres://postgres:postgres@db:5432/rinha_backend
+      - ERL_MAX_PORTS=1024
     depends_on:
       db:
         condition: service_healthy
     deploy:
       resources:
         limits:
-          cpus: "0.6"
-          memory: "200MB"
-    ulimits:
-      nproc: 65535
-      nofile:
-        soft: 65535
-        hard: 65535
+          cpus: "0.3"
+          memory: "150MB"
 
   api02:
     <<: *api
     hostname: api02
     ports:
       - "4001:4001"
-    depends_on:
-      - api01
     environment:
       - PORT=4001
       - PHX_HOST=api02
       - SECRET_KEY_BASE="yd5mZeRqTh7KqzvBGTPIaN9yuIRoeQuqeeQCJKe8pqAXakf1p4zugNYfUGjp32C+"
       - DATABASE_URL=postgres://postgres:postgres@db:5432/rinha_backend
+      - ERL_MAX_PORTS=1024
 
   nginx:
     image: nginx:latest
@@ -51,11 +46,6 @@ services:
         limits:
           cpus: "0.1"
           memory: "50MB"
-    ulimits:
-      nproc: 65535
-      nofile:
-        soft: 65535
-        hard: 65535
 
   db:
     image: postgres:latest
@@ -69,14 +59,17 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.20"
-          memory: "100MB"
-    command: postgres -c max_connections=450
+          cpus: "0.80"
+          memory: "200MB"
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres -d rinha_backend" ]
       interval: 3s
-      timeout: 1s
-      retries: 5
+      timeout: 2s
+      retries: 10
 
 networks:
   default:

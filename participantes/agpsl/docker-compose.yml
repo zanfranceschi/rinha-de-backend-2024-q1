@@ -1,0 +1,66 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: agpsl/rinha:latest
+    hostname: api01
+    environment:
+      - DB_HOSTNAME=db
+      - PORT=3000
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "90MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - DB_HOSTNAME=db
+      - PORT=3000
+    ports:
+      - "3002:3000"
+  
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "40MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./config/postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "280MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha

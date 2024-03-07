@@ -1,54 +1,51 @@
 version: "3.8"
 
-
-
 services:
-
-  server_db:
-    image: saulofelipe/rinha-db-server
-    # build: sqlite-server
-    hostname: server_db
-    environment:
-      - DB_PATHNAME=/app/database/db.sqlite
-    deploy:
-      resources:
-        limits:
-          cpus: "0.35"
-          memory: "100MB"
-
   server_01: &api
     image: saulofelipe/rinha-api
-    # build: main-server
+    # build: .
     hostname: server_01
     ports:
-      - 4001:3001
-    environment:
-      - WS_URL=ws://server_db:3000
-    depends_on:
-      - server_db
+      - 4001:3000
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "220MB"
+          cpus: "0.7"
+          memory: "267MB"
+    volumes:
+      - db_volume:/app/database:rw
+    environment:
+      - PRODUCTION=true
 
   server_02:
     <<: *api
     hostname: server_02
     ports:
-      - 4002:3001
+      - 4002:3000
+    depends_on:
+      - server_01
+    environment:
+      - IS_SERVER_2=true
+      - PRODUCTION=true # required
 
   nginx:
     image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - server_01
       - server_02
     ports:
       - "9999:9999"
     deploy:
       resources:
         limits:
-          cpus: "0.15"
-          memory: "10MB"
+          cpus: "0.10"
+          memory: "15MB"
+
+volumes:
+  db_volume:
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

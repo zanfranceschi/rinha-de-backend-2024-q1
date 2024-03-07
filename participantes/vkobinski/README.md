@@ -7,11 +7,9 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="logo postgres" width="200" height="auto">
 
 
-## Victor Kobinski e Silva
+## Victor Kobinski e Silva [@Toxenore](https://twitter.com/Toxenore)
 Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `rust` para api com as libs `axum` e `sqlx`
-- [repositório da api](https://github.com/vkobinski/rinha)
-
-[@Toxenore](https://twitter.com/Toxenore) @ twitter
+- [Repositório](https://github.com/vkobinski/rinha)

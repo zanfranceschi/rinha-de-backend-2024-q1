@@ -1,0 +1,71 @@
+version: "3.5"
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    volumes:
+      - ./postgres.conf:/etc/postgresql/postgresql.conf
+    ports:
+      - 5432:5432
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "200MB"
+
+  api01:
+    image: dscorzoni/rinha-django
+    hostname: api01
+    command: >
+      sh -c "python rinhadjango/manage.py makemigrations &&
+             python rinhadjango/manage.py migrate &&
+             python rinhadjango/manage.py initdb &&
+             cd rinhadjango &&
+             gunicorn rinhadjango.wsgi:application --bind 0.0.0.0:8000"
+    ports:
+      - 8001:8000
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "150MB"
+
+  api02:
+    image: dscorzoni/rinha-django
+    hostname: api02
+    command: >
+      sh -c "cd rinhadjango &&
+             gunicorn rinhadjango.wsgi:application --bind 0.0.0.0:8000"
+    ports:
+      - 8002:8000
+    depends_on:
+      - api01
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "150MB"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

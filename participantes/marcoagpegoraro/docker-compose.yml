@@ -2,9 +2,11 @@ version: "3.5"
 
 services:
   api01: &api
-    image: marcoagp/rinha_vlang_marco:latest 
+    # build: .
+    image: marcoagp/rinha_vlang_marco:v8
     restart: unless-stopped
     hostname: api01
+    container_name: api01
     environment:
       - DB_HOSTNAME=db
     ports:
@@ -14,34 +16,38 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.15"
-          memory: "50mb"
+          cpus: "0.3"
+          memory: "25mb"
   api02:
-    <<: *api 
+    <<: *api
     hostname: api02
+    container_name: api02
     environment:
       - DB_HOSTNAME=db
     ports:
-      - "8082:8080" 
+      - "8082:8080"
   nginx:
     image: nginx:1.25.3-alpine
     restart: unless-stopped
+    hostname: lb
+    container_name: lb
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - api01
       - api02
     ports:
-      - "9999:9999" 
+      - "9999:9999"
     deploy:
       resources:
         limits:
-          cpus: "0.2"
+          cpus: "0.4"
           memory: "50mb"
   db:
     image: postgres:16-alpine
     restart: unless-stopped
     hostname: db
+    container_name: db
     environment:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
@@ -54,17 +60,9 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1"
-          memory: "400mb"
-    networks:
-        default:
-          ipv4_address: 192.168.0.2
+          cpus: "0.5"
+          memory: "450mb"
 networks:
   default:
     driver: bridge
     name: rinha-nginx-2024q1
-    ipam:
-      driver: default
-      config:
-       - subnet: 192.168.0.0/24
-         gateway: 192.168.0.1
