@@ -1,5 +1,5 @@
 <div align="center">
-  <img src=".github/images/rinha-backend-logo.png" alt="rinha de backend logo" style="margin-top: 20px;" />
+  <img src="https://raw.githubusercontent.com/kleytonsolinho/rinha-de-backend-2024-q1-golang/main/.github/images/rinha-backend-logo.png" alt="rinha de backend logo" style="margin-top: 20px;" />
 </div>
 
 <div align="center">
@@ -7,7 +7,7 @@
 </div>
 
 <div align="center">
-  <img src=".github/images/result.png" alt="result" />
+  <img src="https://raw.githubusercontent.com/kleytonsolinho/rinha-de-backend-2024-q1-golang/main/.github/images/result.png" alt="result" />
 </div>
 
 ## :rocket: Stack
@@ -28,7 +28,7 @@
 
 
 ```bash
-$ git clone git@github.com:kleytonsolinho/rinha-de-backend-2024-q1.git
+$ git clone git@github.com:kleytonsolinho/rinha-de-backend-2024-q1-golang.git
 ```
 
 ```bash
@@ -46,7 +46,7 @@ $ ./executar-teste-local.sh
 ## :white_check_mark: Result
 
 <div align="center">
-  <img src=".github/images/result.png" alt="result" />
+  <img src="https://raw.githubusercontent.com/kleytonsolinho/rinha-de-backend-2024-q1-golang/main/.github/images/result.png" alt="result" />
 </div>
 
 ## :incoming_envelope: Contact
