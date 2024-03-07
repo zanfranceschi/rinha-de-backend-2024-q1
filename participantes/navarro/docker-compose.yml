@@ -1,0 +1,50 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: rnavarro/rinha-backend-2024:1
+    command: /app/rinha-app
+    hostname: api1
+    network_mode: host
+    depends_on:
+      - db
+    environment:
+      PORT: 9998
+      DB: "0.0.0.0:9995"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "100MB"
+
+  api02:
+    <<: *api
+    hostname: api2
+    environment:
+      PORT: 9997
+      DB: "0.0.0.0:9995"
+
+  db:
+    image: rnavarro/rinha-backend-2024:1
+    command: /app/rinha-2024
+    network_mode: host
+    environment:
+      PORT: 9995
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "250MB"
+
+  rinha-lb-tcp:
+    image: rnavarro/rinha-backend-2024:1
+    command: /app/rinha-load-balancer-tcp
+    depends_on:
+      - api01
+      - api02
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "100MB"
