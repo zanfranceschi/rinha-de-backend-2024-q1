@@ -1,7 +1,8 @@
-CREATE TABLE users (
+CREATE UNLOGGED TABLE users (
   id SERIAL PRIMARY KEY,
   limite INTEGER NOT NULL,
-  saldo INTEGER NOT NULL
+  saldo INTEGER NOT NULL,
+  atualizado_em TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO users(limite, saldo)
@@ -12,7 +13,7 @@ VALUES
   (10000000, 0),
   (500000, 0);
 CREATE TYPE tipot AS ENUM ('C', 'D');
-CREATE TABLE ledger (
+CREATE UNLOGGED TABLE ledger (
   id SERIAL PRIMARY KEY,
   id_cliente INTEGER NOT NULL,
   valor INTEGER NOT NULL,
@@ -23,7 +24,7 @@ CREATE TABLE ledger (
 );
 
 CREATE INDEX realizada_idx ON ledger(realizada_em DESC, id_cliente);
-CREATE FUNCTION poe(
+CREATE PROCEDURE poe(
   idc INTEGER,
   v INTEGER,
   d VARCHAR(10),
@@ -41,13 +42,14 @@ BEGIN
   ) VALUES (idc, v, 'C', d);
 
   UPDATE users
-  SET saldo = saldo + v
+  SET saldo = saldo + v, atualizado_em = CURRENT_TIMESTAMP
     WHERE users.id = idc
     RETURNING saldo, limite INTO saldo_atual, limite_atual;
+  COMMIT;
 END;
 $$;
 
-CREATE FUNCTION tira(
+CREATE PROCEDURE tira(
   idc INTEGER,
   v INTEGER,
   d VARCHAR(10),
@@ -70,9 +72,10 @@ BEGIN
     ) VALUES (idc, v, 'D', d);
 
     UPDATE users
-    SET saldo = saldo - v
+      SET saldo = saldo - v, atualizado_em = CURRENT_TIMESTAMP
       WHERE users.id = idc
       RETURNING saldo, limite INTO saldo_atual, limite_atual;
+    COMMIT;
   ELSE
     SELECT -1, -1 INTO saldo_atual, limite_atual;
   END IF;

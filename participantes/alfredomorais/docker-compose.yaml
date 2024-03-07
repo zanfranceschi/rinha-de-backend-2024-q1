@@ -9,15 +9,13 @@ services:
       - "8081:8080"
     volumes:
       - ./src:/src
-    env_file:
-      - ./.env
     environment:
-      - DATABASE_URL=${DATABASE_URL}
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_SECRET=${DB_SECRET}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
+      - DATABASE_URL=postgresql://postgresql:postgresql@123456@db:5432/rinha_backend
+      - DB_USERNAME=postgresql
+      - DB_SECRET=postgresql@123456
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=rinha_backend
     depends_on:
       - db
     deploy:
@@ -49,7 +47,7 @@ services:
           memory: "10MB"
 
   db:
-    image: postgres:13-alpine
+    image: postgres:16.1-alpine3.19
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
@@ -57,9 +55,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=rinha_backend
+      - POSTGRES_USER=postgresql
+      - POSTGRES_PASSWORD=postgresql@123456
     deploy:
       resources:
         limits:

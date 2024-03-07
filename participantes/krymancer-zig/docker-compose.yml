@@ -1,0 +1,53 @@
+version: '3.5'
+services:
+  api1: &api
+    image: krymancer/rinha-de-backend-2024-q1-zig
+    hostname: api1
+    network_mode: host
+    environment:
+      - PORT=3000
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '100MB'
+  api2:
+    <<: *api
+    environment:
+      - PORT=3001
+  db:
+    image: postgres
+    hostname: db
+    network_mode: host
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: db
+    volumes:
+      - ./conf/postgres/:/docker-entrypoint-initdb.d/
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: '300MB'
+  nginx:
+    image: nginx:latest
+    network_mode: host
+    volumes:
+      - ./conf/nginx/:/etc/nginx/
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'

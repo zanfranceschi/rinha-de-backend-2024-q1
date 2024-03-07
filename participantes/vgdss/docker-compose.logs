@@ -1,3 +1,7 @@
+ api2 Pulling 
+ api1 Pulling 
+ api2 Pulled 
+ api1 Pulled 
  Volume "vgdss_pgdata"  Creating
  Volume "vgdss_pgdata"  Created
  Container rinhadb  Creating
@@ -25,27 +29,8 @@ rinhadb      | selecting default max_connections ... 100
 rinhadb      | selecting default shared_buffers ... 128MB
 rinhadb      | selecting default time zone ... Etc/UTC
 rinhadb      | creating configuration files ... ok
-rinha-nginx  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
-rinha-nginx  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
-rinha-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-rinha-nginx  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
-rinha-nginx  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
-rinha-nginx  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-rinha-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-rinha-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-rinha-nginx  | /docker-entrypoint.sh: Configuration complete; ready for start up
 rinhadb      | running bootstrap script ... ok
 rinhadb      | performing post-bootstrap initialization ... ok
-rinha-api2   | INFO:     Started server process [7]
-rinha-api2   | INFO:     Waiting for application startup.
-rinha-api2   | INFO:     Application startup complete.
-rinha-api2   | INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
-rinha-api1   | INFO:     Started server process [7]
-rinha-api1   | INFO:     Waiting for application startup.
-rinha-api1   | INFO:     Application startup complete.
-rinha-api1   | INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
-rinhadb      | initdb: warning: enabling "trust" authentication for local connections
-rinhadb      | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 rinhadb      | syncing data to disk ... ok
 rinhadb      | 
 rinhadb      | 
@@ -53,11 +38,9 @@ rinhadb      | Success. You can now start the database server using:
 rinhadb      | 
 rinhadb      |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 rinhadb      | 
-rinhadb      | waiting for server to start....2024-02-27 13:52:17.825 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-rinhadb      | 2024-02-27 13:52:17.828 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-rinhadb      | 2024-02-27 13:52:17.838 GMT [51] LOG:  database system was shut down at 2024-02-27 13:52:16 GMT
-rinhadb      | 2024-02-27 13:52:17.850 GMT [48] LOG:  database system is ready to accept connections
-rinhadb      |  done
+rinhadb      | initdb: warning: enabling "trust" authentication for local connections
+rinhadb      | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+rinhadb      | waiting for server to start.... done
 rinhadb      | server started
 rinhadb      | CREATE DATABASE
 rinhadb      | 
@@ -67,434 +50,451 @@ rinhadb      | CREATE TABLE
 rinhadb      | CREATE TABLE
 rinhadb      | CREATE INDEX
 rinhadb      | INSERT 0 5
+rinhadb      | CREATE EXTENSION
+rinhadb      |  pg_prewarm 
+rinhadb      | ------------
+rinhadb      |           1
+rinhadb      | (1 row)
+rinhadb      | 
+rinhadb      |  pg_prewarm 
+rinhadb      | ------------
+rinhadb      |           0
+rinhadb      | (1 row)
+rinhadb      | 
 rinhadb      | 
 rinhadb      | 
 rinhadb      | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/postgresql.conf
 rinhadb      | 
-rinhadb      | waiting for server to shut down...2024-02-27 13:52:18.152 GMT [48] LOG:  received fast shutdown request
-rinhadb      | .2024-02-27 13:52:18.155 GMT [48] LOG:  aborting any active transactions
-rinhadb      | 2024-02-27 13:52:18.156 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-rinhadb      | 2024-02-27 13:52:18.157 GMT [49] LOG:  shutting down
-rinhadb      | 2024-02-27 13:52:18.160 GMT [49] LOG:  checkpoint starting: shutdown immediate
-rinhadb      | 2024-02-27 13:52:18.656 GMT [49] LOG:  checkpoint complete: wrote 939 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.374 s, sync=0.078 s, total=0.499 s; sync files=308, longest=0.053 s, average=0.001 s; distance=4302 kB, estimate=4302 kB; lsn=0/191E3D0, redo lsn=0/191E3D0
-rinhadb      | 2024-02-27 13:52:18.662 GMT [48] LOG:  database system is shut down
-rinhadb      |  done
+rinhadb      | waiting for server to shut down.... done
 rinhadb      | server stopped
 rinhadb      | 
 rinhadb      | PostgreSQL init process complete; ready for start up.
 rinhadb      | 
-rinhadb      | 2024-02-27 13:52:18.781 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-rinhadb      | 2024-02-27 13:52:18.781 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-rinhadb      | 2024-02-27 13:52:18.781 GMT [1] LOG:  listening on IPv6 address "::", port 5432
-rinhadb      | 2024-02-27 13:52:18.787 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-rinhadb      | 2024-02-27 13:52:18.798 GMT [66] LOG:  database system was shut down at 2024-02-27 13:52:18 GMT
-rinhadb      | 2024-02-27 13:52:18.805 GMT [1] LOG:  database system is ready to accept connections
-rinha-api1   | INFO:     127.0.0.1:53122 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:18 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 105 "-" "curl/7.81.0"
-rinha-api2   | INFO:     127.0.0.1:40586 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:18 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 105 "-" "curl/7.81.0"
-rinha-api2   | INFO:     127.0.0.1:40586 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:53122 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:34546 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34568 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33666 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34616 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34606 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33662 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33670 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33692 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33686 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34578 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33730 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33710 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34532 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33708 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34628 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33652 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34564 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34592 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34642 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33652 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:24 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1016 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34642 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33710 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33666 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34568 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:40586 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33652 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33708 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33686 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33670 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33730 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34606 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34628 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33692 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34532 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34592 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34564 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33662 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34616 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:53122 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34578 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34546 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33662 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:26 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1014 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34546 - "GET /clientes/6/extrato HTTP/1.1" 404 Not Found
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/6/extrato HTTP/1.1" 404 37 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:53122 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1014 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34578 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 104 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33692 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:33730 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 105 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 106 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33662 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 107 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34578 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:53122 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33730 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:33692 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 26 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34546 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:53122 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34578 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:33692 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:33662 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 26 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33730 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:33692 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 280 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:53122 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:33730 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 279 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 278 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34578 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1007 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34546 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 281 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34546 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34578 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33692 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33730 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 26 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33662 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34578 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:34546 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 369 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 368 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34592 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1004 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:53122 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 367 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33708 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:34564 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1004 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1004 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33662 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:34532 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 366 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 366 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34616 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 369 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34628 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:33730 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 368 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1004 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33692 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 368 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33686 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:34548 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 366 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33670 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:33644 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:33652 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 369 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 369 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 367 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 366 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:34554 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 367 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 367 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:40586 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 368 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 207 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 194 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 207 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:40586 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:33652 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 233 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 207 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 207 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 207 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 208 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 194 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 194 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 194 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 194 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 233 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 233 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 208 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 233 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 208 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 168 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 233 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 168 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 208 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 168 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 208 "-" "Agente do Caos - 2024/Q1"
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 168 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 168 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:28 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 368 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:28 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:28 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:29 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 465 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:29 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:30 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:30 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 467 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:30 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:30 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:30 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:30 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:30 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:30 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:30 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:31 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:31 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:31 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:31 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 845 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:31 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:31 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:31 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:31 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:31 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:31 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:31 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 1044 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:32 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33644 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 1057 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 1052 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:33 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34554 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 1058 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-rinha-api2   | INFO:     127.0.0.1:33726 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-nginx  | 127.0.0.1 - - [27/Feb/2024:13:52:34 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-rinha-api1   | INFO:     127.0.0.1:34548 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     Started server process [7]
+rinha-api2   | INFO:     Waiting for application startup.
+rinha-api2   | INFO:     Application startup complete.
+rinha-api2   | INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+rinha-api1   | INFO:     Started server process [7]
+rinha-api1   | INFO:     Waiting for application startup.
+rinha-api1   | INFO:     Application startup complete.
+rinha-api1   | INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+rinha-api2   | INFO:     127.0.0.1:54052 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:45962 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-nginx  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+rinha-nginx  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+rinha-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+rinha-nginx  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+rinha-nginx  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+rinha-nginx  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+rinha-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+rinha-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+rinha-nginx  | /docker-entrypoint.sh: Configuration complete; ready for start up
+rinha-api2   | INFO:     127.0.0.1:54058 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:45964 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:45980 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:54064 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:45980 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:45990 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:54078 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:54064 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36130 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35702 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:45980 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36138 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35708 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:54064 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35718 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36140 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:45980 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35732 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36152 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:54064 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:45980 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35794 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36156 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36232 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36256 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35756 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36216 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36206 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36172 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36276 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35770 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36240 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35758 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35786 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35762 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36262 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36188 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36192 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35740 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35748 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35772 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35766 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35804 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35818 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36278 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35822 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36290 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35818 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36302 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35838 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36278 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36278 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35818 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36392 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36310 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36320 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36328 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35908 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35804 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36344 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35766 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35864 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36364 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35868 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36358 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35858 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36374 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35850 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35896 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36376 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36338 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35848 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35888 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36380 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35906 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35884 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36408 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35910 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36380 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35884 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35914 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36410 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36380 - "GET /clientes/6/extrato HTTP/1.1" 404 Not Found
+rinha-api1   | INFO:     127.0.0.1:36414 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36418 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35888 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35884 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35906 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36418 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35918 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36414 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35884 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36418 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36414 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35918 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35906 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36418 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36414 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35884 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36434 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35906 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35918 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36414 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36434 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36414 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35918 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35906 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35928 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35928 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36414 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36438 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36464 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36468 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35906 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35932 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36448 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35918 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36478 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35992 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35946 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35968 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35980 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35954 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35990 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36478 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36484 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36478 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36488 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36496 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36484 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36496 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36484 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36484 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36496 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36496 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:36000 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36002 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36510 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:50992 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:34164 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:50994 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:34172 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:51010 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:34182 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:51018 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:34198 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:51022 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:34200 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:34204 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:51026 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:51036 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:34212 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:51044 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:34218 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:51054 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:34234 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:54310 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:35808 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK

@@ -4,7 +4,7 @@ services:
 
   api01:
     network_mode: host
-    image: caravanacloud/rinhadebackend-native:0.0.2
+    image: caravanacloud/rinhadebackend-native:0.0.5-ea23
     hostname: api01
     container_name: api01
     depends_on:
@@ -21,13 +21,13 @@ services:
       - QUARKUS_HTTP_IDLE_TIMEOUT=45
       - QUARKUS_DATASOURCE_REACTIVE_URL=postgresql://127.0.0.1:5400/rinha
       - QUARKUS_DATASOURCE_REACTIVE_CACHE_PREPARED_STATEMENTS=true
-      - QUARKUS_DATASOURCE_REACTIVE_MAX_SIZE=100
+      - QUARKUS_DATASOURCE_REACTIVE_MAX_SIZE=5
       - QUARKUS_DATASOURCE_USERNAME=rinha
       - QUARKUS_DATASOURCE_PASSWORD=123
       - QUARKUS_MICROMETER_ENABLED=false
       - QUARKUS_LOG_LEVEL=ERROR
       - QUARKUS_LOG_CATEGORY__caravanacloud__LEVEL=INFO
-      - QUARKUS_LOG_CATEGORY__io.quarkus__LEVEL=DEBUG
+      - QUARKUS_LOG_CATEGORY__io.quarkus__LEVEL=INFO
       - QUARKUS_LOG_CATEGORY__org.postgresql__LEVEL=INFO
       - QUARKUS_LOG_CATEGORY__io.netty__LEVEL=INFO
       - QUARKUS_LOG_CATEGORY__io.vertx__LEVEL=INFO
@@ -43,12 +43,12 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.30"
-          memory: "120MB"
+          cpus: "0.40"
+          memory: "150MB"
 
   api02:
     network_mode: host
-    image: caravanacloud/rinhadebackend-native:0.0.2
+    image: caravanacloud/rinhadebackend-native:0.0.5-ea23
     hostname: api02
     container_name: api02
     depends_on:
@@ -65,11 +65,11 @@ services:
       - QUARKUS_HTTP_IDLE_TIMEOUT=45
       - QUARKUS_DATASOURCE_REACTIVE_URL=postgresql://127.0.0.1:5400/rinha
       - QUARKUS_DATASOURCE_REACTIVE_CACHE_PREPARED_STATEMENTS=true
-      - QUARKUS_DATASOURCE_REACTIVE_MAX_SIZE=100
+      - QUARKUS_DATASOURCE_REACTIVE_MAX_SIZE=5
       - QUARKUS_DATASOURCE_USERNAME=rinha
       - QUARKUS_DATASOURCE_PASSWORD=123
       - QUARKUS_MICROMETER_ENABLED=false
-      - QUARKUS_LOG__LEVEL=ERROR
+      - QUARKUS_LOG_LEVEL=ERROR
       - QUARKUS_LOG_CATEGORY__caravanacloud__LEVEL=INFO
       - QUARKUS_LOG_CATEGORY__org.postgresql__LEVEL=INFO
       - QUARKUS_LOG_CATEGORY__io.netty__LEVEL=INFO
@@ -86,8 +86,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.30"
-          memory: "120MB"
+          cpus: "0.40"
+          memory: "150MB"
 
   lb:
     hostname: lb
@@ -98,24 +98,25 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - "9999:9999"
-    depends_on:
-      api01:
-        condition: service_healthy
-      api02:
-        condition: service_healthy
+#    depends_on:
+#      api01:
+#        condition: service_healthy
+#      api02:
+#        condition: service_healthy
     ulimits:
       nofile:
         soft: 1000000
         hard: 1000000
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://127.0.0.1:9999/clientes/1/extrato"]
+      test: ["CMD", "sleep", "10"]
+      # test: ["CMD", "curl", "-f", "http://127.0.0.1:9999/clientes/1/extrato"]
       interval: 3s
       retries: 15
     deploy:
       resources:
         limits:
           cpus: "0.18"
-          memory: "44MB"
+          memory: "34MB"
 
   warmup:
     hostname: warmup
@@ -127,7 +128,6 @@ services:
         for i in $(seq 1 50);
         do echo -n '.' ;
         curl -s -X GET http://localhost:9999/clientes/5/extrato > /dev/null  &
-        curl -s -X POST -H 'Content-Type: application/json' -d '{\"valor\": 0, \"tipo\": \"d\", \"descricao\": \"warmupsh\"}' http:///localhost:9000/clientes/5/transacoes > /dev/null &
       done; echo 'warmup done';"
     deploy:
       resources: 
@@ -150,14 +150,15 @@ services:
     expose:
       - "5400"
     volumes:
-      - ./init.postgresql.vertx.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.postgresql.2tables.sql:/docker-entrypoint-initdb.d/init.sql
+#      - ./init.postgresql.1table.fn.sql:/docker-entrypoint-initdb.d/init.sql
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
     command: 'postgres -c config_file=/etc/postgresql/postgresql.conf'  
     deploy:
       resources: 
         limits:
-          cpus: "0.70"
-          memory: "250MB"
+          cpus: "0.50"
+          memory: "200MB"
     healthcheck:
       test: ["CMD", "pg_isready", "--username", "rinha", "--port", "5400"]
       interval: 3s

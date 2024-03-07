@@ -14,5 +14,5 @@ Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `drogon` web framework
-- [Repositório](https://github.com/ramosfabiano/rinha-de-backend-2024-q1)
+- [Repositório](https://github.com/ramosfabiano/rinha-de-backend-2024-q1) (tag: v1)
 

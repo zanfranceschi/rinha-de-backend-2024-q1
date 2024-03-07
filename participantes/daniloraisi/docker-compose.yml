@@ -1,0 +1,68 @@
+services:
+  traefik:
+    image: "traefik:v2.11"
+    ports:
+      - "9999:3000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./config/traefik.yml:/etc/traefik/traefik.yml"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "125MB"
+    networks:
+      - "rinha"
+
+  api:
+    image: daniloraisi/rinha-back-end-2024-q1:latest
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.entrypoints=api"
+      - "traefik.http.services.api.loadbalancer.healthcheck.path=/healthz"
+      - "traefik.http.services.api.loadbalancer.healthcheck.interval=10s"
+    environment:
+      ENVIRONMENT_NAME: production
+      DATABASE_USER: admin
+      DATABASE_PASSWD: admin
+      DATABASE_ADDR: db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: rinha
+      DATABASE_SSL_MODE: disable
+      HTTP_PORT: 8080
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "150MB"
+    expose:
+      - "8080"
+    depends_on:
+      - "db"
+    networks:
+      - "rinha"
+
+  db:
+    image: "postgres:alpine"
+    environment:
+      - "POSTGRES_PASSWORD=admin"
+      - "POSTGRES_USER=admin"
+      - "POSTGRES_DB=rinha"
+    volumes:
+      - "./config/script.sql:/docker-entrypoint-initdb.d/script.sql"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "125MB"
+    ports:
+      - "5432:5432"
+    networks:
+      - "rinha"
+
+networks:
+  rinha:
+    driver: "bridge"
+    name: "rinha"

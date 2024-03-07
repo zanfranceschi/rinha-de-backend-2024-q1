@@ -1,0 +1,62 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: rinha-db    
+    network_mode: host
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha      
+    command: 'postgres -c max_connections=100 -c shared_buffers=96MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=16MB'
+    volumes:
+      - ./ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+      - type: tmpfs
+        target: /var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.9'
+          memory: '450MB'
+  
+  api01: &api
+    image: wdmatheus/rinha-api-2024-q1:202403051020
+    container_name: rinha-api-1    
+    network_mode: host
+    environment: &env
+      ConnectionStrings__Db: User ID=rinha;Password=123;Host=localhost;Port=5432;Database=rinha;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=50;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+      ASPNETCORE_URLS: http://*:8080    
+    depends_on:
+      - db
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '30MB'
+
+  api02:
+    <<: *api    
+    container_name: rinha-api-2    
+    environment:
+      <<: *env
+      ASPNETCORE_URLS: http://*:8081
+  
+  nginx:
+    image: nginx:latest
+    container_name: rinha-nginx
+    network_mode: host
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '40MB'

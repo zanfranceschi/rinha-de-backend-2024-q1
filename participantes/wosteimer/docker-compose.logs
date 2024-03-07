@@ -1,0 +1,94 @@
+ Network wosteimer_default  Creating
+ Network wosteimer_default  Created
+ Container wosteimer-psql-1  Creating
+ Container wosteimer-psql-1  Created
+ Container wosteimer-api1-1  Creating
+ Container wosteimer-api2-1  Creating
+ Container wosteimer-api2-1  Created
+ Container wosteimer-api1-1  Created
+ Container wosteimer-nginx-1  Creating
+ Container wosteimer-nginx-1  Created
+Attaching to api1-1, api2-1, nginx-1, psql-1
+psql-1   | The files belonging to this database system will be owned by user "postgres".
+psql-1   | This user must also own the server process.
+psql-1   | 
+psql-1   | The database cluster will be initialized with locale "en_US.utf8".
+psql-1   | The default database encoding has accordingly been set to "UTF8".
+psql-1   | The default text search configuration will be set to "english".
+psql-1   | 
+psql-1   | Data page checksums are disabled.
+psql-1   | 
+psql-1   | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+psql-1   | creating subdirectories ... ok
+psql-1   | selecting dynamic shared memory implementation ... posix
+psql-1   | selecting default max_connections ... 100
+psql-1   | selecting default shared_buffers ... 128MB
+psql-1   | selecting default time zone ... Etc/UTC
+psql-1   | creating configuration files ... ok
+psql-1   | running bootstrap script ... ok
+psql-1   | performing post-bootstrap initialization ... ok
+psql-1   | syncing data to disk ... ok
+psql-1   | 
+psql-1   | 
+psql-1   | Success. You can now start the database server using:
+psql-1   | 
+psql-1   |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+psql-1   | 
+psql-1   | initdb: warning: enabling "trust" authentication for local connections
+psql-1   | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+psql-1   | waiting for server to start.... done
+psql-1   | server started
+psql-1   | CREATE DATABASE
+psql-1   | 
+psql-1   | 
+psql-1   | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/initdb.sql
+psql-1   | CREATE TABLE
+psql-1   | CREATE TABLE
+psql-1   | CREATE INDEX
+psql-1   | DO
+psql-1   | 
+psql-1   | 
+psql-1   | waiting for server to shut down.... done
+psql-1   | server stopped
+psql-1   | 
+psql-1   | PostgreSQL init process complete; ready for start up.
+psql-1   | 
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+nginx-1  | 2024/03/05 16:58:50 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.4:8000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/05 16:58:50 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.3:8000/clientes/1/extrato", host: "localhost:9999"
+api2-1   | INFO:     Started server process [1]
+api2-1   | INFO:     Waiting for application startup.
+api1-1   | INFO:     Started server process [1]
+api1-1   | INFO:     Waiting for application startup.
+api2-1   | INFO:     Application startup complete.
+api2-1   | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+api1-1   | INFO:     Application startup complete.
+api1-1   | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+nginx-1  | 2024/03/05 16:58:52 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/05 16:58:54 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/05 16:58:56 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/05 16:58:58 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/05 16:59:00 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api2-1   | INFO:     Shutting down
+api1-1   | INFO:     Shutting down
+api2-1   | INFO:     Waiting for application shutdown.
+api1-1   | INFO:     Waiting for application shutdown.
+api1-1   | INFO:     Application shutdown complete.
+api1-1   | INFO:     Finished server process [1]
+api2-1   | INFO:     Application shutdown complete.
+api2-1   | INFO:     Finished server process [1]
+api1-1 exited with code 0
+api1-1 exited with code 0
+api2-1 exited with code 0
+api2-1 exited with code 0
+psql-1 exited with code 0

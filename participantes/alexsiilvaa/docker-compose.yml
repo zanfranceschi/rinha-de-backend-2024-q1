@@ -1,0 +1,86 @@
+version: "3.5"
+
+services:
+  api01: &api
+    hostname: api01
+    network_mode: host
+    image: alexsiilvaa/pequibank:1.0.0
+    environment:
+      - Database__ConnectionString=Application Name=api01;Host=localhost;Username=admin;Password=pequi2024;Database=pequi2024;Pooling=true;Minimum Pool Size=15;Maximum Pool Size=45;Keepalive=30;Command Timeout=60;No Reset On Close=true;
+      - ASPNETCORE_URLS=http://*:3001
+    depends_on:
+      db: 
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "120MB"
+    healthcheck: &healthcheck
+      test: wget --no-verbose --tries=1 --spider http://localhost:3001/healthcheck  || exit 1
+      interval: 3s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - Database__ConnectionString=Application Name=api02;Host=localhost;Username=admin;Password=pequi2024;Database=pequi2024;Pooling=true;Minimum Pool Size=15;Maximum Pool Size=45;Keepalive=30;Command Timeout=60;No Reset On Close=true;
+      - ASPNETCORE_URLS=http://*:3002
+    healthcheck:
+      <<: *healthcheck
+      test: wget --no-verbose --tries=1 --spider http://localhost:3002/healthcheck  || exit 1
+  
+  nginx:
+    image: nginx:latest
+    hostname: nginx
+    network_mode: host
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "20MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    network_mode: host
+    environment:
+      - POSTGRES_PASSWORD=pequi2024
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=pequi2024
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: |
+      postgres
+      -c log_min_messages='panic'
+      -c log_min_error_statement='panic'
+      -c synchronous_commit=off
+      -c fsync=off
+      -c full_page_writes=off
+      -c wal_compression=on
+      -c commit_delay=1000
+      -c commit_siblings=5
+      -c max_wal_size=4GB
+      -c min_wal_size=2GB
+      -c checkpoint_timeout=15min
+      -c checkpoint_completion_target=0.9
+      -c max_connections=100
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: "290MB"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 25
+      start_period: 3s
