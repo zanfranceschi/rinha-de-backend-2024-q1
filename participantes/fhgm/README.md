@@ -4,5 +4,5 @@
 Tecnologias:
 - `nginx` 
 - `postgres`
-- `dotnet 6.0`
+- `dotnet 8`
 - [api](https://github.com/fernando-goncalves92/rinha-2)
