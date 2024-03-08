@@ -78,6 +78,7 @@ services:
     volumes:
       - ./conf/postgres.conf:/etc/postgresql/postgresql.conf:z
       - ./data/init-sql.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_volume:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-d", "rinha"]
       interval: 10s
@@ -88,3 +89,6 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=rinha
       - PGUSER=postgres
+
+volumes:
+  db_volume:
