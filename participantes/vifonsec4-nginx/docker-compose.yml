@@ -1,0 +1,58 @@
+version: "3.5"
+
+services:
+  api01: &api
+    # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
+    # publicamente acessível! Ex.: hub.docker.com
+    image: vifonsec/rinha:candidato_3
+    entrypoint: ["./start_main.sh"]
+    hostname: api01
+    volumes:
+      - /tmp:/tmp
+      - /run/mysqld:/run/mysqld
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "50MB"
+    network_mode: "host"
+    ipc: host
+    shm_size: 1M
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api
+    hostname: api02
+    command: ["--socket_path=/tmp/unix_socket_example2.sock"]
+
+  router:
+    image: vifonsec/nginx2:candidato_3
+    volumes:
+      - /tmp:/tmp
+      - ./nginx2.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+        # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "100MB"
+    network_mode: "host"
+
+  db:
+    image: vifonsec/maria:candidato_3
+    volumes:
+      - /var/run/mysqld:/var/run/mysqld
+      - /tmp:/tmp
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "350MB"
+    network_mode: "host"
