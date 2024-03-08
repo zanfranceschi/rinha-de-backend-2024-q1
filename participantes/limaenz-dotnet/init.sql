@@ -29,8 +29,6 @@ CREATE UNLOGGED TABLE transacao (
 
 CREATE INDEX idx_transacao_idCliente ON transacao (idCliente ASC);
 
-DO $$
-BEGIN
 INSERT INTO cliente (id, limite, saldo)
 VALUES 
     (1, 1000 * 100, 0),
@@ -38,21 +36,13 @@ VALUES
     (3, 10000 * 100, 0),
     (4, 100000 * 100, 0),
     (5, 5000 * 100, 0);
-END;
-$$;
 
-CREATE OR REPLACE FUNCTION realizar_credito(
-    id_cliente INT,
-    novo_valor INT,
-    descricao_cd VARCHAR(10))
-RETURNS TABLE (
-	novo_saldo INT,
-	possui_erro BOOL)
+CREATE OR REPLACE FUNCTION realizar_credito(id_cliente INT, novo_valor INT, descricao_cd VARCHAR(10))
+RETURNS TABLE (saldoAtual INT, erro BOOL)
 LANGUAGE plpgsql 
 AS $$
 BEGIN
     PERFORM pg_advisory_xact_lock(id_cliente);
-
     INSERT INTO transacao (valor, tipo, descricao, realizadoEm, idCliente)
     VALUES (novo_valor, 'c', descricao_cd, NOW(), id_cliente);
 
@@ -64,26 +54,13 @@ BEGIN
 END;
 $$;
 
-CREATE OR REPLACE FUNCTION realizar_debito(
-    id_cliente INT,
-    novo_valor INT,
-    descricao_db VARCHAR(10))
-RETURNS TABLE (
-	novo_saldo INT,
-	possui_erro BOOL)
+CREATE OR REPLACE FUNCTION realizar_debito(id_cliente INT, novo_valor INT, descricao_db VARCHAR(10))
+RETURNS TABLE (saldoAtual INT, erro BOOL)
 LANGUAGE plpgsql
 AS $$
-DECLARE
-    saldo_cliente INT;
-    limite_cliente INT; 
 BEGIN
     PERFORM pg_advisory_xact_lock(id_cliente);
-
-    SELECT saldo, limite
-    INTO saldo_cliente, limite_cliente 
-    FROM cliente WHERE id = id_cliente;
-
-    IF saldo_cliente - novo_valor >= limite_cliente * -1 THEN 
+    IF (SELECT (saldo - novo_valor) >= (limite * -1) from cliente where id = id_cliente) THEN 
         INSERT INTO transacao (valor, tipo, descricao, realizadoEm, idCliente)
         VALUES (novo_valor, 'd', descricao_db, NOW(), id_cliente);
 
