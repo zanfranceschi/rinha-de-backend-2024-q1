@@ -1,0 +1,83 @@
+version: "3.5"
+
+services:
+  db:
+    image: postgres:16
+    hostname: db
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: fight_club
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: ["postgres", "-c", "config_file=/docker-entrypoint-initdb.d/postgresql.conf"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "250MB"
+
+  nginx:
+    image: nginx:latest
+    hostname: api
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api_01
+      - api_02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.16"
+          memory: "50MB"
+
+  api_01: &api 
+    image: eugeniocunha/fight_club:latest
+    restart: always
+    hostname: api_01
+    environment:
+      HTTP_PORT: 8080
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: fight_club
+      DB_PORT: 5432
+      DB_POOL: 30
+    expose:
+      - "8080"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.16"
+          memory: "100MB"
+
+  api_02:
+    <<: *api
+    hostname: api_02
+    environment:
+      HTTP_PORT: 8080
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: fight_club
+      DB_PORT: 5432
+      DB_POOL: 30
+
+networks:
+  default:
+    driver: bridge
