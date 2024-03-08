@@ -2,12 +2,8 @@ version: "3.5"
 
 services:
   api01: &api
-    image: andrelucastic/rinhabackend2024:1.0
+    image: andrelucastic/rinhabackend2024:2.0
     hostname: api01
-    environment:
-      - DB_HOSTNAME=db
-    ports:
-      - "8081:8080"
     deploy:
       resources:
         limits:
@@ -19,10 +15,6 @@ services:
     # Essa sintaxe reusa o que foi declarado em 'api01'.
     <<: *api
     hostname: api02
-    environment:
-      - DB_HOSTNAME=db
-    ports:
-      - "8082:8080"
 
   nginx:
     image: nginx:latest
