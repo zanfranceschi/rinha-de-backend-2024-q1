@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  8 20:08:50 UTC 2024** com **570** submissões.
+Atualizada **Fri Mar  8 21:05:40 UTC 2024** com **575** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -18,10 +18,12 @@ Atualizada **Fri Mar  8 20:08:50 UTC 2024** com **570** submissões.
 | [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 3 |
 | [Vagnerlg](./participantes/Vagnerlg) | ok | 1 |
 | [abel-golang](./participantes/abel-golang) | ok | 2 |
+| [abraaolevi](./participantes/abraaolevi) | ok | 2 |
 | [accerqueira-bash](./participantes/accerqueira-bash) | ok | 1474 |
 | [accerqueira-redbean-atw-down](./participantes/accerqueira-redbean-atw-down) | ok | 1 |
 | [acdesouza](./participantes/acdesouza) | ok | 30 |
 | [acerola](./participantes/acerola) | ok | 4 |
+| [adamatti-bun](./participantes/adamatti-bun) | falha - [logs](./participantes/adamatti-bun/docker-compose.logs) | -- |
 | [adamatti-node](./participantes/adamatti-node) | falha - [logs](./participantes/adamatti-node/docker-compose.logs) | -- |
 | [adrianbueno-rocket](./participantes/adrianbueno-rocket) | ok | 2 |
 | [agostinho](./participantes/agostinho) | ok | 4 |
@@ -159,6 +161,7 @@ Atualizada **Fri Mar  8 20:08:50 UTC 2024** com **570** submissões.
 | [edimarlnx](./participantes/edimarlnx) | ok | 4 |
 | [edubarbieri](./participantes/edubarbieri) | ok | 1 |
 | [edy-elixir-e-ranger-de-dentes](./participantes/edy-elixir-e-ranger-de-dentes) | ok | 1 |
+| [efraim-santana](./participantes/efraim-santana) | ok | 5 |
 | [eigr](./participantes/eigr) | ok | 0 |
 | [elioenaiferrari-rust](./participantes/elioenaiferrari-rust) | ok | 2 |
 | [elioenaiferrari](./participantes/elioenaiferrari) | falha - [logs](./participantes/elioenaiferrari/docker-compose.logs) | -- |
@@ -205,9 +208,10 @@ Atualizada **Fri Mar  8 20:08:50 UTC 2024** com **570** submissões.
 | [gabriel-roque](./participantes/gabriel-roque) | ok | 4 |
 | [gabrielSantosLima](./participantes/gabrielSantosLima) | falha - [logs](./participantes/gabrielSantosLima/docker-compose.logs) | -- |
 | [gabrielfmagalhaes](./participantes/gabrielfmagalhaes) | ok | 5 |
-| [gabrielhsferreira](./participantes/gabrielhsferreira) | ok | 1 |
+| [gabrielhsferreira](./participantes/gabrielhsferreira) | ok | 32 |
 | [gabrielluciano-go](./participantes/gabrielluciano-go) | ok | 1 |
 | [gabrielluciano-vertx](./participantes/gabrielluciano-vertx) | ok | 1 |
+| [garnizeh-alternative](./participantes/garnizeh-alternative) | ok | 1 |
 | [garnizeh](./participantes/garnizeh) | ok | 2 |
 | [gasparbarancelli-h2-database](./participantes/gasparbarancelli-h2-database) | ok | 2 |
 | [gasparbarancelli-java-sem-framework](./participantes/gasparbarancelli-java-sem-framework) | ok | 1 |
@@ -333,6 +337,7 @@ Atualizada **Fri Mar  8 20:08:50 UTC 2024** com **570** submissões.
 | [leonardovee](./participantes/leonardovee) | falha - [logs](./participantes/leonardovee/docker-compose.logs) | -- |
 | [leonardsoncc-go](./participantes/leonardsoncc-go) | ok | 2 |
 | [leoralph](./participantes/leoralph) | ok | 2 |
+| [leosima_dotnet](./participantes/leosima_dotnet) | ok | 3 |
 | [lfsmariz-go](./participantes/lfsmariz-go) | ok | 2 |
 | [lipe1994_dotnet](./participantes/lipe1994_dotnet) | ok | 4 |
 | [lipe1994_drogon](./participantes/lipe1994_drogon) | ok | 4 |
@@ -343,7 +348,7 @@ Atualizada **Fri Mar  8 20:08:50 UTC 2024** com **570** submissões.
 | [lobomfz](./participantes/lobomfz) | ok | 5 |
 | [lpicanco-cpp](./participantes/lpicanco-cpp) | ok | 1 |
 | [lpicanco-moonshine](./participantes/lpicanco-moonshine) | ok | 1 |
-| [lpicanco](./participantes/lpicanco) | ok | 2 |
+| [lpicanco](./participantes/lpicanco) | ok | 1 |
 | [lsfratel-python-own-framework](./participantes/lsfratel-python-own-framework) | ok | 3 |
 | [lsfratel-python](./participantes/lsfratel-python) | ok | 3 |
 | [lsfratel](./participantes/lsfratel) | ok | 3 |
@@ -527,7 +532,7 @@ Atualizada **Fri Mar  8 20:08:50 UTC 2024** com **570** submissões.
 | [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
-| [vgdss](./participantes/vgdss) | ok | 175 |
+| [vgdss](./participantes/vgdss) | ok | 783 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-132](./participantes/victor-132) | ok | 2 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
