@@ -7,17 +7,11 @@ CREATE TABLE IF NOT EXISTS "clients" (
   "created_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TYPE transactions_type AS ENUM ('c', 'd');
-
 CREATE TABLE IF NOT EXISTS "transactions" (
-	"id" SERIAL NOT NULL,
+	"id" SERIAL PRIMARY KEY,
 	"client_id" INTEGER NOT NULL,
-	"type" transactions_type NOT NULL,
+	"type" VARCHAR(1) NOT NULL,
 	"amount" INTEGER NOT NULL,
 	"description" VARCHAR(10) NOT NULL,
-	"created_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-	CONSTRAINT "transactions_pk" PRIMARY KEY("id"),
-	CONSTRAINT "transactions_fk_client_id"
-		FOREIGN KEY("client_id") 
-		REFERENCES "clients"("id")
+	"created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
