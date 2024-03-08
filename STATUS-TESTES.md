@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Mar  7 23:43:55 UTC 2024** com **555** submissões.
+Atualizada **Fri Mar  8 00:01:06 UTC 2024** com **556** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -416,6 +416,7 @@ Atualizada **Thu Mar  7 23:43:55 UTC 2024** com **555** submissões.
 | [omurilo](./participantes/omurilo) | ok | 2 |
 | [oneabrante](./participantes/oneabrante) | ok | 2 |
 | [otonielsilva](./participantes/otonielsilva) | ok | 2 |
+| [paulo_sergio](./participantes/paulo_sergio) | ok | 5 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
 | [paulohenriquesn-python](./participantes/paulohenriquesn-python) | ok | 3 |
 | [pedro-azevedo-e-matheus-gomes-nodejs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs) | falha - [logs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs/docker-compose.logs) | -- |
@@ -514,7 +515,7 @@ Atualizada **Thu Mar  7 23:43:55 UTC 2024** com **555** submissões.
 | [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
-| [vgdss](./participantes/vgdss) | ok | 95 |
+| [vgdss](./participantes/vgdss) | ok | 175 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-132](./participantes/victor-132) | ok | 2 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
