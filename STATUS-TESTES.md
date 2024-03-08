@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  8 21:25:50 UTC 2024** com **578** submissões.
+Atualizada **Fri Mar  8 21:38:19 UTC 2024** com **578** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -528,7 +528,7 @@ Atualizada **Fri Mar  8 21:25:50 UTC 2024** com **578** submissões.
 | [thusspokebieu-rust](./participantes/thusspokebieu-rust) | ok | 1 |
 | [tiagoguerreirodev-go](./participantes/tiagoguerreirodev-go) | ok | 1 |
 | [tiagoguerreirodev-python](./participantes/tiagoguerreirodev-python) | ok | 2 |
-| [tiagorconceicao-node](./participantes/tiagorconceicao-node) | ok | 7 |
+| [tiagorconceicao-node](./participantes/tiagorconceicao-node) | ok | 6 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
 | [tonico](./participantes/tonico) | ok | 80 |
 | [tortuga](./participantes/tortuga) | ok | 4 |
