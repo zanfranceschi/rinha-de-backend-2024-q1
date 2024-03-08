@@ -5,7 +5,8 @@ networks:
 
 services:
   api01:
-    image: hfurlan/rinha-backend-2024-q1:1.0.0-java
+    image: hfurlan/rinha-backend-2024-q1:1.1.0-java
+    #image: rinha-backend-2024-q1-java
     hostname: api01
     environment:
       - DB_HOSTNAME=db
@@ -26,11 +27,12 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "3.5"
+          cpus: "0.35"
           memory: "100MB"
 
   api02:
-    image: hfurlan/rinha-backend-2024-q1:1.0.0-java
+    image: hfurlan/rinha-backend-2024-q1:1.1.0-java
+    #image: rinha-backend-2024-q1-java
     hostname: api02
     environment:
       - DB_HOSTNAME=db
@@ -50,7 +52,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "3.5"
+          cpus: "0.35"
           memory: "100MB"
  
   nginx:
@@ -96,6 +98,20 @@ services:
           cpus: "0.5"
           memory: "300MB"
 
+  # pgadmin:
+  #   container_name: pgadmin4_container
+  #   image: dpage/pgadmin4
+  #   restart: always
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@admin.com
+  #     PGADMIN_DEFAULT_PASSWORD: root
+  #   ports:
+  #     - "5050:80"
+  #   networks:
+  #     - rinha-network
+  #   volumes:
+  #     - pgadmin-data:/var/lib/pgadmin
+
 # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
 # A edição anterior se beneficiou do modo host pois o volume de requisições
 # era relativamente alto e a virtualização da rede se tornou um gargalo, mas
@@ -106,3 +122,6 @@ services:
 #   default:
 #     driver: bridge
 #     name: rinha-nginx-2024q1
+
+# volumes:
+#   pgadmin-data:

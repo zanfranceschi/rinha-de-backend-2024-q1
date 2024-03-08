@@ -7,7 +7,8 @@ services:
     environment:
       - PORT=3000
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -27,6 +28,11 @@ services:
       POSTGRES_DB: db
     volumes:
       - ./conf/postgres/:/docker-entrypoint-initdb.d/
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     deploy:
       resources:
         limits:

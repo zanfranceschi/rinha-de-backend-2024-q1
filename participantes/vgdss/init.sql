@@ -14,7 +14,7 @@ CREATE UNLOGGED TABLE transacoes (
     CONSTRAINT fk_cliente_transacoes FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
 
-CREATE INDEX idx_transacoes_cliente_id_realizada_em ON transacoes(cliente_id, realizada_em DESC);
+CREATE INDEX idx_transacoes_cliente_id_id_desc ON transacoes (cliente_id, id DESC);
 
 INSERT INTO clientes (id, limite, saldo) VALUES
 (1, 100000, 0),
