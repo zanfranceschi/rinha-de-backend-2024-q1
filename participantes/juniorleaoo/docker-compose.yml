@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   api1: &api
-    image: juniorleaoo/rinha-http4k-native:latest
+    image: juniorleaoo/rinha-http4k-native:1
     hostname: api1
     platform: linux/amd64
     depends_on:
@@ -12,7 +12,7 @@ services:
       - DATASOURCE_URL=jdbc:postgresql://db:5432/app
       - DATASOURCE_USERNAME=admin
       - DATASOURCE_PASSWORD=123456
-      - MAX_CONNECTION_POOL_SIZE=100
+      - MAX_CONNECTION_POOL_SIZE=50
       - SERVER_PORT=3000
     networks:
       - rinha
@@ -45,7 +45,7 @@ services:
 
   db:
     image: postgres:16.2-alpine
-    command: 'postgres -c synchronous_commit=off -c max_connections=250 -c fsync=off -c full_page_writes=off'
+    command: 'postgres -c synchronous_commit=off -c max_connections=110 -c fsync=off -c full_page_writes=off'
     hostname: db
     environment:
       - POSTGRES_DB=app
