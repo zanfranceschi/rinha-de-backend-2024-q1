@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Thu Mar  7 20:35:39 UTC 2024** com **552** submissões.
+Atualizada **Fri Mar  8 12:07:09 UTC 2024** com **560** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -121,6 +121,7 @@ Atualizada **Thu Mar  7 20:35:39 UTC 2024** com **552** submissões.
 | [daniloflorenzano](./participantes/daniloflorenzano) | ok | 4 |
 | [daniloraisi](./participantes/daniloraisi) | ok | 2 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
+| [davi-figs-python](./participantes/davi-figs-python) | falha - [logs](./participantes/davi-figs-python/docker-compose.logs) | -- |
 | [david-silva](./participantes/david-silva) | ok | 2 |
 | [ddanielsantos](./participantes/ddanielsantos) | ok | 3 |
 | [ddanielvaz-cpp-qt](./participantes/ddanielvaz-cpp-qt) | ok | 4 |
@@ -158,6 +159,7 @@ Atualizada **Thu Mar  7 20:35:39 UTC 2024** com **552** submissões.
 | [elioenaiferrari](./participantes/elioenaiferrari) | falha - [logs](./participantes/elioenaiferrari/docker-compose.logs) | -- |
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) | -- |
 | [emanuel-ac-iroot-tech](./participantes/emanuel-ac-iroot-tech) | ok | 4510 |
+| [emanuel-xavier-rust](./participantes/emanuel-xavier-rust) | falha - [logs](./participantes/emanuel-xavier-rust/docker-compose.logs) | -- |
 | [emanuel-xavier](./participantes/emanuel-xavier) | ok | 2 |
 | [emiliosheinz-fumegalli-node](./participantes/emiliosheinz-fumegalli-node) | ok | 4 |
 | [engylemure](./participantes/engylemure) | ok | 3 |
@@ -390,6 +392,7 @@ Atualizada **Thu Mar  7 20:35:39 UTC 2024** com **552** submissões.
 | [maxel-uds](./participantes/maxel-uds) | ok | 7 |
 | [maxwell-fs](./participantes/maxwell-fs) | ok | 0 |
 | [maxwell](./participantes/maxwell) | ok | 1 |
+| [mdssjc-springboot-java](./participantes/mdssjc-springboot-java) | ok | 5 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [mgenteluci](./participantes/mgenteluci) | ok | 2 |
 | [michaelalves204](./participantes/michaelalves204) | ok | 8 |
@@ -400,7 +403,7 @@ Atualizada **Thu Mar  7 20:35:39 UTC 2024** com **552** submissões.
 | [nathanbahiadev__golang](./participantes/nathanbahiadev__golang) | ok | 1 |
 | [nathanbahiadev__python](./participantes/nathanbahiadev__python) | ok | 2 |
 | [nathanbahiadev__typescript](./participantes/nathanbahiadev__typescript) | ok | 1 |
-| [navarro](./participantes/navarro) | ok | 3 |
+| [navarro](./participantes/navarro) | ok | 1 |
 | [newton](./participantes/newton) | ok | 3 |
 | [nicolasmmb-dart](./participantes/nicolasmmb-dart) | ok | 3 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
@@ -416,6 +419,7 @@ Atualizada **Thu Mar  7 20:35:39 UTC 2024** com **552** submissões.
 | [omurilo](./participantes/omurilo) | ok | 2 |
 | [oneabrante](./participantes/oneabrante) | ok | 2 |
 | [otonielsilva](./participantes/otonielsilva) | ok | 2 |
+| [paulo_sergio](./participantes/paulo_sergio) | ok | 5 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
 | [paulohenriquesn-python](./participantes/paulohenriquesn-python) | ok | 3 |
 | [pedro-azevedo-e-matheus-gomes-nodejs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs) | falha - [logs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs/docker-compose.logs) | -- |
@@ -436,6 +440,7 @@ Atualizada **Thu Mar  7 20:35:39 UTC 2024** com **552** submissões.
 | [rafaelpadovezi](./participantes/rafaelpadovezi) | ok | 5 |
 | [rafaelrcamargo](./participantes/rafaelrcamargo) | ok | 1 |
 | [rafaeltorquato-saitama](./participantes/rafaeltorquato-saitama) | ok | 1 |
+| [rafaqwe1](./participantes/rafaqwe1) | ok | 6 |
 | [raiane-dev](./participantes/raiane-dev) | ok | 2 |
 | [raissadev](./participantes/raissadev) | ok | 2 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
@@ -488,10 +493,12 @@ Atualizada **Thu Mar  7 20:35:39 UTC 2024** com **552** submissões.
 | [santannaf_web_go_unlogged](./participantes/santannaf_web_go_unlogged) | ok | 2 |
 | [santannaf_webflux](./participantes/santannaf_webflux) | ok | 3 |
 | [santannaf_webflux_wu](./participantes/santannaf_webflux_wu) | ok | 5 |
+| [sergipebackend-java](./participantes/sergipebackend-java) | ok | 2 |
 | [silmar-alberti-franken-php](./participantes/silmar-alberti-franken-php) | ok | 2 |
 | [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
 | [stefannovasky-kitajs](./participantes/stefannovasky-kitajs) | ok | 2 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
+| [sudo-victor-js](./participantes/sudo-victor-js) | ok | 4981 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [tagliatti](./participantes/tagliatti) | ok | 4 |
 | [thiagodamas-go-swagger-sqlc-postgres](./participantes/thiagodamas-go-swagger-sqlc-postgres) | ok | 5 |
@@ -511,7 +518,7 @@ Atualizada **Thu Mar  7 20:35:39 UTC 2024** com **552** submissões.
 | [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
-| [vgdss](./participantes/vgdss) | ok | 95 |
+| [vgdss](./participantes/vgdss) | ok | 175 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-132](./participantes/victor-132) | ok | 2 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
@@ -523,6 +530,7 @@ Atualizada **Thu Mar  7 20:35:39 UTC 2024** com **552** submissões.
 | [vifonsec4-nginx](./participantes/vifonsec4-nginx) | ok | 1 |
 | [vineboneto-go](./participantes/vineboneto-go) | falha - [logs](./participantes/vineboneto-go/docker-compose.logs) | -- |
 | [vineboneto-js](./participantes/vineboneto-js) | ok | 1 |
+| [vinicius-golang](./participantes/vinicius-golang) | falha - [logs](./participantes/vinicius-golang/docker-compose.logs) | -- |
 | [vinicius-julio](./participantes/vinicius-julio) | ok | 2 |
 | [viniciusamc-golang](./participantes/viniciusamc-golang) | ok | 3 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
