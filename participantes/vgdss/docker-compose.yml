@@ -2,7 +2,7 @@ version: "3.5"
 
 x-db-connection-settings: &db-connection-settings
   CREBITO_DB__uri: "postgresql+asyncpg://user:password@127.0.0.1/crebito"
-  CREBITO_DB__pool_size: 10
+  CREBITO_DB__pool_size: 15
   CREBITO_DB__max_overflow: 5
   CREBITO_DB__pool_timeout: 60
   CREBITO_DB__pool_recycle: 1800
@@ -31,7 +31,7 @@ services:
       resources:
         limits:
           cpus: "0.45"
-          memory: "90MB"
+          memory: "100MB"
     healthcheck:
       <<: *default-healthcheck
       test: ["CMD-SHELL", "curl -f http://127.0.0.1:8001/clientes/1/extrato || exit 1"]
@@ -90,7 +90,7 @@ services:
       resources:
         limits:
           cpus: "0.4"
-          memory: "320MB"
+          memory: "300MB"
     healthcheck:
       <<: *default-healthcheck
       test: ["CMD", "pg_isready", "-U", "user", "-d", "crebito","-h", "127.0.0.1", "-p", "5432"]
