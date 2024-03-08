@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  8 22:47:15 UTC 2024** com **579** submissões.
+Atualizada **Fri Mar  8 23:11:13 UTC 2024** com **581** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -176,6 +176,7 @@ Atualizada **Fri Mar  8 22:47:15 UTC 2024** com **579** submissões.
 | [erickreis](./participantes/erickreis) | ok | 3 |
 | [eriksilva](./participantes/eriksilva) | ok | 1 |
 | [eu_fountai](./participantes/eu_fountai) | ok | 2 |
+| [eugenio-cunha](./participantes/eugenio-cunha) | falha - [logs](./participantes/eugenio-cunha/docker-compose.logs) | -- |
 | [exemplo](./participantes/exemplo) | ok | 2 |
 | [fabianoaono-java](./participantes/fabianoaono-java) | ok | 1 |
 | [fabianoflorentino](./participantes/fabianoflorentino) | ok | 7 |
@@ -312,7 +313,7 @@ Atualizada **Fri Mar  8 22:47:15 UTC 2024** com **579** submissões.
 | [julianojj](./participantes/julianojj) | ok | 7 |
 | [julioriffel-django](./participantes/julioriffel-django) | ok | 6 |
 | [juliorovesta](./participantes/juliorovesta) | ok | 1 |
-| [juliotsutsui-node](./participantes/juliotsutsui-node) | falha - [logs](./participantes/juliotsutsui-node/docker-compose.logs) | -- |
+| [juliotsutsui-node](./participantes/juliotsutsui-node) | ok | 4 |
 | [juniorleaoo](./participantes/juniorleaoo) | ok | 2 |
 | [juniorzucareli-dotnet](./participantes/juniorzucareli-dotnet) | ok | 1 |
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 1861 |
@@ -412,6 +413,7 @@ Atualizada **Fri Mar  8 22:47:15 UTC 2024** com **579** submissões.
 | [michaelalves204](./participantes/michaelalves204) | ok | 8 |
 | [mikaelsouza](./participantes/mikaelsouza) | ok | 4 |
 | [mourishitz-nest-js](./participantes/mourishitz-nest-js) | ok | 1 |
+| [mpupolv-python](./participantes/mpupolv-python) | ok | 4 |
 | [murilochianfa](./participantes/murilochianfa) | ok | 1 |
 | [mvellasco](./participantes/mvellasco) | ok | 8 |
 | [my_way](./participantes/my_way) | ok | 23 |
@@ -535,7 +537,7 @@ Atualizada **Fri Mar  8 22:47:15 UTC 2024** com **579** submissões.
 | [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
-| [vgdss](./participantes/vgdss) | ok | 783 |
+| [vgdss](./participantes/vgdss) | ok | 1506 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-132](./participantes/victor-132) | ok | 2 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
