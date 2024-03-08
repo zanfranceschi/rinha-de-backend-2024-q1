@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  8 23:31:21 UTC 2024** com **581** submissões.
+Atualizada **Fri Mar  8 23:37:30 UTC 2024** com **582** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -341,6 +341,7 @@ Atualizada **Fri Mar  8 23:31:21 UTC 2024** com **581** submissões.
 | [leoralph](./participantes/leoralph) | ok | 2 |
 | [leosima_dotnet](./participantes/leosima_dotnet) | ok | 3 |
 | [lfsmariz-go](./participantes/lfsmariz-go) | ok | 2 |
+| [limaenz-dotnet](./participantes/limaenz-dotnet) | ok | 2 |
 | [lipe1994_dotnet](./participantes/lipe1994_dotnet) | ok | 4 |
 | [lipe1994_drogon](./participantes/lipe1994_drogon) | ok | 4 |
 | [lipe1994_spring](./participantes/lipe1994_spring) | ok | 1 |
