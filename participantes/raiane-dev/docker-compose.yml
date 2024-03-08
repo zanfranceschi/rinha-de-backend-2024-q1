@@ -1,0 +1,43 @@
+## Docker compose for production
+
+version: "3"
+services:
+
+  caddy:
+    image: caddy:2
+    container_name: caddy
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    depends_on:
+      - app
+      - app01
+    ports:
+      - 9999:9999
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "50MB"
+    network_mode: host
+    restart: always
+
+  app: &app
+    hostname: app
+    image: raianedev/rinha_api:1.0
+    volumes:
+      - ./database:/data
+    environment:
+      - SERVER_PORT=9990
+      - DEBUG=error
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "250MB"
+    network_mode: host
+
+  app01: 
+    <<: *app
+    hostname: app01
+    environment:
+      - SERVER_PORT=9991

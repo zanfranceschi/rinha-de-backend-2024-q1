@@ -5,7 +5,7 @@ services:
     image: matheusfbosa/rinha-de-backend-2024-q1-poc:latest
     hostname: api01
     environment:
-      - DB_URL=postgres://postgres:password@db:5432/rinha?sslmode=disable
+      - DB_URL=postgres://postgres:password@db:5432/rinha?pool_max_conns=6&pool_min_conns=6&pool_max_conn_lifetime=330s
       - SERVER_PORT=:3000
     ports:
       - "3001:3000"
@@ -15,8 +15,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.35"
-          memory: "150MB"
+          cpus: "0.2"
+          memory: "30MB"
 
   api02:
     <<: *api
@@ -25,7 +25,7 @@ services:
       - "3002:3000"
 
   nginx:
-    image: nginx:latest
+    image: nginx:1.25.3
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
@@ -36,7 +36,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.3"
+          cpus: "0.1"
           memory: "50MB"
 
   db:
@@ -55,13 +55,14 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "200MB"
+          cpus: "1"
+          memory: "440MB"
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 10s
       timeout: 5s
       retries: 5
+    command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'
 
 networks:
   default:

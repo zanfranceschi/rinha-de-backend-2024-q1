@@ -10,7 +10,7 @@ services:
       - PHX_HOST=api01
       - SECRET_KEY_BASE="vnbnYw4N0WzDuQieEpv0tzaZCAGfNOzk/M+naf87PNX3yd2fM4COTizm3yVwwHh7"
       - DATABASE_URL=postgres://postgres:postgres@db:5432/rinha_backend
-      - ERL_MAX_PORTS=512
+      - ERL_MAX_PORTS=1024
     depends_on:
       db:
         condition: service_healthy
@@ -30,7 +30,7 @@ services:
       - PHX_HOST=api02
       - SECRET_KEY_BASE="yd5mZeRqTh7KqzvBGTPIaN9yuIRoeQuqeeQCJKe8pqAXakf1p4zugNYfUGjp32C+"
       - DATABASE_URL=postgres://postgres:postgres@db:5432/rinha_backend
-      - ERL_MAX_PORTS=512
+      - ERL_MAX_PORTS=1024
 
   nginx:
     image: nginx:latest
@@ -61,13 +61,14 @@ services:
         limits:
           cpus: "0.80"
           memory: "200MB"
-    command: postgres -c max_connections=100 -c effective_io_concurrency=100
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres -d rinha_backend" ]
       interval: 3s
-      timeout: 1s
+      timeout: 2s
       retries: 10
 
 networks:

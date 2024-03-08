@@ -10,7 +10,7 @@ docker-compose up -d
 ```
 
 ## 💻 Tecnologias utilizadas
-- [`Nginx`](https://www.nginx.com/) (load balancer)
+- [`Haproxy`](https://www.haproxy.org/) (load balancer)
 - [`Postgres`](https://www.postgresql.org/) (banco de dados)
 - [`php`](https://www.php.net/) (linguagem)
 - [`Frankenphp`](https://frankenphp.dev/) (application server)
@@ -23,3 +23,4 @@ docker-compose up -d
 
 [![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/silmar-alberti/)
 [![github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/silmar-alberti)
+[![Site](https://img.shields.io/badge/Site%20Pessoal-8A2BE2/?style=for-the-badge&color=blue)](https://dev.silmaralberti.com.br)

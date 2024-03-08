@@ -1,5 +1,3 @@
- Network rinha-nginx-2024q1  Creating
- Network rinha-nginx-2024q1  Created
  Container rinha-db  Creating
  Container rinha-db  Created
  Container rinha-api-02  Creating
@@ -26,22 +24,6 @@ rinha-db          | selecting default shared_buffers ... 128MB
 rinha-db          | selecting default time zone ... Etc/UTC
 rinha-db          | creating configuration files ... ok
 rinha-db          | running bootstrap script ... ok
-rinha-api-01      | Traceback (most recent call last):
-rinha-api-01      |   File "/app/app.py", line 2, in <module>
-rinha-api-01      |     from src.routes import client_operations_blueprint
-rinha-api-01      |   File "/app/src/routes.py", line 2, in <module>
-rinha-api-01      |     from .controllers import make_transaction_controller, get_statement_controller
-rinha-api-01      |   File "/app/src/controllers.py", line 4, in <module>
-rinha-api-01      |     from .database import database_connection
-rinha-api-01      |   File "/app/src/database.py", line 7, in <module>
-rinha-api-01      |     database_connection = psycopg2.connect(
-rinha-api-01      |                           ^^^^^^^^^^^^^^^^^
-rinha-api-01      |   File "/usr/local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
-rinha-api-01      |     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
-rinha-api-01      |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-rinha-api-01      | psycopg2.OperationalError: connection to server at "rinha-db" (172.22.0.2), port 5432 failed: Connection refused
-rinha-api-01      | 	Is the server running on that host and accepting TCP/IP connections?
-rinha-api-01      | 
 nginx-rinha-2024  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-rinha-2024  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-rinha-2024  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -52,22 +34,42 @@ nginx-rinha-2024  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-env
 nginx-rinha-2024  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-rinha-2024  | /docker-entrypoint.sh: Configuration complete; ready for start up
 rinha-api-02      | Traceback (most recent call last):
-rinha-api-02      |   File "/app/app.py", line 2, in <module>
+rinha-api-02      |   File "/app/app.py", line 3, in <module>
 rinha-api-02      |     from src.routes import client_operations_blueprint
 rinha-api-02      |   File "/app/src/routes.py", line 2, in <module>
 rinha-api-02      |     from .controllers import make_transaction_controller, get_statement_controller
-rinha-api-02      |   File "/app/src/controllers.py", line 4, in <module>
+rinha-api-02      |   File "/app/src/controllers.py", line 3, in <module>
 rinha-api-02      |     from .database import database_connection
-rinha-api-02      |   File "/app/src/database.py", line 7, in <module>
+rinha-api-02      |   File "/app/src/database.py", line 4, in <module>
 rinha-api-02      |     database_connection = psycopg2.connect(
 rinha-api-02      |                           ^^^^^^^^^^^^^^^^^
 rinha-api-02      |   File "/usr/local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
 rinha-api-02      |     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+rinha-api-01      | Traceback (most recent call last):
+rinha-api-01      |   File "/app/app.py", line 3, in <module>
+rinha-api-01      |     from src.routes import client_operations_blueprint
+rinha-api-01      |   File "/app/src/routes.py", line 2, in <module>
+rinha-api-01      |     from .controllers import make_transaction_controller, get_statement_controller
+rinha-api-01      |   File "/app/src/controllers.py", line 3, in <module>
 rinha-api-02      |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-rinha-api-02      | psycopg2.OperationalError: connection to server at "rinha-db" (172.22.0.2), port 5432 failed: Connection refused
+rinha-api-02      | psycopg2.OperationalError: connection to server at "localhost" (127.0.0.1), port 12345 failed: Connection refused
 rinha-api-02      | 	Is the server running on that host and accepting TCP/IP connections?
 rinha-api-02      | 
+rinha-api-01      |     from .database import database_connection
+rinha-api-01      |   File "/app/src/database.py", line 4, in <module>
+rinha-api-01      |     database_connection = psycopg2.connect(
+rinha-api-01      |                           ^^^^^^^^^^^^^^^^^
+rinha-api-01      |   File "/usr/local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+rinha-api-01      |     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+rinha-api-01      |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+rinha-api-01      | psycopg2.OperationalError: connection to server at "localhost" (127.0.0.1), port 12345 failed: Connection refused
+rinha-api-01      | 	Is the server running on that host and accepting TCP/IP connections?
+rinha-api-01      | 
 rinha-db          | performing post-bootstrap initialization ... ok
+rinha-api-02 exited with code 0
+rinha-api-01 exited with code 0
+rinha-db          | initdb: warning: enabling "trust" authentication for local connections
+rinha-db          | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 rinha-db          | syncing data to disk ... ok
 rinha-db          | 
 rinha-db          | 
@@ -75,426 +77,90 @@ rinha-db          | Success. You can now start the database server using:
 rinha-db          | 
 rinha-db          |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 rinha-db          | 
-rinha-db          | initdb: warning: enabling "trust" authentication for local connections
-rinha-db          | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-rinha-db          | waiting for server to start....2024-02-19 08:19:05.738 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-rinha-db          | 2024-02-19 08:19:05.742 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-rinha-db          | 2024-02-19 08:19:05.788 UTC [51] LOG:  database system was shut down at 2024-02-19 08:19:04 UTC
-rinha-db          | 2024-02-19 08:19:05.799 UTC [48] LOG:  database system is ready to accept connections
+rinha-db          | waiting for server to start....2024-02-24 22:02:53.714 UTC [48] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+rinha-db          | 2024-02-24 22:02:53.717 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.12345"
+rinha-db          | 2024-02-24 22:02:53.727 UTC [51] LOG:  database system was shut down at 2024-02-24 22:02:53 UTC
+rinha-db          | 2024-02-24 22:02:53.734 UTC [48] LOG:  database system is ready to accept connections
 rinha-db          |  done
 rinha-db          | server started
 rinha-db          | CREATE DATABASE
 rinha-db          | 
 rinha-db          | 
 rinha-db          | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
-rinha-api-01 exited with code 0
 rinha-db          | CREATE TABLE
-rinha-api-02 exited with code 0
 rinha-db          | CREATE TABLE
 rinha-db          | INSERT 0 5
 rinha-db          | 
 rinha-db          | 
-rinha-db          | waiting for server to shut down...2024-02-19 08:19:06.070 UTC [48] LOG:  received fast shutdown request
-rinha-db          | .2024-02-19 08:19:06.074 UTC [48] LOG:  aborting any active transactions
-rinha-db          | 2024-02-19 08:19:06.076 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-rinha-db          | 2024-02-19 08:19:06.114 UTC [49] LOG:  shutting down
-rinha-db          | 2024-02-19 08:19:06.118 UTC [49] LOG:  checkpoint starting: shutdown immediate
-nginx-rinha-2024  | 2024/02/19 08:19:06 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.22.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.22.0.3:3000/clientes/1/extrato", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:06 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.22.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.22.0.4:3000/clientes/1/extrato", host: "localhost:9999"
-rinha-api-01      | Traceback (most recent call last):
-rinha-api-01      |   File "/app/app.py", line 2, in <module>
-rinha-api-01      |     from src.routes import client_operations_blueprint
-rinha-api-01      |   File "/app/src/routes.py", line 2, in <module>
-rinha-api-01      |     from .controllers import make_transaction_controller, get_statement_controller
-rinha-api-01      |   File "/app/src/controllers.py", line 4, in <module>
-rinha-api-01      |     from .database import database_connection
-rinha-api-01      |   File "/app/src/database.py", line 7, in <module>
-rinha-api-01      |     database_connection = psycopg2.connect(
-rinha-api-01      |                           ^^^^^^^^^^^^^^^^^
-rinha-api-01      |   File "/usr/local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
-rinha-api-01      |     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
-rinha-api-01      |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-rinha-api-01      | psycopg2.OperationalError: connection to server at "rinha-db" (172.22.0.2), port 5432 failed: Connection refused
-rinha-api-01      | 	Is the server running on that host and accepting TCP/IP connections?
-rinha-api-01      | 
+rinha-db          | waiting for server to shut down...2024-02-24 22:02:54.028 UTC [48] LOG:  received fast shutdown request
+rinha-db          | .2024-02-24 22:02:54.030 UTC [48] LOG:  aborting any active transactions
+rinha-db          | 2024-02-24 22:02:54.033 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+rinha-db          | 2024-02-24 22:02:54.034 UTC [49] LOG:  shutting down
+rinha-db          | 2024-02-24 22:02:54.036 UTC [49] LOG:  checkpoint starting: shutdown immediate
 rinha-api-02      | Traceback (most recent call last):
-rinha-api-02      |   File "/app/app.py", line 2, in <module>
+rinha-api-02      |   File "/app/app.py", line 3, in <module>
 rinha-api-02      |     from src.routes import client_operations_blueprint
 rinha-api-02      |   File "/app/src/routes.py", line 2, in <module>
 rinha-api-02      |     from .controllers import make_transaction_controller, get_statement_controller
-rinha-api-02      |   File "/app/src/controllers.py", line 4, in <module>
+rinha-api-02      |   File "/app/src/controllers.py", line 3, in <module>
 rinha-api-02      |     from .database import database_connection
-rinha-api-02      |   File "/app/src/database.py", line 7, in <module>
+rinha-api-02      |   File "/app/src/database.py", line 4, in <module>
 rinha-api-02      |     database_connection = psycopg2.connect(
 rinha-api-02      |                           ^^^^^^^^^^^^^^^^^
 rinha-api-02      |   File "/usr/local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
 rinha-api-02      |     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
 rinha-api-02      |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-rinha-api-02      | psycopg2.OperationalError: connection to server at "rinha-db" (172.22.0.2), port 5432 failed: Connection refused
+rinha-api-02      | psycopg2.OperationalError: connection to server at "localhost" (127.0.0.1), port 12345 failed: Connection refused
 rinha-api-02      | 	Is the server running on that host and accepting TCP/IP connections?
 rinha-api-02      | 
-rinha-db          | 2024-02-19 08:19:06.626 UTC [49] LOG:  checkpoint complete: wrote 939 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.395 s, sync=0.102 s, total=0.513 s; sync files=313, longest=0.059 s, average=0.001 s; distance=4290 kB, estimate=4290 kB; lsn=0/191B3E8, redo lsn=0/191B3E8
-rinha-db          | 2024-02-19 08:19:06.632 UTC [48] LOG:  database system is shut down
+rinha-api-01      | Traceback (most recent call last):
+rinha-api-01      |   File "/app/app.py", line 3, in <module>
+rinha-api-01      |     from src.routes import client_operations_blueprint
+rinha-api-01      |   File "/app/src/routes.py", line 2, in <module>
+rinha-api-01      |     from .controllers import make_transaction_controller, get_statement_controller
+rinha-api-01      |   File "/app/src/controllers.py", line 3, in <module>
+rinha-api-01      |     from .database import database_connection
+rinha-api-01      |   File "/app/src/database.py", line 4, in <module>
+rinha-api-01      |     database_connection = psycopg2.connect(
+rinha-api-01      |                           ^^^^^^^^^^^^^^^^^
+rinha-api-01      |   File "/usr/local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+rinha-api-01      |     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+rinha-api-01      |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+rinha-api-01      | psycopg2.OperationalError: connection to server at "localhost" (127.0.0.1), port 12345 failed: Connection refused
+rinha-api-01      | 	Is the server running on that host and accepting TCP/IP connections?
+rinha-api-01      | 
+rinha-db          | .2024-02-24 22:02:55.317 UTC [49] LOG:  checkpoint complete: wrote 938 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.557 s, sync=0.715 s, total=1.284 s; sync files=307, longest=0.254 s, average=0.003 s; distance=4291 kB, estimate=4291 kB; lsn=0/191B758, redo lsn=0/191B758
+rinha-db          | 2024-02-24 22:02:55.323 UTC [48] LOG:  database system is shut down
+rinha-api-02 exited with code 0
 rinha-db          |  done
 rinha-db          | server stopped
 rinha-db          | 
 rinha-db          | PostgreSQL init process complete; ready for start up.
 rinha-db          | 
-rinha-db          | 2024-02-19 08:19:06.697 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-rinha-db          | 2024-02-19 08:19:06.698 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-rinha-db          | 2024-02-19 08:19:06.698 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-rinha-db          | 2024-02-19 08:19:06.704 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-rinha-db          | 2024-02-19 08:19:06.714 UTC [66] LOG:  database system was shut down at 2024-02-19 08:19:06 UTC
-rinha-db          | 2024-02-19 08:19:06.720 UTC [1] LOG:  database system is ready to accept connections
+rinha-db          | 2024-02-24 22:02:55.355 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+rinha-db          | 2024-02-24 22:02:55.355 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 12345
+rinha-db          | 2024-02-24 22:02:55.355 UTC [1] LOG:  listening on IPv6 address "::", port 12345
+rinha-db          | 2024-02-24 22:02:55.361 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.12345"
+rinha-db          | 2024-02-24 22:02:55.368 UTC [66] LOG:  database system was shut down at 2024-02-24 22:02:55 UTC
+rinha-db          | 2024-02-24 22:02:55.377 UTC [1] LOG:  database system is ready to accept connections
 rinha-api-01 exited with code 0
-rinha-api-02 exited with code 0
-nginx-rinha-2024  | 2024/02/19 08:19:08 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 172.22.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.22.0.3:3000/clientes/1/extrato", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:08 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 172.22.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.22.0.4:3000/clientes/1/extrato", host: "localhost:9999"
-rinha-api-01      |  * Serving Flask app 'app'
-rinha-api-01      |  * Debug mode: off
-rinha-api-01      | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
-rinha-api-01      |  * Running on all addresses (0.0.0.0)
-rinha-api-01      |  * Running on http://127.0.0.1:3000
-rinha-api-01      |  * Running on http://172.22.0.3:3000
-rinha-api-01      | [33mPress CTRL+C to quit[0m
 rinha-api-02      |  * Serving Flask app 'app'
 rinha-api-02      |  * Debug mode: off
-rinha-api-02      | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
-rinha-api-02      |  * Running on all addresses (0.0.0.0)
-rinha-api-02      |  * Running on http://127.0.0.1:3000
-rinha-api-02      |  * Running on http://172.22.0.4:3000
-rinha-api-02      | [33mPress CTRL+C to quit[0m
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:10] "GET /clientes/1/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:10] "GET /clientes/1/extrato HTTP/1.0" 200 -
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *11 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *12 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *19 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *21 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *20 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *17 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *18 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 30#30: *23 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 30#30: *24 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *26 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *25 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *30 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 30#30: *27 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 30#30: *28 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *15 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *16 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 29#29: *29 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 30#30: *34 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 30#30: *35 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 30#30: *31 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 30#30: *33 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:15 [error] 30#30: *32 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:16 [error] 30#30: *36 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:17 [error] 30#30: *38 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:17 [error] 30#30: *39 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:17 [error] 30#30: *44 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:17 [error] 30#30: *43 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:17 [error] 30#30: *42 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:17 [error] 30#30: *40 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:17] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:18] "GET /clientes/1/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[33mGET /clientes/6/extrato HTTP/1.0[0m" 404 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/4/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/1/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/5/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/3/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/2/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/2/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/5/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/4/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/3/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/1/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/2/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/5/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/1/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/4/extrato HTTP/1.0" 200 -
-nginx-rinha-2024  | 2024/02/19 08:19:19 [error] 30#30: *134 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "GET /clientes/3/extrato HTTP/1.1", upstream: "http://api/clientes/3/extrato", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:19 [error] 30#30: *135 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "GET /clientes/3/extrato HTTP/1.1", upstream: "http://api/clientes/3/extrato", host: "localhost:9999"
-nginx-rinha-2024  | 2024/02/19 08:19:19 [error] 30#30: *136 no live upstreams while connecting to upstream, client: 172.22.0.1, server: , request: "GET /clientes/3/extrato HTTP/1.1", upstream: "http://api/clientes/3/extrato", host: "localhost:9999"
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/1/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/1/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/5/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/3/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/2/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/5/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/1/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/5/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/4/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/2/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/4/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/2/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "GET /clientes/4/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/4/transacoes HTTP/1.0[0m" 422 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/2/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/3/transacoes HTTP/1.0[0m" 422 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/2/transacoes HTTP/1.0[0m" 422 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/4/transacoes HTTP/1.0[0m" 422 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/3/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/5/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 422 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/4/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/2/transacoes HTTP/1.0[0m" 422 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/3/transacoes HTTP/1.0[0m" 422 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/2/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/5/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/4/transacoes HTTP/1.0[0m" 422 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/5/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/2/transacoes HTTP/1.0[0m" 422 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/4/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/3/transacoes HTTP/1.0[0m" 422 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/5/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/3/transacoes HTTP/1.0[0m" 422 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/1/transacoes HTTP/1.0[0m" 422 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:19] "[31m[1mPOST /clientes/5/transacoes HTTP/1.0[0m" 422 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:20] "GET /clientes/3/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:20] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:20] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:21] "GET /clientes/3/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:21] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:21] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:21] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:21] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:21] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:22] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:22] "GET /clientes/4/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:22] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:22] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:22] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:22] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:22] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:22] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:22] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:23] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:23] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:23] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:23] "GET /clientes/4/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:23] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:23] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:23] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:23] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:23] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:23] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:23] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:23] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "GET /clientes/5/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:24] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "GET /clientes/2/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "GET /clientes/5/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:25] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "GET /clientes/3/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:26] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "GET /clientes/5/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "GET /clientes/2/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:27] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "GET /clientes/1/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "GET /clientes/3/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:28] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "GET /clientes/5/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:29] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "GET /clientes/4/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "GET /clientes/5/extrato HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:30] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/2/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "GET /clientes/3/extrato HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/1/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/4/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/5/transacoes HTTP/1.0" 200 -
-rinha-api-01      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/3/transacoes HTTP/1.0" 200 -
-rinha-api-02      | 172.22.0.5 - - [19/Feb/2024 08:19:31] "POST /clientes/5/transacoes HTTP/1.0" 200 -
+rinha-api-01      |  * Serving Flask app 'app'
+rinha-api-01      |  * Debug mode: off
+nginx-rinha-2024 exited with code 0
+nginx-rinha-2024 exited with code 0
+rinha-db          | 2024-02-24 22:07:18.105 UTC [71] LOG:  unexpected EOF on client connection with an open transaction
+rinha-db          | 2024-02-24 22:07:18.111 UTC [70] LOG:  unexpected EOF on client connection with an open transaction
+rinha-api-01 exited with code 0
+rinha-api-02 exited with code 0
+rinha-api-02 exited with code 137
+rinha-api-01 exited with code 137
+rinha-db          | 2024-02-24 22:07:18.470 UTC [1] LOG:  received fast shutdown request
+rinha-db          | 2024-02-24 22:07:18.474 UTC [1] LOG:  aborting any active transactions
+rinha-db          | 2024-02-24 22:07:18.476 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+rinha-db          | 2024-02-24 22:07:18.476 UTC [64] LOG:  shutting down
+rinha-db          | 2024-02-24 22:07:18.479 UTC [64] LOG:  checkpoint starting: shutdown immediate
+rinha-db          | 2024-02-24 22:07:18.719 UTC [64] LOG:  checkpoint complete: wrote 608 buffers (3.7%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.015 s, sync=0.207 s, total=0.244 s; sync files=31, longest=0.171 s, average=0.007 s; distance=15506 kB, estimate=15506 kB; lsn=0/2840140, redo lsn=0/2840140
+rinha-db          | 2024-02-24 22:07:18.723 UTC [1] LOG:  database system is shut down
+rinha-db exited with code 0

@@ -1,11 +1,8 @@
  Container api01  Creating
- api01 Published ports are discarded when using host network mode 
  Container api01  Created
  Container api02  Creating
- api02 Published ports are discarded when using host network mode 
  Container api02  Created
  Container nginx  Creating
- nginx Published ports are discarded when using host network mode 
  Container nginx  Created
 Attaching to api01, api02, nginx
 nginx  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
@@ -18,58 +15,53 @@ nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-te
 nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx  | /docker-entrypoint.sh: Configuration complete; ready for start up
 api01  | 
-api01  | 02:19:01.445 [info] Running RinhaWeb.Router with Bandit 1.2.2 at 0.0.0.0:4000 (http)
+api01  | 22:16:14.717 [info] Running RinhaWeb.Router with Bandit 1.2.2 at 0.0.0.0:4000 (http)
+nginx  | 2024/03/06 22:16:17 [error] 29#29: *1 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://0.0.0.0:4000/clientes/1/extrato", host: "localhost:9999"
+nginx  | 2024/03/06 22:16:17 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://0.0.0.0:4001/clientes/1/extrato", host: "localhost:9999"
 api01  | 
-api01  | 02:19:03.826 [error] GenServer #PID<0.1577.0> terminating
-api01  | ** (Plug.Conn.WrapperError) ** (MatchError) no match of right hand side value: {:no_exists, :statement}
-api01  |     (rinha 0.1.0) lib/rinha_web/router.ex:59: anonymous fn/2 in RinhaWeb.Router.do_match/4
+api01  | 22:16:17.361 [error] GenServer #PID<0.1576.0> terminating
+api01  | ** (stop) {:aborted, {:no_exists, [:account, 1]}}
+api01  |     (mnesia 4.21.4.2) mnesia.erl:362: :mnesia.abort/1
+api01  |     (rinha 0.1.0) lib/rinha/accounts.ex:20: Rinha.Accounts.get_account/1
+api01  |     (rinha 0.1.0) lib/rinha_web/router.ex:39: anonymous fn/2 in RinhaWeb.Router.do_match/4
 api01  |     (rinha 0.1.0) deps/plug/lib/plug/router.ex:246: anonymous fn/4 in RinhaWeb.Router.dispatch/2
 api01  |     (telemetry 1.2.1) /app/deps/telemetry/src/telemetry.erl:321: :telemetry.span/3
 api01  |     (rinha 0.1.0) deps/plug/lib/plug/router.ex:242: RinhaWeb.Router.dispatch/2
 api01  |     (rinha 0.1.0) lib/rinha_web/router.ex:1: RinhaWeb.Router.plug_builder_call/2
 api01  |     (bandit 1.2.2) lib/bandit/pipeline.ex:103: Bandit.Pipeline.call_plug/2
-api01  |     (bandit 1.2.2) lib/bandit/pipeline.ex:24: Bandit.Pipeline.run/6
-api01  |     (bandit 1.2.2) lib/bandit/http1/handler.ex:33: Bandit.HTTP1.Handler.handle_data/3
 api01  | Last message: {:continue, :handle_connection}
 api01  | 
-api01  | 02:19:04.535 [info] [libcluster:gossip] connected to :api02@localhost
+api01  | 22:16:17.764 [info] [libcluster:gossip] connected to :api02@localhost
 api01  | 
-api01  | 02:19:04.536 [notice] Application mnesia exited: :stopped
+api01  | 22:16:17.765 [notice] Application mnesia exited: :stopped
 api02  | 
-api02  | 02:19:04.536 [notice] Application mnesia exited: :stopped
+api02  | 22:16:17.765 [notice] Application mnesia exited: :stopped
 api02  | 
-api02  | 02:19:04.539 [info] Running RinhaWeb.Router with Bandit 1.2.2 at 0.0.0.0:4001 (http)
+api02  | 22:16:17.766 [info] Running RinhaWeb.Router with Bandit 1.2.2 at 0.0.0.0:4001 (http)
 api01  | 
-api01  | 02:19:04.550 [info] schema has been created
+api01  | 22:16:17.779 [info] schema has been created
 api01  | 
-api01  | 02:19:04.736 [info] global: Name conflict terminating {Rinha.NodeMonitor, #PID<37037.1580.0>}
+api01  | 22:16:17.965 [info] global: Name conflict terminating {Rinha.NodeMonitor, #PID<37024.1579.0>}
 api01  | 
 api01  | 
-api01  | 02:19:04.869 [info] customers table has been created
+api01  | 22:16:18.103 [info] accounts table has been created
 api01  | 
-api01  | 02:19:04.877 [info] transactions table has been created
+api01  | 22:16:18.103 [info] tables have been cleared
 api01  | 
-api01  | 02:19:04.884 [info] transactions table has been created
-api01  | 
-api01  | 02:19:04.891 [info] transactions table has been created
-api01  | 
-api01  | 02:19:04.901 [info] transactions table has been created
-api01  | 
-api01  | 02:19:04.906 [info] transactions table has been created
-api01  | 
-api01  | 02:19:04.947 [info] statement table has been created
-api01  | 
-api01  | 02:19:04.948 [info] tables has been cleared
-api01  | 
-api01  | 02:19:04.949 [info] Seeds successfully executed
+api01  | 22:16:18.104 [info] Seeds successfully executed
+nginx  | 2024/03/06 22:16:19 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx  | 2024/03/06 22:16:21 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx  | 2024/03/06 22:16:23 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx  | 2024/03/06 22:16:25 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx  | 2024/03/06 22:16:27 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 nginx exited with code 0
 nginx exited with code 0
 api02  | 
-api02  | 02:23:18.832 [notice] SIGTERM received - shutting down
+api02  | 22:20:41.892 [notice] SIGTERM received - shutting down
 api02  | 
 api02 exited with code 0
 api02 exited with code 0
 api01  | 
-api01  | 02:23:20.140 [notice] SIGTERM received - shutting down
+api01  | 22:20:43.151 [notice] SIGTERM received - shutting down
 api01  | 
 api01 exited with code 0

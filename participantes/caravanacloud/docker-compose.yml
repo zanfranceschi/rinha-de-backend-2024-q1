@@ -1,9 +1,10 @@
 version: "3.9"
 
 services:
+
   api01:
     network_mode: host
-    image: caravanacloud/rinhadebackend-native:dev
+    image: caravanacloud/rinhadebackend-native:0.0.5-ea23
     hostname: api01
     container_name: api01
     depends_on:
@@ -14,23 +15,19 @@ services:
       interval: 2s
       retries: 10
     environment:
-      - RINHA_WARMUP_QUERY=SELECT pg_prewarm('transacoes'); SELECT pg_prewarm('clientes'); select * from transacoes limit 5; select * from clientes limit 5;
+      - RINHA_SHARD=0
       - QUARKUS_HTTP_PORT=9001
       - QUARKUS_BANNER_ENABLED=false
       - QUARKUS_HTTP_IDLE_TIMEOUT=45
-      - QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://127.0.0.1:5400/rinha
-      - QUARKUS_DATASOURCE_JDBC_INITIAL_SIZE=12
-      - QUARKUS_DATASOURCE_JDBC_MIN_SIZE=12
-      - QUARKUS_DATASOURCE_JDBC_MAX_SIZE=12
-      - QUARKUS_DATASOURCE_JDBC_TRANSACTIONS=disabled
-      - QUARKUS_DATASOURCE_JDBC_ACQUISITION_TIMEOUT=60
-      - QUARKUS_DATASOURCE_JDBC_BACKGROUND_VALIDATION_INTERVAL=0
+      - QUARKUS_DATASOURCE_REACTIVE_URL=postgresql://127.0.0.1:5400/rinha
+      - QUARKUS_DATASOURCE_REACTIVE_CACHE_PREPARED_STATEMENTS=true
+      - QUARKUS_DATASOURCE_REACTIVE_MAX_SIZE=5
       - QUARKUS_DATASOURCE_USERNAME=rinha
       - QUARKUS_DATASOURCE_PASSWORD=123
       - QUARKUS_MICROMETER_ENABLED=false
       - QUARKUS_LOG_LEVEL=ERROR
       - QUARKUS_LOG_CATEGORY__caravanacloud__LEVEL=INFO
-      - QUARKUS_LOG_CATEGORY__io.quarkus__LEVEL=DEBUG
+      - QUARKUS_LOG_CATEGORY__io.quarkus__LEVEL=INFO
       - QUARKUS_LOG_CATEGORY__org.postgresql__LEVEL=INFO
       - QUARKUS_LOG_CATEGORY__io.netty__LEVEL=INFO
       - QUARKUS_LOG_CATEGORY__io.vertx__LEVEL=INFO
@@ -46,12 +43,12 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.25"
-          memory: "80MB"
+          cpus: "0.40"
+          memory: "150MB"
 
   api02:
     network_mode: host
-    image: caravanacloud/rinhadebackend-native:dev
+    image: caravanacloud/rinhadebackend-native:0.0.5-ea23
     hostname: api02
     container_name: api02
     depends_on:
@@ -62,23 +59,18 @@ services:
       interval: 2s
       retries: 10
     environment:
-      - RINHA_WARMUP_QUERY=SELECT pg_prewarm('transacoes'); SELECT pg_prewarm('clientes'); select * from transacoes limit 5; select * from clientes limit 5;
+      - RINHA_SHARD=1
       - QUARKUS_HTTP_PORT=9002
       - QUARKUS_BANNER_ENABLED=false
       - QUARKUS_HTTP_IDLE_TIMEOUT=45
-      - QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://127.0.0.1:5400/rinha
-      - QUARKUS_DATASOURCE_JDBC_INITIAL_SIZE=12
-      - QUARKUS_DATASOURCE_JDBC_MIN_SIZE=12
-      - QUARKUS_DATASOURCE_JDBC_MAX_SIZE=12
-      - QUARKUS_DATASOURCE_JDBC_TRANSACTIONS=disabled
-      - QUARKUS_DATASOURCE_JDBC_ACQUISITION_TIMEOUT=60
-      - QUARKUS_DATASOURCE_JDBC_BACKGROUND_VALIDATION_INTERVAL=0
+      - QUARKUS_DATASOURCE_REACTIVE_URL=postgresql://127.0.0.1:5400/rinha
+      - QUARKUS_DATASOURCE_REACTIVE_CACHE_PREPARED_STATEMENTS=true
+      - QUARKUS_DATASOURCE_REACTIVE_MAX_SIZE=5
       - QUARKUS_DATASOURCE_USERNAME=rinha
       - QUARKUS_DATASOURCE_PASSWORD=123
       - QUARKUS_MICROMETER_ENABLED=false
-      - QUARKUS_LOG__LEVEL=ERROR
+      - QUARKUS_LOG_LEVEL=ERROR
       - QUARKUS_LOG_CATEGORY__caravanacloud__LEVEL=INFO
-#      - QUARKUS_LOG_CATEGORY__io.quarkus__LEVEL=INFO
       - QUARKUS_LOG_CATEGORY__org.postgresql__LEVEL=INFO
       - QUARKUS_LOG_CATEGORY__io.netty__LEVEL=INFO
       - QUARKUS_LOG_CATEGORY__io.vertx__LEVEL=INFO
@@ -94,38 +86,56 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.25"
-          memory: "80MB"
+          cpus: "0.40"
+          memory: "150MB"
 
-  nginx:
+  lb:
     hostname: lb
     container_name: lb
     network_mode: host 
     image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      api01:
-        condition: service_healthy
-      api02:
-        condition: service_healthy
     ports:
       - "9999:9999"
+#    depends_on:
+#      api01:
+#        condition: service_healthy
+#      api02:
+#        condition: service_healthy
     ulimits:
       nofile:
         soft: 1000000
         hard: 1000000
     healthcheck:
+      test: ["CMD", "sleep", "10"]
       # test: ["CMD", "curl", "-f", "http://127.0.0.1:9999/clientes/1/extrato"]
-      test: ["CMD", "sleep", "5"]
       interval: 3s
       retries: 15
     deploy:
       resources:
         limits:
-          cpus: "0.25"
-          memory: "40MB"
+          cpus: "0.18"
+          memory: "34MB"
 
+  warmup:
+    hostname: warmup
+    container_name: warmup
+    network_mode: host 
+    image: fedora:39
+    command: |
+      /bin/bash -c "echo 'warmuping'; sleep 5;
+        for i in $(seq 1 50);
+        do echo -n '.' ;
+        curl -s -X GET http://localhost:9999/clientes/5/extrato > /dev/null  &
+      done; echo 'warmup done';"
+    deploy:
+      resources: 
+        limits:
+          cpus: "0.02"
+          memory: "16MB"
+
+  
   db:
     network_mode: host
     image: postgres:latest
@@ -141,20 +151,19 @@ services:
       - "5400"
     volumes:
       - ./init.postgresql.2tables.sql:/docker-entrypoint-initdb.d/init.sql
+#      - ./init.postgresql.1table.fn.sql:/docker-entrypoint-initdb.d/init.sql
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
     command: 'postgres -c config_file=/etc/postgresql/postgresql.conf'  
     deploy:
       resources: 
         limits:
-          cpus: "0.75"
-          memory: "350MB"
+          cpus: "0.50"
+          memory: "200MB"
     healthcheck:
       test: ["CMD", "pg_isready", "--username", "rinha", "--port", "5400"]
       interval: 3s
       timeout: 2s
       retries: 10
       start_period: 3s
-
-
 
 

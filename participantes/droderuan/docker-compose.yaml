@@ -9,6 +9,8 @@ services:
         "full_page_writes=false",
         "-c",
         "synchronous_commit=off",
+        "-c",
+        "effective_io_concurrency=200",
       ]
     environment:
       POSTGRES_DB: "rinha_backend"
@@ -29,28 +31,41 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 
-  api:
+  api01: &api
     image: droderuan/node-rinha-backend-2024
     command: npm run start:prod
+    hostname: api01
     environment:
       DB_HOST: "db"
       DB_POOL: 15
     depends_on:
       db:
         condition: service_healthy
+    healthcheck:
+      test: curl -X GET 'localhost:3333/healthcheck'
+      interval: 2s
+      timeout: 2s
+      retries: 10
+      start_period: 2s
     deploy:
-      replicas: 2
       resources:
         limits:
           cpus: "0.4"
           memory: "100mb"
+
+  api02:
+    <<: *api
+    hostname: api02
 
   nginx:
     image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api
+      api01:
+        condition: service_healthy
+      api02:
+        condition: service_healthy
     ports:
       - "9999:9999"
     deploy:

@@ -5,7 +5,7 @@ services:
     container_name: pg_dotnet_database
     image: postgres:15.4
     volumes:
-      - ./script.sql:/docker-entrypoint-initdb.d/configure.sql   # Monta um volume com os scripts SQL
+      - ./script.sql:/docker-entrypoint-initdb.d/configure.sql
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=123456
@@ -15,30 +15,30 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.50"
+          cpus: "0.45"
           memory: "360MB"
 
   dotnet_bank_api_1:
     container_name: dotnet_bank_api_1
-    image: lipeferreira1609/dev_bank_with_dotnet:latest
+    image: lipeferreira1609/dev_bank_with_dotnet:0.7
     depends_on:
       - pg_dotnet_database
     deploy:
       resources:
         limits:
-          cpus: "0.40"
+          cpus: "0.45"
           memory: "90MB"
 
   dotnet_bank_api_2:
     container_name: dotnet_bank_api_2
-    image: lipeferreira1609/dev_bank_with_dotnet:latest
+    image: lipeferreira1609/dev_bank_with_dotnet:0.7
     depends_on:
       - pg_dotnet_database
       - dotnet_bank_api_1
     deploy:
       resources:
         limits:
-          cpus: "0.40"
+          cpus: "0.45"
           memory: "90MB"
 
 
@@ -55,7 +55,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.20"
+          cpus: "0.15"
           memory: "10MB"
 
 networks:
