@@ -1,105 +1,101 @@
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
 
-CREATE UNLOGGED TABLE transacoes (
-	id SERIAL PRIMARY KEY,
-	cliente_id INTEGER NOT NULL,
-	valor INTEGER NOT NULL,
-	tipo CHAR(1) NOT NULL,
-	descricao VARCHAR(10) NOT NULL,
-	realizada_em TIMESTAMP NOT NULL DEFAULT NOW()
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+CREATE UNLOGGED TABLE cliente (
+    id SERIAL PRIMARY KEY,
+    limite INTEGER NOT NULL,
+    saldo INTEGER NOT NULL DEFAULT 0
 );
 
-CREATE UNLOGGED TABLE saldos (
-	id SERIAL PRIMARY KEY,
-	cliente_id INTEGER NOT NULL,
-	limite INTEGER NOT NULL,
-	valor INTEGER NOT NULL
+CREATE UNLOGGED TABLE transacao (
+    id SERIAL PRIMARY KEY,
+    idCliente INTEGER NOT NULL,
+    valor INTEGER NOT NULL,
+    tipo CHAR(1) NOT NULL,
+    descricao VARCHAR(10) NOT NULL,
+    realizadoEm TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
-CREATE INDEX ids_transacoes_ids_cliente_id ON transacoes (cliente_id);
-CREATE INDEX ids_saldos_ids_cliente_id ON saldos (cliente_id);
+CREATE INDEX idx_transacao_idCliente ON transacao (idCliente ASC);
 
 DO $$
 BEGIN
-	INSERT INTO saldos (cliente_id, limite, valor)
-	VALUES (1,   1000 * 100, 0),
-		   (2,    800 * 100, 0),
-		   (3,  10000 * 100, 0),
-		   (4, 100000 * 100, 0),
-		   (5,   5000 * 100, 0);
+INSERT INTO cliente (id, limite, saldo)
+VALUES 
+    (1, 1000 * 100, 0),
+    (2, 800 * 100, 0),
+    (3, 10000 * 100, 0),
+    (4, 100000 * 100, 0),
+    (5, 5000 * 100, 0);
 END;
 $$;
 
-CREATE OR REPLACE FUNCTION debitar(
-	cliente_id_tx INT,
-	valor_tx INT,
-	descricao_tx VARCHAR(10))
+CREATE OR REPLACE FUNCTION realizar_credito(
+    id_cliente INT,
+    novo_valor INT,
+    descricao_cd VARCHAR(10))
 RETURNS TABLE (
 	novo_saldo INT,
-	possui_erro BOOL,
-	mensagem VARCHAR(20))
+	possui_erro BOOL)
+LANGUAGE plpgsql 
+AS $$
+BEGIN
+    PERFORM pg_advisory_xact_lock(id_cliente);
+
+    INSERT INTO transacao (valor, tipo, descricao, realizadoEm, idCliente)
+    VALUES (novo_valor, 'c', descricao_cd, NOW(), id_cliente);
+
+    RETURN QUERY
+    UPDATE cliente
+    SET saldo = saldo + novo_valor
+    WHERE id = id_cliente
+	RETURNING saldo, FALSE;
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION realizar_debito(
+    id_cliente INT,
+    novo_valor INT,
+    descricao_db VARCHAR(10))
+RETURNS TABLE (
+	novo_saldo INT,
+	possui_erro BOOL)
 LANGUAGE plpgsql
 AS $$
 DECLARE
-	saldo_atual int;
-	limite_atual int;
+    saldo_cliente INT;
+    limite_cliente INT; 
 BEGIN
-	PERFORM pg_advisory_xact_lock(cliente_id_tx);
-	SELECT 
-		s.limite,
-		COALESCE(s.valor, 0)
-	INTO
-		limite_atual,
-		saldo_atual
-	FROM saldos s
-	WHERE s.cliente_id = cliente_id_tx;
+    PERFORM pg_advisory_xact_lock(id_cliente);
 
-	IF saldo_atual - valor_tx >= limite_atual * -1 THEN
-		INSERT INTO transacoes
-			VALUES(DEFAULT, cliente_id_tx, valor_tx, 'd', descricao_tx, NOW());
-		
-		UPDATE saldos
-		SET valor = valor - valor_tx
-		WHERE cliente_id = cliente_id_tx;
+    SELECT saldo, limite
+    INTO saldo_cliente, limite_cliente 
+    FROM cliente WHERE id = id_cliente;
 
-		RETURN QUERY
-			SELECT
-				valor,
-				FALSE,
-				'ok'::VARCHAR(20)
-			FROM saldos
-			WHERE cliente_id = cliente_id_tx;
-	ELSE
-		RETURN QUERY
-			SELECT
-				valor,
-				TRUE,
-				'saldo insuficente'::VARCHAR(20)
-			FROM saldos
-			WHERE cliente_id = cliente_id_tx;
-	END IF;
+    IF saldo_cliente - novo_valor >= limite_cliente * -1 THEN 
+        INSERT INTO transacao (valor, tipo, descricao, realizadoEm, idCliente)
+        VALUES (novo_valor, 'd', descricao_db, NOW(), id_cliente);
+
+        UPDATE cliente
+        SET saldo = saldo - novo_valor
+        WHERE id = id_cliente;
+
+        RETURN QUERY SELECT saldo, FALSE FROM cliente WHERE id = id_cliente;
+    ELSE
+        RETURN QUERY SELECT saldo, TRUE FROM cliente WHERE id = id_cliente;
+    END IF;
 END;
 $$;
 
-CREATE OR REPLACE FUNCTION creditar(
-	cliente_id_tx INT,
-	valor_tx INT,
-	descricao_tx VARCHAR(10))
-RETURNS TABLE (
-	novo_saldo INT,
-	possui_erro BOOL,
-	mensagem VARCHAR(20))
-LANGUAGE plpgsql
-AS $$
-BEGIN
-	PERFORM pg_advisory_xact_lock(cliente_id_tx);
 
-	INSERT INTO transacoes
-		VALUES(DEFAULT, cliente_id_tx, valor_tx, 'c', descricao_tx, NOW());
-
-	RETURN QUERY
-		UPDATE saldos
-		SET valor = valor + valor_tx
-		WHERE cliente_id = cliente_id_tx
-		RETURNING valor, FALSE, 'ok'::VARCHAR(20);
-END;
-$$;
