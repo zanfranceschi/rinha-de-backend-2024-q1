@@ -1,7 +1,5 @@
  Network rinha-nginx-2024q1-go  Creating
  Network rinha-nginx-2024q1-go  Created
- Volume "vineboneto-go_pgdata"  Creating
- Volume "vineboneto-go_pgdata"  Created
  Container vineboneto-go-db-1  Creating
  Container vineboneto-go-db-1  Created
  Container vineboneto-go-api02-1  Creating
@@ -28,27 +26,9 @@ db-1     | selecting default shared_buffers ... 128MB
 db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
-api01-1  | 
-api01-1  | 2024/03/03 15:12:33 [35m/app/pg/pg.go:33
-api01-1  | [0m[31m[error] [0mfailed to initialize database, got error failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.48.2:5432: connect: connection refused)
-api01-1  | 2024/03/03 15:12:33 failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.48.2:5432: connect: connection refused)
-api02-1  | 
-api02-1  | 2024/03/03 15:12:33 [35m/app/pg/pg.go:33
-api02-1  | [0m[31m[error] [0mfailed to initialize database, got error failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.48.2:5432: connect: connection refused)
-api02-1  | 2024/03/03 15:12:33 failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.48.2:5432: connect: connection refused)
+api01-1  | 2024/03/08 16:26:33 Servidor iniciado na porta 8081
+api02-1  | 2024/03/08 16:26:33 Servidor iniciado na porta 8082
 db-1     | performing post-bootstrap initialization ... ok
-nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
-nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
-nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
-nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1  | 2024/03/03 15:12:34 [emerg] 1#1: host not found in upstream "api01:8081" in /etc/nginx/nginx.conf:13
-nginx-1  | nginx: [emerg] host not found in upstream "api01:8081" in /etc/nginx/nginx.conf:13
-api01-1 exited with code 1
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -58,19 +38,25 @@ db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-03-03 15:12:34.639 UTC [47] LOG:  starting PostgreSQL 15.6 (Debian 15.6-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-03-03 15:12:34.644 UTC [47] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-03-03 15:12:34.665 UTC [50] LOG:  database system was shut down at 2024-03-03 15:12:33 UTC
-db-1     | 2024-03-03 15:12:34.671 UTC [47] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-03-08 16:26:34.877 UTC [48] LOG:  starting PostgreSQL 15.6 (Debian 15.6-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-08 16:26:34.880 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-08 16:26:34.896 UTC [51] LOG:  database system was shut down at 2024-03-08 16:26:33 UTC
+db-1     | 2024-03-08 16:26:34.903 UTC [48] LOG:  database system is ready to accept connections
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 db-1     |  done
 db-1     | server started
-api02-1 exited with code 1
-nginx-1 exited with code 1
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
 db-1     | CREATE DATABASE
 db-1     | 
 db-1     | 
 db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
-db-1     | ALTER SYSTEM
 db-1     | ALTER SYSTEM
 db-1     | CREATE TYPE
 db-1     | CREATE TABLE
@@ -79,29 +65,35 @@ db-1     | CREATE INDEX
 db-1     | DO
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-03-03 15:12:35.180 UTC [47] LOG:  received fast shutdown request
-db-1     | .2024-03-03 15:12:35.183 UTC [47] LOG:  aborting any active transactions
-db-1     | 2024-03-03 15:12:35.184 UTC [47] LOG:  background worker "logical replication launcher" (PID 53) exited with exit code 1
-db-1     | 2024-03-03 15:12:35.185 UTC [48] LOG:  shutting down
-db-1     | 2024-03-03 15:12:35.187 UTC [48] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-03-03 15:12:35.729 UTC [48] LOG:  checkpoint complete: wrote 936 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.386 s, sync=0.140 s, total=0.545 s; sync files=315, longest=0.052 s, average=0.001 s; distance=4262 kB, estimate=4262 kB
-db-1     | 2024-03-03 15:12:35.734 UTC [47] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-03-08 16:26:35.130 UTC [48] LOG:  received fast shutdown request
+db-1     | .2024-03-08 16:26:35.133 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-03-08 16:26:35.135 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-03-08 16:26:35.135 UTC [49] LOG:  shutting down
+db-1     | 2024-03-08 16:26:35.138 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-03-08 16:26:35.672 UTC [49] LOG:  checkpoint complete: wrote 936 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.383 s, sync=0.136 s, total=0.537 s; sync files=315, longest=0.064 s, average=0.001 s; distance=4262 kB, estimate=4262 kB
+db-1     | 2024-03-08 16:26:35.676 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-03-03 15:12:35.830 UTC [1] LOG:  starting PostgreSQL 15.6 (Debian 15.6-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-03-03 15:12:35.830 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-03-03 15:12:35.830 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-03-03 15:12:35.836 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-03-03 15:12:35.846 UTC [65] LOG:  database system was shut down at 2024-03-03 15:12:35 UTC
-db-1     | 2024-03-03 15:12:35.860 UTC [1] LOG:  database system is ready to accept connections
-db-1     | 2024-03-03 15:13:16.569 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-03-03 15:13:16.574 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-03-03 15:13:16.577 UTC [1] LOG:  background worker "logical replication launcher" (PID 68) exited with exit code 1
-db-1     | 2024-03-03 15:13:16.577 UTC [63] LOG:  shutting down
-db-1     | 2024-03-03 15:13:16.582 UTC [63] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-03-03 15:13:16.643 UTC [63] LOG:  checkpoint complete: wrote 44 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.032 s, total=0.067 s; sync files=13, longest=0.007 s, average=0.003 s; distance=229 kB, estimate=229 kB
-db-1     | 2024-03-03 15:13:16.652 UTC [1] LOG:  database system is shut down
+db-1     | 2024-03-08 16:26:35.756 UTC [1] LOG:  starting PostgreSQL 15.6 (Debian 15.6-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-08 16:26:35.756 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-03-08 16:26:35.756 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-03-08 16:26:35.763 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-08 16:26:35.772 UTC [66] LOG:  database system was shut down at 2024-03-08 16:26:35 UTC
+db-1     | 2024-03-08 16:26:35.778 UTC [1] LOG:  database system is ready to accept connections
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api02-1 exited with code 0
+api02-1 exited with code 2
+api01-1 exited with code 0
+api01-1 exited with code 2
+db-1     | 2024-03-08 16:30:50.548 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-03-08 16:30:50.555 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-03-08 16:30:50.557 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db-1     | 2024-03-08 16:30:50.557 UTC [64] LOG:  shutting down
+db-1     | 2024-03-08 16:30:50.560 UTC [64] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-03-08 16:30:50.743 UTC [64] LOG:  checkpoint complete: wrote 941 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.018 s, sync=0.144 s, total=0.187 s; sync files=31, longest=0.135 s, average=0.005 s; distance=3952 kB, estimate=3952 kB
+db-1     | 2024-03-08 16:30:50.748 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0
