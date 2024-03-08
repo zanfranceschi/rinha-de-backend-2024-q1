@@ -1,14 +1,11 @@
-DROP TABLE IF EXISTS transactions;
-DROP TABLE IF EXISTS clients;
-
-CREATE TABLE clients (
+CREATE TABLE IF NOT EXISTS clients (
 	id BIGSERIAL PRIMARY KEY,
 	name VARCHAR(255),
 	credit INTEGER,
 	balance INTEGER DEFAULT 0
 );
 
-CREATE TABLE transactions (
+CREATE TABLE IF NOT EXISTS transactions (
 	id BIGSERIAL PRIMARY KEY,
 	value INTEGER,
 	description VARCHAR(10),
