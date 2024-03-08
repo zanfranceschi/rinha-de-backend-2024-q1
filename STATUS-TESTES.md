@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  8 21:13:16 UTC 2024** com **575** submissões.
+Atualizada **Fri Mar  8 21:25:50 UTC 2024** com **578** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -289,6 +289,7 @@ Atualizada **Fri Mar  8 21:13:16 UTC 2024** com **575** submissões.
 | [jhonnyboy](./participantes/jhonnyboy) | ok | 1 |
 | [jjeanjacques10](./participantes/jjeanjacques10) | ok | 2 |
 | [jnariai](./participantes/jnariai) | falha - [logs](./participantes/jnariai/docker-compose.logs) | -- |
+| [joao0212](./participantes/joao0212) | falha - [logs](./participantes/joao0212/docker-compose.logs) | -- |
 | [joaojr13](./participantes/joaojr13) | ok | 3 |
 | [joaopaulosg](./participantes/joaopaulosg) | ok | 2 |
 | [joaopmerlin](./participantes/joaopmerlin) | ok | 3 |
@@ -434,6 +435,7 @@ Atualizada **Fri Mar  8 21:13:16 UTC 2024** com **575** submissões.
 | [oneabrante](./participantes/oneabrante) | ok | 2 |
 | [otonielsilva](./participantes/otonielsilva) | ok | 2 |
 | [paulo_sergio](./participantes/paulo_sergio) | ok | 5 |
+| [paulo_sergio_alpine](./participantes/paulo_sergio_alpine) | ok | 4 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
 | [paulohenriquesn-python](./participantes/paulohenriquesn-python) | ok | 3 |
 | [pedro-azevedo-e-matheus-gomes-nodejs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs) | falha - [logs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs/docker-compose.logs) | -- |
@@ -553,6 +555,7 @@ Atualizada **Fri Mar  8 21:13:16 UTC 2024** com **575** submissões.
 | [vitor_weirich_java_network_host](./participantes/vitor_weirich_java_network_host) | ok | 102 |
 | [vitorascorrea](./participantes/vitorascorrea) | ok | 2 |
 | [vitorlacerda-dotnet](./participantes/vitorlacerda-dotnet) | ok | 15 |
+| [vitorlacerda-golang](./participantes/vitorlacerda-golang) | ok | 3 |
 | [vitornorberto](./participantes/vitornorberto) | ok | 4 |
 | [vitorrt-nodejs](./participantes/vitorrt-nodejs) | ok | 6 |
 | [vitorsalgado-custom-lb](./participantes/vitorsalgado-custom-lb) | ok | 1 |
