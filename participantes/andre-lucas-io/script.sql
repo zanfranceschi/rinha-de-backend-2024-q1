@@ -1,15 +1,14 @@
 -- Coloque scripts iniciais aqui
-CREATE TABLE clientes (
+CREATE UNLOGGED TABLE clientes (
                           id serial primary key,
                           name varchar(100) not null,
                           "limit" bigint not null,
                           balance bigint not null default 0,
-                          version integer not null default 0,
                           created_at timestamp default CURRENT_TIMESTAMP,
                           updated_at timestamp default CURRENT_TIMESTAMP
 );
 
-create table transactions (
+create UNLOGGED table transactions (
                               id serial primary key,
                               description varchar(10) not null,
                               value bigint not null,
@@ -17,8 +16,12 @@ create table transactions (
                               client_id integer not null,
                               created_at timestamp default CURRENT_TIMESTAMP,
                               updated_at timestamp default CURRENT_TIMESTAMP
-);
 
+);
+       alter table transactions
+       set (autovacuum_enabled = false);
+
+       create index idx_client_id on transactions(client_id desc);
 DO $$
 BEGIN
 INSERT INTO clientes (name, "limit")
