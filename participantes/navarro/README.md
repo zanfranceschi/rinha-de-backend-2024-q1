@@ -15,3 +15,10 @@ Pontos importantes:
 - [Dia 02 - Load balancer](https://www.youtube.com/watch?v=hbUuXZMPggM)
 - [Dia 03 - Banco de dados](https://www.youtube.com/watch?v=vI5vdnPvoE4)
 - [Dia 04 - Integrando tudo](https://www.youtube.com/watch?v=sCWggMruZXg)
+
+# Autor
+
+- Repositório: [reu/rinha-2024](https://github.com/reu/rinha-2024)
+- Github: [reu](https://github.com/reu)
+- Twitter: [@rdrnavarro](https://twitter.com/rdrnavarro)
+- Youtube: [@navarro-fn](https://www.youtube.com/channel/UCvZ7yS8QJBdSmNWzFSKKAOA)
