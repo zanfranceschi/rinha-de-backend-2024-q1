@@ -1,0 +1,64 @@
+version: '3.5'
+
+services:
+  api01: &api
+    hostname: api01
+    image: jtsutsui/rinha-2024q1-crebito
+    ports:
+      - "8081:8080"
+    environment:
+      - DB_HOSTNAME=db
+      - DB_PASSWORD=funcionapls
+      - DB_USER=juliu    
+      - DB_NAME=crebito
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "100MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api 
+    hostname: api02
+    ports:
+      - "8082:8080"
+ 
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+  db: # Banco de dados
+    image: postgres
+    environment: 
+      POSTGRES_USER: 'juliu'
+      POSTGRES_PASSWORD: 'funcionapls'
+      POSTGRES_DB: 'crebito'
+    ports:
+      - "5432:5432"
+    command: "postgres -c max_connections=20 -c listen_addresses='*' -c effective_io_concurrency=2 -c autovacuum=on"
+    volumes:
+      - ./src/db/script.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+        resources:
+          limits:
+            cpus: '0.7'
+            memory: '300MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
