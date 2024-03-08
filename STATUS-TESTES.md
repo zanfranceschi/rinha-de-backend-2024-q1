@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  8 02:34:14 UTC 2024** com **556** submissões.
+Atualizada **Fri Mar  8 03:07:22 UTC 2024** com **560** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -121,6 +121,7 @@ Atualizada **Fri Mar  8 02:34:14 UTC 2024** com **556** submissões.
 | [daniloflorenzano](./participantes/daniloflorenzano) | ok | 4 |
 | [daniloraisi](./participantes/daniloraisi) | ok | 2 |
 | [danilosilva](./participantes/danilosilva) | falha - [logs](./participantes/danilosilva/docker-compose.logs) | -- |
+| [davi-figs-python](./participantes/davi-figs-python) | falha - [logs](./participantes/davi-figs-python/docker-compose.logs) | -- |
 | [david-silva](./participantes/david-silva) | ok | 2 |
 | [ddanielsantos](./participantes/ddanielsantos) | ok | 3 |
 | [ddanielvaz-cpp-qt](./participantes/ddanielvaz-cpp-qt) | ok | 4 |
@@ -158,6 +159,7 @@ Atualizada **Fri Mar  8 02:34:14 UTC 2024** com **556** submissões.
 | [elioenaiferrari](./participantes/elioenaiferrari) | falha - [logs](./participantes/elioenaiferrari/docker-compose.logs) | -- |
 | [elixiremfoco](./participantes/elixiremfoco) | falha - [logs](./participantes/elixiremfoco/docker-compose.logs) | -- |
 | [emanuel-ac-iroot-tech](./participantes/emanuel-ac-iroot-tech) | ok | 4510 |
+| [emanuel-xavier-rust](./participantes/emanuel-xavier-rust) | falha - [logs](./participantes/emanuel-xavier-rust/docker-compose.logs) | -- |
 | [emanuel-xavier](./participantes/emanuel-xavier) | ok | 2 |
 | [emiliosheinz-fumegalli-node](./participantes/emiliosheinz-fumegalli-node) | ok | 4 |
 | [engylemure](./participantes/engylemure) | ok | 3 |
@@ -390,6 +392,7 @@ Atualizada **Fri Mar  8 02:34:14 UTC 2024** com **556** submissões.
 | [maxel-uds](./participantes/maxel-uds) | ok | 7 |
 | [maxwell-fs](./participantes/maxwell-fs) | ok | 0 |
 | [maxwell](./participantes/maxwell) | ok | 1 |
+| [mdssjc-springboot-java](./participantes/mdssjc-springboot-java) | ok | 5 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [mgenteluci](./participantes/mgenteluci) | ok | 2 |
 | [michaelalves204](./participantes/michaelalves204) | ok | 8 |
@@ -400,7 +403,7 @@ Atualizada **Fri Mar  8 02:34:14 UTC 2024** com **556** submissões.
 | [nathanbahiadev__golang](./participantes/nathanbahiadev__golang) | ok | 1 |
 | [nathanbahiadev__python](./participantes/nathanbahiadev__python) | ok | 2 |
 | [nathanbahiadev__typescript](./participantes/nathanbahiadev__typescript) | ok | 1 |
-| [navarro](./participantes/navarro) | ok | 3 |
+| [navarro](./participantes/navarro) | ok | 1 |
 | [newton](./participantes/newton) | ok | 3 |
 | [nicolasmmb-dart](./participantes/nicolasmmb-dart) | ok | 3 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
@@ -527,6 +530,7 @@ Atualizada **Fri Mar  8 02:34:14 UTC 2024** com **556** submissões.
 | [vifonsec4-nginx](./participantes/vifonsec4-nginx) | ok | 1 |
 | [vineboneto-go](./participantes/vineboneto-go) | falha - [logs](./participantes/vineboneto-go/docker-compose.logs) | -- |
 | [vineboneto-js](./participantes/vineboneto-js) | ok | 1 |
+| [vinicius-golang](./participantes/vinicius-golang) | falha - [logs](./participantes/vinicius-golang/docker-compose.logs) | -- |
 | [vinicius-julio](./participantes/vinicius-julio) | ok | 2 |
 | [viniciusamc-golang](./participantes/viniciusamc-golang) | ok | 3 |
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
