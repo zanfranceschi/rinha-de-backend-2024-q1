@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Fri Mar  8 22:22:25 UTC 2024** com **578** submissões.
+Atualizada **Fri Mar  8 22:47:15 UTC 2024** com **579** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -461,7 +461,7 @@ Atualizada **Fri Mar  8 22:22:25 UTC 2024** com **578** submissões.
 | [raissadev](./participantes/raissadev) | ok | 2 |
 | [ramondelemos](./participantes/ramondelemos) | ok | 2 |
 | [ramonmelod-node-express](./participantes/ramonmelod-node-express) | ok | 7 |
-| [ramosfabiano](./participantes/ramosfabiano) | ok | 4 |
+| [ramosfabiano](./participantes/ramosfabiano) | ok | 3 |
 | [ramosfabiano_v2](./participantes/ramosfabiano_v2) | ok | 3 |
 | [raphaelmonticello](./participantes/raphaelmonticello) | ok | 3 |
 | [rdenadai_bun_sqlite](./participantes/rdenadai_bun_sqlite) | ok | 2 |
@@ -531,6 +531,7 @@ Atualizada **Fri Mar  8 22:22:25 UTC 2024** com **578** submissões.
 | [tiagorconceicao-node](./participantes/tiagorconceicao-node) | ok | 6 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
 | [tonico](./participantes/tonico) | ok | 80 |
+| [tonycarvalho1994](./participantes/tonycarvalho1994) | falha - [logs](./participantes/tonycarvalho1994/docker-compose.logs) | -- |
 | [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
