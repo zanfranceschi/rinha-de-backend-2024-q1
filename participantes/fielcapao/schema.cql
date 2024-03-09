@@ -2,18 +2,12 @@ DROP KEYSPACE IF EXISTS rinha;
 
 CREATE KEYSPACE IF NOT EXISTS rinha WITH REPLICATION = {'class':'SimpleStrategy', 'replication_factor': 1};
 
-CREATE TABLE IF NOT EXISTS rinha.accounts (
-    id int,
-    creditLimit int,
-    balance int,
-    PRIMARY KEY ( id )
-);
-
-INSERT INTO rinha.accounts(id, creditLimit, balance) VALUES (1, 100000, 0);
-INSERT INTO rinha.accounts(id, creditLimit, balance) VALUES (2, 80000, 0);
-INSERT INTO rinha.accounts(id, creditLimit, balance) VALUES (3, 1000000, 0);
-INSERT INTO rinha.accounts(id, creditLimit, balance) VALUES (4, 10000000, 0);
-INSERT INTO rinha.accounts(id, creditLimit, balance) VALUES (5, 500000, 0);
+CREATE TABLE rinha.accounts_balance (
+    accountId int,
+    temporary counter,
+    total counter,
+    PRIMARY KEY (accountId)
+) WITH compression = {'class': 'LZ4Compressor', 'chunk_length_in_kb': 2, 'crc_check_chance': 0.1};
 
 CREATE TABLE IF NOT EXISTS rinha.transactions (
     accountId int,
@@ -21,5 +15,12 @@ CREATE TABLE IF NOT EXISTS rinha.transactions (
     description text,
     date timestamp,
     amount int,
-    PRIMARY KEY ((accountId), date )
-) WITH CLUSTERING ORDER BY (date DESC);
+    dateMillis bigint,
+    PRIMARY KEY ((accountId), dateMillis)
+) WITH CLUSTERING ORDER BY (dateMillis DESC) AND compression = {'class': 'LZ4Compressor', 'chunk_length_in_kb': 2, 'crc_check_chance': 0.1};
+
+UPDATE rinha.accounts_balance SET total = total + 0 WHERE accountId = 1;
+UPDATE rinha.accounts_balance SET total = total + 0 WHERE accountId = 2;
+UPDATE rinha.accounts_balance SET total = total + 0 WHERE accountId = 3;
+UPDATE rinha.accounts_balance SET total = total + 0 WHERE accountId = 4;
+UPDATE rinha.accounts_balance SET total = total + 0 WHERE accountId = 5;
