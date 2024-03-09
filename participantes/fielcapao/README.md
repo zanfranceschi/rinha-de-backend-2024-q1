@@ -12,7 +12,6 @@ Submissão feita com:
 - `nginx` como load balancer
 - `cassandra` como banco de dados
 - `java 21 - graalvm - native image` com `spring boot 3`
-- `hazelcast` pra Pessimistic locking - Cassandra nao tem essa feature :(
 - [repositório da api](https://github.com/rodrigorodrigues/rinha-de-backend-2024-q1-javaslow-spring)
 
 [@fielcapao](https://twitter.com/fielcapao) @ twitter
