@@ -15,8 +15,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.3'
-          memory: '127MB'
+          cpus: '0.4'
+          memory: '190MB'
   api02:
     <<: *api
     hostname: api02
@@ -35,7 +35,7 @@ services:
       resources:
         limits:
           cpus: '0.2'
-          memory: '40MB'
+          memory: '20MB'
   db:
     image: postgres:16-alpine
     hostname: db
@@ -47,6 +47,16 @@ services:
       - '5432:5432'
     volumes:
       - ./script.sql:/docker-entrypoint-initdb.d/script.sql:ro
+    command: postgres
+      -c checkpoint_timeout=600
+      -c synchronous_commit=0
+      -c max_connections=100
+      -c effective_io_concurrency=200
+      -c full_page_writes=off
+      -c fsync=off
+      -c full_page_writes=off
+      -c synchronous_commit=off
+      -c max_wal_size=4096
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
       interval: 5s
@@ -55,8 +65,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: '256MB'
+          cpus: '0.5'
+          memory: '150MB'
 
 networks:
   default:

@@ -2,6 +2,7 @@
 
 - Load Balancer: `Nginx`
 - Database: `PostgreSQL`
+- Cache: `Redis`
 - Backend: `Node.js`
 
 [LinkedIn](https://www.linkedin.com/in/tiagorconceicao/)

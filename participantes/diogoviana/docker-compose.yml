@@ -1,19 +1,15 @@
 version: "3.5"
 
 services:
-  api01:
-    #build: .
-    &api
+  api01: &api
     image: diogoviana/rinhadebackend
     volumes:
-      - .:/app
       - shared-volume:/app/storage
       - sockets:/app/tmp
     hostname: api01
     ports:
       - "3001:3000"
     environment:
-      #- RACK_ENV=production
       - RACK_ENV=development
       - RACK_MAX_THREADS=3
       - WEB_CONCURRENCY=0

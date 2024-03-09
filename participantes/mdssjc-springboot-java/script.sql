@@ -1,11 +1,11 @@
-CREATE TABLE IF NOT EXISTS clientes
+CREATE UNLOGGED TABLE IF NOT EXISTS clientes
 (
     id     SERIAL PRIMARY KEY,
     nome   VARCHAR(22) NOT NULL,
     limite INTEGER     NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS transacoes
+CREATE UNLOGGED TABLE IF NOT EXISTS transacoes
 (
     id           SERIAL8 PRIMARY KEY,
     cliente_id   INTEGER     NOT NULL,
