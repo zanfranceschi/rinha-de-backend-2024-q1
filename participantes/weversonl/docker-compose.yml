@@ -17,15 +17,15 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.45"
-          memory: "125MB"
+          cpus: "0.50"
+          memory: "80MB"
 
     healthcheck:
-      test: ["CMD", "true"]
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8080/clientes/1/extrato || exit 1"]
       start_interval: 0.20s
-      retries: 40
-      interval: 4s
-      timeout: 0.20s
+      retries: 10
+      interval: 0.20s
+      timeout: 0.80s
 
   api2:
     <<: *api
@@ -34,8 +34,15 @@ services:
     environment:
       SERVER_PORT: 8081
 
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8081/clientes/1/extrato || exit 1"]
+      start_interval: 0.20s
+      retries: 10
+      interval: 0.20s
+      timeout: 0.80s
+
   nginx:
-    image: nginx:alpine
+    image: docker.io/nginx:alpine
     container_name: nginx-rb
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
@@ -49,10 +56,10 @@ services:
       resources:
         limits:
           cpus: "0.10"
-          memory: "50MB"
+          memory: "20MB"
 
   postgres:
-    image: postgres:16.2
+    image: docker.io/postgres:16.2
     container_name: postgres-rb
     environment:
       POSTGRES_DB: rinhadb
@@ -70,15 +77,20 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.50"
-          memory: "250MB"
+          cpus: "0.40"
+          memory: "370MB"
 
     healthcheck:
-      test: ["CMD", "true"]
+      test: ["CMD-SHELL", "pg_isready -U rinha -d rinhadb -h localhost -p 5432"]
       start_interval: 1s
-      retries: 20
-      interval: 4s
+      retries: 10
+      interval: 0.50s
       timeout: 0.50s
+
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
 
 volumes:
   postgres-data:

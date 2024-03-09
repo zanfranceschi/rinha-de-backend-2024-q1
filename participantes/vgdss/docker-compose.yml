@@ -1,4 +1,19 @@
 version: "3.5"
+
+x-db-connection-settings: &db-connection-settings
+  CREBITO_DB__uri: "postgresql+asyncpg://user:password@127.0.0.1/crebito"
+  CREBITO_DB__pool_size: 15
+  CREBITO_DB__max_overflow: 5
+  CREBITO_DB__pool_timeout: 60
+  CREBITO_DB__pool_recycle: 1800
+  CREBITO_DB__echo: false
+
+x-healthcheck-settings: &default-healthcheck
+  interval: 1s
+  timeout: 3s
+  retries: 5
+  start_period: 2s
+
 services:
   api1: &api
     image: docker.io/vgdss/crebito:latest
@@ -6,40 +21,60 @@ services:
     hostname: api1
     container_name: rinha-api1
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     network_mode: host
     environment:
+      <<: *db-connection-settings
       PORT: 8001
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "100MB"      
-     
+          cpus: "0.45"
+          memory: "100MB"
+    healthcheck:
+      <<: *default-healthcheck
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:8001/clientes/1/extrato || exit 1"]
+
+
   api2:
     <<: *api
     hostname: api2
     container_name: rinha-api2
+    depends_on:
+      postgres:
+        condition: service_healthy
+      api1:
+        condition: service_healthy        
     environment:
-      PORT: 8002    
+      <<: *db-connection-settings
+      PORT: 8002
+    healthcheck:
+      <<: *default-healthcheck
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:8002/clientes/1/extrato || exit 1"]
 
   nginx:
-    image: nginx:1.25
+    image: nginx:latest
     container_name: rinha-nginx
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api1
-      - api2
+      api1:
+        condition: service_healthy
+      api2:
+        condition: service_healthy        
     network_mode: host
     deploy:
       resources:
         limits:
-          cpus: "0.1"
-          memory: "50MB"  
+          cpus: "0.2"
+          memory: "50MB"
+    healthcheck:
+      <<: *default-healthcheck
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:9999/clientes/1/extrato || exit 1"]         
 
   postgres:
-    image: postgres:16.2
+    image: postgres:latest
     container_name: rinhadb
     environment:
       POSTGRES_DB: crebito
@@ -54,8 +89,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.40"
-          memory: "300MB"        
+          cpus: "0.4"
+          memory: "300MB"
+    healthcheck:
+      <<: *default-healthcheck
+      test: ["CMD", "pg_isready", "-U", "user", "-d", "crebito","-h", "127.0.0.1", "-p", "5432"]
 
 volumes:
   pgdata:

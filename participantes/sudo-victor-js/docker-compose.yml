@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  api01:
+    image: victorsouto/api-matadora-rinha-2024:latest
+    depends_on:
+      - postgres
+    environment:
+      PORT: 3000
+      DB_HOST: 'postgres'
+      DB_PORT: '5432'
+      DB_NAME: 'rinha'
+      DB_USER: 'batman'
+      DB_PASSWORD: 'batpassword'
+    ports:
+      - "3001:3000"
+    networks:
+      - rinha
+    mem_limit: 150M
+    cpus: 0.45
+
+  api02:
+    image: victorsouto/api-matadora-rinha-2024:latest
+    depends_on:
+      - postgres
+    environment:
+      PORT: 3000
+      DB_HOST: 'postgres'
+      DB_PORT: '5432'
+      DB_NAME: 'rinha'
+      DB_USER: 'batman'
+      DB_PASSWORD: 'batpassword'
+    ports:
+      - "3002:3000"
+    networks:
+      - rinha
+    mem_limit: 150M
+    cpus: 0.45
+
+  postgres:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_DB: rinha
+      POSTGRES_USER: batman
+      POSTGRES_PASSWORD: batpassword
+    volumes:
+      - ./initial.sql:/docker-entrypoint-initdb.d/initial.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - rinha
+    mem_limit: 250M
+    cpus: 0.6
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    networks:
+      - rinha
+    mem_limit: 50M
+    cpus: 0.05
+
+networks:
+  rinha:
+    driver: bridge

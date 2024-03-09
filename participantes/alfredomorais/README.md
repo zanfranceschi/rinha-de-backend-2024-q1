@@ -18,28 +18,31 @@ docker compose build --no-cache && docker compose up
 ## Resultado Preliminar:
 
 ```bash
+Simulation RinhaBackendCrebitosSimulation completed in 262 seconds
+Parsing log file(s)...
+Parsing log file(s) done in 0s.
+Generating reports...
+
 ================================================================================
 ---- Global Information --------------------------------------------------------
-> request count                                      61503 (OK=59819  KO=1684  )
-> min response time                                      0 (OK=2      KO=0     )
-> max response time                                   3779 (OK=3779   KO=81    )
-> mean response time                                   447 (OK=460    KO=5     )
-> std deviation                                        655 (OK=660    KO=12    )
-> response time 50th percentile                          7 (OK=7      KO=1     )
-> response time 75th percentile                       1018 (OK=1064   KO=1     )
-> response time 95th percentile                       1633 (OK=1636   KO=30    )
-> response time 99th percentile                       1798 (OK=1801   KO=62    )
-> mean requests/sec                                232.966 (OK=226.587 KO=6.379 )
+> request count                                      61503 (OK=61500  KO=3     )
+> min response time                                      1 (OK=1      KO=4     )
+> max response time                                    500 (OK=500    KO=5     )
+> mean response time                                     6 (OK=6      KO=5     )
+> std deviation                                         18 (OK=18     KO=0     )
+> response time 50th percentile                          5 (OK=5      KO=5     )
+> response time 75th percentile                          5 (OK=5      KO=5     )
+> response time 95th percentile                          7 (OK=7      KO=5     )
+> response time 99th percentile                         34 (OK=34     KO=5     )
+> mean requests/sec                                234.744 (OK=234.733 KO=0.011 )
 ---- Response Time Distribution ------------------------------------------------
-> t < 800 ms                                         42663 ( 69%)
-> 800 ms <= t < 1200 ms                               2918 (  5%)
-> t >= 1200 ms                                       14238 ( 23%)
-> failed                                              1684 (  3%)
+> t < 800 ms                                         61500 (100%)
+> 800 ms <= t < 1200 ms                                  0 (  0%)
+> t >= 1200 ms                                           0 (  0%)
+> failed                                                 3 (  0%)
 ---- Errors --------------------------------------------------------------------
-> j.i.IOException: Premature close                                 1661 (98.63%)
-> status.find.in(422), but actually found 400                        20 ( 1.19%)
-> jmesPath(saldo.total).find.is(0), but actually found 1              2 ( 0.12%)
-> jmesPath(saldo.total).find.is(-25), but actually found 2            1 ( 0.06%)
+> jmesPath(saldo.total).find.is(0), but actually found -2             2 (66.67%)
+> jmesPath(saldo.total).find.is(-25), but actually found -9           1 (33.33%)
 ================================================================================
 ```
 

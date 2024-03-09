@@ -1,0 +1,48 @@
+version: '3.5'
+
+services:
+  api1: &api
+    image: asfernandes/rinhaback24q1:haproxy-mongoose-lmdb-api
+    volumes:
+      - ./data:/data
+    environment: &env
+      POLL_TIME: 4
+      NET_WORKERS: 8
+      DATABASE: /data/database
+      DATABASE_SIZE: 10485760
+      DATABASE_INIT: true
+      LISTEN_ADDRESS: 127.0.0.1:9997
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '150MB'
+    network_mode: host
+
+  api2:
+    <<: *api
+    environment:
+      <<: *env
+      DATABASE_INIT: false
+      LISTEN_ADDRESS: 127.0.0.1:9998
+    pid: "service:api1"
+    depends_on:
+      - api1
+
+  haproxy:
+    image: haproxy:2.9.5-alpine
+    volumes:
+      - ./config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: '150MB'
+    network_mode: host
+    depends_on:
+      - api1
+      - api2

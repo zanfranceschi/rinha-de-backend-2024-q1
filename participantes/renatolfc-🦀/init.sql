@@ -59,8 +59,6 @@ CREATE PROCEDURE tira(
 LANGUAGE plpgsql AS
 $$
 BEGIN
-  PERFORM pg_advisory_xact_lock(idc);
-
   SELECT limite, saldo INTO limite_atual, saldo_atual
   FROM users
   WHERE id = idc;
