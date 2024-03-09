@@ -21,7 +21,7 @@ CREATE TABLE c (
 -- Transactions table
 --
 CREATE TABLE t (
-    -- ID
+    -- Transaction id
     i SERIAL PRIMARY KEY,
     -- Client ID, foreign key to c.i
     c SMALLSERIAL NOT NULL,
@@ -36,3 +36,6 @@ CREATE TABLE t (
     t TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+
+CREATE INDEX idx_t_c_id ON t(c);
+CREATE INDEX idx_t_c_tstmp ON t(c, t DESC);
