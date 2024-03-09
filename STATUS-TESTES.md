@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  9 00:47:34 UTC 2024** com **582** submissões.
+Atualizada **Sat Mar  9 01:09:54 UTC 2024** com **583** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -284,7 +284,7 @@ Atualizada **Sat Mar  9 00:47:34 UTC 2024** com **582** submissões.
 | [jairoandre](./participantes/jairoandre) | ok | 312 |
 | [java-cassiogangrel](./participantes/java-cassiogangrel) | ok | 4 |
 | [jcrjuliano](./participantes/jcrjuliano) | ok | 1 |
-| [jefersonbaixo](./participantes/jefersonbaixo) | falha - [logs](./participantes/jefersonbaixo/docker-compose.logs) | -- |
+| [jefersonbaixo](./participantes/jefersonbaixo) | ok | 5 |
 | [jeifersonalmeida-spring](./participantes/jeifersonalmeida-spring) | ok | 4 |
 | [jfilipedias](./participantes/jfilipedias) | ok | 4 |
 | [jhonnyboy](./participantes/jhonnyboy) | ok | 1 |
@@ -437,6 +437,7 @@ Atualizada **Sat Mar  9 00:47:34 UTC 2024** com **582** submissões.
 | [omurilo](./participantes/omurilo) | ok | 2 |
 | [oneabrante](./participantes/oneabrante) | ok | 2 |
 | [otonielsilva](./participantes/otonielsilva) | ok | 2 |
+| [oui_tecnologia](./participantes/oui_tecnologia) | ok | 2 |
 | [paulo_sergio](./participantes/paulo_sergio) | ok | 5 |
 | [paulo_sergio_alpine](./participantes/paulo_sergio_alpine) | ok | 4 |
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
@@ -538,7 +539,7 @@ Atualizada **Sat Mar  9 00:47:34 UTC 2024** com **582** submissões.
 | [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
-| [vgdss](./participantes/vgdss) | ok | 1506 |
+| [vgdss](./participantes/vgdss) | ok | 1347 |
 | [vhogemann](./participantes/vhogemann) | ok | 4 |
 | [victor-132](./participantes/victor-132) | ok | 2 |
 | [victor-macedo](./participantes/victor-macedo) | ok | 51 |
