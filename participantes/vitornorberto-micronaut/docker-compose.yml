@@ -1,7 +1,7 @@
 version: "3.5"
 
 services:
-  micronaut-bd:
+  micronaut-db:
     container_name: micronaut-db
     image: postgres:latest
     command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c fsync=0 -c full_page_writes=0
@@ -11,6 +11,11 @@ services:
       POSTGRES_DB: micronaut_db
     ports:
       - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d micronaut_db -U micronaut_db" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5  
     volumes:
       - ./init-db.sql:/docker-entrypoint-initdb.d/script.sql
     deploy:
@@ -20,8 +25,8 @@ services:
           # aqui declarados é de 1.5 unidades de CPU e 550MB
           # de memória. A distribuição feita aqui é apenas
           # um exemplo – distribua como quiser.
-          cpus: "0.5"
-          memory: "335MB"
+          cpus: "0.4"
+          memory: "435MB"
 
   micronaut-one: &micronaut-api
     hostname: micronaut-one
@@ -29,17 +34,16 @@ services:
     container_name: micronaut-one
     environment:
       datasources.default.url: jdbc:postgresql://micronaut-db:5432/micronaut_db
-      datasources.default.minimum-idle: 10
-      datasources.default.maximum-pool-size: 100
     ports:
       - "8081:8080"
     depends_on:
-      - micronaut-bd
+      micronaut-db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
-          cpus: "0.4"
-          memory: "100MB"
+          cpus: "0.5"
+          memory: "50MB"
 
   micronaut-two:
     <<: *micronaut-api
@@ -56,12 +60,13 @@ services:
     depends_on:
       - micronaut-one
       - micronaut-two
+      - micronaut-db
     ports:
       - "9999:9999"
     deploy:
       resources:
         limits:
-          cpus: "0.2"
+          cpus: "0.10"
           memory: "15MB"
 
 networks:
