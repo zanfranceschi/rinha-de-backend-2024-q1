@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  9 08:09:25 UTC 2024** com **588** submissões.
+Atualizada **Sat Mar  9 08:17:30 UTC 2024** com **589** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -10,6 +10,7 @@ Atualizada **Sat Mar  9 08:09:25 UTC 2024** com **588** submissões.
 | [4emcos-golang](./participantes/4emcos-golang) | ok | 4 |
 | [4emcos-nodejs](./participantes/4emcos-nodejs) | ok | 4 |
 | [AlcivanLucas](./participantes/AlcivanLucas) | falha - [logs](./participantes/AlcivanLucas/docker-compose.logs) | -- |
+| [BrayaOrtega](./participantes/BrayaOrtega) | ok | 59 |
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 5 |
 | [Fabricio-net8](./participantes/Fabricio-net8) | ok | 2 |
 | [FaelLima98](./participantes/FaelLima98) | ok | 5 |
