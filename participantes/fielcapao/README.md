@@ -11,7 +11,7 @@
 Submissão feita com:
 - `nginx` como load balancer
 - `cassandra` como banco de dados
-- `java 21 - graalvm - native image` com `spring boot 3`.
+- `java 21 - graalvm - native image` com `spring boot 3`
 - [repositório da api](https://github.com/rodrigorodrigues/rinha-de-backend-2024-q1-javaslow-spring)
 
 [@fielcapao](https://twitter.com/fielcapao) @ twitter
@@ -25,4 +25,6 @@ Pra gerar somente a docker image use `mvn clean package spring-boot:build-image`
 
 ## Execution
 
-`docker-compose up -d` precisa esperar um pouco ate Cassandra subir(use pra saber quando API is ready http://localhost:9999/actuator/health)
+`docker-compose up -d` precisa esperar um pouco pro Cassandra subir(use pra saber quando API is ready http://localhost:9999/actuator/health)
+
+PS: Precisa esperar um pouco 2 min por causa do Cassandra(Java eh lento :D)

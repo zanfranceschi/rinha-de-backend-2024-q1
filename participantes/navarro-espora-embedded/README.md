@@ -11,25 +11,31 @@ Pontos importantes:
 
 # Arquitetura
 
-Essa submissão implementa a arquitetura padrão proposta pelo Zan. A lógica de consistência e persistência é toda implementada no db, e como este por sua
-vez expões um protocolo HTTP que "por coincidência" é igual a API proposta pela rinha, cada uma das instâncias não precisa fazer nenhum tipo de processamento
-nos dados das requisições, se tornando na prática apenas proxies.
+Essa submissão utiliza o banco de dados espora-db embedado em cada uma das instâncias das apps. Um volume é compartilhado entre as duas instâncuias
+e a sincronia de dados é feita utilizando [locks no arquivo compartilhado](https://man.freebsd.org/cgi/man.cgi?query=flock&sektion=2).
+Cada uma das 5 contas tem seu próprio arquivo, então cada lock é individual por conta.
 
 ```mermaid
 flowchart TD
     LB[Load balancer\nrinha-load-balancer-tcp]
-    DB[DB\nrinha-espora-server]
-    LB -.-> API1(API - instância 01\nrinha-app)
-    LB -.-> API2(API - instância 02\nrinha-app)
-    API1 -.-> DB
-    API2 -.-> DB
+    LB -.-> API1(API - instância 01\nrinha-espora-embedded)
+    LB -.-> API2(API - instância 02\nrinha-espora-embedded)
+    subgraph espora-db[volume compartilhado]
+        direction TB
+        account-1.espora
+        account-2.espora
+        account-3.espora
+        account-4.espora
+        account-5.espora
+    end
+    API1 -.-> espora-db
+    API2 -.-> espora-db
 ```
 
 Os componentes estão com os nomes que poderá ser encontrado nos diretórios do [repositório no Github](https://github.com/reu/rinha-2024)
 - rinha-load-balancer-tcp: um load balancer na camada 4 que implementa round robin por conexão
-- rinha-app: um proxy tcp que repassa os requests para o banco
-- rinha-espora-server: responsável pela persistência e consistência dos dados
-- espora-db: banco de dados embedado no processo
+- rinha-espora-embedded: implementa consistência e persistência dos dados
+- espora-db: banco de dados embedado no em cada um dos processos do rinha-espora-embedded
 
 # Lives do Youtube
 
