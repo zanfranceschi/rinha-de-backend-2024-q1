@@ -20,3 +20,11 @@ Segunda etapa
     Adicionar o Load Balancer (nginx) no docker-compose
     Realizar teste de carga localmente
     Realizar a submissão
+
+
+Referências do terceiro vídeo
+
+https://github.com/danilosiqueira/rinha-de-backend-2024-q1-api
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio-code
+https://learn.microsoft.com/pt-br/dotnet/core/docker/build-container?tabs=linux&pivots=dotnet-8-0
+https://www.toptal.com/developers/gitignore
