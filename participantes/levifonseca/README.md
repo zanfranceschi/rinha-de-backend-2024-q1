@@ -10,4 +10,5 @@ Stack:
 - Nginx (balanceador de carga baseado em eventos)
 
 [Vinicius Fonseca - @distanteagle16](https://twitter.com/distanteagle16)
+
 [Leandro - @magooclinhos](https://twitter.com/magooclinhos)
