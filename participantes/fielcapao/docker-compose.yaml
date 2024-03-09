@@ -22,26 +22,27 @@ services:
       resources:
         limits:
           cpus: "0.5"
-          memory: "60MB"
+          memory: "65MB"
 
   api02:
     <<: *api
     container_name: rinha_backend_2
 
   cassandra:
-    image: 'cassandra:3.11.16'#2.1.20
+    image: 'cassandra:4.0.12'
     container_name: rinha_cassandra
     environment:
-      - HEAP_NEWSIZE=128M
+      - HEAP_NEWSIZE=100M
       - MAX_HEAP_SIZE=400M
     volumes:
       - ./db-init.sh:/db-init.sh
-      - ./schema.cql:/tmp/schema.cql
+      - ./src/main/resources/schema.cql:/tmp/schema.cql
+      - ./cassandra.yaml:/etc/cassandra/cassandra.yaml
     command: "sh /db-init.sh"
     healthcheck:
       test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
-#    ports:
-#      - '9042:9042'
+    ports:
+      - '9042:9042'
     deploy:
       resources:
         limits:
@@ -62,9 +63,10 @@ services:
       resources:
         limits:
           cpus: "0.1"
-          memory: "30MB"
+          memory: "20MB"
 
 networks:
   default:
     driver: bridge
     name: rinha-nginx-2024q1
+
