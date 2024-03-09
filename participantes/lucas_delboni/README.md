@@ -5,6 +5,6 @@ Submissão feita com:
 - `nginx`
 - `postgres`
 - `ktor`
-- [repositório da api](https://github.com/LucasDelboni/rinha-de-backend-2024-q1)
+- [repositório da api](https://github.com/LucasDelboni/rinha-de-backend-2024-q1-grupo-d2)
 
 [@Linkedin](https://www.linkedin.com/in/lucasdelboni/)
