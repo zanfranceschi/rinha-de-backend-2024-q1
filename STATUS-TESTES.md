@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  9 01:40:15 UTC 2024** com **584** submissões.
+Atualizada **Sat Mar  9 02:10:31 UTC 2024** com **586** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -141,6 +141,7 @@ Atualizada **Sat Mar  9 01:40:15 UTC 2024** com **584** submissões.
 | [devkemc-node](./participantes/devkemc-node) | ok | 6605 |
 | [diego-coronel](./participantes/diego-coronel) | ok | 2 |
 | [diegoalexandrooliveira](./participantes/diegoalexandrooliveira) | ok | 5 |
+| [diegomarques-springboot](./participantes/diegomarques-springboot) | ok | 2 |
 | [diogoviana](./participantes/diogoviana) | ok | 3 |
 | [dionesvfreitas](./participantes/dionesvfreitas) | ok | 2 |
 | [direisc](./participantes/direisc) | ok | 4 |
@@ -177,7 +178,7 @@ Atualizada **Sat Mar  9 01:40:15 UTC 2024** com **584** submissões.
 | [erickreis](./participantes/erickreis) | ok | 3 |
 | [eriksilva](./participantes/eriksilva) | ok | 1 |
 | [eu_fountai](./participantes/eu_fountai) | ok | 2 |
-| [eugenio-cunha](./participantes/eugenio-cunha) | falha - [logs](./participantes/eugenio-cunha/docker-compose.logs) | -- |
+| [eugenio-cunha](./participantes/eugenio-cunha) | ok | 1 |
 | [exemplo](./participantes/exemplo) | ok | 2 |
 | [fabianoaono-java](./participantes/fabianoaono-java) | ok | 1 |
 | [fabianoflorentino](./participantes/fabianoflorentino) | ok | 7 |
@@ -409,7 +410,7 @@ Atualizada **Sat Mar  9 01:40:15 UTC 2024** com **584** submissões.
 | [maxel-uds](./participantes/maxel-uds) | ok | 7 |
 | [maxwell-fs](./participantes/maxwell-fs) | ok | 0 |
 | [maxwell](./participantes/maxwell) | ok | 1 |
-| [mdssjc-springboot-java](./participantes/mdssjc-springboot-java) | ok | 5 |
+| [mdssjc-springboot-java](./participantes/mdssjc-springboot-java) | ok | 2 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [mgenteluci](./participantes/mgenteluci) | ok | 2 |
 | [michaelalves204](./participantes/michaelalves204) | ok | 8 |
@@ -577,6 +578,7 @@ Atualizada **Sat Mar  9 01:40:15 UTC 2024** com **584** submissões.
 | [whyakari](./participantes/whyakari) | ok | 9 |
 | [wiliamvj](./participantes/wiliamvj) | ok | 1 |
 | [williammaia](./participantes/williammaia) | ok | 7 |
+| [williamtakeshi-rust](./participantes/williamtakeshi-rust) | ok | 3 |
 | [williansugiyama](./participantes/williansugiyama) | ok | 1 |
 | [wladneto-02](./participantes/wladneto-02) | falha - [logs](./participantes/wladneto-02/docker-compose.logs) | -- |
 | [wladneto](./participantes/wladneto) | ok | 15 |
