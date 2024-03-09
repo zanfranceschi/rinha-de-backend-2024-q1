@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  9 18:17:18 UTC 2024** com **589** submissões.
+Atualizada **Sat Mar  9 18:25:33 UTC 2024** com **590** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -268,6 +268,7 @@ Atualizada **Sat Mar  9 18:17:18 UTC 2024** com **589** submissões.
 | [henr1q-fastapi](./participantes/henr1q-fastapi) | ok | 5 |
 | [henriqueccapozzi-django-01](./participantes/henriqueccapozzi-django-01) | ok | 1183 |
 | [henriqueholtz](./participantes/henriqueholtz) | ok | 2 |
+| [hfurlan-java-transacao-particionada](./participantes/hfurlan-java-transacao-particionada) | ok | 3 |
 | [hfurlan-java](./participantes/hfurlan-java) | ok | 4 |
 | [hfurlan](./participantes/hfurlan) | ok | 4 |
 | [hiroshimorowaka-golang](./participantes/hiroshimorowaka-golang) | ok | 1 |
