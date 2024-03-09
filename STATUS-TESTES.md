@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  9 19:51:22 UTC 2024** com **598** submissões.
+Atualizada **Sat Mar  9 20:02:29 UTC 2024** com **601** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -110,6 +110,7 @@ Atualizada **Sat Mar  9 19:51:22 UTC 2024** com **598** submissões.
 | [carlsonsantana-springboot](./participantes/carlsonsantana-springboot) | ok | 2 |
 | [casanje](./participantes/casanje) | falha - [logs](./participantes/casanje/docker-compose.logs) | -- |
 | [cassiano-manuelzinho-golang](./participantes/cassiano-manuelzinho-golang) | ok | 2 |
+| [cassiano-matheuszinho-java](./participantes/cassiano-matheuszinho-java) | falha - [logs](./participantes/cassiano-matheuszinho-java/docker-compose.logs) | -- |
 | [cassiano-pedrinho-rust](./participantes/cassiano-pedrinho-rust) | ok | 2 |
 | [cesar-rodrigues](./participantes/cesar-rodrigues) | falha - [logs](./participantes/cesar-rodrigues/docker-compose.logs) | -- |
 | [claudio-silva](./participantes/claudio-silva) | ok | 3 |
@@ -369,6 +370,7 @@ Atualizada **Sat Mar  9 19:51:22 UTC 2024** com **598** submissões.
 | [lucasdev2005](./participantes/lucasdev2005) | ok | 5 |
 | [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | ok | 3353 |
 | [lucasmancan](./participantes/lucasmancan) | ok | 1 |
+| [lucasmolinari](./participantes/lucasmolinari) | falha - [logs](./participantes/lucasmolinari/docker-compose.logs) | -- |
 | [lucasmro](./participantes/lucasmro) | ok | 2 |
 | [lucassperez-go-crebito](./participantes/lucassperez-go-crebito) | ok | 4 |
 | [lucaswilliameufrasio](./participantes/lucaswilliameufrasio) | ok | 4 |
@@ -528,6 +530,7 @@ Atualizada **Sat Mar  9 19:51:22 UTC 2024** com **598** submissões.
 | [sergipebackend-java](./participantes/sergipebackend-java) | ok | 2 |
 | [silmar-alberti-franken-php](./participantes/silmar-alberti-franken-php) | ok | 2 |
 | [sinatrinha-do-povo](./participantes/sinatrinha-do-povo) | ok | 4 |
+| [skvggor-pankkivahva-rust](./participantes/skvggor-pankkivahva-rust) | ok | 2 |
 | [stefannovasky-kitajs](./participantes/stefannovasky-kitajs) | ok | 2 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [sudo-victor-js](./participantes/sudo-victor-js) | ok | 4981 |
