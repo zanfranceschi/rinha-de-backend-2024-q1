@@ -13,7 +13,7 @@ Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `.NET 8 (AOT)` para api
-- [repositório da api](https://github.com/RyanMouraBrocco/rinha-de-backend-2024-q1/tree/main)
+- [repositório da api](https://github.com/RyanMouraBrocco/rinha-de-backend-2024-q1-code)
 
 [RyanBrocco](https://www.linkedin.com/in/ryan-moura-brocco-837075177/) @LinkedIn
 [FellipeSena](https://www.linkedin.com/in/fellipesn/) @LinkedIn
