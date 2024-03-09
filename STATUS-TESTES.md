@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  9 03:39:16 UTC 2024** com **586** submissões.
+Atualizada **Sat Mar  9 04:02:14 UTC 2024** com **587** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -300,7 +300,7 @@ Atualizada **Sat Mar  9 03:39:16 UTC 2024** com **586** submissões.
 | [jojodev](./participantes/jojodev) | ok | 1554 |
 | [jonasfeanor](./participantes/jonasfeanor) | ok | 2 |
 | [jonatasoli](./participantes/jonatasoli) | ok | 1 |
-| [jonathanperis](./participantes/jonathanperis) | ok | 2 |
+| [jonathanperis](./participantes/jonathanperis) | ok | 1 |
 | [jonattas_bunjs](./participantes/jonattas_bunjs) | ok | 17 |
 | [jorgehrique-dotnet](./participantes/jorgehrique-dotnet) | ok | 3 |
 | [josebaroni-postgrest](./participantes/josebaroni-postgrest) | ok | 2 |
@@ -524,6 +524,7 @@ Atualizada **Sat Mar  9 03:39:16 UTC 2024** com **586** submissões.
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [tagliatti](./participantes/tagliatti) | ok | 4 |
 | [thiagodamas-go-swagger-sqlc-postgres](./participantes/thiagodamas-go-swagger-sqlc-postgres) | ok | 5 |
+| [thiagorigonatti-java-core](./participantes/thiagorigonatti-java-core) | ok | 2 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
 | [thiagosantana_go](./participantes/thiagosantana_go) | ok | 10 |
 | [thiagotn](./participantes/thiagotn) | ok | 2 |
@@ -537,7 +538,7 @@ Atualizada **Sat Mar  9 03:39:16 UTC 2024** com **586** submissões.
 | [tiagorconceicao-node](./participantes/tiagorconceicao-node) | ok | 6 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
 | [tonico](./participantes/tonico) | ok | 80 |
-| [tonycarvalho1994](./participantes/tonycarvalho1994) | falha - [logs](./participantes/tonycarvalho1994/docker-compose.logs) | -- |
+| [tonycarvalho1994](./participantes/tonycarvalho1994) | ok | 4 |
 | [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
 | [udleinati](./participantes/udleinati) | ok | 2 |
