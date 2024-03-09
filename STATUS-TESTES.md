@@ -1,13 +1,14 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  9 04:29:12 UTC 2024** com **587** submissões.
+Atualizada **Sat Mar  9 04:52:05 UTC 2024** com **588** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
 | [0000-golang](./participantes/0000-golang) | ok | 2 |
 | [1garo](./participantes/1garo) | ok | 5 |
 | [4emcos-golang](./participantes/4emcos-golang) | ok | 4 |
+| [4emcos-nodejs](./participantes/4emcos-nodejs) | ok | 4 |
 | [AlcivanLucas](./participantes/AlcivanLucas) | falha - [logs](./participantes/AlcivanLucas/docker-compose.logs) | -- |
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 5 |
 | [Fabricio-net8](./participantes/Fabricio-net8) | ok | 2 |
@@ -292,7 +293,7 @@ Atualizada **Sat Mar  9 04:29:12 UTC 2024** com **587** submissões.
 | [jhonnyboy](./participantes/jhonnyboy) | ok | 1 |
 | [jjeanjacques10](./participantes/jjeanjacques10) | ok | 2 |
 | [jnariai](./participantes/jnariai) | falha - [logs](./participantes/jnariai/docker-compose.logs) | -- |
-| [joao0212](./participantes/joao0212) | falha - [logs](./participantes/joao0212/docker-compose.logs) | -- |
+| [joao0212](./participantes/joao0212) | ok | 1 |
 | [joaojr13](./participantes/joaojr13) | ok | 3 |
 | [joaopaulosg](./participantes/joaopaulosg) | ok | 2 |
 | [joaopmerlin](./participantes/joaopmerlin) | ok | 3 |
@@ -315,7 +316,7 @@ Atualizada **Sat Mar  9 04:29:12 UTC 2024** com **587** submissões.
 | [julianojj](./participantes/julianojj) | ok | 7 |
 | [julioriffel-django](./participantes/julioriffel-django) | ok | 6 |
 | [juliorovesta](./participantes/juliorovesta) | ok | 1 |
-| [juliotsutsui-node](./participantes/juliotsutsui-node) | ok | 4 |
+| [juliotsutsui-node](./participantes/juliotsutsui-node) | ok | 5 |
 | [juniorleaoo](./participantes/juniorleaoo) | ok | 2 |
 | [juniorzucareli-dotnet](./participantes/juniorzucareli-dotnet) | ok | 1 |
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 1861 |
