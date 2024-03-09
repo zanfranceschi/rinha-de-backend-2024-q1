@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  9 01:09:54 UTC 2024** com **583** submissões.
+Atualizada **Sat Mar  9 01:32:50 UTC 2024** com **584** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -35,6 +35,7 @@ Atualizada **Sat Mar  9 01:09:54 UTC 2024** com **583** submissões.
 | [albert-js](./participantes/albert-js) | ok | 5 |
 | [alcides-kotlin](./participantes/alcides-kotlin) | ok | 2 |
 | [alcides-quarkus](./participantes/alcides-quarkus) | ok | 2 |
+| [alexmarquesfa-kotlin](./participantes/alexmarquesfa-kotlin) | ok | 4 |
 | [alexsiilvaa](./participantes/alexsiilvaa) | ok | 1 |
 | [alfredomorais](./participantes/alfredomorais) | falha - [logs](./participantes/alfredomorais/docker-compose.logs) | -- |
 | [alissonsleal](./participantes/alissonsleal) | ok | 3 |
@@ -112,7 +113,7 @@ Atualizada **Sat Mar  9 01:09:54 UTC 2024** com **583** submissões.
 | [claudio-silva](./participantes/claudio-silva) | ok | 3 |
 | [claudioavgo](./participantes/claudioavgo) | falha - [logs](./participantes/claudioavgo/docker-compose.logs) | -- |
 | [claudioneves1981](./participantes/claudioneves1981) | ok | 1 |
-| [cleidiano](./participantes/cleidiano) | ok | 1 |
+| [cleidiano](./participantes/cleidiano) | ok | 2 |
 | [cleitinif](./participantes/cleitinif) | ok | 4 |
 | [cleverson-flask](./participantes/cleverson-flask) | ok | 4 |
 | [cleverton-rocha-java](./participantes/cleverton-rocha-java) | falha - [logs](./participantes/cleverton-rocha-java/docker-compose.logs) | -- |
