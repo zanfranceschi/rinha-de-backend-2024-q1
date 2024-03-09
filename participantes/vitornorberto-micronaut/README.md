@@ -9,7 +9,7 @@ Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `java 21` para api com `Micronaut` e `Graalvm`
-- [repositório da api](https://github.com/Norbertoooo/rinha-de-backend-2024-q1-micronaut
+- [repositório da api](https://github.com/Norbertoooo/rinha-de-backend-2024-q1-micronaut)
 
 [vitor-norberto](https://www.linkedin.com/in/vitor-norberto/) @ linkedin
 
