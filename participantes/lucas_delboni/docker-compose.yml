@@ -16,7 +16,8 @@ services:
       - "8081:8080"
       - "9010:9010"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -60,6 +61,11 @@ services:
     volumes:
       - ./script.sql:/docker-entrypoint-initdb.d/init.sql
     command: 'postgres -c max_connections=20 -c shared_buffers=96MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=16MB'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U admin -d rinha']
+      timeout: 15s
+      interval: 10s
+      retries: 10
     deploy:
       resources:
         limits:
