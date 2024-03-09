@@ -1,0 +1,83 @@
+version: '3.9'
+
+services:
+  api01: &api
+    hostname: api01
+    container_name: api01
+    image: hallex/rinha-backend-2024-hyperf:1.0.2
+    ports:
+      - "9501:9501"
+    environment:
+      HTTP_PORT: 9501
+      APP_NAME: rinha-backend-2024
+      APP_ENV: prod
+      DB_DRIVER: pgsql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: hyperf
+      DB_USERNAME: root
+      DB_PASSWORD: secret
+      SCAN_CACHEABLE: true
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "100MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    container_name: api02
+    ports:
+      - "9502:9501"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "100MB"
+
+  db:
+    container_name: db
+    hostname: db
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: hyperf
+      POSTGRES_PASSWORD: secret
+      POSTGRES_USER: root
+    ports:
+      - 5432:5432
+    volumes:
+      - ./infra/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./infra/postgres.conf:/etc/postgresql/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "300MB"
+
+  lb01:
+    image: nginx:1.25.4-alpine
+    container_name: lb01
+    hostname: lb01
+    volumes:
+      - ./infra/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "50MB"
+
+networks:
+  default:
+    driver: bridge
+    name: net
+

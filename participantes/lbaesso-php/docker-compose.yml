@@ -1,0 +1,66 @@
+version: '3.8'
+name: rinha-de-backend-lbaesso-php
+services:
+
+  app1: &app
+    container_name: app1
+    image: lbaisso/rinha-de-backend-2024-q1-php:latest
+    depends_on:
+      - postgres
+    network_mode: host
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASS=password
+      - DB_NAME=rinha
+    volumes:
+      - ./conf/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./conf/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "100MB"
+
+  app2:
+    <<: *app
+    container_name: app2
+    volumes:
+      - ./conf/www2.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./conf/zz-docker2.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+
+  nginx:
+    container_name: nginx-proxy
+    image: nginx:latest
+    volumes:
+      - ./conf/nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app1
+      - app2
+    network_mode: host
+    expose: 
+      - 9999
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "40MB"
+
+  postgres:
+    container_name: postgres
+    hostname: postgres
+    image: postgres:latest
+    command: postgres -c 'max_connections=64'
+    network_mode: host
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.60"
+          memory: "310MB"

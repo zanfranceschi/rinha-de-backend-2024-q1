@@ -10,6 +10,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:8080
+      - POSTGRESQL_CONNECTION_STRING=Host=postgres-db;Username=root;Password=root;Database=rinha-db;MaxPoolSize=30;MinPoolSize=5;Connection Pruning Interval=1;Connection Idle Lifetime=2;Enlist=false;No Reset On Close=true;Pooling=true
     deploy:
       resources:
         limits:
@@ -30,6 +31,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:8080
+      - POSTGRESQL_CONNECTION_STRING=Host=postgres-db;Username=root;Password=root;Database=rinha-db;MaxPoolSize=30;MinPoolSize=5;Connection Pruning Interval=1;Connection Idle Lifetime=2;Enlist=false;No Reset On Close=true;Pooling=true
     deploy:
       resources:
         limits:
@@ -74,8 +76,6 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: rinha-db
-
-    # se quer apelar, use: postgres -c 'max_connections=400' -c 'fsync=off' -c 'synchronous_commit=off' -c 'checkpoint_timeout=1d' -c 'full_page_writes=false'
     command: postgres -c 'max_connections=400' -c 'checkpoint_timeout=600'
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U root -d rinha-db" ]

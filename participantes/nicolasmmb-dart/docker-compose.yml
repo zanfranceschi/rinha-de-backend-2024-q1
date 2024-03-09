@@ -1,0 +1,81 @@
+version: '3.9'
+
+services:
+  api01: &api
+    container_name: api-01
+    image: nicolasmmb/dart-side-rinha:latest
+    # platform: linux/amd64
+    depends_on:
+      db: 
+          condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: '96MB'
+    environment:
+      SERVER_PORT: 9999
+      SERVER_ADDR: 0.0.0.0
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: rinha
+      DB_PASS: rinha
+      DB_NAME: rinha
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:9999/ping"]
+      interval: 3s
+      timeout: 1000ms
+      retries: 20
+      start_period: 1s
+
+  api02:
+    container_name: api-02
+    <<: *api
+
+
+  db:
+    container_name: svc-db
+    image: postgres:16.1-alpine
+    hostname: database
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    volumes:
+      - ./config/init.v2.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./config/postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 25
+      start_period: 3s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: '325MB'
+    environment:
+      POSTGRES_DB: rinha
+      POSTGRES_USER: rinha
+      POSTGRES_PASSWORD: rinha
+    ports:
+      - "5430:5432"
+
+  nginx: 
+    container_name: svc-lb
+    image: nginx:latest
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      db:
+        condition: service_healthy
+      api01:
+        condition: service_healthy
+      api02:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: '32MB'
+    ports:
+      - "9999:9999"
+    

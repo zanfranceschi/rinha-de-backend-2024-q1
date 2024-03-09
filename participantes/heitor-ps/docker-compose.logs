@@ -26,8 +26,8 @@ postgres-1  | selecting default shared_buffers ... 128MB
 postgres-1  | selecting default time zone ... Etc/UTC
 postgres-1  | creating configuration files ... ok
 postgres-1  | running bootstrap script ... ok
-api01-1     | Example app listening on port 3000
 api02-1     | Example app listening on port 3000
+api01-1     | Example app listening on port 3000
 nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -37,8 +37,6 @@ nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
 postgres-1  | performing post-bootstrap initialization ... ok
-postgres-1  | initdb: warning: enabling "trust" authentication for local connections
-postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 postgres-1  | syncing data to disk ... ok
 postgres-1  | 
 postgres-1  | 
@@ -46,10 +44,12 @@ postgres-1  | Success. You can now start the database server using:
 postgres-1  | 
 postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 postgres-1  | 
-postgres-1  | waiting for server to start....2024-02-16 09:09:37.945 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres-1  | 2024-02-16 09:09:37.946 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres-1  | 2024-02-16 09:09:37.947 GMT [51] LOG:  database system was shut down at 2024-02-16 09:09:37 GMT
-postgres-1  | 2024-02-16 09:09:37.950 GMT [48] LOG:  database system is ready to accept connections
+postgres-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres-1  | waiting for server to start....2024-02-19 07:42:11.982 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres-1  | 2024-02-19 07:42:11.982 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2024-02-19 07:42:12.016 GMT [51] LOG:  database system was shut down at 2024-02-19 07:42:11 GMT
+postgres-1  | 2024-02-19 07:42:12.019 GMT [48] LOG:  database system is ready to accept connections
 postgres-1  |  done
 postgres-1  | server started
 postgres-1  | CREATE DATABASE
@@ -61,24 +61,24 @@ postgres-1  | CREATE TABLE
 postgres-1  | INSERT 0 5
 postgres-1  | 
 postgres-1  | 
-postgres-1  | waiting for server to shut down...2024-02-16 09:09:38.233 GMT [48] LOG:  received fast shutdown request
-postgres-1  | .2024-02-16 09:09:38.233 GMT [48] LOG:  aborting any active transactions
-postgres-1  | 2024-02-16 09:09:38.235 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-postgres-1  | 2024-02-16 09:09:38.236 GMT [49] LOG:  shutting down
-postgres-1  | 2024-02-16 09:09:38.236 GMT [49] LOG:  checkpoint starting: shutdown immediate
-postgres-1  | 2024-02-16 09:09:38.241 GMT [49] LOG:  checkpoint complete: wrote 937 buffers (4.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4284 kB, estimate=4284 kB; lsn=0/1919A68, redo lsn=0/1919A68
-postgres-1  | 2024-02-16 09:09:38.247 GMT [48] LOG:  database system is shut down
+postgres-1  | waiting for server to shut down...2024-02-19 07:42:12.239 GMT [48] LOG:  received fast shutdown request
+postgres-1  | .2024-02-19 07:42:12.239 GMT [48] LOG:  aborting any active transactions
+postgres-1  | 2024-02-19 07:42:12.240 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres-1  | 2024-02-19 07:42:12.241 GMT [49] LOG:  shutting down
+postgres-1  | 2024-02-19 07:42:12.241 GMT [49] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2024-02-19 07:42:12.246 GMT [49] LOG:  checkpoint complete: wrote 937 buffers (4.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4284 kB, estimate=4284 kB; lsn=0/1919A68, redo lsn=0/1919A68
+postgres-1  | 2024-02-19 07:42:12.316 GMT [48] LOG:  database system is shut down
 postgres-1  |  done
 postgres-1  | server stopped
 postgres-1  | 
 postgres-1  | PostgreSQL init process complete; ready for start up.
 postgres-1  | 
-postgres-1  | 2024-02-16 09:09:38.361 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres-1  | 2024-02-16 09:09:38.361 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres-1  | 2024-02-16 09:09:38.361 GMT [1] LOG:  listening on IPv6 address "::", port 5432
-postgres-1  | 2024-02-16 09:09:38.361 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres-1  | 2024-02-16 09:09:38.363 GMT [66] LOG:  database system was shut down at 2024-02-16 09:09:38 GMT
-postgres-1  | 2024-02-16 09:09:38.366 GMT [1] LOG:  database system is ready to accept connections
+postgres-1  | 2024-02-19 07:42:12.365 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres-1  | 2024-02-19 07:42:12.365 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2024-02-19 07:42:12.365 GMT [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2024-02-19 07:42:12.365 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2024-02-19 07:42:12.367 GMT [66] LOG:  database system was shut down at 2024-02-19 07:42:12 GMT
+postgres-1  | 2024-02-19 07:42:12.370 GMT [1] LOG:  database system is ready to accept connections
 api01-1     | handling error...
 api01-1     | [method: GET]
 api01-1     |  [uri: /clientes/6/extrato]
@@ -86,29 +86,43 @@ api01-1     |  [body: {}]
 api01-1     |  [error: user_not_found] { statusCode: 404, error: 'internal_error', message: 'user_not_found' }
 api01-1     | handling error...
 api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/1/transacoes]
+api01-1     |  [uri: /clientes/4/transacoes]
 api01-1     |  [body: {"valor":1.2,"tipo":"d","descricao":"devolve"}]
 api01-1     |  [error: Valor inválido] { statusCode: 422, error: 'internal_error', message: 'Valor inválido' }
 api02-1     | handling error...
 api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/5/transacoes]
-api02-1     |  [body: {"valor":1.2,"tipo":"d","descricao":"devolve"}]
-api02-1     |  [error: Valor inválido] { statusCode: 422, error: 'internal_error', message: 'Valor inválido' }
-api01-1     | handling error...
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":1,"tipo":"x","descricao":"devolve"}]
-api01-1     |  [error: Tipo inválido] { statusCode: 422, error: 'internal_error', message: 'Tipo inválido' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/3/transacoes]
-api02-1     |  [body: {"valor":1.2,"tipo":"d","descricao":"devolve"}]
-api02-1     |  [error: Valor inválido] { statusCode: 422, error: 'internal_error', message: 'Valor inválido' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/5/transacoes]
+api02-1     |  [uri: /clientes/4/transacoes]
 api02-1     |  [body: {"valor":1,"tipo":"x","descricao":"devolve"}]
 api02-1     |  [error: Tipo inválido] { statusCode: 422, error: 'internal_error', message: 'Tipo inválido' }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/3/transacoes]
+api01-1     |  [body: {"valor":1.2,"tipo":"d","descricao":"devolve"}]
+api01-1     |  [error: Valor inválido] { statusCode: 422, error: 'internal_error', message: 'Valor inválido' }
+api01-1     | handling error...
+api02-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/2/transacoes]
+api01-1     |  [body: {"valor":1.2,"tipo":"d","descricao":"devolve"}]
+api01-1     |  [error: Valor inválido] { statusCode: 422, error: 'internal_error', message: 'Valor inválido' }
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/4/transacoes]
+api02-1     |  [body: {"valor":1,"tipo":"c","descricao":"123456789 e mais um pouco"}]
+api02-1     |  [error: Descricão inválida] {
+api02-1     |   statusCode: 422,
+api02-1     |   error: 'internal_error',
+api02-1     |   message: 'Descricão inválida'
+api02-1     | }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/5/transacoes]
+api02-1     |  [body: {"valor":1.2,"tipo":"d","descricao":"devolve"}]
+api02-1     |  [error: Valor inválido] { statusCode: 422, error: 'internal_error', message: 'Valor inválido' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/1/transacoes]
+api02-1     |  [body: {"valor":1.2,"tipo":"d","descricao":"devolve"}]
+api02-1     |  [error: Valor inválido] { statusCode: 422, error: 'internal_error', message: 'Valor inválido' }
 api01-1     | handling error...
 api01-1     | [method: POST]
 api01-1     |  [uri: /clientes/3/transacoes]
@@ -116,8 +130,8 @@ api01-1     |  [body: {"valor":1,"tipo":"x","descricao":"devolve"}]
 api01-1     |  [error: Tipo inválido] { statusCode: 422, error: 'internal_error', message: 'Tipo inválido' }
 api01-1     | handling error...
 api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":1,"tipo":"c","descricao":"123456789 e mais um pouco"}]
+api01-1     |  [uri: /clientes/4/transacoes]
+api01-1     |  [body: {"valor":1,"tipo":"c","descricao":""}]
 api01-1     |  [error: Descricão inválida] {
 api01-1     |   statusCode: 422,
 api01-1     |   error: 'internal_error',
@@ -125,22 +139,8 @@ api01-1     |   message: 'Descricão inválida'
 api01-1     | }
 api01-1     | handling error...
 api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/2/transacoes]
-api01-1     |  [body: {"valor":1.2,"tipo":"d","descricao":"devolve"}]
-api01-1     |  [error: Valor inválido] { statusCode: 422, error: 'internal_error', message: 'Valor inválido' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/5/transacoes]
-api02-1     |  [body: {"valor":1,"tipo":"c","descricao":"123456789 e mais um pouco"}]
-api02-1     |  [error: Descricão inválida] {
-api02-1     |   statusCode: 422,
-api02-1     |   error: 'internal_error',
-api02-1     |   message: 'Descricão inválida'
-api02-1     | }
-api01-1     | handling error...
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":1,"tipo":"c","descricao":""}]
+api01-1     |  [uri: /clientes/3/transacoes]
+api01-1     |  [body: {"valor":1,"tipo":"c","descricao":"123456789 e mais um pouco"}]
 api01-1     |  [error: Descricão inválida] {
 api01-1     |   statusCode: 422,
 api01-1     |   error: 'internal_error',
@@ -149,45 +149,45 @@ api01-1     | }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/4/transacoes]
-api02-1     |  [body: {"valor":1.2,"tipo":"d","descricao":"devolve"}]
-api02-1     |  [error: Valor inválido] { statusCode: 422, error: 'internal_error', message: 'Valor inválido' }
-api02-1     | handling error...
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/3/transacoes]
-api02-1     |  [body: {"valor":1,"tipo":"c","descricao":"123456789 e mais um pouco"}]
+api02-1     |  [body: {"valor":1,"tipo":"c","descricao":null}]
 api02-1     |  [error: Descricão inválida] {
 api02-1     |   statusCode: 422,
 api02-1     |   error: 'internal_error',
 api02-1     |   message: 'Descricão inválida'
 api02-1     | }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/1/transacoes]
+api01-1     |  [body: {"valor":1,"tipo":"x","descricao":"devolve"}]
+api01-1     |  [error: Tipo inválido] { statusCode: 422, error: 'internal_error', message: 'Tipo inválido' }
+api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/2/transacoes]
 api02-1     |  [body: {"valor":1,"tipo":"x","descricao":"devolve"}]
 api02-1     |  [error: Tipo inválido] { statusCode: 422, error: 'internal_error', message: 'Tipo inválido' }
 api01-1     | handling error...
 api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/4/transacoes]
-api01-1     |  [body: {"valor":1,"tipo":"x","descricao":"devolve"}]
-api01-1     |  [error: Tipo inválido] { statusCode: 422, error: 'internal_error', message: 'Tipo inválido' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":1,"tipo":"c","descricao":null}]
-api02-1     |  [error: Descricão inválida] {
-api02-1     |   statusCode: 422,
-api02-1     |   error: 'internal_error',
-api02-1     |   message: 'Descricão inválida'
-api02-1     | }
-api01-1     | handling error...
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/5/transacoes]
-api01-1     |  [body: {"valor":1,"tipo":"c","descricao":""}]
+api01-1     |  [uri: /clientes/1/transacoes]
+api01-1     |  [body: {"valor":1,"tipo":"c","descricao":"123456789 e mais um pouco"}]
 api01-1     |  [error: Descricão inválida] {
 api01-1     |   statusCode: 422,
 api01-1     |   error: 'internal_error',
 api01-1     |   message: 'Descricão inválida'
 api01-1     | }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/2/transacoes]
+api01-1     |  [body: {"valor":1,"tipo":"c","descricao":"123456789 e mais um pouco"}]
+api01-1     |  [error: Descricão inválida] {
+api01-1     |   statusCode: 422,
+api01-1     |   error: 'internal_error',
+api01-1     |   message: 'Descricão inválida'
+api01-1     | }
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/5/transacoes]
+api02-1     |  [body: {"valor":1,"tipo":"x","descricao":"devolve"}]
+api02-1     |  [error: Tipo inválido] { statusCode: 422, error: 'internal_error', message: 'Tipo inválido' }
+api02-1     | handling error...
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/3/transacoes]
@@ -197,10 +197,37 @@ api02-1     |   statusCode: 422,
 api02-1     |   error: 'internal_error',
 api02-1     |   message: 'Descricão inválida'
 api02-1     | }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/5/transacoes]
+api02-1     |  [body: {"valor":1,"tipo":"c","descricao":"123456789 e mais um pouco"}]
+api02-1     |  [error: Descricão inválida] {
+api02-1     |   statusCode: 422,
+api02-1     |   error: 'internal_error',
+api02-1     |   message: 'Descricão inválida'
+api02-1     | }
 api01-1     | handling error...
 api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/4/transacoes]
-api01-1     |  [body: {"valor":1,"tipo":"c","descricao":"123456789 e mais um pouco"}]
+api01-1     |  [uri: /clientes/3/transacoes]
+api01-1     |  [body: {"valor":1,"tipo":"c","descricao":null}]
+api01-1     |  [error: Descricão inválida] {
+api01-1     |   statusCode: 422,
+api01-1     |   error: 'internal_error',
+api01-1     |   message: 'Descricão inválida'
+api01-1     | }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/2/transacoes]
+api02-1     |  [body: {"valor":1,"tipo":"c","descricao":""}]
+api02-1     |  [error: Descricão inválida] {
+api02-1     |   statusCode: 422,
+api02-1     |   error: 'internal_error',
+api02-1     |   message: 'Descricão inválida'
+api02-1     | }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/1/transacoes]
+api01-1     |  [body: {"valor":1,"tipo":"c","descricao":""}]
 api01-1     |  [error: Descricão inválida] {
 api01-1     |   statusCode: 422,
 api01-1     |   error: 'internal_error',
@@ -209,52 +236,7 @@ api01-1     | }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/5/transacoes]
-api02-1     |  [body: {"valor":1,"tipo":"c","descricao":null}]
-api02-1     |  [error: Descricão inválida] {
-api02-1     |   statusCode: 422,
-api02-1     |   error: 'internal_error',
-api02-1     |   message: 'Descricão inválida'
-api02-1     | }
-api01-1     | handling error...
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/2/transacoes]
-api01-1     |  [body: {"valor":1,"tipo":"c","descricao":"123456789 e mais um pouco"}]
-api01-1     |  [error: Descricão inválida] {
-api01-1     |   statusCode: 422,
-api01-1     |   error: 'internal_error',
-api01-1     |   message: 'Descricão inválida'
-api01-1     | }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/4/transacoes]
 api02-1     |  [body: {"valor":1,"tipo":"c","descricao":""}]
-api02-1     |  [error: Descricão inválida] {
-api02-1     |   statusCode: 422,
-api02-1     |   error: 'internal_error',
-api02-1     |   message: 'Descricão inválida'
-api02-1     | }
-api02-1     | handling error...
-api01-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/3/transacoes]
-api02-1     |  [body: {"valor":1,"tipo":"c","descricao":null}]
-api02-1     |  [error: Descricão inválida] {
-api02-1     |   statusCode: 422,
-api02-1     |   error: 'internal_error',
-api02-1     |   message: 'Descricão inválida'
-api02-1     | }
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/2/transacoes]
-api01-1     |  [body: {"valor":1,"tipo":"c","descricao":""}]
-api01-1     |  [error: Descricão inválida] {
-api01-1     |   statusCode: 422,
-api01-1     |   error: 'internal_error',
-api01-1     |   message: 'Descricão inválida'
-api01-1     | }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/4/transacoes]
-api02-1     |  [body: {"valor":1,"tipo":"c","descricao":null}]
 api02-1     |  [error: Descricão inválida] {
 api02-1     |   statusCode: 422,
 api02-1     |   error: 'internal_error',
@@ -271,230 +253,248 @@ api01-1     |   message: 'Descricão inválida'
 api01-1     | }
 api02-1     | handling error...
 api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/5/transacoes]
+api02-1     |  [body: {"valor":1,"tipo":"c","descricao":null}]
+api02-1     |  [error: Descricão inválida] {
+api02-1     |   statusCode: 422,
+api02-1     |   error: 'internal_error',
+api02-1     |   message: 'Descricão inválida'
+api02-1     | }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/1/transacoes]
+api01-1     |  [body: {"valor":1,"tipo":"c","descricao":null}]
+api01-1     |  [error: Descricão inválida] {
+api01-1     |   statusCode: 422,
+api01-1     |   error: 'internal_error',
+api01-1     |   message: 'Descricão inválida'
+api01-1     | }
+api02-1     | handling error...
+api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":8430,"tipo":"d","descricao":"gJJL3O4tbW"}]
+api02-1     |  [body: {"valor":3446,"tipo":"d","descricao":"0LuzZHr20g"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":5390,"tipo":"d","descricao":"fzIEilvlO3"}]
+api02-1     |  [body: {"valor":8570,"tipo":"d","descricao":"wIT3bfAexG"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":7823,"tipo":"d","descricao":"medLWWluNU"}]
-api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api01-1     | handling error...
 api01-1     | handling error...
 api01-1     | [method: POST]
 api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":2683,"tipo":"d","descricao":"u3R76qVOV4"}]
+api01-1     |  [body: {"valor":9297,"tipo":"d","descricao":"EyPgFJ3pUI"}]
 api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":9907,"tipo":"d","descricao":"PjLxvAjhTr"}]
+api02-1     |  [body: {"valor":8024,"tipo":"d","descricao":"eFnP84rqUe"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":9223,"tipo":"d","descricao":"ewAjiIeYdC"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api01-1     | handling error...
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":7319,"tipo":"d","descricao":"36sElXyWvF"}]
-api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api01-1     | handling error...
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":6769,"tipo":"d","descricao":"boZ2QEx1Rj"}]
-api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":6843,"tipo":"d","descricao":"Uh8HUzivTT"}]
+api02-1     |  [body: {"valor":2084,"tipo":"d","descricao":"E6vUvw9rqX"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":5440,"tipo":"d","descricao":"DdQBwk5MYd"}]
+api02-1     |  [body: {"valor":9575,"tipo":"d","descricao":"Y6PmgYhzSg"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api01-1     | handling error...
 api01-1     | [method: POST]
 api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":7896,"tipo":"d","descricao":"gcyXAHLNxb"}]
+api01-1     |  [body: {"valor":8833,"tipo":"d","descricao":"CvQvlUpDei"}]
+api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/2/transacoes]
+api01-1     |  [body: {"valor":2152,"tipo":"d","descricao":"ZFMMcKs8hL"}]
+api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/2/transacoes]
+api01-1     |  [body: {"valor":6278,"tipo":"d","descricao":"1xbEVi85FZ"}]
 api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":4251,"tipo":"d","descricao":"GRefPsn7eO"}]
+api02-1     |  [body: {"valor":6529,"tipo":"d","descricao":"DBTNwUeQKT"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api01-1     | handling error...
 api01-1     | [method: POST]
 api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":2508,"tipo":"d","descricao":"EOqDnrhdrb"}]
+api01-1     |  [body: {"valor":5904,"tipo":"d","descricao":"gPmHQSYO5J"}]
 api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":6993,"tipo":"d","descricao":"kxpvV91BHA"}]
+api02-1     |  [body: {"valor":5268,"tipo":"d","descricao":"yGzFGsVuUw"}]
+api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/1/transacoes]
+api02-1     |  [body: {"valor":7928,"tipo":"d","descricao":"iGRZkl1b8q"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api01-1     | handling error...
 api01-1     | [method: POST]
 api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":9480,"tipo":"d","descricao":"bTM7svDHyq"}]
+api01-1     |  [body: {"valor":2577,"tipo":"d","descricao":"kybwXWXWHS"}]
+api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/1/transacoes]
+api02-1     |  [body: {"valor":2856,"tipo":"d","descricao":"apXk5zGQEA"}]
+api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/1/transacoes]
+api02-1     |  [body: {"valor":6914,"tipo":"d","descricao":"Sb7yVKPz8Q"}]
+api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/1/transacoes]
+api01-1     |  [body: {"valor":7266,"tipo":"d","descricao":"gh7KhsdWvO"}]
+api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/2/transacoes]
+api01-1     |  [body: {"valor":3118,"tipo":"d","descricao":"SLZCr33CTw"}]
 api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api01-1     | handling error...
 api01-1     | [method: POST]
 api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":6084,"tipo":"d","descricao":"RB3luLRtiU"}]
+api01-1     |  [body: {"valor":9354,"tipo":"d","descricao":"k5VI0COb8F"}]
 api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api01-1     | handling error...
 api01-1     | [method: POST]
 api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":5954,"tipo":"d","descricao":"6ZGtjSpXY2"}]
+api01-1     |  [body: {"valor":8133,"tipo":"d","descricao":"pmKcgJyGXW"}]
+api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/1/transacoes]
+api01-1     |  [body: {"valor":5137,"tipo":"d","descricao":"5LfAoiR3aR"}]
+api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/1/transacoes]
+api02-1     |  [body: {"valor":6680,"tipo":"d","descricao":"ItGeh399n7"}]
+api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/1/transacoes]
+api02-1     |  [body: {"valor":4346,"tipo":"d","descricao":"hmReJajdZh"}]
+api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/1/transacoes]
+api02-1     |  [body: {"valor":8437,"tipo":"d","descricao":"P8Eag1PFV1"}]
+api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/1/transacoes]
+api01-1     |  [body: {"valor":9941,"tipo":"d","descricao":"CTWtphafmC"}]
+api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/2/transacoes]
+api01-1     |  [body: {"valor":6915,"tipo":"d","descricao":"LpCyCbxQ6C"}]
+api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/1/transacoes]
+api02-1     |  [body: {"valor":4702,"tipo":"d","descricao":"4ghAVxSmLL"}]
+api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/1/transacoes]
+api02-1     |  [body: {"valor":8612,"tipo":"d","descricao":"21KgfJtrT0"}]
+api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/1/transacoes]
+api02-1     |  [body: {"valor":8996,"tipo":"d","descricao":"K870MrqNQR"}]
+api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/1/transacoes]
+api02-1     |  [body: {"valor":9271,"tipo":"d","descricao":"pgUfayfHWl"}]
+api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/1/transacoes]
+api01-1     |  [body: {"valor":7983,"tipo":"d","descricao":"PMSMbv3gKK"}]
+api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/1/transacoes]
+api02-1     |  [body: {"valor":7542,"tipo":"d","descricao":"RdcYZIbhaI"}]
+api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/1/transacoes]
+api01-1     |  [body: {"valor":2510,"tipo":"d","descricao":"fsuyy9E8Aj"}]
 api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":7898,"tipo":"d","descricao":"sfrJPGKCdX"}]
+api02-1     |  [body: {"valor":9855,"tipo":"d","descricao":"jvRX4eFJxV"}]
+api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api02-1     | handling error...
+api02-1     | [method: POST]
+api02-1     |  [uri: /clientes/2/transacoes]
+api02-1     |  [body: {"valor":8335,"tipo":"d","descricao":"HVQxFV2dGb"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api01-1     | handling error...
 api01-1     | [method: POST]
 api01-1     |  [uri: /clientes/2/transacoes]
-api01-1     |  [body: {"valor":6202,"tipo":"d","descricao":"B95oo3yNy9"}]
+api01-1     |  [body: {"valor":7053,"tipo":"d","descricao":"SaIPjS0Loz"}]
 api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":4764,"tipo":"d","descricao":"6EvUAOe4oJ"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":9861,"tipo":"d","descricao":"D1kAQzG0A1"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":4691,"tipo":"d","descricao":"lGsFgz5hEK"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":9346,"tipo":"d","descricao":"YI0b3weKzj"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":8669,"tipo":"d","descricao":"4elRoq3Tug"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api01-1     | handling error...
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":3877,"tipo":"d","descricao":"xorAWw12pb"}]
-api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":6997,"tipo":"d","descricao":"RdttwGQhGe"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":5055,"tipo":"d","descricao":"S9NpmIFbJo"}]
+api02-1     |  [body: {"valor":7578,"tipo":"d","descricao":"c15o2IzXvi"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api01-1     | handling error...
 api01-1     | [method: POST]
 api01-1     |  [uri: /clientes/2/transacoes]
-api01-1     |  [body: {"valor":6713,"tipo":"d","descricao":"gMvGdq06vv"}]
-api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":9680,"tipo":"d","descricao":"KYYODW8elm"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":6754,"tipo":"d","descricao":"9C7FfRk0hQ"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":9250,"tipo":"d","descricao":"I3m3LaF7P1"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api01-1     | handling error...
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":8235,"tipo":"d","descricao":"kG0UdnCZfk"}]
-api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api01-1     | handling error...
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":5202,"tipo":"d","descricao":"RSDBqeLt4N"}]
-api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api01-1     | handling error...
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":9840,"tipo":"d","descricao":"4ZQXlowl48"}]
+api01-1     |  [body: {"valor":8229,"tipo":"d","descricao":"BHuHaltCu8"}]
 api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":2430,"tipo":"d","descricao":"Zbmmk5kYBB"}]
+api02-1     |  [body: {"valor":6963,"tipo":"d","descricao":"XDnuff6LNj"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api01-1     | handling error...
 api01-1     | [method: POST]
 api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":3314,"tipo":"d","descricao":"IMk61zLDl4"}]
+api01-1     |  [body: {"valor":9881,"tipo":"d","descricao":"lbhdvUXHhB"}]
+api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
+api01-1     | handling error...
+api01-1     | [method: POST]
+api01-1     |  [uri: /clientes/2/transacoes]
+api01-1     |  [body: {"valor":5945,"tipo":"d","descricao":"0dX71pG6Dy"}]
 api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":7094,"tipo":"d","descricao":"DGCOjP6CRJ"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":6162,"tipo":"d","descricao":"wwjebt8xpW"}]
+api02-1     |  [uri: /clientes/2/transacoes]
+api02-1     |  [body: {"valor":7300,"tipo":"d","descricao":"bZfp0O58BU"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":6767,"tipo":"d","descricao":"75L0958NsJ"}]
+api02-1     |  [body: {"valor":9533,"tipo":"d","descricao":"vYSsHXNCvH"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api01-1     | handling error...
 api01-1     | [method: POST]
 api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":2364,"tipo":"d","descricao":"dP1zHg18Bc"}]
+api01-1     |  [body: {"valor":6645,"tipo":"d","descricao":"nXMPAJRjIW"}]
 api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":8623,"tipo":"d","descricao":"sCJog3mhks"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api01-1     | handling error...
-api01-1     | [method: POST]
-api01-1     |  [uri: /clientes/1/transacoes]
-api01-1     |  [body: {"valor":4060,"tipo":"d","descricao":"C1bMmm5A6L"}]
-api01-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":4525,"tipo":"d","descricao":"DZ8MAzOxN8"}]
+api02-1     |  [body: {"valor":8738,"tipo":"d","descricao":"alHjQahbEX"}]
 api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
 api02-1     | handling error...
 api02-1     | [method: POST]
 api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":3693,"tipo":"d","descricao":"jfJB5o00ZP"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/1/transacoes]
-api02-1     |  [body: {"valor":9330,"tipo":"d","descricao":"nyeZXN6Z7R"}]
-api02-1     |  [error: limit_exceeded] { statusCode: 422, error: 'internal_error', message: 'limit_exceeded' }
-api02-1     | handling error...
-api02-1     | [method: POST]
-api02-1     |  [uri: /clientes/2/transacoes]
-api02-1     |  [body: {"valor":1359,"tipo":"d","descricao":"E9m08nCZ6D"}]
+api02-1     |  [body: {"valor":7111,"tipo":"d","descricao":"C5Dh0ZY5Ee"}]

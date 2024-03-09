@@ -1,0 +1,56 @@
+version: '3.5'
+
+services:
+  db:
+    image: asfernandes/rinhaback24q1:haproxy-mongoose-firebird-db
+    volumes:
+      - ./data/firebird:/data/firebird
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '390MB'
+    network_mode: host
+
+  api1: &api
+    image: asfernandes/rinhaback24q1:haproxy-mongoose-firebird-api
+    environment: &env
+      POLL_TIME: 4
+      NET_WORKERS: 8
+      FB_DATABASE: 127.0.0.1/9996:/data/firebird/database.fdb
+      ISC_USER: sysdba
+      ISC_PASSWORD: masterkey
+      LISTEN_ADDRESS: 127.0.0.1:9997
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+    network_mode: host
+    depends_on:
+      db:
+        condition: service_healthy
+
+  api2:
+    <<: *api
+    environment:
+      <<: *env
+      LISTEN_ADDRESS: 127.0.0.1:9998
+
+  haproxy:
+    image: haproxy:2.9.5-alpine
+    volumes:
+      - ./config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: '60MB'
+    network_mode: host
+    depends_on:
+      - api1
+      - api2

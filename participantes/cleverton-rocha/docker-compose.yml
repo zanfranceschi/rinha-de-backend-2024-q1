@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: rinha-pg
+    image: postgres:latest
+    hostname: db-rinha
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: rinha
+      PG_DATA: /data/postgres
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: 'postgres -c max_connections=300 -c shared_buffers=96MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=16MB'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: '200MB'
+
+  api01: &api
+    image: ultr444/rinha-backend-api:latest
+    hostname: api01
+    environment:
+      - DATABASE_URL=postgresql://postgres:docker@db-rinha:5432/rinha?schema=public
+      - PORT=3000
+    ports:
+      - '8080:3000'
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '150MB'
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - '8081:3000'
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - '9999:9999'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '50MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

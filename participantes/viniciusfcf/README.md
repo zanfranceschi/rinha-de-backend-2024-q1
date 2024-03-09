@@ -3,12 +3,14 @@
 ### Vinicius Ferraz
 
 Github: [@viniciusfcf](https://github.com/viniciusfcf)
+
 Twitter: [@viniciusfcf](https://twitter.com/viniciusfcf)
-Repositório (branch viniciusfcf): [https://github.com/viniciusfcf/rinha-de-backend-2024-q1/tree/viniciusfcf](https://github.com/viniciusfcf/rinha-de-backend-2024-q1/tree/viniciusfcf)
+
+Repositório: [https://github.com/viniciusfcf/rinha-de-backend-2024-q1/tree/viniciusfcf](https://github.com/viniciusfcf/rinha-de-backend-2024-q1/tree/viniciusfcf)
 
 
 ### Stack:
-- Quarkus 3.7.1 🚀
+- Quarkus 3.8.2 🚀
 - Mandrel ([Graal](https://github.com/graalvm/mandrel))
 - Postgres 16.1
 - Nginx

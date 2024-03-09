@@ -1,9 +1,7 @@
- Network antoniogdelrio_rinha-network  Creating
- Network antoniogdelrio_rinha-network  Created
  Container antoniogdelrio-db-1  Creating
  Container antoniogdelrio-db-1  Created
- Container antoniogdelrio-api02-1  Creating
  Container antoniogdelrio-api01-1  Creating
+ Container antoniogdelrio-api02-1  Creating
  Container antoniogdelrio-api02-1  Created
  Container antoniogdelrio-api01-1  Created
  Container antoniogdelrio-nginx-1  Creating
@@ -27,8 +25,6 @@ db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
 db-1     | performing post-bootstrap initialization ... ok
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -36,6 +32,8 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | waiting for server to start.... done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -47,6 +45,8 @@ db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initd
 db-1     | CREATE TABLE
 db-1     | CREATE TABLE
 db-1     | DO
+db-1     | CREATE TYPE
+db-1     | CREATE FUNCTION
 db-1     | CREATE INDEX
 db-1     | 
 db-1     | 
@@ -72,10 +72,8 @@ api02-1  |
 api02-1  | > rinha-backend-2024@1.0.0 start
 api02-1  | > node src/server.js
 api02-1  | 
-api01-1  | Server started in port 8080
-api01-1  | Warming up server...
-api02-1  | Server started in port 8080
-api02-1  | Warming up server...
+api01-1  | Webserver started on port 8081
+api02-1  | Webserver started on port 8082
 api01-1  | Server warmed up!
 api02-1  | Server warmed up!
 nginx-1 exited with code 0
@@ -86,14 +84,14 @@ api02-1  | npm ERR! signal SIGTERM
 api02-1  | npm ERR! command sh -c node src/server.js
 api02-1  | 
 api02-1  | npm ERR! A complete log of this run can be found in:
-api02-1  | npm ERR!     /root/.npm/_logs/2024-02-17T03_34_19_021Z-debug-0.log
+api02-1  | npm ERR!     /root/.npm/_logs/2024-02-20T01_15_36_429Z-debug-0.log
 api01-1  | npm ERR! path /usr/src/app
 api01-1  | npm ERR! command failed
 api01-1  | npm ERR! signal SIGTERM
 api01-1  | npm ERR! command sh -c node src/server.js
 api01-1  | 
 api01-1  | npm ERR! A complete log of this run can be found in:
-api01-1  | npm ERR!     /root/.npm/_logs/2024-02-17T03_34_19_016Z-debug-0.log
+api01-1  | npm ERR!     /root/.npm/_logs/2024-02-20T01_15_36_425Z-debug-0.log
 api02-1 exited with code 0
 api02-1 exited with code 1
 api01-1 exited with code 0

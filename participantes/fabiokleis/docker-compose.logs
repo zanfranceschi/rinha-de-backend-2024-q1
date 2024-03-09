@@ -36,12 +36,12 @@ nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
 db-1     | performing post-bootstrap initialization ... ok
-api01-1  | Exec: /rel/erts-14.2.1/bin/erlexec -noinput +Bd -boot /rel/releases/0.1.0/start -mode embedded -boot_var SYSTEM_LIB_DIR /rel/lib -config /rel/releases/0.1.0/sys.config -args_file /rel/releases/0.1.0/vm.args -- foreground
-api01-1  | Root: /rel
-api01-1  | /rel
 api02-1  | Exec: /rel/erts-14.2.1/bin/erlexec -noinput +Bd -boot /rel/releases/0.1.0/start -mode embedded -boot_var SYSTEM_LIB_DIR /rel/lib -config /rel/releases/0.1.0/sys.config -args_file /rel/releases/0.1.0/vm.args -- foreground
 api02-1  | Root: /rel
 api02-1  | /rel
+api01-1  | Exec: /rel/erts-14.2.1/bin/erlexec -noinput +Bd -boot /rel/releases/0.1.0/start -mode embedded -boot_var SYSTEM_LIB_DIR /rel/lib -config /rel/releases/0.1.0/sys.config -args_file /rel/releases/0.1.0/vm.args -- foreground
+api01-1  | Root: /rel
+api01-1  | /rel
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -51,10 +51,10 @@ db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-16 07:07:28.584 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 07:07:28.585 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 07:07:28.586 UTC [51] LOG:  database system was shut down at 2024-02-16 07:07:26 UTC
-db-1     | 2024-02-16 07:07:28.589 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 05:13:30.985 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 05:13:30.985 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 05:13:30.987 UTC [51] LOG:  database system was shut down at 2024-02-19 05:13:29 UTC
+db-1     | 2024-02-19 05:13:30.989 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -67,29 +67,36 @@ db-1     | CREATE TABLE
 db-1     | DO
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-16 07:07:28.820 UTC [48] LOG:  received fast shutdown request
-db-1     | 2024-02-16 07:07:28.820 UTC [48] LOG:  aborting any active transactions
-db-1     | .2024-02-16 07:07:28.823 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-16 07:07:28.823 UTC [49] LOG:  shutting down
-db-1     | 2024-02-16 07:07:28.823 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 07:07:28.828 UTC [49] LOG:  checkpoint complete: wrote 944 buffers (11.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4313 kB, estimate=4313 kB; lsn=0/1920E90, redo lsn=0/1920E90
-db-1     | 2024-02-16 07:07:28.835 UTC [48] LOG:  database system is shut down
+db-1     | 2024-02-19 05:13:31.225 UTC [48] LOG:  received fast shutdown request
+db-1     | 2024-02-19 05:13:31.226 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-19 05:13:31.229 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | waiting for server to shut down....2024-02-19 05:13:31.230 UTC [49] LOG:  shutting down
+db-1     | 2024-02-19 05:13:31.231 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 05:13:31.238 UTC [49] LOG:  checkpoint complete: wrote 944 buffers (11.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.001 s, total=0.008 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4313 kB, estimate=4313 kB; lsn=0/1920E90, redo lsn=0/1920E90
+db-1     | 2024-02-19 05:13:31.247 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-16 07:07:28.949 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 07:07:28.949 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 07:07:28.949 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 07:07:28.949 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 07:07:28.951 UTC [66] LOG:  database system was shut down at 2024-02-16 07:07:28 UTC
-db-1     | 2024-02-16 07:07:28.954 UTC [1] LOG:  database system is ready to accept connections
+db-1     | 2024-02-19 05:13:31.360 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 05:13:31.360 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 05:13:31.361 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 05:13:31.361 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 05:13:31.362 UTC [66] LOG:  database system was shut down at 2024-02-19 05:13:31 UTC
+db-1     | 2024-02-19 05:13:31.365 UTC [1] LOG:  database system is ready to accept connections
+nginx-1  | 2024/02/19 05:13:32 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.21.0.3:6969/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:13:32 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.21.0.4:6969/clientes/1/extrato", host: "localhost:9999"
 api01-1  | default: #{user => "admin",host => "db",password => "123",pool_size => 8,
 api01-1  |            database => "rinha"}
 api02-1  | default: #{user => "admin",host => "db",password => "123",pool_size => 8,
 api02-1  |            database => "rinha"}
-api01-1  | =CRASH REPORT==== 16-Feb-2024::07:07:29.935149 ===
+nginx-1  | 2024/02/19 05:13:34 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:13:36 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:13:38 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:13:40 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 05:13:42 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1  | =CRASH REPORT==== 19-Feb-2024::05:13:49.385072 ===
 api01-1  |   crasher:
 api01-1  |     initial call: cowboy_stream_h:request_process/3
 api01-1  |     pid: <0.642.0>
@@ -97,202 +104,11 @@ api01-1  |     registered_name: []
 api01-1  |     exception error: no try clause matching 
 api01-1  |                      {ok,#{pid => <0.641.0>,port => 80,scheme => <<"http">>,
 api01-1  |                            version => 'HTTP/1.0',
-api01-1  |                            path => <<"/clientes/1/extrato">>,
-api01-1  |                            host => <<"api">>,
-api01-1  |                            peer => {{192,168,176,5},37014},
-api01-1  |                            bindings => #{id => 1},
-api01-1  |                            sock => {{192,168,176,3},6969},
-api01-1  |                            ref => erlang_rinher,
-api01-1  |                            headers =>
-api01-1  |                                #{<<"accept">> => <<"*/*">>,
-api01-1  |                                  <<"connection">> => <<"close">>,
-api01-1  |                                  <<"host">> => <<"api">>,
-api01-1  |                                  <<"user-agent">> => <<"curl/7.81.0">>},
-api01-1  |                            method => <<"GET">>,qs => <<>>,cert => undefined,
-api01-1  |                            body_length => 0,has_body => false,streamid => 1,
-api01-1  |                            host_info => undefined,path_info => undefined,
-api01-1  |                            has_sent_resp => true}}
-api01-1  |       in function  cowboy_handler:execute/2 (/app/_build/default/lib/cowboy/src/cowboy_handler.erl, line 37)
-api01-1  |       in call from cowboy_stream_h:execute/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 306)
-api01-1  |       in call from cowboy_stream_h:request_process/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 295)
-api01-1  |     ancestors: [<0.641.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
-api01-1  |     message_queue_len: 0
-api01-1  |     messages: []
-api01-1  |     links: [<0.641.0>]
-api01-1  |     dictionary: [{query,
-api01-1  |                       "select valor, tipo, descricao, realizada_em from transacoes where cliente_id=$1 order by id desc limit 10"},
-api01-1  |                   {'$logger_metadata$',
-api01-1  |                       #{otel_span_id => "0000000000000000",
-api01-1  |                         otel_trace_flags => "00",
-api01-1  |                         otel_trace_id => "00000000000000000000000000000000"}},
-api01-1  |                   {'$__current_otel_ctx',#{}}]
-api01-1  |     trap_exit: false
-api01-1  |     status: running
-api01-1  |     heap_size: 2586
-api01-1  |     stack_size: 28
-api01-1  |     reductions: 6166
-api01-1  |   neighbours:
-api01-1  | 
-api01-1  | =ERROR REPORT==== 16-Feb-2024::07:07:29.935890 ===
-api01-1  | Ranch listener erlang_rinher, connection process <0.641.0>, stream 1 had its request process <0.642.0> exit with reason {try_clause,{ok,#{pid => <0.641.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/extrato">>,host => <<"api">>,peer => {{192,168,176,5},37014},bindings => #{id => 1},sock => {{192,168,176,3},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"curl/7.81.0">>},method => <<"GET">>,qs => <<>>,cert => undefined,body_length => 0,has_body => false,streamid => 1,host_info => undefined,path_info => undefined,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
-api01-1  | 
-api02-1  | =CRASH REPORT==== 16-Feb-2024::07:07:35.519581 ===
-api02-1  |   crasher:
-api02-1  |     initial call: cowboy_stream_h:request_process/3
-api02-1  |     pid: <0.646.0>
-api02-1  |     registered_name: []
-api02-1  |     exception error: no try clause matching 
-api02-1  |                      {ok,#{pid => <0.645.0>,port => 80,scheme => <<"http">>,
-api02-1  |                            version => 'HTTP/1.0',
-api02-1  |                            path => <<"/clientes/1/transacoes">>,
-api02-1  |                            host => <<"api">>,
-api02-1  |                            peer => {{192,168,176,5},37466},
-api02-1  |                            bindings => #{id => 1},
-api02-1  |                            sock => {{192,168,176,4},6969},
-api02-1  |                            ref => erlang_rinher,
-api02-1  |                            headers =>
-api02-1  |                                #{<<"accept">> => <<"*/*">>,
-api02-1  |                                  <<"connection">> => <<"close">>,
-api02-1  |                                  <<"content-length">> => <<"51">>,
-api02-1  |                                  <<"content-type">> => <<"application/json">>,
-api02-1  |                                  <<"host">> => <<"api">>,
-api02-1  |                                  <<"user-agent">> =>
-api02-1  |                                      <<"Agente do Caos - 2024/Q1">>},
-api02-1  |                            method => <<"POST">>,qs => <<>>,cert => undefined,
-api02-1  |                            streamid => 1,body_length => 51,has_body => true,
-api02-1  |                            host_info => undefined,path_info => undefined,
-api02-1  |                            has_read_body => true,has_sent_resp => true}}
-api02-1  |       in function  cowboy_handler:execute/2 (/app/_build/default/lib/cowboy/src/cowboy_handler.erl, line 37)
-api02-1  |       in call from cowboy_stream_h:execute/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 306)
-api02-1  |       in call from cowboy_stream_h:request_process/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 295)
-api02-1  |     ancestors: [<0.645.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
-api02-1  |     message_queue_len: 0
-api02-1  |     messages: []
-api02-1  |     links: [<0.645.0>]
-api02-1  |     dictionary: [{'$logger_metadata$',
-api02-1  |                       #{otel_span_id => "0000000000000000",
-api02-1  |                         otel_trace_flags => "00",
-api02-1  |                         otel_trace_id => "00000000000000000000000000000000"}},
-api02-1  |                   {'$__current_otel_ctx',#{}},
-api02-1  |                   {query,"COMMIT"}]
-api02-1  |     trap_exit: false
-api02-1  |     status: running
-api02-1  |     heap_size: 2586
-api02-1  |     stack_size: 28
-api02-1  |     reductions: 9216
-api02-1  |   neighbours:
-api02-1  | 
-api02-1  | =CRASH REPORT==== 16-Feb-2024::07:07:35.520646 ===
-api02-1  |   crasher:
-api02-1  |     initial call: cowboy_stream_h:request_process/3
-api02-1  |     pid: <0.644.0>
-api02-1  |     registered_name: []
-api02-1  |     exception error: no try clause matching 
-api02-1  |                      {ok,#{pid => <0.643.0>,port => 80,scheme => <<"http">>,
-api02-1  |                            version => 'HTTP/1.0',
-api02-1  |                            path => <<"/clientes/1/transacoes">>,
-api02-1  |                            host => <<"api">>,
-api02-1  |                            peer => {{192,168,176,5},37460},
-api02-1  |                            bindings => #{id => 1},
-api02-1  |                            sock => {{192,168,176,4},6969},
-api02-1  |                            ref => erlang_rinher,
-api02-1  |                            headers =>
-api02-1  |                                #{<<"accept">> => <<"*/*">>,
-api02-1  |                                  <<"connection">> => <<"close">>,
-api02-1  |                                  <<"content-length">> => <<"51">>,
-api02-1  |                                  <<"content-type">> => <<"application/json">>,
-api02-1  |                                  <<"host">> => <<"api">>,
-api02-1  |                                  <<"user-agent">> =>
-api02-1  |                                      <<"Agente do Caos - 2024/Q1">>},
-api02-1  |                            method => <<"POST">>,qs => <<>>,cert => undefined,
-api02-1  |                            streamid => 1,body_length => 51,has_body => true,
-api02-1  |                            host_info => undefined,path_info => undefined,
-api02-1  |                            has_read_body => true,has_sent_resp => true}}
-api02-1  |       in function  cowboy_handler:execute/2 (/app/_build/default/lib/cowboy/src/cowboy_handler.erl, line 37)
-api02-1  |       in call from cowboy_stream_h:execute/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 306)
-api02-1  |       in call from cowboy_stream_h:request_process/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 295)
-api02-1  |     ancestors: [<0.643.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
-api02-1  |     message_queue_len: 0
-api02-1  |     messages: []
-api02-1  |     links: [<0.643.0>]
-api02-1  |     dictionary: [{'$logger_metadata$',
-api02-1  |                       #{otel_span_id => "0000000000000000",
-api02-1  |                         otel_trace_flags => "00",
-api02-1  |                         otel_trace_id => "00000000000000000000000000000000"}},
-api02-1  |                   {'$__current_otel_ctx',#{}},
-api02-1  |                   {query,"COMMIT"}]
-api02-1  |     trap_exit: false
-api02-1  |     status: running
-api02-1  |     heap_size: 1598
-api02-1  |     stack_size: 28
-api02-1  |     reductions: 8816
-api02-1  |   neighbours:
-api02-1  | 
-api02-1  | =ERROR REPORT==== 16-Feb-2024::07:07:35.521528 ===
-api02-1  | Ranch listener erlang_rinher, connection process <0.643.0>, stream 1 had its request process <0.644.0> exit with reason {try_clause,{ok,#{pid => <0.643.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{192,168,176,5},37460},bindings => #{id => 1},sock => {{192,168,176,4},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,streamid => 1,body_length => 51,has_body => true,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
-api02-1  | 
-api02-1  | =CRASH REPORT==== 16-Feb-2024::07:07:35.526827 ===
-api02-1  |   crasher:
-api02-1  |     initial call: cowboy_stream_h:request_process/3
-api02-1  |     pid: <0.648.0>
-api02-1  |     registered_name: []
-api02-1  |     exception error: no try clause matching 
-api02-1  |                      {ok,#{pid => <0.647.0>,port => 80,scheme => <<"http">>,
-api02-1  |                            version => 'HTTP/1.0',
-api02-1  |                            path => <<"/clientes/1/transacoes">>,
-api02-1  |                            host => <<"api">>,
-api02-1  |                            peer => {{192,168,176,5},37478},
-api02-1  |                            bindings => #{id => 1},
-api02-1  |                            sock => {{192,168,176,4},6969},
-api02-1  |                            ref => erlang_rinher,
-api02-1  |                            headers =>
-api02-1  |                                #{<<"accept">> => <<"*/*">>,
-api02-1  |                                  <<"connection">> => <<"close">>,
-api02-1  |                                  <<"content-length">> => <<"51">>,
-api02-1  |                                  <<"content-type">> => <<"application/json">>,
-api02-1  |                                  <<"host">> => <<"api">>,
-api02-1  |                                  <<"user-agent">> =>
-api02-1  |                                      <<"Agente do Caos - 2024/Q1">>},
-api02-1  |                            method => <<"POST">>,qs => <<>>,cert => undefined,
-api02-1  |                            streamid => 1,body_length => 51,has_body => true,
-api02-1  |                            host_info => undefined,path_info => undefined,
-api02-1  |                            has_read_body => true,has_sent_resp => true}}
-api02-1  |       in function  cowboy_handler:execute/2 (/app/_build/default/lib/cowboy/src/cowboy_handler.erl, line 37)
-api02-1  |       in call from cowboy_stream_h:execute/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 306)
-api02-1  |       in call from cowboy_stream_h:request_process/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 295)
-api02-1  |     ancestors: [<0.647.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
-api02-1  |     message_queue_len: 0
-api02-1  |     messages: []
-api02-1  |     links: [<0.647.0>]
-api02-1  |     dictionary: [{'$logger_metadata$',
-api02-1  |                       #{otel_span_id => "0000000000000000",
-api02-1  |                         otel_trace_flags => "00",
-api02-1  |                         otel_trace_id => "00000000000000000000000000000000"}},
-api02-1  |                   {'$__current_otel_ctx',#{}},
-api02-1  |                   {query,"COMMIT"}]
-api02-1  |     trap_exit: false
-api02-1  |     status: running
-api02-1  |     heap_size: 1598
-api02-1  |     stack_size: 28
-api02-1  |     reductions: 8494
-api02-1  |   neighbours:
-api02-1  | 
-api02-1  | =ERROR REPORT==== 16-Feb-2024::07:07:35.527982 ===
-api02-1  | Ranch listener erlang_rinher, connection process <0.647.0>, stream 1 had its request process <0.648.0> exit with reason {try_clause,{ok,#{pid => <0.647.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{192,168,176,5},37478},bindings => #{id => 1},sock => {{192,168,176,4},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,streamid => 1,body_length => 51,has_body => true,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
-api02-1  | 
-api01-1  | =CRASH REPORT==== 16-Feb-2024::07:07:35.537504 ===
-api01-1  |   crasher:
-api01-1  |     initial call: cowboy_stream_h:request_process/3
-api01-1  |     pid: <0.654.0>
-api01-1  |     registered_name: []
-api01-1  |     exception error: no try clause matching 
-api01-1  |                      {ok,#{pid => <0.651.0>,port => 80,scheme => <<"http">>,
-api01-1  |                            version => 'HTTP/1.0',
 api01-1  |                            path => <<"/clientes/1/transacoes">>,
 api01-1  |                            host => <<"api">>,
-api01-1  |                            peer => {{192,168,176,5},37072},
+api01-1  |                            peer => {{172,21,0,5},36528},
 api01-1  |                            bindings => #{id => 1},
-api01-1  |                            sock => {{192,168,176,3},6969},
+api01-1  |                            sock => {{172,21,0,3},6969},
 api01-1  |                            ref => erlang_rinher,
 api01-1  |                            headers =>
 api01-1  |                                #{<<"accept">> => <<"*/*">>,
@@ -309,39 +125,183 @@ api01-1  |                            has_read_body => true,has_sent_resp => tru
 api01-1  |       in function  cowboy_handler:execute/2 (/app/_build/default/lib/cowboy/src/cowboy_handler.erl, line 37)
 api01-1  |       in call from cowboy_stream_h:execute/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 306)
 api01-1  |       in call from cowboy_stream_h:request_process/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 295)
-api01-1  |     ancestors: [<0.651.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
+api01-1  |     ancestors: [<0.641.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
 api01-1  |     message_queue_len: 0
 api01-1  |     messages: []
-api01-1  |     links: [<0.651.0>]
-api01-1  |     dictionary: [{query,"COMMIT"},
+api01-1  |     links: [<0.641.0>]
+api01-1  |     dictionary: [{'$__current_otel_ctx',#{}},
+api01-1  |                   {query,"COMMIT"},
 api01-1  |                   {'$logger_metadata$',
 api01-1  |                       #{otel_span_id => "0000000000000000",
 api01-1  |                         otel_trace_flags => "00",
-api01-1  |                         otel_trace_id => "00000000000000000000000000000000"}},
-api01-1  |                   {'$__current_otel_ctx',#{}}]
+api01-1  |                         otel_trace_id => "00000000000000000000000000000000"}}]
+api01-1  |     trap_exit: false
+api01-1  |     status: running
+api01-1  |     heap_size: 610
+api01-1  |     stack_size: 28
+api01-1  |     reductions: 10254
+api01-1  |   neighbours:
+api01-1  | 
+api01-1  | =ERROR REPORT==== 19-Feb-2024::05:13:49.385850 ===
+api01-1  | Ranch listener erlang_rinher, connection process <0.641.0>, stream 1 had its request process <0.642.0> exit with reason {try_clause,{ok,#{pid => <0.641.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{172,21,0,5},36528},bindings => #{id => 1},sock => {{172,21,0,3},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,body_length => 51,has_body => true,streamid => 1,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
+api01-1  | 
+api01-1  | =CRASH REPORT==== 19-Feb-2024::05:13:49.404044 ===
+api01-1  |   crasher:
+api01-1  |     initial call: cowboy_stream_h:request_process/3
+api01-1  |     pid: <0.645.0>
+api01-1  |     registered_name: []
+api01-1  |     exception error: no try clause matching 
+api01-1  |                      {ok,#{pid => <0.643.0>,port => 80,scheme => <<"http">>,
+api01-1  |                            version => 'HTTP/1.0',
+api01-1  |                            path => <<"/clientes/1/transacoes">>,
+api01-1  |                            host => <<"api">>,
+api01-1  |                            peer => {{172,21,0,5},36542},
+api01-1  |                            bindings => #{id => 1},
+api01-1  |                            sock => {{172,21,0,3},6969},
+api01-1  |                            ref => erlang_rinher,
+api01-1  |                            headers =>
+api01-1  |                                #{<<"accept">> => <<"*/*">>,
+api01-1  |                                  <<"connection">> => <<"close">>,
+api01-1  |                                  <<"content-length">> => <<"51">>,
+api01-1  |                                  <<"content-type">> => <<"application/json">>,
+api01-1  |                                  <<"host">> => <<"api">>,
+api01-1  |                                  <<"user-agent">> =>
+api01-1  |                                      <<"Agente do Caos - 2024/Q1">>},
+api01-1  |                            method => <<"POST">>,qs => <<>>,cert => undefined,
+api01-1  |                            body_length => 51,has_body => true,streamid => 1,
+api01-1  |                            host_info => undefined,path_info => undefined,
+api01-1  |                            has_read_body => true,has_sent_resp => true}}
+api01-1  |       in function  cowboy_handler:execute/2 (/app/_build/default/lib/cowboy/src/cowboy_handler.erl, line 37)
+api01-1  |       in call from cowboy_stream_h:execute/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 306)
+api01-1  |       in call from cowboy_stream_h:request_process/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 295)
+api01-1  |     ancestors: [<0.643.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
+api01-1  |     message_queue_len: 0
+api01-1  |     messages: []
+api01-1  |     links: [<0.643.0>]
+api01-1  |     dictionary: [{'$__current_otel_ctx',#{}},
+api01-1  |                   {query,"COMMIT"},
+api01-1  |                   {'$logger_metadata$',
+api01-1  |                       #{otel_span_id => "0000000000000000",
+api01-1  |                         otel_trace_flags => "00",
+api01-1  |                         otel_trace_id => "00000000000000000000000000000000"}}]
 api01-1  |     trap_exit: false
 api01-1  |     status: running
 api01-1  |     heap_size: 1598
 api01-1  |     stack_size: 28
-api01-1  |     reductions: 8218
+api01-1  |     reductions: 8222
 api01-1  |   neighbours:
 api01-1  | 
-api01-1  | =ERROR REPORT==== 16-Feb-2024::07:07:35.538237 ===
-api01-1  | Ranch listener erlang_rinher, connection process <0.651.0>, stream 1 had its request process <0.654.0> exit with reason {try_clause,{ok,#{pid => <0.651.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{192,168,176,5},37072},bindings => #{id => 1},sock => {{192,168,176,3},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,body_length => 51,has_body => true,streamid => 1,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
+api01-1  | =ERROR REPORT==== 19-Feb-2024::05:13:49.404773 ===
+api01-1  | Ranch listener erlang_rinher, connection process <0.643.0>, stream 1 had its request process <0.645.0> exit with reason {try_clause,{ok,#{pid => <0.643.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{172,21,0,5},36542},bindings => #{id => 1},sock => {{172,21,0,3},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,body_length => 51,has_body => true,streamid => 1,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
 api01-1  | 
-api01-1  | =CRASH REPORT==== 16-Feb-2024::07:07:35.539420 ===
+api01-1  | =CRASH REPORT==== 19-Feb-2024::05:13:49.407327 ===
 api01-1  |   crasher:
 api01-1  |     initial call: cowboy_stream_h:request_process/3
-api01-1  |     pid: <0.652.0>
+api01-1  |     pid: <0.648.0>
+api01-1  |     registered_name: []
+api01-1  |     exception error: no try clause matching 
+api01-1  |                      {ok,#{pid => <0.647.0>,port => 80,scheme => <<"http">>,
+api01-1  |                            version => 'HTTP/1.0',
+api01-1  |                            path => <<"/clientes/1/transacoes">>,
+api01-1  |                            host => <<"api">>,
+api01-1  |                            peer => {{172,21,0,5},36556},
+api01-1  |                            bindings => #{id => 1},
+api01-1  |                            sock => {{172,21,0,3},6969},
+api01-1  |                            ref => erlang_rinher,
+api01-1  |                            headers =>
+api01-1  |                                #{<<"accept">> => <<"*/*">>,
+api01-1  |                                  <<"connection">> => <<"close">>,
+api01-1  |                                  <<"content-length">> => <<"51">>,
+api01-1  |                                  <<"content-type">> => <<"application/json">>,
+api01-1  |                                  <<"host">> => <<"api">>,
+api01-1  |                                  <<"user-agent">> =>
+api01-1  |                                      <<"Agente do Caos - 2024/Q1">>},
+api01-1  |                            method => <<"POST">>,qs => <<>>,cert => undefined,
+api01-1  |                            body_length => 51,has_body => true,streamid => 1,
+api01-1  |                            host_info => undefined,path_info => undefined,
+api01-1  |                            has_read_body => true,has_sent_resp => true}}
+api01-1  |       in function  cowboy_handler:execute/2 (/app/_build/default/lib/cowboy/src/cowboy_handler.erl, line 37)
+api01-1  |       in call from cowboy_stream_h:execute/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 306)
+api01-1  |       in call from cowboy_stream_h:request_process/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 295)
+api01-1  |     ancestors: [<0.647.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
+api01-1  |     message_queue_len: 0
+api01-1  |     messages: []
+api01-1  |     links: [<0.647.0>]
+api01-1  |     dictionary: [{'$__current_otel_ctx',#{}},
+api01-1  |                   {query,"COMMIT"},
+api01-1  |                   {'$logger_metadata$',
+api01-1  |                       #{otel_span_id => "0000000000000000",
+api01-1  |                         otel_trace_flags => "00",
+api01-1  |                         otel_trace_id => "00000000000000000000000000000000"}}]
+api01-1  |     trap_exit: false
+api01-1  |     status: running
+api01-1  |     heap_size: 1598
+api01-1  |     stack_size: 28
+api01-1  |     reductions: 8222
+api01-1  |   neighbours:
+api01-1  | 
+api01-1  | =ERROR REPORT==== 19-Feb-2024::05:13:49.408216 ===
+api01-1  | Ranch listener erlang_rinher, connection process <0.647.0>, stream 1 had its request process <0.648.0> exit with reason {try_clause,{ok,#{pid => <0.647.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{172,21,0,5},36556},bindings => #{id => 1},sock => {{172,21,0,3},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,body_length => 51,has_body => true,streamid => 1,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
+api01-1  | 
+api02-1  | =CRASH REPORT==== 19-Feb-2024::05:13:49.404662 ===
+api02-1  |   crasher:
+api02-1  |     initial call: cowboy_stream_h:request_process/3
+api02-1  |     pid: <0.678.0>
+api02-1  |     registered_name: []
+api02-1  |     exception error: no try clause matching 
+api02-1  |                      {ok,#{pid => <0.675.0>,port => 80,scheme => <<"http">>,
+api02-1  |                            version => 'HTTP/1.0',
+api02-1  |                            path => <<"/clientes/1/transacoes">>,
+api02-1  |                            host => <<"api">>,
+api02-1  |                            peer => {{172,21,0,5},32860},
+api02-1  |                            bindings => #{id => 1},
+api02-1  |                            sock => {{172,21,0,4},6969},
+api02-1  |                            ref => erlang_rinher,
+api02-1  |                            headers =>
+api02-1  |                                #{<<"accept">> => <<"*/*">>,
+api02-1  |                                  <<"connection">> => <<"close">>,
+api02-1  |                                  <<"content-length">> => <<"51">>,
+api02-1  |                                  <<"content-type">> => <<"application/json">>,
+api02-1  |                                  <<"host">> => <<"api">>,
+api02-1  |                                  <<"user-agent">> =>
+api02-1  |                                      <<"Agente do Caos - 2024/Q1">>},
+api02-1  |                            method => <<"POST">>,qs => <<>>,cert => undefined,
+api02-1  |                            body_length => 51,has_body => true,streamid => 1,
+api02-1  |                            host_info => undefined,path_info => undefined,
+api02-1  |                            has_read_body => true,has_sent_resp => true}}
+api02-1  |       in function  cowboy_handler:execute/2 (/app/_build/default/lib/cowboy/src/cowboy_handler.erl, line 37)
+api02-1  |       in call from cowboy_stream_h:execute/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 306)
+api02-1  |       in call from cowboy_stream_h:request_process/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 295)
+api02-1  |     ancestors: [<0.675.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
+api02-1  |     message_queue_len: 0
+api02-1  |     messages: []
+api02-1  |     links: [<0.675.0>]
+api02-1  |     dictionary: [{query,"COMMIT"},
+api02-1  |                   {'$logger_metadata$',
+api02-1  |                       #{otel_span_id => "0000000000000000",
+api02-1  |                         otel_trace_flags => "00",
+api02-1  |                         otel_trace_id => "00000000000000000000000000000000"}},
+api02-1  |                   {'$__current_otel_ctx',#{}}]
+api02-1  |     trap_exit: false
+api02-1  |     status: running
+api02-1  |     heap_size: 1598
+api02-1  |     stack_size: 28
+api02-1  |     reductions: 8219
+api02-1  |   neighbours:
+api02-1  | 
+api01-1  | =CRASH REPORT==== 19-Feb-2024::05:13:49.416178 ===
+api01-1  |   crasher:
+api01-1  |     initial call: cowboy_stream_h:request_process/3
+api01-1  |     pid: <0.650.0>
 api01-1  |     registered_name: []
 api01-1  |     exception error: no try clause matching 
 api01-1  |                      {ok,#{pid => <0.649.0>,port => 80,scheme => <<"http">>,
 api01-1  |                            version => 'HTTP/1.0',
 api01-1  |                            path => <<"/clientes/1/transacoes">>,
 api01-1  |                            host => <<"api">>,
-api01-1  |                            peer => {{192,168,176,5},37056},
+api01-1  |                            peer => {{172,21,0,5},36558},
 api01-1  |                            bindings => #{id => 1},
-api01-1  |                            sock => {{192,168,176,3},6969},
+api01-1  |                            sock => {{172,21,0,3},6969},
 api01-1  |                            ref => erlang_rinher,
 api01-1  |                            headers =>
 api01-1  |                                #{<<"accept">> => <<"*/*">>,
@@ -362,35 +322,84 @@ api01-1  |     ancestors: [<0.649.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
 api01-1  |     message_queue_len: 0
 api01-1  |     messages: []
 api01-1  |     links: [<0.649.0>]
-api01-1  |     dictionary: [{query,"COMMIT"},
+api01-1  |     dictionary: [{'$__current_otel_ctx',#{}},
+api01-1  |                   {query,"COMMIT"},
 api01-1  |                   {'$logger_metadata$',
 api01-1  |                       #{otel_span_id => "0000000000000000",
 api01-1  |                         otel_trace_flags => "00",
-api01-1  |                         otel_trace_id => "00000000000000000000000000000000"}},
-api01-1  |                   {'$__current_otel_ctx',#{}}]
+api01-1  |                         otel_trace_id => "00000000000000000000000000000000"}}]
 api01-1  |     trap_exit: false
 api01-1  |     status: running
 api01-1  |     heap_size: 1598
 api01-1  |     stack_size: 28
-api01-1  |     reductions: 8211
+api01-1  |     reductions: 8222
 api01-1  |   neighbours:
 api01-1  | 
-api01-1  | =ERROR REPORT==== 16-Feb-2024::07:07:35.540049 ===
-api01-1  | Ranch listener erlang_rinher, connection process <0.649.0>, stream 1 had its request process <0.652.0> exit with reason {try_clause,{ok,#{pid => <0.649.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{192,168,176,5},37056},bindings => #{id => 1},sock => {{192,168,176,3},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,body_length => 51,has_body => true,streamid => 1,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
+api01-1  | =ERROR REPORT==== 19-Feb-2024::05:13:49.416868 ===
+api01-1  | Ranch listener erlang_rinher, connection process <0.649.0>, stream 1 had its request process <0.650.0> exit with reason {try_clause,{ok,#{pid => <0.649.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{172,21,0,5},36558},bindings => #{id => 1},sock => {{172,21,0,3},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,body_length => 51,has_body => true,streamid => 1,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
 api01-1  | 
-api01-1  | =CRASH REPORT==== 16-Feb-2024::07:07:35.542238 ===
+api02-1  | =ERROR REPORT==== 19-Feb-2024::05:13:49.405362 ===
+api02-1  | Ranch listener erlang_rinher, connection process <0.675.0>, stream 1 had its request process <0.678.0> exit with reason {try_clause,{ok,#{pid => <0.675.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{172,21,0,5},32860},bindings => #{id => 1},sock => {{172,21,0,4},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,body_length => 51,has_body => true,streamid => 1,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
+api02-1  | 
+api02-1  | =CRASH REPORT==== 19-Feb-2024::05:13:49.416698 ===
+api02-1  |   crasher:
+api02-1  |     initial call: cowboy_stream_h:request_process/3
+api02-1  |     pid: <0.679.0>
+api02-1  |     registered_name: []
+api02-1  |     exception error: no try clause matching 
+api02-1  |                      {ok,#{pid => <0.676.0>,port => 80,scheme => <<"http">>,
+api02-1  |                            version => 'HTTP/1.0',
+api02-1  |                            path => <<"/clientes/1/transacoes">>,
+api02-1  |                            host => <<"api">>,
+api02-1  |                            peer => {{172,21,0,5},32866},
+api02-1  |                            bindings => #{id => 1},
+api02-1  |                            sock => {{172,21,0,4},6969},
+api02-1  |                            ref => erlang_rinher,
+api02-1  |                            headers =>
+api02-1  |                                #{<<"accept">> => <<"*/*">>,
+api02-1  |                                  <<"connection">> => <<"close">>,
+api02-1  |                                  <<"content-length">> => <<"51">>,
+api02-1  |                                  <<"content-type">> => <<"application/json">>,
+api02-1  |                                  <<"host">> => <<"api">>,
+api02-1  |                                  <<"user-agent">> =>
+api02-1  |                                      <<"Agente do Caos - 2024/Q1">>},
+api02-1  |                            method => <<"POST">>,qs => <<>>,cert => undefined,
+api02-1  |                            body_length => 51,has_body => true,streamid => 1,
+api02-1  |                            host_info => undefined,path_info => undefined,
+api02-1  |                            has_read_body => true,has_sent_resp => true}}
+api02-1  |       in function  cowboy_handler:execute/2 (/app/_build/default/lib/cowboy/src/cowboy_handler.erl, line 37)
+api02-1  |       in call from cowboy_stream_h:execute/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 306)
+api02-1  |       in call from cowboy_stream_h:request_process/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 295)
+api02-1  |     ancestors: [<0.676.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
+api02-1  |     message_queue_len: 0
+api02-1  |     messages: []
+api02-1  |     links: [<0.676.0>]
+api02-1  |     dictionary: [{query,"COMMIT"},
+api02-1  |                   {'$logger_metadata$',
+api02-1  |                       #{otel_span_id => "0000000000000000",
+api02-1  |                         otel_trace_flags => "00",
+api02-1  |                         otel_trace_id => "00000000000000000000000000000000"}},
+api02-1  |                   {'$__current_otel_ctx',#{}}]
+api02-1  |     trap_exit: false
+api02-1  |     status: running
+api02-1  |     heap_size: 1598
+api02-1  |     stack_size: 28
+api02-1  |     reductions: 8219
+api02-1  |   neighbours:
+api02-1  | 
+api01-1  | =CRASH REPORT==== 19-Feb-2024::05:13:49.418161 ===
 api01-1  |   crasher:
 api01-1  |     initial call: cowboy_stream_h:request_process/3
-api01-1  |     pid: <0.659.0>
+api01-1  |     pid: <0.646.0>
 api01-1  |     registered_name: []
 api01-1  |     exception error: no try clause matching 
-api01-1  |                      {ok,#{pid => <0.656.0>,port => 80,scheme => <<"http">>,
+api01-1  |                      {ok,#{pid => <0.644.0>,port => 80,scheme => <<"http">>,
 api01-1  |                            version => 'HTTP/1.0',
 api01-1  |                            path => <<"/clientes/1/transacoes">>,
 api01-1  |                            host => <<"api">>,
-api01-1  |                            peer => {{192,168,176,5},37092},
+api01-1  |                            peer => {{172,21,0,5},36552},
 api01-1  |                            bindings => #{id => 1},
-api01-1  |                            sock => {{192,168,176,3},6969},
+api01-1  |                            sock => {{172,21,0,3},6969},
 api01-1  |                            ref => erlang_rinher,
 api01-1  |                            headers =>
 api01-1  |                                #{<<"accept">> => <<"*/*">>,
@@ -407,39 +416,39 @@ api01-1  |                            has_read_body => true,has_sent_resp => tru
 api01-1  |       in function  cowboy_handler:execute/2 (/app/_build/default/lib/cowboy/src/cowboy_handler.erl, line 37)
 api01-1  |       in call from cowboy_stream_h:execute/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 306)
 api01-1  |       in call from cowboy_stream_h:request_process/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 295)
-api01-1  |     ancestors: [<0.656.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
+api01-1  |     ancestors: [<0.644.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
 api01-1  |     message_queue_len: 0
 api01-1  |     messages: []
-api01-1  |     links: [<0.656.0>]
-api01-1  |     dictionary: [{query,"COMMIT"},
+api01-1  |     links: [<0.644.0>]
+api01-1  |     dictionary: [{'$__current_otel_ctx',#{}},
+api01-1  |                   {query,"COMMIT"},
 api01-1  |                   {'$logger_metadata$',
 api01-1  |                       #{otel_span_id => "0000000000000000",
 api01-1  |                         otel_trace_flags => "00",
-api01-1  |                         otel_trace_id => "00000000000000000000000000000000"}},
-api01-1  |                   {'$__current_otel_ctx',#{}}]
+api01-1  |                         otel_trace_id => "00000000000000000000000000000000"}}]
 api01-1  |     trap_exit: false
 api01-1  |     status: running
 api01-1  |     heap_size: 1598
 api01-1  |     stack_size: 28
-api01-1  |     reductions: 8211
+api01-1  |     reductions: 8222
 api01-1  |   neighbours:
 api01-1  | 
-api01-1  | =ERROR REPORT==== 16-Feb-2024::07:07:35.543006 ===
-api01-1  | Ranch listener erlang_rinher, connection process <0.656.0>, stream 1 had its request process <0.659.0> exit with reason {try_clause,{ok,#{pid => <0.656.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{192,168,176,5},37092},bindings => #{id => 1},sock => {{192,168,176,3},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,body_length => 51,has_body => true,streamid => 1,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
+api01-1  | =ERROR REPORT==== 19-Feb-2024::05:13:49.418845 ===
+api01-1  | Ranch listener erlang_rinher, connection process <0.644.0>, stream 1 had its request process <0.646.0> exit with reason {try_clause,{ok,#{pid => <0.644.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{172,21,0,5},36552},bindings => #{id => 1},sock => {{172,21,0,3},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,body_length => 51,has_body => true,streamid => 1,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
 api01-1  | 
-api02-1  | =CRASH REPORT==== 16-Feb-2024::07:07:35.551104 ===
+api02-1  | =CRASH REPORT==== 19-Feb-2024::05:13:49.419406 ===
 api02-1  |   crasher:
 api02-1  |     initial call: cowboy_stream_h:request_process/3
-api02-1  |     pid: <0.654.0>
+api02-1  |     pid: <0.680.0>
 api02-1  |     registered_name: []
 api02-1  |     exception error: no try clause matching 
-api02-1  |                      {ok,#{pid => <0.650.0>,port => 80,scheme => <<"http">>,
+api02-1  |                      {ok,#{pid => <0.677.0>,port => 80,scheme => <<"http">>,
 api02-1  |                            version => 'HTTP/1.0',
 api02-1  |                            path => <<"/clientes/1/transacoes">>,
 api02-1  |                            host => <<"api">>,
-api02-1  |                            peer => {{192,168,176,5},37486},
+api02-1  |                            peer => {{172,21,0,5},32876},
 api02-1  |                            bindings => #{id => 1},
-api02-1  |                            sock => {{192,168,176,4},6969},
+api02-1  |                            sock => {{172,21,0,4},6969},
 api02-1  |                            ref => erlang_rinher,
 api02-1  |                            headers =>
 api02-1  |                                #{<<"accept">> => <<"*/*">>,
@@ -450,51 +459,42 @@ api02-1  |                                  <<"host">> => <<"api">>,
 api02-1  |                                  <<"user-agent">> =>
 api02-1  |                                      <<"Agente do Caos - 2024/Q1">>},
 api02-1  |                            method => <<"POST">>,qs => <<>>,cert => undefined,
-api02-1  |                            streamid => 1,body_length => 51,has_body => true,
+api02-1  |                            body_length => 51,has_body => true,streamid => 1,
 api02-1  |                            host_info => undefined,path_info => undefined,
 api02-1  |                            has_read_body => true,has_sent_resp => true}}
 api02-1  |       in function  cowboy_handler:execute/2 (/app/_build/default/lib/cowboy/src/cowboy_handler.erl, line 37)
 api02-1  |       in call from cowboy_stream_h:execute/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 306)
 api02-1  |       in call from cowboy_stream_h:request_process/3 (/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl, line 295)
-api02-1  |     ancestors: [<0.650.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
+api02-1  |     ancestors: [<0.677.0>,<0.599.0>,<0.598.0>,ranch_sup,<0.576.0>]
 api02-1  |     message_queue_len: 0
 api02-1  |     messages: []
-api02-1  |     links: [<0.650.0>]
-api02-1  |     dictionary: [{'$logger_metadata$',
+api02-1  |     links: [<0.677.0>]
+api02-1  |     dictionary: [{query,"COMMIT"},
+api02-1  |                   {'$logger_metadata$',
 api02-1  |                       #{otel_span_id => "0000000000000000",
 api02-1  |                         otel_trace_flags => "00",
 api02-1  |                         otel_trace_id => "00000000000000000000000000000000"}},
-api02-1  |                   {'$__current_otel_ctx',#{}},
-api02-1  |                   {query,"COMMIT"}]
+api02-1  |                   {'$__current_otel_ctx',#{}}]
 api02-1  |     trap_exit: false
 api02-1  |     status: running
 api02-1  |     heap_size: 1598
 api02-1  |     stack_size: 28
-api02-1  |     reductions: 8217
+api02-1  |     reductions: 8212
 api02-1  |   neighbours:
 api02-1  | 
-api02-1  | =ERROR REPORT==== 16-Feb-2024::07:07:35.551701 ===
-api02-1  | Ranch listener erlang_rinher, connection process <0.650.0>, stream 1 had its request process <0.654.0> exit with reason {try_clause,{ok,#{pid => <0.650.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{192,168,176,5},37486},bindings => #{id => 1},sock => {{192,168,176,4},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,streamid => 1,body_length => 51,has_body => true,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
+api02-1  | =ERROR REPORT==== 19-Feb-2024::05:13:49.420565 ===
+api02-1  | Ranch listener erlang_rinher, connection process <0.677.0>, stream 1 had its request process <0.680.0> exit with reason {try_clause,{ok,#{pid => <0.677.0>,port => 80,scheme => <<"http">>,version => 'HTTP/1.0',path => <<"/clientes/1/transacoes">>,host => <<"api">>,peer => {{172,21,0,5},32876},bindings => #{id => 1},sock => {{172,21,0,4},6969},ref => erlang_rinher,headers => #{<<"accept">> => <<"*/*">>,<<"connection">> => <<"close">>,<<"content-length">> => <<"51">>,<<"content-type">> => <<"application/json">>,<<"host">> => <<"api">>,<<"user-agent">> => <<"Agente do Caos - 2024/Q1">>},method => <<"POST">>,qs => <<>>,cert => undefined,body_length => 51,has_body => true,streamid => 1,host_info => undefined,path_info => undefined,has_read_body => true,has_sent_resp => true}}} and stacktrace [{cowboy_handler,execute,2,[{file,"/app/_build/default/lib/cowboy/src/cowboy_handler.erl"},{line,37}]},{cowboy_stream_h,execute,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,306}]},{cowboy_stream_h,request_process,3,[{file,"/app/_build/default/lib/cowboy/src/cowboy_stream_h.erl"},{line,295}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,241}]}]
 api02-1  | 
-api01-1  | =CRASH REPORT==== 16-Feb-2024::07:07:37.489841 ===
-api01-1  |   crasher:
-api01-1  |     initial call: cowboy_stream_h:request_process/3
-api01-1  |     pid: <0.670.0>
-api01-1  |     registered_name: []
-api01-1  |     exception error: no try clause matching 
-api01-1  |                      {ok,#{pid => <0.669.0>,port => 80,scheme => <<"http">>,
-api01-1  |                            version => 'HTTP/1.0',
-api01-1  |                            path => <<"/clientes/1/transacoes">>,
-api01-1  |                            host => <<"api">>,
-api01-1  |                            peer => {{192,168,176,5},37144},
-api01-1  |                            bindings => #{id => 1},
-api01-1  |                            sock => {{192,168,176,3},6969},
-api01-1  |                            ref => erlang_rinher,
-api01-1  |                            headers =>
-api01-1  |                                #{<<"accept">> => <<"*/*">>,
-api01-1  |                                  <<"connection">> => <<"close">>,
-api01-1  |                                  <<"content-length">> => <<"51">>,
-api01-1  |                                  <<"content-type">> => <<"application/json">>,
-api01-1  |                                  <<"host">> => <<"api">>,
-api01-1  |                                  <<"user-agent">> =>
-api01-1  |                                      <<"Agente do Caos - 2024/Q1">>},
+api02-1  | =CRASH REPORT==== 19-Feb-2024::05:13:49.420050 ===
+api02-1  |   crasher:
+api02-1  |     initial call: cowboy_stream_h:request_process/3
+api02-1  |     pid: <0.684.0>
+api02-1  |     registered_name: []
+api02-1  |     exception error: no try clause matching 
+api02-1  |                      {ok,#{pid => <0.682.0>,port => 80,scheme => <<"http">>,
+api02-1  |                            version => 'HTTP/1.0',
+api02-1  |                            path => <<"/clientes/1/transacoes">>,
+api02-1  |                            host => <<"api">>,
+api02-1  |                            peer => {{172,21,0,5},32900},
+api02-1  |                            bindings => #{id => 1},
+api02-1  |                            sock => {{172,21,0,4},6969},

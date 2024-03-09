@@ -4,6 +4,7 @@ services:
   postgres:
     hostname: postgres.rinha2024.local
     image: postgres:16-alpine
+    platform: linux/amd64
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -26,6 +27,7 @@ services:
   instance_1:
     hostname: instance_1.rinha2024.local
     image: elioenaiferrari/rinha2024:rust
+    platform: linux/amd64
     ports:
       - "4000:4000"
     depends_on:
@@ -38,17 +40,20 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.25"
+          cpus: "0.40"
           memory: "150MB"
 
   instance_2:
     hostname: instance_2.rinha2024.local
     image: elioenaiferrari/rinha2024:rust
+    platform: linux/amd64
     ports:
       - "4001:4000"
     depends_on:
       postgres:
         condition: service_healthy
+      instance_1:
+        condition: service_started
     environment:
       DATABASE_URL: postgres://postgres:postgres@postgres.rinha2024.local:5432/rinha2024
     networks:
@@ -56,12 +61,13 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.25"
+          cpus: "0.40"
           memory: "150MB"
 
   nginx:
     hostname: nginx.rinha2024.local
     image: nginx:1.25-alpine
+    platform: linux/amd64
     ports:
       - "9999:9999"
     volumes:
@@ -74,7 +80,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.50"
+          cpus: "0.20"
           memory: "100MB"
 
 networks:

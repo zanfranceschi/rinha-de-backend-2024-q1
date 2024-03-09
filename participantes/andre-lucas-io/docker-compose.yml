@@ -1,0 +1,53 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: andrelucastic/rinhabackend2024:2.0
+    hostname: api01
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "175MB"
+    depends_on:
+      - db
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api
+    hostname: api02
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "50MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "150MB"
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

@@ -2,10 +2,10 @@
  Network rinha-nginx-2024q1  Created
  Container devkemc-node-db-1  Creating
  Container devkemc-node-db-1  Created
- Container devkemc-node-api02-1  Creating
  Container devkemc-node-api01-1  Creating
- Container devkemc-node-api01-1  Created
+ Container devkemc-node-api02-1  Creating
  Container devkemc-node-api02-1  Created
+ Container devkemc-node-api01-1  Created
  Container devkemc-node-nginx-1  Creating
  Container devkemc-node-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -21,12 +21,10 @@ db-1     |
 db-1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
 db-1     | creating subdirectories ... ok
 db-1     | selecting dynamic shared memory implementation ... posix
-api01-1  | {"level":30,"time":1708063797914,"pid":1,"hostname":"api01","msg":"server.js:1:Listening on 8080"}
+api02-1  | {"level":30,"time":1708314037056,"pid":1,"hostname":"app2","msg":"server.js:1:Listening on 8080"}
+api01-1  | {"level":30,"time":1708314037116,"pid":1,"hostname":"api01","msg":"server.js:1:Listening on 8080"}
 db-1     | selecting default max_connections ... 100
-api02-1  | {"level":30,"time":1708063797932,"pid":1,"hostname":"app2","msg":"server.js:1:Listening on 8080"}
 db-1     | selecting default shared_buffers ... 128MB
-db-1     | selecting default time zone ... Etc/UTC
-db-1     | creating configuration files ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -36,8 +34,10 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db-1     | selecting default time zone ... Etc/UTC
+db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
-api01-1  | {"level":50,"time":1708063801098,"pid":1,"hostname":"api01","err":{"type":"Error","message":"connect ECONNREFUSED 172.28.0.2:5432","stack":"Error: connect ECONNREFUSED 172.28.0.2:5432\n    at /usr/src/app/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async findById (file:///usr/src/app/database.js:79:20)\n    at async getExtrato (file:///usr/src/app/server.js:70:21)","errno":-111,"code":"ECONNREFUSED","syscall":"connect","address":"172.28.0.2","port":5432},"msg":"connect ECONNREFUSED 172.28.0.2:5432"}
+api01-1  | {"level":50,"time":1708314040145,"pid":1,"hostname":"api01","err":{"type":"Error","message":"connect ECONNREFUSED 172.31.0.2:5432","stack":"Error: connect ECONNREFUSED 172.31.0.2:5432\n    at /usr/src/app/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async findById (file:///usr/src/app/database.js:79:20)\n    at async getExtrato (file:///usr/src/app/server.js:70:21)","errno":-111,"code":"ECONNREFUSED","syscall":"connect","address":"172.31.0.2","port":5432},"msg":"connect ECONNREFUSED 172.31.0.2:5432"}
 db-1     | performing post-bootstrap initialization ... ok
 db-1     | syncing data to disk ... ok
 db-1     | 
@@ -48,11 +48,11 @@ db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-api01-1  | {"level":50,"time":1708063803108,"pid":1,"hostname":"api01","err":{"type":"Error","message":"connect ECONNREFUSED 172.28.0.2:5432","stack":"Error: connect ECONNREFUSED 172.28.0.2:5432\n    at /usr/src/app/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async findById (file:///usr/src/app/database.js:79:20)\n    at async getExtrato (file:///usr/src/app/server.js:70:21)","errno":-111,"code":"ECONNREFUSED","syscall":"connect","address":"172.28.0.2","port":5432},"msg":"connect ECONNREFUSED 172.28.0.2:5432"}
-db-1     | waiting for server to start....2024-02-16 06:10:03.128 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 06:10:03.131 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 06:10:03.215 UTC [51] LOG:  database system was shut down at 2024-02-16 06:10:02 UTC
-db-1     | 2024-02-16 06:10:03.229 UTC [48] LOG:  database system is ready to accept connections
+api01-1  | {"level":50,"time":1708314042155,"pid":1,"hostname":"api01","err":{"type":"Error","message":"connect ECONNREFUSED 172.31.0.2:5432","stack":"Error: connect ECONNREFUSED 172.31.0.2:5432\n    at /usr/src/app/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async findById (file:///usr/src/app/database.js:79:20)\n    at async getExtrato (file:///usr/src/app/server.js:70:21)","errno":-111,"code":"ECONNREFUSED","syscall":"connect","address":"172.31.0.2","port":5432},"msg":"connect ECONNREFUSED 172.31.0.2:5432"}
+db-1     | waiting for server to start....2024-02-19 03:40:42.317 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 03:40:42.321 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 03:40:42.330 UTC [52] LOG:  database system was shut down at 2024-02-19 03:40:41 UTC
+db-1     | 2024-02-19 03:40:42.414 UTC [49] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -65,77 +65,79 @@ db-1     | CREATE INDEX
 db-1     | INSERT 0 5
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down....2024-02-16 06:10:04.714 UTC [48] LOG:  received fast shutdown request
-db-1     | 2024-02-16 06:10:04.718 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-16 06:10:04.720 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-16 06:10:04.721 UTC [49] LOG:  shutting down
-db-1     | 2024-02-16 06:10:04.730 UTC [49] LOG:  checkpoint starting: shutdown immediate
-api01-1  | {"level":50,"time":1708063805116,"pid":1,"hostname":"api01","err":{"type":"Error","message":"connect ECONNREFUSED 172.28.0.2:5432","stack":"Error: connect ECONNREFUSED 172.28.0.2:5432\n    at /usr/src/app/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async findById (file:///usr/src/app/database.js:79:20)\n    at async getExtrato (file:///usr/src/app/server.js:70:21)","errno":-111,"code":"ECONNREFUSED","syscall":"connect","address":"172.28.0.2","port":5432},"msg":"connect ECONNREFUSED 172.28.0.2:5432"}
-db-1     | 2024-02-16 06:10:05.542 UTC [49] LOG:  checkpoint complete: wrote 939 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.673 s, sync=0.129 s, total=0.821 s; sync files=308, longest=0.097 s, average=0.001 s; distance=4297 kB, estimate=4297 kB; lsn=0/191D1D8, redo lsn=0/191D1D8
-db-1     | 2024-02-16 06:10:05.547 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-02-19 03:40:43.718 UTC [49] LOG:  received fast shutdown request
+db-1     | .2024-02-19 03:40:43.720 UTC [49] LOG:  aborting any active transactions
+db-1     | 2024-02-19 03:40:43.723 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+db-1     | 2024-02-19 03:40:43.816 UTC [50] LOG:  shutting down
+db-1     | 2024-02-19 03:40:43.819 UTC [50] LOG:  checkpoint starting: shutdown immediate
+api01-1  | {"level":50,"time":1708314044163,"pid":1,"hostname":"api01","err":{"type":"Error","message":"connect ECONNREFUSED 172.31.0.2:5432","stack":"Error: connect ECONNREFUSED 172.31.0.2:5432\n    at /usr/src/app/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async findById (file:///usr/src/app/database.js:79:20)\n    at async getExtrato (file:///usr/src/app/server.js:70:21)","errno":-111,"code":"ECONNREFUSED","syscall":"connect","address":"172.31.0.2","port":5432},"msg":"connect ECONNREFUSED 172.31.0.2:5432"}
+db-1     | 2024-02-19 03:40:44.481 UTC [50] LOG:  checkpoint complete: wrote 939 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.385 s, sync=0.264 s, total=0.665 s; sync files=308, longest=0.241 s, average=0.001 s; distance=4297 kB, estimate=4297 kB; lsn=0/191D1D8, redo lsn=0/191D1D8
+db-1     | 2024-02-19 03:40:44.486 UTC [49] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-16 06:10:05.717 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 06:10:05.717 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 06:10:05.717 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 06:10:05.722 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 06:10:05.815 UTC [66] LOG:  database system was shut down at 2024-02-16 06:10:05 UTC
-db-1     | 2024-02-16 06:10:05.822 UTC [1] LOG:  database system is ready to accept connections
-api01-1  | {"level":30,"time":1708063807136,"pid":1,"hostname":"api01","msg":"database.js: Connected  to db postgres://admin:123@db:5432/rinha"}
-api02-1  | {"level":30,"time":1708063807164,"pid":1,"hostname":"app2","msg":"database.js: Connected  to db postgres://admin:123@db:5432/rinha"}
-nginx-1  | 2024/02/16 06:12:29 [alert] 1#1: worker process 31 exited on signal 9
-nginx-1  | 2024/02/16 06:12:33 [alert] 1#1: worker process 30 exited on signal 9
-nginx-1  | 2024/02/16 06:12:37 [alert] 1#1: worker process 29 exited on signal 9
-nginx-1  | 2024/02/16 06:12:40 [alert] 1#1: worker process 32 exited on signal 9
-nginx-1  | 2024/02/16 06:12:43 [alert] 1#1: worker process 33 exited on signal 9
-nginx-1  | 2024/02/16 06:12:46 [alert] 1#1: worker process 34 exited on signal 9
-nginx-1  | 2024/02/16 06:12:49 [alert] 1#1: worker process 35 exited on signal 9
-nginx-1  | 2024/02/16 06:12:52 [alert] 1#1: worker process 36 exited on signal 9
-nginx-1  | 2024/02/16 06:12:55 [alert] 1#1: worker process 37 exited on signal 9
-nginx-1  | 2024/02/16 06:12:58 [alert] 1#1: worker process 38 exited on signal 9
-nginx-1  | 2024/02/16 06:13:01 [alert] 1#1: worker process 39 exited on signal 9
-nginx-1  | 2024/02/16 06:13:04 [alert] 1#1: worker process 40 exited on signal 9
-nginx-1  | 2024/02/16 06:13:07 [alert] 1#1: worker process 41 exited on signal 9
-nginx-1  | 2024/02/16 06:13:09 [alert] 1#1: worker process 42 exited on signal 9
-nginx-1  | 2024/02/16 06:13:12 [alert] 1#1: worker process 43 exited on signal 9
-nginx-1  | 2024/02/16 06:13:15 [alert] 1#1: worker process 44 exited on signal 9
-nginx-1  | 2024/02/16 06:13:18 [alert] 1#1: worker process 45 exited on signal 9
-nginx-1  | 2024/02/16 06:13:21 [alert] 1#1: worker process 46 exited on signal 9
-nginx-1  | 2024/02/16 06:13:24 [alert] 1#1: worker process 47 exited on signal 9
-nginx-1  | 2024/02/16 06:13:27 [alert] 1#1: worker process 48 exited on signal 9
-nginx-1  | 2024/02/16 06:13:30 [alert] 1#1: worker process 49 exited on signal 9
-nginx-1  | 2024/02/16 06:13:32 [alert] 1#1: worker process 50 exited on signal 9
-nginx-1  | 2024/02/16 06:13:35 [alert] 1#1: worker process 51 exited on signal 9
-nginx-1  | 2024/02/16 06:13:38 [alert] 1#1: worker process 52 exited on signal 9
-nginx-1  | 2024/02/16 06:13:41 [alert] 1#1: worker process 53 exited on signal 9
-nginx-1  | 2024/02/16 06:13:44 [alert] 1#1: worker process 54 exited on signal 9
-nginx-1  | 2024/02/16 06:13:47 [alert] 1#1: worker process 55 exited on signal 9
-nginx-1  | 2024/02/16 06:13:50 [alert] 1#1: worker process 56 exited on signal 9
-nginx-1  | 2024/02/16 06:13:53 [alert] 1#1: worker process 57 exited on signal 9
-nginx-1  | 2024/02/16 06:13:56 [alert] 1#1: worker process 58 exited on signal 9
-nginx-1  | 2024/02/16 06:13:59 [alert] 1#1: worker process 59 exited on signal 9
-nginx-1  | 2024/02/16 06:14:01 [alert] 1#1: worker process 60 exited on signal 9
-nginx-1  | 2024/02/16 06:14:04 [alert] 1#1: worker process 61 exited on signal 9
-nginx-1  | 2024/02/16 06:14:07 [alert] 1#1: worker process 62 exited on signal 9
-nginx-1  | 2024/02/16 06:14:10 [alert] 1#1: worker process 63 exited on signal 9
-nginx-1  | 2024/02/16 06:14:13 [alert] 1#1: worker process 64 exited on signal 9
-nginx-1  | 2024/02/16 06:14:16 [alert] 1#1: worker process 65 exited on signal 9
+db-1     | 2024-02-19 03:40:44.616 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 03:40:44.616 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 03:40:44.616 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 03:40:44.621 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 03:40:44.715 UTC [67] LOG:  database system was shut down at 2024-02-19 03:40:44 UTC
+db-1     | 2024-02-19 03:40:44.723 UTC [1] LOG:  database system is ready to accept connections
+api01-1  | {"level":30,"time":1708314046183,"pid":1,"hostname":"api01","msg":"database.js: Connected  to db postgres://admin:123@db:5432/rinha"}
+api02-1  | {"level":30,"time":1708314046210,"pid":1,"hostname":"app2","msg":"database.js: Connected  to db postgres://admin:123@db:5432/rinha"}
+nginx-1  | 2024/02/19 03:43:03 [alert] 1#1: worker process 29 exited on signal 9
+nginx-1  | 2024/02/19 03:43:06 [alert] 1#1: worker process 31 exited on signal 9
+nginx-1  | 2024/02/19 03:43:09 [alert] 1#1: worker process 30 exited on signal 9
+nginx-1  | 2024/02/19 03:43:12 [alert] 1#1: worker process 32 exited on signal 9
+nginx-1  | 2024/02/19 03:43:16 [alert] 1#1: worker process 33 exited on signal 9
+nginx-1  | 2024/02/19 03:43:19 [alert] 1#1: worker process 34 exited on signal 9
+nginx-1  | 2024/02/19 03:43:22 [alert] 1#1: worker process 35 exited on signal 9
+nginx-1  | 2024/02/19 03:43:25 [alert] 1#1: worker process 36 exited on signal 9
+nginx-1  | 2024/02/19 03:43:28 [alert] 1#1: worker process 37 exited on signal 9
+nginx-1  | 2024/02/19 03:43:30 [alert] 1#1: worker process 38 exited on signal 9
+nginx-1  | 2024/02/19 03:43:33 [alert] 1#1: worker process 39 exited on signal 9
+nginx-1  | 2024/02/19 03:43:36 [alert] 1#1: worker process 40 exited on signal 9
+nginx-1  | 2024/02/19 03:43:39 [alert] 1#1: worker process 41 exited on signal 9
+nginx-1  | 2024/02/19 03:43:42 [alert] 1#1: worker process 42 exited on signal 9
+nginx-1  | 2024/02/19 03:43:45 [alert] 1#1: worker process 43 exited on signal 9
+nginx-1  | 2024/02/19 03:43:48 [alert] 1#1: worker process 44 exited on signal 9
+nginx-1  | 2024/02/19 03:43:51 [alert] 1#1: worker process 45 exited on signal 9
+nginx-1  | 2024/02/19 03:43:54 [alert] 1#1: worker process 46 exited on signal 9
+nginx-1  | 2024/02/19 03:43:57 [alert] 1#1: worker process 47 exited on signal 9
+nginx-1  | 2024/02/19 03:43:59 [alert] 1#1: worker process 48 exited on signal 9
+nginx-1  | 2024/02/19 03:44:02 [alert] 1#1: worker process 49 exited on signal 9
+nginx-1  | 2024/02/19 03:44:05 [alert] 1#1: worker process 50 exited on signal 9
+nginx-1  | 2024/02/19 03:44:08 [alert] 1#1: worker process 51 exited on signal 9
+nginx-1  | 2024/02/19 03:44:11 [alert] 1#1: worker process 52 exited on signal 9
+nginx-1  | 2024/02/19 03:44:14 [alert] 1#1: worker process 53 exited on signal 9
+nginx-1  | 2024/02/19 03:44:17 [alert] 1#1: worker process 54 exited on signal 9
+nginx-1  | 2024/02/19 03:44:20 [alert] 1#1: worker process 55 exited on signal 9
+nginx-1  | 2024/02/19 03:44:23 [alert] 1#1: worker process 56 exited on signal 9
+nginx-1  | 2024/02/19 03:44:25 [alert] 1#1: worker process 57 exited on signal 9
+nginx-1  | 2024/02/19 03:44:28 [alert] 1#1: worker process 58 exited on signal 9
+nginx-1  | 2024/02/19 03:44:31 [alert] 1#1: worker process 59 exited on signal 9
+nginx-1  | 2024/02/19 03:44:34 [alert] 1#1: worker process 60 exited on signal 9
+nginx-1  | 2024/02/19 03:44:37 [alert] 1#1: worker process 61 exited on signal 9
+nginx-1  | 2024/02/19 03:44:40 [alert] 1#1: worker process 62 exited on signal 9
+nginx-1  | 2024/02/19 03:44:43 [alert] 1#1: worker process 63 exited on signal 9
+nginx-1  | 2024/02/19 03:44:46 [alert] 1#1: worker process 64 exited on signal 9
+nginx-1  | 2024/02/19 03:44:49 [alert] 1#1: worker process 65 exited on signal 9
+nginx-1  | 2024/02/19 03:44:51 [alert] 1#1: worker process 66 exited on signal 9
+nginx-1  | 2024/02/19 03:44:55 [alert] 1#1: worker process 67 exited on signal 9
+db-1     | 2024-02-19 03:45:44.815 UTC [65] LOG:  checkpoint starting: time
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-db-1     | 2024-02-16 06:15:05.835 UTC [64] LOG:  checkpoint starting: time
 api01-1 exited with code 0
 api01-1 exited with code 137
 api02-1 exited with code 0
 api02-1 exited with code 137
-db-1     | 2024-02-16 06:15:09.946 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-16 06:15:09.949 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-16 06:15:10.015 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-02-16 06:15:10.075 UTC [64] LOG:  checkpoint complete: wrote 685 buffers (4.2%); 0 WAL file(s) added, 0 removed, 1 recycled; write=4.176 s, sync=0.050 s, total=4.241 s; sync files=29, longest=0.047 s, average=0.002 s; distance=21887 kB, estimate=21887 kB; lsn=0/2E7CE40, redo lsn=0/2E7CE08
-db-1     | 2024-02-16 06:15:10.075 UTC [64] LOG:  shutting down
-db-1     | 2024-02-16 06:15:10.078 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 06:15:10.109 UTC [64] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.035 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=19698 kB; lsn=0/2E7CEB8, redo lsn=0/2E7CEB8
-db-1     | 2024-02-16 06:15:10.114 UTC [1] LOG:  database system is shut down
+db-1     | 2024-02-19 03:46:04.283 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-02-19 03:46:04.286 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-02-19 03:46:04.288 UTC [1] LOG:  background worker "logical replication launcher" (PID 70) exited with exit code 1
+db-1     | 2024-02-19 03:46:04.374 UTC [65] LOG:  checkpoint complete: wrote 685 buffers (4.2%); 0 WAL file(s) added, 0 removed, 1 recycled; write=19.456 s, sync=0.077 s, total=19.560 s; sync files=29, longest=0.024 s, average=0.003 s; distance=21530 kB, estimate=21530 kB; lsn=0/2E753C0, redo lsn=0/2E23A80
+db-1     | 2024-02-19 03:46:04.374 UTC [65] LOG:  shutting down
+db-1     | 2024-02-19 03:46:04.377 UTC [65] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 03:46:04.407 UTC [65] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.005 s, total=0.033 s; sync files=2, longest=0.003 s, average=0.003 s; distance=326 kB, estimate=19409 kB; lsn=0/2E75438, redo lsn=0/2E75438
+db-1     | 2024-02-19 03:46:04.411 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0

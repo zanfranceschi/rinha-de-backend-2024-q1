@@ -20,8 +20,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.20"
-          memory: "50MB"
+          cpus: "0.30"
+          memory: "80MB"
 
   api02:
     <<: *api
@@ -41,8 +41,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.20"
-          memory: "30MB"
+          cpus: "0.15"
+          memory: "10MB"
 
   db:
     image: postgres:latest
@@ -55,19 +55,45 @@ services:
       - "5433:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c full_page_writes=0
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c full_page_writes=0 -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all
     deploy:
       resources:
         limits:
-          cpus: "0.9"
-          memory: "420MB"
+          cpus: "0.75"
+          memory: "380MB"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d rinha -U admin"]
       interval: 5s
       timeout: 2s
       retries: 5
 
+  # cadvisor:
+  #   image: gcr.io/cadvisor/cadvisor:v0.45.0
+  #   container_name: cadvisor
+  #   privileged: true
+  #   devices:
+  #     - /dev/kmsg:/dev/kmsg
+  #   volumes:
+  #     - /var/run:/var/run:ro
+  #     - /sys:/sys:ro
+  #     - /var/lib/docker/:/var/lib/docker:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #     - /etc/machine-id:/etc/machine-id:ro
+  #     - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id:ro
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8080:8080"
+  #   # expose:
+  #   #   - 8080
+  #   networks:
+  #     - mon-net
+  #   labels:
+  #     org.label-schema.group: "monitoring"
+
 networks:
   default:
     driver: bridge
     name: rinha-nginx-2024q1
+  # mon-net:
+  #   driver: bridge
+  #

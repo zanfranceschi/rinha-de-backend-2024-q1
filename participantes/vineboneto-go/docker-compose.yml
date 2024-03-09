@@ -1,0 +1,62 @@
+version: '3.5'
+
+services:
+  nginx:
+    image: nginx:1.25.3
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - 9999:9999
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+  api01: &api
+    image: vineboneto/rinha-2024-q1-go:latest
+    hostname: api01
+    environment:
+      - DB_HOSTNAME=db
+      - PORT=8081
+    ports:
+      - 8081:8081
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "100MB"
+  api02:
+    <<: *api 
+    hostname: api02
+    environment:
+      - DB_HOSTNAME=db
+      - PORT=8082
+    ports:
+      - 8082:8082
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_FSYNC: "off"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: rinha
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.70"
+          memory: "300MB"
+
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1-go

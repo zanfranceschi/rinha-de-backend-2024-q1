@@ -1,0 +1,58 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: rschio/rinha:v0.0.1
+    hostname: api01
+    environment:
+      - RINHA_DB_HOST=db:5432
+      - RINHA_OTEL_ENABLE_TRACE=false
+      - RINHA_OTEL_TRACE_SAMPLE_FRACTION=0
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "100MB"
+
+  api02:
+    <<: *api 
+    hostname: api02
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./configs/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+  
+  db:
+    image: postgres:16
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./configs/script.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "300MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
