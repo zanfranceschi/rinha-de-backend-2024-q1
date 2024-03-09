@@ -4,5 +4,7 @@ GO
 NGINX
 POSTGRES
 
+![imagem](image.png)
+
 [repo](https://github.com/wesleycremonini/rinha-2024-q1)
 [linkedin](https://www.linkedin.com/in/wesley-cremonini-baldissera/)

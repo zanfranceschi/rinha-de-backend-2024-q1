@@ -6,21 +6,20 @@ services:
     hostname: api01
     ports:
       - "8081:8081"
-    privileged: true
     restart: on-failure
     environment:
+      - CGO_ENABLE=0
       - PORT=8081
       - DB_HOST=db
-      - POSTGRES_USER=admin
+      - POSTGRES_USER=admin   
       - POSTGRES_PASSWORD=123
       - POSTGRES_DB=rinha
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     deploy:
       resources:
         limits:
-          cpus: "0.5"
+          cpus: "0.25"
           memory: "100MB"
   
   api02:
@@ -29,8 +28,8 @@ services:
     ports:
       - "8082:8082"
     restart: on-failure
-    privileged: true
     environment:
+      - CGO_ENABLE=0
       - PORT=8082
       - DB_HOST=db
       - POSTGRES_USER=admin
@@ -50,34 +49,27 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.2"
+          cpus: "0.4"
           memory: "20MB"
   
   db:
-    image: postgres:latest
+    image: postgres:11.16-bullseye
     hostname: db
     restart: on-failure
     ports:
       - "5432:5432"
     command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096
-    privileged: true 
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=123
       - POSTGRES_DB=rinha
-    healthcheck:
-      test: ['CMD', 'pg_isready', '-U', 'admin', '-d', 'rinha']
-      interval: 5s
-      timeout: 5s
-      retries: 20
-      start_period: 5s
     volumes:
       - ./config/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./config/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
     deploy:
       resources:
-        limits: 
-          cpus: "0.3"
+        limits:
+          cpus: "0.6"
           memory: "330MB"
 
 networks:

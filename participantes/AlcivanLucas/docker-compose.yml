@@ -5,22 +5,29 @@ services:
     # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
     # publicamente acessível! Ex.: hub.docker.com
     image: alcivanlucas/rinha-backend-2024-q1-nodejs:latest
-    command: npm run dev 
+    # build: .    
+    command: npm run dev
+
     hostname: api01
     environment:
       - DB_HOSTNAME=db
+      - DB_USER=admin
+      - DB_NAME=rinha
+      - DB_PASSWORD=123
+
     # Não é necessário expor qualquer porta além da porta do load balancer,
     # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
     # ao banco de dados na fase de desenvolvimento.
     ports:
-      - "8081:8080"
+      - "8081:3000"
     depends_on:
-      - db
+       db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
           cpus: "0.6"
-          memory: "200MB"
+          memory: "190MB"
 
   api02:
     # Essa sintaxe reusa o que foi declarado em 'api01'.
@@ -29,7 +36,7 @@ services:
     environment:
       - DB_HOSTNAME=db
     ports:
-      - "8082:8080"
+      - "8082:3000"
  
   nginx:
     image: nginx:latest
@@ -44,12 +51,14 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.17"
-          memory: "10MB" 
-
+          # cpus: "0.17"
+          cpus: "0.10"
+          memory: "20MB"
+           
   db:
-    image: postgres:latest
+    image: postgres:16.2-alpine
     hostname: db
+    command: 'postgres -c max_connections=1024 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off'
     environment:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
@@ -57,9 +66,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./api_node/db/script.sql:/docker-entrypoint-initdb.d/script.sql
-      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
-    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf  
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
     deploy:
       resources:
         limits:
@@ -67,8 +74,14 @@ services:
           # aqui declarados é de 1.5 unidades de CPU e 550MB
           # de memória. A distribuição feita aqui é apenas
           # um exemplo – distribua como quiser.
-          cpus: "0.13"
-          memory: "140MB"
+          cpus: "0.2"
+          memory: "150MB"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      timeout: 15s
+      interval: 10s
+      retries: 10
+      
 
 # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
 # A edição anterior se beneficiou do modo host pois o volume de requisições

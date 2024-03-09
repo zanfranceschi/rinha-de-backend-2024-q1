@@ -8,37 +8,41 @@ services:
     depends_on: 
       - db
     restart: always      
-    environment:
-      ConnectionStrings__DefaultConnection: Host=db;Username=postgres;Password=postgres;Database=rinha;Minimum Pool Size=10;Maximum Pool Size=10;Multiplexing=true;
+    environment: &env
+      ASPNETCORE_URLS: http://*:8080
+      ConnectionStrings__DefaultConnection: Host=localhost;Username=postgres;Password=postgres;Database=rinha;Minimum Pool Size=10;Maximum Pool Size=10;Multiplexing=true;
+    network_mode: host
     deploy:
       resources:
         limits:
           cpus: "0.4"
-          memory: "200MB"
+          memory: "100MB"
   
   webapi2:
     <<: *webapi1
     hostname: webapi2
     container_name: webapi-2
+    environment:
+      <<: *env
+      ASPNETCORE_URLS: http://*:8081
 
   db:
     image: postgres
     hostname: db
     container_name: db-rinha
     restart: always
-    ports:
-      - "5432:5432"        
     volumes:
       - ./conf/rinha.dump.sql:/docker-entrypoint-initdb.d/rinha.dump.sql:ro
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: rinha
+    network_mode: host
     deploy:
       resources:
         limits:
           cpus: "0.5"
-          memory: "130MB"
+          memory: "330MB"
     command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c fsync=0 -c full_page_writes=0
 
   nginx:
@@ -50,15 +54,11 @@ services:
     depends_on: 
       - webapi1
       - webapi2
-    ports:
-      - "9999:9999"
+    expose: 
+      - 9999
+    network_mode: host
     deploy:
       resources:
         limits:
           cpus: "0.2"
           memory: "20MB"
-
-networks: 
-  default:
-    driver: bridge
-    name: network-bora-dale-xgh
