@@ -1,0 +1,45 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: rnavarro/rinha-backend-2024:1
+    command: /app/rinha-espora-embedded
+    hostname: api1
+    network_mode: host
+    environment:
+      PORT: 9998
+      DB: "/db"
+    volumes:
+      - db:/db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "100MB"
+
+  api02:
+    <<: *api
+    hostname: api2
+    environment:
+      PORT: 9997
+      DB: "/db"
+
+  lb:
+    image: rnavarro/rinha-backend-2024:1
+    command: /app/rinha-load-balancer-tcp
+    depends_on:
+      - api01
+      - api02
+    environment:
+      PORT: 9999
+      UPSTREAMS: "0.0.0.0:9997,0.0.0.0:9998"
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "100MB"
+
+volumes:
+  db:
+    name: db

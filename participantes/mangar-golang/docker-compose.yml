@@ -1,0 +1,90 @@
+version: "3.5"
+
+services:
+
+  db:
+    image: postgres:alpine
+    hostname: db
+    restart: on-failure
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./script_psql.sql:/docker-entrypoint-initdb.d/script_psql.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf      
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "400MB"
+
+
+  api01: &api
+    image: mangar/rinhabe_2024_q1_go:latest
+    hostname: api01
+    restart: on-failure
+    environment:
+      - FLAG_DEBUG=False
+      - SERVER_NAME=SERVER_01
+      - LOG_OUTPUT_DIR=/app-log
+      - DB_CONNECTION=postgres://postgres:password@db:5432/postgres?sslmode=disable
+      - WEB_PORT=3000
+    volumes:
+      - ./:/app-log      
+    ports:
+      - "3001:8000"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "50MB"
+
+  api02:
+    <<: *api 
+    hostname: api02
+    environment:
+      - FLAG_DEBUG=False
+      - SERVER_NAME=SERVER_02
+      - LOG_OUTPUT_DIR=/app-log
+      - DB_CONNECTION=postgres://postgres:password@db:5432/postgres?sslmode=disable
+      - WEB_PORT=3000
+    volumes:
+      - ./:/app-log            
+    ports:
+      - "3002:8000"
+ 
+
+  nginx:
+    image: nginx:latest
+    restart: on-failure
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+
+
+
+
+# O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
+# A edição anterior se beneficiou do modo host pois o volume de requisições
+# era relativamente alto e a virtualização da rede se tornou um gargalo, mas
+# este modo é mais complexo de ser configurado. Fique à vontade para usar o
+# modo que quiser desde que não conflite com portas trivialmente usadas em um
+# SO.
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
