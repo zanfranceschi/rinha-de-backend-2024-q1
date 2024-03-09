@@ -1,9 +1,18 @@
--- Coloque scripts iniciais aqui
 CREATE TABLE clientes (
-    id serial not null primary key,
-    nome varchar(100) not null,
-    limite decimal not null
+  id serial not null primary key,
+  nome varchar(100) not null,
+  limite bigint not null
 );
+
+CREATE TABLE transacoes (
+  id serial not null primary key,
+  valor bigint not null,
+  tipo char(1) not null,
+  descricao varchar(10),
+  cliente_id integer not null references clientes (id)
+);
+
+CREATE INDEX idx_transacoes_cliente_id ON transacoes (cliente_id);
 
 DO $$
 BEGIN
