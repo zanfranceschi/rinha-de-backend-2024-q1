@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  9 19:23:18 UTC 2024** com **596** submissões.
+Atualizada **Sat Mar  9 19:51:22 UTC 2024** com **598** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -385,6 +385,7 @@ Atualizada **Sat Mar  9 19:23:18 UTC 2024** com **596** submissões.
 | [macielti](./participantes/macielti) | ok | 4 |
 | [maelalvi-quarkus](./participantes/maelalvi-quarkus) | ok | 2 |
 | [mal_golang](./participantes/mal_golang) | ok | 4 |
+| [mangar-golang](./participantes/mangar-golang) | ok | 2 |
 | [marcelo-lucas-dotnet-1](./participantes/marcelo-lucas-dotnet-1) | ok | 2 |
 | [marciocg-javaquarkus](./participantes/marciocg-javaquarkus) | ok | 2 |
 | [marciotoshio](./participantes/marciotoshio) | ok | 4 |
@@ -415,7 +416,7 @@ Atualizada **Sat Mar  9 19:23:18 UTC 2024** com **596** submissões.
 | [maxel-uds](./participantes/maxel-uds) | ok | 7 |
 | [maxwell-fs](./participantes/maxwell-fs) | ok | 1 |
 | [maxwell](./participantes/maxwell) | ok | 1 |
-| [mdssjc-springboot-java](./participantes/mdssjc-springboot-java) | ok | 2 |
+| [mdssjc-springboot-java](./participantes/mdssjc-springboot-java) | ok | 1 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [mgenteluci](./participantes/mgenteluci) | ok | 2 |
 | [michaelalves204](./participantes/michaelalves204) | ok | 8 |
@@ -584,6 +585,7 @@ Atualizada **Sat Mar  9 19:23:18 UTC 2024** com **596** submissões.
 | [wdmatheus](./participantes/wdmatheus) | ok | 1 |
 | [welitonfreitas](./participantes/welitonfreitas) | falha - [logs](./participantes/welitonfreitas/docker-compose.logs) | -- |
 | [wesleyegberto](./participantes/wesleyegberto) | ok | 2 |
+| [wesleyricardi-rust](./participantes/wesleyricardi-rust) | ok | 1930 |
 | [weversonl](./participantes/weversonl) | ok | 2 |
 | [whyakari](./participantes/whyakari) | ok | 9 |
 | [wiliamvj](./participantes/wiliamvj) | ok | 1 |
