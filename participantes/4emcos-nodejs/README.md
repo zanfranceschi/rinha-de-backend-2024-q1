@@ -2,14 +2,12 @@
 
 ### Submissão feita com:
 
-- `Go` para api com o framework `Gin Web Framework`
+- `NodeJs` para api com o framework `Fastify`
+- `TypeScript` para tipagem
 - `nginx` como load balancer
 - `postgres` como banco de dados
-- [repositório da api](https://github.com/4emcos/rinha-de-backend-2024-q1-golang)
+- [repositório da api](https://github.com/4emcos/rinha-de-backend-2024-q1-nodejs)
 
-
-### Resultado dos testes 
-![img.png](result.png)
 
 ## Autor
 
