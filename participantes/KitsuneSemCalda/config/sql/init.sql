@@ -1,10 +1,9 @@
 CREATE TABLE IF NOT EXISTS clientes (
 	id SERIAL PRIMARY KEY,
-	limite INT NOT NULL CHECK (limite >= 0),
-	saldo INT NOT NULL CHECK (saldo >= 0),
-	created_at TIMESTAMP,
-	updated_at TIMESTAMP,
-	deleted_at TIMESTAMP
+	limite INT,
+	saldo INT,
+	version INT DEFAULT 0,
+	created_at TIMESTAMP
 );
 
 
@@ -17,7 +16,6 @@ CREATE TABLE IF NOT EXISTS transacoes (
 	realizada_em TIMESTAMP NOT NULL,
   	created_at TIMESTAMP,
   	updated_at TIMESTAMP,
-  	deleted_at TIMESTAMP,
 	FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
 

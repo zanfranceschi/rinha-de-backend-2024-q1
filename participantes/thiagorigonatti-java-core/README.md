@@ -10,3 +10,8 @@ Projeto da [Rinha de backend 2024-Q1](https://github.com/zanfranceschi/rinha-de-
 
 ## Repositório
 - [rinha-de-backend-java-core](https://github.com/thiagorigonatti/rinha-de-backend-java-core)
+
+## Contato
+- Discord: thiagorigonatti
+- [LinkedIn](https://www.linkedin.com/in/thiagorigonatti/)
+- [GitHub](https://github.com/thiagorigonatti)
