@@ -1,0 +1,109 @@
+version: '3.9'
+
+services:
+  api01: &api
+    network_mode: host
+    image: robertoseba940/rinha_backend:latest
+    hostname: api01
+    environment:
+      - DB_HOSTNAME=127.0.0.1
+      - DB_NAME=rinha
+      - DB_PASSWORD=123
+      - DB_USER=admin
+      - DB_POOL_SIZE=5
+      - DB_PORT=5432
+      - PORT=3000
+      - REDIS_SERVER=redis
+      - REDIS_PORT=6379
+    ports:
+      - '3000:3000'
+    #   - '9229:9229'
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '105MB'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://127.0.0.1:3000/clientes/1/extrato']
+      interval: 2s
+      retries: 10
+      start_period: 10s
+
+  api02:
+    <<: *api
+    network_mode: host
+    hostname: api02
+    environment:
+      - DB_HOSTNAME=127.0.0.1
+      - DB_NAME=rinha
+      - DB_PASSWORD=123
+      - DB_USER=admin
+      - DB_POOL_SIZE=5
+      - DB_PORT=5432
+      - PORT=3001
+      - REDIS_SERVER=redis
+      - REDIS_PORT=6379
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://127.0.0.1:3001/clientes/1/extrato']
+      interval: 2s
+      retries: 10
+      start_period: 10s
+    ports:
+      - '3001:3001'
+
+  nginx:
+    network_mode: host
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+    ports:
+      - '9999:9999'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '20MB'
+
+  db:
+    network_mode: host
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - '5432:5432'
+    command: |
+      postgres
+      -c max_connections=640
+      -c listen_addresses='*'
+      -c log_min_messages='panic'
+      -c log_min_error_statement='panic'
+      -c checkpoint_timeout=3600 
+      -c synchronous_commit=off
+      -c fsync=off
+      -c wal_level=minimal
+      -c max_wal_senders=0
+      -c full_page_writes=off
+      -c shared_buffers=200MB
+      -c maintenance_work_mem=200MB
+      -c work_mem=64MB
+      -c huge_pages=off
+
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: '320MB'
+    healthcheck:
+      test: ['CMD', 'pg_isready', '--username', 'admin', '-d', 'rinha']
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+
