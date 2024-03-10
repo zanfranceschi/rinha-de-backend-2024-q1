@@ -12,8 +12,6 @@ link do projeto: [rinha-de-backend-2024-q1](https://github.com/jefersonbaixo/rin
 
 `$ docker-compose up --force-recreate -d`
 
-- Caso for rodar os testes novamente é importante apagar a pasta `postgres` dentro do projeto para limpar o banco de dados.
-
 ## Stack
 
 - Elixir

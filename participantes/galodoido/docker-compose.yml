@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  db:
+    cap_add:
+      - SYS_NICE
+    image: clacerda00/db:v1
+    ipc: "host"
+    volumes:
+      - shared_volume:/app/shared
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "6MB"
+      
+  api01:
+    cap_add:
+      - SYS_NICE
+    image: clacerda00/api:v1
+    ipc: "host"
+    volumes:
+      - shared_volume:/app/shared
+    depends_on:
+      - db
+    command: ["/a.out", "01"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "6MB"
+     
+  api02:
+    cap_add:
+      - SYS_NICE
+    image: clacerda00/api:v1
+    ipc: "host"
+    volumes:
+      - shared_volume:/app/shared
+    depends_on:
+      - db
+    command: ["/a.out", "02"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "6MB"
+      
+  lb:
+    cap_add:
+      - SYS_NICE
+    image: clacerda00/lb:v1
+    ipc: "host"
+    volumes:
+      - shared_volume:/app/shared
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "6MB"
+
+volumes:
+  shared_volume:
+

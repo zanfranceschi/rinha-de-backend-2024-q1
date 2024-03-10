@@ -4,8 +4,8 @@
  Container db  Created
  Container api02  Creating
  Container api01  Creating
- Container api01  Created
  Container api02  Created
+ Container api01  Created
  Container lb  Creating
  Container lb  Created
 Attaching to api01, api02, db, lb
@@ -26,14 +26,14 @@ db     | selecting default shared_buffers ... 128MB
 db     | selecting default time zone ... UTC
 db     | creating configuration files ... ok
 api02  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api02  | 	Is the server running on host "db" (172.19.0.2) and accepting
+api02  | 	Is the server running on host "db" (172.27.0.2) and accepting
 api02  | 	TCP/IP connections on port 5432?
 api02  | 
 api02  | v hash: c9933da
 api02  | backtrace_symbols is missing => printing backtraces is not available.
 api02  | Some libc implementations like musl simply do not provide it.
 api01  | V panic: Connection to a PG database failed: could not connect to server: Connection refused
-api01  | 	Is the server running on host "db" (172.19.0.2) and accepting
+api01  | 	Is the server running on host "db" (172.27.0.2) and accepting
 api01  | 	TCP/IP connections on port 5432?
 api01  | 
 api01  | v hash: c9933da
@@ -41,7 +41,7 @@ api01  | backtrace_symbols is missing => printing backtraces is not available.
 api01  | Some libc implementations like musl simply do not provide it.
 db     | running bootstrap script ... ok
 db     | sh: locale: not found
-db     | 2024-03-05 21:39:16.856 UTC [30] WARNING:  no usable system locales were found
+db     | 2024-03-10 17:27:03.529 UTC [30] WARNING:  no usable system locales were found
 lb     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 lb     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 lb     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -52,6 +52,9 @@ lb     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-te
 lb     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 lb     | /docker-entrypoint.sh: Configuration complete; ready for start up
 db     | performing post-bootstrap initialization ... ok
+api02 exited with code 0
+db     | initdb: warning: enabling "trust" authentication for local connections
+db     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db     | syncing data to disk ... ok
 db     | 
 db     | 
@@ -59,14 +62,13 @@ db     | Success. You can now start the database server using:
 db     | 
 db     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db     | 
-db     | initdb: warning: enabling "trust" authentication for local connections
-db     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db     | waiting for server to start....2024-03-05 21:39:19.260 UTC [36] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
-db     | 2024-03-05 21:39:19.265 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db     | 2024-03-05 21:39:19.288 UTC [39] LOG:  database system was shut down at 2024-03-05 21:39:17 UTC
-db     | 2024-03-05 21:39:19.296 UTC [36] LOG:  database system is ready to accept connections
+db     | waiting for server to start....2024-03-10 17:27:05.641 UTC [36] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+db     | 2024-03-10 17:27:05.643 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db     | 2024-03-10 17:27:05.654 UTC [39] LOG:  database system was shut down at 2024-03-10 17:27:04 UTC
+db     | 2024-03-10 17:27:05.660 UTC [36] LOG:  database system is ready to accept connections
 db     |  done
 db     | server started
+api01 exited with code 0
 db     | CREATE DATABASE
 db     | 
 db     | 
@@ -79,43 +81,38 @@ db     | CREATE FUNCTION
 db     | INSERT 0 5
 db     | 
 db     | 
-db     | waiting for server to shut down....2024-03-05 21:39:19.486 UTC [36] LOG:  received fast shutdown request
-db     | 2024-03-05 21:39:19.491 UTC [36] LOG:  aborting any active transactions
-db     | 2024-03-05 21:39:19.493 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
-db     | 2024-03-05 21:39:19.494 UTC [37] LOG:  shutting down
-db     | 2024-03-05 21:39:19.497 UTC [37] LOG:  checkpoint starting: shutdown immediate
-api02 exited with code 1
-api01 exited with code 1
-db     | .2024-03-05 21:39:21.002 UTC [37] LOG:  checkpoint complete: wrote 945 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.101 s, sync=0.389 s, total=1.509 s; sync files=317, longest=0.140 s, average=0.002 s; distance=4311 kB, estimate=4311 kB; lsn=0/1926408, redo lsn=0/1926408
-db     | 2024-03-05 21:39:21.008 UTC [36] LOG:  database system is shut down
+db     | waiting for server to shut down....2024-03-10 17:27:06.356 UTC [36] LOG:  received fast shutdown request
+db     | 2024-03-10 17:27:06.360 UTC [36] LOG:  aborting any active transactions
+db     | 2024-03-10 17:27:06.366 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
+db     | 2024-03-10 17:27:06.370 UTC [37] LOG:  shutting down
+db     | 2024-03-10 17:27:06.373 UTC [37] LOG:  checkpoint starting: shutdown immediate
+db     | 2024-03-10 17:27:07.447 UTC [37] LOG:  checkpoint complete: wrote 945 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.687 s, sync=0.148 s, total=1.078 s; sync files=317, longest=0.097 s, average=0.001 s; distance=4311 kB, estimate=4311 kB; lsn=0/1926408, redo lsn=0/1926408
+db     | .2024-03-10 17:27:07.454 UTC [36] LOG:  database system is shut down
 db     |  done
 db     | server stopped
 db     | 
 db     | PostgreSQL init process complete; ready for start up.
 db     | 
-db     | 2024-03-05 21:39:21.114 UTC [1] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
-db     | 2024-03-05 21:39:21.114 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db     | 2024-03-05 21:39:21.114 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db     | 2024-03-05 21:39:21.122 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db     | 2024-03-05 21:39:21.131 UTC [54] LOG:  database system was shut down at 2024-03-05 21:39:20 UTC
-db     | 2024-03-05 21:39:21.142 UTC [1] LOG:  database system is ready to accept connections
+db     | 2024-03-10 17:27:07.580 UTC [1] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+db     | 2024-03-10 17:27:07.580 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db     | 2024-03-10 17:27:07.580 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db     | 2024-03-10 17:27:07.586 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db     | 2024-03-10 17:27:07.594 UTC [54] LOG:  database system was shut down at 2024-03-10 17:27:07 UTC
+db     | 2024-03-10 17:27:07.604 UTC [1] LOG:  database system is ready to accept connections
 api02 exited with code 0
 api01 exited with code 0
-api01  | [Vweb] Running app on http://0.0.0.0:8080/
-api01  | [Vweb] We have 3 workers
-api02  | [Vweb] Running app on http://0.0.0.0:8080/
-api02  | [Vweb] We have 3 workers
+lb     | 2024/03/10 17:27:03 [emerg] 1#1: host not found in upstream "api01:8080" in /etc/nginx/nginx.conf:10
+lb     | nginx: [emerg] host not found in upstream "api01:8080" in /etc/nginx/nginx.conf:10
 lb exited with code 0
 lb exited with code 0
-api01 exited with code 0
-api01 exited with code 137
+lb exited with code 0
 api02 exited with code 0
 api02 exited with code 137
-db     | 2024-03-05 21:43:47.586 UTC [1] LOG:  received fast shutdown request
-db     | 2024-03-05 21:43:47.589 UTC [1] LOG:  aborting any active transactions
-db     | 2024-03-05 21:43:47.592 UTC [1] LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
-db     | 2024-03-05 21:43:47.592 UTC [52] LOG:  shutting down
-db     | 2024-03-05 21:43:47.597 UTC [52] LOG:  checkpoint starting: shutdown immediate
-db     | 2024-03-05 21:43:47.738 UTC [52] LOG:  checkpoint complete: wrote 907 buffers (5.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.018 s, sync=0.107 s, total=0.146 s; sync files=29, longest=0.098 s, average=0.004 s; distance=4214 kB, estimate=4214 kB; lsn=0/1D43F68, redo lsn=0/1D43F68
-db     | 2024-03-05 21:43:47.743 UTC [1] LOG:  database system is shut down
+db     | 2024-03-10 17:31:33.522 UTC [1] LOG:  received fast shutdown request
+db     | 2024-03-10 17:31:33.526 UTC [1] LOG:  aborting any active transactions
+db     | 2024-03-10 17:31:33.528 UTC [1] LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
+db     | 2024-03-10 17:31:33.528 UTC [52] LOG:  shutting down
+db     | 2024-03-10 17:31:33.533 UTC [52] LOG:  checkpoint starting: shutdown immediate
+db     | 2024-03-10 17:31:33.699 UTC [52] LOG:  checkpoint complete: wrote 904 buffers (5.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.014 s, sync=0.138 s, total=0.171 s; sync files=29, longest=0.120 s, average=0.005 s; distance=4208 kB, estimate=4208 kB; lsn=0/1D425E8, redo lsn=0/1D425E8
+db     | 2024-03-10 17:31:33.703 UTC [1] LOG:  database system is shut down
 db exited with code 0
