@@ -51,6 +51,7 @@ services:
   db:
     image: postgres:latest
     hostname: db
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     environment:
       - POSTGRES_PASSWORD=rinha
       - POSTGRES_USER=rinha
@@ -59,7 +60,7 @@ services:
       - "5432:5432"
     volumes:
       - ./db/script.sql:/docker-entrypoint-initdb.d/script.sql
-      - ./postgres.conf:/docker-entrypoint-initdb.d/postgres.conf
+      - ./postgres.conf:/etc/postgresql/postgres.conf:ro
     deploy:
       resources:
         limits:

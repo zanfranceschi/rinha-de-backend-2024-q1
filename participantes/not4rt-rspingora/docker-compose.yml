@@ -1,0 +1,92 @@
+version: "3.5"
+name: "rinha-2024q1"
+
+services:
+  database:
+    network_mode: host
+    hostname: pshost
+    image: postgres:16.1
+    environment:
+      PGUSER: rinha
+      POSTGRES_USER: rinha
+      POSTGRES_PASSWORD: testing
+      POSTGRES_DB: rinha
+    healthcheck:
+      test: "pg_isready -p 5432"
+      interval: 3s
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: '250MB'
+    logging:
+      driver: "none"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend01: &backend
+    network_mode: host
+    image: not4rt/backend:latest
+    hostname: backend01
+    environment: &backendenv
+      SERVER_ADDR: "0.0.0.0:8080"
+      DB_HOST: "127.0.0.1"
+      DB_NAME: "rinha"
+      DB_USER: "rinha"
+      DB_PASS: "testing"
+    depends_on:
+      database:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '75MB'
+    logging:
+      driver: "none"
+    ports:
+      - "8080:8080/tcp"
+  
+  backend02: 
+    <<: *backend
+    hostname: backend02
+    environment:
+      <<: *backendenv
+      SERVER_ADDR: "0.0.0.0:8081"
+    ports:
+      - "8081:8081/tcp"
+
+  pingora:
+    network_mode: host
+    image: not4rt/pingora-lb:latest
+    environment:
+      SERVER1_ADDR: "127.0.0.1:8080"
+      SERVER2_ADDR: "127.0.0.1:8081"
+      LISTEN_PORT: "9999"
+    depends_on:
+      backend01:
+        condition: service_started
+      backend02:
+        condition: service_started
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '150MB'
+    logging:
+      driver: "none"
+    ports:
+      - "9999:9999/tcp"

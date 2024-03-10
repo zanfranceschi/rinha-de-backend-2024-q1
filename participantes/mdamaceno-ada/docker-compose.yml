@@ -1,0 +1,72 @@
+version: '3.9'
+
+services:
+  app01: &app01
+    image: maadamaceno/rinha-backend-q1-2024-ada:latest
+    environment:
+      DB_HOST: "db"
+    networks:
+      - rinha-network
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "50MB"
+
+  app02:
+    <<: *app01
+    hostname: app02
+
+  db:
+    image: postgres:16-alpine
+    hostname: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rinha2024
+    volumes:
+      - type: bind
+        source: ./docker/db/init.sql
+        target: /docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5432:5432
+    networks:
+      - rinha-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 7s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "420MB"
+
+  nginx:
+    image: nginx:1.25
+    ports:
+      - 9999:9999
+    volumes:
+      - type: bind
+        source: ./docker/nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+    networks:
+      - rinha-network
+    restart: on-failure
+    depends_on:
+      - app01
+      - app02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "30MB"
+
+networks:
+  rinha-network:
+    driver: bridge
