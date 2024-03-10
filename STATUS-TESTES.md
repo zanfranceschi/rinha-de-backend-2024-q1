@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 04:00:35 UTC 2024** com **630** submissões.
+Atualizada **Sun Mar 10 04:32:15 UTC 2024** com **636** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -14,7 +14,7 @@ Atualizada **Sun Mar 10 04:00:35 UTC 2024** com **630** submissões.
 | [Edmar-Sousa](./participantes/Edmar-Sousa) | ok | 5 |
 | [Fabricio-net8](./participantes/Fabricio-net8) | ok | 2 |
 | [FaelLima98](./participantes/FaelLima98) | ok | 5 |
-| [KitsuneSemCalda](./participantes/KitsuneSemCalda) | falha - [logs](./participantes/KitsuneSemCalda/docker-compose.logs) | -- |
+| [KitsuneSemCalda](./participantes/KitsuneSemCalda) | ok | 1 |
 | [LuisKpBeta](./participantes/LuisKpBeta) | ok | 2 |
 | [NathanFirmo](./participantes/NathanFirmo) | ok | 6 |
 | [PatrickChagastavares](./participantes/PatrickChagastavares) | ok | 3 |
@@ -47,6 +47,7 @@ Atualizada **Sun Mar 10 04:00:35 UTC 2024** com **630** submissões.
 | [allissonazevedo-python](./participantes/allissonazevedo-python) | ok | 2 |
 | [andarilhoz](./participantes/andarilhoz) | ok | 2 |
 | [anderkonzen](./participantes/anderkonzen) | ok | 1 |
+| [andersonef](./participantes/andersonef) | ok | 2 |
 | [andersonfernandes-ruby](./participantes/andersonfernandes-ruby) | ok | 5 |
 | [andersonhqds-node](./participantes/andersonhqds-node) | ok | 3 |
 | [andre-e-gustavo](./participantes/andre-e-gustavo) | ok | 4 |
@@ -199,6 +200,7 @@ Atualizada **Sun Mar 10 04:00:35 UTC 2024** com **630** submissões.
 | [felipebossolani-dotnet](./participantes/felipebossolani-dotnet) | ok | 2 |
 | [felipebossolani-dotnet9-preview](./participantes/felipebossolani-dotnet9-preview) | ok | 2 |
 | [felipefrmelo](./participantes/felipefrmelo) | ok | 1 |
+| [felipelaraujo](./participantes/felipelaraujo) | falha - [logs](./participantes/felipelaraujo/docker-compose.logs) | -- |
 | [felipemarkson](./participantes/felipemarkson) | ok | 2 |
 | [felipeoriani](./participantes/felipeoriani) | ok | 2 |
 | [felipeymn](./participantes/felipeymn) | ok | 2 |
@@ -245,6 +247,7 @@ Atualizada **Sun Mar 10 04:00:35 UTC 2024** com **630** submissões.
 | [ghhernandes](./participantes/ghhernandes) | ok | 2 |
 | [ghost-in-the-machine-86](./participantes/ghost-in-the-machine-86) | ok | 1 |
 | [gianimpronta-springboot](./participantes/gianimpronta-springboot) | ok | 1 |
+| [gilbertojnj-java](./participantes/gilbertojnj-java) | ok | 2 |
 | [gilmardealcantara](./participantes/gilmardealcantara) | ok | 2 |
 | [giovannibassi-nonpooled](./participantes/giovannibassi-nonpooled) | ok | 1 |
 | [giovannibassi-rust](./participantes/giovannibassi-rust) | ok | 1 |
@@ -437,6 +440,8 @@ Atualizada **Sun Mar 10 04:00:35 UTC 2024** com **630** submissões.
 | [maxel-uds](./participantes/maxel-uds) | ok | 7 |
 | [maxwell-fs](./participantes/maxwell-fs) | ok | 1 |
 | [maxwell](./participantes/maxwell) | ok | 1 |
+| [mdamaceno-ada](./participantes/mdamaceno-ada) | falha - [logs](./participantes/mdamaceno-ada/docker-compose.logs) | -- |
+| [mdamaceno-ruby](./participantes/mdamaceno-ruby) | falha - [logs](./participantes/mdamaceno-ruby/docker-compose.logs) | -- |
 | [mdssjc-springboot-java](./participantes/mdssjc-springboot-java) | ok | 1 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [mgenteluci](./participantes/mgenteluci) | ok | 2 |
@@ -463,6 +468,7 @@ Atualizada **Sun Mar 10 04:00:35 UTC 2024** com **630** submissões.
 | [noriller](./participantes/noriller) | ok | 3 |
 | [normanfrieman](./participantes/normanfrieman) | ok | 2 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
+| [ogabriel-elixir](./participantes/ogabriel-elixir) | ok | 2 |
 | [oliveiraeliel](./participantes/oliveiraeliel) | ok | 2 |
 | [oliveiratheone-rust](./participantes/oliveiratheone-rust) | ok | 1 |
 | [oloko64](./participantes/oloko64) | ok | 1 |
