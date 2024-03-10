@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  api1: &api
+    image: rmac737/apirinhabackendq12024
+    container_name: api1
+    hostname: api1
+    ports:
+      - "6000:8080"
+    environment:
+      - POSTGRES=Host=db;Database=rinha;Username=postgres;Password=postgres;Pooling=true;Minimum Pool Size=5;Maximum Pool Size=10;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=false;Max Auto Prepare=60;Auto Prepare Min Usages=1;
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.27'
+          memory: '100MB'
+
+  api2:
+    <<: *api
+    container_name: api2
+    hostname: api2
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "6001:8080"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: on-failure
+    volumes:
+      - ./infra/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.16"
+          memory: "20MB"
+    networks:
+      - app-network
+
+  db:
+    image: postgres:latest
+    container_name: db
+    hostname: db
+    user: postgres
+    command: 'postgres -c max_connections=200 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c effective_io_concurrency=200 -c wal_level=minimal -c max_wal_senders=0 -c shared_buffers=128MB -c effective_cache_size=256MB -c checkpoint_timeout=30min'
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/db.sql:/docker-entrypoint-initdb.d/db.sql:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: '330MB'
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+networks:
+  app-network:
