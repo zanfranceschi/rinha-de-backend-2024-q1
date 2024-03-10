@@ -1,0 +1,64 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: viniville/rinhabackend-sb-webmvc-2024-q1:latest
+    hostname: api01
+    environment:
+      - DB_HOSTNAME=db
+      - DB_NAME=rinha
+      - DB_USER=user_rinha
+      - DB_PASSWORD=mysecret
+      - DB_MIN_POOL_IDLE=10
+      - DB_MAX_POOL_SIZE=15
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "210MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api
+    hostname: api02
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "10MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_DB=rinha
+      - POSTGRES_USER=user_rinha
+      - POSTGRES_PASSWORD=mysecret
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    command: "postgres -c config_file=/etc/postgresql/postgresql.conf"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "120MB"
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
