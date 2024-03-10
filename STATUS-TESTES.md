@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 02:07:44 UTC 2024** com **628** submissões.
+Atualizada **Sun Mar 10 02:20:57 UTC 2024** com **629** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -381,7 +381,7 @@ Atualizada **Sun Mar 10 02:07:44 UTC 2024** com **628** submissões.
 | [lucas-hsm](./participantes/lucas-hsm) | ok | 4 |
 | [lucasSSalgado](./participantes/lucasSSalgado) | ok | 2 |
 | [lucasSSalgadov2](./participantes/lucasSSalgadov2) | ok | 2 |
-| [lucas_delboni](./participantes/lucas_delboni) | falha - [logs](./participantes/lucas_delboni/docker-compose.logs) | -- |
+| [lucas_delboni](./participantes/lucas_delboni) | ok | 2 |
 | [lucasdev2005](./participantes/lucasdev2005) | ok | 5 |
 | [lucasew-go-tigerbeetle](./participantes/lucasew-go-tigerbeetle) | ok | 3353 |
 | [lucasmancan](./participantes/lucasmancan) | ok | 1 |
@@ -424,6 +424,7 @@ Atualizada **Sun Mar 10 02:07:44 UTC 2024** com **628** submissões.
 | [mateuscolvr](./participantes/mateuscolvr) | ok | 4 |
 | [mateusdeitos-node](./participantes/mateusdeitos-node) | ok | 2 |
 | [mateusdeitos-php-swoole](./participantes/mateusdeitos-php-swoole) | ok | 2 |
+| [matheus-mr](./participantes/matheus-mr) | ok | 4 |
 | [matheus-trindade](./participantes/matheus-trindade) | ok | 2 |
 | [matheusdojava](./participantes/matheusdojava) | ok | 74 |
 | [matheusfbosa](./participantes/matheusfbosa) | ok | 1 |
