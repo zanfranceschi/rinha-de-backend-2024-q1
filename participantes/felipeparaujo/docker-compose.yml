@@ -14,6 +14,8 @@ services:
         limits:
           cpus: "0.35"
           memory: "97MB"
+    depends_on:
+      - db
 
   api2:
     <<: *api
@@ -33,6 +35,9 @@ services:
         limits:
           cpus: "0.2"
           memory: "100MB"
+    depends_on:
+      - api1
+      - api2
 
   db:
     image: postgres:latest
