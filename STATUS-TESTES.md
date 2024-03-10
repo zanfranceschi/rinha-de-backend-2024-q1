@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 21:01:58 UTC 2024** com **680** submissões.
+Atualizada **Sun Mar 10 21:37:07 UTC 2024** com **685** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -230,6 +230,7 @@ Atualizada **Sun Mar 10 21:01:58 UTC 2024** com **680** submissões.
 | [franklaercio](./participantes/franklaercio) | ok | 4 |
 | [ftathiago-blogdoft-csharp-aot](./participantes/ftathiago-blogdoft-csharp-aot) | ok | 2 |
 | [ftathiago-blogdoft-csharp](./participantes/ftathiago-blogdoft-csharp) | ok | 2 |
+| [fwbrasil](./participantes/fwbrasil) | falha - [logs](./participantes/fwbrasil/docker-compose.logs) | -- |
 | [gabriel-roque](./participantes/gabriel-roque) | ok | 4 |
 | [gabrielSantosLima](./participantes/gabrielSantosLima) | falha - [logs](./participantes/gabrielSantosLima/docker-compose.logs) | -- |
 | [gabrielbarbieri-nodejs](./participantes/gabrielbarbieri-nodejs) | falha - [logs](./participantes/gabrielbarbieri-nodejs/docker-compose.logs) | -- |
@@ -506,6 +507,7 @@ Atualizada **Sun Mar 10 21:01:58 UTC 2024** com **680** submissões.
 | [omurilo-perl](./participantes/omurilo-perl) | ok | 1 |
 | [omurilo](./participantes/omurilo) | ok | 2 |
 | [oneabrante](./participantes/oneabrante) | ok | 2 |
+| [oswaldolinhares-ruby-roda-sequel](./participantes/oswaldolinhares-ruby-roda-sequel) | falha - [logs](./participantes/oswaldolinhares-ruby-roda-sequel/docker-compose.logs) | -- |
 | [otonielsilva](./participantes/otonielsilva) | ok | 2 |
 | [oui_tecnologia](./participantes/oui_tecnologia) | ok | 2 |
 | [oui_tecnologiav2](./participantes/oui_tecnologiav2) | ok | 2 |
@@ -517,12 +519,13 @@ Atualizada **Sun Mar 10 21:01:58 UTC 2024** com **680** submissões.
 | [paulohenriqu](./participantes/paulohenriqu) | ok | 3 |
 | [paulohenriquesn-python](./participantes/paulohenriquesn-python) | ok | 3 |
 | [pedro-azevedo-e-matheus-gomes-nodejs](./participantes/pedro-azevedo-e-matheus-gomes-nodejs) | ok | 2 |
-| [pedrohenriquea-pgbouncer](./participantes/pedrohenriquea-pgbouncer) | falha - [logs](./participantes/pedrohenriquea-pgbouncer/docker-compose.logs) | -- |
+| [pedrohenriquea-pgbouncer](./participantes/pedrohenriquea-pgbouncer) | ok | 1 |
 | [pedrohenriquea](./participantes/pedrohenriquea) | ok | 1 |
 | [pedrolzoliveira-postgrest](./participantes/pedrolzoliveira-postgrest) | falha - [logs](./participantes/pedrolzoliveira-postgrest/docker-compose.logs) | -- |
 | [pedrolzoliveira](./participantes/pedrolzoliveira) | falha - [logs](./participantes/pedrolzoliveira/docker-compose.logs) | -- |
 | [pedroter7](./participantes/pedroter7) | ok | 4 |
 | [pedrovsn](./participantes/pedrovsn) | ok | 2 |
+| [phaguiar-net](./participantes/phaguiar-net) | ok | 2 |
 | [picklesdog-go](./participantes/picklesdog-go) | ok | 2 |
 | [pietrohl](./participantes/pietrohl) | ok | 2 |
 | [ptrecenti](./participantes/ptrecenti) | ok | 6 |
@@ -544,6 +547,7 @@ Atualizada **Sun Mar 10 21:01:58 UTC 2024** com **680** submissões.
 | [ramosfabiano_v2](./participantes/ramosfabiano_v2) | ok | 3 |
 | [raphaelmonticello](./participantes/raphaelmonticello) | ok | 3 |
 | [rayan-elixir](./participantes/rayan-elixir) | ok | 1 |
+| [rayan-rust](./participantes/rayan-rust) | ok | 1 |
 | [rdenadai_bun_sqlite](./participantes/rdenadai_bun_sqlite) | ok | 2 |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
 | [rdenadai_rust](./participantes/rdenadai_rust) | ok | 5 |
@@ -645,6 +649,7 @@ Atualizada **Sun Mar 10 21:01:58 UTC 2024** com **680** submissões.
 | [viniciusfcf](./participantes/viniciusfcf) | ok | 2 |
 | [viniciusgferreira](./participantes/viniciusgferreira) | ok | 3 |
 | [viniville-spring-webflux](./participantes/viniville-spring-webflux) | ok | 3 |
+| [viniville-spring-webmvc-native](./participantes/viniville-spring-webmvc-native) | ok | 2 |
 | [viniville-spring-webmvc](./participantes/viniville-spring-webmvc) | ok | 2 |
 | [vitor_weirich_java](./participantes/vitor_weirich_java) | ok | 148 |
 | [vitor_weirich_java_network_host](./participantes/vitor_weirich_java_network_host) | ok | 102 |
