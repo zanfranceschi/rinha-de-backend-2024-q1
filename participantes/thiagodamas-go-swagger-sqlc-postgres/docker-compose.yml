@@ -12,6 +12,8 @@ services:
       - DB_USER=postgres
       - DB_NAME=rinha
       - DB_PASSWORD=postgres
+      - DB_MAX_CONNECTIONS=6
+      - GOMEMLIMIT=60MiB
     
     # Não é necessário expor qualquer porta além da porta do load balancer,
     # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
@@ -23,8 +25,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.6"
-          memory: "200MB"
+          cpus: "0.25"
+          memory: "75MB"
 
   api02:
     # Essa sintaxe reusa o que foi declarado em 'api01'.
@@ -36,6 +38,8 @@ services:
       - DB_USER=postgres
       - DB_NAME=rinha
       - DB_PASSWORD=postgres
+      - DB_MAX_CONNECTIONS=6
+      - GOMEMLIMIT=60MiB
     ports:
       - "8082:8080"
  
@@ -53,8 +57,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.17"
-          memory: "10MB"
+          cpus: "0.5"
+          memory: "200MB"
 
   db:
     image: postgres:latest
@@ -64,8 +68,8 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=rinha
-    ports:
-      - "5432:5432"
+    # ports:
+    #   - "5432:5432"
     volumes:
       - ./schema.sql:/docker-entrypoint-initdb.d/script.sql
     deploy:
@@ -75,8 +79,8 @@ services:
           # aqui declarados é de 1.5 unidades de CPU e 550MB
           # de memória. A distribuição feita aqui é apenas
           # um exemplo – distribua como quiser.
-          cpus: "0.13"
-          memory: "140MB"
+          cpus: "0.5"
+          memory: "200MB"
 
 # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
 # A edição anterior se beneficiou do modo host pois o volume de requisições

@@ -24,31 +24,68 @@ CREATE INDEX idx_transacoes_cliente_id ON transacoes (cliente_id);
 
 -- Funcoes
 
-CREATE OR REPLACE FUNCTION cliente_atualizar_saldo(valor INTEGER, cliente_id INTEGER)
-RETURNS VOID AS $$
+CREATE OR REPLACE FUNCTION credito(_id INTEGER, valor INTEGER, descricao VARCHAR)
+RETURNS json AS $$
+DECLARE
+  saldo_final INTEGER;
+  limite_final INTEGER;
 BEGIN
-  UPDATE clientes SET saldo = saldo + valor WHERE id = cliente_id;
+
+  PERFORM pg_advisory_xact_lock(_id);
+
+  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES (_id, valor, 'c', descricao);
+  UPDATE clientes SET saldo = saldo + valor WHERE id = _id;
+
+  SELECT saldo, limite INTO saldo_final, limite_final FROM clientes WHERE id = _id;
+  RETURN json_build_object('saldo', saldo_final, 'limite', limite_final);
+
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION cliente_receber_por_id(_id INTEGER)
-RETURNS SETOF clientes AS $$
+CREATE OR REPLACE FUNCTION debito(_id INTEGER, valor INTEGER, descricao VARCHAR)
+RETURNS json AS $$
+DECLARE
+  saldo_antigo INTEGER;
+  limite_antigo INTEGER;
+  saldo_final INTEGER;
+  limite_final INTEGER;
 BEGIN
-  RETURN QUERY SELECT * FROM clientes WHERE id = _id;
+
+  PERFORM pg_advisory_xact_lock(_id);
+
+  SELECT saldo, limite INTO saldo_antigo, limite_antigo FROM clientes WHERE id = _id;
+  IF (saldo_antigo - valor < limite_antigo * -1) THEN
+    RETURN json_build_object('error', true);
+  END IF;
+
+  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES (_id, valor, 'd', descricao);
+  UPDATE clientes SET saldo = saldo - valor WHERE id = _id;
+
+  SELECT saldo, limite INTO saldo_final, limite_final FROM clientes WHERE id = _id;
+  RETURN json_build_object('saldo', saldo_final, 'limite', limite_final);
+
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION transacoes_adicionar(_id INTEGER, valor INTEGER, tipo CHAR, descricao VARCHAR)
-RETURNS VOID AS $$
+CREATE OR REPLACE FUNCTION historico(_id INTEGER)
+RETURNS json AS $$
+DECLARE
+  cliente_info json;
+  transacoes_info json;
 BEGIN
-  INSERT INTO transacoes (cliente_id, valor, tipo, descricao) VALUES (_id, valor, tipo, descricao);
-END;
-$$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION transacoes_receber_historico(_id INTEGER)
-RETURNS SETOF transacoes AS $$
-BEGIN
-  RETURN QUERY SELECT * FROM transacoes WHERE cliente_id = _id ORDER BY data_registro DESC LIMIT 10;
+  PERFORM pg_advisory_xact_lock(_id);
+
+  SELECT row_to_json(t) INTO cliente_info FROM (
+    SELECT limite, saldo FROM clientes WHERE id = _id
+  ) t;
+
+  SELECT json_agg(row_to_json(t)) INTO transacoes_info FROM (
+    SELECT valor, tipo, descricao, data_registro FROM transacoes WHERE cliente_id = _id ORDER BY data_registro DESC LIMIT 10
+  ) t;
+
+  RETURN json_build_object('cliente', cliente_info, 'transacoes', transacoes_info);
+
 END;
 $$ LANGUAGE plpgsql;
 

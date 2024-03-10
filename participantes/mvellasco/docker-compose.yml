@@ -58,7 +58,7 @@ services:
       resources:
         limits:
           cpus: '0.1'
-          memory: '25MB'
+          memory: '20MB'
     networks:
       fiber-network:
         aliases:
@@ -71,7 +71,7 @@ services:
       resources:
         limits:
           cpus: '0.4'
-          memory: '125MB'
+          memory: '105MB'
     volumes:
       - ./postgresql/postgresql.conf:/etc/postgresql/postgresql.conf:z
     healthcheck:
@@ -88,3 +88,16 @@ services:
       fiber-network:
         aliases:
           - db-proxy
+  
+  fiber-memcached:
+    image: memcached:latest
+    container_name: fiber-memcached
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '25MB'
+    networks:
+      fiber-network:
+        aliases:
+          - memcached-proxy

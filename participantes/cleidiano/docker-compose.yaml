@@ -3,13 +3,13 @@ name: 'rinha-cleidiano'
 
 services:
   api1: &api
-    image: cleidianosouza/rinha-backend-2024-q1:202402283621
+    image: cleidianosouza/rinha-backend-2024-q1:202403081143
     hostname: api1
     container_name: rinhaapi1
     environment:
       - DATASOURCE_DB_URL=jdbc:postgresql://postgres-db:5432/rinha
       - DATASOURCE_MAX_CONNECTIONS=5
-      - JAVA_OPTS=-Dio.ktor.development=false -Xmx130m -Xms130m
+      - JAVA_OPTS=-Dio.ktor.development=false -Xmx160m -Xms160m
     depends_on:
       postgres-db:
         condition: service_healthy
@@ -19,7 +19,7 @@ services:
       resources:
         limits:
           cpus: '0.4'
-          memory: '147MB'
+          memory: '195MB'
 
   api2:
     <<: *api
@@ -41,12 +41,12 @@ services:
       resources:
         limits:
           cpus: "0.2"
-          memory: "6MB"
+          memory: "10MB"
 
   postgres-db:
     image: postgres:latest
     container_name: rinhadb
-    command: 'postgres -c max_connections=12 -c shared_buffers=200MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off'
+    command: 'postgres -c max_connections=12 -c shared_buffers=50MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off'
     hostname: postgres
     environment:
       - POSTGRES_PASSWORD=rinha
@@ -62,7 +62,7 @@ services:
       resources:
         limits:
           cpus: '0.5'
-          memory: '250MB'
+          memory: '100MB'
     healthcheck:
       test: [ "CMD", "pg_isready", "--username", "rinha" ]
       interval: 5s

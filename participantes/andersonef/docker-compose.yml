@@ -1,0 +1,87 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: andersonef/rinha-node-2024:latest
+    hostname: api01
+    environment:
+      - SERVER_ID=1
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=rinha
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - MAX_CONNECTION_POOL=120
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    ports:
+      - "8081:9999"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "65MB"
+
+  api02:
+    <<: *api 
+    hostname: api02
+    environment:
+      - SERVER_ID=2
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=rinha
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - MAX_CONNECTION_POOL=120
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    ports:
+      - "8082:9999"
+
+  db:
+    image: postgres:latest
+    ports:
+      - "5431:5432"
+    environment:
+      - POSTGRES_DB=rinha
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./postgresql.conf:/etc/postgresql.conf
+      - ./postgres.initdb.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.55"
+          memory: "180MB"
+
+  redis:
+    image: redis:latest
+    deploy:
+      resources:
+        limits:
+          cpus: "0.05"
+          memory: "10MB"
+ 
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+        # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "230MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

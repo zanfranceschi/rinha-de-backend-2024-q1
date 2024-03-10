@@ -1,0 +1,110 @@
+version: '3.8'
+
+services:
+  webapi1: &api
+    hostname: webapi1
+    image: brenonortega/rinha-backend-dotnet-q1-24:1.0.1
+    environment:
+      - BYPASS_CACHE=False
+      - Logging:LogLevel:Default=Error
+      - ASPNETCORE_URLS=http://+:8080
+      - ASPNETCORE_ENVIRONMENT=Production
+      - DOTNET_TieredPGO=1
+      - DOTNET_ReadyToRun=0
+      - DOTNET_TC_QuickJitForLoops=1
+      - NATS_DESTINATION=Transaction
+      - NATS_OWN=Transaction
+    networks:
+      - rinha_network
+    ports:
+      - "8080"
+    depends_on:
+      - postgres
+      - message-broker
+      - cache
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "65MB"
+
+  webapi2:
+    <<: *api 
+    hostname: webapi2
+    environment:
+      - NATS_DESTINATION=Transaction
+      - NATS_OWN=Transaction
+
+  load-balancer:
+    image: nginx:1.24.0-alpine
+    networks:
+      - rinha_network
+    ports:
+      - "9999:9999"
+    depends_on:
+      - webapi1
+      - webapi2
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "70MB"
+
+  message-broker:
+    image: nats:2.7.4
+    networks:
+      - rinha_network
+    ports:
+      - "4222:4222"
+    command: -js
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "40MB"
+
+  cache:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - rinha_network
+    environment:
+      - REDIS_PASSWORD=redis
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "75MB"
+          
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rinha_database
+    networks: 
+      - rinha_network
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready", "-d", "postgres" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d
+    command: [ "postgres", "-c", "config_file=/docker-entrypoint-initdb.d/postgres.conf" ]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "200MB"
+
+networks:
+  rinha_network:
+    driver: bridge

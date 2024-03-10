@@ -1,0 +1,61 @@
+version: '3.5'
+
+services:
+  api01: &api_servers
+    image: limaenz/rinhabackend-q1-dotnet:07032024
+    hostname: api01
+    container_name: api01_rinha
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - Connection_String=Host=db;Username=admin;Password=123;Database=rinhaDB;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=2000;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "50MB"
+
+  api02:
+    <<: *api_servers
+    hostname: api02
+    container_name: api02_rinha
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "10MB"
+
+  db:
+    image: postgres:16.2
+    container_name: db_rinha
+    command: 'postgres -c max_connections=300 -c shared_buffers=96MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=16MB'
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinhaDB
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: "440MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-backend-q1-nginx-dotnet

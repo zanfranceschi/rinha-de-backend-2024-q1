@@ -3,30 +3,46 @@ services:
 
   api01: &api
     image: maxwellmonteiro/crinha-fs:latest
-    volumes:
-      - ./data:/tmp/data
     hostname: api01  
     command: ./rinha
     environment:
       PORT: 8080
-      MAIN: 1
+      DB_CONNECTION_STR: "localhost:8083"
     expose:
       - 8080
+    depends_on:
+      - db
     network_mode: "host"    
     deploy:
       resources:
         limits:
           cpus: '0.35'
-          memory: '32MB'
+          memory: '6MB'
 
   api02:
     <<: *api
     hostname: api02
     environment:
       PORT: 8081
-      MAIN: 0
+      DB_CONNECTION_STR: "localhost:8083"
     expose:
-      - 8081   
+      - 8081
+
+  db:
+    image: maxwellmonteiro/crinha-db:latest
+    hostname: db  
+    command: ./rinhadb
+    environment:
+      PORT: 8083
+      DATA_DIR: /usr/local/rinha/data
+    expose:
+      - 8083
+    network_mode: "host"    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: '32MB'
          
   nginx:
     image: nginx:1.25.3
@@ -39,5 +55,5 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.80'
+          cpus: '0.50'
           memory: '16MB'

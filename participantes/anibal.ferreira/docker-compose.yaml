@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:1.25-bookworm
+    network_mode: host
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - nilapi01
+      - nilapi02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "50MB"
+
+  postgres:
+    container_name: postgres
+    image: postgres:16.2-bookworm
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init-db/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    command: > 
+      postgres -p 5432 
+          -c max_wal_size=4096 
+          -c checkpoint_timeout=600 
+          -c shared_buffers=256MB 
+          -c max_connections=5000
+          -c synchronous_commit=off
+          -c log_statement=none
+          -c commit_delay=1200
+          -c fsync=off
+          -c max_parallel_workers=0
+          -c autovacuum_vacuum_scale_factor=.5
+          -c log_duration=off
+          -c log_checkpoints=0
+          -c log_min_error_statement='panic'
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.82"
+          memory: "450MB"
+
+  nilapi01:
+    container_name: nilapi01
+    image: nilferreira/rinha-2024-q1:latest
+    ports:
+      - "8080:8080"
+    environment:
+      SERVER_URL: 0.0.0.0:8080
+      DB_HOST: postgres:5432
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASS: postgres
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "0.19"
+          memory: "25MB"
+
+  nilapi02:
+    container_name: nilapi02
+    image: nilferreira/rinha-2024-q1:latest
+    ports:
+      - "8081:8081"
+    environment:
+      SERVER_URL: 0.0.0.0:8081
+      DB_HOST: postgres:5432
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASS: postgres
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "0.19"
+          memory: "25MB"
+
+networks:
+  default:
+    driver: bridge

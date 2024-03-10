@@ -4,8 +4,8 @@
  Volume "vitorascorrea_postgres"  Created
  Container vitorascorrea-db-1  Creating
  Container vitorascorrea-db-1  Created
- Container vitorascorrea-api1-1  Creating
  Container vitorascorrea-api2-1  Creating
+ Container vitorascorrea-api1-1  Creating
  Container vitorascorrea-api2-1  Created
  Container vitorascorrea-api1-1  Created
  Container vitorascorrea-nginx-1  Creating
@@ -40,8 +40,6 @@ nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
 api1-1   | Calling `DidYouMean::SPELL_CHECKERS.merge!(error_name => spell_checker)' has been deprecated. Please call `DidYouMean.correct_error(error_name, spell_checker)' instead.
 api2-1   | Calling `DidYouMean::SPELL_CHECKERS.merge!(error_name => spell_checker)' has been deprecated. Please call `DidYouMean.correct_error(error_name, spell_checker)' instead.
 db-1     | performing post-bootstrap initialization ... ok
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -49,11 +47,9 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | waiting for server to start....2024-03-04 17:25:42.516 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-03-04 17:25:42.517 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-03-04 17:25:42.519 UTC [51] LOG:  database system was shut down at 2024-03-04 17:25:41 UTC
-db-1     | 2024-03-04 17:25:42.523 UTC [48] LOG:  database system is ready to accept connections
-db-1     |  done
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1     | waiting for server to start.... done
 db-1     | server started
 db-1     | CREATE DATABASE
 db-1     | 
@@ -66,24 +62,13 @@ db-1     | CREATE INDEX
 db-1     | INSERT 0 5
 db-1     | 
 db-1     | 
-db-1     | 2024-03-04 17:25:42.934 UTC [48] LOG:  received fast shutdown request
-db-1     | 2024-03-04 17:25:42.934 UTC [48] LOG:  aborting any active transactions
-db-1     | waiting for server to shut down....2024-03-04 17:25:42.939 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-03-04 17:25:42.939 UTC [49] LOG:  shutting down
-db-1     | 2024-03-04 17:25:42.939 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-03-04 17:25:42.954 UTC [49] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.016 s, sync=0.001 s, total=0.016 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4304 kB, estimate=4304 kB; lsn=0/191EC98, redo lsn=0/191EC98
-db-1     | 2024-03-04 17:25:42.961 UTC [48] LOG:  database system is shut down
-db-1     |  done
+db-1     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/postgresql.conf
+db-1     | 
+db-1     | waiting for server to shut down.... done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-03-04 17:25:43.058 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-03-04 17:25:43.058 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-03-04 17:25:43.058 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-03-04 17:25:43.058 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-03-04 17:25:43.060 UTC [66] LOG:  database system was shut down at 2024-03-04 17:25:42 UTC
-db-1     | 2024-03-04 17:25:43.064 UTC [1] LOG:  database system is ready to accept connections
 api1-1   | => Booting Puma
 api1-1   | => Rails 7.0.8 application starting in production 
 api1-1   | => Run `bin/rails server --help` for more startup options
@@ -101,9 +86,6 @@ api1-1   | [1] *     Restarts: (✔) hot (✖) phased
 api1-1   | [1] * Preloading application
 api1-1   | [1] * Listening on http://0.0.0.0:5000
 api1-1   | [1] Use Ctrl-C to stop
-api1-1   | [1] - Worker 0 (PID: 11) booted in 0.0s, phase: 0
-api1-1   | [1] - Worker 1 (PID: 15) booted in 0.0s, phase: 0
-api1-1   | [1] - Worker 2 (PID: 24) booted in 0.0s, phase: 0
 api2-1   | [1] Puma starting in cluster mode...
 api2-1   | [1] * Puma version: 5.6.8 (ruby 3.3.0-p0) ("Birdie's Version")
 api2-1   | [1] *  Min threads: 6
@@ -113,313 +95,166 @@ api2-1   | [1] *   Master PID: 1
 api2-1   | [1] *      Workers: 3
 api2-1   | [1] *     Restarts: (✔) hot (✖) phased
 api2-1   | [1] * Preloading application
+api1-1   | [1] - Worker 0 (PID: 12) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 16) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 25) booted in 0.0s, phase: 0
 api2-1   | [1] * Listening on http://0.0.0.0:5000
 api2-1   | [1] Use Ctrl-C to stop
-api2-1   | [1] - Worker 0 (PID: 11) booted in 0.06s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 23) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 14) booted in 0.06s, phase: 0
-db-1     | 2024-03-04 17:26:00.022 UTC [71] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:00.022 UTC [71] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:26:00.023 UTC [74] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 1 (PID: 117) booted in 0.0s, phase: 0
-api1-1   | [1] - Worker 2 (PID: 100) booted in 0.04s, phase: 0
-db-1     | 2024-03-04 17:26:42.478 UTC [97] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:42.478 UTC [97] LOG:  unexpected EOF on client connection with an open transaction
-api1-1   | [1] - Worker 0 (PID: 153) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 153) booted in 0.03s, phase: 0
-api1-1   | [1] - Worker 1 (PID: 187) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:26:54.421 UTC [117] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:54.423 UTC [113] LOG:  could not receive data from client: Connection reset by peer
-api1-1   | [1] - Worker 0 (PID: 247) booted in 0.01s, phase: 0
-db-1     | 2024-03-04 17:26:54.521 UTC [82] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:54.521 UTC [80] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:26:54.521 UTC [82] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:26:54.521 UTC [79] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:54.521 UTC [79] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:26:54.521 UTC [81] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:26:54.524 UTC [77] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:54.524 UTC [77] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:26:54.526 UTC [78] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 204) booted in 0.07s, phase: 0
-api1-1   | [1] - Worker 2 (PID: 274) booted in 0.07s, phase: 0
-db-1     | 2024-03-04 17:26:55.820 UTC [125] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:55.820 UTC [125] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:26:55.821 UTC [121] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:55.821 UTC [121] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:26:55.821 UTC [110] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:26:55.822 UTC [109] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:55.823 UTC [111] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 1 (PID: 281) booted in 0.08s, phase: 0
-db-1     | 2024-03-04 17:26:56.122 UTC [144] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:56.130 UTC [142] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:56.130 UTC [140] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:56.131 UTC [139] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:26:56.134 UTC [141] LOG:  could not receive data from client: Connection reset by peer
-api1-1   | [1] - Worker 1 (PID: 333) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 322) booted in 0.07s, phase: 0
-db-1     | 2024-03-04 17:27:07.533 UTC [163] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:07.536 UTC [160] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:07.536 UTC [160] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:07.538 UTC [157] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:07.538 UTC [157] LOG:  unexpected EOF on client connection with an open transaction
-api1-1   | [1] - Worker 2 (PID: 374) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:27:08.131 UTC [150] LOG:  unexpected EOF on client connection with an open transaction
-api1-1   | [1] - Worker 0 (PID: 401) booted in 0.08s, phase: 0
-db-1     | 2024-03-04 17:27:08.831 UTC [169] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:08.831 UTC [167] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:08.831 UTC [168] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:08.832 UTC [164] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:08.833 UTC [166] LOG:  could not receive data from client: Connection reset by peer
-api1-1   | [1] - Worker 1 (PID: 441) booted in 0.08s, phase: 0
-db-1     | 2024-03-04 17:27:09.915 UTC [175] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:09.915 UTC [172] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:09.915 UTC [171] LOG:  could not receive data from client: Connection reset by peer
-api1-1   | [1] - Worker 2 (PID: 481) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:27:10.532 UTC [176] LOG:  could not receive data from client: Connection reset by peer
-api1-1   | [1] - Worker 0 (PID: 521) booted in 0.07s, phase: 0
-db-1     | 2024-03-04 17:27:11.622 UTC [187] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:11.622 UTC [186] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:11.623 UTC [185] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:11.624 UTC [182] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:11.624 UTC [183] LOG:  could not receive data from client: Connection reset by peer
-api1-1   | [1] - Worker 1 (PID: 561) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:27:12.319 UTC [191] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:12.319 UTC [189] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:12.319 UTC [193] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:12.322 UTC [192] LOG:  could not receive data from client: Connection reset by peer
-api1-1   | [1] - Worker 2 (PID: 597) booted in 0.03s, phase: 0
-db-1     | 2024-03-04 17:27:17.515 UTC [136] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:17.515 UTC [137] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:17.515 UTC [132] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:17.515 UTC [137] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:17.515 UTC [134] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:17.516 UTC [135] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 355) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 407) booted in 0.01s, phase: 0
-db-1     | 2024-03-04 17:27:19.661 UTC [204] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 1 (PID: 480) booted in 0.03s, phase: 0
-api2-1   | [1] - Worker 0 (PID: 483) booted in 0.07s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 579) booted in 0.09s, phase: 0
-db-1     | 2024-03-04 17:27:23.514 UTC [196] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:23.514 UTC [195] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:23.514 UTC [195] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:23.514 UTC [196] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:23.517 UTC [194] LOG:  could not receive data from client: Connection reset by peer
-api1-1   | [1] - Worker 0 (PID: 661) booted in 0.03s, phase: 0
-api1-1   | [1] - Worker 1 (PID: 694) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:27:24.729 UTC [242] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:24.729 UTC [241] LOG:  could not receive data from client: Connection reset by peer
-api1-1   | [1] - Worker 2 (PID: 736) booted in 0.01s, phase: 0
-db-1     | 2024-03-04 17:27:25.516 UTC [250] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:25.517 UTC [246] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:25.517 UTC [246] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:25.518 UTC [247] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:25.520 UTC [248] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:25.520 UTC [248] LOG:  unexpected EOF on client connection with an open transaction
-api1-1 exited with code 137
-db-1     | 2024-03-04 17:27:32.319 UTC [228] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:32.319 UTC [228] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 621) booted in 0.02s, phase: 0
-db-1     | 2024-03-04 17:27:32.429 UTC [231] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:32.721 UTC [234] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:32.721 UTC [234] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:32.723 UTC [232] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:32.723 UTC [232] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 2 (PID: 647) booted in 0.07s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 702) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 0 (PID: 766) booted in 0.01s, phase: 0
-db-1     | 2024-03-04 17:27:55.521 UTC [270] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:55.521 UTC [269] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:55.521 UTC [269] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:55.525 UTC [272] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:55.525 UTC [271] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 1 (PID: 793) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:27:56.429 UTC [266] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:56.429 UTC [266] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:56.430 UTC [265] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:56.431 UTC [263] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:56.433 UTC [264] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:56.433 UTC [264] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:56.433 UTC [261] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 2 (PID: 858) booted in 0.07s, phase: 0
-db-1     | 2024-03-04 17:27:57.417 UTC [277] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:57.417 UTC [277] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 917) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 955) booted in 0.06s, phase: 0
-db-1     | 2024-03-04 17:27:59.418 UTC [291] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:59.420 UTC [289] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:59.420 UTC [289] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:27:59.422 UTC [286] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:27:59.422 UTC [286] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 2 (PID: 1031) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:28:00.320 UTC [295] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:00.320 UTC [295] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:00.321 UTC [292] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:00.321 UTC [292] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 1083) booted in 0.16s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 1085) booted in 0.27s, phase: 0
-db-1     | 2024-03-04 17:28:02.139 UTC [308] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:02.139 UTC [307] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:02.142 UTC [305] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:02.142 UTC [305] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:02.142 UTC [304] LOG:  could not receive data from client: Connection reset by peer
-api2-1   | [1] - Worker 2 (PID: 1172) booted in 0.07s, phase: 0
-db-1     | 2024-03-04 17:28:13.220 UTC [321] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:13.220 UTC [321] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 1207) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:28:13.838 UTC [326] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:13.838 UTC [326] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 2 (PID: 1244) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:28:14.720 UTC [316] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:14.723 UTC [315] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:14.723 UTC [315] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:14.723 UTC [311] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 1 (PID: 1309) booted in 0.02s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 1340) booted in 0.04s, phase: 0
-db-1     | 2024-03-04 17:28:25.618 UTC [338] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:25.618 UTC [336] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 1402) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 1443) booted in 0.08s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 1493) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:28:29.019 UTC [357] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:29.019 UTC [357] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 1542) booted in 0.04s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 1597) booted in 0.07s, phase: 0
-db-1     | 2024-03-04 17:28:30.915 UTC [369] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:30.917 UTC [366] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:30.917 UTC [366] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:30.918 UTC [370] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 2 (PID: 1656) booted in 0.08s, phase: 0
-api2-1   | [1] - Worker 0 (PID: 1709) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 1759) booted in 0.03s, phase: 0
-db-1     | 2024-03-04 17:28:41.538 UTC [385] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:41.538 UTC [385] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:41.538 UTC [386] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:41.538 UTC [384] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:41.540 UTC [388] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:41.540 UTC [388] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:41.538 UTC [389] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 2 (PID: 1792) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 0 (PID: 1849) booted in 0.08s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 1912) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:28:44.219 UTC [405] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:44.219 UTC [407] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:44.219 UTC [407] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:44.220 UTC [406] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 2 (PID: 1943) booted in 0.08s, phase: 0
-db-1     | 2024-03-04 17:28:45.127 UTC [412] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:45.127 UTC [413] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:45.127 UTC [409] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 2003) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:28:46.019 UTC [420] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:46.019 UTC [420] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:46.019 UTC [415] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:46.022 UTC [419] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:46.022 UTC [419] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 1 (PID: 2049) booted in 0.09s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 2102) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:28:47.722 UTC [429] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:28:47.722 UTC [429] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:47.724 UTC [431] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:47.725 UTC [428] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 2151) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 2198) booted in 0.12s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 2243) booted in 0.08s, phase: 0
-db-1     | 2024-03-04 17:28:58.420 UTC [452] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:58.456 UTC [454] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:28:58.461 UTC [456] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 1 (PID: 2283) booted in 0.03s, phase: 0
-api2-1   | [1] - Worker 0 (PID: 2344) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 2370) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:29:00.819 UTC [465] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:00.819 UTC [465] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 1 (PID: 2416) booted in 0.02s, phase: 0
-api2-1   | [1] - Worker 0 (PID: 2468) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 2515) booted in 0.02s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 2564) booted in 0.06s, phase: 0
-db-1     | 2024-03-04 17:29:04.436 UTC [492] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:04.436 UTC [492] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:04.437 UTC [491] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:04.437 UTC [489] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:04.437 UTC [489] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:04.438 UTC [488] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 2619) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 2663) booted in 0.11s, phase: 0
-db-1     | 2024-03-04 17:29:15.419 UTC [503] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:15.419 UTC [504] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:15.419 UTC [504] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:15.419 UTC [503] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:15.419 UTC [501] LOG:  could not receive data from client: Connection reset by peer
-api2-1   | [1] - Worker 1 (PID: 2702) booted in 0.02s, phase: 0
-api2-1   | [1] - Worker 0 (PID: 2752) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:29:17.165 UTC [517] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:17.165 UTC [515] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:17.166 UTC [514] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:17.166 UTC [514] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:17.168 UTC [516] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:17.168 UTC [516] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:17.169 UTC [513] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:17.169 UTC [513] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 2 (PID: 2800) booted in 0.04s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 2852) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 0 (PID: 2902) booted in 0.07s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 2947) booted in 0.07s, phase: 0
-db-1     | 2024-03-04 17:29:20.660 UTC [540] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:20.717 UTC [536] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:20.717 UTC [536] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 1 (PID: 2999) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 0 (PID: 3046) booted in 0.07s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 3086) booted in 0.02s, phase: 0
-db-1     | 2024-03-04 17:29:33.216 UTC [551] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:33.216 UTC [551] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 2 (PID: 3137) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:29:34.119 UTC [562] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:34.119 UTC [562] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 3178) booted in 0.08s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 3231) booted in 0.07s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 3278) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:29:36.835 UTC [581] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:36.835 UTC [581] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:36.838 UTC [580] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:36.838 UTC [580] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 3329) booted in 0.1s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 3380) booted in 0.08s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 3422) booted in 0.06s, phase: 0
-db-1     | 2024-03-04 17:29:48.521 UTC [608] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:48.522 UTC [608] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:48.522 UTC [605] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:48.522 UTC [607] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 1 (PID: 3462) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:29:48.530 UTC [604] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 3514) booted in 0.07s, phase: 0
-db-1     | 2024-03-04 17:29:50.319 UTC [610] LOG:  could not receive data from client: Connection reset by peer
-db-1     | 2024-03-04 17:29:50.319 UTC [610] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:50.323 UTC [612] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 2 (PID: 3562) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 3616) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:29:51.221 UTC [619] LOG:  unexpected EOF on client connection with an open transaction
-db-1     | 2024-03-04 17:29:51.222 UTC [616] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 3664) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 3710) booted in 0.08s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 3757) booted in 0.0s, phase: 0
-db-1     | 2024-03-04 17:29:54.534 UTC [645] LOG:  unexpected EOF on client connection with an open transaction
-api2-1   | [1] - Worker 0 (PID: 3808) booted in 0.04s, phase: 0
-api2-1   | [1] - Worker 2 (PID: 3855) booted in 0.0s, phase: 0
-api2-1   | [1] - Worker 1 (PID: 3902) booted in 0.06s, phase: 0
-api2-1   | [1] - Worker 0 (PID: 3946) booted in 0.08s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 12) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 16) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 25) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 139) booted in 0.01s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 115) booted in 0.06s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 154) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 186) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 133) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 244) booted in 0.05s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 312) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 207) booted in 0.08s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 268) booted in 0.11s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 343) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 303) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 387) booted in 0.02s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 360) booted in 0.01s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 449) booted in 0.01s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 418) booted in 0.16s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 490) booted in 0.01s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 556) booted in 0.07s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 591) booted in 0.01s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 491) booted in 0.01s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 558) booted in 0.19s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 616) booted in 0.1s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 655) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 635) booted in 0.05s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 708) booted in 0.01s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 763) booted in 0.11s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 713) booted in 0.12s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 778) booted in 0.08s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 805) booted in 0.09s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 887) booted in 0.09s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 816) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 854) booted in 0.06s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 929) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 932) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 894) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 958) booted in 0.09s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 1011) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 1019) booted in 0.02s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 1066) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 1120) booted in 0.01s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 1180) booted in 0.07s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 1234) booted in 0.1s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 1040) booted in 0.05s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 1043) booted in 0.05s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 1153) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 1191) booted in 0.09s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 1243) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 1273) booted in 0.08s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 1305) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 1337) booted in 0.09s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 1374) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 1392) booted in 0.14s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 1438) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 1502) booted in 0.07s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 1553) booted in 0.1s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 1610) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 1669) booted in 0.02s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 1714) booted in 0.21s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 1398) booted in 0.06s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 1395) booted in 0.07s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 1506) booted in 0.1s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 1543) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 1602) booted in 0.01s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 1670) booted in 0.05s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 1672) booted in 0.14s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 1761) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 1801) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 1862) booted in 0.09s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 1911) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 1955) booted in 0.05s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 2020) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 2077) booted in 0.09s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 2122) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 1753) booted in 0.19s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 1779) booted in 0.05s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 2184) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 2245) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 2297) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 2357) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 1822) booted in 0.06s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 1890) booted in 0.01s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 2382) booted in 0.09s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 1939) booted in 0.19s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 2437) booted in 0.08s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 1996) booted in 0.13s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 2481) booted in 0.01s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 2049) booted in 0.19s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 2530) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 2106) booted in 0.01s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 2589) booted in 0.15s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 2642) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 2695) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 2747) booted in 0.09s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 2793) booted in 0.05s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 2843) booted in 0.09s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 2884) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 2136) booted in 0.01s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 2191) booted in 0.09s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 2239) booted in 0.04s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 2295) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 2338) booted in 0.11s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 2397) booted in 0.07s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 2446) booted in 0.02s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 2926) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 2495) booted in 0.06s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 2954) booted in 0.11s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 3016) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 3068) booted in 0.02s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 3127) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 3174) booted in 0.05s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 3235) booted in 0.07s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 3282) booted in 0.05s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 3335) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 2536) booted in 0.05s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 2596) booted in 0.01s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 2648) booted in 0.16s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 2691) booted in 0.01s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 2746) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 2793) booted in 0.01s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 2841) booted in 0.16s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 2892) booted in 0.01s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 3375) booted in 0.06s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 3437) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 3477) booted in 0.06s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 3534) booted in 0.07s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 3583) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 3634) booted in 0.01s, phase: 0
+api2-1   | [1] - Worker 2 (PID: 3687) booted in 0.02s, phase: 0
+api2-1   | [1] - Worker 1 (PID: 3738) booted in 0.0s, phase: 0
+api2-1   | [1] - Worker 0 (PID: 3787) booted in 0.02s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 2926) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 2983) booted in 0.1s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 3030) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 3079) booted in 0.11s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 3131) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 3180) booted in 0.05s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 3230) booted in 0.1s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 3286) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 1 (PID: 3332) booted in 0.1s, phase: 0
+api1-1   | [1] - Worker 0 (PID: 3387) booted in 0.0s, phase: 0
+api1-1   | [1] - Worker 2 (PID: 3439) booted in 0.12s, phase: 0
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api2-1   | [1] === puma shutdown: 2024-03-04 17:30:09 +0000 ===
+api1-1   | [1] === puma shutdown: 2024-03-08 21:04:36 +0000 ===
+api1-1   | [1] - Goodbye!
+api1-1   | [1] - Gracefully shutting down workers...
+api2-1   | [1] === puma shutdown: 2024-03-08 21:04:36 +0000 ===
 api2-1   | [1] - Goodbye!
 api2-1   | [1] - Gracefully shutting down workers...
+api1-1   | Exiting
 api2-1   | Exiting
 api2-1 exited with code 0
 api2-1 exited with code 1
-db-1     | 2024-03-04 17:30:09.914 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-03-04 17:30:09.914 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-03-04 17:30:09.916 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-03-04 17:30:09.916 UTC [64] LOG:  shutting down
-db-1     | 2024-03-04 17:30:09.916 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-03-04 17:30:09.917 UTC [64] LOG:  checkpoint complete: wrote 147 buffers (0.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.002 s; sync files=0, longest=0.000 s, average=0.000 s; distance=264 kB, estimate=264 kB; lsn=0/1960EE0, redo lsn=0/1960EE0
-db-1     | 2024-03-04 17:30:09.920 UTC [1] LOG:  database system is shut down
+api1-1 exited with code 0
+api1-1 exited with code 1
 db-1 exited with code 0
