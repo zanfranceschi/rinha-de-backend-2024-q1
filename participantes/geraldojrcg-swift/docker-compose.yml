@@ -1,0 +1,80 @@
+# Docker Compose file for Vapor
+#
+# Install Docker on your system to run and test
+# your Vapor app in a production-like environment.
+#
+# Note: This file is intended for testing and does not
+# implement best practices for a production deployment.
+#
+# Learn more: https://docs.docker.com/compose/reference/
+#
+#   Build images: docker-compose build
+#      Start app: docker-compose up app
+#       Stop all: docker-compose down
+#
+version: "3.7"
+
+x-shared_environment: &shared_environment
+  LOG_LEVEL: error
+  DATABASE_CONNECTION_STRING: "postgres://postgres:postgres@database:5432/rinha_backend"
+
+services:
+  api1: &api
+    image: geraldojrcg/rinha-backend-2024-q1-swift:latest
+    hostname: api1
+    environment:
+      <<: *shared_environment
+    ports:
+      - "8081:8080"
+    depends_on:
+      - database
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "150MB"
+
+  api2:
+    <<: *api
+    hostname: api2
+    ports:
+      - "8082:8080"
+
+  database:
+    image: postgres:latest
+    command: postgres -c config_file="/etc/postgresql.conf"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rinha_backend
+    ports:
+      - 5432:5432
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgresql.conf:/etc/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "200MB"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "50MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha_backend_2024_q1
