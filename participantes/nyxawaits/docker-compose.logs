@@ -2,12 +2,10 @@
  Network nyxawaits_default  Created
  Container nyxawaits-db-1  Creating
  Container nyxawaits-db-1  Created
- Container nyxawaits-api01-1  Creating
  Container nyxawaits-api02-1  Creating
- api01 The requested image's platform (linux/arm64/v8) does not match the detected host platform (linux/amd64/v4) and no specific platform was requested 
- Container nyxawaits-api01-1  Created
- api02 The requested image's platform (linux/arm64/v8) does not match the detected host platform (linux/amd64/v4) and no specific platform was requested 
+ Container nyxawaits-api01-1  Creating
  Container nyxawaits-api02-1  Created
+ Container nyxawaits-api01-1  Created
  Container nyxawaits-nginx-1  Creating
  Container nyxawaits-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -29,8 +27,6 @@ db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
 db-1     | performing post-bootstrap initialization ... ok
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -38,10 +34,12 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | waiting for server to start....2024-03-10 04:21:09.032 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-03-10 04:21:09.036 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-03-10 04:21:09.045 UTC [52] LOG:  database system was shut down at 2024-03-10 04:21:07 UTC
-db-1     | 2024-03-10 04:21:09.051 UTC [49] LOG:  database system is ready to accept connections
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1     | waiting for server to start....2024-03-10 17:42:21.880 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-10 17:42:21.883 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-10 17:42:21.891 UTC [51] LOG:  database system was shut down at 2024-03-10 17:42:20 UTC
+db-1     | 2024-03-10 17:42:21.898 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -55,26 +53,46 @@ db-1     | INSERT 0 5
 db-1     | CREATE FUNCTION
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-03-10 04:21:09.262 UTC [49] LOG:  received fast shutdown request
-db-1     | .2024-03-10 04:21:09.264 UTC [49] LOG:  aborting any active transactions
-db-1     | 2024-03-10 04:21:09.266 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-db-1     | 2024-03-10 04:21:09.266 UTC [50] LOG:  shutting down
-db-1     | 2024-03-10 04:21:09.269 UTC [50] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-03-10 04:21:09.739 UTC [50] LOG:  checkpoint complete: wrote 934 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.382 s, sync=0.075 s, total=0.473 s; sync files=309, longest=0.051 s, average=0.001 s; distance=4297 kB, estimate=4297 kB; lsn=0/191CFB8, redo lsn=0/191CFB8
-db-1     | 2024-03-10 04:21:09.744 UTC [49] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-03-10 17:42:22.110 UTC [48] LOG:  received fast shutdown request
+db-1     | .2024-03-10 17:42:22.113 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-03-10 17:42:22.115 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-03-10 17:42:22.115 UTC [49] LOG:  shutting down
+db-1     | 2024-03-10 17:42:22.118 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-03-10 17:42:22.631 UTC [49] LOG:  checkpoint complete: wrote 934 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.424 s, sync=0.079 s, total=0.516 s; sync files=309, longest=0.049 s, average=0.001 s; distance=4297 kB, estimate=4297 kB; lsn=0/191CFB8, redo lsn=0/191CFB8
+db-1     | 2024-03-10 17:42:22.636 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-03-10 04:21:09.788 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-03-10 04:21:09.788 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-03-10 04:21:09.788 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-03-10 04:21:09.794 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-03-10 04:21:09.801 UTC [67] LOG:  database system was shut down at 2024-03-10 04:21:09 UTC
-db-1     | 2024-03-10 04:21:09.808 UTC [1] LOG:  database system is ready to accept connections
-api01-1  | exec /bin/server: exec format error
-api02-1  | exec /bin/server: exec format error
+db-1     | 2024-03-10 17:42:22.735 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-10 17:42:22.735 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-03-10 17:42:22.735 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-03-10 17:42:22.741 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-10 17:42:22.748 UTC [66] LOG:  database system was shut down at 2024-03-10 17:42:22 UTC
+db-1     | 2024-03-10 17:42:22.755 UTC [1] LOG:  database system is ready to accept connections
+api02-1  | WARNING: sonic only supports Go1.16~1.20 && CPU amd64, but your environment is not suitable
+api02-1  | 
+api02-1  |  ┌───────────────────────────────────────────────────┐ 
+api02-1  |  │                   Fiber v2.52.0                   │ 
+api02-1  |  │               http://127.0.0.1:3000               │ 
+api02-1  |  │       (bound on host 0.0.0.0 and port 3000)       │ 
+api02-1  |  │                                                   │ 
+api02-1  |  │ Handlers ............. 5  Processes ........... 1 │ 
+api02-1  |  │ Prefork ....... Disabled  PID ................. 1 │ 
+api02-1  |  └───────────────────────────────────────────────────┘ 
+api02-1  | 
+api01-1  | WARNING: sonic only supports Go1.16~1.20 && CPU amd64, but your environment is not suitable
+api01-1  | 
+api01-1  |  ┌───────────────────────────────────────────────────┐ 
+api01-1  |  │                   Fiber v2.52.0                   │ 
+api01-1  |  │               http://127.0.0.1:3000               │ 
+api01-1  |  │       (bound on host 0.0.0.0 and port 3000)       │ 
+api01-1  |  │                                                   │ 
+api01-1  |  │ Handlers ............. 5  Processes ........... 1 │ 
+api01-1  |  │ Prefork ....... Disabled  PID ................. 1 │ 
+api01-1  |  └───────────────────────────────────────────────────┘ 
+api01-1  | 
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -84,16 +102,399 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-api01-1 exited with code 1
-api02-1 exited with code 1
-nginx-1  | 2024/03/10 04:21:14 [emerg] 1#1: host not found in upstream "api01:3000" in /etc/nginx/nginx.conf:10
-nginx-1  | nginx: [emerg] host not found in upstream "api01:3000" in /etc/nginx/nginx.conf:10
-nginx-1 exited with code 1
-db-1     | 2024-03-10 04:21:51.237 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-03-10 04:21:51.241 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-03-10 04:21:51.243 UTC [1] LOG:  background worker "logical replication launcher" (PID 70) exited with exit code 1
-db-1     | 2024-03-10 04:21:51.243 UTC [65] LOG:  shutting down
-db-1     | 2024-03-10 04:21:51.246 UTC [65] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-03-10 04:21:51.304 UTC [65] LOG:  checkpoint complete: wrote 46 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.032 s, total=0.062 s; sync files=14, longest=0.006 s, average=0.003 s; distance=238 kB, estimate=238 kB; lsn=0/1958B50, redo lsn=0/1958B50
-db-1     | 2024-03-10 04:21:51.308 UTC [1] LOG:  database system is shut down
-db-1 exited with code 0
+api01-1  | 2024/03/10 17:42:35 Id param 6 <nil>
+db-1     | 2024-03-10 17:42:51.130 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:51.130 UTC [88] DETAIL:  Failing row contains (2, 80000, -87491).
+db-1     | 2024-03-10 17:42:51.130 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:51.307 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:51.307 UTC [88] DETAIL:  Failing row contains (2, 80000, -83802).
+db-1     | 2024-03-10 17:42:51.307 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:51.622 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:51.622 UTC [90] DETAIL:  Failing row contains (2, 80000, -82005).
+db-1     | 2024-03-10 17:42:51.622 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:52.448 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:52.448 UTC [90] DETAIL:  Failing row contains (2, 80000, -80568).
+db-1     | 2024-03-10 17:42:52.448 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:52.706 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:52.706 UTC [90] DETAIL:  Failing row contains (2, 80000, -82213).
+db-1     | 2024-03-10 17:42:52.706 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:52.899 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:52.899 UTC [88] DETAIL:  Failing row contains (2, 80000, -83584).
+db-1     | 2024-03-10 17:42:52.899 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:53.286 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:53.286 UTC [90] DETAIL:  Failing row contains (2, 80000, -81862).
+db-1     | 2024-03-10 17:42:53.286 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:53.415 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:53.415 UTC [90] DETAIL:  Failing row contains (2, 80000, -80380).
+db-1     | 2024-03-10 17:42:53.415 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:53.718 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:53.718 UTC [88] DETAIL:  Failing row contains (1, 100000, -100872).
+db-1     | 2024-03-10 17:42:53.718 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:53.960 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:53.960 UTC [89] DETAIL:  Failing row contains (1, 100000, -100671).
+db-1     | 2024-03-10 17:42:53.960 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:54.500 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:54.500 UTC [88] DETAIL:  Failing row contains (1, 100000, -104997).
+db-1     | 2024-03-10 17:42:54.500 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:54.529 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:54.529 UTC [89] DETAIL:  Failing row contains (2, 80000, -81928).
+db-1     | 2024-03-10 17:42:54.529 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:54.586 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:54.586 UTC [88] DETAIL:  Failing row contains (1, 100000, -102367).
+db-1     | 2024-03-10 17:42:54.586 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:54.957 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:54.957 UTC [89] DETAIL:  Failing row contains (2, 80000, -82659).
+db-1     | 2024-03-10 17:42:54.957 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:55.014 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:55.014 UTC [88] DETAIL:  Failing row contains (2, 80000, -82656).
+db-1     | 2024-03-10 17:42:55.014 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:55.072 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:55.072 UTC [89] DETAIL:  Failing row contains (2, 80000, -82630).
+db-1     | 2024-03-10 17:42:55.072 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:55.386 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:55.386 UTC [89] DETAIL:  Failing row contains (2, 80000, -85939).
+db-1     | 2024-03-10 17:42:55.386 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:55.523 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:55.523 UTC [88] DETAIL:  Failing row contains (2, 80000, -83305).
+db-1     | 2024-03-10 17:42:55.523 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:55.684 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:55.684 UTC [89] DETAIL:  Failing row contains (2, 80000, -83246).
+db-1     | 2024-03-10 17:42:55.684 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:55.793 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:55.793 UTC [88] DETAIL:  Failing row contains (1, 100000, -102731).
+db-1     | 2024-03-10 17:42:55.793 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:56.036 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:56.036 UTC [89] DETAIL:  Failing row contains (1, 100000, -107156).
+db-1     | 2024-03-10 17:42:56.036 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:56.144 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:56.144 UTC [88] DETAIL:  Failing row contains (1, 100000, -107786).
+db-1     | 2024-03-10 17:42:56.144 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:56.547 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:56.547 UTC [88] DETAIL:  Failing row contains (2, 80000, -86041).
+db-1     | 2024-03-10 17:42:56.547 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:56.652 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:56.652 UTC [88] DETAIL:  Failing row contains (1, 100000, -100646).
+db-1     | 2024-03-10 17:42:56.652 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:56.758 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:56.758 UTC [88] DETAIL:  Failing row contains (2, 80000, -86901).
+db-1     | 2024-03-10 17:42:56.758 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:56.889 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:56.889 UTC [88] DETAIL:  Failing row contains (2, 80000, -85466).
+db-1     | 2024-03-10 17:42:56.889 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:57.020 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:57.020 UTC [89] DETAIL:  Failing row contains (2, 80000, -89192).
+db-1     | 2024-03-10 17:42:57.020 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:57.126 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:57.126 UTC [89] DETAIL:  Failing row contains (2, 80000, -82936).
+db-1     | 2024-03-10 17:42:57.126 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:57.205 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:57.205 UTC [89] DETAIL:  Failing row contains (2, 80000, -88171).
+db-1     | 2024-03-10 17:42:57.205 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:57.310 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:57.310 UTC [89] DETAIL:  Failing row contains (2, 80000, -86815).
+db-1     | 2024-03-10 17:42:57.310 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:57.616 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:57.616 UTC [88] DETAIL:  Failing row contains (2, 80000, -80044).
+db-1     | 2024-03-10 17:42:57.616 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:58.291 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:58.291 UTC [90] DETAIL:  Failing row contains (2, 80000, -80313).
+db-1     | 2024-03-10 17:42:58.291 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:58.391 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:58.391 UTC [90] DETAIL:  Failing row contains (2, 80000, -84637).
+db-1     | 2024-03-10 17:42:58.391 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:58.653 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:58.653 UTC [90] DETAIL:  Failing row contains (2, 80000, -80732).
+db-1     | 2024-03-10 17:42:58.653 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:58.700 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:58.700 UTC [88] DETAIL:  Failing row contains (2, 80000, -83632).
+db-1     | 2024-03-10 17:42:58.700 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:59.105 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:59.105 UTC [89] DETAIL:  Failing row contains (2, 80000, -86683).
+db-1     | 2024-03-10 17:42:59.105 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:59.176 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:59.176 UTC [89] DETAIL:  Failing row contains (1, 100000, -100387).
+db-1     | 2024-03-10 17:42:59.176 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:59.272 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:59.272 UTC [89] DETAIL:  Failing row contains (1, 100000, -101963).
+db-1     | 2024-03-10 17:42:59.272 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:59.367 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:59.367 UTC [89] DETAIL:  Failing row contains (2, 80000, -88956).
+db-1     | 2024-03-10 17:42:59.367 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:59.415 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:59.415 UTC [88] DETAIL:  Failing row contains (2, 80000, -81014).
+db-1     | 2024-03-10 17:42:59.415 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:59.483 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:59.483 UTC [79] DETAIL:  Failing row contains (2, 80000, -81808).
+db-1     | 2024-03-10 17:42:59.483 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:59.596 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:59.596 UTC [89] DETAIL:  Failing row contains (2, 80000, -82414).
+db-1     | 2024-03-10 17:42:59.596 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:42:59.642 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:42:59.642 UTC [89] DETAIL:  Failing row contains (2, 80000, -80958).
+db-1     | 2024-03-10 17:42:59.642 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:00.005 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:00.005 UTC [89] DETAIL:  Failing row contains (1, 100000, -100680).
+db-1     | 2024-03-10 17:43:00.005 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:00.029 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:00.029 UTC [89] DETAIL:  Failing row contains (1, 100000, -105960).
+db-1     | 2024-03-10 17:43:00.029 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:00.849 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:00.849 UTC [89] DETAIL:  Failing row contains (2, 80000, -82746).
+db-1     | 2024-03-10 17:43:00.849 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:01.110 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:01.110 UTC [79] DETAIL:  Failing row contains (2, 80000, -80014).
+db-1     | 2024-03-10 17:43:01.110 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:01.197 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:01.197 UTC [79] DETAIL:  Failing row contains (2, 80000, -84218).
+db-1     | 2024-03-10 17:43:01.197 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:01.241 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:01.241 UTC [89] DETAIL:  Failing row contains (2, 80000, -89760).
+db-1     | 2024-03-10 17:43:01.241 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:01.284 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:01.284 UTC [79] DETAIL:  Failing row contains (2, 80000, -85282).
+db-1     | 2024-03-10 17:43:01.284 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:01.328 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:01.328 UTC [89] DETAIL:  Failing row contains (2, 80000, -82685).
+db-1     | 2024-03-10 17:43:01.328 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:01.522 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:01.522 UTC [79] DETAIL:  Failing row contains (2, 80000, -80013).
+db-1     | 2024-03-10 17:43:01.522 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:01.563 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:01.563 UTC [90] DETAIL:  Failing row contains (1, 100000, -102332).
+db-1     | 2024-03-10 17:43:01.563 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:02.033 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:02.033 UTC [79] DETAIL:  Failing row contains (1, 100000, -101749).
+db-1     | 2024-03-10 17:43:02.033 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:02.415 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:02.415 UTC [90] DETAIL:  Failing row contains (2, 80000, -82304).
+db-1     | 2024-03-10 17:43:02.415 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:02.435 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:02.435 UTC [90] DETAIL:  Failing row contains (1, 100000, -100392).
+db-1     | 2024-03-10 17:43:02.435 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:02.455 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:02.455 UTC [79] DETAIL:  Failing row contains (1, 100000, -102680).
+db-1     | 2024-03-10 17:43:02.455 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:02.514 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:02.514 UTC [90] DETAIL:  Failing row contains (2, 80000, -85496).
+db-1     | 2024-03-10 17:43:02.514 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:02.575 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:02.575 UTC [90] DETAIL:  Failing row contains (1, 100000, -102007).
+db-1     | 2024-03-10 17:43:02.575 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:02.655 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:02.655 UTC [90] DETAIL:  Failing row contains (1, 100000, -102751).
+db-1     | 2024-03-10 17:43:02.655 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:03.095 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:03.095 UTC [79] DETAIL:  Failing row contains (1, 100000, -106187).
+db-1     | 2024-03-10 17:43:03.095 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:03.215 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:03.215 UTC [79] DETAIL:  Failing row contains (1, 100000, -107204).
+db-1     | 2024-03-10 17:43:03.215 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:03.571 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:03.571 UTC [88] DETAIL:  Failing row contains (2, 80000, -81314).
+db-1     | 2024-03-10 17:43:03.571 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:03.767 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:03.767 UTC [88] DETAIL:  Failing row contains (2, 80000, -85155).
+db-1     | 2024-03-10 17:43:03.767 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:04.316 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:04.316 UTC [90] DETAIL:  Failing row contains (1, 100000, -108338).
+db-1     | 2024-03-10 17:43:04.316 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:04.337 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:04.337 UTC [88] DETAIL:  Failing row contains (1, 100000, -107143).
+db-1     | 2024-03-10 17:43:04.337 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:04.509 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:04.509 UTC [90] DETAIL:  Failing row contains (1, 100000, -101536).
+db-1     | 2024-03-10 17:43:04.509 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:04.528 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:04.528 UTC [79] DETAIL:  Failing row contains (2, 80000, -84974).
+db-1     | 2024-03-10 17:43:04.528 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:04.547 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:04.547 UTC [79] DETAIL:  Failing row contains (2, 80000, -83115).
+db-1     | 2024-03-10 17:43:04.547 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:04.641 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:04.641 UTC [90] DETAIL:  Failing row contains (2, 80000, -81213).
+db-1     | 2024-03-10 17:43:04.641 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:04.754 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:04.754 UTC [90] DETAIL:  Failing row contains (1, 100000, -101150).
+db-1     | 2024-03-10 17:43:04.754 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:04.792 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:04.792 UTC [79] DETAIL:  Failing row contains (2, 80000, -84956).
+db-1     | 2024-03-10 17:43:04.792 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:04.848 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:04.848 UTC [90] DETAIL:  Failing row contains (1, 100000, -108098).
+db-1     | 2024-03-10 17:43:04.848 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:04.867 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:04.867 UTC [79] DETAIL:  Failing row contains (2, 80000, -81799).
+db-1     | 2024-03-10 17:43:04.867 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:04.999 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:04.999 UTC [90] DETAIL:  Failing row contains (1, 100000, -106473).
+db-1     | 2024-03-10 17:43:04.999 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:05.019 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:05.019 UTC [79] DETAIL:  Failing row contains (1, 100000, -101065).
+db-1     | 2024-03-10 17:43:05.019 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:05.057 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:05.057 UTC [90] DETAIL:  Failing row contains (1, 100000, -105946).
+db-1     | 2024-03-10 17:43:05.057 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:05.282 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:05.282 UTC [79] DETAIL:  Failing row contains (2, 80000, -84285).
+db-1     | 2024-03-10 17:43:05.282 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:05.524 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:05.524 UTC [90] DETAIL:  Failing row contains (2, 80000, -84348).
+db-1     | 2024-03-10 17:43:05.524 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:05.633 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:05.633 UTC [79] DETAIL:  Failing row contains (2, 80000, -80736).
+db-1     | 2024-03-10 17:43:05.633 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:05.869 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:05.869 UTC [79] DETAIL:  Failing row contains (2, 80000, -85082).
+db-1     | 2024-03-10 17:43:05.869 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:05.924 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:05.924 UTC [90] DETAIL:  Failing row contains (2, 80000, -84451).
+db-1     | 2024-03-10 17:43:05.924 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:06.178 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:06.178 UTC [90] DETAIL:  Failing row contains (2, 80000, -87648).
+db-1     | 2024-03-10 17:43:06.178 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:06.196 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:06.196 UTC [79] DETAIL:  Failing row contains (2, 80000, -83400).
+db-1     | 2024-03-10 17:43:06.196 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:07.040 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:07.040 UTC [90] DETAIL:  Failing row contains (1, 100000, -100013).
+db-1     | 2024-03-10 17:43:07.040 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:07.111 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:07.111 UTC [90] DETAIL:  Failing row contains (1, 100000, -105058).
+db-1     | 2024-03-10 17:43:07.111 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:07.325 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:07.325 UTC [88] DETAIL:  Failing row contains (1, 100000, -107699).
+db-1     | 2024-03-10 17:43:07.325 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:07.343 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:07.343 UTC [90] DETAIL:  Failing row contains (1, 100000, -106691).
+db-1     | 2024-03-10 17:43:07.343 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:07.431 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:07.431 UTC [88] DETAIL:  Failing row contains (1, 100000, -100964).
+db-1     | 2024-03-10 17:43:07.431 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:07.703 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:07.703 UTC [88] DETAIL:  Failing row contains (1, 100000, -101514).
+db-1     | 2024-03-10 17:43:07.703 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:07.804 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:07.804 UTC [88] DETAIL:  Failing row contains (5, 500000, -504249).
+db-1     | 2024-03-10 17:43:07.804 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:07.872 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:07.872 UTC [88] DETAIL:  Failing row contains (1, 100000, -107061).
+db-1     | 2024-03-10 17:43:07.872 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:07.957 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:07.957 UTC [88] DETAIL:  Failing row contains (5, 500000, -504314).
+db-1     | 2024-03-10 17:43:07.957 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:08.059 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:08.059 UTC [90] DETAIL:  Failing row contains (5, 500000, -507623).
+db-1     | 2024-03-10 17:43:08.059 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:08.228 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:08.228 UTC [90] DETAIL:  Failing row contains (1, 100000, -103415).
+db-1     | 2024-03-10 17:43:08.228 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:08.615 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:08.615 UTC [88] DETAIL:  Failing row contains (5, 500000, -506813).
+db-1     | 2024-03-10 17:43:08.615 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:09.181 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:09.181 UTC [89] DETAIL:  Failing row contains (2, 80000, -83822).
+db-1     | 2024-03-10 17:43:09.181 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:09.198 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:09.198 UTC [89] DETAIL:  Failing row contains (1, 100000, -100876).
+db-1     | 2024-03-10 17:43:09.198 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:09.365 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:09.365 UTC [88] DETAIL:  Failing row contains (2, 80000, -84088).
+db-1     | 2024-03-10 17:43:09.365 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:09.657 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:09.657 UTC [79] DETAIL:  Failing row contains (5, 500000, -502976).
+db-1     | 2024-03-10 17:43:09.657 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:09.721 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:09.721 UTC [89] DETAIL:  Failing row contains (2, 80000, -80994).
+db-1     | 2024-03-10 17:43:09.721 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:09.753 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:09.753 UTC [79] DETAIL:  Failing row contains (5, 500000, -506573).
+db-1     | 2024-03-10 17:43:09.753 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:09.915 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:09.915 UTC [90] DETAIL:  Failing row contains (2, 80000, -81519).
+db-1     | 2024-03-10 17:43:09.915 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.027 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.027 UTC [89] DETAIL:  Failing row contains (5, 500000, -506551).
+db-1     | 2024-03-10 17:43:10.027 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.060 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.060 UTC [79] DETAIL:  Failing row contains (5, 500000, -501335).
+db-1     | 2024-03-10 17:43:10.060 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.108 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.108 UTC [89] DETAIL:  Failing row contains (5, 500000, -501608).
+db-1     | 2024-03-10 17:43:10.108 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.206 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.206 UTC [89] DETAIL:  Failing row contains (1, 100000, -100956).
+db-1     | 2024-03-10 17:43:10.206 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.237 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.237 UTC [79] DETAIL:  Failing row contains (1, 100000, -106942).
+db-1     | 2024-03-10 17:43:10.237 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.269 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.269 UTC [89] DETAIL:  Failing row contains (1, 100000, -105237).
+db-1     | 2024-03-10 17:43:10.269 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.286 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.286 UTC [79] DETAIL:  Failing row contains (1, 100000, -100474).
+db-1     | 2024-03-10 17:43:10.286 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.302 UTC [79] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.302 UTC [79] DETAIL:  Failing row contains (1, 100000, -103621).
+db-1     | 2024-03-10 17:43:10.302 UTC [79] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.318 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.318 UTC [89] DETAIL:  Failing row contains (1, 100000, -102390).
+db-1     | 2024-03-10 17:43:10.318 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.382 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.382 UTC [89] DETAIL:  Failing row contains (1, 100000, -105441).
+db-1     | 2024-03-10 17:43:10.382 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.398 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.398 UTC [89] DETAIL:  Failing row contains (5, 500000, -505934).
+db-1     | 2024-03-10 17:43:10.398 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.461 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.461 UTC [88] DETAIL:  Failing row contains (2, 80000, -81232).
+db-1     | 2024-03-10 17:43:10.461 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.508 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.508 UTC [88] DETAIL:  Failing row contains (1, 100000, -102403).
+db-1     | 2024-03-10 17:43:10.508 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.618 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.618 UTC [89] DETAIL:  Failing row contains (2, 80000, -84279).
+db-1     | 2024-03-10 17:43:10.618 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.633 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.633 UTC [88] DETAIL:  Failing row contains (2, 80000, -81744).
+db-1     | 2024-03-10 17:43:10.633 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.665 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.665 UTC [89] DETAIL:  Failing row contains (5, 500000, -500590).
+db-1     | 2024-03-10 17:43:10.665 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.696 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.696 UTC [88] DETAIL:  Failing row contains (5, 500000, -501561).
+db-1     | 2024-03-10 17:43:10.696 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.743 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.743 UTC [89] DETAIL:  Failing row contains (2, 80000, -87266).
+db-1     | 2024-03-10 17:43:10.743 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.930 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.930 UTC [88] DETAIL:  Failing row contains (1, 100000, -100771).
+db-1     | 2024-03-10 17:43:10.930 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:10.946 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:10.946 UTC [88] DETAIL:  Failing row contains (5, 500000, -502694).
+db-1     | 2024-03-10 17:43:10.946 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:11.118 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:11.118 UTC [89] DETAIL:  Failing row contains (5, 500000, -506868).
+db-1     | 2024-03-10 17:43:11.118 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:11.149 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:11.149 UTC [88] DETAIL:  Failing row contains (5, 500000, -507751).
+db-1     | 2024-03-10 17:43:11.149 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:11.165 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:11.165 UTC [89] DETAIL:  Failing row contains (5, 500000, -505086).
+db-1     | 2024-03-10 17:43:11.165 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:11.197 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:11.197 UTC [88] DETAIL:  Failing row contains (5, 500000, -501908).
+db-1     | 2024-03-10 17:43:11.197 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:11.243 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:11.243 UTC [89] DETAIL:  Failing row contains (2, 80000, -86707).
+db-1     | 2024-03-10 17:43:11.243 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:11.305 UTC [89] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:11.305 UTC [89] DETAIL:  Failing row contains (5, 500000, -505008).
+db-1     | 2024-03-10 17:43:11.305 UTC [89] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:11.383 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:11.383 UTC [88] DETAIL:  Failing row contains (5, 500000, -507615).
+db-1     | 2024-03-10 17:43:11.383 UTC [88] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:11.460 UTC [90] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:11.460 UTC [90] DETAIL:  Failing row contains (5, 500000, -507248).
+db-1     | 2024-03-10 17:43:11.460 UTC [90] STATEMENT:  UPDATE clients SET balance = balance - $1 WHERE id = $2
+db-1     | 2024-03-10 17:43:11.702 UTC [88] ERROR:  new row for relation "clients" violates check constraint "clients_balance_check"
+db-1     | 2024-03-10 17:43:11.702 UTC [88] DETAIL:  Failing row contains (1, 100000, -101636).

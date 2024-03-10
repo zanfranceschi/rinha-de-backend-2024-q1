@@ -1,0 +1,68 @@
+version: '3.9'
+
+services:
+  api1: &api
+    image: gabrieluser430/rinha:latest
+    container_name: api1
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '200MB'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - default
+
+  api2:
+    <<: *api
+    container_name: api2
+
+  postgres:
+    image: postgres:latest
+    container_name: mypostgres
+    environment:
+      - POSTGRES_PASSWORD=123123
+    ports:
+      - 5432:5432
+    volumes:
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: 
+        - "CMD"
+        - "pg_isready"
+        - "-U"
+        - "postgres"
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '100MB'
+    networks:
+      - default
+
+  nginx: 
+    image: nginx:latest
+    container_name: mynginx
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 9999:9999
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+    networks: 
+      - default
+
+networks:
+  default:
+    driver: bridge

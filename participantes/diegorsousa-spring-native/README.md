@@ -11,16 +11,7 @@
 Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
-- `java` para api com as libs `spring` e `jdbc` 
+- `java` para api com as libs `spring-native` e `jdbc` 
 - [repositório da api](https://github.com/DiegoRSousa/rinha-de-backend-2024-q1-spring-native)
 
 (https://www.linkedin.com/in/diego-sousa-b958b845/) linkedin
-
-
-
-docker buildx build --platform linux/amd64 -t drsousa/rinha .
-
-docker tag drsousa/rinha drsousa/rinha
-
-docker push drsousa/rinha
-

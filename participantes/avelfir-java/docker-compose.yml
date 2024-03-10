@@ -1,0 +1,104 @@
+version: "3.9"
+
+services:
+  api01: &api
+    image: avelfir/crebito:latest
+    hostname: api01
+    platform: linux/amd64
+    restart: on-failure
+    environment:
+      - DB_HOSTNAME=db
+      - PORT=20000
+      - JVM_XMS=110m
+      - JVM_XMX=110m
+      - CONTAINER_MEMORY=234m
+      - NEW_SIZE=5m
+      - MAX_NEW_SIZE=5m
+      - MIN_HEAP_FREE_RATIO=30
+      - MAX_HEAP_FREE_RATIO=70
+      - MIN_POOL_CONNECTION=2
+      - MAX_POOL_CONNECTION=4
+      - LOG_LEVEL=OFF
+    ports:
+      - "3001:20000"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "234MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - DB_HOSTNAME=db
+      - PORT=20000
+      - JVM_XMS=110m
+      - JVM_XMX=110m
+      - CONTAINER_MEMORY=234m
+      - NEW_SIZE=5m
+      - MAX_NEW_SIZE=5m
+      - MIN_HEAP_FREE_RATIO=30
+      - MAX_HEAP_FREE_RATIO=70
+      - MIN_POOL_CONNECTION=2
+      - MAX_POOL_CONNECTION=4
+      - LOG_LEVEL=OFF
+    ports:
+      - "3002:20000"
+    networks:
+      - default
+
+  nginx:
+    image: nginx:1.15.0-alpine
+    restart: on-failure
+    container_name: loadbalancer
+    platform: linux/amd64
+    depends_on:
+      - api01
+      - api02
+    volumes:
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "16MB"
+    networks:
+      - default
+
+  db:
+    image:  postgres:15.3-bullseye
+    container_name: db
+    hostname: db
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '66MB'
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./conf/postgres.conf:/etc/postgresql/postgresql.conf:z
+      - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "rinha"]
+      interval: 10s
+      timeout: 60s
+      retries: 5
+      start_period: 20s
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    networks:
+      - default
+
+
+networks:
+  default:
+    driver: bridge
