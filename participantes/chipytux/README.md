@@ -27,5 +27,5 @@ https://github.com/chipytux/rinha-fastapi-2024-q1
 
 
 Agradecimentos:
-- @alexsanderam -> Otimização de debugging
+- @alexsanderam -> Otimização e debugging
 - @lmtani -> Mentoria
