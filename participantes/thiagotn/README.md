@@ -14,7 +14,7 @@
 Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
-- `fastpi` para api com as libs `psycopg3` e `psycopg-pool`
+- `fastapi` para api com as libs `psycopg3` e `psycopg-pool`
 - [repositório da api](https://github.com/thiagotn/rinhafastapi)
 
 [@thiagotn](https://twitter.com/thiagotn) @ twitter

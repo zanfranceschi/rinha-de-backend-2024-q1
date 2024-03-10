@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  api1: &api
+    image: garnizeh/rinha2024q1-alternative:latest
+    container_name: rinha_api_1_alternative
+    hostname: api1
+    networks:
+      - rinha_net    
+    volumes:
+      - rinha_db:/data        
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000      
+    deploy:
+      resources:
+        limits:
+          cpus: '0.65'
+          memory: '250MB'
+
+  api2:
+    <<: *api
+    container_name: rinha_api_2_alternative
+    hostname: api2
+    depends_on:
+      - api1
+
+  nginx:
+    image: nginx:latest
+    container_name: rinha_proxy_alternative
+    hostname: rinha_proxy
+    networks:
+      - rinha_net    
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 9999:9999
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+
+networks:
+  rinha_net:
+
+volumes:
+  rinha_db:

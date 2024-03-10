@@ -3,71 +3,62 @@ version: "3.5"
 services:
   api01: &api
     image: alcideslins/rinha-app-quarkus:latest
-    hostname: api01
+    network_mode: host
     environment:
-      - DB_HOSTNAME=db
-      - DB_POOL_SIZE=10
+      - QUARKUS_HTTP_PORT=8080
+      - DB_HOSTNAME=localhost
+      - DB_POOL_SIZE=5
       - WARMUP_ENABLED=true
-      - WARMUP_HOST=http://api01:8080
-      - WARMUP_DELAY_SECONDS=3
-      - WARMUP_REQUESTS=10
-    ports:
-      - "8081:8080"
+      - WARMUP_HOST=http://localhost:8080
+      - WARMUP_DELAY_SECONDS=5
+      - WARMUP_REQUESTS=50
     depends_on:
       - db
     deploy:
       resources:
         limits:
           cpus: "0.45"
-          memory: "220MB"
+          memory: "100MB"
 
   api02:
     <<: *api
-    hostname: api02
+    network_mode: host
     environment:
-      - DB_HOSTNAME=db
-      - DB_POOL_SIZE=10
+      - QUARKUS_HTTP_PORT=8081
+      - DB_HOSTNAME=localhost
+      - DB_POOL_SIZE=5
       - WARMUP_ENABLED=true
-      - WARMUP_HOST=http://api02:8080
-      - WARMUP_DELAY_SECONDS=3
-      - WARMUP_REQUESTS=10
-    ports:
-      - "8082:8080"
-
+      - WARMUP_HOST=http://localhost:8081
+      - WARMUP_DELAY_SECONDS=5
+      - WARMUP_REQUESTS=50
+      
   nginx:
     image: nginx:latest
+    network_mode: host
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - api01
       - api02
-    ports:
-      - "9999:9999"
     deploy:
       resources:
         limits:
           cpus: "0.20"
-          memory: "15MB"
+          memory: "30MB"
 
   db:
     image: postgres:latest
-    command: 'postgres -c max_connections=22 -c shared_buffers=16MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=4MB'
-    hostname: db
+    command: 'postgres -c max_connections=12 -c shared_buffers=16MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=4MB'
+    network_mode: host
     environment:
       - POSTGRES_DB=rinhadb
       - POSTGRES_USER=rinha
       - POSTGRES_PASSWORD=rinha123
-    ports:
-      - "5432:5432"
     volumes:
       - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     deploy:
       resources:
         limits:
           cpus: "0.40"
-          memory: "95MB"
+          memory: "220MB"
 
-networks:
-  default:
-    driver: bridge
-    name: rinha-nginx-2024q1

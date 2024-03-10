@@ -1,7 +1,8 @@
 CREATE TABLE accounts (
-	id SERIAL PRIMARY KEY,
+	id SERIAL UNIQUE NOT NULL,
 	name VARCHAR(50) NOT NULL,
-	limit_amount INTEGER NOT NULL
+	limit_amount INTEGER NOT NULL,
+	balance INTEGER NOT NULL
 );
 
 CREATE TABLE transactions (
@@ -15,25 +16,17 @@ CREATE TABLE transactions (
 		FOREIGN KEY (account_id) REFERENCES accounts(id)
 );
 
-CREATE TABLE balances (
-	id SERIAL PRIMARY KEY,
-	account_id INTEGER NOT NULL,
-	amount INTEGER NOT NULL,
-	CONSTRAINT fk_accounts_balances_id
-		FOREIGN KEY (account_id) REFERENCES accounts(id)
-);
+CREATE INDEX idx_cov_accounts ON accounts(id) INCLUDE (limit_amount, balance);
+CREATE INDEX idx_transactions_account_id ON transactions(account_id);
 
 DO $$
 BEGIN
-	INSERT INTO accounts (name, limit_amount)
+	INSERT INTO accounts (name, limit_amount, balance)
 	VALUES
-		('o barato sai caro', 1000 * 100),
-		('zan corp ltda', 800 * 100),
-		('les cruders', 10000 * 100),
-		('padaria joia de cocaia', 100000 * 100),
-		('kid mais', 5000 * 100);
-	
-	INSERT INTO balances (account_id, amount)
-		SELECT id, 0 FROM accounts;
+		('o barato sai caro', 1000 * 100, 0),
+		('zan corp ltda', 800 * 100, 0),
+		('les cruders', 10000 * 100, 0),
+		('padaria joia de cocaia', 100000 * 100, 0),
+		('kid mais', 5000 * 100, 0);
 END;
 $$;

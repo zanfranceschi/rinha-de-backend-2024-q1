@@ -1,5 +1,4 @@
-ALTER SYSTEM SET max_connections = 2000; 
-ALTER SYSTEM SET TIMEZONE TO 'UTC';
+ ALTER SYSTEM SET TIMEZONE TO 'UTC';
 
 CREATE TYPE tipo_movimentacao AS ENUM ('c', 'd');
 

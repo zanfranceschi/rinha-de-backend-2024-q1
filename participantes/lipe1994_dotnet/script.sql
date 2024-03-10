@@ -1,4 +1,4 @@
-ALTER SYSTEM SET max_connections = 420;
+ALTER SYSTEM SET max_connections = 180;
 
 
 CREATE TABLE public.Cliente (
@@ -36,3 +36,61 @@ VALUES (4, 0, 10000000, 0);
 
 INSERT INTO public.Cliente (Id, Total, Limite, Versao)
 VALUES (5, 0, 500000, 0);
+
+
+
+-- Functions
+CREATE OR REPLACE FUNCTION creditar(
+	ClienteId int4,
+	Valor INT,
+	Descricao varchar(10)
+)
+	RETURNS TABLE(
+	    LinhaAfetada BOOLEAN,
+	    _limite INT,
+	    _total INT
+	)
+	LANGUAGE plpgsql AS
+$func$
+DECLARE
+    updated_limite INT;
+    updated_saldo INT;
+BEGIN
+
+    UPDATE public.Cliente SET Total = Total + Valor WHERE Id = ClienteId
+		RETURNING Limite, Total INTO updated_limite, updated_saldo;
+
+    INSERT INTO public.Transacao (ClienteId, Valor, Descricao, Tipo, CriadoEm) VALUES (ClienteId, Valor, Descricao, 'c', NOW());
+    RETURN QUERY SELECT true, updated_limite, updated_saldo;
+
+END;
+$func$;
+
+CREATE OR REPLACE FUNCTION debitar(
+	ClienteId int4,
+	Valor INT,
+	Descricao varchar(10)
+)
+	RETURNS TABLE(
+	    LinhaAfetada BOOLEAN,
+	    _limite INT,
+	    _total INT
+	)
+	LANGUAGE plpgsql AS
+$func$
+DECLARE
+    updated_limite INT;
+    updated_saldo INT;
+BEGIN
+
+    update public.Cliente SET Total = Total - @Valor WHERE Id = @ClienteId AND ((Total - @Valor) >= -Limite)
+		RETURNING Limite, Total INTO updated_limite, updated_saldo;
+
+    IF FOUND THEN
+    	INSERT INTO public.Transacao (ClienteId, Valor, Descricao, Tipo, CriadoEm) VALUES (ClienteId, Valor, Descricao, 'd', NOW());
+        RETURN QUERY SELECT true, updated_limite, updated_saldo;
+    ELSE
+        RETURN QUERY SELECT false, 0, 0;
+    END IF;
+END;
+$func$;

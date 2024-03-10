@@ -1,0 +1,73 @@
+version: "3.3"
+
+services:
+  haproxy:
+    image: haproxy:latest
+    hostname: haproxy
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - api_01
+      - api_02
+    ports:
+      - "9999:9999"
+    restart: always
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "25MB"
+
+  api_01: &api
+    image: densyy/api-rinha-backend:latest
+    hostname: api_01
+    depends_on:
+      - postgres
+    environment:
+      - PORT=3000
+      - POSTGRES_HOST=localhost
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=rinha
+      - POSTGRES_PORT=5432
+    ports:
+      - "3000:3000"
+    restart: always
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "120MB"
+
+  api_02:
+    <<: *api
+    hostname: api_02
+    environment:
+      - PORT=3001
+      - POSTGRES_HOST=localhost
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=rinha
+      - POSTGRES_PORT=5432
+    ports:
+      - "3001:3001"
+
+  postgres:
+    image: postgres:latest
+    hostname: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-init.sql:/docker-entrypoint-initdb.d/postgres-init.sql
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c fsync=0 -c full_page_writes=0
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "285MB"

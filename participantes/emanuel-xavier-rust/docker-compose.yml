@@ -1,0 +1,73 @@
+version: "3.5"
+
+x-common: &common 
+  env_file:
+    - path: .env
+
+services:
+  api01: &api
+    <<: *common
+    image: ${API_DOCKER_IMAGE} 
+    hostname: api01
+    environment:
+      - DATABASE_URL=postgres://postgres:1234@db/postgres
+      - PORT=${API_PORT}
+    
+    ports:
+      - "9001:${API_PORT}"
+    restart: on-failure
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "${API_CPU}"
+          memory: "${API_MEMORY}"
+
+  api02:
+    <<: *api 
+    hostname: api02
+    ports:
+      - "9002:${API_PORT}"
+ 
+  nginx:
+    <<: *common
+    restart: always
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "${NGINX_CPU}"
+          memory: "${NGINX_MEMORY}"
+
+  db:
+    <<: *common
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/etc/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "${DB_CPU}"
+          memory: "${DB_MEMORY}"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
+

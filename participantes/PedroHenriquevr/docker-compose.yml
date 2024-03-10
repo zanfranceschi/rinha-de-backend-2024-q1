@@ -1,0 +1,57 @@
+version: "3.5"
+services:
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c max_connections=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c effective_io_concurrency=600 -c wal_level=minimal -c max_wal_senders=0 -c shared_buffers=128MB -c effective_cache_size=256MB -c checkpoint_timeout=30min
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "380MB"
+  api01: &api
+    image: pedrohvribeiro109/rust-melhor-que-java:0-0-1
+    hostname: api01
+    environment:
+      - DATABASE_URL=postgres://admin:123@db:5432/rinha
+      - PORT=0.0.0.0:8080
+    ports:
+      - "8080"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "60MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - DATABASE_URL=postgres://admin:123@db:5432/rinha
+      - PORT=0.0.0.0:8081
+    ports:
+      - "8081"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
