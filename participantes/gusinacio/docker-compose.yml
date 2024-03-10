@@ -1,0 +1,52 @@
+version: "3"
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5434:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: "200MB"
+  app1: &app
+    image: gustainacio/rinha
+    build: .
+    hostname: api01
+    environment:
+      - DATABASE_TYPE=postgres
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
+      - DATABASE_CONNECTIONS=20
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "50MB"
+
+  app2:
+    <<: *app
+    hostname: api02
+
+  haproxy:
+    image: haproxy:2.9.4
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - app1
+      - app2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "50MB"
+
