@@ -1,32 +1,45 @@
-version: "3.5"
+# Docker Compose file for Vapor
+#
+# Install Docker on your system to run and test
+# your Vapor app in a production-like environment.
+#
+# Note: This file is intended for testing and does not
+# implement best practices for a production deployment.
+#
+# Learn more: https://docs.docker.com/compose/reference/
+#
+#   Build images: docker-compose build
+#      Start app: docker-compose up app
+#       Stop all: docker-compose down
+#
+version: "3.7"
+
+x-shared_environment: &shared_environment
+  LOG_LEVEL: error
+  DATABASE_CONNECTION_STRING: "postgres://postgres:postgres@database:5432/rinha_backend"
+
 services:
   api1: &api
-    image: geraldojrcg/rinha-backend-2024-q1-elixir:latest
+    image: geraldojrcg/rinha-backend-2024-q1-swift:latest
+    hostname: api1
+    environment:
+      <<: *shared_environment
+    ports:
+      - "8081:8080"
     depends_on:
       - database
-    hostname: api1
     restart: unless-stopped
-    environment:
-      PHX_HOST: api1
-      ERL_MAX_PORTS: 512
-      DATABASE_URL: postgres://postgres:postgres@database/rinha_backend
-      PORT: 3000
-      SECRET_KEY_BASE: N1Bgi5I4wbP5J8I4V4UmE5VlkWSIH/8mBAGkiHeF+h1OkQGWnCulI71yKsFxi0MS
     deploy:
       resources:
         limits:
           cpus: "0.5"
-          memory: "210MB"
+          memory: "150MB"
 
   api2:
     <<: *api
     hostname: api2
-    environment:
-      PHX_HOST: api2
-      ERL_MAX_PORTS: 512
-      DATABASE_URL: postgres://postgres:postgres@database/rinha_backend
-      PORT: 3001
-      SECRET_KEY_BASE: N1Bgi5I4wbP5J8I4V4UmE5VlkWSIH/8mBAGkiHeF+h1OkQGWnCulI71yKsFxi0MS
+    ports:
+      - "8082:8080"
 
   database:
     image: postgres:latest
@@ -44,7 +57,7 @@ services:
       resources:
         limits:
           cpus: "0.4"
-          memory: "100MB"
+          memory: "200MB"
 
   nginx:
     image: nginx:latest
@@ -59,7 +72,7 @@ services:
       resources:
         limits:
           cpus: "0.1"
-          memory: "30MB"
+          memory: "50MB"
 
 networks:
   default:
