@@ -1,0 +1,57 @@
+version: "3.5"
+
+services:
+  api1: &api
+    container_name: api1
+    platform: linux/amd64
+    hostname: api1
+    image: matheusmcamargo/rinha-api:sqlite
+    working_dir: /opt/rinha
+    volumes:
+      - matheuscamargo-db-data:/db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.55"
+          memory: "195MB"
+    depends_on:
+      - db
+
+  api2:
+    <<: *api
+    container_name: api2
+    hostname: api2
+
+  lb:
+    image: nginx
+    hostname: lb
+    container_name: lb
+    ports:
+      - 9999:9999
+    volumes:
+      - ./nginx:/etc/nginx
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "154MB"
+    depends_on:
+      - api1
+      - api2
+
+  db:
+    container_name: db
+    platform: linux/amd64
+    hostname: db
+    image: felipeparaujo/rinha-db:sqlite
+    volumes:
+      - matheuscamargo-db-data:/db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.0"
+          memory: "6MB"
+
+volumes:
+  matheuscamargo-db-data:
+    name: matheuscamargo-db-data
