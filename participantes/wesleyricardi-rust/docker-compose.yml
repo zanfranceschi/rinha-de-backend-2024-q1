@@ -2,51 +2,47 @@ version: "3.8"
 
 services:
   api01: &api
-    image: wesleyricardi/rinha-backend-2024-q1-rust
-    hostname: api01
+    build:
+      context: ./app
     environment:
-      - DATABASE_URL=postgres://postgres:123456789@database:5432/rinha
+      - PORT=8081
+      - DATABASE_URL=postgres://postgres:123456789@localhost:5432/rinha
     depends_on:
       database:
         condition: service_healthy
-    volumes:
-      - ./logs:/app/logs
-    ports:
-      - "8081:8080"
+    network_mode: "host"
     deploy:
       resources:
         limits:
-          cpus: "0.6"
-          memory: "200MB"
+          cpus: "0.19"
+          memory: "20MB"
   api02:
     <<: *api 
-    hostname: api02
     environment:
-      - DATABASE_URL=postgres://postgres:123456789@database:5432/rinha
-    ports:
-      - "8082:8080"
+      - PORT=8082
+      - DATABASE_URL=postgres://postgres:123456789@localhost:5432/rinha
   database:
       image: postgres:16
-      hostname: database
       environment:
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: 123456789
         POSTGRES_DB: rinha
+        TZ: America/Sao_Paulo
       healthcheck:
         test: ['CMD', 'pg_isready', '-U', 'postgres', '-d', 'rinha']
-        interval: 5s
+        interval: 1s
         timeout: 5s
-        retries: 20
-        start_period: 2s
-      ports:
-        - "5432:5432"
+        retries: 10
+        start_period: 5s
+      network_mode: "host"
       volumes:
+        - ./postgresql.conf:/etc/postgresql.conf
         - ./db_scripts:/docker-entrypoint-initdb.d:ro
       deploy:
         resources:
           limits:
-            cpus: "0.13"
-            memory: "140MB"
+            cpus: "0.75"
+            memory: "480MB"
   nginx:
     image: nginx:latest
     volumes:
@@ -54,15 +50,9 @@ services:
     depends_on:
       - api01
       - api02
-    ports:
-      - "9999:9999" 
+    network_mode: "host"
     deploy:
       resources:
         limits:
-          cpus: "0.17"
-          memory: "10MB"
-  
-networks:
-  default:
-    driver: bridge
-    name: rinha-nginx-2024q1
+          cpus: "0.37"
+          memory: "30MB"
