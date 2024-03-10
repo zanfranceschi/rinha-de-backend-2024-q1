@@ -2,8 +2,8 @@
  Network rinha-network  Created
  Container cassiano-matheuszinho-java-db-1  Creating
  Container cassiano-matheuszinho-java-db-1  Created
- Container cassiano-matheuszinho-java-api01-1  Creating
  Container cassiano-matheuszinho-java-api02-1  Creating
+ Container cassiano-matheuszinho-java-api01-1  Creating
  Container cassiano-matheuszinho-java-api01-1  Created
  Container cassiano-matheuszinho-java-api02-1  Created
  Container nginx  Creating
@@ -45,19 +45,20 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
+nginx    | 2024/03/10 03:54:13 [error] 28#28: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.27.0.4:3000/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/10 03:54:13 [error] 28#28: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.27.0.3:3000/clientes/1/extrato", host: "localhost:9999"
 db-1     | waiting for server to start.... done
 db-1     | server started
 db-1     | server closed the connection unexpectedly
 db-1     | 	This probably means the server terminated abnormally
 db-1     | 	before or while processing the request.
 db-1     | connection to server was lost
-nginx    | 2024/03/09 19:54:19 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.27.0.4:3000/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/09 19:54:19 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.27.0.3:3000/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/10 03:54:15 [error] 28#28: *4 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 db-1 exited with code 0
 db-1     | 
 db-1     | PostgreSQL Database directory appears to contain a database; Skipping initialization
 db-1     | 
-nginx    | 2024/03/09 19:54:21 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/10 03:54:17 [error] 28#28: *5 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 api01-1  | 
 api01-1  |   .   ____          _            __ _ _
 api01-1  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -76,159 +77,44 @@ api02-1  |   '  |____| .__|_| |_|_| |_\__, | / / / /
 api02-1  |  =========|_|==============|___/=/_/_/_/
 api02-1  |  :: Spring Boot ::                (v3.2.3)
 api02-1  | 
-nginx    | 2024/03/09 19:54:23 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | 2024-03-09T19:54:24.016Z  INFO 1 --- [           main] rinha.backendq1.BackendQ1Application     : Starting BackendQ1Application v0.0.1-SNAPSHOT using Java 17.0.10 with PID 1 (/home/gradle/build/libs/backend-q1-0.0.1-SNAPSHOT.jar started by root in /home/gradle)
-api01-1  | 2024-03-09T19:54:24.022Z  INFO 1 --- [           main] rinha.backendq1.BackendQ1Application     : No active profile set, falling back to 1 default profile: "default"
-api02-1  | 2024-03-09T19:54:24.327Z  INFO 1 --- [           main] rinha.backendq1.BackendQ1Application     : Starting BackendQ1Application v0.0.1-SNAPSHOT using Java 17.0.10 with PID 1 (/home/gradle/build/libs/backend-q1-0.0.1-SNAPSHOT.jar started by root in /home/gradle)
-api02-1  | 2024-03-09T19:54:24.332Z  INFO 1 --- [           main] rinha.backendq1.BackendQ1Application     : No active profile set, falling back to 1 default profile: "default"
-nginx    | 2024/03/09 19:54:25 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/09 19:54:27 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | 2024-03-09T19:54:28.637Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-api02-1  | 2024-03-09T19:54:28.928Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-api01-1  | 2024-03-09T19:54:29.132Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 409 ms. Found 2 JPA repository interfaces.
-api02-1  | 2024-03-09T19:54:29.420Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 399 ms. Found 2 JPA repository interfaces.
-nginx    | 2024/03/09 19:54:30 [error] 29#29: *8 connect() failed (111: Connection refused) while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.27.0.3:3000/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/09 19:54:30 [error] 29#29: *8 connect() failed (111: Connection refused) while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.27.0.4:3000/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/09 19:54:32 [error] 29#29: *11 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-03-09T19:54:32.917Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
-api02-1  | 2024-03-09T19:54:32.932Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-api02-1  | 2024-03-09T19:54:32.933Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-api01-1  | 2024-03-09T19:54:33.037Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
-api01-1  | 2024-03-09T19:54:33.215Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-api01-1  | 2024-03-09T19:54:33.216Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-api02-1  | 2024-03-09T19:54:33.724Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-api02-1  | 2024-03-09T19:54:33.726Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8993 ms
-api01-1  | 2024-03-09T19:54:33.926Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-api01-1  | 2024-03-09T19:54:33.928Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 9507 ms
-nginx    | 2024/03/09 19:54:34 [error] 29#29: *12 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-03-09T19:54:35.828Z  INFO 1 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-nginx    | 2024/03/09 19:54:36 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-03-09T19:54:36.220Z  INFO 1 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-api02-1  | 2024-03-09T19:54:36.331Z  INFO 1 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-api01-1  | 2024-03-09T19:54:36.420Z  INFO 1 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-api01-1  | 2024-03-09T19:54:36.631Z  INFO 1 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-api01-1  | 2024-03-09T19:54:36.833Z  INFO 1 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-api02-1  | 2024-03-09T19:54:37.722Z  INFO 1 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-api02-1  | 2024-03-09T19:54:37.829Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-nginx    | 2024/03/09 19:54:38 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | 2024-03-09T19:54:38.224Z  INFO 1 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-api01-1  | 2024-03-09T19:54:38.336Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-api02-1  | 2024-03-09T19:54:39.818Z ERROR 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
-api02-1  | 
-api02-1  | org.postgresql.util.PSQLException: FATAL: database "rinha" does not exist
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2825) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:175) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:313) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.Driver.makeConnection(Driver.java:443) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.Driver.connect(Driver.java:297) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:121) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:388) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:364) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231) ~[spring-context-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949) ~[spring-context-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.3.jar!/:3.2.3]
-api02-1  | 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.3.jar!/:3.2.3]
-api02-1  | 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.3.jar!/:3.2.3]
-api02-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.3.jar!/:3.2.3]
-api02-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.3.jar!/:3.2.3]
-api02-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.3.jar!/:3.2.3]
-api02-1  | 	at rinha.backendq1.BackendQ1Application.main(BackendQ1Application.java:10) ~[!/:0.0.1-SNAPSHOT]
-api02-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-api02-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-api02-1  | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-api02-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-api02-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
-api02-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
-api02-1  | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
-api02-1  | 
-api02-1  | 2024-03-09T19:54:39.823Z  WARN 1 --- [           main] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
-api02-1  | 
-api02-1  | java.lang.NullPointerException: Cannot invoke "org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(java.sql.SQLException, String)" because the return value of "org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.sqlExceptionHelper()" is null
-api02-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:388) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:364) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231) ~[spring-context-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949) ~[spring-context-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.3.jar!/:3.2.3]
-api02-1  | 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.3.jar!/:3.2.3]
-api02-1  | 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.3.jar!/:3.2.3]
-api02-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.3.jar!/:3.2.3]
-api02-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.3.jar!/:3.2.3]
-api02-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.3.jar!/:3.2.3]
-api02-1  | 	at rinha.backendq1.BackendQ1Application.main(BackendQ1Application.java:10) ~[!/:0.0.1-SNAPSHOT]
-api02-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-api02-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-api02-1  | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-api02-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-api02-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
-api02-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
-api02-1  | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
-api02-1  | 
-api02-1  | 2024-03-09T19:54:39.834Z  WARN 1 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-nginx    | 2024/03/09 19:54:40 [error] 29#29: *15 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1  | 2024-03-09T19:54:40.130Z ERROR 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+api01-1  | 2024-03-10T03:54:18.319Z  INFO 1 --- [           main] rinha.backendq1.BackendQ1Application     : Starting BackendQ1Application v0.0.1-SNAPSHOT using Java 17.0.10 with PID 1 (/home/gradle/build/libs/backend-q1-0.0.1-SNAPSHOT.jar started by root in /home/gradle)
+api01-1  | 2024-03-10T03:54:18.323Z  INFO 1 --- [           main] rinha.backendq1.BackendQ1Application     : No active profile set, falling back to 1 default profile: "default"
+api02-1  | 2024-03-10T03:54:18.331Z  INFO 1 --- [           main] rinha.backendq1.BackendQ1Application     : Starting BackendQ1Application v0.0.1-SNAPSHOT using Java 17.0.10 with PID 1 (/home/gradle/build/libs/backend-q1-0.0.1-SNAPSHOT.jar started by root in /home/gradle)
+api02-1  | 2024-03-10T03:54:18.335Z  INFO 1 --- [           main] rinha.backendq1.BackendQ1Application     : No active profile set, falling back to 1 default profile: "default"
+nginx    | 2024/03/10 03:54:19 [error] 28#28: *6 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/10 03:54:21 [error] 28#28: *7 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | 2024-03-10T03:54:22.938Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+api01-1  | 2024-03-10T03:54:23.119Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+nginx    | 2024/03/10 03:54:23 [error] 28#28: *8 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | 2024-03-10T03:54:23.418Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 396 ms. Found 2 JPA repository interfaces.
+api01-1  | 2024-03-10T03:54:23.528Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 394 ms. Found 2 JPA repository interfaces.
+nginx    | 2024/03/10 03:54:25 [error] 28#28: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.27.0.3:3000/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/10 03:54:25 [error] 28#28: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.27.0.4:3000/clientes/1/extrato", host: "localhost:9999"
+api01-1  | 2024-03-10T03:54:27.228Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
+nginx    | 2024/03/10 03:54:27 [error] 28#28: *12 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1  | 2024-03-10T03:54:27.325Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+api02-1  | 2024-03-10T03:54:27.326Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 3000 (http)
+api01-1  | 2024-03-10T03:54:27.326Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+api02-1  | 2024-03-10T03:54:27.421Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+api02-1  | 2024-03-10T03:54:27.422Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+api01-1  | 2024-03-10T03:54:28.030Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+api01-1  | 2024-03-10T03:54:28.031Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 9398 ms
+api02-1  | 2024-03-10T03:54:28.228Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+api02-1  | 2024-03-10T03:54:28.229Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 9595 ms
+nginx    | 2024/03/10 03:54:29 [error] 28#28: *13 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1  | 2024-03-10T03:54:29.928Z  INFO 1 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+api01-1  | 2024-03-10T03:54:30.229Z  INFO 1 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+api01-1  | 2024-03-10T03:54:30.434Z  INFO 1 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+api02-1  | 2024-03-10T03:54:30.833Z  INFO 1 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+api02-1  | 2024-03-10T03:54:31.134Z  INFO 1 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+nginx    | 2024/03/10 03:54:31 [error] 28#28: *14 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | 2024-03-10T03:54:31.416Z  INFO 1 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+api01-1  | 2024-03-10T03:54:31.833Z  INFO 1 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+api01-1  | 2024-03-10T03:54:31.929Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+api02-1  | 2024-03-10T03:54:32.537Z  INFO 1 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+api02-1  | 2024-03-10T03:54:32.717Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+nginx    | 2024/03/10 03:54:33 [error] 28#28: *15 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1  | 2024-03-10T03:54:33.836Z ERROR 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
 api01-1  | 
 api01-1  | org.postgresql.util.PSQLException: FATAL: database "rinha" does not exist
 api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.1.jar!/:42.6.1]
@@ -293,7 +179,7 @@ api01-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.j
 api01-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
 api01-1  | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
 api01-1  | 
-api01-1  | 2024-03-09T19:54:40.135Z  WARN 1 --- [           main] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
+api01-1  | 2024-03-10T03:54:33.841Z  WARN 1 --- [           main] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
 api01-1  | 
 api01-1  | java.lang.NullPointerException: Cannot invoke "org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(java.sql.SQLException, String)" because the return value of "org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.sqlExceptionHelper()" is null
 api01-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
@@ -341,15 +227,8 @@ api01-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.j
 api01-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
 api01-1  | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
 api01-1  | 
-api01-1  | 2024-03-09T19:54:40.153Z  WARN 1 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-nginx    | 2024/03/09 19:54:42 [error] 29#29: *16 connect() failed (111: Connection refused) while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.27.0.3:3000/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/09 19:54:42 [error] 29#29: *16 connect() failed (111: Connection refused) while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.27.0.4:3000/clientes/1/extrato", host: "localhost:9999"
-nginx    | 2024/03/09 19:54:44 [error] 29#29: *19 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 2024-03-09T19:54:44.128Z  INFO 1 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-api02-1  | 2024-03-09T19:54:44.230Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-api01-1  | 2024-03-09T19:54:44.816Z  INFO 1 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-api01-1  | 2024-03-09T19:54:44.919Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-api02-1  | 2024-03-09T19:54:45.517Z ERROR 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+api01-1  | 2024-03-10T03:54:33.854Z  WARN 1 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+api02-1  | 2024-03-10T03:54:34.423Z ERROR 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
 api02-1  | 
 api02-1  | org.postgresql.util.PSQLException: FATAL: database "rinha" does not exist
 api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.1.jar!/:42.6.1]
@@ -369,24 +248,20 @@ api02-1  | 	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[H
 api02-1  | 	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar!/:na]
 api02-1  | 	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
 api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:60) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:185) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:98) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at java.base/java.util.HashMap.forEach(HashMap.java:1421) ~[na:na]
-api02-1  | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
 api02-1  | 	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.4.jar!/:6.1.4]
 api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:388) ~[spring-orm-6.1.4.jar!/:6.1.4]
 api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.4.jar!/:6.1.4]
@@ -418,18 +293,30 @@ api02-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.j
 api02-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
 api02-1  | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
 api02-1  | 
-api02-1  | 2024-03-09T19:54:45.520Z  WARN 1 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 3D000
-api02-1  | 2024-03-09T19:54:45.520Z ERROR 1 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : FATAL: database "rinha" does not exist
-api02-1  | 2024-03-09T19:54:45.523Z ERROR 1 --- [           main] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: database "rinha" does not exist] [n/a]
-api02-1  | 2024-03-09T19:54:45.524Z  WARN 1 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: database "rinha" does not exist] [n/a]
-api02-1  | 2024-03-09T19:54:45.525Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-api02-1  | 2024-03-09T19:54:45.535Z  INFO 1 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+api02-1  | 2024-03-10T03:54:34.428Z  WARN 1 --- [           main] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
 api02-1  | 
-api02-1  | Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-api02-1  | 2024-03-09T19:54:45.629Z ERROR 1 --- [           main] o.s.boot.SpringApplication               : Application run failed
-api02-1  | 
-api02-1  | org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: database "rinha" does not exist] [n/a]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api02-1  | java.lang.NullPointerException: Cannot invoke "org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(java.sql.SQLException, String)" because the return value of "org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.sqlExceptionHelper()" is null
+api02-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api02-1  | 	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:388) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:364) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.4.jar!/:6.1.4]
 api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.4.jar!/:6.1.4]
 api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
 api02-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
@@ -453,48 +340,161 @@ api02-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:n
 api02-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
 api02-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
 api02-1  | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
-api02-1  | Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: database "rinha" does not exist] [n/a]
-api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:364) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.4.jar!/:6.1.4]
-api02-1  | 	... 23 common frames omitted
-api02-1  | Caused by: org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: database "rinha" does not exist] [n/a]
-api02-1  | 	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:63) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:74) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:60) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:185) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:98) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at java.base/java.util.HashMap.forEach(HashMap.java:1421) ~[na:na]
-api02-1  | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
-api02-1  | 	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:388) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.4.jar!/:6.1.4]
-api02-1  | 	... 27 common frames omitted
-api02-1  | Caused by: org.postgresql.util.PSQLException: FATAL: database "rinha" does not exist
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2825) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:175) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:313) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.Driver.makeConnection(Driver.java:443) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at org.postgresql.Driver.connect(Driver.java:297) ~[postgresql-42.6.1.jar!/:42.6.1]
-api02-1  | 	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:121) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar!/:na]
-api02-1  | 	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar!/:na]
+api02-1  | 
+api02-1  | 2024-03-10T03:54:34.443Z  WARN 1 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+nginx    | 2024/03/10 03:54:35 [error] 28#28: *16 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/10 03:54:37 [error] 28#28: *17 connect() failed (111: Connection refused) while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.27.0.3:3000/clientes/1/extrato", host: "localhost:9999"
+nginx    | 2024/03/10 03:54:37 [error] 28#28: *17 connect() failed (111: Connection refused) while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.27.0.4:3000/clientes/1/extrato", host: "localhost:9999"
+api01-1  | 2024-03-10T03:54:38.418Z  INFO 1 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+api01-1  | 2024-03-10T03:54:38.520Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+nginx    | 2024/03/10 03:54:39 [error] 28#28: *20 no live upstreams while connecting to upstream, client: 172.27.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | 2024-03-10T03:54:39.418Z  INFO 1 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+api02-1  | 2024-03-10T03:54:39.433Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+api01-1  | 2024-03-10T03:54:39.727Z ERROR 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+api01-1  | 
+api01-1  | org.postgresql.util.PSQLException: FATAL: database "rinha" does not exist
+api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2825) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:175) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:313) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.Driver.makeConnection(Driver.java:443) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.Driver.connect(Driver.java:297) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:121) ~[HikariCP-5.0.1.jar!/:na]
+api01-1  | 	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar!/:na]
+api01-1  | 	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar!/:na]
+api01-1  | 	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar!/:na]
+api01-1  | 	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar!/:na]
+api01-1  | 	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar!/:na]
+api01-1  | 	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar!/:na]
+api01-1  | 	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:60) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:185) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:98) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at java.base/java.util.HashMap.forEach(HashMap.java:1421) ~[na:na]
+api01-1  | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:388) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:364) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231) ~[spring-context-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949) ~[spring-context-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.3.jar!/:3.2.3]
+api01-1  | 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.3.jar!/:3.2.3]
+api01-1  | 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.3.jar!/:3.2.3]
+api01-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.3.jar!/:3.2.3]
+api01-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.3.jar!/:3.2.3]
+api01-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.3.jar!/:3.2.3]
+api01-1  | 	at rinha.backendq1.BackendQ1Application.main(BackendQ1Application.java:10) ~[!/:0.0.1-SNAPSHOT]
+api01-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+api01-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+api01-1  | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+api01-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+api01-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+api01-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+api01-1  | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+api01-1  | 
+api01-1  | 2024-03-10T03:54:39.730Z  WARN 1 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 3D000
+api01-1  | 2024-03-10T03:54:39.731Z ERROR 1 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : FATAL: database "rinha" does not exist
+api01-1  | 2024-03-10T03:54:39.736Z ERROR 1 --- [           main] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: database "rinha" does not exist] [n/a]
+api01-1  | 2024-03-10T03:54:39.736Z  WARN 1 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: database "rinha" does not exist] [n/a]
+api01-1  | 2024-03-10T03:54:39.738Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+api01-1  | 2024-03-10T03:54:39.750Z  INFO 1 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+api01-1  | 
+api01-1  | Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+api01-1  | 2024-03-10T03:54:39.826Z ERROR 1 --- [           main] o.s.boot.SpringApplication               : Application run failed
+api01-1  | 
+api01-1  | org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: database "rinha" does not exist] [n/a]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231) ~[spring-context-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949) ~[spring-context-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.3.jar!/:3.2.3]
+api01-1  | 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.3.jar!/:3.2.3]
+api01-1  | 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.3.jar!/:3.2.3]
+api01-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.3.jar!/:3.2.3]
+api01-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.3.jar!/:3.2.3]
+api01-1  | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.3.jar!/:3.2.3]
+api01-1  | 	at rinha.backendq1.BackendQ1Application.main(BackendQ1Application.java:10) ~[!/:0.0.1-SNAPSHOT]
+api01-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+api01-1  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+api01-1  | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+api01-1  | 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+api01-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+api01-1  | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+api01-1  | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[backend-q1-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+api01-1  | Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: database "rinha" does not exist] [n/a]
+api01-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:364) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.4.jar!/:6.1.4]
+api01-1  | 	... 23 common frames omitted
+api01-1  | Caused by: org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: database "rinha" does not exist] [n/a]
+api01-1  | 	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:63) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:74) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:60) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:185) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:98) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at java.base/java.util.HashMap.forEach(HashMap.java:1421) ~[na:na]
+api01-1  | 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507) ~[hibernate-core-6.4.4.Final.jar!/:6.4.4.Final]
+api01-1  | 	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:388) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api01-1  | 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.4.jar!/:6.1.4]
+api01-1  | 	... 27 common frames omitted
+api01-1  | Caused by: org.postgresql.util.PSQLException: FATAL: database "rinha" does not exist
+api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2825) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:175) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:313) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.Driver.makeConnection(Driver.java:443) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at org.postgresql.Driver.connect(Driver.java:297) ~[postgresql-42.6.1.jar!/:42.6.1]
+api01-1  | 	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:121) ~[HikariCP-5.0.1.jar!/:na]
+api01-1  | 	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar!/:na]

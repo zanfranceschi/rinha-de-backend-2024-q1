@@ -1,0 +1,65 @@
+version: "3.5"
+services:
+  api01: &api
+    image: andretpc/rinha:1
+    network_mode: host
+    volumes:
+      - /dev/shm:/dev/shm
+      - ./sockets:/tmp
+    hostname: api01
+    environment:
+      - MONGODB_URL=localhost:27017
+      - SOCKET_PATH=/tmp/api01.sock
+    depends_on:
+      - db
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.2"
+          memory: "10MB"
+        limits:
+          cpus: "0.2"
+          memory: "10MB"
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - MONGODB_URL=localhost:27017
+      - SOCKET_PATH=/tmp/api02.sock
+  lb:
+    image: andretpc/monaeilb:1
+    network_mode: host
+    environment:
+      - BACKENDS=/tmp/api01.sock,/tmp/api02.sock
+      - PORT=9999
+    volumes:
+      - ./sockets:/tmp
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.30"
+          memory: "50MB"
+        limits:
+          cpus: "0.30"
+          memory: "50MB"
+  db:
+    image: mongo:latest
+    hostname: db
+    network_mode: host
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.8"
+          memory: "480MB"
+        limits:
+          cpus: "0.8"
+          memory: "480MB"
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

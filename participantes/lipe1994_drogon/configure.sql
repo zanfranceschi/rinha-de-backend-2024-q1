@@ -1,7 +1,3 @@
-SHOW MAX_CONNECTIONS;
-
-ALTER SYSTEM SET max_connections = 180;
-
 CREATE TABLE public.customers (
 	id smallint NOT NULL,
 	balance int NOT NULL,
@@ -22,6 +18,8 @@ CREATE TABLE public.transactions (
 	CONSTRAINT fk_transactions_customer_id FOREIGN KEY (customer_id) REFERENCES public.customers(id),
 	CONSTRAINT "uq_transactions_id" PRIMARY KEY (id)
 );
+
+CREATE INDEX "IX_Transacao_ClienteId" ON transactions ("customer_id");
 
 
 INSERT INTO public.customers (id, balance, "limit", "version", "created_at", "update_at")

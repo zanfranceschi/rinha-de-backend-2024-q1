@@ -1,0 +1,57 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: brnnai/rinhabackend-q12024:latest
+    restart: always
+    environment:
+      - DB_HOSTNAME=localhost
+      - DATABASE_URL=postgres://admin:123@localhost:55735/rinha
+      - GIN_MODE=release
+      - HTTP_PORT=:33810
+    depends_on:
+      - db
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "30MB"
+    
+  api02:
+    <<: *api
+    environment:
+      - DB_HOSTNAME=localhost
+      - DATABASE_URL=postgres://admin:123@localhost:55735/rinha
+      - GIN_MODE=release
+      - HTTP_PORT=:33811
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "20MB"
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -p 55735 -c checkpoint_timeout=1200 -c max_wal_size=5192 -c max_connections=25 -c shared_buffers=120MB -c maintenance_work_mem=5536 -c effective_io_concurrency=200 -c random_page_cost=1 -c log_min_duration_statement=20 -c effective_cache_size=42704 -c work_mem=6144
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "450MB"

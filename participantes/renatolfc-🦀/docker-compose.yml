@@ -55,7 +55,6 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=rinha
-    network_mode: host
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - shared:/var/run/postgresql
@@ -66,7 +65,7 @@ services:
                -c full_page_writes=0 -c max_connections=64 -c shared_buffers=256MB
                -c work_mem=256MB -c effective_cache_size=200MB
                -c autovacuum_vacuum_scale_factor=.5 -c log_statement=none
-               -c log_checkpoints=0 -c log_duration=off -c fsync=off
+               -c log_checkpoints=0 -c log_duration=off
                -c temp_buffers=2MB -c commit_delay=1200
                -c max_parallel_workers=0
     healthcheck:                                     

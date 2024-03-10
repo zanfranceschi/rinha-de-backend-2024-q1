@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  api1:
+ api1:
     image: redvelvetdev/cgb-rinha-nodejs-q1-2024:1.2
     network_mode: host
     hostname: api1
@@ -11,8 +11,6 @@ services:
         condition: service_healthy
     expose:
       - '9090'
-    links:
-      - db
     environment:
       API_PORT: 9090
       POSTGRES_HOST: localhost
@@ -26,7 +24,7 @@ services:
           cpus: '0.175'
           memory: '125MB'
 
-  api2:
+ api2:
     image: redvelvetdev/cgb-rinha-nodejs-q1-2024:1.2
     network_mode: host
     hostname: api2
@@ -36,8 +34,6 @@ services:
         condition: service_healthy
     expose:
       - '9091'
-    links:
-      - db
     environment:
       API_PORT: 9091
       POSTGRES_HOST: localhost
@@ -51,7 +47,7 @@ services:
           cpus: '0.175'
           memory: '125MB'
 
-  nginx:
+ nginx:
     image: nginx:latest
     network_mode: host
     volumes:
@@ -67,7 +63,7 @@ services:
           cpus: '0.6'
           memory: '30MB'
 
-  db:
+ db:
     image: postgres:latest
     ports:
       - '5432:5432'
