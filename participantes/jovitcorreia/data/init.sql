@@ -1,15 +1,13 @@
--- Drop existing tables if they exist
 DROP TABLE IF EXISTS transacao;
 DROP TABLE IF EXISTS cliente;
 
--- Create the cliente table
-CREATE TABLE cliente (
+CREATE UNLOGGED TABLE cliente (
     id     SMALLSERIAL PRIMARY KEY,
     limite INT NOT NULL,
     saldo  BIGINT NOT NULL DEFAULT 0
 );
 
-CREATE TABLE transacao (
+CREATE UNLOGGED TABLE transacao (
    id           SERIAL PRIMARY KEY,
    cliente_id   SMALLINT NOT NULL,
    valor        BIGINT NOT NULL,

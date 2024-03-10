@@ -1,6 +1,8 @@
  Network fiber-network  Creating
  Network fiber-network  Created
  Container fiber-db  Creating
+ Container fiber-memcached  Creating
+ Container fiber-memcached  Created
  Container fiber-db  Created
  Container fiber-api-2  Creating
  Container fiber-api-1  Creating
@@ -8,493 +10,491 @@
  Container fiber-api-1  Created
  Container fiber-nginx  Creating
  Container fiber-nginx  Created
-Attaching to fiber-api-1, fiber-api-2, fiber-db, fiber-nginx
-fiber-db     | The files belonging to this database system will be owned by user "postgres".
-fiber-db     | This user must also own the server process.
-fiber-db     | 
-fiber-db     | The database cluster will be initialized with locale "en_US.utf8".
-fiber-db     | The default database encoding has accordingly been set to "UTF8".
-fiber-db     | The default text search configuration will be set to "english".
-fiber-db     | 
-fiber-db     | Data page checksums are disabled.
-fiber-db     | 
-fiber-db     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
-fiber-db     | creating subdirectories ... ok
-fiber-db     | selecting dynamic shared memory implementation ... posix
-fiber-db     | selecting default max_connections ... 100
-fiber-db     | selecting default shared_buffers ... 128MB
-fiber-db     | selecting default time zone ... Etc/UTC
-fiber-db     | creating configuration files ... ok
-fiber-db     | running bootstrap script ... ok
-fiber-db     | performing post-bootstrap initialization ... ok
-fiber-db     | initdb: warning: enabling "trust" authentication for local connections
-fiber-db     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-fiber-db     | syncing data to disk ... ok
-fiber-db     | 
-fiber-db     | 
-fiber-db     | Success. You can now start the database server using:
-fiber-db     | 
-fiber-db     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
-fiber-db     | 
-fiber-db     | waiting for server to start....2024-02-16 12:57:54.656 UTC [48] LOG:  starting PostgreSQL 15.3 (Debian 15.3-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
-fiber-db     | 2024-02-16 12:57:54.660 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-fiber-db     | 2024-02-16 12:57:54.670 UTC [51] LOG:  database system was shut down at 2024-02-16 12:57:53 UTC
-fiber-db     | 2024-02-16 12:57:54.677 UTC [48] LOG:  database system is ready to accept connections
-fiber-db     |  done
-fiber-db     | server started
-fiber-db     | CREATE DATABASE
-fiber-db     | 
-fiber-db     | 
-fiber-db     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
-fiber-db     | 
-fiber-db     | 2024-02-16 12:57:54.881 UTC [48] LOG:  received fast shutdown request
-fiber-db     | waiting for server to shut down....2024-02-16 12:57:54.885 UTC [48] LOG:  aborting any active transactions
-fiber-db     | 2024-02-16 12:57:54.915 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-fiber-db     | 2024-02-16 12:57:54.915 UTC [49] LOG:  shutting down
-fiber-db     | 2024-02-16 12:57:54.919 UTC [49] LOG:  checkpoint starting: shutdown immediate
-fiber-db     | 2024-02-16 12:57:55.429 UTC [49] LOG:  checkpoint complete: wrote 918 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.402 s, sync=0.091 s, total=0.514 s; sync files=250, longest=0.070 s, average=0.001 s; distance=4217 kB, estimate=4217 kB
-fiber-db     | 2024-02-16 12:57:55.434 UTC [48] LOG:  database system is shut down
-fiber-db     |  done
-fiber-db     | server stopped
-fiber-db     | 
-fiber-db     | PostgreSQL init process complete; ready for start up.
-fiber-db     | 
-fiber-db     | 2024-02-16 12:57:55.504 UTC [1] LOG:  starting PostgreSQL 15.3 (Debian 15.3-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
-fiber-db     | 2024-02-16 12:57:55.504 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-fiber-db     | 2024-02-16 12:57:55.504 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-fiber-db     | 2024-02-16 12:57:55.510 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-fiber-db     | 2024-02-16 12:57:55.517 UTC [64] LOG:  database system was shut down at 2024-02-16 12:57:55 UTC
-fiber-db     | 2024-02-16 12:57:55.523 UTC [1] LOG:  database system is ready to accept connections
-fiber-nginx  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
-fiber-nginx  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
-fiber-api-2  | [2024-02-16 12:58:04 +0000] [1] [INFO] Starting gunicorn 21.2.0
-fiber-api-2  | [2024-02-16 12:58:04 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
-fiber-api-2  | [2024-02-16 12:58:04 +0000] [1] [INFO] Using worker: sync
-fiber-api-2  | [2024-02-16 12:58:04 +0000] [8] [INFO] Booting worker with pid: 8
-fiber-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-fiber-nginx  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
-fiber-api-1  | [2024-02-16 12:58:04 +0000] [1] [INFO] Starting gunicorn 21.2.0
-fiber-api-1  | [2024-02-16 12:58:04 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
-fiber-api-1  | [2024-02-16 12:58:04 +0000] [1] [INFO] Using worker: sync
-fiber-api-1  | [2024-02-16 12:58:04 +0000] [8] [INFO] Booting worker with pid: 8
-fiber-nginx  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
-fiber-nginx  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-fiber-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-fiber-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-fiber-nginx  | /docker-entrypoint.sh: Configuration complete; ready for start up
-fiber-db     | 2024-02-16 12:58:04.637 UTC [78] ERROR:  duplicate key value violates unique constraint "client_pkey"
-fiber-db     | 2024-02-16 12:58:04.637 UTC [78] DETAIL:  Key (id)=(1) already exists.
-fiber-db     | 2024-02-16 12:58:04.637 UTC [78] STATEMENT:  INSERT INTO "client" ("id", "limit", "balance") VALUES (1, 100000, 0)
-fiber-db     | 2024-02-16 12:58:04.645 UTC [78] ERROR:  duplicate key value violates unique constraint "client_pkey"
-fiber-db     | 2024-02-16 12:58:04.645 UTC [78] DETAIL:  Key (id)=(2) already exists.
-fiber-db     | 2024-02-16 12:58:04.645 UTC [78] STATEMENT:  INSERT INTO "client" ("id", "limit", "balance") VALUES (2, 80000, 0)
-fiber-db     | 2024-02-16 12:58:04.655 UTC [78] ERROR:  duplicate key value violates unique constraint "client_pkey"
-fiber-db     | 2024-02-16 12:58:04.655 UTC [78] DETAIL:  Key (id)=(3) already exists.
-fiber-db     | 2024-02-16 12:58:04.655 UTC [78] STATEMENT:  INSERT INTO "client" ("id", "limit", "balance") VALUES (3, 1000000, 0)
-fiber-db     | 2024-02-16 12:58:04.659 UTC [78] ERROR:  duplicate key value violates unique constraint "client_pkey"
-fiber-db     | 2024-02-16 12:58:04.659 UTC [78] DETAIL:  Key (id)=(4) already exists.
-fiber-db     | 2024-02-16 12:58:04.659 UTC [78] STATEMENT:  INSERT INTO "client" ("id", "limit", "balance") VALUES (4, 10000000, 0)
-fiber-db     | 2024-02-16 12:58:04.663 UTC [78] ERROR:  duplicate key value violates unique constraint "client_pkey"
-fiber-db     | 2024-02-16 12:58:04.663 UTC [78] DETAIL:  Key (id)=(5) already exists.
-fiber-db     | 2024-02-16 12:58:04.663 UTC [78] STATEMENT:  INSERT INTO "client" ("id", "limit", "balance") VALUES (5, 500000, 0)
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:04 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 113 "-" "curl/7.81.0"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:04 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 113 "-" "curl/7.81.0"
-fiber-db     | 2024-02-16 12:58:09.465 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.465 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -1
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.473 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.473 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -2
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.484 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.484 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -3
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.489 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.489 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -4
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.494 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.494 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -5
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.507 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.507 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -6
-fiber-db     | 	WHERE "id" = 1
-fiber-db     | 2024-02-16 12:58:09.511 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.511 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -8
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.517 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.517 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -9
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.521 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.521 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -10
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.526 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.526 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -11
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.531 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.531 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -12
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.536 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.536 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -13
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.542 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.542 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -14
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.546 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.546 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -15
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.551 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.551 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -16
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.555 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.555 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -17
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.560 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.560 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -18
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.564 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.564 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -19
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.569 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.569 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -20
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.576 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.576 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -21
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.581 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.581 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -22
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.587 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.587 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -23
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:09.593 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:09.593 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -24
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:09 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:10 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1004 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.442 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.442 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -24
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.448 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.448 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -23
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.458 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.458 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -22
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.467 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.467 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -21
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.471 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.471 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -20
-fiber-db     | 	WHERE "id" = 1
-fiber-db     | 2024-02-16 12:58:11.480 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.480 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -19
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.485 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.485 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -18
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.489 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.489 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -17
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.495 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.495 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -16
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.504 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.504 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -15
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.516 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.516 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -14
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.522 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.522 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -13
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.527 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.527 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -12
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.537 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.537 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -11
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.543 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.543 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -10
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.549 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.549 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -9
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.554 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.554 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -8
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.561 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.561 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -7
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.566 UTC [77] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.566 UTC [77] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -6
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-db     | 2024-02-16 12:58:11.570 UTC [78] ERROR:  could not serialize access due to concurrent update
-fiber-db     | 2024-02-16 12:58:11.570 UTC [78] STATEMENT:  UPDATE "client"
-fiber-db     | 	SET "balance" =  -5
-fiber-db     | 	WHERE "id" = 1
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:11 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:12 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1002 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "GET /clientes/6/extrato HTTP/1.1" 404 51 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 115 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 112 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 114 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 113 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1002 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 304 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 301 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 303 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 302 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 995 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:13 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:14 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 995 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:14 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:14 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:15 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 409 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:15 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:15 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:15 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:15 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:15 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:16 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:16 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:16 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:16 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 616 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:16 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:16 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:16 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:16 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:16 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:17 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:17 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:17 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:17 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 303 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:17 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:17 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:17 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:17 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:17 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:17 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:17 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 409 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:18 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 1042 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 616 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:19 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 1045 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:20 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 1043 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 1042 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:21 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 1042 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1042 "-" "Agente do Caos - 2024/Q1"
-fiber-nginx  | 172.21.0.1 - - [16/Feb/2024:12:58:22 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+Attaching to fiber-api-1, fiber-api-2, fiber-db, fiber-memcached, fiber-nginx
+fiber-db         | The files belonging to this database system will be owned by user "postgres".
+fiber-db         | This user must also own the server process.
+fiber-db         | 
+fiber-db         | The database cluster will be initialized with locale "en_US.utf8".
+fiber-db         | The default database encoding has accordingly been set to "UTF8".
+fiber-db         | The default text search configuration will be set to "english".
+fiber-db         | 
+fiber-db         | Data page checksums are disabled.
+fiber-db         | 
+fiber-db         | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+fiber-db         | creating subdirectories ... ok
+fiber-db         | selecting dynamic shared memory implementation ... posix
+fiber-db         | selecting default max_connections ... 100
+fiber-db         | selecting default shared_buffers ... 128MB
+fiber-db         | selecting default time zone ... Etc/UTC
+fiber-db         | creating configuration files ... ok
+fiber-db         | running bootstrap script ... ok
+fiber-db         | performing post-bootstrap initialization ... ok
+fiber-db         | initdb: warning: enabling "trust" authentication for local connections
+fiber-db         | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+fiber-db         | syncing data to disk ... ok
+fiber-db         | 
+fiber-db         | 
+fiber-db         | Success. You can now start the database server using:
+fiber-db         | 
+fiber-db         |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+fiber-db         | 
+fiber-db         | waiting for server to start....2024-03-09 20:48:08.447 UTC [48] LOG:  starting PostgreSQL 15.3 (Debian 15.3-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+fiber-db         | 2024-03-09 20:48:08.450 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+fiber-db         | 2024-03-09 20:48:08.461 UTC [51] LOG:  database system was shut down at 2024-03-09 20:48:08 UTC
+fiber-db         | 2024-03-09 20:48:08.466 UTC [48] LOG:  database system is ready to accept connections
+fiber-db         |  done
+fiber-db         | server started
+fiber-db         | CREATE DATABASE
+fiber-db         | 
+fiber-db         | 
+fiber-db         | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+fiber-db         | 
+fiber-db         | 2024-03-09 20:48:08.725 UTC [48] LOG:  received fast shutdown request
+fiber-db         | waiting for server to shut down....2024-03-09 20:48:08.729 UTC [48] LOG:  aborting any active transactions
+fiber-db         | 2024-03-09 20:48:08.731 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+fiber-db         | 2024-03-09 20:48:08.731 UTC [49] LOG:  shutting down
+fiber-db         | 2024-03-09 20:48:08.733 UTC [49] LOG:  checkpoint starting: shutdown immediate
+fiber-db         | 2024-03-09 20:48:09.217 UTC [49] LOG:  checkpoint complete: wrote 918 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.206 s, sync=0.266 s, total=0.487 s; sync files=250, longest=0.193 s, average=0.002 s; distance=4217 kB, estimate=4217 kB
+fiber-db         | 2024-03-09 20:48:09.222 UTC [48] LOG:  database system is shut down
+fiber-db         |  done
+fiber-db         | server stopped
+fiber-db         | 
+fiber-db         | PostgreSQL init process complete; ready for start up.
+fiber-db         | 
+fiber-db         | 2024-03-09 20:48:09.248 UTC [1] LOG:  starting PostgreSQL 15.3 (Debian 15.3-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+fiber-db         | 2024-03-09 20:48:09.248 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+fiber-db         | 2024-03-09 20:48:09.248 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+fiber-db         | 2024-03-09 20:48:09.254 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+fiber-db         | 2024-03-09 20:48:09.262 UTC [64] LOG:  database system was shut down at 2024-03-09 20:48:09 UTC
+fiber-db         | 2024-03-09 20:48:09.268 UTC [1] LOG:  database system is ready to accept connections
+fiber-db         | 2024-03-09 20:48:18.215 UTC [78] ERROR:  duplicate key value violates unique constraint "client_pkey"
+fiber-db         | 2024-03-09 20:48:18.215 UTC [78] DETAIL:  Key (id)=(1) already exists.
+fiber-db         | 2024-03-09 20:48:18.215 UTC [78] STATEMENT:  INSERT INTO "client" ("id", "limit", "balance") VALUES (1, 100000, 0)
+fiber-db         | 2024-03-09 20:48:18.221 UTC [78] ERROR:  duplicate key value violates unique constraint "client_pkey"
+fiber-db         | 2024-03-09 20:48:18.221 UTC [78] DETAIL:  Key (id)=(2) already exists.
+fiber-db         | 2024-03-09 20:48:18.221 UTC [78] STATEMENT:  INSERT INTO "client" ("id", "limit", "balance") VALUES (2, 80000, 0)
+fiber-db         | 2024-03-09 20:48:18.224 UTC [78] ERROR:  duplicate key value violates unique constraint "client_pkey"
+fiber-db         | 2024-03-09 20:48:18.224 UTC [78] DETAIL:  Key (id)=(3) already exists.
+fiber-db         | 2024-03-09 20:48:18.224 UTC [78] STATEMENT:  INSERT INTO "client" ("id", "limit", "balance") VALUES (3, 1000000, 0)
+fiber-db         | 2024-03-09 20:48:18.226 UTC [78] ERROR:  duplicate key value violates unique constraint "client_pkey"
+fiber-db         | 2024-03-09 20:48:18.226 UTC [78] DETAIL:  Key (id)=(4) already exists.
+fiber-db         | 2024-03-09 20:48:18.226 UTC [78] STATEMENT:  INSERT INTO "client" ("id", "limit", "balance") VALUES (4, 10000000, 0)
+fiber-db         | 2024-03-09 20:48:18.229 UTC [78] ERROR:  duplicate key value violates unique constraint "client_pkey"
+fiber-db         | 2024-03-09 20:48:18.229 UTC [78] DETAIL:  Key (id)=(5) already exists.
+fiber-db         | 2024-03-09 20:48:18.229 UTC [78] STATEMENT:  INSERT INTO "client" ("id", "limit", "balance") VALUES (5, 500000, 0)
+fiber-nginx      | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+fiber-nginx      | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+fiber-nginx      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+fiber-nginx      | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+fiber-nginx      | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+fiber-nginx      | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+fiber-nginx      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+fiber-nginx      | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+fiber-nginx      | /docker-entrypoint.sh: Configuration complete; ready for start up
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:18 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 113 "-" "curl/7.81.0"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:18 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 113 "-" "curl/7.81.0"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:22 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:22 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:23 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1004 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:24 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:25 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1002 "-" "Agente do Caos - 2024/Q1"
+fiber-api-1      | Exception: Client[6]
+fiber-api-1      | Traceback (most recent call last):
+fiber-api-1      |   File "/app/fiber/core/core.py", line 98, in on_get
+fiber-api-1      |     client = get_client(client_id=client_id)
+fiber-api-1      |   File "/app/fiber/core/core.py", line 76, in wrapper
+fiber-api-1      |     _result = func(client_id)
+fiber-api-1      |   File "<string>", line 2, in get_client
+fiber-api-1      |   File "/usr/local/lib/python3.10/site-packages/pony/orm/core.py", line 519, in new_func
+fiber-api-1      |     result = func(*args, **kwargs)
+fiber-api-1      |   File "/app/fiber/core/core.py", line 87, in get_client
+fiber-api-1      |     return Client[client_id]
+fiber-api-1      |   File "/usr/local/lib/python3.10/site-packages/pony/orm/core.py", line 3991, in __getitem__
+fiber-api-1      |     return entity._find_one_(kwargs)
+fiber-api-1      |   File "/usr/local/lib/python3.10/site-packages/pony/orm/core.py", line 4115, in _find_one_
+fiber-api-1      |     if obj is None: throw(ObjectNotFound, entity, pkval)
+fiber-api-1      |   File "/usr/local/lib/python3.10/site-packages/pony/utils/utils.py", line 99, in throw
+fiber-api-1      |     raise exc
+fiber-api-1      | pony.orm.core.ObjectNotFound: Client[6]
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/6/extrato HTTP/1.1" 404 51 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 115 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1002 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 114 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 113 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 112 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 302 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 303 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 304 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 301 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 995 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 397 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 399 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 400 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 400 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 992 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 399 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 400 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 398 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 399 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 398 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 397 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 397 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:26 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 399 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 397 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 398 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 992 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 992 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 398 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 400 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 992 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 422 63 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 399 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:27 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:28 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 992 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:28 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:28 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:29 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:29 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:29 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:29 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:29 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:29 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1003 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:30 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:30 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:30 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:30 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:30 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:30 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:30 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:30 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:30 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 919 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:30 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:30 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:31 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:31 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:31 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:31 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:31 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:31 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:31 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:31 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:31 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:31 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 605 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:31 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:31 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 1042 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:32 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1041 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 1044 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:33 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 1044 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:34 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1043 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 1042 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:35 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 1043 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 1042 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:36 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 1042 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:37 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 1043 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 1041 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:38 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 1044 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 1041 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 50 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 50 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 50 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 37 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1040 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 50 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 36 "-" "Agente do Caos - 2024/Q1"
+fiber-nginx      | 192.168.48.1 - - [09/Mar/2024:20:48:40 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"

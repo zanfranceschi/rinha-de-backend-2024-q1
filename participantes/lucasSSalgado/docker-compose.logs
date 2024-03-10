@@ -23,9 +23,11 @@ postgres-1  | creating subdirectories ... ok
 postgres-1  | selecting dynamic shared memory implementation ... posix
 postgres-1  | selecting default max_connections ... 100
 postgres-1  | selecting default shared_buffers ... 128MB
-postgres-1  | selecting default time zone ... Etc/UTC
+postgres-1  | selecting default time zone ... UTC
 postgres-1  | creating configuration files ... ok
 postgres-1  | running bootstrap script ... ok
+postgres-1  | sh: locale: not found
+postgres-1  | 2024-03-04 23:29:19.919 UTC [30] WARNING:  no usable system locales were found
 postgres-1  | performing post-bootstrap initialization ... ok
 postgres-1  | syncing data to disk ... ok
 postgres-1  | 
@@ -36,38 +38,40 @@ postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 postgres-1  | 
 postgres-1  | initdb: warning: enabling "trust" authentication for local connections
 postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-postgres-1  | waiting for server to start....2024-02-16 11:52:21.430 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres-1  | 2024-02-16 11:52:21.433 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres-1  | 2024-02-16 11:52:21.442 UTC [52] LOG:  database system was shut down at 2024-02-16 11:52:19 UTC
-postgres-1  | 2024-02-16 11:52:21.449 UTC [49] LOG:  database system is ready to accept connections
+postgres-1  | waiting for server to start....2024-03-04 23:29:21.836 UTC [36] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+postgres-1  | 2024-03-04 23:29:21.840 UTC [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2024-03-04 23:29:21.852 UTC [39] LOG:  database system was shut down at 2024-03-04 23:29:20 UTC
+postgres-1  | 2024-03-04 23:29:21.862 UTC [36] LOG:  database system is ready to accept connections
 postgres-1  |  done
 postgres-1  | server started
 postgres-1  | 
 postgres-1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
 postgres-1  | CREATE TABLE
 postgres-1  | CREATE TABLE
+postgres-1  | CREATE INDEX
+postgres-1  | CREATE INDEX
 postgres-1  | DO
 postgres-1  | 
 postgres-1  | 
-postgres-1  | waiting for server to shut down...2024-02-16 11:52:21.637 UTC [49] LOG:  received fast shutdown request
-postgres-1  | .2024-02-16 11:52:21.641 UTC [49] LOG:  aborting any active transactions
-postgres-1  | 2024-02-16 11:52:21.642 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-postgres-1  | 2024-02-16 11:52:21.643 UTC [50] LOG:  shutting down
-postgres-1  | 2024-02-16 11:52:21.646 UTC [50] LOG:  checkpoint starting: shutdown immediate
-postgres-1  | 2024-02-16 11:52:21.749 UTC [50] LOG:  checkpoint complete: wrote 64 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.085 s, total=0.107 s; sync files=46, longest=0.079 s, average=0.002 s; distance=185 kB, estimate=185 kB; lsn=0/15190E0, redo lsn=0/15190E0
-postgres-1  | 2024-02-16 11:52:21.753 UTC [49] LOG:  database system is shut down
+postgres-1  | waiting for server to shut down....2024-03-04 23:29:21.968 UTC [36] LOG:  received fast shutdown request
+postgres-1  | 2024-03-04 23:29:21.972 UTC [36] LOG:  aborting any active transactions
+postgres-1  | 2024-03-04 23:29:21.974 UTC [36] LOG:  background worker "logical replication launcher" (PID 42) exited with exit code 1
+postgres-1  | 2024-03-04 23:29:21.974 UTC [37] LOG:  shutting down
+postgres-1  | 2024-03-04 23:29:21.979 UTC [37] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2024-03-04 23:29:22.116 UTC [37] LOG:  checkpoint complete: wrote 71 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.012 s, sync=0.107 s, total=0.142 s; sync files=56, longest=0.062 s, average=0.002 s; distance=196 kB, estimate=196 kB; lsn=0/1521668, redo lsn=0/1521668
+postgres-1  | 2024-03-04 23:29:22.120 UTC [36] LOG:  database system is shut down
 postgres-1  |  done
 postgres-1  | server stopped
 postgres-1  | 
 postgres-1  | PostgreSQL init process complete; ready for start up.
 postgres-1  | 
-postgres-1  | 2024-02-16 11:52:21.871 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres-1  | 2024-02-16 11:52:21.871 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres-1  | 2024-02-16 11:52:21.871 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-postgres-1  | 2024-02-16 11:52:21.879 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres-1  | 2024-02-16 11:52:21.891 UTC [65] LOG:  database system was shut down at 2024-02-16 11:52:21 UTC
-postgres-1  | 2024-02-16 11:52:21.904 UTC [1] LOG:  database system is ready to accept connections
-postgres-1  | 2024-02-16 11:52:24.062 UTC [77] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:29:22.194 UTC [1] LOG:  starting PostgreSQL 16.2 on x86_64-pc-linux-musl, compiled by gcc (Alpine 13.2.1_git20231014) 13.2.1 20231014, 64-bit
+postgres-1  | 2024-03-04 23:29:22.194 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2024-03-04 23:29:22.194 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2024-03-04 23:29:22.201 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2024-03-04 23:29:22.209 UTC [52] LOG:  database system was shut down at 2024-03-04 23:29:22 UTC
+postgres-1  | 2024-03-04 23:29:22.217 UTC [1] LOG:  database system is ready to accept connections
+postgres-1  | 2024-03-04 23:29:29.452 UTC [62] FATAL:  role "admin" does not exist
 api2-1      | 
 api2-1      |  ┌───────────────────────────────────────────────────┐ 
 api2-1      |  │                   Fiber v2.52.0                   │ 
@@ -97,67 +101,42 @@ nginx-1     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-reso
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
-postgres-1  | 2024-02-16 11:52:29.146 UTC [104] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:52:34.222 UTC [113] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:52:39.298 UTC [122] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:52:44.366 UTC [131] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:52:49.455 UTC [140] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:52:54.531 UTC [150] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:52:59.616 UTC [159] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:53:04.684 UTC [168] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:53:09.755 UTC [177] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:53:14.836 UTC [186] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:53:19.907 UTC [195] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:53:24.983 UTC [205] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:53:30.059 UTC [214] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:53:35.131 UTC [223] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:53:40.207 UTC [232] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:53:45.283 UTC [241] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:53:50.351 UTC [250] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:53:55.432 UTC [260] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:54:00.500 UTC [269] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:54:05.573 UTC [278] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:54:10.657 UTC [287] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:54:15.740 UTC [296] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:54:20.817 UTC [305] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:54:25.894 UTC [315] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:54:30.966 UTC [324] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:54:36.043 UTC [333] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:54:41.122 UTC [342] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:54:46.216 UTC [352] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:54:51.315 UTC [361] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:54:56.418 UTC [371] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:55:01.494 UTC [380] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:55:06.589 UTC [389] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:55:11.669 UTC [398] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:55:16.741 UTC [407] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:55:21.824 UTC [417] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:55:26.919 UTC [427] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:55:32.019 UTC [436] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:55:37.118 UTC [445] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:55:42.217 UTC [454] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:55:47.293 UTC [463] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:55:52.418 UTC [473] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:55:57.489 UTC [482] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:56:02.570 UTC [491] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:56:07.716 UTC [500] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:56:12.821 UTC [508] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:56:17.919 UTC [517] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:56:23.021 UTC [527] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:56:28.116 UTC [536] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:56:33.216 UTC [545] FATAL:  role "admin" does not exist
-postgres-1  | 2024-02-16 11:56:38.297 UTC [554] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:29:39.508 UTC [83] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:29:49.564 UTC [90] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:29:59.612 UTC [98] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:30:09.660 UTC [105] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:30:19.708 UTC [112] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:30:29.761 UTC [120] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:30:39.816 UTC [127] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:30:49.881 UTC [134] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:30:59.946 UTC [143] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:31:09.993 UTC [150] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:31:20.053 UTC [157] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:31:30.105 UTC [165] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:31:40.165 UTC [172] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:31:50.221 UTC [180] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:32:00.282 UTC [188] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:32:10.333 UTC [195] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:32:20.387 UTC [202] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:32:30.437 UTC [210] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:32:40.482 UTC [217] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:32:50.533 UTC [224] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:33:00.601 UTC [232] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:33:10.657 UTC [239] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:33:20.714 UTC [246] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:33:30.777 UTC [255] FATAL:  role "admin" does not exist
+postgres-1  | 2024-03-04 23:33:40.834 UTC [263] FATAL:  role "admin" does not exist
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api1-1 exited with code 0
-api1-1 exited with code 2
 api2-1 exited with code 0
 api2-1 exited with code 2
-postgres-1  | 2024-02-16 11:56:40.850 UTC [1] LOG:  received fast shutdown request
-postgres-1  | 2024-02-16 11:56:40.854 UTC [1] LOG:  aborting any active transactions
-postgres-1  | 2024-02-16 11:56:40.856 UTC [1] LOG:  background worker "logical replication launcher" (PID 68) exited with exit code 1
-postgres-1  | 2024-02-16 11:56:40.856 UTC [63] LOG:  shutting down
-postgres-1  | 2024-02-16 11:56:40.860 UTC [63] LOG:  checkpoint starting: shutdown immediate
-postgres-1  | 2024-02-16 11:56:40.992 UTC [63] LOG:  checkpoint complete: wrote 617 buffers (3.8%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.010 s, sync=0.101 s, total=0.136 s; sync files=31, longest=0.095 s, average=0.004 s; distance=16710 kB, estimate=16710 kB; lsn=0/256A9C0, redo lsn=0/256A9C0
-postgres-1  | 2024-02-16 11:56:40.996 UTC [1] LOG:  database system is shut down
+api1-1 exited with code 0
+api1-1 exited with code 2
+postgres-1  | 2024-03-04 23:33:45.550 UTC [1] LOG:  received fast shutdown request
+postgres-1  | 2024-03-04 23:33:45.557 UTC [1] LOG:  aborting any active transactions
+postgres-1  | 2024-03-04 23:33:45.560 UTC [1] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+postgres-1  | 2024-03-04 23:33:45.560 UTC [50] LOG:  shutting down
+postgres-1  | 2024-03-04 23:33:45.564 UTC [50] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2024-03-04 23:33:45.694 UTC [50] LOG:  checkpoint complete: wrote 665 buffers (4.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.101 s, total=0.134 s; sync files=29, longest=0.092 s, average=0.004 s; distance=2641 kB, estimate=2641 kB; lsn=0/17B5B28, redo lsn=0/17B5B28
+postgres-1  | 2024-03-04 23:33:45.698 UTC [1] LOG:  database system is shut down
 postgres-1 exited with code 0

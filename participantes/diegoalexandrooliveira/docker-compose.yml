@@ -1,36 +1,25 @@
 version: "3.5"
 
 services:
-  api01:
+  api01: &api
     image: diegoalexandrooliveira/rinha-back-end-q1-2024:1.0.0
     hostname: api01
     environment:
       - JDBC_URL=jdbc:postgresql://db:5432/rinha
       - DB_PASSWORD=123
       - DB_USERNAME=admin
+      - DB_POOL_SIZE=3
     depends_on:
       db:
         condition: service_healthy
     deploy:
       resources:
         limits:
-          cpus: "0.3"
-          memory: "100MB"
+          cpus: "0.25"
+          memory: "170MB"
   api02:
-    image: diegoalexandrooliveira/rinha-back-end-q1-2024:1.0.0
+    <<: *api
     hostname: api02
-    environment:
-      - JDBC_URL=jdbc:postgresql://db:5432/rinha
-      - DB_PASSWORD=123
-      - DB_USERNAME=admin
-    depends_on:
-      db:
-        condition: service_healthy
-    deploy:
-      resources:
-        limits:
-          cpus: "0.3"
-          memory: "100MB"
   nginx:
     image: nginx:latest
     volumes:
@@ -43,7 +32,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.1"
+          cpus: "0.2"
           memory: "10MB"
   db:
     image: postgres:16-alpine
@@ -61,7 +50,7 @@ services:
       resources:
         limits:
           cpus: "0.8"
-          memory: "340MB"
+          memory: "200MB"
 networks:
   default:
     driver: bridge

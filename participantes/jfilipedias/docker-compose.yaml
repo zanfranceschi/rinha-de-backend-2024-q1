@@ -1,0 +1,72 @@
+version: "3.1"
+name: "jfilipedias"
+
+services:
+  api01: &api
+    hostname: api01
+    image: jfilipedias/rinha-backend-2024-q1-go:latest
+    environment:
+      - POSTGRES_DSN=user=local_user password=local_password dbname=local_db host=db port=5432 sslmode=disable
+      - API_PORT=8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "80MB"
+    networks:
+      - app
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "8082:8080"
+
+  nginx:
+    image: nginx:1.25.4-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+    networks:
+      - app
+
+  db:
+    image: postgres:16.2-alpine
+    environment:
+      - POSTGRES_USER=local_user
+      - POSTGRES_PASSWORD=local_password
+      - POSTGRES_DB=local_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "340MB"
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U local_user -d local_db'"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    networks:
+      - app
+
+networks:
+  app:

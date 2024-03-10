@@ -1,0 +1,80 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    command: 'postgres -c config_file=/etc/postgresql/postgresql.conf'
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "400MB"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "--username", "admin" ]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+    
+
+  app1: &api
+    image: otonielsilva/rinhabackend:latest
+    hostname: app1
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+
+    environment:
+      - QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://db:5432/rinha
+      - QUARKUS_DATASOURCE_JDBC_MIN_SIZE=15
+      - QUARKUS_DATASOURCE_JDBC_MAX_SIZE=25
+      - QUARKUS_DATASOURCE_JDBC_INITIAL_SIZE=20
+      - QUARKUS_HTTP_IDLE_TIMEOUT=45S
+      - QUARKUS_DATASOURCE_JDBC_ACQUISITION_TIMEOUT=60S
+      
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "75MB"
+
+  app2:
+    <<: *api
+    hostname: app2
+    ports:
+      - "8082:8080"
+
+
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "20MB"
+    depends_on:
+      - app1
+      - app2
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

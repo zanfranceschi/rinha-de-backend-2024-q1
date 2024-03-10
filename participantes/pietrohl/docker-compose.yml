@@ -1,0 +1,59 @@
+version: '3.5'
+
+services:
+  api01: &api
+    image: phalabadessa/rinha-rust-2024:v1
+    hostname: api01
+    expose: 
+      - "3000"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    expose: 
+      - "3000"
+
+  haproxy:
+    image: haproxy:alpine
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    privileged: true
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "70MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+     - POSTGRES_USER=postgres
+     - POSTGRES_PASSWORD=postgres
+     - POSTGRES_DB=rinha_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "380MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-rust-nginx-2024q1

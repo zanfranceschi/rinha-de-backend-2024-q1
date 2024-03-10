@@ -1,7 +1,4 @@
-drop table if exists transacao;
-drop table if exists cliente;
-
-create table cliente (
+create table if not exists cliente (
     id integer constraint pk_cliente primary key,
     limite bigint not null,
     saldo bigint not null,
@@ -9,8 +6,8 @@ create table cliente (
     constraint chk_saldo CHECK(saldo >= (-limite))
 );
 
-create table transacao (
-    id uuid constraint pk_transacao primary key,
+create table if not exists transacao (
+    id serial constraint pk_transacao primary key,
     id_cliente integer references cliente(id),
     valor integer not null,
     tipo char not null,
@@ -26,12 +23,3 @@ insert into cliente(id, limite, saldo) values(2, 80000, 0);
 insert into cliente(id, limite, saldo) values(3, 1000000, 0);
 insert into cliente(id, limite, saldo) values(4, 10000000, 0);
 insert into cliente(id, limite, saldo) values(5, 500000, 0);
-
-
-select c.saldo, c.limite, r.credito - s.debito from 
-cliente c, 
-(select sum(valor) as credito from transacao where tipo = 'c' and id_cliente = 1) r, 
-(select sum(valor) as debito from transacao where tipo = 'd' and id_cliente = 1) s
-where c.id = 1;
-
-

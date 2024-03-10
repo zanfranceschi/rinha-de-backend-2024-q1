@@ -1,0 +1,79 @@
+version: "3.9"
+
+# Limites:
+# CPU: 1.5
+# MEM: 550MB
+
+services:
+  api01: &api
+    image: ftathiago/blog-do-ft-rinha2024q1-aot
+    hostname: api01
+    environment: &env
+      ASPNETCORE_URLS: http://0.0.0.0:8080
+      ConnectionStrings__Database: Host=db;Port=5432;Database=RinhaBackend;User Id=postgres;Password=123;Pooling=true;MinPoolSize=50;MaxPoolSize=150; Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db 
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "70MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      <<: *env
+      ASPNETCORE_URLS: http://*:8081
+    ports:
+      - "8081:8081"     
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./eng/docker/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "45MB"
+    ulimits:
+      nofile:
+        soft: 500000
+        hard: 500000
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=RinhaBackend
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./eng/docker/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./eng/docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5    
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: "365MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

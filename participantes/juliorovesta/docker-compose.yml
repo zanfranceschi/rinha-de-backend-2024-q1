@@ -1,0 +1,77 @@
+version: '3'
+name: 'rinha-backend-juliorovesta'
+
+services:
+  loadbalancer:
+    image: nginx:1-alpine
+    container_name: loadbalancer
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    expose:
+      - 9999
+    network_mode: host
+    restart: no
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "40MB"
+
+  api1: &api
+    image: juliorovesta/rinhabackend2024q1:latest
+    container_name: api1
+    environment: &api_env
+      ASPNETCORE_HTTP_PORTS: 3001
+      ConnectionStrings__Db: Host=localhost;Username=rinha;Password=rinha123;Database=rinha_db;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=200;Multiplexing=true;Timeout=15;Command Timeout=30;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=10;Auto Prepare Min Usages=1
+    expose:
+      - 3001
+    network_mode: host
+    restart: no
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "55MB"
+
+  api2:
+    <<: *api
+    container_name: api2
+    environment:
+      <<: *api_env
+      ASPNETCORE_HTTP_PORTS: 3002
+    expose:
+      - 3002
+
+  db:
+    image: postgres:alpine
+    container_name: db
+    environment:
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha123
+      - POSTGRES_DB=rinha_db
+    volumes:
+      - ./sql/1-init.sql:/docker-entrypoint-initdb.d/1-init.sql:ro
+      - ./sql/2-functions.sql:/docker-entrypoint-initdb.d/2-functions.sql:ro
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    expose:
+      - 5432
+    network_mode: host
+    restart: no
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "400MB"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "rinha", "-d", "rinha_db"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s

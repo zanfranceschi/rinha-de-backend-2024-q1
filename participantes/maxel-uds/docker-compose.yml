@@ -1,0 +1,65 @@
+version: "3.5"
+
+services:
+  db_postgres:
+    image: postgres:latest
+    container_name: db_postgres
+    hostname: db_postgres
+    environment:
+      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=bank
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "120MB"
+    networks:
+      - default
+  api01: &api
+    image: suntzu12/concurrence-control:latest
+    container_name: api1
+    hostname: api01
+    environment:
+      - POSTGRES_DB_URL=jdbc:postgresql://db_postgres:5432/bank
+      - POSTGRES_DB_USER=postgres
+      - POSTGRES_DB_PASS=12345678
+    depends_on:
+      - db_postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "200MB"
+    networks:
+      - default
+
+  api02:
+    <<: *api
+    hostname: api02
+    container_name: api2
+
+  nginx:
+    image: nginx:latest
+    container_name: load_balancer
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "30MB"
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
+    name: default-network

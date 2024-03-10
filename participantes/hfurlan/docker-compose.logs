@@ -2,10 +2,10 @@
  Network hfurlan_rinha-network  Created
  Container hfurlan-db-1  Creating
  Container hfurlan-db-1  Created
- Container hfurlan-api01-1  Creating
  Container hfurlan-api02-1  Creating
- Container hfurlan-api01-1  Created
+ Container hfurlan-api01-1  Creating
  Container hfurlan-api02-1  Created
+ Container hfurlan-api01-1  Created
  Container hfurlan-nginx-1  Creating
  Container hfurlan-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -26,34 +26,19 @@ db-1     | selecting default shared_buffers ... 128MB
 db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
-db-1     | performing post-bootstrap initialization ... ok
 api01-1  | Conectando no BD...
 api01-1  | DB_HOSTNAME:db
 api01-1  | DB_NAME:rinha
 api01-1  | DB_USERNAME:admin
 api01-1  | DB_MAX_CONNECTIONS:10
-api01-1  | 2024/02/16 09:18:54 DB unreachable:dial tcp 192.168.96.2:5432: connect: connection refused
+api01-1  | 2024/02/19 07:51:17 DB unreachable:dial tcp 172.18.0.2:5432: connect: connection refused
 api02-1  | Conectando no BD...
 api02-1  | DB_HOSTNAME:db
 api02-1  | DB_NAME:rinha
 api02-1  | DB_USERNAME:admin
 api02-1  | DB_MAX_CONNECTIONS:10
-api02-1  | 2024/02/16 09:18:55 DB unreachable:dial tcp 192.168.96.2:5432: connect: connection refused
-db-1     | syncing data to disk ... ok
-db-1     | 
-db-1     | 
-db-1     | Success. You can now start the database server using:
-db-1     | 
-db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
-db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-16 09:18:55.244 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 09:18:55.249 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 09:18:55.269 UTC [51] LOG:  database system was shut down at 2024-02-16 09:18:54 UTC
-db-1     | 2024-02-16 09:18:55.286 UTC [48] LOG:  database system is ready to accept connections
-db-1     |  done
-db-1     | server started
+api02-1  | 2024/02/19 07:51:17 DB unreachable:dial tcp 172.18.0.2:5432: connect: connection refused
+db-1     | performing post-bootstrap initialization ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -63,8 +48,24 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1  | 2024/02/16 09:18:55 [emerg] 1#1: host not found in upstream "api01:8081" in /etc/nginx/nginx.conf:10
+nginx-1  | 2024/02/19 07:51:19 [emerg] 1#1: host not found in upstream "api01:8081" in /etc/nginx/nginx.conf:10
 nginx-1  | nginx: [emerg] host not found in upstream "api01:8081" in /etc/nginx/nginx.conf:10
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1     | syncing data to disk ... ok
+db-1     | 
+db-1     | 
+db-1     | Success. You can now start the database server using:
+db-1     | 
+db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1     | 
+db-1     | waiting for server to start....2024-02-19 07:51:19.890 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 07:51:19.924 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+api01-1 exited with code 0
+db-1     | 2024-02-19 07:51:19.968 UTC [51] LOG:  database system was shut down at 2024-02-19 07:51:18 UTC
+db-1     | 2024-02-19 07:51:19.989 UTC [48] LOG:  database system is ready to accept connections
+db-1     |  done
+db-1     | server started
 db-1     | CREATE DATABASE
 db-1     | 
 db-1     | 
@@ -83,418 +84,417 @@ db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initd
 db-1     | INSERT 0 5
 db-1     | 
 db-1     | 
-db-1     | 2024-02-16 09:18:56.569 UTC [48] LOG:  received fast shutdown request
-db-1     | waiting for server to shut down....2024-02-16 09:18:56.573 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-16 09:18:56.575 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-16 09:18:56.577 UTC [49] LOG:  shutting down
-db-1     | 2024-02-16 09:18:56.580 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 09:18:57.373 UTC [49] LOG:  checkpoint complete: wrote 941 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.491 s, sync=0.249 s, total=0.797 s; sync files=317, longest=0.210 s, average=0.001 s; distance=4315 kB, estimate=4315 kB; lsn=0/1921860, redo lsn=0/1921860
-db-1     | 2024-02-16 09:18:57.377 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-02-19 07:51:20.624 UTC [48] LOG:  received fast shutdown request
+db-1     | .2024-02-19 07:51:20.943 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-19 07:51:20.945 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-19 07:51:20.946 UTC [49] LOG:  shutting down
+db-1     | 2024-02-19 07:51:20.973 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | .2024-02-19 07:51:22.002 UTC [49] LOG:  checkpoint complete: wrote 941 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.538 s, sync=0.329 s, total=1.056 s; sync files=317, longest=0.224 s, average=0.002 s; distance=4315 kB, estimate=4315 kB; lsn=0/1921860, redo lsn=0/1921860
+db-1     | 2024-02-19 07:51:22.008 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-16 09:18:57.870 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 09:18:57.870 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 09:18:57.870 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 09:18:57.883 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 09:18:57.920 UTC [68] LOG:  database system was shut down at 2024-02-16 09:18:57 UTC
-db-1     | 2024-02-16 09:18:57.928 UTC [1] LOG:  database system is ready to accept connections
-api01-1 exited with code 0
+db-1     | 2024-02-19 07:51:22.051 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 07:51:22.053 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 07:51:22.053 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 07:51:22.521 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 07:51:22.572 UTC [68] LOG:  database system was shut down at 2024-02-19 07:51:21 UTC
+db-1     | 2024-02-19 07:51:22.585 UTC [1] LOG:  database system is ready to accept connections
 api02-1 exited with code 0
 nginx-1 exited with code 0
+api02-1 exited with code 0
+api01-1 exited with code 0
+nginx-1 exited with code 0
+api01-1  | Cliente 1 inserido no cache com valor de limite igual a 100000
 api01-1  | Cliente 1 inserido no cache com valor de limite igual a 100000
 api01-1  | Cliente 1 inserido no cache com valor de saldo inicial igual a 0
+api01-1  | Cliente 1 inserido no cache com valor de saldo inicial igual a 0
+api02-1  | Cliente 1 inserido no cache com valor de limite igual a 100000
 api02-1  | Cliente 1 inserido no cache com valor de limite igual a 100000
 api02-1  | Cliente 1 inserido no cache com valor de saldo inicial igual a 0
+api02-1  | Cliente 1 inserido no cache com valor de saldo inicial igual a 0
 api01-1  | Erro ao obter limite do cliente 6 - sql: no rows in result set
-api02-1  | Cliente 2 inserido no cache com valor de limite igual a 80000
-api02-1  | Cliente 2 inserido no cache com valor de saldo inicial igual a 0
+api01-1  | Erro ao obter limite do cliente 6 - sql: no rows in result set
 api01-1  | Cliente 3 inserido no cache com valor de limite igual a 1000000
 api01-1  | Cliente 3 inserido no cache com valor de saldo inicial igual a 0
+api01-1  | Cliente 3 inserido no cache com valor de limite igual a 1000000
+api01-1  | Cliente 3 inserido no cache com valor de saldo inicial igual a 0
+api01-1  | Cliente 4 inserido no cache com valor de limite igual a 10000000
+api01-1  | Cliente 4 inserido no cache com valor de limite igual a 10000000
+api01-1  | Cliente 4 inserido no cache com valor de saldo inicial igual a 0
+api01-1  | Cliente 4 inserido no cache com valor de saldo inicial igual a 0
+api02-1  | Cliente 5 inserido no cache com valor de limite igual a 500000
 api02-1  | Cliente 5 inserido no cache com valor de limite igual a 500000
 api02-1  | Cliente 5 inserido no cache com valor de saldo inicial igual a 0
+api02-1  | Cliente 5 inserido no cache com valor de saldo inicial igual a 0
+api02-1  | Cliente 2 inserido no cache com valor de limite igual a 80000
+api02-1  | Cliente 2 inserido no cache com valor de saldo inicial igual a 0
+api02-1  | Cliente 2 inserido no cache com valor de limite igual a 80000
+api02-1  | Cliente 2 inserido no cache com valor de saldo inicial igual a 0
+api01-1  | Cliente 5 inserido no cache com valor de limite igual a 500000
+api01-1  | Cliente 5 inserido no cache com valor de limite igual a 500000
+api02-1  | Cliente 3 inserido no cache com valor de limite igual a 1000000
+api02-1  | Cliente 3 inserido no cache com valor de limite igual a 1000000
+api02-1  | Cliente 4 inserido no cache com valor de limite igual a 10000000
+api01-1  | Cliente 2 inserido no cache com valor de limite igual a 80000
 api01-1  | Cliente 2 inserido no cache com valor de limite igual a 80000
 api02-1  | Cliente 4 inserido no cache com valor de limite igual a 10000000
-api02-1  | Cliente 4 inserido no cache com valor de saldo inicial igual a 0
-api02-1  | Cliente 3 inserido no cache com valor de limite igual a 1000000
-api01-1  | Cliente 4 inserido no cache com valor de limite igual a 10000000
-api02-1  | Erro ao tratar json de entrada - json: cannot unmarshal number 1.2 into Go struct field Transacao.valor of type int
-api02-1  | Erro ao tratar json de entrada - json: cannot unmarshal number 1.2 into Go struct field Transacao.valor of type int
 api01-1  | Erro ao tratar json de entrada - json: cannot unmarshal number 1.2 into Go struct field Transacao.valor of type int
-api01-1  | Cliente 5 inserido no cache com valor de limite igual a 500000
+api01-1  | Erro ao tratar json de entrada - json: cannot unmarshal number 1.2 into Go struct field Transacao.valor of type int
+api01-1  | Erro ao tratar json de entrada - json: cannot unmarshal number 1.2 into Go struct field Transacao.valor of type int
+api01-1  | Erro ao tratar json de entrada - json: cannot unmarshal number 1.2 into Go struct field Transacao.valor of type int
 api02-1  | Erro ao tratar json de entrada - json: cannot unmarshal number 1.2 into Go struct field Transacao.valor of type int
 api02-1  | Erro ao tratar json de entrada - json: cannot unmarshal number 1.2 into Go struct field Transacao.valor of type int
-db-1     | 2024-02-16 09:19:21.008 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:21.008 UTC [88] DETAIL:  Failing row contains (2, -85180, 80000).
-db-1     | 2024-02-16 09:19:21.008 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:21.090 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:21.090 UTC [88] DETAIL:  Failing row contains (2, -84739, 80000).
-db-1     | 2024-02-16 09:19:21.090 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:21.466 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:21.466 UTC [104] DETAIL:  Failing row contains (2, -82000, 80000).
-db-1     | 2024-02-16 09:19:21.466 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:21.590 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:21.590 UTC [104] DETAIL:  Failing row contains (2, -80803, 80000).
-db-1     | 2024-02-16 09:19:21.590 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:21.966 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:21.966 UTC [88] DETAIL:  Failing row contains (2, -82464, 80000).
-db-1     | 2024-02-16 09:19:21.966 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:22.767 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:22.767 UTC [104] DETAIL:  Failing row contains (2, -82379, 80000).
-db-1     | 2024-02-16 09:19:22.767 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:23.078 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:23.078 UTC [104] DETAIL:  Failing row contains (2, -83868, 80000).
-db-1     | 2024-02-16 09:19:23.078 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:23.221 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:23.221 UTC [104] DETAIL:  Failing row contains (2, -83531, 80000).
-db-1     | 2024-02-16 09:19:23.221 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:23.399 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:23.399 UTC [88] DETAIL:  Failing row contains (2, -81055, 80000).
-db-1     | 2024-02-16 09:19:23.399 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:24.523 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:24.523 UTC [104] DETAIL:  Failing row contains (2, -81262, 80000).
-db-1     | 2024-02-16 09:19:24.523 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:24.558 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:24.558 UTC [104] DETAIL:  Failing row contains (2, -81731, 80000).
-db-1     | 2024-02-16 09:19:24.558 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:24.662 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:24.662 UTC [104] DETAIL:  Failing row contains (2, -80576, 80000).
-db-1     | 2024-02-16 09:19:24.662 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:25.619 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:25.619 UTC [104] DETAIL:  Failing row contains (1, -104985, 100000).
-db-1     | 2024-02-16 09:19:25.619 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:25.845 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:25.845 UTC [72] DETAIL:  Failing row contains (1, -101750, 100000).
-db-1     | 2024-02-16 09:19:25.845 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:25.910 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:25.910 UTC [104] DETAIL:  Failing row contains (1, -100435, 100000).
-db-1     | 2024-02-16 09:19:25.910 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:26.007 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:26.007 UTC [72] DETAIL:  Failing row contains (1, -105781, 100000).
-db-1     | 2024-02-16 09:19:26.007 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:26.067 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:26.067 UTC [72] DETAIL:  Failing row contains (1, -104522, 100000).
-db-1     | 2024-02-16 09:19:26.067 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:27.035 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:27.035 UTC [103] DETAIL:  Failing row contains (1, -105520, 100000).
-db-1     | 2024-02-16 09:19:27.035 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:28.006 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:28.006 UTC [88] DETAIL:  Failing row contains (1, -107411, 100000).
-db-1     | 2024-02-16 09:19:28.006 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:28.167 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:28.167 UTC [103] DETAIL:  Failing row contains (2, -80814, 80000).
-db-1     | 2024-02-16 09:19:28.167 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:28.249 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:28.249 UTC [103] DETAIL:  Failing row contains (1, -101222, 100000).
-db-1     | 2024-02-16 09:19:28.249 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:28.276 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:28.276 UTC [103] DETAIL:  Failing row contains (2, -84366, 80000).
-db-1     | 2024-02-16 09:19:28.276 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:28.519 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:28.519 UTC [103] DETAIL:  Failing row contains (2, -81043, 80000).
-db-1     | 2024-02-16 09:19:28.519 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:28.870 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:28.870 UTC [72] DETAIL:  Failing row contains (1, -100709, 100000).
-db-1     | 2024-02-16 09:19:28.870 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:28.897 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:28.897 UTC [103] DETAIL:  Failing row contains (2, -86962, 80000).
-db-1     | 2024-02-16 09:19:28.897 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:29.111 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:29.111 UTC [104] DETAIL:  Failing row contains (2, -83817, 80000).
-db-1     | 2024-02-16 09:19:29.111 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:29.269 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:29.269 UTC [72] DETAIL:  Failing row contains (2, -88450, 80000).
-db-1     | 2024-02-16 09:19:29.269 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:29.374 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:29.374 UTC [72] DETAIL:  Failing row contains (2, -83916, 80000).
-db-1     | 2024-02-16 09:19:29.374 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:30.006 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:30.006 UTC [104] DETAIL:  Failing row contains (2, -86000, 80000).
-db-1     | 2024-02-16 09:19:30.006 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:30.056 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:30.056 UTC [103] DETAIL:  Failing row contains (2, -88713, 80000).
-db-1     | 2024-02-16 09:19:30.056 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:30.206 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:30.206 UTC [103] DETAIL:  Failing row contains (2, -85240, 80000).
-db-1     | 2024-02-16 09:19:30.206 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:30.831 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:30.831 UTC [72] DETAIL:  Failing row contains (1, -101288, 100000).
-db-1     | 2024-02-16 09:19:30.831 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:30.931 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:30.931 UTC [72] DETAIL:  Failing row contains (2, -86085, 80000).
-db-1     | 2024-02-16 09:19:30.931 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:31.101 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:31.101 UTC [72] DETAIL:  Failing row contains (2, -82486, 80000).
-db-1     | 2024-02-16 09:19:31.101 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:31.244 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:31.244 UTC [103] DETAIL:  Failing row contains (2, -87504, 80000).
-db-1     | 2024-02-16 09:19:31.244 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:31.267 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:31.267 UTC [72] DETAIL:  Failing row contains (2, -84789, 80000).
-db-1     | 2024-02-16 09:19:31.267 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:31.291 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:31.291 UTC [72] DETAIL:  Failing row contains (1, -100304, 100000).
-db-1     | 2024-02-16 09:19:31.291 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:31.386 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:31.386 UTC [72] DETAIL:  Failing row contains (1, -100100, 100000).
-db-1     | 2024-02-16 09:19:31.386 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:31.530 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:31.530 UTC [72] DETAIL:  Failing row contains (1, -104210, 100000).
-db-1     | 2024-02-16 09:19:31.530 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:31.578 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:31.578 UTC [104] DETAIL:  Failing row contains (1, -100047, 100000).
-db-1     | 2024-02-16 09:19:31.578 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:31.601 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:31.601 UTC [104] DETAIL:  Failing row contains (1, -102963, 100000).
-db-1     | 2024-02-16 09:19:31.601 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:31.696 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:31.696 UTC [104] DETAIL:  Failing row contains (1, -107649, 100000).
-db-1     | 2024-02-16 09:19:31.696 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:31.744 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:31.744 UTC [72] DETAIL:  Failing row contains (1, -104007, 100000).
-db-1     | 2024-02-16 09:19:31.744 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:31.792 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:31.792 UTC [104] DETAIL:  Failing row contains (2, -87673, 80000).
-db-1     | 2024-02-16 09:19:31.792 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:31.816 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:31.816 UTC [72] DETAIL:  Failing row contains (2, -82098, 80000).
-db-1     | 2024-02-16 09:19:31.816 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:32.210 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:32.210 UTC [104] DETAIL:  Failing row contains (2, -86486, 80000).
-db-1     | 2024-02-16 09:19:32.210 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:32.802 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:32.802 UTC [72] DETAIL:  Failing row contains (1, -100880, 100000).
-db-1     | 2024-02-16 09:19:32.802 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:32.825 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:32.825 UTC [72] DETAIL:  Failing row contains (2, -80178, 80000).
-db-1     | 2024-02-16 09:19:32.825 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:32.869 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:32.869 UTC [72] DETAIL:  Failing row contains (1, -103531, 100000).
-db-1     | 2024-02-16 09:19:32.869 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:32.937 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:32.937 UTC [104] DETAIL:  Failing row contains (2, -80795, 80000).
-db-1     | 2024-02-16 09:19:32.937 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:33.136 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:33.136 UTC [72] DETAIL:  Failing row contains (2, -85021, 80000).
-db-1     | 2024-02-16 09:19:33.136 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:33.592 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:33.592 UTC [72] DETAIL:  Failing row contains (1, -102938, 100000).
-db-1     | 2024-02-16 09:19:33.592 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:33.940 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:33.940 UTC [104] DETAIL:  Failing row contains (1, -100801, 100000).
-db-1     | 2024-02-16 09:19:33.940 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:33.985 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:33.985 UTC [72] DETAIL:  Failing row contains (1, -101479, 100000).
-db-1     | 2024-02-16 09:19:33.985 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:34.218 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:34.218 UTC [72] DETAIL:  Failing row contains (2, -85624, 80000).
-db-1     | 2024-02-16 09:19:34.218 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:34.240 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:34.240 UTC [104] DETAIL:  Failing row contains (2, -85365, 80000).
-db-1     | 2024-02-16 09:19:34.240 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:34.367 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:34.367 UTC [72] DETAIL:  Failing row contains (2, -81070, 80000).
-db-1     | 2024-02-16 09:19:34.367 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:35.306 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:35.306 UTC [88] DETAIL:  Failing row contains (1, -108348, 100000).
-db-1     | 2024-02-16 09:19:35.306 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:35.606 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:35.606 UTC [104] DETAIL:  Failing row contains (1, -106975, 100000).
-db-1     | 2024-02-16 09:19:35.606 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:35.826 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:35.826 UTC [104] DETAIL:  Failing row contains (1, -103591, 100000).
-db-1     | 2024-02-16 09:19:35.826 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:35.926 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:35.926 UTC [88] DETAIL:  Failing row contains (1, -106382, 100000).
-db-1     | 2024-02-16 09:19:35.926 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:35.966 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:35.966 UTC [104] DETAIL:  Failing row contains (1, -101943, 100000).
-db-1     | 2024-02-16 09:19:35.966 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:36.064 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:36.064 UTC [72] DETAIL:  Failing row contains (2, -80398, 80000).
-db-1     | 2024-02-16 09:19:36.064 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:36.574 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:36.574 UTC [72] DETAIL:  Failing row contains (1, -102840, 100000).
-db-1     | 2024-02-16 09:19:36.574 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:36.653 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:36.653 UTC [72] DETAIL:  Failing row contains (2, -87770, 80000).
-db-1     | 2024-02-16 09:19:36.653 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:36.790 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:36.790 UTC [72] DETAIL:  Failing row contains (1, -102883, 100000).
-db-1     | 2024-02-16 09:19:36.790 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:36.927 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:36.927 UTC [72] DETAIL:  Failing row contains (2, -85491, 80000).
-db-1     | 2024-02-16 09:19:36.927 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:36.947 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:36.947 UTC [72] DETAIL:  Failing row contains (1, -104495, 100000).
-db-1     | 2024-02-16 09:19:36.947 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:37.156 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:37.156 UTC [104] DETAIL:  Failing row contains (2, -81843, 80000).
-db-1     | 2024-02-16 09:19:37.156 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:37.195 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:37.195 UTC [88] DETAIL:  Failing row contains (2, -82063, 80000).
-db-1     | 2024-02-16 09:19:37.195 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:37.251 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:37.251 UTC [104] DETAIL:  Failing row contains (1, -101256, 100000).
-db-1     | 2024-02-16 09:19:37.251 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:37.364 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:37.364 UTC [104] DETAIL:  Failing row contains (1, -103088, 100000).
-db-1     | 2024-02-16 09:19:37.364 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:37.421 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:37.421 UTC [104] DETAIL:  Failing row contains (1, -104734, 100000).
-db-1     | 2024-02-16 09:19:37.421 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:37.516 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:37.516 UTC [104] DETAIL:  Failing row contains (1, -107072, 100000).
-db-1     | 2024-02-16 09:19:37.516 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:37.553 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:37.553 UTC [88] DETAIL:  Failing row contains (1, -100370, 100000).
-db-1     | 2024-02-16 09:19:37.553 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:37.817 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:37.817 UTC [88] DETAIL:  Failing row contains (2, -83600, 80000).
-db-1     | 2024-02-16 09:19:37.817 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.006 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.006 UTC [104] DETAIL:  Failing row contains (2, -82463, 80000).
-db-1     | 2024-02-16 09:19:38.006 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.115 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.115 UTC [104] DETAIL:  Failing row contains (2, -85790, 80000).
-db-1     | 2024-02-16 09:19:38.115 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.224 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.224 UTC [88] DETAIL:  Failing row contains (1, -106235, 100000).
-db-1     | 2024-02-16 09:19:38.224 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.242 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.242 UTC [104] DETAIL:  Failing row contains (1, -100688, 100000).
-db-1     | 2024-02-16 09:19:38.242 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.296 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.296 UTC [88] DETAIL:  Failing row contains (1, -104833, 100000).
-db-1     | 2024-02-16 09:19:38.296 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.478 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.478 UTC [88] DETAIL:  Failing row contains (1, -102967, 100000).
-db-1     | 2024-02-16 09:19:38.478 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.551 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.551 UTC [88] DETAIL:  Failing row contains (1, -100329, 100000).
-db-1     | 2024-02-16 09:19:38.551 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.643 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.643 UTC [104] DETAIL:  Failing row contains (1, -101003, 100000).
-db-1     | 2024-02-16 09:19:38.643 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.678 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.678 UTC [104] DETAIL:  Failing row contains (1, -102156, 100000).
-db-1     | 2024-02-16 09:19:38.678 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.715 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.715 UTC [88] DETAIL:  Failing row contains (1, -108919, 100000).
-db-1     | 2024-02-16 09:19:38.715 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.769 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.769 UTC [104] DETAIL:  Failing row contains (2, -84237, 80000).
-db-1     | 2024-02-16 09:19:38.769 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.787 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.787 UTC [88] DETAIL:  Failing row contains (1, -101146, 100000).
-db-1     | 2024-02-16 09:19:38.787 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.825 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.825 UTC [104] DETAIL:  Failing row contains (1, -102254, 100000).
-db-1     | 2024-02-16 09:19:38.825 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:38.934 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:38.934 UTC [88] DETAIL:  Failing row contains (1, -106499, 100000).
-db-1     | 2024-02-16 09:19:38.934 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:39.060 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:39.060 UTC [88] DETAIL:  Failing row contains (2, -85754, 80000).
-db-1     | 2024-02-16 09:19:39.060 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:39.113 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:39.113 UTC [104] DETAIL:  Failing row contains (2, -84933, 80000).
-db-1     | 2024-02-16 09:19:39.113 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:39.166 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:39.166 UTC [104] DETAIL:  Failing row contains (2, -85487, 80000).
-db-1     | 2024-02-16 09:19:39.166 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:39.202 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:39.202 UTC [88] DETAIL:  Failing row contains (2, -80304, 80000).
-db-1     | 2024-02-16 09:19:39.202 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:39.345 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:39.345 UTC [104] DETAIL:  Failing row contains (1, -106330, 100000).
-db-1     | 2024-02-16 09:19:39.345 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:39.363 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:39.363 UTC [104] DETAIL:  Failing row contains (2, -87785, 80000).
-db-1     | 2024-02-16 09:19:39.363 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:39.471 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:39.471 UTC [88] DETAIL:  Failing row contains (2, -84184, 80000).
-db-1     | 2024-02-16 09:19:39.471 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:39.488 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:39.488 UTC [88] DETAIL:  Failing row contains (2, -87157, 80000).
-db-1     | 2024-02-16 09:19:39.488 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:39.523 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:39.523 UTC [88] DETAIL:  Failing row contains (2, -84481, 80000).
-db-1     | 2024-02-16 09:19:39.523 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:39.863 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:39.863 UTC [104] DETAIL:  Failing row contains (2, -80897, 80000).
-db-1     | 2024-02-16 09:19:39.863 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:40.260 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:40.260 UTC [103] DETAIL:  Failing row contains (2, -87191, 80000).
-db-1     | 2024-02-16 09:19:40.260 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:40.989 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:40.989 UTC [88] DETAIL:  Failing row contains (2, -82689, 80000).
-db-1     | 2024-02-16 09:19:40.989 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:41.022 UTC [88] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:41.022 UTC [88] DETAIL:  Failing row contains (2, -80552, 80000).
-db-1     | 2024-02-16 09:19:41.022 UTC [88] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:41.106 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:41.106 UTC [104] DETAIL:  Failing row contains (2, -81842, 80000).
-db-1     | 2024-02-16 09:19:41.106 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:41.139 UTC [104] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:41.139 UTC [104] DETAIL:  Failing row contains (2, -82135, 80000).
-db-1     | 2024-02-16 09:19:41.139 UTC [104] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:41.456 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:41.456 UTC [72] DETAIL:  Failing row contains (2, -83470, 80000).
-db-1     | 2024-02-16 09:19:41.456 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:41.689 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:41.689 UTC [72] DETAIL:  Failing row contains (1, -101036, 100000).
-db-1     | 2024-02-16 09:19:41.689 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:41.806 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:41.806 UTC [72] DETAIL:  Failing row contains (1, -107535, 100000).
-db-1     | 2024-02-16 09:19:41.806 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:41.839 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:41.839 UTC [103] DETAIL:  Failing row contains (1, -103459, 100000).
-db-1     | 2024-02-16 09:19:41.839 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:41.956 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:41.956 UTC [72] DETAIL:  Failing row contains (2, -80022, 80000).
-db-1     | 2024-02-16 09:19:41.956 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.022 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.022 UTC [103] DETAIL:  Failing row contains (2, -85368, 80000).
-db-1     | 2024-02-16 09:19:42.022 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.038 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.038 UTC [103] DETAIL:  Failing row contains (1, -104721, 100000).
-db-1     | 2024-02-16 09:19:42.038 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.054 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.054 UTC [72] DETAIL:  Failing row contains (1, -107962, 100000).
-db-1     | 2024-02-16 09:19:42.054 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.086 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.086 UTC [103] DETAIL:  Failing row contains (1, -106231, 100000).
-db-1     | 2024-02-16 09:19:42.086 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.134 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.134 UTC [72] DETAIL:  Failing row contains (1, -104707, 100000).
-db-1     | 2024-02-16 09:19:42.134 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.296 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.296 UTC [72] DETAIL:  Failing row contains (1, -106311, 100000).
-db-1     | 2024-02-16 09:19:42.296 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.489 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.489 UTC [72] DETAIL:  Failing row contains (2, -81206, 80000).
-db-1     | 2024-02-16 09:19:42.489 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.667 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.667 UTC [72] DETAIL:  Failing row contains (2, -83176, 80000).
-db-1     | 2024-02-16 09:19:42.667 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.828 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.828 UTC [72] DETAIL:  Failing row contains (1, -107740, 100000).
-db-1     | 2024-02-16 09:19:42.828 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.844 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.844 UTC [103] DETAIL:  Failing row contains (1, -106000, 100000).
-db-1     | 2024-02-16 09:19:42.844 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.941 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.941 UTC [72] DETAIL:  Failing row contains (1, -106676, 100000).
-db-1     | 2024-02-16 09:19:42.941 UTC [72] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.973 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.973 UTC [103] DETAIL:  Failing row contains (5, -501672, 500000).
-db-1     | 2024-02-16 09:19:42.973 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:42.989 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:42.989 UTC [103] DETAIL:  Failing row contains (2, -80836, 80000).
-db-1     | 2024-02-16 09:19:42.989 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-db-1     | 2024-02-16 09:19:43.021 UTC [103] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
-db-1     | 2024-02-16 09:19:43.021 UTC [103] DETAIL:  Failing row contains (1, -100031, 100000).
-db-1     | 2024-02-16 09:19:43.021 UTC [103] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+api02-1  | Erro ao tratar json de entrada - json: cannot unmarshal number 1.2 into Go struct field Transacao.valor of type int
+api02-1  | Erro ao tratar json de entrada - json: cannot unmarshal number 1.2 into Go struct field Transacao.valor of type int
+api02-1  | Erro ao tratar json de entrada - json: cannot unmarshal number 1.2 into Go struct field Transacao.valor of type int
+api02-1  | Erro ao tratar json de entrada - json: cannot unmarshal number 1.2 into Go struct field Transacao.valor of type int
+db-1     | 2024-02-19 07:51:51.083 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:51.083 UTC [73] DETAIL:  Failing row contains (2, -80485, 80000).
+db-1     | 2024-02-19 07:51:51.083 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:51.180 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:51.180 UTC [107] DETAIL:  Failing row contains (2, -85942, 80000).
+db-1     | 2024-02-19 07:51:51.180 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:51.406 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:51.406 UTC [73] DETAIL:  Failing row contains (2, -81894, 80000).
+db-1     | 2024-02-19 07:51:51.406 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:51.470 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:51.470 UTC [107] DETAIL:  Failing row contains (2, -86609, 80000).
+db-1     | 2024-02-19 07:51:51.470 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:51.721 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:51.721 UTC [78] DETAIL:  Failing row contains (2, -82295, 80000).
+db-1     | 2024-02-19 07:51:51.721 UTC [78] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:51.935 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:51.935 UTC [107] DETAIL:  Failing row contains (2, -80055, 80000).
+db-1     | 2024-02-19 07:51:51.935 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:51.964 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:51.964 UTC [107] DETAIL:  Failing row contains (2, -84369, 80000).
+db-1     | 2024-02-19 07:51:51.964 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:52.571 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:52.571 UTC [78] DETAIL:  Failing row contains (2, -88482, 80000).
+db-1     | 2024-02-19 07:51:52.571 UTC [78] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:53.173 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:53.173 UTC [78] DETAIL:  Failing row contains (2, -83263, 80000).
+db-1     | 2024-02-19 07:51:53.173 UTC [78] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:53.288 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:53.288 UTC [78] DETAIL:  Failing row contains (2, -86438, 80000).
+db-1     | 2024-02-19 07:51:53.288 UTC [78] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:53.712 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:53.712 UTC [107] DETAIL:  Failing row contains (2, -85449, 80000).
+db-1     | 2024-02-19 07:51:53.712 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:53.793 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:53.793 UTC [78] DETAIL:  Failing row contains (2, -81724, 80000).
+db-1     | 2024-02-19 07:51:53.793 UTC [78] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:53.955 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:53.955 UTC [107] DETAIL:  Failing row contains (2, -87154, 80000).
+db-1     | 2024-02-19 07:51:53.955 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:54.063 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:54.063 UTC [78] DETAIL:  Failing row contains (2, -83304, 80000).
+db-1     | 2024-02-19 07:51:54.063 UTC [78] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:54.682 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:54.682 UTC [107] DETAIL:  Failing row contains (2, -81724, 80000).
+db-1     | 2024-02-19 07:51:54.682 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:54.735 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:54.735 UTC [73] DETAIL:  Failing row contains (2, -82855, 80000).
+db-1     | 2024-02-19 07:51:54.735 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:54.999 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:54.999 UTC [107] DETAIL:  Failing row contains (2, -87321, 80000).
+db-1     | 2024-02-19 07:51:54.999 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:55.025 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:55.025 UTC [73] DETAIL:  Failing row contains (2, -87442, 80000).
+db-1     | 2024-02-19 07:51:55.025 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:55.052 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:55.052 UTC [73] DETAIL:  Failing row contains (2, -82256, 80000).
+db-1     | 2024-02-19 07:51:55.052 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:55.420 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:55.420 UTC [73] DETAIL:  Failing row contains (1, -102497, 100000).
+db-1     | 2024-02-19 07:51:55.420 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:55.631 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:55.631 UTC [73] DETAIL:  Failing row contains (1, -103612, 100000).
+db-1     | 2024-02-19 07:51:55.631 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:55.731 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:55.731 UTC [78] DETAIL:  Failing row contains (1, -107721, 100000).
+db-1     | 2024-02-19 07:51:55.731 UTC [78] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:56.056 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:56.056 UTC [78] DETAIL:  Failing row contains (1, -100387, 100000).
+db-1     | 2024-02-19 07:51:56.056 UTC [78] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:56.106 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:56.106 UTC [107] DETAIL:  Failing row contains (1, -102336, 100000).
+db-1     | 2024-02-19 07:51:56.106 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:56.231 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:56.231 UTC [107] DETAIL:  Failing row contains (1, -106748, 100000).
+db-1     | 2024-02-19 07:51:56.231 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:56.281 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:56.281 UTC [78] DETAIL:  Failing row contains (1, -102229, 100000).
+db-1     | 2024-02-19 07:51:56.281 UTC [78] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:56.773 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:56.773 UTC [78] DETAIL:  Failing row contains (1, -108820, 100000).
+db-1     | 2024-02-19 07:51:56.773 UTC [78] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:57.154 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:57.154 UTC [107] DETAIL:  Failing row contains (2, -87559, 80000).
+db-1     | 2024-02-19 07:51:57.154 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:57.178 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:57.178 UTC [107] DETAIL:  Failing row contains (2, -87551, 80000).
+db-1     | 2024-02-19 07:51:57.178 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:57.251 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:57.251 UTC [107] DETAIL:  Failing row contains (2, -81303, 80000).
+db-1     | 2024-02-19 07:51:57.251 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:57.607 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:57.607 UTC [73] DETAIL:  Failing row contains (1, -103237, 100000).
+db-1     | 2024-02-19 07:51:57.607 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:57.971 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:57.971 UTC [73] DETAIL:  Failing row contains (2, -83718, 80000).
+db-1     | 2024-02-19 07:51:57.971 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:58.017 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:58.017 UTC [108] DETAIL:  Failing row contains (1, -105813, 100000).
+db-1     | 2024-02-19 07:51:58.017 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:58.040 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:58.040 UTC [73] DETAIL:  Failing row contains (1, -100273, 100000).
+db-1     | 2024-02-19 07:51:58.040 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:58.153 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:58.153 UTC [73] DETAIL:  Failing row contains (1, -103537, 100000).
+db-1     | 2024-02-19 07:51:58.153 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:58.199 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:58.199 UTC [108] DETAIL:  Failing row contains (2, -83493, 80000).
+db-1     | 2024-02-19 07:51:58.199 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:58.221 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:58.221 UTC [73] DETAIL:  Failing row contains (2, -86146, 80000).
+db-1     | 2024-02-19 07:51:58.221 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:58.403 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:58.403 UTC [108] DETAIL:  Failing row contains (1, -107919, 100000).
+db-1     | 2024-02-19 07:51:58.403 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:58.470 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:58.470 UTC [73] DETAIL:  Failing row contains (2, -83930, 80000).
+db-1     | 2024-02-19 07:51:58.470 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:58.517 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:58.517 UTC [108] DETAIL:  Failing row contains (1, -101390, 100000).
+db-1     | 2024-02-19 07:51:58.517 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:58.585 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:58.585 UTC [108] DETAIL:  Failing row contains (2, -86895, 80000).
+db-1     | 2024-02-19 07:51:58.585 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:58.760 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:58.760 UTC [73] DETAIL:  Failing row contains (2, -81676, 80000).
+db-1     | 2024-02-19 07:51:58.760 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:58.847 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:58.847 UTC [73] DETAIL:  Failing row contains (1, -105847, 100000).
+db-1     | 2024-02-19 07:51:58.847 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:51:58.912 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:51:58.912 UTC [108] DETAIL:  Failing row contains (1, -107929, 100000).
+db-1     | 2024-02-19 07:51:58.912 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:00.269 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:00.269 UTC [73] DETAIL:  Failing row contains (2, -83091, 80000).
+db-1     | 2024-02-19 07:52:00.269 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:00.419 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:00.419 UTC [73] DETAIL:  Failing row contains (2, -80503, 80000).
+db-1     | 2024-02-19 07:52:00.419 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:00.691 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:00.691 UTC [108] DETAIL:  Failing row contains (2, -88294, 80000).
+db-1     | 2024-02-19 07:52:00.691 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:00.930 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:00.930 UTC [108] DETAIL:  Failing row contains (2, -80493, 80000).
+db-1     | 2024-02-19 07:52:00.930 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:00.951 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:00.951 UTC [73] DETAIL:  Failing row contains (2, -82545, 80000).
+db-1     | 2024-02-19 07:52:00.951 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:01.011 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:01.011 UTC [73] DETAIL:  Failing row contains (2, -80453, 80000).
+db-1     | 2024-02-19 07:52:01.011 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:01.091 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:01.091 UTC [73] DETAIL:  Failing row contains (2, -86941, 80000).
+db-1     | 2024-02-19 07:52:01.091 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:01.271 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:01.271 UTC [108] DETAIL:  Failing row contains (2, -81800, 80000).
+db-1     | 2024-02-19 07:52:01.271 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:01.351 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:01.351 UTC [73] DETAIL:  Failing row contains (2, -87024, 80000).
+db-1     | 2024-02-19 07:52:01.351 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:01.391 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:01.391 UTC [73] DETAIL:  Failing row contains (2, -84203, 80000).
+db-1     | 2024-02-19 07:52:01.391 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:01.471 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:01.471 UTC [108] DETAIL:  Failing row contains (2, -83501, 80000).
+db-1     | 2024-02-19 07:52:01.471 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:01.511 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:01.511 UTC [73] DETAIL:  Failing row contains (2, -81654, 80000).
+db-1     | 2024-02-19 07:52:01.511 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:01.650 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:01.650 UTC [73] DETAIL:  Failing row contains (2, -81530, 80000).
+db-1     | 2024-02-19 07:52:01.650 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:01.709 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:01.709 UTC [107] DETAIL:  Failing row contains (1, -100279, 100000).
+db-1     | 2024-02-19 07:52:01.709 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:01.846 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:01.846 UTC [107] DETAIL:  Failing row contains (2, -81507, 80000).
+db-1     | 2024-02-19 07:52:01.846 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:01.866 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:01.866 UTC [107] DETAIL:  Failing row contains (2, -82699, 80000).
+db-1     | 2024-02-19 07:52:01.866 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:02.042 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:02.042 UTC [107] DETAIL:  Failing row contains (2, -82667, 80000).
+db-1     | 2024-02-19 07:52:02.042 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:02.278 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:02.278 UTC [107] DETAIL:  Failing row contains (1, -103762, 100000).
+db-1     | 2024-02-19 07:52:02.278 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:02.337 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:02.337 UTC [107] DETAIL:  Failing row contains (2, -84841, 80000).
+db-1     | 2024-02-19 07:52:02.337 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:02.356 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:02.356 UTC [73] DETAIL:  Failing row contains (2, -80781, 80000).
+db-1     | 2024-02-19 07:52:02.356 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:02.706 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:02.706 UTC [73] DETAIL:  Failing row contains (2, -82416, 80000).
+db-1     | 2024-02-19 07:52:02.706 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:02.933 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:02.933 UTC [73] DETAIL:  Failing row contains (2, -82764, 80000).
+db-1     | 2024-02-19 07:52:02.933 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:02.970 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:02.970 UTC [73] DETAIL:  Failing row contains (2, -83100, 80000).
+db-1     | 2024-02-19 07:52:02.970 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:03.008 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:03.008 UTC [108] DETAIL:  Failing row contains (1, -100089, 100000).
+db-1     | 2024-02-19 07:52:03.008 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:03.046 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:03.046 UTC [73] DETAIL:  Failing row contains (1, -100825, 100000).
+db-1     | 2024-02-19 07:52:03.046 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:03.083 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:03.083 UTC [108] DETAIL:  Failing row contains (1, -105765, 100000).
+db-1     | 2024-02-19 07:52:03.083 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:03.178 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:03.178 UTC [108] DETAIL:  Failing row contains (2, -87740, 80000).
+db-1     | 2024-02-19 07:52:03.178 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:03.254 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:03.254 UTC [108] DETAIL:  Failing row contains (2, -80482, 80000).
+db-1     | 2024-02-19 07:52:03.254 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:03.366 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:03.366 UTC [108] DETAIL:  Failing row contains (1, -101405, 100000).
+db-1     | 2024-02-19 07:52:03.366 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:03.461 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:03.461 UTC [73] DETAIL:  Failing row contains (1, -101397, 100000).
+db-1     | 2024-02-19 07:52:03.461 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:03.555 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:03.555 UTC [73] DETAIL:  Failing row contains (2, -80061, 80000).
+db-1     | 2024-02-19 07:52:03.555 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:04.012 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:04.012 UTC [108] DETAIL:  Failing row contains (1, -105878, 100000).
+db-1     | 2024-02-19 07:52:04.012 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:04.031 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:04.031 UTC [108] DETAIL:  Failing row contains (2, -80413, 80000).
+db-1     | 2024-02-19 07:52:04.031 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:04.140 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:04.140 UTC [73] DETAIL:  Failing row contains (2, -85051, 80000).
+db-1     | 2024-02-19 07:52:04.140 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:04.194 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:04.194 UTC [73] DETAIL:  Failing row contains (2, -87783, 80000).
+db-1     | 2024-02-19 07:52:04.194 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:04.267 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:04.267 UTC [73] DETAIL:  Failing row contains (1, -108214, 100000).
+db-1     | 2024-02-19 07:52:04.267 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:04.303 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:04.303 UTC [73] DETAIL:  Failing row contains (1, -102189, 100000).
+db-1     | 2024-02-19 07:52:04.303 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:04.431 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:04.431 UTC [108] DETAIL:  Failing row contains (1, -108619, 100000).
+db-1     | 2024-02-19 07:52:04.431 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:04.467 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:04.467 UTC [73] DETAIL:  Failing row contains (1, -106330, 100000).
+db-1     | 2024-02-19 07:52:04.467 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:04.683 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:04.683 UTC [107] DETAIL:  Failing row contains (1, -101489, 100000).
+db-1     | 2024-02-19 07:52:04.683 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:04.755 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:04.755 UTC [107] DETAIL:  Failing row contains (1, -102942, 100000).
+db-1     | 2024-02-19 07:52:04.755 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:04.988 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:04.988 UTC [73] DETAIL:  Failing row contains (1, -101632, 100000).
+db-1     | 2024-02-19 07:52:04.988 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:05.005 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:05.005 UTC [107] DETAIL:  Failing row contains (2, -80775, 80000).
+db-1     | 2024-02-19 07:52:05.005 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:05.238 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:05.238 UTC [73] DETAIL:  Failing row contains (2, -87054, 80000).
+db-1     | 2024-02-19 07:52:05.238 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:05.345 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:05.345 UTC [107] DETAIL:  Failing row contains (2, -82110, 80000).
+db-1     | 2024-02-19 07:52:05.345 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:05.381 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:05.381 UTC [73] DETAIL:  Failing row contains (2, -86193, 80000).
+db-1     | 2024-02-19 07:52:05.381 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:05.398 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:05.398 UTC [107] DETAIL:  Failing row contains (2, -84764, 80000).
+db-1     | 2024-02-19 07:52:05.398 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:05.595 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:05.595 UTC [107] DETAIL:  Failing row contains (1, -103929, 100000).
+db-1     | 2024-02-19 07:52:05.595 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:05.664 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:05.664 UTC [73] DETAIL:  Failing row contains (2, -88703, 80000).
+db-1     | 2024-02-19 07:52:05.664 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:05.681 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:05.681 UTC [73] DETAIL:  Failing row contains (2, -88433, 80000).
+db-1     | 2024-02-19 07:52:05.681 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:05.698 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:05.698 UTC [73] DETAIL:  Failing row contains (2, -89008, 80000).
+db-1     | 2024-02-19 07:52:05.698 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:05.749 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:05.749 UTC [73] DETAIL:  Failing row contains (1, -109093, 100000).
+db-1     | 2024-02-19 07:52:05.749 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:06.020 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:06.020 UTC [107] DETAIL:  Failing row contains (1, -100837, 100000).
+db-1     | 2024-02-19 07:52:06.020 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:06.139 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:06.139 UTC [73] DETAIL:  Failing row contains (1, -106981, 100000).
+db-1     | 2024-02-19 07:52:06.139 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:06.258 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:06.258 UTC [73] DETAIL:  Failing row contains (1, -108306, 100000).
+db-1     | 2024-02-19 07:52:06.258 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:06.461 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:06.461 UTC [107] DETAIL:  Failing row contains (1, -108725, 100000).
+db-1     | 2024-02-19 07:52:06.461 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:06.495 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:06.495 UTC [73] DETAIL:  Failing row contains (1, -101778, 100000).
+db-1     | 2024-02-19 07:52:06.495 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:06.529 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:06.529 UTC [107] DETAIL:  Failing row contains (1, -107333, 100000).
+db-1     | 2024-02-19 07:52:06.529 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:06.546 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:06.546 UTC [107] DETAIL:  Failing row contains (1, -105277, 100000).
+db-1     | 2024-02-19 07:52:06.546 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:06.563 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:06.563 UTC [73] DETAIL:  Failing row contains (1, -103820, 100000).
+db-1     | 2024-02-19 07:52:06.563 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:06.580 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:06.580 UTC [73] DETAIL:  Failing row contains (1, -106334, 100000).
+db-1     | 2024-02-19 07:52:06.580 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:06.781 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:06.781 UTC [107] DETAIL:  Failing row contains (1, -108757, 100000).
+db-1     | 2024-02-19 07:52:06.781 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:06.864 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:06.864 UTC [107] DETAIL:  Failing row contains (1, -104387, 100000).
+db-1     | 2024-02-19 07:52:06.864 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:06.964 UTC [108] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:06.964 UTC [108] DETAIL:  Failing row contains (1, -105497, 100000).
+db-1     | 2024-02-19 07:52:06.964 UTC [108] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:07.081 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:07.081 UTC [107] DETAIL:  Failing row contains (1, -108152, 100000).
+db-1     | 2024-02-19 07:52:07.081 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:07.131 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:07.131 UTC [73] DETAIL:  Failing row contains (1, -108344, 100000).
+db-1     | 2024-02-19 07:52:07.131 UTC [73] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:07.147 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:07.147 UTC [107] DETAIL:  Failing row contains (1, -104010, 100000).
+db-1     | 2024-02-19 07:52:07.147 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:07.581 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:07.581 UTC [107] DETAIL:  Failing row contains (1, -108177, 100000).
+db-1     | 2024-02-19 07:52:07.581 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:07.614 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:07.614 UTC [78] DETAIL:  Failing row contains (1, -101031, 100000).
+db-1     | 2024-02-19 07:52:07.614 UTC [78] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:07.694 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:07.694 UTC [107] DETAIL:  Failing row contains (1, -104772, 100000).
+db-1     | 2024-02-19 07:52:07.694 UTC [107] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:07.791 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:07.791 UTC [78] DETAIL:  Failing row contains (1, -106435, 100000).
+db-1     | 2024-02-19 07:52:07.791 UTC [78] STATEMENT:  with novo_saldo as (UPDATE saldos SET saldo = saldo - $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
+db-1     | 2024-02-19 07:52:07.904 UTC [107] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-02-19 07:52:07.904 UTC [107] DETAIL:  Failing row contains (1, -100060, 100000).

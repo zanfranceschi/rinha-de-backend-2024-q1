@@ -2,10 +2,10 @@
  Network rinha-nginx-2024q1  Created
  Container vkobinski-db-1  Creating
  Container vkobinski-db-1  Created
- Container vkobinski-api01-1  Creating
  Container vkobinski-api02-1  Creating
- Container vkobinski-api02-1  Created
+ Container vkobinski-api01-1  Creating
  Container vkobinski-api01-1  Created
+ Container vkobinski-api02-1  Created
  Container vkobinski-nginx-1  Creating
  Container vkobinski-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -26,6 +26,8 @@ db-1     | selecting default shared_buffers ... 128MB
 db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
+api01-1  | connections: 30
+api02-1  | connections: 30
 db-1     | performing post-bootstrap initialization ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
@@ -45,67 +47,39 @@ db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-16 15:20:19.870 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 15:20:19.874 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 15:20:19.885 UTC [51] LOG:  database system was shut down at 2024-02-16 15:20:18 UTC
-db-1     | 2024-02-16 15:20:19.891 UTC [48] LOG:  database system is ready to accept connections
-db-1     |  done
-db-1     | server started
-db-1     | CREATE DATABASE
-db-1     | 
-db-1     | 
-db-1     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/postgres.conf
-db-1     | 
-db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
-db-1     | psql:/docker-entrypoint-initdb.d/script.sql:1: NOTICE:  table "cliente" does not exist, skipping
-db-1     | DROP TABLE
-db-1     | psql:/docker-entrypoint-initdb.d/script.sql:2: NOTICE:  table "saldo" does not exist, skipping
-db-1     | DROP TABLE
-db-1     | DROP TABLE
-db-1     | psql:/docker-entrypoint-initdb.d/script.sql:3: NOTICE:  table "transacao" does not exist, skipping
-db-1     | CREATE TABLE
-db-1     | CREATE TABLE
-db-1     | CREATE TABLE
-db-1     | DO
-db-1     | DO
-db-1     | 
-db-1     | 
-db-1     | waiting for server to shut down...2024-02-16 15:20:20.123 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-02-16 15:20:20.130 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-16 15:20:20.131 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-16 15:20:20.132 UTC [49] LOG:  shutting down
-db-1     | 2024-02-16 15:20:20.135 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 15:20:20.624 UTC [49] LOG:  checkpoint complete: wrote 947 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.281 s, sync=0.193 s, total=0.492 s; sync files=312, longest=0.166 s, average=0.001 s; distance=4323 kB, estimate=4323 kB; lsn=0/19237F8, redo lsn=0/19237F8
-db-1     | 2024-02-16 15:20:20.629 UTC [48] LOG:  database system is shut down
-db-1     |  done
-db-1     | server stopped
-db-1     | 
-db-1     | PostgreSQL init process complete; ready for start up.
-db-1     | 
-db-1     | 2024-02-16 15:20:20.748 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 15:20:20.748 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 15:20:20.748 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 15:20:20.755 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 15:20:20.762 UTC [66] LOG:  database system was shut down at 2024-02-16 15:20:20 UTC
-db-1     | 2024-02-16 15:20:20.769 UTC [1] LOG:  database system is ready to accept connections
-nginx-1  | 2024/02/16 15:20:21 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.21.0.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 15:20:21 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.21.0.3:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 15:20:23 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 15:20:25 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 15:20:27 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 15:20:29 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/16 15:20:31 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-1     | postgres: could not access the server configuration file "/etc/postgresql/postgresql.conf": No such file or directory
+db-1 exited with code 2
+api01-1  | thread 'main' panicked at src/main.rs:23:112:
+api01-1  | called `Result::unwrap()` on an `Err` value: Io(Custom { kind: Uncategorized, error: "failed to lookup address information: Temporary failure in name resolution" })
+api01-1  | note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+api02-1  | thread 'main' panicked at src/main.rs:23:112:
+api02-1  | called `Result::unwrap()` on an `Err` value: Io(Custom { kind: Uncategorized, error: "failed to lookup address information: Temporary failure in name resolution" })
+api02-1  | note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+api01-1 exited with code 101
+api02-1 exited with code 101
+nginx-1  | 2024/03/10 18:09:57 [error] 29#29: *1 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:00 [error] 29#29: *1 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:02 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:04 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:06 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:11 [error] 29#29: *7 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:15 [error] 29#29: *7 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:17 [error] 29#29: *10 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:19 [error] 29#29: *11 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:21 [error] 29#29: *12 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:26 [error] 29#29: *13 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:29 [error] 29#29: *13 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:31 [error] 29#29: *16 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:33 [error] 29#29: *17 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:35 [error] 29#29: *18 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:40 [error] 29#29: *19 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:43 [error] 29#29: *19 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:45 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:47 [error] 29#29: *23 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:49 [error] 29#29: *24 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:54 [error] 29#29: *25 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:57 [error] 29#29: *25 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.16.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:10:59 [error] 29#29: *28 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:11:01 [error] 29#29: *29 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/10 18:11:03 [error] 29#29: *30 no live upstreams while connecting to upstream, client: 192.168.16.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 nginx-1 exited with code 0
-nginx-1 exited with code 0
-api02-1 exited with code 0
-api02-1 exited with code 137
-api01-1 exited with code 0
-api01-1 exited with code 137
-db-1     | 2024-02-16 15:24:57.506 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-16 15:24:57.509 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-16 15:24:57.512 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db-1     | 2024-02-16 15:24:57.512 UTC [64] LOG:  shutting down
-db-1     | 2024-02-16 15:24:57.516 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 15:24:57.669 UTC [64] LOG:  checkpoint complete: wrote 635 buffers (3.9%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.010 s, sync=0.122 s, total=0.157 s; sync files=31, longest=0.115 s, average=0.004 s; distance=20333 kB, estimate=20333 kB; lsn=0/2CFECF8, redo lsn=0/2CFECF8
-db-1     | 2024-02-16 15:24:57.673 UTC [1] LOG:  database system is shut down
-db-1 exited with code 0

@@ -10,7 +10,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1.2"
+          cpus: "0.7"
           memory: "267MB"
     volumes:
       - db_volume:/app/database:rw
@@ -25,8 +25,8 @@ services:
     depends_on:
       - server_01
     environment:
-      - CUSTOM_TRIGGER=true
-      - PRODUCTION=true
+      - IS_SERVER_2=true
+      - PRODUCTION=true # required
 
   nginx:
     image: nginx:latest
@@ -44,3 +44,8 @@ services:
 
 volumes:
   db_volume:
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

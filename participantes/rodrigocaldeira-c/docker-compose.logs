@@ -2,10 +2,10 @@
  Network rinha_backend_2024_q1  Created
  Container rodrigocaldeira-c-db-1  Creating
  Container rodrigocaldeira-c-db-1  Created
- Container rodrigocaldeira-c-api01-1  Creating
- Container rodrigocaldeira-c-api01-1  Created
  Container rodrigocaldeira-c-api02-1  Creating
+ Container rodrigocaldeira-c-api01-1  Creating
  Container rodrigocaldeira-c-api02-1  Created
+ Container rodrigocaldeira-c-api01-1  Created
  Container rodrigocaldeira-c-nginx-1  Creating
  Container rodrigocaldeira-c-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -27,6 +27,8 @@ db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
 db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -34,14 +36,13 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-16 14:14:54.718 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 14:14:54.723 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 14:14:54.733 UTC [51] LOG:  database system was shut down at 2024-02-16 14:14:53 UTC
-db-1     | 2024-02-16 14:14:54.739 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-03-01 14:15:41.317 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-01 14:15:41.317 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-01 14:15:41.319 GMT [57] LOG:  database system was shut down at 2024-03-01 14:15:39 GMT
+db-1     | 2024-03-01 14:15:41.322 GMT [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
+db-1     | 2024-03-01 14:15:41.520 GMT [64] FATAL:  database "rinha_backend" does not exist
 db-1     | CREATE DATABASE
 db-1     | 
 db-1     | 
@@ -50,30 +51,35 @@ db-1     | CREATE TABLE
 db-1     | DO
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-16 14:14:55.337 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-02-16 14:14:55.341 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-16 14:14:55.415 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-16 14:14:55.415 UTC [49] LOG:  shutting down
-db-1     | 2024-02-16 14:14:55.418 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 14:14:56.016 UTC [49] LOG:  checkpoint complete: wrote 930 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.401 s, sync=0.100 s, total=0.601 s; sync files=305, longest=0.055 s, average=0.001 s; distance=4274 kB, estimate=4274 kB; lsn=0/19173E0, redo lsn=0/19173E0
-db-1     | 2024-02-16 14:14:56.017 UTC [70] FATAL:  the database system is shutting down
-db-1     | 2024-02-16 14:14:56.021 UTC [48] LOG:  database system is shut down
+db-1     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/postgresql.conf
+db-1     | 
+db-1     | 2024-03-01 14:15:41.915 GMT [48] LOG:  received fast shutdown request
+db-1     | waiting for server to shut down....2024-03-01 14:15:41.915 GMT [48] LOG:  aborting any active transactions
+db-1     | 2024-03-01 14:15:41.917 GMT [48] LOG:  background worker "logical replication launcher" (PID 60) exited with exit code 1
+db-1     | 2024-03-01 14:15:41.917 GMT [55] LOG:  shutting down
+db-1     | 2024-03-01 14:15:41.918 GMT [55] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-03-01 14:15:41.925 GMT [55] LOG:  checkpoint complete: wrote 930 buffers (7.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.001 s, total=0.008 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4276 kB, estimate=4276 kB; lsn=0/1917CD8, redo lsn=0/1917CD8
+db-1     | 2024-03-01 14:15:41.930 GMT [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-16 14:14:56.140 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 14:14:56.140 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 14:14:56.140 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 14:14:56.146 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 14:14:56.216 UTC [74] LOG:  database system was shut down at 2024-02-16 14:14:55 UTC
-db-1     | 2024-02-16 14:14:56.223 UTC [1] LOG:  database system is ready to accept connections
-api01-1  | Creating the connection pool of size 20
-api01-1  | Threads: 4
+db-1     | 2024-03-01 14:15:42.032 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-01 14:15:42.047 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-03-01 14:15:42.047 GMT [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-03-01 14:15:42.047 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-01 14:15:42.049 GMT [74] LOG:  database system was shut down at 2024-03-01 14:15:41 GMT
+db-1     | 2024-03-01 14:15:42.052 GMT [1] LOG:  database system is ready to accept connections
+api01-1  | Creating the connection pool of size 2
+api02-1  | Creating the connection pool of size 2
+api01-1  | Connection 0 created
+api01-1  | Connection 1 created
+api01-1  | Thread pool size: 1
 api01-1  | Server running on port 4000.
-api02-1  | Creating the connection pool of size 20
-api02-1  | Threads: 4
+api02-1  | Connection 0 created
+api02-1  | Connection 1 created
+api02-1  | Thread pool size: 1
 api02-1  | Server running on port 4001.
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
@@ -112,126 +118,127 @@ api01-1  | POST /clientes/1/transacoes
 api01-1  | POST /clientes/1/transacoes
 api01-1  | POST /clientes/1/transacoes
 api01-1  | GET /clientes/6/extrato
-api01-1  | GET /clientes/1/extrato
-api01-1  | POST /clientes/5/transacoes
-api01-1  | GET /clientes/4/extrato
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | GET /clientes/4/extrato
 api01-1  | GET /clientes/2/extrato
-api01-1  | GET /clientes/5/extrato
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | GET /clientes/4/extrato
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/3/transacoes
 api01-1  | GET /clientes/3/extrato
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | GET /clientes/5/extrato
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/5/transacoes
 api01-1  | POST /clientes/4/transacoes
 api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | GET /clientes/5/extrato
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/4/transacoes
 api01-1  | POST /clientes/1/transacoes
-api01-1  | GET /clientes/5/extrato
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/2/transacoes
 api01-1  | POST /clientes/5/transacoes
 api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/5/transacoes
+api01-1  | GET /clientes/2/extrato
+api01-1  | GET /clientes/3/extrato
 api01-1  | GET /clientes/1/extrato
 api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
 api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/4/transacoes
 api01-1  | GET /clientes/5/extrato
+api01-1  | GET /clientes/1/extrato
+api01-1  | GET /clientes/3/extrato
+api01-1  | GET /clientes/1/extrato
+api01-1  | GET /clientes/1/extrato
+api01-1  | GET /clientes/2/extrato
+api01-1  | GET /clientes/4/extrato
+api01-1  | GET /clientes/4/extrato
+api01-1  | GET /clientes/3/extrato
+api01-1  | POST /clientes/2/transacoes
+api01-1  | GET /clientes/5/extrato
+api01-1  | GET /clientes/3/extrato
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | GET /clientes/1/extrato
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | GET /clientes/5/extrato
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | GET /clientes/4/extrato
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | GET /clientes/2/extrato
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/4/transacoes
 api01-1  | POST /clientes/2/transacoes
 api01-1  | POST /clientes/2/transacoes
 api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/2/transacoes
 api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | GET /clientes/1/extrato
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/5/transacoes
 api02-1  | GET /clientes/1/extrato
 api02-1  | POST /clientes/1/transacoes
 api02-1  | POST /clientes/1/transacoes
@@ -259,242 +266,235 @@ api02-1  | POST /clientes/1/transacoes
 api02-1  | POST /clientes/1/transacoes
 api02-1  | POST /clientes/1/transacoes
 api02-1  | GET /clientes/1/extrato
-api02-1  | GET /clientes/3/extrato
+api02-1  | GET /clientes/4/extrato
 api02-1  | GET /clientes/5/extrato
-api02-1  | POST /clientes/1/transacoes
-api02-1  | GET /clientes/2/extrato
-api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/2/transacoes
 api02-1  | GET /clientes/1/extrato
 api02-1  | POST /clientes/3/transacoes
-api02-1  | GET /clientes/3/extrato
 api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/2/transacoes
 api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/5/transacoes
 api02-1  | POST /clientes/1/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/2/transacoes
+api02-1  | GET /clientes/4/extrato
+api02-1  | GET /clientes/5/extrato
+api02-1  | POST /clientes/3/transacoes
 api02-1  | POST /clientes/2/transacoes
 api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/1/transacoes
-api02-1  | POST /clientes/1/transacoes
-api02-1  | POST /clientes/5/transacoes
+api02-1  | GET /clientes/4/extrato
 api02-1  | GET /clientes/2/extrato
-api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/1/transacoes
-api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | GET /clientes/4/extrato
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | GET /clientes/4/extrato
-api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/1/transacoes
-api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/4/transacoes
+api02-1  | GET /clientes/2/extrato
 api02-1  | GET /clientes/1/extrato
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/1/transacoes
-api02-1  | POST /clientes/4/transacoes
+api02-1  | GET /clientes/5/extrato
 api02-1  | GET /clientes/2/extrato
-api02-1  | POST /clientes/1/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/1/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/1/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/1/transacoes
-api02-1  | GET /clientes/2/extrato
-api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/1/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/3/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/4/transacoes
+api02-1  | GET /clientes/4/extrato
 api02-1  | GET /clientes/3/extrato
+api02-1  | POST /clientes/2/transacoes
+api02-1  | POST /clientes/2/transacoes
+api02-1  | GET /clientes/5/extrato
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/2/transacoes
+api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/5/transacoes
+api02-1  | GET /clientes/5/extrato
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/3/transacoes
 api02-1  | POST /clientes/5/transacoes
 api02-1  | POST /clientes/3/transacoes
+api02-1  | GET /clientes/5/extrato
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/1/transacoes
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/2/transacoes
 api02-1  | POST /clientes/1/transacoes
 api02-1  | POST /clientes/4/transacoes
 api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/4/transacoes
 api02-1  | POST /clientes/1/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/2/transacoes
+api02-1  | POST /clientes/2/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/1/transacoes
+api02-1  | POST /clientes/1/transacoes
+api02-1  | POST /clientes/1/transacoes
+api02-1  | GET /clientes/1/extrato
 api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/2/transacoes
+api02-1  | GET /clientes/1/extrato
+api02-1  | POST /clientes/5/transacoes
 api02-1  | POST /clientes/1/transacoes
+api02-1  | POST /clientes/2/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/1/transacoes
+api02-1  | POST /clientes/2/transacoes
+api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/2/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/1/transacoes
+api02-1  | POST /clientes/3/transacoes
 api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/1/transacoes
+api02-1  | GET /clientes/2/extrato
+api02-1  | POST /clientes/5/transacoes
 api02-1  | POST /clientes/5/transacoes
 api02-1  | POST /clientes/3/transacoes
 api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/1/transacoes
+api02-1  | GET /clientes/2/extrato
+api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/2/transacoes
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/1/transacoes
+api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/4/transacoes
 api02-1  | GET /clientes/4/extrato
 api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/3/transacoes
 api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/4/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/2/transacoes
-api02-1  | POST /clientes/2/transacoes
 api02-1  | POST /clientes/5/transacoes
 api02-1  | POST /clientes/1/transacoes
+api02-1  | GET /clientes/2/extrato
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/3/transacoes
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/1/transacoes
+api02-1  | POST /clientes/1/transacoes
+api02-1  | POST /clientes/3/transacoes
 api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/2/transacoes
+api02-1  | POST /clientes/1/transacoes
+api02-1  | POST /clientes/1/transacoes
 api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/5/transacoes
-api02-1  | POST /clientes/5/transacoes
+api02-1  | POST /clientes/2/transacoes
+api02-1  | GET /clientes/3/extrato
+api02-1  | POST /clientes/4/transacoes
+api02-1  | POST /clientes/4/transacoes
+db-1     | 2024-03-01 14:16:06.107 GMT [78] ERROR:  new row for relation "clientes" violates check constraint "saldo_maior_que_o_limite"
+db-1     | 2024-03-01 14:16:06.107 GMT [78] DETAIL:  Failing row contains (1, o barato sai caro, 100000, -102395, {"{\"tipo\": \"d\", \"valor\": 8575, \"descricao\": \"0zwAe7BmyC...).
+db-1     | 2024-03-01 14:16:06.107 GMT [78] STATEMENT:  update clientes set saldo = saldo + -8575, ultimas_transacoes = '{"{\"valor\":8575,\"tipo\":\"d\",\"descricao\":\"0zwAe7BmyC\",\"realizada_em\":\"2024-03-01T14:16:06.107227Z\"}","{\"valor\":8434,\"tipo\":\"d\",\"descricao\":\"cv7Rtfcjr4\",\"realizada_em\":\"2024-03-01T14:16:05.941528Z\"}","{\"valor\":2938,\"tipo\":\"d\",\"descricao\":\"6MU4pWhEcg\",\"realizada_em\":\"2024-03-01T14:16:05.899296Z\"}","{\"valor\":9686,\"tipo\":\"d\",\"descricao\":\"zySt8rm3mu\",\"realizada_em\":\"2024-03-01T14:16:05.857441Z\"}","{\"valor\":2709,\"tipo\":\"c\",\"descricao\":\"pnzMsRfFMF\",\"realizada_em\":\"2024-03-01T14:16:05.815423Z\"}","{\"valor\":6922,\"tipo\":\"d\",\"descricao\":\"C0QryN9WBL\",\"realizada_em\":\"2024-03-01T14:16:05.773876Z\"}","{\"valor\":8840,\"tipo\":\"d\",\"descricao\":\"1tOPEBtzNZ\",\"realizada_em\":\"2024-03-01T14:16:05.648839Z\"}","{\"valor\":3552,\"tipo\":\"d\",\"descricao\":\"90JuRQrVUm\",\"realizada_em\":\"2024-03-01T14:16:05.566698Z\"}","{\"valor\":9007,\"tipo\":\"d\",\"descricao\":\"BF5ttvqhId\",\"realizada_em\":\"2024-03-01T14:16:05.337504Z\"}"}' where id = 1 returning saldo
+db-1     | 2024-03-01 14:16:07.166 GMT [79] ERROR:  new row for relation "clientes" violates check constraint "saldo_maior_que_o_limite"
+db-1     | 2024-03-01 14:16:07.166 GMT [79] DETAIL:  Failing row contains (1, o barato sai caro, 100000, -100671, {"{\"tipo\": \"d\", \"valor\": 6892, \"descricao\": \"DMWMccabHQ...).
+db-1     | 2024-03-01 14:16:07.166 GMT [79] STATEMENT:  update clientes set saldo = saldo + -6892, ultimas_transacoes = '{"{\"valor\":6892,\"tipo\":\"d\",\"descricao\":\"DMWMccabHQ\",\"realizada_em\":\"2024-03-01T14:16:07.165773Z\"}","{\"valor\":6495,\"tipo\":\"d\",\"descricao\":\"0TSGl8WWZ5\",\"realizada_em\":\"2024-03-01T14:16:06.765965Z\"}","{\"valor\":1520,\"tipo\":\"d\",\"descricao\":\"VzgQmQXiYO\",\"realizada_em\":\"2024-03-01T14:16:06.524913Z\"}","{\"valor\":8056,\"tipo\":\"c\",\"descricao\":\"TntNeJau5L\",\"realizada_em\":\"2024-03-01T14:16:06.232193Z\"}","{\"valor\":8434,\"tipo\":\"d\",\"descricao\":\"cv7Rtfcjr4\",\"realizada_em\":\"2024-03-01T14:16:05.941528Z\"}","{\"valor\":2938,\"tipo\":\"d\",\"descricao\":\"6MU4pWhEcg\",\"realizada_em\":\"2024-03-01T14:16:05.899296Z\"}","{\"valor\":9686,\"tipo\":\"d\",\"descricao\":\"zySt8rm3mu\",\"realizada_em\":\"2024-03-01T14:16:05.857441Z\"}","{\"valor\":2709,\"tipo\":\"c\",\"descricao\":\"pnzMsRfFMF\",\"realizada_em\":\"2024-03-01T14:16:05.815423Z\"}","{\"valor\":6922,\"tipo\":\"d\",\"descricao\":\"C0QryN9WBL\",\"realizada_em\":\"2024-03-01T14:16:05.773876Z\"}"}' where id = 1 returning saldo
+db-1     | 2024-03-01 14:16:07.327 GMT [78] ERROR:  new row for relation "clientes" violates check constraint "saldo_maior_que_o_limite"
+db-1     | 2024-03-01 14:16:07.327 GMT [78] DETAIL:  Failing row contains (1, o barato sai caro, 100000, -103210, {"{\"tipo\": \"d\", \"valor\": 7559, \"descricao\": \"FBgiRSfEKP...).
+db-1     | 2024-03-01 14:16:07.327 GMT [78] STATEMENT:  update clientes set saldo = saldo + -7559, ultimas_transacoes = '{"{\"valor\":7559,\"tipo\":\"d\",\"descricao\":\"FBgiRSfEKP\",\"realizada_em\":\"2024-03-01T14:16:07.326693Z\"}","{\"valor\":142,\"tipo\":\"d\",\"descricao\":\"ync2OkW20A\",\"realizada_em\":\"2024-03-01T14:16:07.285662Z\"}","{\"valor\":906,\"tipo\":\"c\",\"descricao\":\"dFtgd71NWX\",\"realizada_em\":\"2024-03-01T14:16:07.280333Z\"}","{\"valor\":2636,\"tipo\":\"d\",\"descricao\":\"X2zGtS0pMm\",\"realizada_em\":\"2024-03-01T14:16:07.206289Z\"}","{\"valor\":6495,\"tipo\":\"d\",\"descricao\":\"0TSGl8WWZ5\",\"realizada_em\":\"2024-03-01T14:16:06.765965Z\"}","{\"valor\":1520,\"tipo\":\"d\",\"descricao\":\"VzgQmQXiYO\",\"realizada_em\":\"2024-03-01T14:16:06.524913Z\"}","{\"valor\":8056,\"tipo\":\"c\",\"descricao\":\"TntNeJau5L\",\"realizada_em\":\"2024-03-01T14:16:06.232193Z\"}","{\"valor\":8434,\"tipo\":\"d\",\"descricao\":\"cv7Rtfcjr4\",\"realizada_em\":\"2024-03-01T14:16:05.941528Z\"}","{\"valor\":2938,\"tipo\":\"d\",\"descricao\":\"6MU4pWhEcg\",\"realizada_em\":\"2024-03-01T14:16:05.899296Z\"}"}' where id = 1 returning saldo
+db-1     | 2024-03-01 14:16:07.601 GMT [78] ERROR:  new row for relation "clientes" violates check constraint "saldo_maior_que_o_limite"
+db-1     | 2024-03-01 14:16:07.601 GMT [78] DETAIL:  Failing row contains (1, o barato sai caro, 100000, -104619, {"{\"tipo\": \"d\", \"valor\": 5009, \"descricao\": \"Zkq7aXYPZZ...).
+db-1     | 2024-03-01 14:16:07.601 GMT [78] STATEMENT:  update clientes set saldo = saldo + -5009, ultimas_transacoes = '{"{\"valor\":5009,\"tipo\":\"d\",\"descricao\":\"Zkq7aXYPZZ\",\"realizada_em\":\"2024-03-01T14:16:07.601491Z\"}","{\"valor\":3959,\"tipo\":\"d\",\"descricao\":\"wZxw5UZIH3\",\"realizada_em\":\"2024-03-01T14:16:07.486475Z\"}","{\"valor\":142,\"tipo\":\"d\",\"descricao\":\"ync2OkW20A\",\"realizada_em\":\"2024-03-01T14:16:07.285662Z\"}","{\"valor\":906,\"tipo\":\"c\",\"descricao\":\"dFtgd71NWX\",\"realizada_em\":\"2024-03-01T14:16:07.280333Z\"}","{\"valor\":2636,\"tipo\":\"d\",\"descricao\":\"X2zGtS0pMm\",\"realizada_em\":\"2024-03-01T14:16:07.206289Z\"}","{\"valor\":6495,\"tipo\":\"d\",\"descricao\":\"0TSGl8WWZ5\",\"realizada_em\":\"2024-03-01T14:16:06.765965Z\"}","{\"valor\":1520,\"tipo\":\"d\",\"descricao\":\"VzgQmQXiYO\",\"realizada_em\":\"2024-03-01T14:16:06.524913Z\"}","{\"valor\":8056,\"tipo\":\"c\",\"descricao\":\"TntNeJau5L\",\"realizada_em\":\"2024-03-01T14:16:06.232193Z\"}","{\"valor\":8434,\"tipo\":\"d\",\"descricao\":\"cv7Rtfcjr4\",\"realizada_em\":\"2024-03-01T14:16:05.941528Z\"}"}' where id = 1 returning saldo
+db-1     | 2024-03-01 14:16:07.673 GMT [80] ERROR:  new row for relation "clientes" violates check constraint "saldo_maior_que_o_limite"
+db-1     | 2024-03-01 14:16:07.673 GMT [80] DETAIL:  Failing row contains (1, o barato sai caro, 100000, -104499, {"{\"tipo\": \"d\", \"valor\": 4889, \"descricao\": \"ky2SNi7RBk...).
+db-1     | 2024-03-01 14:16:07.673 GMT [80] STATEMENT:  update clientes set saldo = saldo + -4889, ultimas_transacoes = '{"{\"valor\":4889,\"tipo\":\"d\",\"descricao\":\"ky2SNi7RBk\",\"realizada_em\":\"2024-03-01T14:16:07.673057Z\"}","{\"valor\":3959,\"tipo\":\"d\",\"descricao\":\"wZxw5UZIH3\",\"realizada_em\":\"2024-03-01T14:16:07.486475Z\"}","{\"valor\":142,\"tipo\":\"d\",\"descricao\":\"ync2OkW20A\",\"realizada_em\":\"2024-03-01T14:16:07.285662Z\"}","{\"valor\":906,\"tipo\":\"c\",\"descricao\":\"dFtgd71NWX\",\"realizada_em\":\"2024-03-01T14:16:07.280333Z\"}","{\"valor\":2636,\"tipo\":\"d\",\"descricao\":\"X2zGtS0pMm\",\"realizada_em\":\"2024-03-01T14:16:07.206289Z\"}","{\"valor\":6495,\"tipo\":\"d\",\"descricao\":\"0TSGl8WWZ5\",\"realizada_em\":\"2024-03-01T14:16:06.765965Z\"}","{\"valor\":1520,\"tipo\":\"d\",\"descricao\":\"VzgQmQXiYO\",\"realizada_em\":\"2024-03-01T14:16:06.524913Z\"}","{\"valor\":8056,\"tipo\":\"c\",\"descricao\":\"TntNeJau5L\",\"realizada_em\":\"2024-03-01T14:16:06.232193Z\"}","{\"valor\":8434,\"tipo\":\"d\",\"descricao\":\"cv7Rtfcjr4\",\"realizada_em\":\"2024-03-01T14:16:05.941528Z\"}"}' where id = 1 returning saldo
+db-1     | 2024-03-01 14:16:09.325 GMT [81] ERROR:  new row for relation "clientes" violates check constraint "saldo_maior_que_o_limite"
+db-1     | 2024-03-01 14:16:09.325 GMT [81] DETAIL:  Failing row contains (2, zan corp ltda, 80000, -80363, {"{\"tipo\": \"d\", \"valor\": 1846, \"descricao\": \"wHi4cCJmEg...).
+db-1     | 2024-03-01 14:16:09.325 GMT [81] STATEMENT:  update clientes set saldo = saldo + -1846, ultimas_transacoes = '{"{\"valor\":1846,\"tipo\":\"d\",\"descricao\":\"wHi4cCJmEg\",\"realizada_em\":\"2024-03-01T14:16:09.324629Z\"}","{\"valor\":6974,\"tipo\":\"d\",\"descricao\":\"RPQx6dXb5X\",\"realizada_em\":\"2024-03-01T14:16:09.221707Z\"}","{\"valor\":211,\"tipo\":\"d\",\"descricao\":\"TAveSBkRq9\",\"realizada_em\":\"2024-03-01T14:16:08.841027Z\"}","{\"valor\":915,\"tipo\":\"c\",\"descricao\":\"Vm8OJ6aks6\",\"realizada_em\":\"2024-03-01T14:16:08.831616Z\"}","{\"valor\":2952,\"tipo\":\"d\",\"descricao\":\"5YMT0Yd6uS\",\"realizada_em\":\"2024-03-01T14:16:08.807846Z\"}","{\"valor\":9085,\"tipo\":\"d\",\"descricao\":\"eAWZYgajcC\",\"realizada_em\":\"2024-03-01T14:16:08.669739Z\"}","{\"valor\":2982,\"tipo\":\"d\",\"descricao\":\"7N6XvYXM05\",\"realizada_em\":\"2024-03-01T14:16:08.633846Z\"}","{\"valor\":3473,\"tipo\":\"c\",\"descricao\":\"YsXvsx5jF8\",\"realizada_em\":\"2024-03-01T14:16:08.631577Z\"}","{\"valor\":4026,\"tipo\":\"d\",\"descricao\":\"Lg0tY2IizD\",\"realizada_em\":\"2024-03-01T14:16:08.280480Z\"}"}' where id = 2 returning saldo
+db-1     | 2024-03-01 14:16:09.428 GMT [81] ERROR:  new row for relation "clientes" violates check constraint "saldo_maior_que_o_limite"
+db-1     | 2024-03-01 14:16:09.428 GMT [81] DETAIL:  Failing row contains (2, zan corp ltda, 80000, -88013, {"{\"tipo\": \"d\", \"valor\": 9496, \"descricao\": \"2AVT5MXE7K...).
+db-1     | 2024-03-01 14:16:09.428 GMT [81] STATEMENT:  update clientes set saldo = saldo + -9496, ultimas_transacoes = '{"{\"valor\":9496,\"tipo\":\"d\",\"descricao\":\"2AVT5MXE7K\",\"realizada_em\":\"2024-03-01T14:16:09.428185Z\"}","{\"valor\":6974,\"tipo\":\"d\",\"descricao\":\"RPQx6dXb5X\",\"realizada_em\":\"2024-03-01T14:16:09.221707Z\"}","{\"valor\":211,\"tipo\":\"d\",\"descricao\":\"TAveSBkRq9\",\"realizada_em\":\"2024-03-01T14:16:08.841027Z\"}","{\"valor\":915,\"tipo\":\"c\",\"descricao\":\"Vm8OJ6aks6\",\"realizada_em\":\"2024-03-01T14:16:08.831616Z\"}","{\"valor\":2952,\"tipo\":\"d\",\"descricao\":\"5YMT0Yd6uS\",\"realizada_em\":\"2024-03-01T14:16:08.807846Z\"}","{\"valor\":9085,\"tipo\":\"d\",\"descricao\":\"eAWZYgajcC\",\"realizada_em\":\"2024-03-01T14:16:08.669739Z\"}","{\"valor\":2982,\"tipo\":\"d\",\"descricao\":\"7N6XvYXM05\",\"realizada_em\":\"2024-03-01T14:16:08.633846Z\"}","{\"valor\":3473,\"tipo\":\"c\",\"descricao\":\"YsXvsx5jF8\",\"realizada_em\":\"2024-03-01T14:16:08.631577Z\"}","{\"valor\":4026,\"tipo\":\"d\",\"descricao\":\"Lg0tY2IizD\",\"realizada_em\":\"2024-03-01T14:16:08.280480Z\"}"}' where id = 2 returning saldo
+db-1     | 2024-03-01 14:16:09.758 GMT [79] ERROR:  new row for relation "clientes" violates check constraint "saldo_maior_que_o_limite"
+db-1     | 2024-03-01 14:16:09.758 GMT [79] DETAIL:  Failing row contains (1, o barato sai caro, 100000, -103766, {"{\"tipo\": \"d\", \"valor\": 6333, \"descricao\": \"uLghCucAeo...).
+db-1     | 2024-03-01 14:16:09.758 GMT [79] STATEMENT:  update clientes set saldo = saldo + -6333, ultimas_transacoes = '{"{\"valor\":6333,\"tipo\":\"d\",\"descricao\":\"uLghCucAeo\",\"realizada_em\":\"2024-03-01T14:16:09.758225Z\"}","{\"valor\":2559,\"tipo\":\"c\",\"descricao\":\"r6pVZ3QF4y\",\"realizada_em\":\"2024-03-01T14:16:09.752561Z\"}","{\"valor\":6837,\"tipo\":\"d\",\"descricao\":\"tYage58D2j\",\"realizada_em\":\"2024-03-01T14:16:09.694395Z\"}","{\"valor\":2255,\"tipo\":\"c\",\"descricao\":\"I0CKuOFeWS\",\"realizada_em\":\"2024-03-01T14:16:09.627632Z\"}","{\"valor\":759,\"tipo\":\"d\",\"descricao\":\"o8N9KIaTVL\",\"realizada_em\":\"2024-03-01T14:16:09.565322Z\"}","{\"valor\":3929,\"tipo\":\"d\",\"descricao\":\"lWJ0SJpfbn\",\"realizada_em\":\"2024-03-01T14:16:09.152822Z\"}","{\"valor\":5466,\"tipo\":\"d\",\"descricao\":\"0zAj00UhR0\",\"realizada_em\":\"2024-03-01T14:16:09.048334Z\"}","{\"valor\":4234,\"tipo\":\"d\",\"descricao\":\"hpF6GA6eNE\",\"realizada_em\":\"2024-03-01T14:16:08.910648Z\"}","{\"valor\":2012,\"tipo\":\"c\",\"descricao\":\"HD3reEylom\",\"realizada_em\":\"2024-03-01T14:16:08.898453Z\"}"}' where id = 1 returning saldo
+db-1     | 2024-03-01 14:16:09.920 GMT [81] ERROR:  new row for relation "clientes" violates check constraint "saldo_maior_que_o_limite"
+db-1     | 2024-03-01 14:16:09.920 GMT [81] DETAIL:  Failing row contains (1, o barato sai caro, 100000, -101498, {"{\"tipo\": \"d\", \"valor\": 4065, \"descricao\": \"59Xxh5cL22...).
+db-1     | 2024-03-01 14:16:09.920 GMT [81] STATEMENT:  update clientes set saldo = saldo + -4065, ultimas_transacoes = '{"{\"valor\":4065,\"tipo\":\"d\",\"descricao\":\"59Xxh5cL22\",\"realizada_em\":\"2024-03-01T14:16:09.919562Z\"}","{\"valor\":2559,\"tipo\":\"c\",\"descricao\":\"r6pVZ3QF4y\",\"realizada_em\":\"2024-03-01T14:16:09.752561Z\"}","{\"valor\":6837,\"tipo\":\"d\",\"descricao\":\"tYage58D2j\",\"realizada_em\":\"2024-03-01T14:16:09.694395Z\"}","{\"valor\":2255,\"tipo\":\"c\",\"descricao\":\"I0CKuOFeWS\",\"realizada_em\":\"2024-03-01T14:16:09.627632Z\"}","{\"valor\":759,\"tipo\":\"d\",\"descricao\":\"o8N9KIaTVL\",\"realizada_em\":\"2024-03-01T14:16:09.565322Z\"}","{\"valor\":3929,\"tipo\":\"d\",\"descricao\":\"lWJ0SJpfbn\",\"realizada_em\":\"2024-03-01T14:16:09.152822Z\"}","{\"valor\":5466,\"tipo\":\"d\",\"descricao\":\"0zAj00UhR0\",\"realizada_em\":\"2024-03-01T14:16:09.048334Z\"}","{\"valor\":4234,\"tipo\":\"d\",\"descricao\":\"hpF6GA6eNE\",\"realizada_em\":\"2024-03-01T14:16:08.910648Z\"}","{\"valor\":2012,\"tipo\":\"c\",\"descricao\":\"HD3reEylom\",\"realizada_em\":\"2024-03-01T14:16:08.898453Z\"}"}' where id = 1 returning saldo
+db-1     | 2024-03-01 14:16:10.746 GMT [80] ERROR:  new row for relation "clientes" violates check constraint "saldo_maior_que_o_limite"
+db-1     | 2024-03-01 14:16:10.746 GMT [80] DETAIL:  Failing row contains (1, o barato sai caro, 100000, -100434, {"{\"tipo\": \"d\", \"valor\": 4454, \"descricao\": \"t4Xmk36P6u...).
+db-1     | 2024-03-01 14:16:10.746 GMT [80] STATEMENT:  update clientes set saldo = saldo + -4454, ultimas_transacoes = '{"{\"valor\":4454,\"tipo\":\"d\",\"descricao\":\"t4Xmk36P6u\",\"realizada_em\":\"2024-03-01T14:16:10.746353Z\"}","{\"valor\":4803,\"tipo\":\"d\",\"descricao\":\"KlU53OXb9r\",\"realizada_em\":\"2024-03-01T14:16:10.655469Z\"}","{\"valor\":4120,\"tipo\":\"c\",\"descricao\":\"49JGRAPqRk\",\"realizada_em\":\"2024-03-01T14:16:10.502710Z\"}","{\"valor\":298,\"tipo\":\"d\",\"descricao\":\"klJ2YpN4sR\",\"realizada_em\":\"2024-03-01T14:16:10.468296Z\"}","{\"valor\":794,\"tipo\":\"d\",\"descricao\":\"aFPkdZtFey\",\"realizada_em\":\"2024-03-01T14:16:10.177636Z\"}","{\"valor\":6387,\"tipo\":\"d\",\"descricao\":\"cqSULlntn0\",\"realizada_em\":\"2024-03-01T14:16:10.048623Z\"}","{\"valor\":9615,\"tipo\":\"c\",\"descricao\":\"zVuOLFBnpx\",\"realizada_em\":\"2024-03-01T14:16:09.002589Z\"}","{\"valor\":2559,\"tipo\":\"c\",\"descricao\":\"r6pVZ3QF4y\",\"realizada_em\":\"2024-03-01T14:16:09.752561Z\"}","{\"valor\":6837,\"tipo\":\"d\",\"descricao\":\"tYage58D2j\",\"realizada_em\":\"2024-03-01T14:16:09.694395Z\"}"}' where id = 1 returning saldo
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/1/transacoes
 api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/1/transacoes
 api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/5/transacoes
 api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
 api01-1  | POST /clientes/4/transacoes
 api01-1  | GET /clientes/5/extrato
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/3/transacoes
 api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/5/transacoes
 api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | GET /clientes/2/extrato
+api01-1  | POST /clientes/2/transacoes
 api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/1/transacoes
 api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
 api01-1  | GET /clientes/1/extrato
 api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
 api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/4/transacoes
 api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | GET /clientes/3/extrato
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
 api01-1  | GET /clientes/5/extrato
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/1/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | GET /clientes/2/extrato
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/2/transacoes
 api01-1  | POST /clientes/4/transacoes
 api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/3/transacoes
-api01-1  | POST /clientes/3/transacoes
 api01-1  | POST /clientes/2/transacoes
 api01-1  | POST /clientes/2/transacoes
 api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/1/transacoes
 api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | GET /clientes/2/extrato
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/3/transacoes
 api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/3/transacoes
 api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/3/transacoes
 api01-1  | POST /clientes/2/transacoes
 api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | GET /clientes/3/extrato
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/5/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/1/transacoes
+api01-1  | POST /clientes/4/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/1/transacoes
 api01-1  | POST /clientes/4/transacoes
 api01-1  | POST /clientes/3/transacoes
 api01-1  | POST /clientes/2/transacoes
-api01-1  | POST /clientes/5/transacoes
-api01-1  | POST /clientes/4/transacoes
-api01-1  | POST /clientes/3/transacoes
+api01-1  | POST /clientes/2/transacoes
+api01-1  | POST /clientes/2/transacoes

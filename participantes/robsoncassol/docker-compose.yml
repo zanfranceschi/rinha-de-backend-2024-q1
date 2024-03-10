@@ -1,0 +1,82 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql 
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rinha"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "200MB"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: on-failure
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "50MB"
+  
+  api01:
+    image: robsoncassol/rinha-de-backend:latest
+    hostname: api
+    restart: on-failure
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - SERVER_PORT=8080
+      - DB_POOL_SIZE=15
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/rinha
+      - SPRING_DATASOURCE_USERNAME=rinha
+      - SPRING_DATASOURCE_PASSWORD=rinha
+      - LIQUIBASE_ENABLED=false
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "150MB"
+
+  api02:
+    image: robsoncassol/rinha-de-backend:latest
+    hostname: api
+    restart: on-failure
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - SERVER_PORT=8080
+      - DB_POOL_SIZE=15
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/rinha
+      - SPRING_DATASOURCE_USERNAME=rinha
+      - SPRING_DATASOURCE_PASSWORD=rinha
+      - LIQUIBASE_ENABLED=false
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "150MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

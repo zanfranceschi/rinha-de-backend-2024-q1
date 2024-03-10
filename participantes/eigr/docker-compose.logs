@@ -6,13 +6,37 @@
  Volume "eigr_data_2"  Created
  Container eigr-api01-1  Creating
  Container eigr-api02-1  Creating
- Container eigr-api01-1  Created
  Container eigr-api02-1  Created
+ Container eigr-api01-1  Created
  Container eigr-haproxy-1  Creating
  Container eigr-haproxy-1  Created
 Attaching to api01-1, api02-1, haproxy-1
 haproxy-1  | [NOTICE]   (1) : New worker (8) forked
 haproxy-1  | [NOTICE]   (1) : Loading success.
+api02-1    | 2024-02-19 04:38:21.807 [spawn_rinha_ex@api02]:[pid=<0.2313.0> ]:[debug]:OTLP exporter failed to initialize: exception throw: {application_either_not_started_or_not_ready,
+api02-1    |                      tls_certificate_check}
+api02-1    |   in function  tls_certificate_check_shared_state:latest_shared_state_key/0 (/app/deps/tls_certificate_check/src/tls_certificate_check_shared_state.erl, line 479)
+api02-1    |   in call from tls_certificate_check_shared_state:get_latest_shared_state/0 (/app/deps/tls_certificate_check/src/tls_certificate_check_shared_state.erl, line 455)
+api02-1    |   in call from tls_certificate_check_shared_state:authoritative_certificate_values/0 (/app/deps/tls_certificate_check/src/tls_certificate_check_shared_state.erl, line 139)
+api02-1    |   in call from tls_certificate_check:options/1 (/app/deps/tls_certificate_check/src/tls_certificate_check.erl, line 84)
+api02-1    |   in call from opentelemetry_exporter:parse_endpoint/2 (/app/deps/opentelemetry_exporter/src/opentelemetry_exporter.erl, line 428)
+api02-1    |   in call from opentelemetry_exporter:endpoint/2 (/app/deps/opentelemetry_exporter/src/opentelemetry_exporter.erl, line 392)
+api02-1    |   in call from lists:filtermap_1/2 (lists.erl, line 1661)
+api02-1    |   in call from opentelemetry_exporter:init/1 (/app/deps/opentelemetry_exporter/src/opentelemetry_exporter.erl, line 211)
+api02-1    | 2024-02-19 04:38:21.807 [spawn_rinha_ex@api02]:[pid=<0.2313.0> ]:[warning]:OTLP exporter failed to initialize with exception :throw:{:application_either_not_started_or_not_ready, :tls_certificate_check}
+api02-1    | 2024-02-19 04:38:21.840 [spawn_rinha_ex@api02]:[pid=<0.2338.0> ]:[info]:Loading 140 CA(s) from :otp store
+api01-1    | 2024-02-19 04:38:21.889 [spawn_rinha_ex@api01]:[pid=<0.2313.0> ]:[debug]:OTLP exporter failed to initialize: exception throw: {application_either_not_started_or_not_ready,
+api01-1    |                      tls_certificate_check}
+api01-1    |   in function  tls_certificate_check_shared_state:latest_shared_state_key/0 (/app/deps/tls_certificate_check/src/tls_certificate_check_shared_state.erl, line 479)
+api01-1    |   in call from tls_certificate_check_shared_state:get_latest_shared_state/0 (/app/deps/tls_certificate_check/src/tls_certificate_check_shared_state.erl, line 455)
+api01-1    |   in call from tls_certificate_check_shared_state:authoritative_certificate_values/0 (/app/deps/tls_certificate_check/src/tls_certificate_check_shared_state.erl, line 139)
+api01-1    |   in call from tls_certificate_check:options/1 (/app/deps/tls_certificate_check/src/tls_certificate_check.erl, line 84)
+api01-1    |   in call from opentelemetry_exporter:parse_endpoint/2 (/app/deps/opentelemetry_exporter/src/opentelemetry_exporter.erl, line 428)
+api01-1    |   in call from opentelemetry_exporter:endpoint/2 (/app/deps/opentelemetry_exporter/src/opentelemetry_exporter.erl, line 392)
+api01-1    |   in call from lists:filtermap_1/2 (lists.erl, line 1661)
+api01-1    |   in call from opentelemetry_exporter:init/1 (/app/deps/opentelemetry_exporter/src/opentelemetry_exporter.erl, line 211)
+api01-1    | 2024-02-19 04:38:21.889 [spawn_rinha_ex@api01]:[pid=<0.2313.0> ]:[warning]:OTLP exporter failed to initialize with exception :throw:{:application_either_not_started_or_not_ready, :tls_certificate_check}
+api01-1    | 2024-02-19 04:38:21.914 [spawn_rinha_ex@api01]:[pid=<0.2338.0> ]:[info]:Loading 140 CA(s) from :otp store
 haproxy-1  | [NOTICE]   (1) : haproxy version is 3.0-dev2-535b247
 haproxy-1  | [ALERT]    (1) : Current worker (8) exited with code 137 (Killed)
 haproxy-1  | [WARNING]  (1) : A worker process unexpectedly died and this can only be explained by a bug in haproxy or its dependencies.
@@ -24,30 +48,6 @@ haproxy-1  | Status: development branch - not safe for use in production.
 haproxy-1  | Known bugs: https://github.com/haproxy/haproxy/issues?q=is:issue+is:open
 haproxy-1  | Running on: Linux 6.2.0-1019-azure #19~22.04.1-Ubuntu SMP Wed Jan 10 22:57:03 UTC 2024 x86_64
 haproxy-1 exited with code 137
-api02-1    | 2024-02-16 22:45:25.026 [spawn_rinha_ex@api02]:[pid=<0.2313.0> ]:[debug]:OTLP exporter failed to initialize: exception throw: {application_either_not_started_or_not_ready,
-api02-1    |                      tls_certificate_check}
-api02-1    |   in function  tls_certificate_check_shared_state:latest_shared_state_key/0 (/app/deps/tls_certificate_check/src/tls_certificate_check_shared_state.erl, line 479)
-api02-1    |   in call from tls_certificate_check_shared_state:get_latest_shared_state/0 (/app/deps/tls_certificate_check/src/tls_certificate_check_shared_state.erl, line 455)
-api02-1    |   in call from tls_certificate_check_shared_state:authoritative_certificate_values/0 (/app/deps/tls_certificate_check/src/tls_certificate_check_shared_state.erl, line 139)
-api02-1    |   in call from tls_certificate_check:options/1 (/app/deps/tls_certificate_check/src/tls_certificate_check.erl, line 84)
-api02-1    |   in call from opentelemetry_exporter:parse_endpoint/2 (/app/deps/opentelemetry_exporter/src/opentelemetry_exporter.erl, line 428)
-api02-1    |   in call from opentelemetry_exporter:endpoint/2 (/app/deps/opentelemetry_exporter/src/opentelemetry_exporter.erl, line 392)
-api02-1    |   in call from lists:filtermap_1/2 (lists.erl, line 1661)
-api02-1    |   in call from opentelemetry_exporter:init/1 (/app/deps/opentelemetry_exporter/src/opentelemetry_exporter.erl, line 211)
-api01-1    | 2024-02-16 22:45:25.026 [spawn_rinha_ex@api01]:[pid=<0.2313.0> ]:[debug]:OTLP exporter failed to initialize: exception throw: {application_either_not_started_or_not_ready,
-api01-1    |                      tls_certificate_check}
-api01-1    |   in function  tls_certificate_check_shared_state:latest_shared_state_key/0 (/app/deps/tls_certificate_check/src/tls_certificate_check_shared_state.erl, line 479)
-api01-1    |   in call from tls_certificate_check_shared_state:get_latest_shared_state/0 (/app/deps/tls_certificate_check/src/tls_certificate_check_shared_state.erl, line 455)
-api01-1    |   in call from tls_certificate_check_shared_state:authoritative_certificate_values/0 (/app/deps/tls_certificate_check/src/tls_certificate_check_shared_state.erl, line 139)
-api01-1    |   in call from tls_certificate_check:options/1 (/app/deps/tls_certificate_check/src/tls_certificate_check.erl, line 84)
-api01-1    |   in call from opentelemetry_exporter:parse_endpoint/2 (/app/deps/opentelemetry_exporter/src/opentelemetry_exporter.erl, line 428)
-api01-1    |   in call from opentelemetry_exporter:endpoint/2 (/app/deps/opentelemetry_exporter/src/opentelemetry_exporter.erl, line 392)
-api01-1    |   in call from lists:filtermap_1/2 (lists.erl, line 1661)
-api01-1    |   in call from opentelemetry_exporter:init/1 (/app/deps/opentelemetry_exporter/src/opentelemetry_exporter.erl, line 211)
-api02-1    | 2024-02-16 22:45:25.027 [spawn_rinha_ex@api02]:[pid=<0.2313.0> ]:[warning]:OTLP exporter failed to initialize with exception :throw:{:application_either_not_started_or_not_ready, :tls_certificate_check}
-api01-1    | 2024-02-16 22:45:25.027 [spawn_rinha_ex@api01]:[pid=<0.2313.0> ]:[warning]:OTLP exporter failed to initialize with exception :throw:{:application_either_not_started_or_not_ready, :tls_certificate_check}
-api02-1    | 2024-02-16 22:45:25.064 [spawn_rinha_ex@api02]:[pid=<0.2338.0> ]:[info]:Loading 140 CA(s) from :otp store
-api01-1    | 2024-02-16 22:45:25.064 [spawn_rinha_ex@api01]:[pid=<0.2338.0> ]:[info]:Loading 140 CA(s) from :otp store
-api01-1 exited with code 0
-api01-1 exited with code 137
 api02-1 exited with code 0
+api02-1 exited with code 137
+api01-1 exited with code 0

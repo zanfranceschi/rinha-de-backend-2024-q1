@@ -1,0 +1,62 @@
+services:
+  api1: &api
+    image: gabrielluciano/rinha-2024-q1-go:1.0.0
+    hostname: api1
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      - HTTP_PORT=8080
+      - DATABASE_URL=postgresql://go:secret@127.0.0.1:5432/rinha?pool_min_conns=25&pool_max_conns=25
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: '100MB'
+
+  api2:
+    <<: *api
+    hostname: api2
+    environment:
+      - HTTP_PORT=8081
+      - DATABASE_URL=postgresql://go:secret@127.0.0.1:5432/rinha?pool_min_conns=25&pool_max_conns=25
+
+  nginx:
+    image: nginx:1.25.3
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+
+  database:
+    image: postgres:16.1
+    hostname: database
+    volumes:
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRES_USER=go
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=rinha
+    network_mode: "host"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10m
+      timeout: 5s
+      start_period: 15s
+      start_interval: 2s
+      retries: 3
+    command: [ "postgres", "-c", "config_file=/etc/postgresql/postgresql.conf" ]
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: '300MB'

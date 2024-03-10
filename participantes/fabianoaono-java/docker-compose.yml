@@ -1,0 +1,71 @@
+version: "3.5"
+
+services:
+
+  api01: &api
+    # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
+    # publicamente acessível! Ex.: hub.docker.com
+    image: fabianoaono/rinha-2024-q1-java:latest
+    hostname: api01
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8082:8080"
+
+  nginx:
+    image: nginx:1.25.4
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "10MB"
+
+  db:
+    image: postgres:16.2
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.13"
+          memory: "140MB"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "admin", "-h", "db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

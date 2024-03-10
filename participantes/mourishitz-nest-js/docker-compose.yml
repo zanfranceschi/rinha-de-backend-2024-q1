@@ -1,0 +1,64 @@
+version: "3.5"
+
+services:
+  api01: &api # build: ~/Rinha/rinha-nest-js/
+    image: mourishitz/rinha-nestjs:latest
+    hostname: api01
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_USER=admin
+      - DATABASE_PASSWORD=1234
+      - DATABASE_DATABASE=rinha
+    restart: always
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - DB_HOSTNAME=db
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "10MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.13"
+          memory: "140MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx

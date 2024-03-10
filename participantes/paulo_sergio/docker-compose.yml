@@ -1,0 +1,63 @@
+version: '3.9'
+
+services:
+  api01: &api
+    hostname: api01
+    image: paulomg96/paulo_fastapi
+    command: uvicorn main:app --proxy-headers --host 0.0.0.0 --port 80
+    ports:
+      - "8080:80"
+    depends_on:
+     - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 140MB
+
+  api02:
+    <<: *api
+    image: paulomg96/paulo_fastapi
+    hostname: api02
+    ports:
+      - "8082:80"
+    command: uvicorn main:app --proxy-headers --host 0.0.0.0 --port 80
+    depends_on:
+     - db
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "50MB"
+    
+  db:
+    image: postgres
+    command: postgres -c config_file="/etc/database.conf"
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    volumes:
+      - "./script.sql:/docker-entrypoint-initdb.d/script.sql"
+      - "./database.conf:/etc/database.conf"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "220MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024-q1
