@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS clientes (
 	id SERIAL PRIMARY KEY,
 	limite INT,
 	saldo INT,
+	version INT DEFAULT 0,
 	created_at TIMESTAMP
 );
 
