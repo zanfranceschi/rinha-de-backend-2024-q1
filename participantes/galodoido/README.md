@@ -14,7 +14,7 @@ O termo "load balancer" é, neste contexto, uma generosidade. Usamos apenas um p
 
 Licensiado sob a CRAPL - Community Research and Academic Programming License, este software joga todas as boas práticas de engenharia pela janela em nome de tentar amassar a rinha. Se você tentar rodar isso em qualquer outro contexto, seu computador vai explodir (sem brincadeira). Além disso, se você encontrar alguma utilidade para esse código, considere-se muito sortudo.
 
-Intencionalmente distribuído como um tarball velho, feio e desajeitado para garantir que apenas os verdadeiros entusiastas de "a rinha" possam apreciá-lo.
+Intencionalmente distribuído como um tarball velho, feio e desajeitado para garantir que apenas os verdadeiros entusiastas da rinha possam apreciá-lo.
 
 https://drive.google.com/file/d/1OsPR3BWeUrHjJfXu0JRELIqBTj0McU0f/view?usp=sharing
 
