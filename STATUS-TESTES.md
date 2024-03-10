@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 22:52:46 UTC 2024** com **691** submissões.
+Atualizada **Sun Mar 10 23:11:08 UTC 2024** com **694** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -265,6 +265,7 @@ Atualizada **Sun Mar 10 22:52:46 UTC 2024** com **691** submissões.
 | [ghhernandes](./participantes/ghhernandes) | ok | 2 |
 | [ghost-in-the-machine-86](./participantes/ghost-in-the-machine-86) | ok | 1 |
 | [gianimpronta-springboot](./participantes/gianimpronta-springboot) | ok | 1 |
+| [gicornachini](./participantes/gicornachini) | ok | 2 |
 | [gilbertojnj-java](./participantes/gilbertojnj-java) | ok | 2 |
 | [gilmardealcantara](./participantes/gilmardealcantara) | ok | 2 |
 | [giovannibassi-nonpooled](./participantes/giovannibassi-nonpooled) | ok | 1 |
@@ -574,6 +575,7 @@ Atualizada **Sun Mar 10 22:52:46 UTC 2024** com **691** submissões.
 | [rmauro-postgresql-yarp](./participantes/rmauro-postgresql-yarp) | ok | 1 |
 | [rmauro-postgresql](./participantes/rmauro-postgresql) | ok | 1 |
 | [rmauro](./participantes/rmauro) | ok | 2 |
+| [robertoseba](./participantes/robertoseba) | ok | 2 |
 | [robsoncassol](./participantes/robsoncassol) | ok | 5 |
 | [rodolphovs-c-db](./participantes/rodolphovs-c-db) | ok | 1 |
 | [rodolphovs-rs](./participantes/rodolphovs-rs) | ok | 1 |
@@ -630,6 +632,7 @@ Atualizada **Sun Mar 10 22:52:46 UTC 2024** com **691** submissões.
 | [tiagoguerreirodev-go](./participantes/tiagoguerreirodev-go) | ok | 1 |
 | [tiagoguerreirodev-python](./participantes/tiagoguerreirodev-python) | ok | 2 |
 | [tiagorconceicao-node](./participantes/tiagorconceicao-node) | ok | 6 |
+| [tomer](./participantes/tomer) | ok | 1 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
 | [tonico](./participantes/tonico) | ok | 80 |
 | [tonycarvalho1994-python](./participantes/tonycarvalho1994-python) | ok | 1 |
