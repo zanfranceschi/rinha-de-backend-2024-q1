@@ -10,9 +10,7 @@ link do projeto: [rinha-de-backend-2024-q1](https://github.com/jefersonbaixo/rin
 
 # Rodando o projeto
 
-`$ docker-compose up -d`
-
-- Caso for rodar os testes novamente é importante apagar a pasta `postgres` dentro do projeto para limpar o banco de dados.
+`$ docker-compose up --force-recreate -d`
 
 ## Stack
 

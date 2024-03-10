@@ -1,0 +1,67 @@
+version: "3.5"
+
+services:
+  db:
+    image: postgres:latest
+    hostname: db
+    network_mode: host
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+      - type: tmpfs
+        target: /var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: "0.58"
+          memory: "360MB"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "admin", "-d", "rinha"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+  
+  api01: &api
+    image: marcosqueiroga/rinha-de-backend-2024-q1
+    hostname: api01
+    network_mode: host
+    depends_on:
+      db:
+        condition: service_healthy
+    environment: &env
+      DB_CONNECTION_STRING: Host=localhost;Username=admin;Password=123;Database=rinha;Max Auto Prepare=10;Auto Prepare Min Usages=1;Minimum Pool Size=50;Maximum Pool Size=2000;No Reset On Close=true;Multiplexing=true;
+      ASPNETCORE_URLS: http://*:9997
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "85MB"
+  
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      <<: *env
+      ASPNETCORE_URLS: http://*:9998
+  
+  nginx:
+    image: nginx:latest
+    network_mode: host
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.22"
+          memory: "20MB"

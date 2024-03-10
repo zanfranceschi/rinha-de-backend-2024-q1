@@ -20,7 +20,7 @@ services:
       resources:
         limits:
           cpus: '0.5'
-          memory: '160MB'
+          memory: '180MB'
           
 
   api02:
@@ -44,7 +44,7 @@ services:
       resources:
         limits:
           cpus: '0.5'
-          memory: '160MB'
+          memory: '180MB'
         
   postgres:
     image: postgres:latest
@@ -56,7 +56,6 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=rinha
     volumes:
-      - ./postgres:/var/lib/postgresql/data
       - ./setup/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres -d rinha" ]
@@ -69,7 +68,7 @@ services:
       resources:
         limits:
           cpus: '0.4'
-          memory: '200MB'
+          memory: '180MB'
 
   nginx:
     image: nginx:1.25.3-alpine
@@ -87,7 +86,7 @@ services:
       resources:
         limits:
           cpus: '0.1'
-          memory: '30MB'
+          memory: '10MB'
 
 networks:
   api_network:
