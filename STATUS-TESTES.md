@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 20:35:09 UTC 2024** com **677** submissões.
+Atualizada **Sun Mar 10 21:01:58 UTC 2024** com **680** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -115,6 +115,7 @@ Atualizada **Sun Mar 10 20:35:09 UTC 2024** com **677** submissões.
 | [caravanacloud](./participantes/caravanacloud) | ok | 1 |
 | [carijo-slim](./participantes/carijo-slim) | ok | 4 |
 | [carlosdemarco](./participantes/carlosdemarco) | ok | 4 |
+| [carloseduard0](./participantes/carloseduard0) | ok | 1 |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 1 |
 | [carlsonsantana-springboot](./participantes/carlsonsantana-springboot) | ok | 2 |
 | [casanje](./participantes/casanje) | falha - [logs](./participantes/casanje/docker-compose.logs) | -- |
@@ -351,6 +352,7 @@ Atualizada **Sun Mar 10 20:35:09 UTC 2024** com **677** submissões.
 | [julioriffel-django](./participantes/julioriffel-django) | ok | 6 |
 | [juliorovesta](./participantes/juliorovesta) | ok | 1 |
 | [juliotsutsui-node](./participantes/juliotsutsui-node) | ok | 5 |
+| [juniodbl](./participantes/juniodbl) | falha - [logs](./participantes/juniodbl/docker-compose.logs) | -- |
 | [juniorleaoo-host](./participantes/juniorleaoo-host) | ok | 1 |
 | [juniorleaoo-lbk](./participantes/juniorleaoo-lbk) | ok | 1 |
 | [juniorleaoo](./participantes/juniorleaoo) | ok | 2 |
@@ -541,6 +543,7 @@ Atualizada **Sun Mar 10 20:35:09 UTC 2024** com **677** submissões.
 | [ramosfabiano](./participantes/ramosfabiano) | ok | 3 |
 | [ramosfabiano_v2](./participantes/ramosfabiano_v2) | ok | 3 |
 | [raphaelmonticello](./participantes/raphaelmonticello) | ok | 3 |
+| [rayan-elixir](./participantes/rayan-elixir) | ok | 1 |
 | [rdenadai_bun_sqlite](./participantes/rdenadai_bun_sqlite) | ok | 2 |
 | [rdenadai_python](./participantes/rdenadai_python) | ok | 5 |
 | [rdenadai_rust](./participantes/rdenadai_rust) | ok | 5 |
@@ -619,6 +622,7 @@ Atualizada **Sun Mar 10 20:35:09 UTC 2024** com **677** submissões.
 | [tiagorconceicao-node](./participantes/tiagorconceicao-node) | ok | 6 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
 | [tonico](./participantes/tonico) | ok | 80 |
+| [tonycarvalho1994-python](./participantes/tonycarvalho1994-python) | falha - [logs](./participantes/tonycarvalho1994-python/docker-compose.logs) | -- |
 | [tonycarvalho1994](./participantes/tonycarvalho1994) | ok | 4 |
 | [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
