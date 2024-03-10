@@ -3,4 +3,4 @@ until cqlsh localhost -f /tmp/schema.cql; do
   sleep 5
 done &
 
-exec /docker-entrypoint.sh "$@"
+exec docker-entrypoint.sh "$@"

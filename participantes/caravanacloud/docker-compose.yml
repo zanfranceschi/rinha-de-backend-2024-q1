@@ -1,10 +1,12 @@
+# new mem limits
+# docker compose down; docker compose up;
 version: "3.9"
 
 services:
 
   api01:
     network_mode: host
-    image: caravanacloud/rinhadebackend-native:0.0.5-ea23
+    image: caravanacloud/rinhadebackend-native:0.0.333-musl99
     hostname: api01
     container_name: api01
     depends_on:
@@ -12,7 +14,7 @@ services:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:9001/clientes/1/extrato"]
-      interval: 2s
+      interval: 1s
       retries: 10
     environment:
       - RINHA_SHARD=0
@@ -43,12 +45,12 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.40"
-          memory: "150MB"
+          cpus: "0.25"
+          memory: "200MB"
 
   api02:
     network_mode: host
-    image: caravanacloud/rinhadebackend-native:0.0.5-ea23
+    image: caravanacloud/rinhadebackend-native:0.0.333-musl99
     hostname: api02
     container_name: api02
     depends_on:
@@ -56,7 +58,7 @@ services:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:9002/clientes/1/extrato"]
-      interval: 2s
+      interval: 1s
       retries: 10
     environment:
       - RINHA_SHARD=1
@@ -86,8 +88,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.40"
-          memory: "150MB"
+          cpus: "0.25"
+          memory: "200MB"
 
   lb:
     hostname: lb
@@ -108,32 +110,38 @@ services:
         soft: 1000000
         hard: 1000000
     healthcheck:
-      test: ["CMD", "sleep", "10"]
+      test: ["CMD", "sleep", "3"]
       # test: ["CMD", "curl", "-f", "http://127.0.0.1:9999/clientes/1/extrato"]
-      interval: 3s
-      retries: 15
+      retries: 10
     deploy:
       resources:
         limits:
-          cpus: "0.18"
-          memory: "34MB"
+          cpus: "0.20"
+          memory: "25MB"
 
   warmup:
     hostname: warmup
     container_name: warmup
     network_mode: host 
     image: fedora:39
+  #  depends_on:
+  #    lb:
+  #      condition: service_healthy
     command: |
-      /bin/bash -c "echo 'warmuping'; sleep 5;
-        for i in $(seq 1 50);
-        do echo -n '.' ;
-        curl -s -X GET http://localhost:9999/clientes/5/extrato > /dev/null  &
-      done; echo 'warmup done';"
+      /bin/bash -c "echo 'warmuping'; sleep 3; \
+              for i in \$(seq 1 60); \
+              do \
+                echo -n \. \$i; \
+                curl -s http://127.0.0.1:9999/clientes/333/extrato > /dev/null  & \
+                curl -s -H 'Content-Type: application/json' -d '{\"valor\": 0, \"tipo\": \"d\", \"descricao\": \"warmup\"}' http://127.0.0.1:9999/clientes/333/transacoes > /dev/null  & \
+              done; 
+              wait; 
+              echo 'warmup done';"
     deploy:
       resources: 
         limits:
-          cpus: "0.02"
-          memory: "16MB"
+          cpus: "0.10"
+          memory: "25MB"
 
   
   db:
@@ -150,15 +158,14 @@ services:
     expose:
       - "5400"
     volumes:
-      - ./init.postgresql.2tables.sql:/docker-entrypoint-initdb.d/init.sql
-#      - ./init.postgresql.1table.fn.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.postgresql.1table.fn.sql:/docker-entrypoint-initdb.d/init.sql
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
     command: 'postgres -c config_file=/etc/postgresql/postgresql.conf'  
     deploy:
       resources: 
         limits:
-          cpus: "0.50"
-          memory: "200MB"
+          cpus: "0.70"
+          memory: "100MB"
     healthcheck:
       test: ["CMD", "pg_isready", "--username", "rinha", "--port", "5400"]
       interval: 3s
