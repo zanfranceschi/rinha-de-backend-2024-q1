@@ -28,7 +28,9 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: rinha2024
     volumes:
-      - ./docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - type: bind
+        source: ./docker/db/init.sql
+        target: /docker-entrypoint-initdb.d/init.sql
     ports:
       - 5432:5432
     networks:
@@ -49,7 +51,10 @@ services:
     ports:
       - 9999:9999
     volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - type: bind
+        source: ./docker/nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
     networks:
       - rinha-network
     restart: on-failure
