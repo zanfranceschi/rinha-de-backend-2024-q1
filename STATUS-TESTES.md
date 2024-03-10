@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 22:21:01 UTC 2024** com **688** submissões.
+Atualizada **Sun Mar 10 22:35:09 UTC 2024** com **689** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -213,7 +213,7 @@ Atualizada **Sun Mar 10 22:21:01 UTC 2024** com **688** submissões.
 | [felipelaraujo](./participantes/felipelaraujo) | ok | 2 |
 | [felipemarkson](./participantes/felipemarkson) | ok | 2 |
 | [felipeoriani](./participantes/felipeoriani) | ok | 2 |
-| [felipeparaujo](./participantes/felipeparaujo) | falha - [logs](./participantes/felipeparaujo/docker-compose.logs) | -- |
+| [felipeparaujo](./participantes/felipeparaujo) | ok | 1 |
 | [felipeymn](./participantes/felipeymn) | ok | 2 |
 | [felipma-rust-rataria-version](./participantes/felipma-rust-rataria-version) | ok | 1 |
 | [felipma-rust](./participantes/felipma-rust) | ok | 3 |
@@ -330,6 +330,7 @@ Atualizada **Sun Mar 10 22:21:01 UTC 2024** com **688** submissões.
 | [jjeanjacques10](./participantes/jjeanjacques10) | ok | 2 |
 | [jnariai](./participantes/jnariai) | falha - [logs](./participantes/jnariai/docker-compose.logs) | -- |
 | [joao0212](./participantes/joao0212) | ok | 1 |
+| [joaobittencourt-php](./participantes/joaobittencourt-php) | falha - [logs](./participantes/joaobittencourt-php/docker-compose.logs) | -- |
 | [joaojr13](./participantes/joaojr13) | ok | 3 |
 | [joaopaulosg](./participantes/joaopaulosg) | ok | 2 |
 | [joaopmerlin](./participantes/joaopmerlin) | ok | 3 |
@@ -457,7 +458,7 @@ Atualizada **Sun Mar 10 22:21:01 UTC 2024** com **688** submissões.
 | [matheus-mr](./participantes/matheus-mr) | ok | 4 |
 | [matheus-trindade](./participantes/matheus-trindade) | ok | 2 |
 | [matheusbaptistella-rust](./participantes/matheusbaptistella-rust) | ok | 7 |
-| [matheuscamargo](./participantes/matheuscamargo) | falha - [logs](./participantes/matheuscamargo/docker-compose.logs) | -- |
+| [matheuscamargo](./participantes/matheuscamargo) | ok | 1 |
 | [matheusdojava](./participantes/matheusdojava) | ok | 74 |
 | [matheusfbosa](./participantes/matheusfbosa) | ok | 1 |
 | [matheuslao](./participantes/matheuslao) | ok | 7 |
