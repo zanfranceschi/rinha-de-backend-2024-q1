@@ -7,10 +7,11 @@ Submissão feita com:
 - `nginx` como load balancer
 - `better-sqlite3` como banco de dados
 - `next.js` para api
+  - porque next? ué... porque sim!
   - `drizzle` como ORM
   - `ts` para api
 
-### Repositorio da API
+### Repositório da API
 
 - [Noriller/app-rinha-de-backend-2024-q1](https://github.com/Noriller/app-rinha-de-backend-2024-q1)
 
