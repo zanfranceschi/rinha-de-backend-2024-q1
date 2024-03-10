@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 01:07:12 UTC 2024** com **626** submissões.
+Atualizada **Sun Mar 10 01:24:50 UTC 2024** com **628** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -451,6 +451,8 @@ Atualizada **Sun Mar 10 01:07:12 UTC 2024** com **626** submissões.
 | [navarro-espora-embedded](./participantes/navarro-espora-embedded) | ok | 1 |
 | [navarro](./participantes/navarro) | ok | 1 |
 | [newton](./participantes/newton) | ok | 3 |
+| [nicholasboari-java-puro](./participantes/nicholasboari-java-puro) | ok | 2 |
+| [nicholasboari-spring](./participantes/nicholasboari-spring) | ok | 0 |
 | [nicolasmmb-dart](./participantes/nicolasmmb-dart) | ok | 3 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
 | [nielsonrolim-ror](./participantes/nielsonrolim-ror) | ok | 1 |
@@ -607,7 +609,7 @@ Atualizada **Sun Mar 10 01:07:12 UTC 2024** com **626** submissões.
 | [vitorsalgado-custom-lb](./participantes/vitorsalgado-custom-lb) | ok | 1 |
 | [vitorsalgado-nodejs](./participantes/vitorsalgado-nodejs) | ok | 1 |
 | [vitorsalgado](./participantes/vitorsalgado) | ok | 1 |
-| [vkobinski](./participantes/vkobinski) | ok | 2 |
+| [vkobinski](./participantes/vkobinski) | ok | 4 |
 | [vyctorguimaraes](./participantes/vyctorguimaraes) | ok | 7 |
 | [wagner](./participantes/wagner) | ok | 1 |
 | [wdmatheus](./participantes/wdmatheus) | ok | 1 |
