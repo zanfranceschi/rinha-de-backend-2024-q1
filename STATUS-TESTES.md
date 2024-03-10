@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 23:11:08 UTC 2024** com **694** submissões.
+Atualizada **Sun Mar 10 23:52:01 UTC 2024** com **701** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -64,6 +64,7 @@ Atualizada **Sun Mar 10 23:11:08 UTC 2024** com **694** submissões.
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
 | [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
+| [andretpc](./participantes/andretpc) | ok | 1 |
 | [andrew-vasco](./participantes/andrew-vasco) | ok | 3 |
 | [anibal.ferreira](./participantes/anibal.ferreira) | ok | 2 |
 | [antoniogdelrio](./participantes/antoniogdelrio) | ok | 3 |
@@ -115,6 +116,7 @@ Atualizada **Sun Mar 10 23:11:08 UTC 2024** com **694** submissões.
 | [canabrava](./participantes/canabrava) | ok | 1 |
 | [caravanacloud](./participantes/caravanacloud) | ok | 1 |
 | [carijo-slim](./participantes/carijo-slim) | ok | 4 |
+| [carioca-tech](./participantes/carioca-tech) | ok | 2 |
 | [carlosdemarco](./participantes/carlosdemarco) | ok | 4 |
 | [carloseduard0](./participantes/carloseduard0) | ok | 1 |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 1 |
@@ -287,6 +289,7 @@ Atualizada **Sun Mar 10 23:11:08 UTC 2024** com **694** submissões.
 | [guihbc](./participantes/guihbc) | ok | 277 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
 | [gusinacio](./participantes/gusinacio) | falha - [logs](./participantes/gusinacio/docker-compose.logs) | -- |
+| [gustavo-node](./participantes/gustavo-node) | ok | 1 |
 | [gustavofbreunig](./participantes/gustavofbreunig) | ok | 3 |
 | [gustavonovaes-go](./participantes/gustavonovaes-go) | ok | 2 |
 | [gustavoramos00-spring-trsfree](./participantes/gustavoramos00-spring-trsfree) | ok | 2 |
@@ -308,6 +311,7 @@ Atualizada **Sun Mar 10 23:11:08 UTC 2024** com **694** submissões.
 | [hfurlan](./participantes/hfurlan) | ok | 4 |
 | [hiroshimorowaka-golang](./participantes/hiroshimorowaka-golang) | ok | 1 |
 | [hiroshimorowaka](./participantes/hiroshimorowaka) | ok | 2 |
+| [hlscalon-go](./participantes/hlscalon-go) | ok | 1 |
 | [hstreb-vertx](./participantes/hstreb-vertx) | ok | 1 |
 | [ilosamart](./participantes/ilosamart) | ok | 1755 |
 | [impedro29-performance](./participantes/impedro29-performance) | ok | 39 |
@@ -592,6 +596,7 @@ Atualizada **Sun Mar 10 23:11:08 UTC 2024** com **694** submissões.
 | [ronistone-spring](./participantes/ronistone-spring) | falha - [logs](./participantes/ronistone-spring/docker-compose.logs) | -- |
 | [rp83t1](./participantes/rp83t1) | ok | 4 |
 | [rschio](./participantes/rschio) | ok | 5 |
+| [rud-nodejs](./participantes/rud-nodejs) | ok | 1 |
 | [ruhtar](./participantes/ruhtar) | ok | 1 |
 | [rwillians-elixir](./participantes/rwillians-elixir) | ok | 4 |
 | [ryan_and_sena](./participantes/ryan_and_sena) | ok | 2 |
@@ -615,6 +620,8 @@ Atualizada **Sun Mar 10 23:11:08 UTC 2024** com **694** submissões.
 | [stefannovasky-kitajs](./participantes/stefannovasky-kitajs) | ok | 2 |
 | [stefannovasky](./participantes/stefannovasky) | ok | 2 |
 | [sudo-victor-js](./participantes/sudo-victor-js) | ok | 4981 |
+| [suricat89-mongodb](./participantes/suricat89-mongodb) | ok | 6 |
+| [suricat89-postgres](./participantes/suricat89-postgres) | ok | 2 |
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [tagliatti](./participantes/tagliatti) | ok | 4 |
 | [thiagodamas-go-swagger-sqlc-postgres](./participantes/thiagodamas-go-swagger-sqlc-postgres) | ok | 5 |
