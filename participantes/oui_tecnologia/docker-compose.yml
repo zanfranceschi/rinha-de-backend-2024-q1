@@ -4,27 +4,19 @@ version: "1.0"
 
 services:
   apiend: &api
-    image: mateusmoutinho/rinha_de_back_end_oui2:0.1 
+    image: mateusmoutinho/rinha_de_back_end_oui:0.1
     hostname: apiend
     environment:
-      #isso totaliza 180 processos simultaneos, já que ambas as rotas
-      ## vão forkear até 30 processos
-       PROCESSOS: "30"
+       PROCESSOS: "40" #isso totaliza 80 processos simultaneos, já que ambas as rotas
+       ## vão forkear até 35 processos
     ports:
       - "3001:3001"
       - "3002:3002"
-      - "3003:3003"
-      - "3004:3004"
-      - "3005:3005"
-      - "3006:3006"
-
-    volumes:
-      - ./start.sh:/start.sh
-
+      
     deploy:
       resources:
         limits:
-          cpus: "1.2"
+          cpus: "1.0"
           memory: "350MB"
 
 
@@ -40,8 +32,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.3"
-          memory: "200MB"
+          cpus: "0.20"
+          memory: "100MB"
 
 
 
