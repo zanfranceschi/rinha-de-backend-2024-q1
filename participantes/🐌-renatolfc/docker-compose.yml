@@ -1,0 +1,87 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: renatolfc/ferrugem:0.1
+    command: /app/rinha -d "postgresql://%2Fvar%2Frun%2Fpostgresql/rinha?user=postgres&password=postgres" --min-pool 2 --max-pool 2
+    hostname: api01
+    user: "999:999"
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "9998:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "8MB"
+    restart: always
+    volumes:
+      - shared:/var/run/postgresql
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "9997:9999"
+
+  balanco:
+    image: renatolfc/ferrugem:0.1
+    restart: always
+    depends_on:
+      - api01
+      - api02
+    environment:
+      - PORT=9999
+      - SERVERS=api01:9999,api02:9999
+    command: ["/app/balanço"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.42"
+          memory: "8MB"
+
+  postgres:
+    image: postgres:latest
+    hostname: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - shared:/var/run/postgresql
+    command: >
+      postgres -c checkpoint_timeout=1200 -c max_wal_size=64MB -c wal_writer_delay=600
+               -c wal_buffers=8MB -c log_min_messages='panic' -c log_min_messages='panic'
+               -c log_min_error_statement='panic' -c synchronous_commit=off
+               -c full_page_writes=0 -c max_connections=64 -c shared_buffers=256MB
+               -c work_mem=256MB -c effective_cache_size=200MB
+               -c autovacuum_vacuum_scale_factor=.5 -c log_statement=none
+               -c log_checkpoints=0 -c log_duration=off
+               -c temp_buffers=2MB -c commit_delay=1200
+               -c max_parallel_workers=0
+    healthcheck:                                     
+      test: ["CMD", "pg_isready", "--username", "postgres"]
+      interval: 60s
+      retries: 10
+      start_period: 20s
+      start_interval: 1s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.78"
+          memory: "128MB"
+
+volumes:
+  shared:
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
