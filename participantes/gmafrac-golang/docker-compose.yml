@@ -1,6 +1,20 @@
 version: "3"
 
 services:
+  db:
+    image: postgres:16.1
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: crebito
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c full_page_writes=0
+    deploy:
+      resources:
+        limits:
+          cpus: "0.65"
+          memory: "400MB"
 
   api1: &api
     image: gmafrac/rinha-api:latest
@@ -17,20 +31,6 @@ services:
   api2:
     <<: *api
     
-  db:
-    image: postgres:16.1
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: crebito
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c full_page_writes=0
-    deploy:
-      resources:
-        limits:
-          cpus: "0.65"
-          memory: "400MB"
 
   nginx:
     image: nginx:latest
