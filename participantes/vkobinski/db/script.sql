@@ -33,21 +33,18 @@ CREATE INDEX idx_transacoes ON transacao (cliente_id ASC);
 CREATE INDEX idx_saldo ON saldo (cliente_id ASC);
 
 CREATE OR REPLACE FUNCTION get_cliente_details(cliente_id_param INT)
-RETURNS JSON AS $$
+RETURNS JSONB AS $$
 DECLARE
     saldo_record RECORD;
-    transactions_array JSON;
-    result JSON;
+    transactions_array JSONB;
 BEGIN
 
-    -- Get the saldo record
     SELECT INTO saldo_record * FROM saldo WHERE cliente_id = cliente_id_param LIMIT 1;
 
      IF NOT FOUND THEN
         RETURN NULL;
     END IF;
 
-    -- Get the last transactions if available
     transactions_array = (
         SELECT json_agg(row_to_json(trans))
         FROM (
@@ -59,10 +56,9 @@ BEGIN
         ) trans
     );
 
-    -- Construct the result JSON object
-    result = json_build_object(
+    RETURN jsonb_build_object(
         'cliente_id', cliente_id_param,
-        'saldo', json_build_object(
+        'saldo', jsonb_build_object(
             'saldo_id', saldo_record.saldo_id,
             'total', saldo_record.total,
             'limite', saldo_record.limite,
@@ -71,9 +67,9 @@ BEGIN
         'ultimas_transacoes', transactions_array
     );
 
-    RETURN result;
 END;
 $$ LANGUAGE plpgsql;
+
 
 CREATE OR REPLACE FUNCTION create_transaction(cliente_id_param INT, valor_param INT, tipo_param VARCHAR(1), descricao_param VARCHAR(10), total_param INT, saldo_id_param INT)
 RETURNS INT AS $$
@@ -91,6 +87,45 @@ BEGIN
     RETURN result;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION add_transaction(cliente_id_param INT,
+                                           valor_param INT,
+                                           tipo_param VARCHAR(1),
+                                           descricao_param VARCHAR(10))
+RETURNS JSONB AS $$
+DECLARE
+    transacao_record RECORD;
+    saldo_record RECORD;
+    novo_total INT;
+BEGIN
+
+    SELECT INTO saldo_record * FROM saldo WHERE cliente_id = cliente_id_param LIMIT 1 FOR UPDATE;
+
+    IF tipo_param = 'c' THEN
+      novo_total := saldo_record.total + valor_param;
+    ELSIF tipo_param = 'd' THEN
+        IF (saldo_record.total - valor_param) < -saldo_record.limite THEN
+            RETURN jsonb_build_object(
+                'code', 500,
+                'reason', 'not_enough_funds'
+            );
+        END IF;
+        novo_total := saldo_record.total - valor_param;
+    END IF;
+
+    INSERT INTO transacao (cliente_id, valor, tipo, descricao, realizada_em)
+    VALUES (cliente_id_param, valor_param, tipo_param, descricao_param, NOW());
+
+    UPDATE saldo SET total = novo_total WHERE cliente_id = cliente_id_param RETURNING * INTO saldo_record;
+
+    RETURN jsonb_build_object(
+        'total', novo_total,
+        'limite', saldo_record.limite
+    );
+END;
+$$ LANGUAGE plpgsql;
+
+
 
 
 DO $$
