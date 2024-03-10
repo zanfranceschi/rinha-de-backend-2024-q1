@@ -1,0 +1,89 @@
+version: '3'
+
+networks:
+  rinha-network:
+
+services:
+  api01: &api
+    hostname: api01
+    restart: always
+    networks:
+      - rinha-network
+    ports:
+      - "3000:3000"
+    image: felipph/nodejs-rinha24q1
+    build: .
+    depends_on:
+      - database
+    command: node server.js
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "55MB"
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api 
+    hostname: api02
+    ports:
+      - "3001:3000"  
+  
+  database:
+    image: postgres:latest
+    hostname: db
+    networks:
+      - rinha-network
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./banco.sql:/docker-entrypoint-initdb.d/01-create.sql
+    command: postgres -c max_connections=20 -c log_error_verbosity='TERSE' -c log_min_error_statement='LOG' -c shared_buffers=300MB -c effective_cache_size=350MB -c work_mem=10MB
+    #command: postgres -c max_connections=20 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "410M"
+  proxy:
+    hostname: proxy    
+    image: haproxy
+    networks:
+      - rinha-network
+    restart: always
+    ports:
+      - "9999:80"
+      - "9000:9000"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "30MB"
+
+  # proxy:
+  #   hostname: proxy
+  #   image: nginx:latest
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #   depends_on:
+  #     - api01
+  #     - api02
+  #   ports:
+  #       # Obrigatório expor/usar a porta 9999 no load balancer!
+  #     - "9999:9999" 
+  #   restart: always
+  #   networks:
+  #     - rinha-network
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: "0.3"
+  #         memory: "30MB"
