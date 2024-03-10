@@ -1,32 +1,56 @@
 services:
-  rinha-api:
-    depends_on:
+  rinha-api1:
+    depends_on: &id001
       rinha-db:
         condition: service_healthy
-    deploy:
-      replicas: 2
+    deploy: &id002
       resources:
         limits:
           cpus: '0.3'
-          memory: 30MB
+          memory: 50MB
     environment:
-      RINHA_DB_HOST: rinha-db
-      RINHA_DB_NAME: rinha
-      RINHA_DB_PASSWORD: rinha
-      RINHA_DB_PORT: 5432
-      RINHA_DB_USER: postgres
-      RINHA_HTTP_PORT: 8080
-    expose:
-    - 8080-8081:8080
-    image: flipbit03/rinha-de-backend-2024-q1-cadu-api:latest
-    logging:
+      RINHA__API__HTTP_PORT: 9990
+      RINHA__API__WORKERS: 8
+      RINHA__DB__HOST: 127.0.0.1
+      RINHA__DB__NAME: rinha
+      RINHA__DB__PASSWORD: rinha
+      RINHA__DB__POOL_SIZE: 16
+      RINHA__DB__PORT: 2345
+      RINHA__DB__USER: postgres
+    image: flipbit03/rinha-de-backend-2024-q1-cadu-api-2:latest
+    logging: &id003
       driver: none
+    network_mode: host
+    ulimits: &id004
+      nofile:
+        hard: 1000000
+        soft: 1000000
+  rinha-api2:
+    depends_on: *id001
+    deploy: *id002
+    environment:
+      RINHA__API__HTTP_PORT: 9991
+      RINHA__API__WORKERS: 8
+      RINHA__DB__HOST: 127.0.0.1
+      RINHA__DB__NAME: rinha
+      RINHA__DB__PASSWORD: rinha
+      RINHA__DB__POOL_SIZE: 16
+      RINHA__DB__PORT: 2345
+      RINHA__DB__USER: postgres
+    image: flipbit03/rinha-de-backend-2024-q1-cadu-api-2:latest
+    logging: *id003
+    network_mode: host
+    ulimits: *id004
   rinha-db:
+    command:
+    - postgres
+    - -c
+    - config_file=/etc/postgresql.conf
     deploy:
       resources:
         limits:
           cpus: '0.7'
-          memory: 60MB
+          memory: 250MB
     environment:
       PGUSER: postgres
       POSTGRES_DB: rinha
@@ -34,30 +58,44 @@ services:
       POSTGRES_USER: postgres
     healthcheck:
       interval: 3s
-      test: pg_isready
-    image: flipbit03/rinha-de-backend-2024-q1-cadu-db:latest
+      test: pg_isready -p 2345
+    image: postgres:16.1
     logging:
       driver: none
+    network_mode: host
     ports:
-    - 127.0.0.1:28732:5432
+    - 2345:2345
+    ulimits:
+      nofile:
+        hard: 1000000
+        soft: 1000000
     volumes:
     - rinha_db_data:/var/lib/postgresql/data
-    - ./migrations:/docker-entrypoint-initdb.d:ro
+    - ./configs/postgresql/migrations:/docker-entrypoint-initdb.d:ro
+    - ./configs/postgresql/postgresql.conf:/etc/postgresql.conf:ro
   rinha-ingress:
     depends_on:
-      rinha-api:
+      rinha-api1:
+        condition: service_started
+      rinha-api2:
         condition: service_started
     deploy:
       resources:
         limits:
           cpus: '0.2'
-          memory: 10MB
-    image: nginx:latest
+          memory: 150MB
+    image: haproxy:2.9.5
     logging:
       driver: none
+    network_mode: host
     ports:
     - 9999:9999
+    ulimits:
+      nofile:
+        hard: 1000000
+        soft: 1000000
+      nproc: 1000000
     volumes:
-    - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./configs/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
 volumes:
   rinha_db_data: null

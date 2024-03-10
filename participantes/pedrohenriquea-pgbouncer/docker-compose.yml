@@ -1,0 +1,98 @@
+version: '3.5'
+
+services:
+api01: &api
+  # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
+  # publicamente acessível! Ex.: hub.docker.com
+  image: pedrohenriquea/rinha2024:1.55
+  hostname: api01
+  network_mode: host
+  depends_on:
+    - pgbouncer
+  restart: unless-stopped
+  environment:
+    - DB_HOSTNAME=db
+    - HTTP_PORT=8081
+   # Não é necessário expor qualquer porta além da porta do load balancer,
+  # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
+  # ao banco de dados na fase de desenvolvimento.
+  ports:
+    - "8081:8081"
+  deploy:
+    resources:
+      limits:
+        cpus: "0.2"
+        memory: "70MB"
+
+api02:
+  # Essa sintaxe reusa o que foi declarado em 'api01'.
+  <<: *api
+  hostname: api02
+  environment:
+    - DB_HOSTNAME=db
+    - HTTP_PORT=8082
+  ports:
+    - "8082:8082"
+nginx:
+  image: nginx:latest
+  volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  depends_on:
+    - api01
+    - api02
+  network_mode: host
+  ports:
+      # Obrigatório expor/usar a porta 9999 no load balancer!
+    - "9999:9999"
+  deploy:
+    resources:
+      limits:
+        cpus: "0.1"
+        memory: "30MB"
+
+pgbouncer:
+  image: edoburu/pgbouncer
+  network_mode: host
+  hostname: pgbouncer
+  environment:
+    - DATABASE_URL=postgres://admin:123@localhost:5432/rinha
+  volumes:
+    - ./pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
+  depends_on:
+    db:
+      condition: service_healthy
+  deploy:
+    resources:
+      limits:
+        cpus: '0.1'
+        memory: '20MB'
+
+db:
+  image: postgres:latest
+  restart: always
+  hostname: db
+  environment:
+    - POSTGRES_PASSWORD=123
+    - POSTGRES_USER=admin
+    - POSTGRES_DB=rinha
+  network_mode: host
+  ports:
+    - "5432:5432"
+  volumes:
+    - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    - ./postgresql.conf:/etc/postgresql/postgresql.conf
+  command: postgres -c config_file=/etc/postgresql/postgresql.conf
+  healthcheck:
+    test: [ "CMD-SHELL", "pg_isready -U admin -d rinha"]
+    interval: 10s
+    timeout: 5s
+    retries: 5
+  deploy:
+    resources:
+      limits:
+        # Note que a soma de todos os limites dos serviços
+        # aqui declarados é de 1.5 unidades de CPU e 550MB
+        # de memória. A distribuição feita aqui é apenas
+        # um exemplo – distribua como quiser.
+        cpus: "0.8"
+        memory: "360MB"

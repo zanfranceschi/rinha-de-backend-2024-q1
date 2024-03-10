@@ -14,8 +14,8 @@ services:
       - "5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
-    command: ["postgres", "-c", "config_file=/docker-entrypoint-initdb.d/postgresql.conf"]
+      - ./postgres.conf:/docker-entrypoint-initdb.d/postgres.conf
+    command: ["postgres", "-c", "config_file=/docker-entrypoint-initdb.d/postgres.conf"]
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
       interval: 5s
@@ -30,6 +30,7 @@ services:
 
   nginx:
     image: nginx:latest
+    restart: always
     hostname: api
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
@@ -45,7 +46,7 @@ services:
           memory: "50MB"
 
   api_01: &api 
-    image: eugeniocunha/fight_club:latest
+    image: eugeniocunha/fight-club:latest
     restart: always
     hostname: api_01
     environment:
@@ -76,7 +77,7 @@ services:
       DB_PASSWORD: root
       DB_NAME: fight_club
       DB_PORT: 5432
-      DB_POOL: 30
+      DB_POOL: 50
 
 networks:
   default:
