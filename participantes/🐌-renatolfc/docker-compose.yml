@@ -14,7 +14,7 @@ services:
       postgres:
         condition: service_healthy
     ports:
-      - "9999:9999"
+      - "9998:9999"
     deploy:
       resources:
         limits:
@@ -27,6 +27,8 @@ services:
   api02:
     <<: *api
     hostname: api02
+    ports:
+      - "9997:9999"
 
   balanco:
     image: renatolfc/ferrugem:0.1
@@ -35,6 +37,7 @@ services:
       - api01
       - api02
     environment:
+      - PORT=9999
       - SERVERS=api01:9999,api02:9999
     command: ["/app/balanço"]
     deploy:
