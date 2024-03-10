@@ -1,0 +1,86 @@
+version: "3.8"
+
+services:
+  api_1: &api
+    image: tiracotech/rinha-de-backend-2024-q1-nodejs:1.2.0
+    container_name: api_1
+    environment:
+      - PG_HOST=db
+      - PG_PORT=5432
+      - PG_USERNAME=admin
+      - PG_PASSWORD=123
+      - PG_DATABASE=rinha
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=123
+    ports:
+      - "3000"
+    depends_on:
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "100MB"
+    
+  api_2:
+    <<: *api
+    container_name: api_2
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api_1
+      - api_2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.12"
+          memory: "10MB"
+
+  db:
+    image: postgres:16.2
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/1-ddl.sql:/docker-entrypoint-initdb.d/1-ddl.sql
+      - ./sql/2-dml.sql:/docker-entrypoint-initdb.d/2-dml.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "330MB"
+  redis:
+    image: redis:7.2
+    command: redis-server --requirepass 123 --appendonly no
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.08"
+          memory: "10MB"
+  
+networks:
+  default:
+    driver: bridge

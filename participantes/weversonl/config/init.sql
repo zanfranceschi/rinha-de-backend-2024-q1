@@ -5,6 +5,7 @@ CREATE UNLOGGED TABLE IF NOT EXISTS clientes (
 );
 
 CREATE UNLOGGED TABLE IF NOT EXISTS transacoes (
+    id SERIAL PRIMARY KEY,
     cliente_id INTEGER NOT NULL REFERENCES clientes (id),
     valor INTEGER NOT NULL,
 	realizada_em TIMESTAMPTZ DEFAULT now() NOT NULL,
@@ -12,7 +13,7 @@ CREATE UNLOGGED TABLE IF NOT EXISTS transacoes (
 	tipo CHAR(1) NOT NULL
 );
 
-CREATE INDEX transacao_order_idx ON transacoes USING btree (cliente_id, realizada_em DESC);
+CREATE INDEX transacao_order_idx ON transacoes USING btree (cliente_id, id DESC);
 
 INSERT INTO clientes (limite, saldo) VALUES
     (1000 * 100, 0),
@@ -20,3 +21,14 @@ INSERT INTO clientes (limite, saldo) VALUES
     (10000 * 100, 0),
     ( 100000 * 100, 0),
     (5000 * 100, 0);
+
+CREATE EXTENSION IF NOT EXISTS pg_prewarm;
+
+-- Carregar a tabela clientes
+SELECT pg_prewarm('clientes');
+
+-- Carregar a tabela transacoes
+SELECT pg_prewarm('transacoes');
+
+-- Carregar o índice transacao_order_idx
+SELECT pg_prewarm('transacao_order_idx');

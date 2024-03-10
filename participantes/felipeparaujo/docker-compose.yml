@@ -1,0 +1,55 @@
+version: "3.5"
+
+services:
+  api1: &api
+    container_name: api1
+    platform: linux/amd64
+    hostname: api1
+    image: matheusmcamargo/rinha-api:ledger
+    working_dir: /opt/rinha
+    command:
+      - -port=8080
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "97MB"
+
+  api2:
+    <<: *api
+    container_name: api2
+    hostname: api2
+
+  lb:
+    image: nginx
+    hostname: lb
+    container_name: lb
+    ports:
+      - 9999:9999
+    volumes:
+      - ./nginx:/etc/nginx
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "100MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    container_name: db
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    command:
+      - postgres
+      - -c
+      - config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    deploy:
+      resources:
+        limits:
+          cpus: "0.55"
+          memory: "256MB"

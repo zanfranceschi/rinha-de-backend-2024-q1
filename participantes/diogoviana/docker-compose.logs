@@ -4,15 +4,13 @@
  Volume "diogoviana_shared-volume"  Created
  Volume "diogoviana_sockets"  Creating
  Volume "diogoviana_sockets"  Created
- Container diogoviana-api02-1  Creating
  Container diogoviana-api01-1  Creating
+ Container diogoviana-api02-1  Creating
  Container diogoviana-api02-1  Created
  Container diogoviana-api01-1  Created
  Container diogoviana-nginx-1  Creating
  Container diogoviana-nginx-1  Created
 Attaching to api01-1, api02-1, nginx-1
-api01-1  | sh: 0: cannot open ./docker-entrypoint.sh: No such file
-api02-1  | sh: 0: cannot open ./docker-entrypoint.sh: No such file
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -22,33 +20,481 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-api01-1 exited with code 2
-api02-1 exited with code 2
-nginx-1  | 2024/02/28 03:31:29 [crit] 29#29: *1 connect() to unix:/app/tmp/api01.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api01.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:29 [crit] 29#29: *1 connect() to unix:/app/tmp/api02.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api02.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:31 [crit] 30#30: *4 connect() to unix:/app/tmp/api01.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api01.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:31 [crit] 30#30: *4 connect() to unix:/app/tmp/api02.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api02.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:33 [crit] 31#31: *7 connect() to unix:/app/tmp/api01.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api01.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:33 [crit] 31#31: *7 connect() to unix:/app/tmp/api02.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api02.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:35 [crit] 32#32: *10 connect() to unix:/app/tmp/api01.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api01.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:35 [crit] 32#32: *10 connect() to unix:/app/tmp/api02.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api02.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:37 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:39 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:41 [crit] 29#29: *15 connect() to unix:/app/tmp/api02.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api02.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:41 [crit] 29#29: *15 connect() to unix:/app/tmp/api01.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api01.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:43 [error] 29#29: *18 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:45 [error] 29#29: *19 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:47 [error] 29#29: *20 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:49 [error] 29#29: *21 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:51 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:53 [crit] 29#29: *23 connect() to unix:/app/tmp/api02.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api02.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:53 [crit] 29#29: *23 connect() to unix:/app/tmp/api01.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api01.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:55 [error] 29#29: *26 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:57 [error] 29#29: *27 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:31:59 [error] 29#29: *28 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:32:01 [error] 29#29: *29 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:32:03 [error] 29#29: *30 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:32:05 [crit] 29#29: *31 connect() to unix:/app/tmp/api02.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api02.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:32:05 [crit] 29#29: *31 connect() to unix:/app/tmp/api01.sock failed (2: No such file or directory) while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/app/tmp/api01.sock:/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/28 03:32:07 [error] 29#29: *34 no live upstreams while connecting to upstream, client: 172.23.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1 exited with code 0
+api02-1  | rake aborted!
+api02-1  | ActiveRecord::StatementInvalid: SQLite3::SQLException: table "clientes" already exists (ActiveRecord::StatementInvalid)
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/resultset.rb:162:in `step'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/resultset.rb:162:in `next_hash'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/resultset.rb:97:in `next'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/resultset.rb:125:in `each'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/database.rb:230:in `to_a'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/database.rb:230:in `block in execute'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/database.rb:181:in `prepare'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/database.rb:221:in `execute'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/sqlite3/database_statements.rb:118:in `block (2 levels) in raw_execute'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract_adapter.rb:1028:in `block in with_raw_connection'
+api02-1  | /usr/local/bundle/gems/activesupport-7.1.3.2/lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract_adapter.rb:1000:in `with_raw_connection'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/sqlite3/database_statements.rb:117:in `block in raw_execute'
+api02-1  | /usr/local/bundle/gems/activesupport-7.1.3.2/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract_adapter.rb:1143:in `log'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/sqlite3/database_statements.rb:116:in `raw_execute'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract/database_statements.rb:521:in `internal_execute'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract/database_statements.rb:131:in `execute'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract/query_cache.rb:25:in `execute'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract/schema_statements.rb:304:in `create_table'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/migration/default_strategy.rb:10:in `method_missing'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/migration.rb:1047:in `block in method_missing'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/migration.rb:1017:in `block in say_with_time'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/migration.rb:1017:in `say_with_time'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/migration.rb:1036:in `method_missing'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/migration.rb:566:in `create_table'
+api02-1  | db/schema.rb:14:in `block in <top (required)>'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/schema.rb:55:in `instance_eval'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/schema.rb:55:in `define'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/schema.rb:50:in `define'
+api02-1  | db/schema.rb:13:in `<top (required)>'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:358:in `load'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:358:in `load_schema'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:190:in `block (2 levels) in prepare_all'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:518:in `with_temporary_pool'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:180:in `block in prepare_all'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:562:in `block (2 levels) in each_current_configuration'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:559:in `each'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:559:in `block in each_current_configuration'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:558:in `each'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:558:in `each_current_configuration'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:179:in `prepare_all'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/railties/databases.rake:399:in `block (2 levels) in <top (required)>'
+api02-1  | /usr/local/bundle/gems/rake-13.1.0/exe/rake:27:in `<top (required)>'
+api02-1  | /usr/local/bin/bundle:25:in `load'
+api02-1  | /usr/local/bin/bundle:25:in `<main>'
+api02-1  | 
+api02-1  | Caused by:
+api02-1  | SQLite3::SQLException: table "clientes" already exists (SQLite3::SQLException)
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/resultset.rb:162:in `step'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/resultset.rb:162:in `next_hash'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/resultset.rb:97:in `next'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/resultset.rb:125:in `each'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/database.rb:230:in `to_a'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/database.rb:230:in `block in execute'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/database.rb:181:in `prepare'
+api02-1  | /usr/local/bundle/gems/sqlite3-1.7.2-x86_64-linux/lib/sqlite3/database.rb:221:in `execute'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/sqlite3/database_statements.rb:118:in `block (2 levels) in raw_execute'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract_adapter.rb:1028:in `block in with_raw_connection'
+api02-1  | /usr/local/bundle/gems/activesupport-7.1.3.2/lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract_adapter.rb:1000:in `with_raw_connection'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/sqlite3/database_statements.rb:117:in `block in raw_execute'
+api02-1  | /usr/local/bundle/gems/activesupport-7.1.3.2/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract_adapter.rb:1143:in `log'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/sqlite3/database_statements.rb:116:in `raw_execute'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract/database_statements.rb:521:in `internal_execute'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract/database_statements.rb:131:in `execute'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract/query_cache.rb:25:in `execute'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/connection_adapters/abstract/schema_statements.rb:304:in `create_table'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/migration/default_strategy.rb:10:in `method_missing'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/migration.rb:1047:in `block in method_missing'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/migration.rb:1017:in `block in say_with_time'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/migration.rb:1017:in `say_with_time'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/migration.rb:1036:in `method_missing'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/migration.rb:566:in `create_table'
+api02-1  | db/schema.rb:14:in `block in <top (required)>'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/schema.rb:55:in `instance_eval'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/schema.rb:55:in `define'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/schema.rb:50:in `define'
+api02-1  | db/schema.rb:13:in `<top (required)>'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:358:in `load'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:358:in `load_schema'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:190:in `block (2 levels) in prepare_all'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:518:in `with_temporary_pool'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:180:in `block in prepare_all'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:562:in `block (2 levels) in each_current_configuration'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:559:in `each'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:559:in `block in each_current_configuration'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:558:in `each'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:558:in `each_current_configuration'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/tasks/database_tasks.rb:179:in `prepare_all'
+api02-1  | /usr/local/bundle/gems/activerecord-7.1.3.2/lib/active_record/railties/databases.rake:399:in `block (2 levels) in <top (required)>'
+api02-1  | /usr/local/bundle/gems/rake-13.1.0/exe/rake:27:in `<top (required)>'
+api02-1  | /usr/local/bin/bundle:25:in `load'
+api02-1  | /usr/local/bin/bundle:25:in `<main>'
+api02-1  | Tasks: TOP => db:prepare
+api02-1  | (See full trace by running task with --trace)
+api02-1  | Puma starting in single mode...
+api02-1  | * Puma version: 6.4.2 (ruby 3.2.2-p53) ("The Eagle of Durango")
+api02-1  | *  Min threads: 3
+api02-1  | *  Max threads: 3
+api02-1  | *  Environment: development
+api02-1  | *          PID: 1
+api01-1  | Puma starting in single mode...
+api01-1  | * Puma version: 6.4.2 (ruby 3.2.2-p53) ("The Eagle of Durango")
+api01-1  | *  Min threads: 3
+api01-1  | *  Max threads: 3
+api01-1  | *  Environment: development
+api01-1  | *          PID: 1
+api02-1  | * Listening on http://0.0.0.0:3000
+api02-1  | * Listening on unix:///app/tmp/api02.sock
+api02-1  | Use Ctrl-C to stop
+api01-1  | * Listening on http://0.0.0.0:3000
+api01-1  | * Listening on unix:///app/tmp/api01.sock
+api01-1  | Use Ctrl-C to stop
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:18 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 108 0.0202
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:18 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 108 0.0013
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0210
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0091
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0026
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0025
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0030
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0042
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0533
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0447
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0388
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0089
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0053
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0051
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0017
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:23 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:24 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 999 0.0052
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0039
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0030
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0021
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0030
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0030
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0032
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0032
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 29 0.0032
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0031
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0030
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0035
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0032
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 28 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 27 0.0026
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 27 0.0030
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 27 0.0031
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:25 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 27 0.0018
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:26 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 997 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/6/extrato HTTP/1.0" 404 21 0.0020
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/4/extrato HTTP/1.0" 200 110 0.0018
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/3/extrato HTTP/1.0" 200 109 0.0018
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/2/extrato HTTP/1.0" 200 107 0.0013
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/5/extrato HTTP/1.0" 200 108 0.0015
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 997 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 27 0.0028
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 29 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 26 0.0034
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 27 0.0033
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 28 0.0025
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 27 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 26 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 27 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 28 0.0020
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 29 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 990 0.0017
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/2/extrato HTTP/1.0" 200 277 0.0015
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/3/extrato HTTP/1.0" 200 279 0.0012
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/5/extrato HTTP/1.0" 200 278 0.0017
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/4/extrato HTTP/1.0" 200 280 0.0014
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 27 0.0025
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 26 0.0027
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 28 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 29 0.0034
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 27 0.0033
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/3/extrato HTTP/1.0" 200 365 0.0019
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/2/extrato HTTP/1.0" 200 363 0.0014
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 987 0.0018
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/4/extrato HTTP/1.0" 200 366 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/4/extrato HTTP/1.0" 200 366 0.0018
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/4/extrato HTTP/1.0" 200 366 0.0018
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/5/extrato HTTP/1.0" 200 364 0.0016
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/5/extrato HTTP/1.0" 200 364 0.0042
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/5/extrato HTTP/1.0" 200 364 0.0014
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/4/extrato HTTP/1.0" 200 366 0.0015
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/2/extrato HTTP/1.0" 200 363 0.0014
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/5/extrato HTTP/1.0" 200 364 0.0014
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/2/extrato HTTP/1.0" 200 363 0.0013
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/2/extrato HTTP/1.0" 200 363 0.0027
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/3/extrato HTTP/1.0" 200 365 0.0014
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 987 0.0018
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/3/extrato HTTP/1.0" 200 365 0.0019
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/3/extrato HTTP/1.0" 200 365 0.0031
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 987 0.0019
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/5/transacoes HTTP/1.0" 422 29 0.0015
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 987 0.0015
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/2/transacoes HTTP/1.0" 422 29 0.0013
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/5/transacoes HTTP/1.0" 422 29 0.0016
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/3/transacoes HTTP/1.0" 422 29 0.0015
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/4/transacoes HTTP/1.0" 422 29 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/5/transacoes HTTP/1.0" 422 29 0.0008
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/3/transacoes HTTP/1.0" 422 29 0.0028
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/2/transacoes HTTP/1.0" 422 29 0.0012
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/1/transacoes HTTP/1.0" 422 29 0.0015
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/4/transacoes HTTP/1.0" 422 29 0.0011
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/3/transacoes HTTP/1.0" 422 29 0.0008
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/5/transacoes HTTP/1.0" 422 29 0.0009
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/1/transacoes HTTP/1.0" 422 29 0.0012
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/2/transacoes HTTP/1.0" 422 29 0.0008
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/4/transacoes HTTP/1.0" 422 29 0.0009
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/3/transacoes HTTP/1.0" 422 29 0.0010
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/5/transacoes HTTP/1.0" 422 29 0.0011
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/1/transacoes HTTP/1.0" 422 29 0.0009
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/2/transacoes HTTP/1.0" 422 29 0.0021
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/3/transacoes HTTP/1.0" 422 29 0.0011
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/1/transacoes HTTP/1.0" 422 29 0.0008
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/4/transacoes HTTP/1.0" 422 29 0.0010
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/2/transacoes HTTP/1.0" 422 29 0.0008
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/4/transacoes HTTP/1.0" 422 29 0.0010
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:27 +0000] "POST /clientes/1/transacoes HTTP/1.0" 422 29 0.0008
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:28 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 987 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:28 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 31 0.0032
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:28 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 31 0.0021
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:29 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 995 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:29 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 30 0.0032
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:29 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 31 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:29 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 30 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:29 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 31 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:29 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 33 0.0039
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:29 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 31 0.0028
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:30 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 31 0.0035
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:30 +0000] "GET /clientes/4/extrato HTTP/1.0" 200 463 0.0027
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:30 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 33 0.0028
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:30 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 32 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:30 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 32 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:30 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:30 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 33 0.0030
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:30 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 32 0.0040
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:30 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 31 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:30 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 32 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:31 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 32 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:31 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0029
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:31 +0000] "GET /clientes/5/extrato HTTP/1.0" 200 364 0.0015
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:31 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0058
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:31 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:31 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 32 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:31 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:31 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0025
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:31 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 32 0.0029
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:31 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 31 0.0027
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:31 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:31 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0035
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 33 0.0025
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "GET /clientes/4/extrato HTTP/1.0" 200 741 0.0019
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 32 0.0021
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0026
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 31 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 33 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0026
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:32 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0026
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0026
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0030
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "GET /clientes/2/extrato HTTP/1.0" 200 923 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0026
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 1042 0.0017
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0025
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0026
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:33 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "GET /clientes/3/extrato HTTP/1.0" 200 1041 0.0020
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0037
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 30 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:34 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0035
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "GET /clientes/5/extrato HTTP/1.0" 200 1041 0.0018
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0030
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0028
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "GET /clientes/1/extrato HTTP/1.0" 200 1042 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0030
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0019
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:35 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0026
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0025
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "GET /clientes/3/extrato HTTP/1.0" 200 1041 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0029
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0020
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0027
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0036
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0028
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0041
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "GET /clientes/4/extrato HTTP/1.0" 200 1041 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0030
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0029
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0040
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0028
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:36 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0043
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0035
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "GET /clientes/5/extrato HTTP/1.0" 200 1040 0.0019
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0025
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0015
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0031
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0021
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:37 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0027
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0028
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0027
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0040
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "GET /clientes/2/extrato HTTP/1.0" 200 1041 0.0017
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0033
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0026
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0034
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0027
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0041
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0030
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0036
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "GET /clientes/5/extrato HTTP/1.0" 200 1042 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0025
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0019
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0034
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/2/transacoes HTTP/1.0" 422 29 0.0016
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0030
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0040
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:38 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0031
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0039
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0427
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0101
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0111
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "GET /clientes/3/extrato HTTP/1.0" 200 1043 0.0028
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0021
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0024
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0021
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/2/transacoes HTTP/1.0" 422 29 0.0017
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0025
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 32 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0023
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 33 0.0021
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "GET /clientes/3/extrato HTTP/1.0" 200 1041 0.0019
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/2/transacoes HTTP/1.0" 422 29 0.0014
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0018
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 33 0.0020
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/2/transacoes HTTP/1.0" 200 31 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0022
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0020
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 33 0.0023
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0021
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:39 +0000] "POST /clientes/2/transacoes HTTP/1.0" 422 29 0.0012
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:40 +0000] "POST /clientes/3/transacoes HTTP/1.0" 200 33 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:40 +0000] "POST /clientes/4/transacoes HTTP/1.0" 200 34 0.0024
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:40 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 33 0.0022
+api01-1  | 127.0.0.1 - - [08/Mar/2024:16:03:40 +0000] "POST /clientes/1/transacoes HTTP/1.0" 200 32 0.0026
+api02-1  | 127.0.0.1 - - [08/Mar/2024:16:03:40 +0000] "POST /clientes/5/transacoes HTTP/1.0" 200 33 0.0020

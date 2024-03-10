@@ -1,20 +1,20 @@
-CREATE TABLE clientes (
+CREATE UNLOGGED TABLE clientes (
     id SERIAL PRIMARY KEY,
-    limite INT NOT NULL CHECK (limite > 0),
+    limite INT NOT NULL,
     saldo INT NOT NULL DEFAULT 0
 );
 
-CREATE TABLE transacoes (
+CREATE UNLOGGED TABLE transacoes (
     id SERIAL PRIMARY KEY,
-    valor INT NOT NULL CHECK (valor > 0),
-    tipo CHAR(1) NOT NULL CHECK (tipo IN ('c', 'd')),
+    valor INT NOT NULL,
+    tipo CHAR(1) NOT NULL,
     descricao VARCHAR(10) NOT NULL,
     realizada_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    id_cliente INT,
-    FOREIGN KEY (id_cliente) REFERENCES clientes(id)
+    cliente_id INT,
+    CONSTRAINT fk_cliente_transacoes FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
 
-CREATE INDEX idx_transacoes_id_cliente ON transacoes(id_cliente);
+CREATE INDEX idx_transacoes_cliente_id_id_desc ON transacoes (cliente_id, id DESC);
 
 INSERT INTO clientes (id, limite, saldo) VALUES
 (1, 100000, 0),
@@ -22,3 +22,7 @@ INSERT INTO clientes (id, limite, saldo) VALUES
 (3, 1000000, 0),
 (4, 10000000, 0),
 (5, 500000, 0);
+
+CREATE EXTENSION IF NOT EXISTS pg_prewarm;
+SELECT pg_prewarm('clientes');
+SELECT pg_prewarm('transacoes');

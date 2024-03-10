@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   api01: &api
-    image: lucashmsilva/crebitojs:1.1
+    image: lucashmsilva/crebitojs:2.0
     hostname: api01
     environment:
       - WATCH=${WATCH}
@@ -11,7 +11,7 @@ services:
       - DB_USER=admin
       - DB_NAME=rinha
       - DB_INITIAL_POOL_SIZE=13
-      - DB_MAX_POOL_SIZE=13
+      - DB_MAX_POOL_SIZE=200
       - PORT=3000
     ports:
       - '3001:3000'
@@ -55,7 +55,7 @@ services:
       - '5432:5432'
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c full_page_writes=0
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c full_page_writes=0 -c max_connections=200 -c shared_buffers=35MB -c effective_cache_size=105MB -c maintenance_work_mem=8960kB -c checkpoint_completion_target=0.9  -c wal_buffers=1075kB -c default_statistics_target=100 -c random_page_cost=1.1 -c effective_io_concurrency=300 -c work_mem=89kB -c huge_pages=off -c min_wal_size=1GB -c max_wal_size=4GB
     deploy:
       resources:
         limits:

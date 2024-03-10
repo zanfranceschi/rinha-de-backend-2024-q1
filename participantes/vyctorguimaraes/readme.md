@@ -2,7 +2,7 @@
 
 ## API
 
-[Repositório](https://github.com/Vyctor/rinha-de-backend-2024-q1)
+[Repositório](https://github.com/Vyctor/submissao-rinha-de-backend-2024-q1)
 
 ### Stack
 

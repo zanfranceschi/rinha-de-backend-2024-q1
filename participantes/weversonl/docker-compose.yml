@@ -2,20 +2,30 @@ version: "3.5"
 services:
   api1: &api
     image: docker.io/weversonlemos/rinha-v2:latest
+    pull_policy: always
     hostname: api1
     container_name: api1-rb
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     network_mode: host
     env_file:
       - ./config/.env
     environment:
       SERVER_PORT: 8080
+
     deploy:
       resources:
         limits:
-          cpus: "0.40"
-          memory: "100MB"
+          cpus: "0.50"
+          memory: "80MB"
+
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8080/clientes/1/extrato || exit 1"]
+      start_interval: 0.20s
+      retries: 10
+      interval: 0.20s
+      timeout: 0.80s
 
   api2:
     <<: *api
@@ -24,23 +34,32 @@ services:
     environment:
       SERVER_PORT: 8081
 
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8081/clientes/1/extrato || exit 1"]
+      start_interval: 0.20s
+      retries: 10
+      interval: 0.20s
+      timeout: 0.80s
+
   nginx:
-    image: nginx:alpine
+    image: docker.io/nginx:alpine
     container_name: nginx-rb
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api1
-      - api2
+      api1:
+        condition: service_healthy
+      api2:
+        condition: service_healthy
     network_mode: host
     deploy:
       resources:
         limits:
-          cpus: "0.20"
-          memory: "50MB"
+          cpus: "0.10"
+          memory: "20MB"
 
   postgres:
-    image: postgres:16.2
+    image: docker.io/postgres:16.2
     container_name: postgres-rb
     environment:
       POSTGRES_DB: rinhadb
@@ -58,8 +77,20 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.50"
-          memory: "300MB"
+          cpus: "0.40"
+          memory: "370MB"
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rinha -d rinhadb -h localhost -p 5432"]
+      start_interval: 1s
+      retries: 10
+      interval: 0.50s
+      timeout: 0.50s
+
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
 
 volumes:
   postgres-data:

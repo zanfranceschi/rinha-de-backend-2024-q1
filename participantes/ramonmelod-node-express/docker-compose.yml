@@ -1,0 +1,65 @@
+services:
+  app01:
+    image: ramonmelod/rinha-de-backend-2024-q1-nodejs:latest
+    hostname: app01
+    network_mode: host
+    environment:
+      HTTP_PORT: 8080
+      HOST: localhost
+      PORT: 5432
+      USER: postgres
+      DATABASE: postgres
+      PASSWORD: local_password
+    restart: unless-stopped
+    depends_on:
+      - database
+    deploy:
+      resources:
+        limits:
+          cpus: "0.37"
+          memory: "60MB"
+  app02:
+    image: ramonmelod/rinha-de-backend-2024-q1-nodejs:latest
+    hostname: app02
+    network_mode: host
+    environment:
+      HTTP_PORT: 8081
+      HOST: localhost
+      PORT: 5432
+      USER: postgres
+      DATABASE: postgres
+      PASSWORD: local_password
+    restart: unless-stopped
+    depends_on:
+      - database
+    deploy:
+      resources:
+        limits:
+          cpus: "0.37"
+          memory: "60MB"
+
+  database:
+    image: "postgres:16.0-alpine3.18"
+    environment:
+      POSTGRES_PASSWORD: "local_password"
+    network_mode: host
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.56"
+          memory: "400MB"
+  nginx:
+    image: nginx:1.25.4-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app01
+      - app02
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "30MB"
