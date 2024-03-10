@@ -2,7 +2,7 @@ alter table if exists transaction
     drop constraint if exists FK_transaction_client_id;
 drop table if exists client cascade;
 drop table if exists transaction cascade;
-create table client
+create unlogged table client
 (
     id      bigserial not null,
     name    varchar(255),
@@ -10,7 +10,7 @@ create table client
     limite  numeric(38, 0) default 0,
     primary key (id)
 );
-create table transaction
+create unlogged table transaction
 (
     id          bigserial not null,
     client_id   bigint,
