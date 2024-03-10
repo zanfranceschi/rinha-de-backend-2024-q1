@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 21:55:00 UTC 2024** com **687** submissões.
+Atualizada **Sun Mar 10 22:13:46 UTC 2024** com **688** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -123,6 +123,7 @@ Atualizada **Sun Mar 10 21:55:00 UTC 2024** com **687** submissões.
 | [cassiano-matheuszinho-java](./participantes/cassiano-matheuszinho-java) | falha - [logs](./participantes/cassiano-matheuszinho-java/docker-compose.logs) | -- |
 | [cassiano-pedrinho-rust](./participantes/cassiano-pedrinho-rust) | ok | 2 |
 | [cesar-rodrigues](./participantes/cesar-rodrigues) | falha - [logs](./participantes/cesar-rodrigues/docker-compose.logs) | -- |
+| [chipytux](./participantes/chipytux) | ok | 4 |
 | [claudio-silva](./participantes/claudio-silva) | ok | 3 |
 | [claudioavgo](./participantes/claudioavgo) | falha - [logs](./participantes/claudioavgo/docker-compose.logs) | -- |
 | [claudioneves1981](./participantes/claudioneves1981) | ok | 1 |
@@ -628,7 +629,7 @@ Atualizada **Sun Mar 10 21:55:00 UTC 2024** com **687** submissões.
 | [tiagorconceicao-node](./participantes/tiagorconceicao-node) | ok | 6 |
 | [tonholis-dotnet](./participantes/tonholis-dotnet) | ok | 2 |
 | [tonico](./participantes/tonico) | ok | 80 |
-| [tonycarvalho1994-python](./participantes/tonycarvalho1994-python) | falha - [logs](./participantes/tonycarvalho1994-python/docker-compose.logs) | -- |
+| [tonycarvalho1994-python](./participantes/tonycarvalho1994-python) | ok | 1 |
 | [tonycarvalho1994](./participantes/tonycarvalho1994) | ok | 4 |
 | [tortuga](./participantes/tortuga) | ok | 4 |
 | [trindadematheus-node](./participantes/trindadematheus-node) | ok | 1 |
@@ -665,7 +666,7 @@ Atualizada **Sun Mar 10 21:55:00 UTC 2024** com **687** submissões.
 | [vitorsalgado-custom-lb](./participantes/vitorsalgado-custom-lb) | ok | 1 |
 | [vitorsalgado-nodejs](./participantes/vitorsalgado-nodejs) | ok | 1 |
 | [vitorsalgado](./participantes/vitorsalgado) | ok | 1 |
-| [vkobinski](./participantes/vkobinski) | falha - [logs](./participantes/vkobinski/docker-compose.logs) | -- |
+| [vkobinski](./participantes/vkobinski) | ok | 2 |
 | [vpithan-bun](./participantes/vpithan-bun) | ok | 41 |
 | [vyctorguimaraes](./participantes/vyctorguimaraes) | ok | 7 |
 | [wagner](./participantes/wagner) | ok | 1 |
