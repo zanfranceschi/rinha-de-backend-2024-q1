@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 22:35:09 UTC 2024** com **689** submissões.
+Atualizada **Sun Mar 10 22:52:46 UTC 2024** com **691** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -97,6 +97,7 @@ Atualizada **Sun Mar 10 22:35:09 UTC 2024** com **689** submissões.
 | [boaglio](./participantes/boaglio) | falha - [logs](./participantes/boaglio/docker-compose.logs) | -- |
 | [brendonmatos-bun](./participantes/brendonmatos-bun) | ok | 3 |
 | [breno5g](./participantes/breno5g) | ok | 4 |
+| [brenonaraujo](./participantes/brenonaraujo) | ok | 1 |
 | [brilvio](./participantes/brilvio) | ok | 2 |
 | [brunocamarggo-golang](./participantes/brunocamarggo-golang) | ok | 1 |
 | [brunocamarggo](./participantes/brunocamarggo) | ok | 2 |
@@ -148,7 +149,7 @@ Atualizada **Sun Mar 10 22:35:09 UTC 2024** com **689** submissões.
 | [ddanielsantos](./participantes/ddanielsantos) | ok | 3 |
 | [ddanielvaz-cpp-qt](./participantes/ddanielvaz-cpp-qt) | ok | 4 |
 | [ddanielvaz](./participantes/ddanielvaz) | ok | 4 |
-| [ddd-nodejs](./participantes/ddd-nodejs) | falha - [logs](./participantes/ddd-nodejs/docker-compose.logs) | -- |
+| [ddd-nodejs](./participantes/ddd-nodejs) | ok | 1 |
 | [delzin](./participantes/delzin) | ok | 0 |
 | [deno-cassiogangrel](./participantes/deno-cassiogangrel) | ok | 4 |
 | [densyy-bun](./participantes/densyy-bun) | ok | 4 |
@@ -363,6 +364,7 @@ Atualizada **Sun Mar 10 22:35:09 UTC 2024** com **689** submissões.
 | [kaikelfalcao](./participantes/kaikelfalcao) | ok | 1861 |
 | [kalelMartinho_fastapi](./participantes/kalelMartinho_fastapi) | ok | 3 |
 | [kauan-calasans](./participantes/kauan-calasans) | ok | 5 |
+| [kauefraga-golang](./participantes/kauefraga-golang) | ok | 2 |
 | [kelvinromero-fastapi](./participantes/kelvinromero-fastapi) | ok | 5 |
 | [kiro-tagama](./participantes/kiro-tagama) | falha - [logs](./participantes/kiro-tagama/docker-compose.logs) | -- |
 | [kleytonsolinho-golang](./participantes/kleytonsolinho-golang) | ok | 2 |
