@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 21:37:07 UTC 2024** com **685** submissões.
+Atualizada **Sun Mar 10 21:55:00 UTC 2024** com **687** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -455,6 +455,7 @@ Atualizada **Sun Mar 10 21:37:07 UTC 2024** com **685** submissões.
 | [mateusdeitos-php-swoole](./participantes/mateusdeitos-php-swoole) | ok | 2 |
 | [matheus-mr](./participantes/matheus-mr) | ok | 4 |
 | [matheus-trindade](./participantes/matheus-trindade) | ok | 2 |
+| [matheusbaptistella-rust](./participantes/matheusbaptistella-rust) | ok | 7 |
 | [matheuscamargo](./participantes/matheuscamargo) | falha - [logs](./participantes/matheuscamargo/docker-compose.logs) | -- |
 | [matheusdojava](./participantes/matheusdojava) | ok | 74 |
 | [matheusfbosa](./participantes/matheusfbosa) | ok | 1 |
@@ -469,7 +470,7 @@ Atualizada **Sun Mar 10 21:37:07 UTC 2024** com **685** submissões.
 | [maxwell-fs](./participantes/maxwell-fs) | ok | 1 |
 | [maxwell](./participantes/maxwell) | ok | 1 |
 | [mdamaceno-ada](./participantes/mdamaceno-ada) | ok | 53 |
-| [mdamaceno-ruby](./participantes/mdamaceno-ruby) | falha - [logs](./participantes/mdamaceno-ruby/docker-compose.logs) | -- |
+| [mdamaceno-ruby](./participantes/mdamaceno-ruby) | ok | 4 |
 | [mdssjc-springboot-java](./participantes/mdssjc-springboot-java) | ok | 1 |
 | [met4tron-nodejs](./participantes/met4tron-nodejs) | falha - [logs](./participantes/met4tron-nodejs/docker-compose.logs) | -- |
 | [mgenteluci](./participantes/mgenteluci) | ok | 2 |
@@ -611,6 +612,7 @@ Atualizada **Sun Mar 10 21:37:07 UTC 2024** com **685** submissões.
 | [taciossbr](./participantes/taciossbr) | ok | 5 |
 | [tagliatti](./participantes/tagliatti) | ok | 4 |
 | [thiagodamas-go-swagger-sqlc-postgres](./participantes/thiagodamas-go-swagger-sqlc-postgres) | ok | 5 |
+| [thiagofernandes_bun](./participantes/thiagofernandes_bun) | ok | 5 |
 | [thiagorigonatti-java-core](./participantes/thiagorigonatti-java-core) | ok | 2 |
 | [thiagosantana](./participantes/thiagosantana) | ok | 56 |
 | [thiagosantana_go](./participantes/thiagosantana_go) | ok | 10 |
