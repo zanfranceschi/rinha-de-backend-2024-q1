@@ -1,0 +1,55 @@
+version: "3.5"
+
+services:
+  fastapi01: &app01
+    restart: always
+    image: chipytux/rinha24:latest
+    network_mode: host
+    entrypoint: 'uvicorn backend.main:app --host 0.0.0.0 --port 8000 --workers 1 --log-level error'
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://root:1234@localhost:5432/rinha"
+      POOL_SIZE: 40
+      MAX_OVERFLOW: 20
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.42"
+          memory: "110MB"
+
+  fastapi02:
+    <<: *app01
+    entrypoint: 'uvicorn backend.main:app --host 0.0.0.0 --port 8001 --workers 1 --log-level error'
+
+  nginx:
+    image: nginx:1.25-alpine
+    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - fastapi01
+      - fastapi02
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.16"
+          memory: "20MB"
+
+  db:
+    image: postgres:16-alpine
+    command: postgres -c config_file=/etc/postgresql.conf
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql:ro
+      - ./postgresql.conf:/etc/postgresql.conf:ro
+    network_mode: host
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "310MB"
