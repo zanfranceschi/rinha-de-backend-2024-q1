@@ -9,7 +9,6 @@ O Galo Doido desafia o vírus da modernidade na bolha dev: a dependência de de 
 
 O termo "load balancer" é, neste contexto, uma generosidade. Usamos apenas um proxy round-robin para duas entradas fixas. JSON e HTTP não são tratados por bibliotecas adicionais, mas simplesmente como strings. Ao inves de um banco de dados tradicional, aqui temos apenas um logger com cache.
 
-Distribuído sob a CRAPL - Community Research and Academic Programming License, este software joga todas as boas práticas de engenharia pela janela em nome de construir algo que simplesmente funcione. É uma realização específica para "a rinha", servindo como um artefato de pesquisa. Se você tentar rodar esse software em qualquer circunstância além desta, seu computador vai explodir (sem brincadeira). Além disso, se você encontrar alguma utilidade para isso, considere-se um sortudo.
 
 #### Distribuição
 
