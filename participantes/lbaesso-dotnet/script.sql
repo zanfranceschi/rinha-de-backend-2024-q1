@@ -11,7 +11,7 @@ CREATE UNLOGGED TABLE clientes (
 );
 
 -- -- create composite index of id saldo and limite
-CREATE INDEX idx_clientes_id_saldo_limite ON clientes (id, saldo, limite);
+-- CREATE INDEX idx_clientes_id_saldo_limite ON clientes (id, saldo, limite);
 
 CREATE UNLOGGED TABLE transacoes (
     id SERIAL PRIMARY KEY,
@@ -25,7 +25,7 @@ CREATE UNLOGGED TABLE transacoes (
     ultimosaldo int
 );
 
-CREATE INDEX idx_transacoes_id ON transacoes (id DESC);
+-- CREATE INDEX idx_transacoes_id ON transacoes (id DESC);
 CREATE INDEX idx_transacoes_clienteid ON transacoes (clienteid);
 
 INSERT INTO clientes (id, nome, limite, saldo)
