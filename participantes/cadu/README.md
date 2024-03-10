@@ -10,8 +10,8 @@ Ou seja, nem tudo aqui vai estar tão bonito e arquitetado o quanto poderia ou d
 ```mermaid
 graph TD
   A[(.)] -->|requisições| B[rinha-ingress:9999]
-  B -->|requisições| C[rinha-api-1]
-  B -->|requisições| D[rinha-api-2]
+  B -->|requisições| C[rinha-api1]
+  B -->|requisições| D[rinha-api2]
   C -->|consultas| E[(rinha-db)]
   D -->|consultas| E
 ```
@@ -19,7 +19,7 @@ graph TD
 ### Descrição dos componentes / Stack
 
 - `rinha-ingress`
-  - `nginx`
+  - `HAProxy` no modo TCP
 - `rinha-api-{1,2}`
   - `rust 1.76`
   - Api é com o `ntex` (fork do `actix-web` pelo próprio autor do actix)
@@ -45,9 +45,7 @@ graph TD
 ### Repositório
 
 * [flipbit03/rinha-de-backend-2024-q1-cadu](https://github.com/flipbit03/rinha-de-backend-2024-q1-cadu)
-  * _(obs.: O repositório se tornará público na data exata da data-limite da rinha)_
-    * `2024-03-10T23:59:59-03:00`
-
+  
 ### Aleatoriedades 
 
 Coisas que me ajudaram pelo caminho.

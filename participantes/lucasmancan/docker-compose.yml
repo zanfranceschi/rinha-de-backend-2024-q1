@@ -1,0 +1,106 @@
+version: '3.9'
+
+services:
+  api1: &api
+    image: docker.io/lucasmancan/rinhabackend-2024:latest
+    hostname: api1
+    environment:
+      - SERVER_PORT=8080
+      - DATABASE_URL=jdbc:postgresql://db-postgresql:5432/rinhadb
+      - DATABASE_USERNAME=rinhaapp
+      - DATABASE_PASSWORD=root
+    depends_on:
+      db-postgresql:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: '208MB'
+    networks:
+      - app-network
+    healthcheck:
+      test: curl -o /dev/null -s --retry 0 --get http://localhost:8080/health-check || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 5s
+
+  api2:
+    <<: *api
+    hostname: api2
+    environment:
+      - SERVER_PORT=8080
+      - DATABASE_URL=jdbc:postgresql://db-postgresql:5432/rinhadb
+      - DATABASE_USERNAME=rinhaapp
+      - DATABASE_PASSWORD=root
+    depends_on:
+      db-postgresql:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: '208MB'
+    networks:
+      - app-network
+    healthcheck:
+      test: curl -o /dev/null -s --retry 0 --get http://localhost:8080/health-check || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 5s
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '15MB'
+
+  db-postgresql:
+    image: postgres:latest
+    command: 'postgres -c max_connections=200 -c synchronous_commit=off -c fsync=off -c full_page_writes=off'
+    hostname: db-postgresql
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=rinhaapp
+      - POSTGRES_DB=rinhadb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '119MB'
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "rinhaapp"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+networks:
+  app-network:
