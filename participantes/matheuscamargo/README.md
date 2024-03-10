@@ -11,7 +11,7 @@ Submissão feita com:
 - `go` como linguagem
 - `nginx` como load balancer
 - `sqlite` como banco de dados
-- [repositório](https://github.com/felipeparaujo/rinha-de-backend-24q1)
+- [repositório](https://github.com/felipeparaujo/rinha-de-backend-24q1/tree/sqlite)
 
 ## Links
 
