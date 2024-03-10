@@ -2,10 +2,10 @@
  Network rinha-nginx-2024-q1  Created
  Container johnpgr_vlang-database-1  Creating
  Container johnpgr_vlang-database-1  Created
- Container johnpgr_vlang-api1-1  Creating
  Container johnpgr_vlang-api2-1  Creating
- Container johnpgr_vlang-api1-1  Created
+ Container johnpgr_vlang-api1-1  Creating
  Container johnpgr_vlang-api2-1  Created
+ Container johnpgr_vlang-api1-1  Created
  Container johnpgr_vlang-nginx-1  Creating
  Container johnpgr_vlang-nginx-1  Created
 Attaching to api1-1, api2-1, database-1, nginx-1
@@ -27,6 +27,8 @@ database-1  | selecting default time zone ... Etc/UTC
 database-1  | creating configuration files ... ok
 database-1  | running bootstrap script ... ok
 database-1  | performing post-bootstrap initialization ... ok
+database-1  | initdb: warning: enabling "trust" authentication for local connections
+database-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 database-1  | syncing data to disk ... ok
 database-1  | 
 database-1  | 
@@ -34,8 +36,6 @@ database-1  | Success. You can now start the database server using:
 database-1  | 
 database-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 database-1  | 
-database-1  | initdb: warning: enabling "trust" authentication for local connections
-database-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 database-1  | waiting for server to start.... done
 database-1  | server started
 database-1  | CREATE DATABASE
@@ -43,9 +43,8 @@ database-1  |
 database-1  | 
 database-1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
 database-1  | CREATE TABLE
-database-1  | CREATE TABLE
-database-1  | CREATE INDEX
 database-1  | DO
+database-1  | CREATE FUNCTION
 database-1  | 
 database-1  | 
 database-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/postgresql.conf
@@ -55,10 +54,10 @@ database-1  | server stopped
 database-1  | 
 database-1  | PostgreSQL init process complete; ready for start up.
 database-1  | 
-api2-1      | [Vweb] Running app on http://0.0.0.0:8081/
-api2-1      | [Vweb] We have 3 workers
 api1-1      | [Vweb] Running app on http://0.0.0.0:8080/
-api1-1      | [Vweb] We have 3 workers
+api1-1      | [Vweb] We have 4 workers
+api2-1      | [Vweb] Running app on http://0.0.0.0:8081/
+api2-1      | [Vweb] We have 4 workers
 nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -70,8 +69,8 @@ nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-work
 nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api2-1 exited with code 0
-api2-1 exited with code 137
 api1-1 exited with code 0
 api1-1 exited with code 137
+api2-1 exited with code 0
+api2-1 exited with code 137
 database-1 exited with code 0

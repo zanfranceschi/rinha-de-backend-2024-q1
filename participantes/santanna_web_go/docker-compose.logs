@@ -28,28 +28,7 @@ postgres  | selecting default shared_buffers ... 128MB
 postgres  | selecting default time zone ... Etc/UTC
 postgres  | creating configuration files ... ok
 postgres  | running bootstrap script ... ok
-api01     | 2024/03/04 19:48:04 Successfully Connected
-api01     | panic: failed to load customersfailed to connect to `host=postgres user=admin database=db_financial`: dial error (dial tcp 192.168.224.2:5432: connect: connection refused)
-api01     | 
-api01     | goroutine 1 [running]:
-api01     | rinha-2024-q1/api.NewGinHandler({0xc00031ff40?})
-api01     | 	/Users/tanna/Projetos/apresentações/go-demo-rinha/api/gin_handler.go:17 +0x149
-api01     | main.main()
-api01     | 	/Users/tanna/Projetos/apresentações/go-demo-rinha/main.go:35 +0x94
-api02     | 2024/03/04 19:48:04 Successfully Connected
-api02     | panic: failed to load customersfailed to connect to `host=postgres user=admin database=db_financial`: dial error (dial tcp 192.168.224.2:5432: connect: connection refused)
-api02     | 
-api02     | goroutine 1 [running]:
-api02     | rinha-2024-q1/api.NewGinHandler({0xc0002aff40?})
-api02     | 	/Users/tanna/Projetos/apresentações/go-demo-rinha/api/gin_handler.go:17 +0x149
-api02     | main.main()
-api02     | 	/Users/tanna/Projetos/apresentações/go-demo-rinha/main.go:35 +0x94
 postgres  | performing post-bootstrap initialization ... ok
-api01 exited with code 2
-api02 exited with code 2
-nginx     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
-nginx     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
-nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
 postgres  | syncing data to disk ... ok
 postgres  | 
 postgres  | 
@@ -59,18 +38,10 @@ postgres  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 postgres  | 
 postgres  | initdb: warning: enabling "trust" authentication for local connections
 postgres  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-nginx     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
-nginx     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
-nginx     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-postgres  | waiting for server to start....2024-03-04 19:48:06.422 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-nginx     | /docker-entrypoint.sh: Configuration complete; ready for start up
-postgres  | 2024-03-04 19:48:06.425 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-nginx     | 2024/03/04 19:48:06 [emerg] 1#1: host not found in upstream "api01:30001" in /etc/nginx/nginx.conf:51
-nginx     | nginx: [emerg] host not found in upstream "api01:30001" in /etc/nginx/nginx.conf:51
-postgres  | 2024-03-04 19:48:06.437 UTC [52] LOG:  database system was shut down at 2024-03-04 19:48:04 UTC
-postgres  | 2024-03-04 19:48:06.448 UTC [49] LOG:  database system is ready to accept connections
+postgres  | waiting for server to start....2024-03-04 23:43:05.747 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-03-04 23:43:05.752 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-03-04 23:43:05.763 UTC [51] LOG:  database system was shut down at 2024-03-04 23:43:04 UTC
+postgres  | 2024-03-04 23:43:05.776 UTC [48] LOG:  database system is ready to accept connections
 postgres  |  done
 postgres  | server started
 postgres  | CREATE DATABASE
@@ -84,38 +55,97 @@ postgres  | CREATE INDEX
 postgres  | GRANT
 postgres  | 
 postgres  | 
-postgres  | 2024-03-04 19:48:06.663 UTC [49] LOG:  received fast shutdown request
-postgres  | waiting for server to shut down....2024-03-04 19:48:06.668 UTC [49] LOG:  aborting any active transactions
-postgres  | 2024-03-04 19:48:06.672 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-postgres  | 2024-03-04 19:48:06.673 UTC [50] LOG:  shutting down
-postgres  | 2024-03-04 19:48:06.676 UTC [50] LOG:  checkpoint starting: shutdown immediate
-nginx exited with code 1
-postgres  | 2024-03-04 19:48:07.541 UTC [50] LOG:  checkpoint complete: wrote 930 buffers (7.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.405 s, sync=0.439 s, total=0.869 s; sync files=305, longest=0.193 s, average=0.002 s; distance=4276 kB, estimate=4276 kB; lsn=0/1917AB8, redo lsn=0/1917AB8
-postgres  | 2024-03-04 19:48:07.546 UTC [49] LOG:  database system is shut down
+postgres  | waiting for server to shut down...2024-03-04 23:43:06.009 UTC [48] LOG:  received fast shutdown request
+postgres  | .2024-03-04 23:43:06.014 UTC [48] LOG:  aborting any active transactions
+postgres  | 2024-03-04 23:43:06.016 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres  | 2024-03-04 23:43:06.016 UTC [49] LOG:  shutting down
+postgres  | 2024-03-04 23:43:06.019 UTC [49] LOG:  checkpoint starting: shutdown immediate
+postgres  | 2024-03-04 23:43:06.513 UTC [49] LOG:  checkpoint complete: wrote 930 buffers (7.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.380 s, sync=0.102 s, total=0.498 s; sync files=305, longest=0.069 s, average=0.001 s; distance=4276 kB, estimate=4276 kB; lsn=0/1917AB8, redo lsn=0/1917AB8
+postgres  | 2024-03-04 23:43:06.518 UTC [48] LOG:  database system is shut down
 postgres  |  done
 postgres  | server stopped
 postgres  | 
 postgres  | PostgreSQL init process complete; ready for start up.
 postgres  | 
-postgres  | 2024-03-04 19:48:07.589 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres  | 2024-03-04 19:48:07.589 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres  | 2024-03-04 19:48:07.589 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-postgres  | 2024-03-04 19:48:07.594 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres  | 2024-03-04 19:48:07.600 UTC [67] LOG:  database system was shut down at 2024-03-04 19:48:07 UTC
-postgres  | 2024-03-04 19:48:07.607 UTC [1] LOG:  database system is ready to accept connections
-postgres  | 2024-03-04 19:48:08.797 UTC [78] FATAL:  role "root" does not exist
-postgres  | 2024-03-04 19:48:13.872 UTC [86] FATAL:  role "root" does not exist
-postgres  | 2024-03-04 19:48:18.949 UTC [94] FATAL:  role "root" does not exist
-postgres  | 2024-03-04 19:48:24.021 UTC [102] FATAL:  role "root" does not exist
-postgres  | 2024-03-04 19:48:29.093 UTC [111] FATAL:  role "root" does not exist
-postgres  | 2024-03-04 19:48:34.175 UTC [119] FATAL:  role "root" does not exist
-postgres  | 2024-03-04 19:48:39.245 UTC [127] FATAL:  role "root" does not exist
-postgres  | 2024-03-04 19:48:44.320 UTC [135] FATAL:  role "root" does not exist
-postgres  | 2024-03-04 19:48:47.816 UTC [1] LOG:  received fast shutdown request
-postgres  | 2024-03-04 19:48:47.820 UTC [1] LOG:  aborting any active transactions
-postgres  | 2024-03-04 19:48:47.822 UTC [1] LOG:  background worker "logical replication launcher" (PID 70) exited with exit code 1
-postgres  | 2024-03-04 19:48:47.822 UTC [65] LOG:  shutting down
-postgres  | 2024-03-04 19:48:47.825 UTC [65] LOG:  checkpoint starting: shutdown immediate
-postgres  | 2024-03-04 19:48:47.886 UTC [65] LOG:  checkpoint complete: wrote 45 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.032 s, total=0.065 s; sync files=14, longest=0.009 s, average=0.003 s; distance=238 kB, estimate=238 kB; lsn=0/1953650, redo lsn=0/1953650
-postgres  | 2024-03-04 19:48:47.890 UTC [1] LOG:  database system is shut down
+postgres  | 2024-03-04 23:43:06.637 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-03-04 23:43:06.638 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres  | 2024-03-04 23:43:06.638 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres  | 2024-03-04 23:43:06.648 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-03-04 23:43:06.655 UTC [66] LOG:  database system was shut down at 2024-03-04 23:43:06 UTC
+postgres  | 2024-03-04 23:43:06.664 UTC [1] LOG:  database system is ready to accept connections
+postgres  | 2024-03-04 23:43:09.309 UTC [77] FATAL:  role "root" does not exist
+api01     | 2024/03/04 23:43:10 Successfully Connected
+api02     | 2024/03/04 23:43:10 Successfully Connected
+nginx     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx     | /docker-entrypoint.sh: Configuration complete; ready for start up
+postgres  | 2024-03-04 23:43:14.389 UTC [109] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:43:19.465 UTC [133] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:43:24.637 UTC [141] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:43:29.722 UTC [150] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:43:34.799 UTC [158] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:43:39.865 UTC [166] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:43:44.938 UTC [174] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:43:50.005 UTC [183] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:43:55.082 UTC [192] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:44:00.159 UTC [200] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:44:05.246 UTC [208] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:44:10.314 UTC [217] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:44:15.386 UTC [225] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:44:20.459 UTC [233] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:44:25.526 UTC [241] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:44:30.604 UTC [250] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:44:35.683 UTC [258] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:44:40.750 UTC [266] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:44:45.826 UTC [274] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:44:50.899 UTC [284] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:44:55.971 UTC [292] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:45:01.052 UTC [300] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:45:06.128 UTC [308] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:45:11.209 UTC [317] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:45:16.291 UTC [325] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:45:21.372 UTC [333] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:45:26.448 UTC [341] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:45:31.522 UTC [350] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:45:36.601 UTC [358] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:45:41.682 UTC [366] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:45:46.753 UTC [375] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:45:51.827 UTC [383] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:45:56.906 UTC [391] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:46:01.983 UTC [399] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:46:07.053 UTC [407] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:46:12.128 UTC [416] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:46:17.196 UTC [424] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:46:22.279 UTC [432] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:46:27.365 UTC [441] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:46:32.439 UTC [449] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:46:37.512 UTC [457] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:46:42.592 UTC [465] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:46:47.669 UTC [474] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:46:52.746 UTC [482] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:46:57.819 UTC [490] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:47:02.896 UTC [498] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:47:07.977 UTC [507] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:47:13.052 UTC [515] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:47:18.136 UTC [523] FATAL:  role "root" does not exist
+postgres  | 2024-03-04 23:47:23.209 UTC [531] FATAL:  role "root" does not exist
+nginx exited with code 0
+nginx exited with code 0
+api02 exited with code 0
+api02 exited with code 2
+api01 exited with code 0
+api01 exited with code 2
+postgres  | 2024-03-04 23:47:25.317 UTC [1] LOG:  received fast shutdown request
+postgres  | 2024-03-04 23:47:25.322 UTC [1] LOG:  aborting any active transactions
+postgres  | 2024-03-04 23:47:25.324 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+postgres  | 2024-03-04 23:47:25.325 UTC [64] LOG:  shutting down
+postgres  | 2024-03-04 23:47:25.328 UTC [64] LOG:  checkpoint starting: shutdown immediate
+postgres  | 2024-03-04 23:47:25.508 UTC [64] LOG:  checkpoint complete: wrote 911 buffers (7.1%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.011 s, sync=0.148 s, total=0.184 s; sync files=31, longest=0.140 s, average=0.005 s; distance=17010 kB, estimate=17010 kB; lsn=0/29B43D8, redo lsn=0/29B43D8
+postgres  | 2024-03-04 23:47:25.513 UTC [1] LOG:  database system is shut down
 postgres exited with code 0

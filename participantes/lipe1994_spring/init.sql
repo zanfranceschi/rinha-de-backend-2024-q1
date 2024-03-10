@@ -1,3 +1,7 @@
+SHOW MAX_CONNECTIONS;
+
+ALTER SYSTEM SET max_connections = 230;
+
 CREATE TABLE public.cliente (
 	id int4 NOT NULL,
 	limite int4 NOT NULL,

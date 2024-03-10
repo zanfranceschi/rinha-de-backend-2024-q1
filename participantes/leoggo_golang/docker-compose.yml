@@ -1,0 +1,86 @@
+version: "3.9"
+
+services:
+  nginx:
+    image: nginx:1.25.3-alpine3.18
+
+    restart: unless-stopped
+
+    hostname: nginx
+
+    # network_mode: "host"
+
+    depends_on:
+      - api1
+      - api2
+
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+
+    ports:
+      - "9999:9999"
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.18"
+          memory: "100MB"
+
+  api1: &api
+    image: ghcr.io/leoggo/rinha_go:latest
+
+    restart: unless-stopped
+
+    hostname: api1
+
+    # network_mode: "host"
+
+    depends_on:
+      - postgres
+
+    # build: ./Dockerfile
+
+    environment:
+      - DEFAULT_SHUTDOWN_TIME_OUT=100
+      - DEFAULT_READ_TIME_OUT=1200
+      - DEFAULT_WRITE_TIME_OUT=1200
+      - DEFAULT_IDLE_TIME_OUT=1200
+      - DEFAULT_READ_HEADER_TIME_OUT=1200
+      - DEFAULT_MAX_BD_CONNECTIONS=25
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.175"
+          memory: "80MB"
+
+  api2:
+    <<: *api
+    hostname: api2
+
+  postgres:
+    image: postgres:16.1-alpine3.19
+
+    restart: unless-stopped
+
+    hostname: postgres
+
+    # network_mode: "host"
+
+    environment:
+      - POSTGRES_PASSWORD=senha
+      - POSTGRES_USER=user
+      - POSTGRES_DB=clientes
+
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.97"
+          memory: "290MB"

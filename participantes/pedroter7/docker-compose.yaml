@@ -1,0 +1,49 @@
+version: "3.5"
+
+services:
+  webapi01: &webapi
+    network_mode: "host"
+    image: pedroter7/rinha-de-backend-2024-q1:webapi-latest
+    hostname: webapi01
+    environment:
+      - CUSTOMCONNSTR_MariaDbRinha=Server=127.0.0.1;Port=9996;User Id=rinha_user;Password=pwd;Database=rinha_2024_q1
+      - ASPNETCORE_HTTP_PORTS=9998
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "110MB"
+
+  webapi02:
+    network_mode: "host"
+    <<: *webapi
+    hostname: webapi02
+    environment:
+      - CUSTOMCONNSTR_MariaDbRinha=Server=127.0.0.1;Port=9996;User Id=rinha_user;Password=pwd;Database=rinha_2024_q1
+      - ASPNETCORE_HTTP_PORTS=9997
+
+  loadbalancer:
+    network_mode: "host"
+    image: pedroter7/rinha-de-backend-2024-q1:loadbalancer-latest
+    depends_on:
+      - webapi01
+      - webapi02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "20MB"
+
+  db:
+    network_mode: "host"
+    image: pedroter7/rinha-de-backend-2024-q1:db-latest
+    hostname: db
+    environment:
+      - MARIADB_ROOT_PASSWORD=pwd
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "310MB"

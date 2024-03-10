@@ -1,0 +1,238 @@
+ Container pedroter7-db-1  Creating
+ Container pedroter7-db-1  Created
+ Container pedroter7-webapi02-1  Creating
+ Container pedroter7-webapi01-1  Creating
+ Container pedroter7-webapi01-1  Created
+ Container pedroter7-webapi02-1  Created
+ Container pedroter7-loadbalancer-1  Creating
+ Container pedroter7-loadbalancer-1  Created
+Attaching to db-1, loadbalancer-1, webapi01-1, webapi02-1
+db-1            | 2024-03-08 16:21:49+00:00 [Note] [Entrypoint]: Entrypoint script for MariaDB Server 1:11.3.2+maria~ubu2204 started.
+db-1            | 2024-03-08 16:21:49+00:00 [Warn] [Entrypoint]: /sys/fs/cgroup///memory.pressure not writable, functionality unavailable to MariaDB
+db-1            | 2024-03-08 16:21:49+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+db-1            | 2024-03-08 16:21:49+00:00 [Note] [Entrypoint]: Entrypoint script for MariaDB Server 1:11.3.2+maria~ubu2204 started.
+loadbalancer-1  | [NOTICE]   (1) : New worker (8) forked
+loadbalancer-1  | [NOTICE]   (1) : Loading success.
+webapi01-1      | info: Microsoft.Hosting.Lifetime[14]
+webapi01-1      |       Now listening on: http://[::]:9998
+webapi01-1      | info: Microsoft.Hosting.Lifetime[0]
+webapi01-1      |       Application started. Press Ctrl+C to shut down.
+webapi01-1      | info: Microsoft.Hosting.Lifetime[0]
+webapi01-1      |       Hosting environment: Production
+webapi01-1      | info: Microsoft.Hosting.Lifetime[0]
+webapi01-1      |       Content root path: /App
+webapi02-1      | info: Microsoft.Hosting.Lifetime[14]
+webapi02-1      |       Now listening on: http://[::]:9997
+webapi02-1      | info: Microsoft.Hosting.Lifetime[0]
+webapi02-1      |       Application started. Press Ctrl+C to shut down.
+webapi02-1      | info: Microsoft.Hosting.Lifetime[0]
+webapi02-1      |       Hosting environment: Production
+webapi02-1      | info: Microsoft.Hosting.Lifetime[0]
+webapi02-1      |       Content root path: /App
+db-1            | 2024-03-08 16:21:49+00:00 [Note] [Entrypoint]: Initializing database files
+db-1            | 2024-03-08 16:21:49 0 [Warning] mariadbd: io_uring_queue_init() failed with errno 1
+db-1            | 2024-03-08 16:21:49 0 [Warning] InnoDB: liburing disabled: falling back to innodb_use_native_aio=OFF
+webapi01-1      | info: MySqlConnector.ConnectionPool[3001]
+webapi01-1      |       Creating new connection pool 1 for Server=127.0.0.1;Port=9996;User ID=rinha_user;Database=rinha_2024_q1
+webapi01-1      | info: MySqlConnector.MySqlDataSource[1002]
+webapi01-1      |       Data source 1 created with pool 1 and no name
+webapi01-1      | info: MySqlConnector.MySqlConnection[2124]
+webapi01-1      |       Session 1.1 failed to connect to IP address 127.0.0.1 for host name 127.0.0.1: Connection refused
+webapi01-1      |       System.Net.Sockets.SocketException (111): Connection refused
+webapi01-1      |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+webapi01-1      |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+webapi01-1      |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+webapi01-1      |          at System.Net.Sockets.TcpClient.CompleteConnectAsync(ValueTask task)
+webapi01-1      |          at MySqlConnector.Core.ServerSession.OpenTcpSocketAsync(ConnectionSettings cs, ILoadBalancer loadBalancer, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1018
+webapi01-1      | fail: Microsoft.AspNetCore.Server.Kestrel[13]
+webapi01-1      |       Connection id "0HN1VHFEREQDF", Request id "0HN1VHFEREQDF:00000001": An unhandled exception was thrown by the application.
+webapi01-1      |       MySqlConnector.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+webapi01-1      |          at MySqlConnector.Core.ServerSession.OpenTcpSocketAsync(ConnectionSettings cs, ILoadBalancer loadBalancer, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1063
+webapi01-1      |          at MySqlConnector.Core.ServerSession.ConnectAsync(ConnectionSettings cs, MySqlConnection connection, Int64 startingTimestamp, ILoadBalancer loadBalancer, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 425
+webapi01-1      |          at MySqlConnector.Core.ConnectionPool.ConnectSessionAsync(MySqlConnection connection, Action`4 logMessage, Int64 startingTimestamp, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ConnectionPool.cs:line 428
+webapi01-1      |          at MySqlConnector.Core.ConnectionPool.ConnectSessionAsync(MySqlConnection connection, Action`4 logMessage, Int64 startingTimestamp, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ConnectionPool.cs:line 433
+webapi01-1      |          at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, Int64 startingTimestamp, Int32 timeoutMilliseconds, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ConnectionPool.cs:line 111
+webapi01-1      |          at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, Int64 startingTimestamp, Int32 timeoutMilliseconds, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ConnectionPool.cs:line 144
+webapi01-1      |          at MySqlConnector.MySqlConnection.CreateSessionAsync(ConnectionPool pool, Int64 startingTimestamp, Activity activity, Nullable`1 ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 919
+webapi01-1      |          at MySqlConnector.MySqlConnection.OpenAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 419
+webapi01-1      |          at System.Data.Common.DbDataSource.OpenDbConnectionAsync(CancellationToken cancellationToken)
+webapi01-1      |          at System.Data.Common.DbDataSource.OpenDbConnectionAsync(CancellationToken cancellationToken)
+webapi01-1      |          at MySqlConnector.MySqlDataSource.OpenConnectionAsync(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataSource.cs:line 99
+webapi01-1      |          at PedroTer7.Rinha2024Q1.Database.DataAccessService.CallGetAccountStatementProcedure(Int32 accountId) in /App/PedroTer7.Rinha2024Q1.Database/Services/DataAccessService.cs:line 25
+webapi01-1      |          at PedroTer7.Rinha2024Q1.WebApi.Services.DataService.GetAccountStatement(Int32 accountId) in /App/PedroTer7.Rinha2024Q1.WebApi/Services/DataService.cs:line 33
+webapi01-1      |          at Program.<>c.<<<Main>$>b__0_3>d.MoveNext() in /App/PedroTer7.Rinha2024Q1.WebApi/Program.cs:line 76
+webapi01-1      |       --- End of stack trace from previous location ---
+webapi01-1      |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+webapi01-1      |          at Program.<>c.<<<Main>$>b__0_1>d.MoveNext() in /App/PedroTer7.Rinha2024Q1.WebApi/Program.cs:line 31
+webapi01-1      |       --- End of stack trace from previous location ---
+webapi01-1      |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+db-1            | 
+db-1            | 
+db-1            | PLEASE REMEMBER TO SET A PASSWORD FOR THE MariaDB root USER !
+db-1            | To do so, start the server, then issue the following command:
+db-1            | 
+db-1            | '/usr/bin/mariadb-secure-installation'
+db-1            | 
+db-1            | which will also give you the option of removing the test
+db-1            | databases and anonymous user created by default.  This is
+db-1            | strongly recommended for production servers.
+db-1            | 
+db-1            | See the MariaDB Knowledgebase at https://mariadb.com/kb
+db-1            | 
+db-1            | Please report any problems at https://mariadb.org/jira
+db-1            | 
+db-1            | The latest information about MariaDB is available at https://mariadb.org/.
+db-1            | 
+db-1            | Consider joining MariaDB's strong and vibrant community:
+db-1            | https://mariadb.org/get-involved/
+db-1            | 
+db-1            | 2024-03-08 16:21:53+00:00 [Note] [Entrypoint]: Database files initialized
+db-1            | 2024-03-08 16:21:53+00:00 [Note] [Entrypoint]: Starting temporary server
+db-1            | 2024-03-08 16:21:53+00:00 [Note] [Entrypoint]: Waiting for server startup
+db-1            | 2024-03-08 16:21:53 0 [Note] Starting MariaDB 11.3.2-MariaDB-1:11.3.2+maria~ubu2204 source revision 068a6819eb63bcb01fdfa037c9bf3bf63c33ee42 as process 101
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: Using transactional memory
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: Number of transaction pools: 1
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
+db-1            | 2024-03-08 16:21:53 0 [Note] mariadbd: O_TMPFILE is not supported on /tmp (disabling future attempts)
+db-1            | 2024-03-08 16:21:53 0 [Warning] mariadbd: io_uring_queue_init() failed with errno 1
+db-1            | 2024-03-08 16:21:53 0 [Warning] InnoDB: liburing disabled: falling back to innodb_use_native_aio=OFF
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: Initializing buffer pool, total size = 256.000MiB, chunk size = 4.000MiB
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: Completed initialization of buffer pool
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: File system buffers for log disabled (block size=4096 bytes)
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: End of log at LSN=47733
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: Opened 3 undo tablespaces
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: 128 rollback segments in 3 undo tablespaces are active.
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+db-1            | 2024-03-08 16:21:53 0 [Note] InnoDB: log sequence number 47733; transaction id 14
+db-1            | 2024-03-08 16:21:53 0 [Note] Plugin 'FEEDBACK' is disabled.
+db-1            | 2024-03-08 16:21:53 0 [Note] Plugin 'wsrep-provider' is disabled.
+db-1            | 2024-03-08 16:21:53 0 [Warning] 'user' entry 'root@db' ignored in --skip-name-resolve mode.
+db-1            | 2024-03-08 16:21:53 0 [Warning] 'proxies_priv' entry '@% root@db' ignored in --skip-name-resolve mode.
+db-1            | 2024-03-08 16:21:53 0 [Note] mariadbd: Event Scheduler: Loaded 0 events
+db-1            | 2024-03-08 16:21:53 0 [Note] mariadbd: ready for connections.
+db-1            | Version: '11.3.2-MariaDB-1:11.3.2+maria~ubu2204'  socket: '/run/mysqld/mysqld.sock'  port: 0  mariadb.org binary distribution
+db-1            | 2024-03-08 16:21:54+00:00 [Note] [Entrypoint]: Temporary server started.
+webapi02-1      | info: MySqlConnector.ConnectionPool[3001]
+webapi02-1      |       Creating new connection pool 1 for Server=127.0.0.1;Port=9996;User ID=rinha_user;Database=rinha_2024_q1
+webapi02-1      | info: MySqlConnector.MySqlDataSource[1002]
+webapi02-1      |       Data source 1 created with pool 1 and no name
+webapi02-1      | info: MySqlConnector.MySqlConnection[2124]
+webapi02-1      |       Session 1.1 failed to connect to IP address 127.0.0.1 for host name 127.0.0.1: Connection refused
+webapi02-1      |       System.Net.Sockets.SocketException (111): Connection refused
+webapi02-1      |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+webapi02-1      |          at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+webapi02-1      |          at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+webapi02-1      |          at System.Net.Sockets.TcpClient.CompleteConnectAsync(ValueTask task)
+webapi02-1      |          at MySqlConnector.Core.ServerSession.OpenTcpSocketAsync(ConnectionSettings cs, ILoadBalancer loadBalancer, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1018
+webapi02-1      | fail: Microsoft.AspNetCore.Server.Kestrel[13]
+webapi02-1      |       Connection id "0HN1VHFFID42R", Request id "0HN1VHFFID42R:00000001": An unhandled exception was thrown by the application.
+webapi02-1      |       MySqlConnector.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+webapi02-1      |          at MySqlConnector.Core.ServerSession.OpenTcpSocketAsync(ConnectionSettings cs, ILoadBalancer loadBalancer, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1063
+webapi02-1      |          at MySqlConnector.Core.ServerSession.ConnectAsync(ConnectionSettings cs, MySqlConnection connection, Int64 startingTimestamp, ILoadBalancer loadBalancer, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 425
+webapi02-1      |          at MySqlConnector.Core.ConnectionPool.ConnectSessionAsync(MySqlConnection connection, Action`4 logMessage, Int64 startingTimestamp, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ConnectionPool.cs:line 428
+webapi02-1      |          at MySqlConnector.Core.ConnectionPool.ConnectSessionAsync(MySqlConnection connection, Action`4 logMessage, Int64 startingTimestamp, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ConnectionPool.cs:line 433
+webapi02-1      |          at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, Int64 startingTimestamp, Int32 timeoutMilliseconds, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ConnectionPool.cs:line 111
+webapi02-1      |          at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, Int64 startingTimestamp, Int32 timeoutMilliseconds, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ConnectionPool.cs:line 144
+webapi02-1      |          at MySqlConnector.MySqlConnection.CreateSessionAsync(ConnectionPool pool, Int64 startingTimestamp, Activity activity, Nullable`1 ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 919
+webapi02-1      |          at MySqlConnector.MySqlConnection.OpenAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 419
+webapi02-1      |          at System.Data.Common.DbDataSource.OpenDbConnectionAsync(CancellationToken cancellationToken)
+webapi02-1      |          at System.Data.Common.DbDataSource.OpenDbConnectionAsync(CancellationToken cancellationToken)
+webapi02-1      |          at MySqlConnector.MySqlDataSource.OpenConnectionAsync(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataSource.cs:line 99
+webapi02-1      |          at PedroTer7.Rinha2024Q1.Database.DataAccessService.CallGetAccountStatementProcedure(Int32 accountId) in /App/PedroTer7.Rinha2024Q1.Database/Services/DataAccessService.cs:line 25
+webapi02-1      |          at PedroTer7.Rinha2024Q1.WebApi.Services.DataService.GetAccountStatement(Int32 accountId) in /App/PedroTer7.Rinha2024Q1.WebApi/Services/DataService.cs:line 33
+webapi02-1      |          at Program.<>c.<<<Main>$>b__0_3>d.MoveNext() in /App/PedroTer7.Rinha2024Q1.WebApi/Program.cs:line 76
+webapi02-1      |       --- End of stack trace from previous location ---
+webapi02-1      |          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+webapi02-1      |          at Program.<>c.<<<Main>$>b__0_1>d.MoveNext() in /App/PedroTer7.Rinha2024Q1.WebApi/Program.cs:line 31
+webapi02-1      |       --- End of stack trace from previous location ---
+webapi02-1      |          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+db-1            | 2024-03-08 16:21:56+00:00 [Note] [Entrypoint]: Securing system users (equivalent to running mysql_secure_installation)
+db-1            | 
+db-1            | 2024-03-08 16:21:56+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/1_database.sql
+db-1            | 
+db-1            | 
+db-1            | 2024-03-08 16:21:57+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/2_structure.sql
+db-1            | 
+db-1            | 
+db-1            | 2024-03-08 16:21:57+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/3_procedures.sql
+db-1            | 
+db-1            | 
+db-1            | 2024-03-08 16:21:57+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/4_data.sql
+db-1            | 
+db-1            | 
+db-1            | 2024-03-08 16:21:57+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/5_users.sql
+db-1            | 
+db-1            | 
+db-1            | 2024-03-08 16:21:57+00:00 [Note] [Entrypoint]: Stopping temporary server
+db-1            | 2024-03-08 16:21:57 0 [Note] mariadbd (initiated by: unknown): Normal shutdown
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: FTS optimize thread exiting.
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Starting shutdown...
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Buffer pool(s) dump completed at 240308 16:21:57
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Shutdown completed; log sequence number 55420; transaction id 27
+db-1            | 2024-03-08 16:21:57 0 [Note] mariadbd: Shutdown complete
+db-1            | 
+db-1            | 2024-03-08 16:21:57+00:00 [Note] [Entrypoint]: Temporary server stopped
+db-1            | 
+db-1            | 2024-03-08 16:21:57+00:00 [Note] [Entrypoint]: MariaDB init process done. Ready for start up.
+db-1            | 
+db-1            | 2024-03-08 16:21:57 0 [Note] Starting MariaDB 11.3.2-MariaDB-1:11.3.2+maria~ubu2204 source revision 068a6819eb63bcb01fdfa037c9bf3bf63c33ee42 as process 1
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Using transactional memory
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Number of transaction pools: 1
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
+db-1            | 2024-03-08 16:21:57 0 [Note] mariadbd: O_TMPFILE is not supported on /tmp (disabling future attempts)
+db-1            | 2024-03-08 16:21:57 0 [Warning] mariadbd: io_uring_queue_init() failed with errno 1
+db-1            | 2024-03-08 16:21:57 0 [Warning] InnoDB: liburing disabled: falling back to innodb_use_native_aio=OFF
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Initializing buffer pool, total size = 256.000MiB, chunk size = 4.000MiB
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Completed initialization of buffer pool
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: File system buffers for log disabled (block size=4096 bytes)
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: End of log at LSN=55420
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Opened 3 undo tablespaces
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: 128 rollback segments in 3 undo tablespaces are active.
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: log sequence number 55420; transaction id 28
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+db-1            | 2024-03-08 16:21:57 0 [Note] Plugin 'FEEDBACK' is disabled.
+db-1            | 2024-03-08 16:21:57 0 [Note] Plugin 'wsrep-provider' is disabled.
+db-1            | 2024-03-08 16:21:57 0 [Note] InnoDB: Buffer pool(s) load completed at 240308 16:21:57
+db-1            | 2024-03-08 16:21:57 0 [Note] Server socket created on IP: '0.0.0.0'.
+db-1            | 2024-03-08 16:21:57 0 [Note] Server socket created on IP: '::'.
+db-1            | 2024-03-08 16:21:57 0 [Note] mariadbd: Event Scheduler: Loaded 0 events
+db-1            | 2024-03-08 16:21:57 0 [Note] mariadbd: ready for connections.
+db-1            | Version: '11.3.2-MariaDB-1:11.3.2+maria~ubu2204'  socket: '/run/mysqld/mysqld.sock'  port: 9996  mariadb.org binary distribution
+loadbalancer-1  | [NOTICE]   (1) : haproxy version is 2.9.6-9eafce5
+loadbalancer-1  | [NOTICE]   (1) : path to executable is /usr/local/sbin/haproxy
+loadbalancer-1  | [WARNING]  (1) : Exiting Master process...
+loadbalancer-1  | [WARNING]  (8) : Proxy http-in stopped (cumulated conns: FE: 61457, BE: 0).
+loadbalancer-1  | [WARNING]  (8) : Proxy servers stopped (cumulated conns: FE: 0, BE: 61507).
+loadbalancer-1  | [WARNING]  (1) : Current worker (8) exited with code 0 (Exit)
+loadbalancer-1  | [WARNING]  (1) : All workers exited. Exiting... (0)
+loadbalancer-1 exited with code 0
+loadbalancer-1 exited with code 0
+webapi01-1      | info: Microsoft.Hosting.Lifetime[0]
+webapi01-1      |       Application is shutting down...
+webapi02-1      | info: Microsoft.Hosting.Lifetime[0]
+webapi02-1      |       Application is shutting down...
+webapi01-1      | info: MySqlConnector.ConnectionPool[3013]
+webapi01-1      |       Pool 1 clearing connection pool
+webapi02-1      | info: MySqlConnector.ConnectionPool[3013]
+webapi02-1      |       Pool 1 clearing connection pool
+webapi01-1 exited with code 0
+webapi01-1 exited with code 0
+webapi02-1 exited with code 0
+webapi02-1 exited with code 0
+db-1            | 2024-03-08 16:26:10 0 [Note] mariadbd (initiated by: unknown): Normal shutdown
+db-1            | 2024-03-08 16:26:10 0 [Note] InnoDB: FTS optimize thread exiting.
+db-1            | 2024-03-08 16:26:10 0 [Note] InnoDB: Starting shutdown...
+db-1            | 2024-03-08 16:26:10 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+db-1            | 2024-03-08 16:26:10 0 [Note] InnoDB: Buffer pool(s) dump completed at 240308 16:26:10
+db-1            | 2024-03-08 16:26:11 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
+db-1            | 2024-03-08 16:26:11 0 [Note] InnoDB: Shutdown completed; log sequence number 20557035; transaction id 105536
+db-1            | 2024-03-08 16:26:11 0 [Note] mariadbd: Shutdown complete
+db-1            | 
+db-1 exited with code 0

@@ -7,3 +7,4 @@
 - [ ] Não estou alterando arquivos fora do ou dos meus diretórios de participação.
 - [ ] Testei pelo menos o funcionamento básico do `docker-compose.yml`, todos os serviços estão subindo e minha API respondendo na porta 9999.
 - [ ] Todas imagens contidas no `docker-compose.yml` funcionam na arquitetura linux/amd64.
+

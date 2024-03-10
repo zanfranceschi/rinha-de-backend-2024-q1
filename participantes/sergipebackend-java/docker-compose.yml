@@ -1,0 +1,68 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: sergipebackend/rinhabackend:latest
+    hostname: api01
+    environment:
+      DB_HOST: postgres
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "0.60"
+          memory: "200MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      DB_HOST: postgres
+    ports:
+      - "8082:8080"
+    depends_on:
+      - postgres
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./sandbox/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "10MB"
+
+  postgres:
+    image: postgres:14.1-alpine
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c full_page_writes=0 -c statement-timeout=60000
+    volumes:
+      - ./sandbox/postgresql/script.sql:/docker-entrypoint-initdb.d/script.sql
+    environment:
+      - POSTGRES_DB=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U rinha -d rinha" ]
+      interval: 3s
+      timeout: 1s
+      retries: 10
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "140MB"
+networks:
+  default:
+    driver: bridge
+    name: rinhabackend-bridge

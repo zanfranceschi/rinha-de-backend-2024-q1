@@ -10,3 +10,8 @@
 - `traefik` - loadbalancer configurado com docker
 - `postgres` - banco de dados
 - `go` - API usando [sqlx](https://github.com/jmoiron/sqlx) e [httprouter](https://github.com/julienschmidt/httprouter)
+
+#### Repositório
+[Rinha de Back end](https://github.com/daniloraisi/rinha-back-end-2024-q1)
+
+[@raisi_exception](https://twitter.com/raisi_exception) @ Twitter (X)
