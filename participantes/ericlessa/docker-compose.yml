@@ -13,10 +13,11 @@ services:
     # Não é necessário expor qualquer porta além da porta do load balancer,
     # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
     # ao banco de dados na fase de desenvolvimento.
-#    ports:
-#      - "8081:8080"
+    #    ports:
+    #      - "8081:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -27,8 +28,8 @@ services:
     # Essa sintaxe reusa o que foi declarado em 'api01'.
     <<: *api
     hostname: api02
-#    ports:
-#      - "8082:8080"
+  #    ports:
+  #      - "8082:8080"
 
   nginx:
     image: nginx:latest
@@ -54,10 +55,12 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
-#    ports:
-#      - "5432:5432"
+    #    ports:
+    #      - "5432:5432"
     volumes:
       - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - type: tmpfs
+        target: /var/lib/postgresql/data
     deploy:
       resources:
         limits:
@@ -67,6 +70,12 @@ services:
           # um exemplo – distribua como quiser.
           cpus: "0.5"
           memory: "256MB"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
 
 # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
 # A edição anterior se beneficiou do modo host pois o volume de requisições
