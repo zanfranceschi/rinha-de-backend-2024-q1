@@ -1,0 +1,68 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: 1nflktd/rinha-backend-go-pg
+    hostname: api01
+    volumes:
+      - ./:/app
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=admin
+      - DB_PASSWORD=123
+      - DB_NAME=rinha_backend
+      - DB_PORT=5432
+      - SERVER_PORT=9000
+    ports:
+      - "8081:9000"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "8082:9000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    command: postgres
+    environment:
+      - POSTGRES_DB=rinha_backend
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.9"
+          memory: "400MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha_backend
