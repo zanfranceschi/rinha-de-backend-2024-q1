@@ -1,14 +1,14 @@
  api2 Pulling 
  api1 Pulling 
- api2 Pulled 
  api1 Pulled 
+ api2 Pulled 
  Volume "vgdss_pgdata"  Creating
  Volume "vgdss_pgdata"  Created
  Container rinhadb  Creating
  Container rinhadb  Created
- Container rinha-api2  Creating
  Container rinha-api1  Creating
  Container rinha-api1  Created
+ Container rinha-api2  Creating
  Container rinha-api2  Created
  Container rinha-nginx  Creating
  Container rinha-nginx  Created
@@ -31,6 +31,8 @@ rinhadb      | selecting default time zone ... Etc/UTC
 rinhadb      | creating configuration files ... ok
 rinhadb      | running bootstrap script ... ok
 rinhadb      | performing post-bootstrap initialization ... ok
+rinhadb      | initdb: warning: enabling "trust" authentication for local connections
+rinhadb      | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 rinhadb      | syncing data to disk ... ok
 rinhadb      | 
 rinhadb      | 
@@ -38,8 +40,6 @@ rinhadb      | Success. You can now start the database server using:
 rinhadb      | 
 rinhadb      |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 rinhadb      | 
-rinhadb      | initdb: warning: enabling "trust" authentication for local connections
-rinhadb      | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 rinhadb      | waiting for server to start.... done
 rinhadb      | server started
 rinhadb      | CREATE DATABASE
@@ -70,16 +70,19 @@ rinhadb      | server stopped
 rinhadb      | 
 rinhadb      | PostgreSQL init process complete; ready for start up.
 rinhadb      | 
-rinha-api2   | INFO:     Started server process [7]
-rinha-api2   | INFO:     Waiting for application startup.
-rinha-api2   | INFO:     Application startup complete.
-rinha-api2   | INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
 rinha-api1   | INFO:     Started server process [7]
 rinha-api1   | INFO:     Waiting for application startup.
 rinha-api1   | INFO:     Application startup complete.
 rinha-api1   | INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
-rinha-api2   | INFO:     127.0.0.1:54052 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:45962 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:49890 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:49900 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:49916 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     Started server process [7]
+rinha-api2   | INFO:     Waiting for application startup.
+rinha-api2   | INFO:     Application startup complete.
+rinha-api2   | INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+rinha-api1   | INFO:     127.0.0.1:49930 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35862 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
 rinha-nginx  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 rinha-nginx  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 rinha-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -89,412 +92,409 @@ rinha-nginx  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-res
 rinha-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 rinha-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 rinha-nginx  | /docker-entrypoint.sh: Configuration complete; ready for start up
-rinha-api2   | INFO:     127.0.0.1:54058 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:45964 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:45980 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:54064 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:45980 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:45990 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:54078 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:54064 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36130 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35702 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:45980 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36138 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35708 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:54064 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35718 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36140 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:45980 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35732 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36152 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:54064 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:45980 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35794 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36156 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36232 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36256 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35756 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36216 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36206 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36172 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36276 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35770 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36240 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35758 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35786 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35762 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36262 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36188 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36192 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35740 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35748 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35772 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35766 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35804 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35818 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36278 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35822 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36290 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35818 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36302 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35838 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36278 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36278 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35818 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36392 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36310 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36320 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36328 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35908 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35804 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36344 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35766 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35864 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36364 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35868 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36358 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35858 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36374 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35850 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35896 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36376 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36338 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35848 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35888 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36380 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35906 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35884 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36408 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35910 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36380 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35884 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35914 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36410 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36380 - "GET /clientes/6/extrato HTTP/1.1" 404 Not Found
-rinha-api1   | INFO:     127.0.0.1:36414 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36418 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:49932 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35878 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:49940 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:49944 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
 rinha-api2   | INFO:     127.0.0.1:35888 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35884 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35906 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36418 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35918 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36414 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35884 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36418 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36414 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35918 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35906 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36418 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36414 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35884 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36434 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35906 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35918 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36414 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36434 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36414 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35918 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35906 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35928 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35928 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36414 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36438 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36464 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36468 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35906 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35932 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36448 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35918 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36478 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35992 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35946 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35968 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35980 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35954 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35990 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36478 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36484 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36478 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36488 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36496 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36484 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36496 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36484 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36484 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36496 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36496 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:35980 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:36000 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36002 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36510 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:50992 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:34164 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:50994 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:34172 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:51010 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:34182 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:51018 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:34198 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:51022 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:34200 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:34204 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:51026 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:51036 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:34212 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:51044 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:34218 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:51054 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:34234 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:54310 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:35808 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36480 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:36000 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
-rinha-api2   | INFO:     127.0.0.1:35996 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
-rinha-api1   | INFO:     127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35904 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:49940 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35904 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:49960 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46708 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:49940 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55392 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46718 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35904 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55408 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46732 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:49940 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55410 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46746 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35904 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55414 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35904 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:49940 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35904 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55440 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46752 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55440 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55450 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46782 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46756 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55448 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55430 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55470 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46768 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:35904 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55460 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55488 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:49940 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55474 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46800 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55434 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46790 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55496 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46812 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46826 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46788 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46830 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46788 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55510 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55496 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46844 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55522 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46788 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46826 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46812 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46790 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46800 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55496 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46900 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46912 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55474 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46910 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55434 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46854 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46870 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46880 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46894 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55534 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46868 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55542 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55536 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55588 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55572 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55558 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55592 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55614 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55612 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55606 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46924 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46928 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55624 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55606 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46932 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46928 - "GET /clientes/6/extrato HTTP/1.1" 404 Not Found
+rinha-api2   | INFO:     127.0.0.1:46928 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46946 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55606 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55612 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55614 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55614 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55606 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46946 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46962 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46928 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55606 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46974 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46928 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55614 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55612 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55606 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46928 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46974 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55612 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46962 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46974 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46962 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55606 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55612 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55614 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55614 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46962 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46974 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46928 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46946 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55612 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46962 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46974 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47016 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46988 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47012 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55592 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46998 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46998 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55614 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55628 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55614 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55606 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46998 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55652 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55642 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46998 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55606 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55636 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:46998 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55652 - "POST /clientes/3/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55658 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55652 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55652 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55652 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:46998 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55652 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 422 Unprocessable Entity
+rinha-api1   | INFO:     127.0.0.1:55660 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47058 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55672 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47068 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:57836 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:48986 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:57840 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:48988 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:57846 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:49000 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:57852 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:49014 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:57866 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:49018 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:57874 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:49020 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:57886 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:49034 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "GET /clientes/3/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:57896 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "GET /clientes/5/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:49044 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:57912 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "GET /clientes/4/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:49060 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47026 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "GET /clientes/2/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:47246 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55636 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/4/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/2/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:58544 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "GET /clientes/1/extrato HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/5/transacoes HTTP/1.1" 200 OK
+rinha-api1   | INFO:     127.0.0.1:55658 - "POST /clientes/1/transacoes HTTP/1.1" 200 OK
+rinha-api2   | INFO:     127.0.0.1:47042 - "POST /clientes/3/transacoes HTTP/1.1" 200 OK

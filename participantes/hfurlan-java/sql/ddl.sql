@@ -93,15 +93,15 @@ create or replace trigger clientes_remover_saldo
     for each row
     execute function remover_saldo();
 
-create function creditar(p_cliente_id int, p_valor int, p_tipo varchar(1), p_descricao varchar(10)) RETURNS int AS $$
+create function creditar(p_cliente_id int, p_valor int, p_descricao varchar(10)) RETURNS int AS $$
 declare
   saldo_atualizado int;
 begin
 --with novo_saldo as (UPDATE saldos SET saldo = saldo + $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-  insert into transacoes (cliente_id, valor, descricao, tipo) values (p_cliente_id, p_valor, p_descricao, p_tipo);
+  insert into transacoes (cliente_id, valor, descricao, tipo) values (p_cliente_id, p_valor, p_descricao, 'c');
   update saldos set saldo = saldo + p_valor,
     transacao_0_valor = p_valor,
-    transacao_0_tipo = p_tipo,
+    transacao_0_tipo = 'c',
     transacao_0_descricao = p_descricao,
     transacao_0_data_hora_inclusao = NOW(),
     transacao_1_valor              = transacao_0_valor,
@@ -145,15 +145,15 @@ begin
 end;
 $$ LANGUAGE plpgsql;
 
-create function debitar(p_cliente_id int, p_valor int, p_tipo varchar(1), p_descricao varchar(10)) RETURNS int AS $$
+create function debitar(p_cliente_id int, p_valor int, p_descricao varchar(10)) RETURNS int AS $$
 declare
   saldo_atualizado int;
 begin
 --with novo_saldo as (UPDATE saldos SET saldo = saldo + $1 WHERE cliente_id = $2 RETURNING saldo) insert into transacoes (cliente_id, valor, descricao, tipo, saldo) values ($3, $4, $5, $6, (select * from novo_saldo)) returning saldo
-  insert into transacoes (cliente_id, valor, descricao, tipo) values (p_cliente_id, p_valor, p_descricao, p_tipo);
+  insert into transacoes (cliente_id, valor, descricao, tipo) values (p_cliente_id, p_valor, p_descricao, 'd');
   update saldos set saldo = saldo - p_valor,
     transacao_0_valor = p_valor,
-    transacao_0_tipo = p_tipo,
+    transacao_0_tipo = 'd',
     transacao_0_descricao = p_descricao,
     transacao_0_data_hora_inclusao = NOW(),
     transacao_1_valor              = transacao_0_valor,

@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   api01: &api
-    image: gustamantovani/api-rinha24-rust:1.0
+    image: gustamantovani/api-rinha24-rust:1.1 
     hostname: api01
     environment:
       - DB_HOSTNAME=db
@@ -10,6 +10,10 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
       - DATABASE_URL=postgres://admin:123@db/rinha
+    
+    # Não é necessário expor qualquer porta além da porta do load balancer,
+    # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
+    # ao banco de dados na fase de desenvolvimento.
     ports:
       - "8081:8000"
     depends_on:
@@ -17,8 +21,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.52"
-          memory: "15MB"
+          cpus: "0.5"
+          memory: "30MB"
 
   api02:
     <<: *api 
@@ -57,13 +61,14 @@ services:
       - POSTGRES_DB=rinha
     ports:
       - "5432:5432"
+    command: postgres -c 'max_connections=100'
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     deploy:
       resources:
         limits:
-          cpus: "0.36"
-          memory: "510MB"
+          cpus: "0.4"
+          memory: "450MB"
 
 networks:
   default:
