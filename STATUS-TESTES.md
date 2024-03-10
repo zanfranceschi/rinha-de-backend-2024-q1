@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 03:51:07 UTC 2024** com **629** submissões.
+Atualizada **Sun Mar 10 04:00:35 UTC 2024** com **630** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -235,6 +235,7 @@ Atualizada **Sun Mar 10 03:51:07 UTC 2024** com **629** submissões.
 | [gbank](./participantes/gbank) | falha - [logs](./participantes/gbank/docker-compose.logs) | -- |
 | [gbfonseca](./participantes/gbfonseca) | ok | 2 |
 | [gcrispino-pgx](./participantes/gcrispino-pgx) | ok | 3 |
+| [gcrispino-rust](./participantes/gcrispino-rust) | ok | 4 |
 | [gcrispino](./participantes/gcrispino) | ok | 184 |
 | [geffersonFerraz-http2](./participantes/geffersonFerraz-http2) | ok | 2 |
 | [geffersonFerraz-http3](./participantes/geffersonFerraz-http3) | ok | 2 |
