@@ -1,0 +1,74 @@
+version: '3.5'
+
+services:
+  api01: &api
+    image: brunonoriller/app-rinha-de-backend-2024-q1:latest
+    hostname: api01
+    volumes:
+      - data:/app/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.42'
+          memory: '100MB'
+
+  api02:
+    <<: *api
+    hostname: api02
+
+  api03:
+    <<: *api
+    hostname: api03
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    command: >
+      sh -c "
+        until
+          curl -s http://api01:3000/seed;
+        do
+          echo 'Waiting for API01 to start...';
+          sleep 5;
+        done;
+        echo 'API01 started!';
+        until
+          curl -s http://api02:3000/seed;
+        do
+          echo 'Waiting for API02 to start...';
+          sleep 1;
+        done;
+        echo 'API02 started!';
+        until
+          curl -s http://api03:3000/seed;
+        do
+          echo 'Waiting for API03 to start...';
+          sleep 1;
+        done;
+        echo 'API03 started!';
+        nginx -g 'daemon off;'"
+    depends_on:
+      - api01
+      - api02
+      - api03
+    ports:
+      - '9999:9999'
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.24'
+          memory: '250MB'
+
+networks:
+  default:
+    driver: bridge
+    name: noriller-rinha-2024-q1
+
+volumes:
+  data:

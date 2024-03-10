@@ -1,6 +1,6 @@
 # Rinha de Backend, Segunda Edição: 2024/Q1 - Controle de Concorrência
 
-## Bruno Noriller
+## Bruno Noriller - versão 4 instancias
 
 Submissão feita com:
 
@@ -10,6 +10,16 @@ Submissão feita com:
   - porque next? ué... porque sim!
   - `drizzle` como ORM
   - `ts` para api
+
+### Detalhes
+
+Nesta submissão, estou utilizando 5 instancias em vez do default de 2.
+
+Percebi que, nos testes de estresse que fiz, 5 instancias rendeu mais do que duas.
+
+Como não sei se poderia utilizar mais que as 2 instancias
+(as regras falam de arquitetura mínima, mas não comenta sobre se pode utilizar mais),
+então estou fazendo esta submissão com 5.
 
 ### Repositório da API
 
