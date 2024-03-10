@@ -6,7 +6,7 @@ Este projeto foi desenvolvido para a participação da Rinha de backend, essa ed
 ## Stack
 
 * Golang
-* Postgres
+* PostgreSQL
 * Nginx
 
 ## Repositorio Original
