@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  pg_dotnet_mnapi_database:
+    container_name: pg_dotnet_mnapi_database
+    image: postgres:latest
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/configure.sql
+    command: 'postgres -c shared_buffers=256MB -c fsync=off -c full_page_writes=off -c max_connections=230'
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_USER=postgres
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "230MB"
+
+  dotnet_bank_mnapi_1:
+    container_name: dotnet_bank_mnapi_1
+    image: lipeferreira1609/dev_bank_with_dotnet_mn_api:2.2
+    depends_on:
+      - pg_dotnet_mnapi_database
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "95MB"
+
+  dotnet_bank_mnapi_2:
+    container_name: dotnet_bank_mnapi_2
+    image: lipeferreira1609/dev_bank_with_dotnet_mn_api:2.2
+    depends_on:
+      - pg_dotnet_mnapi_database
+      - dotnet_bank_mnapi_1
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "95MB"
+
+
+  dotnet_nginx:
+    container_name: dotnet_nginx
+    image: nginx:latest
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - dotnet_bank_mnapi_1
+      - dotnet_bank_mnapi_2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "110MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-backend-2024
