@@ -1,61 +1,66 @@
 services:
   api1: &api
-    image: thiagotn/rinhafastapi
-    hostname: api1
+    image: thiagotn/rinhafastapi:3.0
     container_name: api1
+    command: uvicorn app.main:app --host 0.0.0.0 --port 3000
+    network_mode: host
     environment:
-      - DB_HOST=db
-      - DB_POOL_SIZE=5
+      - MAX_CONNECTIONS=5
+      - MIN_CONNECTIONS=1
+      - POSTGRES_DB=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_HOST=localhost
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
-          cpus: '0.5'
-          memory: '200MB'
+          cpus: "590m"
+          memory: "105MB"
 
   api2: 
     <<: *api
-    hostname: api2
     container_name: api2
+    command: uvicorn app.main:app --host 0.0.0.0 --port 3001
 
   db:
-    image: postgres
-    hostname: db
+    image: postgres:16
     container_name: db
-    environment:
-      POSTGRES_PASSWORD: 123
-      POSTGRES_USER: admin
-      POSTGRES_DB: rinha
-    ports:
-      - 5432:5432
     volumes:
       - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./config/postgresql.conf:/etc/postgresql/postgresql.conf
+      - type: tmpfs
+        target: /var/lib/postgresql/data
     command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    network_mode: host
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rinha -d rinha -h localhost -p 5432"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    environment:
+      POSTGRES_USER: rinha
+      POSTGRES_PASSWORD: rinha
+      POSTGRES_DB: rinha
     deploy:
       resources:
         limits:
-          cpus: '0.3'
-          memory: '100MB'
+          cpus: "240m"
+          memory: "320MB"
 
   nginx:
     image: nginx 
     container_name: nginx
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
-    ports:
-      - 9999:9999
+    network_mode: host
     depends_on:
       - api1
       - api2
     deploy:
       resources:
         limits:
-          cpus: '0.2'
-          memory: '50MB'
-
-networks:
-  default:
-    driver: bridge
-    name: rinha-nginx-2024q1
+          cpus: "80m"
+          memory: "20MB"

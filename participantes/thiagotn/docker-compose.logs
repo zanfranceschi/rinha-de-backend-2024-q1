@@ -1,11 +1,9 @@
- Network rinha-nginx-2024q1  Creating
- Network rinha-nginx-2024q1  Created
  Container db  Creating
  Container db  Created
  Container api2  Creating
  Container api1  Creating
- Container api2  Created
  Container api1  Created
+ Container api2  Created
  Container nginx  Creating
  Container nginx  Created
 Attaching to api1, api2, db, nginx
@@ -26,54 +24,7 @@ db     | selecting default shared_buffers ... 128MB
 db     | selecting default time zone ... Etc/UTC
 db     | creating configuration files ... ok
 db     | running bootstrap script ... ok
-nginx  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
-nginx  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-nginx  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
-nginx  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
-nginx  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-nginx  | /docker-entrypoint.sh: Configuration complete; ready for start up
-api2   | INFO:     Started server process [1]
-api2   | INFO:     Waiting for application startup.
-api2   | Creating connection pool to 
-api2   |     dbname=rinha
-api2   |     user=admin
-api2   |     password=123
-api2   |     host=db
-api2   |     port=5432
-api2   |     
-api2   | INFO:     Application startup complete.
-api2   | error connecting in 'pool-1': connection failed: Connection refused
-api2   | 	Is the server running on that host and accepting TCP/IP connections?
-api2   | error connecting in 'pool-1': connection failed: Connection refused
-api2   | 	Is the server running on that host and accepting TCP/IP connections?
-api2   | error connecting in 'pool-1': connection failed: Connection refused
-api2   | 	Is the server running on that host and accepting TCP/IP connections?
-api2   | INFO:     Uvicorn running on http://0.0.0.0:3000 (Press CTRL+C to quit)
-api2   | error connecting in 'pool-1': connection failed: Connection refused
-api2   | 	Is the server running on that host and accepting TCP/IP connections?
 db     | performing post-bootstrap initialization ... ok
-api1   | INFO:     Started server process [1]
-api1   | INFO:     Waiting for application startup.
-api1   | Creating connection pool to 
-api1   |     dbname=rinha
-api1   |     user=admin
-api1   |     password=123
-api1   |     host=db
-api1   |     port=5432
-api1   |     
-api1   | INFO:     Application startup complete.
-api1   | error connecting in 'pool-1': connection failed: Connection refused
-api1   | 	Is the server running on that host and accepting TCP/IP connections?
-api1   | error connecting in 'pool-1': connection failed: Connection refused
-api1   | 	Is the server running on that host and accepting TCP/IP connections?
-api1   | error connecting in 'pool-1': connection failed: Connection refused
-api1   | 	Is the server running on that host and accepting TCP/IP connections?
-api1   | INFO:     Uvicorn running on http://0.0.0.0:3000 (Press CTRL+C to quit)
-api1   | error connecting in 'pool-1': connection failed: Connection refused
-api1   | 	Is the server running on that host and accepting TCP/IP connections?
 db     | syncing data to disk ... ok
 db     | 
 db     | 
@@ -83,11 +34,7 @@ db     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db     | 
 db     | initdb: warning: enabling "trust" authentication for local connections
 db     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db     | waiting for server to start....2024-02-24 02:29:41.627 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db     | 2024-02-24 02:29:41.630 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db     | 2024-02-24 02:29:41.640 GMT [51] LOG:  database system was shut down at 2024-02-24 02:29:41 GMT
-db     | 2024-02-24 02:29:41.655 GMT [48] LOG:  database system is ready to accept connections
-db     |  done
+db     | waiting for server to start.... done
 db     | server started
 db     | CREATE DATABASE
 db     | 
@@ -95,406 +42,459 @@ db     |
 db     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
 db     | CREATE TABLE
 db     | CREATE TABLE
+db     | CREATE INDEX
+db     | CREATE INDEX
+db     | CREATE EXTENSION
+db     |  pg_prewarm 
+db     | ------------
+db     |           0
+db     | (1 row)
+db     | 
+db     |  pg_prewarm 
+db     | ------------
+db     |           0
+db     | (1 row)
+db     | 
 db     | DO
 db     | CREATE FUNCTION
 db     | 
 db     | 
-db     | waiting for server to shut down...2024-02-24 02:29:42.038 GMT [48] LOG:  received fast shutdown request
-db     | .2024-02-24 02:29:42.042 GMT [48] LOG:  aborting any active transactions
-db     | 2024-02-24 02:29:42.044 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db     | 2024-02-24 02:29:42.044 GMT [49] LOG:  shutting down
-db     | 2024-02-24 02:29:42.047 GMT [49] LOG:  checkpoint starting: shutdown immediate
-api2   | error connecting in 'pool-1': connection failed: Connection refused
-api2   | 	Is the server running on that host and accepting TCP/IP connections?
-api1   | error connecting in 'pool-1': connection failed: Connection refused
-api1   | 	Is the server running on that host and accepting TCP/IP connections?
-api1   | error connecting in 'pool-1': connection failed: Connection refused
-api1   | 	Is the server running on that host and accepting TCP/IP connections?
-api2   | error connecting in 'pool-1': connection failed: Connection refused
-api2   | 	Is the server running on that host and accepting TCP/IP connections?
-api2   | error connecting in 'pool-1': connection failed: Connection refused
-api2   | 	Is the server running on that host and accepting TCP/IP connections?
-api1   | error connecting in 'pool-1': connection failed: Connection refused
-api1   | 	Is the server running on that host and accepting TCP/IP connections?
-api2   | error connecting in 'pool-1': connection failed: Connection refused
-api2   | 	Is the server running on that host and accepting TCP/IP connections?
-api1   | error connecting in 'pool-1': connection failed: Connection refused
-api1   | 	Is the server running on that host and accepting TCP/IP connections?
-db     | 2024-02-24 02:29:42.595 GMT [49] LOG:  checkpoint complete: wrote 939 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.407 s, sync=0.131 s, total=0.551 s; sync files=313, longest=0.095 s, average=0.001 s; distance=4291 kB, estimate=4291 kB; lsn=0/191B738, redo lsn=0/191B738
-db     | 2024-02-24 02:29:42.600 GMT [48] LOG:  database system is shut down
-db     |  done
+db     | waiting for server to shut down.... done
 db     | server stopped
 db     | 
 db     | PostgreSQL init process complete; ready for start up.
 db     | 
-db     | 2024-02-24 02:29:42.662 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db     | 2024-02-24 02:29:42.662 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db     | 2024-02-24 02:29:42.662 GMT [1] LOG:  listening on IPv6 address "::", port 5432
-db     | 2024-02-24 02:29:42.667 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db     | 2024-02-24 02:29:42.674 GMT [66] LOG:  database system was shut down at 2024-02-24 02:29:42 GMT
-db     | 2024-02-24 02:29:42.681 GMT [1] LOG:  database system is ready to accept connections
-api1   | transactions: 0
-api1   | INFO:     172.18.0.5:57830 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api1   | transactions: 0
-api1   | INFO:     172.18.0.5:57844 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | INFO:     172.18.0.5:47678 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | INFO:     172.18.0.5:47654 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43852 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43832 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | INFO:     172.18.0.5:47664 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43866 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47690 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43860 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43874 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43870 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47694 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47684 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47700 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43846 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | INFO:     172.18.0.5:47710 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='validacao')
-api2   | INFO:     172.18.0.5:47724 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43914 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43902 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43934 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43890 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47702 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43922 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43938 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47744 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47734 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transactions: 10
-api1   | INFO:     172.18.0.5:43954 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api1   | INFO:     172.18.0.5:43968 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | INFO:     172.18.0.5:47778 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47768 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47780 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api2   | INFO:     172.18.0.5:47756 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47794 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47786 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43972 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:43986 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:44002 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='validacao')
-api1   | INFO:     172.18.0.5:44034 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:44018 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:44056 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:44050 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:44068 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:44084 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47826 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47822 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47802 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47818 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:44058 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:44016 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47844 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47842 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47858 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transactions: 10
-api1   | INFO:     172.18.0.5:44100 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47868 - "GET /clientes/6/extrato HTTP/1.0" 404 Not Found
-api2   | transactions: 0
-api2   | INFO:     172.18.0.5:47880 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api1   | transactions: 0
-api1   | INFO:     172.18.0.5:44110 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api2   | transactions: 0
-api2   | INFO:     172.18.0.5:47882 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api1   | transactions: 10
-api1   | INFO:     172.18.0.5:44116 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api1   | transactions: 0
-api1   | INFO:     172.18.0.5:44122 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='toma')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='toma')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='toma')
-api2   | INFO:     172.18.0.5:47898 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='toma')
-api1   | INFO:     172.18.0.5:44134 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47912 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47916 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='toma')
-api1   | INFO:     172.18.0.5:44144 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='devolve')
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='devolve')
-api2   | transaction: TransactionRequest(valor=1, tipo='d', descricao='devolve')
-api2   | INFO:     172.18.0.5:47924 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47932 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='devolve')
-api1   | transaction: TransactionRequest(valor=1, tipo='d', descricao='devolve')
-api1   | INFO:     172.18.0.5:44170 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:44174 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:44156 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api2   | transactions: 10
-api2   | INFO:     172.18.0.5:47940 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api2   | transactions: 2
-api2   | INFO:     172.18.0.5:47946 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api1   | transactions: 2
-api2   | transactions: 2
-api1   | INFO:     172.18.0.5:44176 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47952 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api1   | transactions: 2
-api1   | INFO:     172.18.0.5:44184 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='danada')
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='danada')
-api1   | INFO:     172.18.0.5:44186 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='danada')
-api2   | INFO:     172.18.0.5:47968 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:47978 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='danada')
-api1   | INFO:     172.18.0.5:44190 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='danada')
-api1   | INFO:     172.18.0.5:44196 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api1   | transactions: 3
-api1   | INFO:     172.18.0.5:44202 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api1   | transactions: 3
-api1   | INFO:     172.18.0.5:44220 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api1   | transactions: 3
-api1   | INFO:     172.18.0.5:44216 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api1   | transactions: 3
-api1   | INFO:     172.18.0.5:44228 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api2   | transactions: 10
-api2   | INFO:     172.18.0.5:47992 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api2   | transactions: 3
-api2   | INFO:     172.18.0.5:47994 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api2   | transactions: 3
-api2   | INFO:     172.18.0.5:48014 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api2   | transactions: 3
-api2   | INFO:     172.18.0.5:48024 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api2   | transactions: 3
-api2   | INFO:     172.18.0.5:48052 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api2   | transactions: 3
-api2   | INFO:     172.18.0.5:48040 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api1   | transactions: 3
-api1   | INFO:     172.18.0.5:44224 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api2   | transactions: 3
-api2   | INFO:     172.18.0.5:48062 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api2   | transactions: 10
-api2   | INFO:     172.18.0.5:48064 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api2   | transactions: 10
-api2   | INFO:     172.18.0.5:48080 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api1   | transactions: 10
-api1   | INFO:     172.18.0.5:44244 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api1   | transactions: 3
-api1   | INFO:     172.18.0.5:44254 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api1   | transactions: 3
-api1   | INFO:     172.18.0.5:44268 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api2   | transactions: 3
-api2   | INFO:     172.18.0.5:48096 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:48110 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | transaction: TransactionRequest(valor=1, tipo='x', descricao='devolve')
-api1   | INFO:     172.18.0.5:44286 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | transactions: 3
-api1   | INFO:     172.18.0.5:44270 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api2   | transactions: 3
-api2   | INFO:     172.18.0.5:48126 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='123456789 e mais um pouco')
-api1   | INFO:     172.18.0.5:44294 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
-api2   | INFO:     172.18.0.5:48138 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
-api2   | INFO:     172.18.0.5:48144 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='')
-api1   | INFO:     172.18.0.5:44298 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
-api2   | INFO:     172.18.0.5:48148 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | INFO:     172.18.0.5:44308 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | transaction: TransactionRequest(valor=1, tipo='x', descricao='devolve')
-api1   | INFO:     172.18.0.5:44324 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | transaction: TransactionRequest(valor=1, tipo='x', descricao='devolve')
-api1   | INFO:     172.18.0.5:44328 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='123456789 e mais um pouco')
-api2   | INFO:     172.18.0.5:48152 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='123456789 e mais um pouco')
-api2   | INFO:     172.18.0.5:48156 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='')
-api2   | INFO:     172.18.0.5:48170 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | INFO:     172.18.0.5:44336 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='')
-api1   | INFO:     172.18.0.5:44338 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | transaction: TransactionRequest(valor=1, tipo='x', descricao='devolve')
-api1   | INFO:     172.18.0.5:44346 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
-api2   | transaction: TransactionRequest(valor=1, tipo='x', descricao='devolve')
-api2   | INFO:     172.18.0.5:48182 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
-api2   | INFO:     172.18.0.5:48194 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
-api2   | INFO:     172.18.0.5:48206 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='123456789 e mais um pouco')
-api1   | INFO:     172.18.0.5:44360 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='')
-api1   | INFO:     172.18.0.5:44364 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
-api2   | transaction: TransactionRequest(valor=1, tipo='c', descricao='123456789 e mais um pouco')
-api2   | INFO:     172.18.0.5:48208 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | INFO:     172.18.0.5:44372 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | transaction: TransactionRequest(valor=1, tipo='c', descricao='')
-api1   | INFO:     172.18.0.5:44386 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
-api2   | INFO:     172.18.0.5:48212 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
-api1   | transaction: TransactionRequest(valor=7190, tipo='c', descricao='e5eZrtCmYN')
-api2   | transactions: 10
-api1   | INFO:     172.18.0.5:44390 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:48218 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=285, tipo='d', descricao='S7zyOhggNX')
-api2   | INFO:     172.18.0.5:48224 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=7759, tipo='c', descricao='UglP9adQpv')
-api1   | transaction: TransactionRequest(valor=6589, tipo='d', descricao='2xDKGafKSG')
-api1   | INFO:     172.18.0.5:44402 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:48234 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | transactions: 3
-api2   | INFO:     172.18.0.5:48240 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=533, tipo='d', descricao='c7ZgvoSFZX')
-api1   | INFO:     172.18.0.5:44406 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=3762, tipo='d', descricao='uroiFuyAaQ')
-api2   | INFO:     172.18.0.5:48256 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1626, tipo='c', descricao='UrJWY5xw4e')
-api1   | INFO:     172.18.0.5:44408 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=1864, tipo='d', descricao='dTTZuvJu8e')
-api2   | INFO:     172.18.0.5:48270 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=9623, tipo='d', descricao='h2UiQmp8xt')
-api2   | transaction: TransactionRequest(valor=6205, tipo='c', descricao='V0CnIqhJFD')
-api2   | INFO:     172.18.0.5:48276 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:44428 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api1   | transactions: 4
-api1   | INFO:     172.18.0.5:44414 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=6502, tipo='d', descricao='fi1xHsKPy2')
-api2   | INFO:     172.18.0.5:48292 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=113, tipo='c', descricao='mPyTyfYsia')
-api1   | INFO:     172.18.0.5:44432 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=9790, tipo='d', descricao='EFBU19nXT0')
-api2   | INFO:     172.18.0.5:48304 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=4506, tipo='c', descricao='MNjhTV303B')
-api2   | transaction: TransactionRequest(valor=6462, tipo='d', descricao='E4ZM1g6PPJ')
-api1   | INFO:     172.18.0.5:44440 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:48310 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=2565, tipo='d', descricao='nftw0hYrtc')
-api1   | INFO:     172.18.0.5:44446 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=8833, tipo='c', descricao='g8nuKCau2M')
-api2   | INFO:     172.18.0.5:48316 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=612, tipo='d', descricao='qm8ijG7Icq')
-api1   | INFO:     172.18.0.5:44454 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=9394, tipo='c', descricao='rXmmsj7JfP')
-api1   | transaction: TransactionRequest(valor=1723, tipo='d', descricao='i2VrOWmULY')
-api1   | INFO:     172.18.0.5:44458 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api2   | transactions: 8
-api2   | INFO:     172.18.0.5:48336 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:48322 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=3569, tipo='d', descricao='U7ZZ9Xxips')
-api1   | INFO:     172.18.0.5:44466 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=7191, tipo='c', descricao='pizqIhBUtq')
-api1   | INFO:     172.18.0.5:44472 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=1472, tipo='d', descricao='fBA2tqqFP8')
-api2   | INFO:     172.18.0.5:48344 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=610, tipo='d', descricao='qpUr1JPlCT')
-api1   | INFO:     172.18.0.5:44486 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=2552, tipo='c', descricao='gAG8d3eBXZ')
-api2   | INFO:     172.18.0.5:48350 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1778, tipo='d', descricao='2aY8UecZl1')
-api1   | INFO:     172.18.0.5:44496 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=1938, tipo='d', descricao='fy44lMHD5f')
-api2   | INFO:     172.18.0.5:48360 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=8950, tipo='c', descricao='jguOWsQluV')
-api1   | INFO:     172.18.0.5:44504 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=47, tipo='d', descricao='s1GfNqUcVB')
-api2   | INFO:     172.18.0.5:48366 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=5643, tipo='d', descricao='pKuvIOULRm')
-api2   | transactions: 10
-api1   | transaction: TransactionRequest(valor=6978, tipo='c', descricao='Z8If0jAWUM')
-api1   | INFO:     172.18.0.5:44518 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api1   | INFO:     172.18.0.5:44526 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:48380 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=9962, tipo='d', descricao='giAVsr86fC')
-api2   | INFO:     172.18.0.5:48384 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=5176, tipo='c', descricao='yYPaxzv2Id')
-api1   | INFO:     172.18.0.5:44538 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=8396, tipo='d', descricao='0ArLnGdnbe')
-api2   | INFO:     172.18.0.5:48398 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1032, tipo='d', descricao='FYVydYEAGx')
-api1   | INFO:     172.18.0.5:44542 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=2803, tipo='c', descricao='VS6OldLqM4')
-api2   | INFO:     172.18.0.5:48414 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=6883, tipo='d', descricao='mR18UtBEiY')
-api2   | INFO:     172.18.0.5:48424 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1137, tipo='d', descricao='c1ByVSg2Sv')
-api1   | INFO:     172.18.0.5:44550 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=1325, tipo='c', descricao='nXPpoJnLY0')
-api2   | INFO:     172.18.0.5:48428 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=7546, tipo='d', descricao='IQE4OlrhVM')
-api1   | INFO:     172.18.0.5:44566 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=7308, tipo='d', descricao='X9Wzd9Q0OR')
-api2   | INFO:     172.18.0.5:48430 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1334, tipo='c', descricao='8e7ZbHWBGa')
-api1   | INFO:     172.18.0.5:44572 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=1000, tipo='d', descricao='oASB4wDUoQ')
-api2   | INFO:     172.18.0.5:48434 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=842, tipo='d', descricao='X7bhRsAQ85')
-api2   | INFO:     172.18.0.5:48446 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=989, tipo='c', descricao='SrUWFSKLJe')
-api1   | INFO:     172.18.0.5:44580 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api1   | transactions: 10
-api1   | INFO:     172.18.0.5:45002 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=2571, tipo='d', descricao='57dILfhrOQ')
-api2   | INFO:     172.18.0.5:56986 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=6182, tipo='c', descricao='EQUReOedHm')
-api1   | INFO:     172.18.0.5:45004 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=1449, tipo='d', descricao='u0ooqLIOkP')
-api2   | INFO:     172.18.0.5:57000 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=2953, tipo='d', descricao='CHpEukDrmf')
-api1   | INFO:     172.18.0.5:45010 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=933, tipo='c', descricao='CykJLTA3oU')
-api2   | INFO:     172.18.0.5:57004 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=2106, tipo='d', descricao='B2s01k4DF3')
-api1   | INFO:     172.18.0.5:45016 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=1498, tipo='d', descricao='cW9YdA5ogd')
-api1   | INFO:     172.18.0.5:45018 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=2048, tipo='c', descricao='52jnD8JYrf')
-api2   | transactions: 10
-api1   | INFO:     172.18.0.5:45024 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api2   | INFO:     172.18.0.5:57016 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=8954, tipo='d', descricao='MmsCKrKIXo')
-api2   | INFO:     172.18.0.5:57018 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api1   | transaction: TransactionRequest(valor=7706, tipo='d', descricao='sZkL3xTwcr')
-api1   | INFO:     172.18.0.5:45038 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api2   | transaction: TransactionRequest(valor=8394, tipo='c', descricao='O8XyhIlv4K')
-api2   | INFO:     172.18.0.5:57020 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+nginx  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx  | /docker-entrypoint.sh: Configuration complete; ready for start up
+api1   | INFO:     Started server process [1]
+api1   | INFO:     Waiting for application startup.
+api1   | INFO:     Application startup complete.
+api1   | INFO:     Uvicorn running on http://0.0.0.0:3000 (Press CTRL+C to quit)
+api2   | INFO:     Started server process [1]
+api2   | INFO:     Waiting for application startup.
+api2   | INFO:     Application startup complete.
+api2   | INFO:     Uvicorn running on http://0.0.0.0:3001 (Press CTRL+C to quit)
+api2   | INFO:     127.0.0.1:37268 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37282 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37296 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:47070 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37300 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37292 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:47098 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:47082 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37284 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37328 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:47120 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37304 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37312 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37352 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37336 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37308 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37374 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:47112 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:47132 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37384 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37368 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37386 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:37382 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:47110 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:47148 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:47164 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:47150 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:47168 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40434 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40444 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40464 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40474 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40484 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40462 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40478 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40458 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58318 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58308 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58330 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58346 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58364 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58402 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58376 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58414 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40496 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40512 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40516 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58348 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58392 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58444 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40532 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58418 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58434 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40540 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58458 - "GET /clientes/6/extrato HTTP/1.0" 404 Not Found
+api2   | INFO:     127.0.0.1:58472 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58462 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40552 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40568 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40558 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58494 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58482 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40584 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40590 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58496 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58506 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58518 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40600 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40608 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40612 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58528 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58534 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40616 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58550 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40622 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40628 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58558 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40634 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58562 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40638 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58576 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58588 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58594 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58602 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58614 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58622 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58628 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58630 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40654 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40658 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58646 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40672 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58660 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40684 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40688 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40698 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40650 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40680 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40712 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40702 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40704 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58666 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:58678 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40714 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40720 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:58694 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40724 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:58704 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:58714 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:58716 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40732 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40738 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:58718 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40742 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:58722 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40748 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40762 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:58736 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:58744 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:58748 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40772 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40784 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40790 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:58752 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:58762 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:40802 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58764 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40808 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58774 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40824 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58782 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40828 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40834 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58796 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40838 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40850 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58802 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58812 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40864 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58824 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40872 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40878 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58838 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58854 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40894 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58864 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40904 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58872 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40918 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58878 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40934 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58884 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40942 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58892 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40954 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58900 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40964 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58902 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58910 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40980 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40968 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58922 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40994 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58938 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:40996 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58942 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41000 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58954 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41008 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58956 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41010 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58966 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41012 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41022 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58980 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58994 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41028 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:58998 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41040 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59010 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41050 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59024 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41064 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59034 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41066 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59042 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41080 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59054 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41088 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59060 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41096 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59074 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41098 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41106 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59090 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59100 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41108 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59112 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41118 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59126 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41122 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59142 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41124 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59156 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41134 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59166 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41136 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:59172 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:41146 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41608 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56118 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41612 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56124 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56138 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41626 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41620 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41630 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56148 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41632 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56152 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41634 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56162 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41638 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56166 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41654 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56168 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56170 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41664 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56184 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41680 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56192 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41694 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56196 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41704 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56208 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41710 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56212 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41716 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56228 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41728 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41730 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56230 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56240 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41742 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41750 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41760 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56256 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56270 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41772 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56276 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41776 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41778 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56286 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56300 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41780 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56310 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41794 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56322 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56338 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41808 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41814 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41818 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56346 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56350 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56358 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41830 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41822 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56366 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41846 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56382 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41848 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56394 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41856 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56410 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41870 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56426 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41872 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56434 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41876 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56450 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41882 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56466 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41884 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56478 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41896 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56484 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41902 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56490 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41914 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56494 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41918 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56500 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41930 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56506 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56516 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41948 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41940 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56528 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41954 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56542 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41964 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56548 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56558 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41966 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56574 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41976 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56586 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41982 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41984 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56596 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56608 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42008 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:41992 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56610 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api2   | INFO:     127.0.0.1:42012 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56624 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56632 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42024 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42026 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56648 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56654 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42040 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42048 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56660 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42050 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56662 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56672 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42060 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56680 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42076 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56692 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42084 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56700 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42090 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56716 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42106 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api1   | INFO:     127.0.0.1:56726 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42112 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56740 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42114 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56754 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42120 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56770 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42130 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56782 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42146 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56794 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42154 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56810 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42166 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56820 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42182 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56822 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42190 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56832 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42202 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56844 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42218 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56852 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42226 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56864 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42234 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42240 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56880 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56882 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42256 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56894 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42272 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56908 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42274 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42284 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56916 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56924 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42292 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42308 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56936 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56948 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42318 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56960 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42324 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56964 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42334 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56972 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42336 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56986 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42342 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:56996 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42344 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57006 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42356 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57016 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42372 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57022 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42376 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57024 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42382 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42394 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57040 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42410 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57046 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57060 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42418 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57054 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42432 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57074 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42434 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57088 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42436 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57094 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42446 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57104 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42460 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57116 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42466 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57132 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api2   | INFO:     127.0.0.1:42468 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api1   | INFO:     127.0.0.1:57134 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK

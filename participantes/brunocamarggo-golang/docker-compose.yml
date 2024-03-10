@@ -5,6 +5,7 @@ services:
     image: nginx
     hostname: rinha-nginx
     container_name: rinha-nginx
+    network_mode: host
     ports:
       - "9999:9999"
     volumes:
@@ -15,15 +16,17 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.20"
+          cpus: "0.30"
           memory: "137MB"
   
   api1: &api
-    image: brunocamarggo/rinha2024q1-golang
+    image: brunocamarggo/rinha2024q1-golang:0.0.10
     container_name: rinha2024q1-api-1
     hostname: rinha2024q1-api-1
+    network_mode: host
     environment:
-      DB_HOST: db
+      DB_HOST: "127.0.0.1"
+      HTTP_PORT: 8081
     depends_on:
       db:
         condition: service_healthy
@@ -31,17 +34,24 @@ services:
       resources:
         limits:
           cpus: "0.30"
-          memory: "137MB"
+          memory: "32MB"
+    ports:
+      - "8081:8081"
 
   api2:
     <<: *api
     container_name: rinha2024q1-api-2
     hostname: rinha2024q1-api-2
+    environment:
+      HTTP_PORT: 8082
+    ports:
+      - "8082:8082"
   
   db:
     image: postgres:16
     hostname: rinha-db
     container_name: rinha-db
+    network_mode: host
     environment:
       POSTGRES_DB: rinha
       POSTGRES_USER: rinha
@@ -60,5 +70,5 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.70"
-          memory: "137MB"
+          cpus: "0.60"
+          memory: "349MB"

@@ -1,0 +1,80 @@
+version: "3.8"
+services:
+
+## limites
+## cpus 1.5
+## memory 550MB
+
+  api-01: &api
+    image: jp0user0docker/rinha_q1_2024:latest
+    container_name: api-01
+    hostname: api-01
+    environment:
+      DB_CONNECTION_STRING: postgres://user:password@postgres:5432/rinha_db?sslmode=disable
+      MAX_CONN: 20
+      MIN_CONN: 5
+    ports:
+      - "8080:3001"
+    depends_on:
+      - postgres
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "70MB"
+
+  api-02:
+    <<: *api
+    container_name: api-02
+    hostname: api-02
+    ports:
+      - "8081:3001"
+
+
+  nginx:
+    container_name: nginx
+    hostname: nginx
+    image: nginx:1.25.4-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      api-01:
+        condition: service_started
+      api-02:
+        condition: service_started
+    restart: on-failure
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+
+
+# database
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: rinha_db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "360MB"
+          
+      
+networks:
+  default:
+    driver: bridge
+    name: network-rinha

@@ -2,6 +2,6 @@ lucas
 
 golang: fiber + pgx + postgres
 
-repositorio: https://github.com/lucasSSalgado/rinha-de-backend-2024-q1
+repositorio: https://github.com/lucasSSalgado/rinha_backend
 email: lucssslucsss@gmail.com
 

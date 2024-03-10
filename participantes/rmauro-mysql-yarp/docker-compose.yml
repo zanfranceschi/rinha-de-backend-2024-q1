@@ -1,0 +1,108 @@
+version: '3.9'
+
+services:
+  api1:
+    image: ricardomauro/rinha-2024q1-dotnet:latest
+    container_name: rapi1
+    network_mode: host
+    environment: 
+      ConnectionStrings__Default: Server=127.0.0.1;Port=3306;Database=rinha;Uid=rinha;Pwd=password.123;
+      DOTNET_URLS: http://*:9997
+      ASPNETCORE_ENVIRONMENT: Production
+      TRAIL: P_1
+    depends_on:
+      db:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '80MB'
+
+  api2:
+    image: ricardomauro/rinha-2024q1-dotnet:latest
+    container_name: rapi2
+    network_mode: host
+    environment: 
+      ConnectionStrings__Default: Server=127.0.0.1;Port=3306;Database=rinha;Uid=rinha;Pwd=password.123;
+      DOTNET_URLS: http://*:9998
+      ASPNETCORE_ENVIRONMENT: Production
+      TRAIL: P_2
+    depends_on:
+      db:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '80MB'
+
+  yarp:
+    image: ricardomauro/rinha-2024q1-dotnet-yarp:latest
+    container_name: rpy-proxy
+    network_mode: host
+    environment: 
+      ConnectionStrings__Default: Host=localhost;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=2000;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;;
+      DOTNET_URLS: http://*:9999
+      ASPNETCORE_ENVIRONMENT: Production
+    volumes:
+      - ./yarp/secrets.json:/app/secrets.json
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '134MB'
+
+  db:
+    image: mariadb:lts-jammy
+    container_name: rdb
+    network_mode: host
+    command: --skip-log-bin
+    volumes:
+      - ./mysql/dump/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./mysql/my.cnf:/etc/mysql/my.cnf:ro
+    tmpfs:
+      - /var/lib/mysql
+    restart: always
+    environment:
+      MARIADB_ROOT_USER: root
+      MARIADB_ROOT_PASSWORD: password.123
+      MARIADB_DATABASE: rinha
+      MARIADB_USER: rinha
+      MARIADB_PASSWORD: password.123
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 1
+
+    healthcheck:
+      test: 
+        [
+          "CMD",
+          "healthcheck.sh",
+          "--su-mysql",
+          "--connect",
+          "--innodb_initialized"
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '256MB'

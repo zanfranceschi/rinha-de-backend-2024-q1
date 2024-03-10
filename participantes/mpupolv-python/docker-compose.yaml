@@ -1,0 +1,85 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: mpupolv/rinha-backend-2024-q1-python:latest
+    hostname: api01
+    environment:
+      - APP_HOSTNAME=api01
+      - RINHA_DB__DB_NAME=rinha
+      - RINHA_DB__DB_USER=rinha
+      - RINHA_DB__DB_PASSWORD=rinha
+      - RINHA_DB__DB_HOST=/var/run/postgresql
+      - RINHA_DB__DB_PORT=5432
+      - RINHA_DB__DB_POOL_SIZE=10
+      - RINHA_DB__DB_MAX_OVERFLOW=40
+      - RINHA_DB__DB_POOL_TIMEOUT=30
+    ports:
+      - "18081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "100MB"
+    volumes:
+      - sockets:/var/run/rinha:rw
+      - postgres:/var/run/postgresql:rw
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "18082:8080"
+    environment:
+      - APP_HOSTNAME=api02
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - sockets:/var/run/rinha:rw
+    depends_on:
+      api01:
+        condition: service_healthy
+      api02:
+        condition: service_healthy
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "15MB"
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./postgresql/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+      - ./postgresql/dml.sql:/docker-entrypoint-initdb.d/dml.sql
+      - ./postgresql/postgresql.conf:/etc/postgresql/postgresql.conf
+      - postgres:/var/run/postgresql:rw
+    command: postgres -c "config_file=/etc/postgresql/postgresql.conf"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "335MB"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready --dbname=rinha --username=rinha"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
+volumes:
+  sockets:
+  postgres:

@@ -15,6 +15,13 @@ CREATE UNLOGGED TABLE transactions (
 		FOREIGN KEY (account_id) REFERENCES accounts(id)
 );
 
+CREATE INDEX idx_accounts_id ON accounts (id);
+CREATE INDEX idx_transactions_account_created ON transactions (account_id, created_at DESC);
+
+CREATE EXTENSION IF NOT EXISTS pg_prewarm;
+SELECT pg_prewarm('accounts');
+SELECT pg_prewarm( 'transactions');
+
 DO $$
 BEGIN
 	INSERT INTO accounts (account_limit, balance) 
@@ -41,12 +48,6 @@ BEGIN
         RAISE EXCEPTION 'Conta não encontrada';
     END IF;
 
-    RAISE NOTICE 'Tipo da Transacao: %', transactionType;
-    RAISE NOTICE 'Valor da Transacao: %', amount;
-    RAISE NOTICE 'Conta: %', accountId;
-    RAISE NOTICE 'Saldo: %', actualBalance;
-    RAISE NOTICE 'Limite: %', actualLimit;
-
     IF transactionType = 'd' THEN
         IF amount < 0 THEN
             RAISE EXCEPTION 'Valor não pode ser negativo';
@@ -69,8 +70,6 @@ BEGIN
     UPDATE accounts
     SET balance = actualBalance
     WHERE id = accountId;
-
-    LOCK TABLE transactions IN ACCESS EXCLUSIVE MODE;
 
     INSERT INTO transactions (account_id, value, transaction_type, description, created_at)
     VALUES (accountId, amount, transactionType, description, (NOW() at time zone 'utc'));

@@ -1,0 +1,99 @@
+version: '3.8'
+name: rinha-service
+
+services:
+  api1:
+    image: andrewxvasco/rinha-service:latest
+    hostname: api1
+    environment:
+      - SERVER_PORT=8000
+      - DATABASE_URL=jdbc:postgresql://postgres:5432/postgres_db?currentSchema=public
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+
+      - HIKARI_CONNECTION_TIMEOUT=40000
+      - HIKARI_MAXIMUM_POOL_SIZE=8
+      - HIKARI_MINIMUM_IDLE=4
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '200MB'
+
+  api2:
+    image: andrewxvasco/rinha-service:latest
+    hostname: api2
+    environment:
+      - SERVER_PORT=8000
+      - DATABASE_URL=jdbc:postgresql://postgres:5432/postgres_db?currentSchema=public
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+
+      - HIKARI_CONNECTION_TIMEOUT=40000
+      - HIKARI_MAXIMUM_POOL_SIZE=8
+      - HIKARI_MINIMUM_IDLE=4
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '200MB'
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '15MB'
+
+  postgres:
+    image: postgres:latest
+    command: [
+      'postgres',
+      '-c',
+      'max_connections=40',
+      '-c',
+      'shared_buffers=128MB',
+      '-c',
+      'synchronous_commit=off',
+      '-c',
+      'fsync=off',
+      '-c',
+      'full_page_writes=off',
+    ]
+    user: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+    environment:
+      POSTGRES_DB: postgres_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: '135MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1-host

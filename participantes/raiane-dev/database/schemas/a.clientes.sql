@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS clientes (
     nome VARCHAR(50),
     limite INTEGER,
     saldo INTEGER DEFAULT 0,
-    saldo_inicial INTEGER
+    saldo_inicial INTEGER DEFAULT 0
 );

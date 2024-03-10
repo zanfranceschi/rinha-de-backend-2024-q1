@@ -7,7 +7,7 @@ Aplicação desenvolvida em Quarkus com VirtualThreads, compilando imagem nativa
 
 Como banco de dados utilizei o H2 e gerei código de maquina do mesmo utilizando a GraalVM.
 
-Utilizei o envoy como proxy.
+Utilizei o Nginx como proxy.
 
 
 ##### BUILD

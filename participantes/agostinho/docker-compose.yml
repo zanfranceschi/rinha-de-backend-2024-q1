@@ -6,12 +6,13 @@ services:
       - RUBY_YJIT_ENABLE=1
       - DB_POOL_SIZE=5
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     deploy:
       resources:
         limits:
           cpus: '0.3'
-          memory: '150MB'
+          memory: '100MB'
 
   api2: 
     <<: *api
@@ -28,11 +29,16 @@ services:
       - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./config/postgresql.conf:/etc/postgresql/postgresql.conf
     command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     deploy:
       resources:
         limits:
           cpus: '0.7'
-          memory: '200MB'
+          memory: '300MB'
 
   nginx:
     image: nginx 
