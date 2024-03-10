@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sat Mar  9 23:30:20 UTC 2024** com **621** submissões.
+Atualizada **Sun Mar 10 02:00:49 UTC 2024** com **628** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -88,6 +88,7 @@ Atualizada **Sat Mar  9 23:30:20 UTC 2024** com **621** submissões.
 | [boaglio-canabrava-procs](./participantes/boaglio-canabrava-procs) | ok | 1 |
 | [boaglio-jaiminho](./participantes/boaglio-jaiminho) | ok | 44 |
 | [boaglio](./participantes/boaglio) | falha - [logs](./participantes/boaglio/docker-compose.logs) | -- |
+| [brendonmatos-bun](./participantes/brendonmatos-bun) | ok | 3 |
 | [breno5g](./participantes/breno5g) | ok | 4 |
 | [brilvio](./participantes/brilvio) | ok | 2 |
 | [brunocamarggo-golang](./participantes/brunocamarggo-golang) | ok | 1 |
@@ -248,6 +249,7 @@ Atualizada **Sat Mar  9 23:30:20 UTC 2024** com **621** submissões.
 | [giovannibassi-rust](./participantes/giovannibassi-rust) | ok | 1 |
 | [giovannibassi-vb](./participantes/giovannibassi-vb) | ok | 1 |
 | [giovannibassi](./participantes/giovannibassi) | ok | 1 |
+| [glauberborges](./participantes/glauberborges) | ok | 3 |
 | [glauco-filho-01](./participantes/glauco-filho-01) | ok | 110 |
 | [gldmelo-cs-py-hibrid](./participantes/gldmelo-cs-py-hibrid) | ok | 4 |
 | [gldmelo-py-fastapi](./participantes/gldmelo-py-fastapi) | ok | 2 |
@@ -255,6 +257,7 @@ Atualizada **Sat Mar  9 23:30:20 UTC 2024** com **621** submissões.
 | [gmafrac-golang](./participantes/gmafrac-golang) | ok | 2 |
 | [gmrms](./participantes/gmrms) | ok | 2 |
 | [grilario](./participantes/grilario) | ok | 6 |
+| [gtadashii](./participantes/gtadashii) | falha - [logs](./participantes/gtadashii/docker-compose.logs) | -- |
 | [guaracy-nim](./participantes/guaracy-nim) | ok | 1 |
 | [gui9394](./participantes/gui9394) | ok | 4 |
 | [guiestimo](./participantes/guiestimo) | ok | 2 |
@@ -448,10 +451,14 @@ Atualizada **Sat Mar  9 23:30:20 UTC 2024** com **621** submissões.
 | [navarro-espora-embedded](./participantes/navarro-espora-embedded) | ok | 1 |
 | [navarro](./participantes/navarro) | ok | 1 |
 | [newton](./participantes/newton) | ok | 3 |
+| [nicholasboari-java-puro](./participantes/nicholasboari-java-puro) | ok | 2 |
+| [nicholasboari-spring](./participantes/nicholasboari-spring) | ok | 0 |
 | [nicolasmmb-dart](./participantes/nicolasmmb-dart) | ok | 3 |
 | [nicolasmmb](./participantes/nicolasmmb) | ok | 2 |
 | [nielsonrolim-ror](./participantes/nielsonrolim-ror) | ok | 1 |
 | [nmessias](./participantes/nmessias) | ok | 1 |
+| [noriller-4](./participantes/noriller-4) | ok | 3 |
+| [noriller](./participantes/noriller) | ok | 3 |
 | [normanfrieman](./participantes/normanfrieman) | ok | 2 |
 | [nyxawaits](./participantes/nyxawaits) | falha - [logs](./participantes/nyxawaits/docker-compose.logs) | -- |
 | [oliveiraeliel](./participantes/oliveiraeliel) | ok | 2 |
@@ -602,7 +609,7 @@ Atualizada **Sat Mar  9 23:30:20 UTC 2024** com **621** submissões.
 | [vitorsalgado-custom-lb](./participantes/vitorsalgado-custom-lb) | ok | 1 |
 | [vitorsalgado-nodejs](./participantes/vitorsalgado-nodejs) | ok | 1 |
 | [vitorsalgado](./participantes/vitorsalgado) | ok | 1 |
-| [vkobinski](./participantes/vkobinski) | ok | 2 |
+| [vkobinski](./participantes/vkobinski) | ok | 4 |
 | [vyctorguimaraes](./participantes/vyctorguimaraes) | ok | 7 |
 | [wagner](./participantes/wagner) | ok | 1 |
 | [wdmatheus](./participantes/wdmatheus) | ok | 1 |
