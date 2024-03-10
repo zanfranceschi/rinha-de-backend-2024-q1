@@ -7,7 +7,8 @@ services:
     environment:
       - DB_HOSTNAME=db
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -39,6 +40,11 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d rinha -p 5432"]
+      interval: 5s
+      timeout: 5s
+      retries: 2       
     ports:
       - "5432:5432"
     volumes:
@@ -48,6 +54,7 @@ services:
         limits:
           cpus: "0.4"
           memory: "140MB"
+    restart: always
 
 networks:
   default:
