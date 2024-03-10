@@ -2,7 +2,7 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="logo nginx" width="300" height="auto">
 <br />
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/GraalVM_Logo_RGB.svg" alt="logo cassandra" width="200" height="auto">
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/GraalVM_Logo_RGB.svg" alt="logo graalvm" width="200" height="auto">
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Cassandra_logo.svg" alt="logo cassandra" width="200" height="auto">
 
 ## Rodrigo Rodrigues
