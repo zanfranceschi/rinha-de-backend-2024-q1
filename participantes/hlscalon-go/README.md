@@ -9,3 +9,5 @@
 - nginx
 
 [Repository](https://github.com/hlscalon/rinha-backend-go-pg-2024-q1)
+
+E-mail: henscalon@hotmail.com
