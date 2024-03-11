@@ -12,7 +12,8 @@ services:
        - "5432:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=off -c log_min_messages=PANIC -c autovacuum=off
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U rinha"]
       interval: 5s
@@ -25,8 +26,7 @@ services:
           memory: "374MB"
 
   api1: &api
-    image: quay.io/maxsonferovante/rinhabackendmaxsonferovante2024q
-    build: .
+    image: maxsonferovante/rinhabackendmaxsonferovante2024q
     hostname: api1
     environment:
       - rinha_database_url=postgres://rinha:rinha@db:5432/rinha
