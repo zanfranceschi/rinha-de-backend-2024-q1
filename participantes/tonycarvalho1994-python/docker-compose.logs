@@ -4,8 +4,8 @@
  Container postgres  Created
  Container tonycarvalho1994-python-api02-1  Creating
  Container tonycarvalho1994-python-api01-1  Creating
- Container tonycarvalho1994-python-api02-1  Created
  Container tonycarvalho1994-python-api01-1  Created
+ Container tonycarvalho1994-python-api02-1  Created
  Container tonycarvalho1994-python-nginx-1  Creating
  Container tonycarvalho1994-python-nginx-1  Created
 Attaching to postgres, api01-1, api02-1, nginx-1
@@ -40,8 +40,10 @@ api02-1   | INFO:     Started server process [1]
 api02-1   | INFO:     Waiting for application startup.
 api01-1   | INFO:     Started server process [1]
 api01-1   | INFO:     Waiting for application startup.
-nginx-1   | 2024/03/10 22:02:28 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.96.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.96.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1   | 2024/03/10 22:02:28 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.96.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.96.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:44:51 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:44:51 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.4:8080/clientes/1/extrato", host: "localhost:9999"
+postgres  | initdb: warning: enabling "trust" authentication for local connections
+postgres  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 postgres  | syncing data to disk ... ok
 postgres  | 
 postgres  | 
@@ -49,12 +51,10 @@ postgres  | Success. You can now start the database server using:
 postgres  | 
 postgres  |     pg_ctl -D /data/postgres -l logfile start
 postgres  | 
-postgres  | initdb: warning: enabling "trust" authentication for local connections
-postgres  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-postgres  | waiting for server to start....2024-03-10 22:02:29.403 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres  | 2024-03-10 22:02:29.407 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres  | 2024-03-10 22:02:29.420 UTC [52] LOG:  database system was shut down at 2024-03-10 22:02:24 UTC
-postgres  | 2024-03-10 22:02:29.428 UTC [49] LOG:  database system is ready to accept connections
+postgres  | waiting for server to start....2024-03-11 02:44:52.823 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-03-11 02:44:52.826 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-03-11 02:44:52.836 UTC [52] LOG:  database system was shut down at 2024-03-11 02:44:48 UTC
+postgres  | 2024-03-11 02:44:52.842 UTC [49] LOG:  database system is ready to accept connections
 postgres  |  done
 postgres  | server started
 postgres  | 
@@ -72,19 +72,13 @@ postgres  | INSERT 0 1
 postgres  | ALTER SYSTEM
 postgres  | 
 postgres  | 
-postgres  | waiting for server to shut down...2024-03-10 22:02:29.635 UTC [49] LOG:  received fast shutdown request
-postgres  | .2024-03-10 22:02:29.638 UTC [49] LOG:  aborting any active transactions
-postgres  | 2024-03-10 22:02:29.640 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-postgres  | 2024-03-10 22:02:29.640 UTC [50] LOG:  shutting down
-postgres  | 2024-03-10 22:02:29.643 UTC [50] LOG:  checkpoint starting: shutdown immediate
-nginx-1   | 2024/03/10 22:02:30 [error] 30#30: *4 no live upstreams while connecting to upstream, client: 192.168.96.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-postgres  | .2024-03-10 22:02:30.906 UTC [50] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.024 s, sync=1.219 s, total=1.266 s; sync files=307, longest=0.039 s, average=0.004 s; distance=4291 kB, estimate=4291 kB; lsn=0/191B860, redo lsn=0/191B860
-postgres  | 2024-03-10 22:02:30.911 UTC [49] LOG:  database system is shut down
-postgres  |  done
-postgres  | server stopped
-postgres  | 
-postgres  | PostgreSQL init process complete; ready for start up.
-postgres  | 
+postgres  | waiting for server to shut down...2024-03-11 02:44:53.051 UTC [49] LOG:  received fast shutdown request
+postgres  | .2024-03-11 02:44:53.053 UTC [49] LOG:  aborting any active transactions
+postgres  | 2024-03-11 02:44:53.055 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+postgres  | 2024-03-11 02:44:53.055 UTC [50] LOG:  shutting down
+postgres  | 2024-03-11 02:44:53.058 UTC [50] LOG:  checkpoint starting: shutdown immediate
+nginx-1   | 2024/03/11 02:44:53 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+postgres  | .2024-03-11 02:44:54.440 UTC [50] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.020 s, sync=1.346 s, total=1.385 s; sync files=307, longest=0.123 s, average=0.005 s; distance=4291 kB, estimate=4291 kB; lsn=0/191B860, redo lsn=0/191B860
 api02-1   | ERROR:    Traceback (most recent call last):
 api02-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 734, in lifespan
 api02-1   |     async with self.lifespan_context(app) as maybe_state:
@@ -135,366 +129,109 @@ api02-1   |     return await fut
 api02-1   |            ^^^^^^^^^
 api02-1   |   File "/usr/local/lib/python3.11/asyncio/selector_events.py", line 678, in _sock_connect_cb
 api02-1   |     raise OSError(err, f'Connect call failed {address}')
-api02-1   | ConnectionRefusedError: [Errno 111] Connect call failed ('192.168.96.2', 5432)
+api02-1   | ConnectionRefusedError: [Errno 111] Connect call failed ('192.168.176.2', 5432)
 api02-1   | 
 api02-1   | ERROR:    Application startup failed. Exiting.
-postgres  | 2024-03-10 22:02:30.979 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres  | 2024-03-10 22:02:30.979 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres  | 2024-03-10 22:02:30.979 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-postgres  | 2024-03-10 22:02:30.985 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres  | 2024-03-10 22:02:30.994 UTC [66] LOG:  database system was shut down at 2024-03-10 22:02:30 UTC
-postgres  | 2024-03-10 22:02:31.008 UTC [1] LOG:  database system is ready to accept connections
+api01-1   | ERROR:    Traceback (most recent call last):
+api01-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 734, in lifespan
+api01-1   |     async with self.lifespan_context(app) as maybe_state:
+api01-1   |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+api01-1   |     return await anext(self.gen)
+api01-1   |            ^^^^^^^^^^^^^^^^^^^^^
+api01-1   |   File "/srv/src/api/lifespan.py", line 14, in lifespan
+api01-1   |     await db.setup()
+api01-1   |   File "/srv/src/infra/db.py", line 29, in setup
+api01-1   |     self._pool = await asyncpg.create_pool(
+api01-1   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/pool.py", line 403, in _async__init__
+api01-1   |     await self._initialize()
+api01-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/pool.py", line 430, in _initialize
+api01-1   |     await first_ch.connect()
+api01-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/pool.py", line 128, in connect
+api01-1   |     self._con = await self._pool._get_new_connection()
+api01-1   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/pool.py", line 502, in _get_new_connection
+api01-1   |     con = await connection.connect(
+api01-1   |           ^^^^^^^^^^^^^^^^^^^^^^^^^
+api01-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 2329, in connect
+api01-1   |     return await connect_utils._connect(
+api01-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connect_utils.py", line 1017, in _connect
+api01-1   |     raise last_error or exceptions.TargetServerAttributeNotMatched(
+api01-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connect_utils.py", line 991, in _connect
+api01-1   |     conn = await _connect_addr(
+api01-1   |            ^^^^^^^^^^^^^^^^^^^^
+api01-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connect_utils.py", line 828, in _connect_addr
+api01-1   |     return await __connect_addr(params, True, *args)
+api01-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connect_utils.py", line 873, in __connect_addr
+api01-1   |     tr, pr = await connector
+api01-1   |              ^^^^^^^^^^^^^^^
+api01-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connect_utils.py", line 744, in _create_ssl_connection
+api01-1   |     tr, pr = await loop.create_connection(
+api01-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01-1   |   File "/usr/local/lib/python3.11/asyncio/base_events.py", line 1086, in create_connection
+api01-1   |     raise exceptions[0]
+api01-1   |   File "/usr/local/lib/python3.11/asyncio/base_events.py", line 1070, in create_connection
+api01-1   |     sock = await self._connect_sock(
+api01-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+api01-1   |   File "/usr/local/lib/python3.11/asyncio/base_events.py", line 974, in _connect_sock
+api01-1   |     await self.sock_connect(sock, address)
+api01-1   |   File "/usr/local/lib/python3.11/asyncio/selector_events.py", line 638, in sock_connect
+api01-1   |     return await fut
+api01-1   |            ^^^^^^^^^
+api01-1   |   File "/usr/local/lib/python3.11/asyncio/selector_events.py", line 678, in _sock_connect_cb
+api01-1   |     raise OSError(err, f'Connect call failed {address}')
+api01-1   | ConnectionRefusedError: [Errno 111] Connect call failed ('192.168.176.2', 5432)
+api01-1   | 
+api01-1   | ERROR:    Application startup failed. Exiting.
+postgres  | 2024-03-11 02:44:54.448 UTC [49] LOG:  database system is shut down
+postgres  |  done
+postgres  | server stopped
+postgres  | 
+postgres  | PostgreSQL init process complete; ready for start up.
+postgres  | 
+postgres  | 2024-03-11 02:44:54.487 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-03-11 02:44:54.487 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres  | 2024-03-11 02:44:54.487 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres  | 2024-03-11 02:44:54.494 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-03-11 02:44:54.501 UTC [66] LOG:  database system was shut down at 2024-03-11 02:44:54 UTC
+postgres  | 2024-03-11 02:44:54.513 UTC [1] LOG:  database system is ready to accept connections
+api01-1 exited with code 3
+nginx-1   | 2024/03/11 02:44:55 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 api02-1 exited with code 3
-nginx-1   | 2024/03/10 22:02:32 [error] 30#30: *5 no live upstreams while connecting to upstream, client: 192.168.96.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1   | 2024/03/10 22:02:34 [error] 30#30: *6 no live upstreams while connecting to upstream, client: 192.168.96.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1   | 2024/03/10 22:02:36 [error] 30#30: *7 no live upstreams while connecting to upstream, client: 192.168.96.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1   | 2024/03/10 22:02:38 [error] 30#30: *8 no live upstreams while connecting to upstream, client: 192.168.96.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api01-1   | INFO:     Application startup complete.
-api01-1   | INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
-nginx-1   | 2024/03/10 22:03:40 [error] 30#30: *9 upstream timed out (110: Connection timed out) while connecting to upstream, client: 192.168.96.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.96.3:8080/clientes/1/extrato", host: "localhost:9999"
-api01-1   | INFO:     192.168.96.5:34620 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34622 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34624 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34648 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34632 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34628 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34650 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34658 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34864 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34868 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34670 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34700 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34728 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34716 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34686 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34674 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34734 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34770 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34746 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34794 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34808 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34748 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34778 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34764 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34832 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34818 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34848 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34878 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34892 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34886 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34896 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34998 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34916 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35010 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34912 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34918 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35022 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34932 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35018 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34940 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35026 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34956 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34972 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:34982 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35038 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35054 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35064 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35072 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35068 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35074 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35082 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35098 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35086 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:35110 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55680 - "GET /clientes/6/extrato HTTP/1.0" 404 Not Found
-api01-1   | INFO:     192.168.96.5:55692 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55730 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55710 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55694 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55720 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55740 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55764 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55760 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55746 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55754 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55766 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55796 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55802 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55784 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55778 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55808 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55820 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55838 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55834 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55842 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55858 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55886 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55874 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55870 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55876 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55894 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55912 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55902 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55924 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55938 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55950 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55978 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56010 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56044 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55944 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56060 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56024 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55964 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55958 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55992 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56066 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:55952 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56032 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56074 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56088 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:55994 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56104 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56118 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56068 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56122 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56126 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56140 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56154 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56158 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56170 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56182 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56184 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56192 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56200 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56210 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56220 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56228 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56234 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56238 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56240 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56250 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56266 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56282 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56290 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56298 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
-api01-1   | INFO:     192.168.96.5:56312 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56316 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56328 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56344 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56350 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56358 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56360 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56376 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56390 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56404 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56406 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56420 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56436 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56446 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56450 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56458 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56470 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56482 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56496 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56508 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56522 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56512 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56532 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56546 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56552 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56562 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56570 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56586 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56590 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56606 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56618 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56632 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56640 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56648 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56656 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-nginx-1   | 2024/03/10 22:03:54 [error] 30#30: *216 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.96.1, server: , request: "GET /clientes/4/extrato HTTP/1.1", upstream: "http://192.168.96.3:8080/clientes/4/extrato", host: "localhost:9999"
-api01-1   | INFO:     192.168.96.5:56670 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56676 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56678 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56682 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56684 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56688 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56694 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56704 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56712 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56728 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56740 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56752 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56762 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56766 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56774 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56770 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56778 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56784 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56796 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56806 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56810 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56826 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56838 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56842 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56850 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56852 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56866 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56870 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56880 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56892 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56904 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56906 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56930 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56916 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56912 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56944 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56946 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56950 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56962 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56972 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56976 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56984 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:56996 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57002 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57014 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57016 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57028 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57040 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57052 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57058 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57074 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57080 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57084 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57098 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57118 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57102 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57122 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57128 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57142 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57154 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57156 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57170 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57176 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57184 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57188 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57200 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57204 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57206 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57218 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57224 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57234 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57236 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57248 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57264 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57278 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57294 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57298 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57312 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57314 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57330 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57342 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57348 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57362 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57378 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57386 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57388 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57398 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57402 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57418 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57434 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57448 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57460 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57458 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57452 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57466 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57478 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57484 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57492 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57496 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57498 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57512 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57510 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57520 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57524 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57528 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57540 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57536 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57546 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57548 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57562 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57574 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57588 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57596 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57606 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57620 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57628 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57630 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57638 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57652 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57664 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57672 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57682 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57694 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57698 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57712 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57728 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57736 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57752 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57756 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57762 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57774 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57788 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57790 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57804 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57828 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57812 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57838 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57850 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57862 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57878 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57882 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57884 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57888 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57894 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57906 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57910 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57914 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57916 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57918 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57932 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57946 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57954 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57948 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57958 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57966 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57982 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:57998 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58000 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58014 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58024 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58030 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58046 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58048 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58052 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58062 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58076 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58078 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58102 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58090 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58110 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58126 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58140 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58148 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58152 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58164 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58172 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58188 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58200 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58210 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58218 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58222 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58234 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58242 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58254 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
-api01-1   | INFO:     192.168.96.5:58266 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+nginx-1   | 2024/03/11 02:44:57 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:44:59 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:45:01 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:45:38 [error] 29#29: *9 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:45:56 [error] 29#29: *9 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:01 [error] 29#29: *12 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:01 [error] 29#29: *12 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:03 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:05 [error] 29#29: *15 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:10 [error] 29#29: *16 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:10 [error] 29#29: *16 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:15 [error] 29#29: *18 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:15 [error] 29#29: *18 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:17 [error] 29#29: *20 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:19 [error] 29#29: *21 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:25 [error] 29#29: *22 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:25 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:30 [error] 29#29: *24 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:30 [error] 29#29: *24 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:32 [error] 29#29: *26 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:34 [error] 29#29: *27 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:39 [error] 29#29: *28 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.3:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:39 [error] 29#29: *28 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:44 [error] 29#29: *30 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.176.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 02:46:44 [error] 29#29: *30 no live upstreams while connecting to upstream, client: 192.168.176.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+postgres  | 2024-03-11 02:46:46.947 UTC [1] LOG:  received fast shutdown request
+postgres  | 2024-03-11 02:46:46.951 UTC [1] LOG:  aborting any active transactions
+postgres  | 2024-03-11 02:46:46.952 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+postgres  | 2024-03-11 02:46:46.953 UTC [64] LOG:  shutting down
+postgres  | 2024-03-11 02:46:46.957 UTC [64] LOG:  checkpoint starting: shutdown immediate
+postgres  | 2024-03-11 02:46:47.017 UTC [64] LOG:  checkpoint complete: wrote 48 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.036 s, total=0.064 s; sync files=14, longest=0.004 s, average=0.003 s; distance=261 kB, estimate=261 kB; lsn=0/195CC98, redo lsn=0/195CC98
+postgres  | 2024-03-11 02:46:47.021 UTC [1] LOG:  database system is shut down
+postgres exited with code 0
