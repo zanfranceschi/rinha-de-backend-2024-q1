@@ -3,8 +3,6 @@ version: '3'
 services:
   postgresdb:
     image: postgres
-    ports:
-      - 5432:5432
     environment:
       POSTGRES_DB: rinha
       POSTGRES_USER: rinha
@@ -13,8 +11,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.25'
-          memory: '140MB'
+          cpus: '0.24'
+          memory: '200MB'
 
   app1: 
     image: davidschrammel/prisma_rinha_backend
@@ -22,12 +20,11 @@ services:
       DATABASE_URL: "postgresql://rinha:rinha@postgresdb:5432/rinha?connection_limit=13"
     entrypoint: "bun prod:migration"
     deploy:
-      replicas: 1
       restart_policy:
         condition: on-failure
       resources:
         limits:
-          cpus: '0.55'
+          cpus: '0.58'
           memory: '150MB'
 
   app2: 
@@ -36,24 +33,24 @@ services:
     environment:
       DATABASE_URL: "postgresql://rinha:rinha@postgresdb:5432/rinha?connection_limit=13"
     deploy:
-      replicas: 1
       restart_policy:
         condition: on-failure
       resources:
         limits:
-          cpus: '0.55'
+          cpus: '0.58'
           memory: '150MB'
 
   nginx:
     image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    restart: on-failure
     ports:
       - "9999:9999"
     deploy:
+      restart_policy:
+        condition: on-failure
       resources:
         limits:
-          cpus: "0.15"
+          cpus: "0.10"
           memory: "50MB"
           

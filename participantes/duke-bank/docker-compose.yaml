@@ -1,0 +1,84 @@
+services:
+  duke-bank-1:
+    image: fercomunello/rinha-backend-duke-bank-2024q1:latest
+    network_mode: host
+    environment:
+      - QUARKUS_HTTP_PORT=8081
+      - QUARKUS_DATASOURCE_REACTIVE_MAX_SIZE=1
+      - QUARKUS_HTTP_SO_REUSE_PORT=true
+      - QUARKUS_HTTP_TCP_QUICK_ACK=true
+      - QUARKUS_HTTP_TCP_CORK=true
+      - QUARKUS_HTTP_TCP_FAST_OPEN=true
+      - QUARKUS_LOG_MIN_LEVEL=OFF
+      - QUARKUS_LOG_CONSOLE_ENABLE=false
+      - QUARKUS_VERTX_EVENT_LOOPS_POOL_SIZE=1
+      - QUARKUS_DATASOURCE_REACTIVE_EVENT_LOOP_SIZE=1
+      - QUARKUS_DATASOURCE_REACTIVE_POSTGRESQL_PIPELINING_LIMIT=256
+    depends_on:
+      duke-bank-postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: 0.35
+          memory: 150M
+
+  duke-bank-2:
+    image: fercomunello/rinha-backend-duke-bank-2024q1:latest
+    network_mode: host
+    environment:
+      - QUARKUS_HTTP_PORT=8082
+      - QUARKUS_DATASOURCE_REACTIVE_MAX_SIZE=1
+      - QUARKUS_HTTP_SO_REUSE_PORT=true
+      - QUARKUS_HTTP_TCP_QUICK_ACK=true
+      - QUARKUS_HTTP_TCP_CORK=true
+      - QUARKUS_HTTP_TCP_FAST_OPEN=true
+      - QUARKUS_LOG_MIN_LEVEL=OFF
+      - QUARKUS_LOG_CONSOLE_ENABLE=false
+      - QUARKUS_VERTX_EVENT_LOOPS_POOL_SIZE=1
+      - QUARKUS_DATASOURCE_REACTIVE_EVENT_LOOP_SIZE=1
+      - QUARKUS_DATASOURCE_REACTIVE_POSTGRESQL_PIPELINING_LIMIT=256
+    depends_on:
+      duke-bank-postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: 0.35
+          memory: 150M
+
+  duke-bank-postgres:
+    image: postgres:latest
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    environment:
+      - POSTGRES_DB=rinhadb
+      - POSTGRES_USER=duke
+      - POSTGRES_PASSWORD=duke
+    network_mode: host
+    volumes:
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./bank-schema.sql:/docker-entrypoint-initdb.d/bank-schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}"]
+      interval: 3s
+      timeout: 10s
+      retries: 10
+    deploy:
+      resources:
+        limits:
+          cpus: 0.6
+          memory: 125M
+
+  duke-bank-nginx:
+    image: nginx:latest
+    network_mode: host
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - duke-bank-1
+      - duke-bank-2
+    deploy:
+      resources:
+        limits:
+          cpus: 0.2
+          memory: 125M

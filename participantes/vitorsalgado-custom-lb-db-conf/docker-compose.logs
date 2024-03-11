@@ -1,106 +1,199 @@
- bouncer Pulling 
- api01 Pulling 
  api02 Pulling 
- lb Pulling 
- api01 Pulled 
- bouncer Pulled 
+ api01 Pulling 
  api02 Pulled 
- lb Pulled 
+ api01 Pulled 
  Volume "vitorsalgado-custom-lb-db-conf_data"  Creating
  Volume "vitorsalgado-custom-lb-db-conf_data"  Created
  Container db  Creating
  Container db  Created
- Container api02  Creating
  Container api01  Creating
- Container bouncer  Creating
+ Container api02  Creating
  Container api02  Created
- Container bouncer  Created
  Container api01  Created
- Container lb  Creating
- Container lb  Created
-Attaching to api01, api02, bouncer, db, lb
-db       | The files belonging to this database system will be owned by user "postgres".
-db       | This user must also own the server process.
-db       | 
-db       | The database cluster will be initialized with locale "en_US.utf8".
-db       | The default database encoding has accordingly been set to "UTF8".
-db       | The default text search configuration will be set to "english".
-db       | 
-db       | Data page checksums are disabled.
-db       | 
-db       | fixing permissions on existing directory /var/lib/postgresql/data ... ok
-db       | creating subdirectories ... ok
-db       | selecting dynamic shared memory implementation ... posix
-db       | selecting default max_connections ... 100
-db       | selecting default shared_buffers ... 128MB
-db       | selecting default time zone ... Etc/UTC
-db       | creating configuration files ... ok
-db       | running bootstrap script ... ok
-db       | performing post-bootstrap initialization ... ok
-db       | syncing data to disk ... ok
-db       | 
-db       | 
-db       | Success. You can now start the database server using:
-db       | 
-db       |     pg_ctl -D /var/lib/postgresql/data -l logfile start
-db       | 
-db       | initdb: warning: enabling "trust" authentication for local connections
-db       | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db       | waiting for server to start....2024-03-10 21:30:30.876 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db       | 2024-03-10 21:30:30.879 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db       | 2024-03-10 21:30:30.888 UTC [51] LOG:  database system was shut down at 2024-03-10 21:30:29 UTC
-db       | 2024-03-10 21:30:30.895 UTC [48] LOG:  database system is ready to accept connections
-db       |  done
-db       | server started
-db       | CREATE DATABASE
-db       | 
-db       | 
-db       | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
-db       | SET
-db       | CREATE TABLE
-db       | CREATE TABLE
-db       | CREATE INDEX
-db       | CREATE FUNCTION
-db       | INSERT 0 5
-db       | 
-db       | 
-db       | waiting for server to shut down....2024-03-10 21:30:31.107 UTC [48] LOG:  received fast shutdown request
-db       | 2024-03-10 21:30:31.110 UTC [48] LOG:  aborting any active transactions
-db       | 2024-03-10 21:30:31.116 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db       | 2024-03-10 21:30:31.116 UTC [49] LOG:  shutting down
-db       | 2024-03-10 21:30:31.119 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db       | 2024-03-10 21:30:31.654 UTC [49] LOG:  checkpoint complete: wrote 933 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.414 s, sync=0.105 s, total=0.538 s; sync files=307, longest=0.064 s, average=0.001 s; distance=4285 kB, estimate=4285 kB; lsn=0/191A138, redo lsn=0/191A138
-db       | 2024-03-10 21:30:31.658 UTC [48] LOG:  database system is shut down
-db       |  done
-db       | server stopped
-db       | 
-db       | PostgreSQL init process complete; ready for start up.
-db       | 
-db       | 2024-03-10 21:30:31.732 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db       | 2024-03-10 21:30:31.732 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db       | 2024-03-10 21:30:31.732 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db       | 2024-03-10 21:30:31.738 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db       | 2024-03-10 21:30:31.745 UTC [66] LOG:  database system was shut down at 2024-03-10 21:30:31 UTC
-db       | 2024-03-10 21:30:31.752 UTC [1] LOG:  database system is ready to accept connections
-api02    | 2024/03/10 21:30:34 maxprocs: Updating GOMAXPROCS=1: using minimum allowed GOMAXPROCS
-api02    | time=2024-03-10T21:30:34.503Z level=INFO msg="server will listen to addr: :8082"
-api01    | 2024/03/10 21:30:34 maxprocs: Updating GOMAXPROCS=1: using minimum allowed GOMAXPROCS
-api01    | time=2024-03-10T21:30:34.515Z level=INFO msg="server will listen to addr: :8081"
-lb       | 2024/03/10 21:30:34 maxprocs: Updating GOMAXPROCS=1: using minimum allowed GOMAXPROCS
-lb       | time=2024-03-10T21:30:34.628Z level=INFO msg="lb: starting listening on: [::]:9999"
-lb exited with code 0
-lb exited with code 0
-api02 exited with code 0
-api02 exited with code 0
+ Container envoy  Creating
+ Container envoy  Created
+Attaching to api01, api02, db, envoy
+db     | The files belonging to this database system will be owned by user "postgres".
+db     | This user must also own the server process.
+db     | 
+db     | The database cluster will be initialized with locale "en_US.utf8".
+db     | The default database encoding has accordingly been set to "UTF8".
+db     | The default text search configuration will be set to "english".
+db     | 
+db     | Data page checksums are disabled.
+db     | 
+db     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db     | creating subdirectories ... ok
+db     | selecting dynamic shared memory implementation ... posix
+db     | selecting default max_connections ... 100
+db     | selecting default shared_buffers ... 128MB
+db     | selecting default time zone ... Etc/UTC
+db     | creating configuration files ... ok
+db     | running bootstrap script ... ok
+db     | performing post-bootstrap initialization ... ok
+db     | syncing data to disk ... ok
+db     | 
+db     | 
+db     | Success. You can now start the database server using:
+db     | 
+db     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db     | 
+db     | initdb: warning: enabling "trust" authentication for local connections
+db     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db     | waiting for server to start....2024-03-11 04:38:11.459 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db     | 2024-03-11 04:38:11.462 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db     | 2024-03-11 04:38:11.475 GMT [51] LOG:  database system was shut down at 2024-03-11 04:38:10 GMT
+db     | 2024-03-11 04:38:11.487 GMT [48] LOG:  database system is ready to accept connections
+db     |  done
+db     | server started
+db     | CREATE DATABASE
+db     | 
+db     | 
+db     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
+db     | SET
+db     | CREATE TABLE
+db     | CREATE TABLE
+db     | CREATE INDEX
+db     | CREATE FUNCTION
+db     | INSERT 0 5
+db     | 
+db     | 
+db     | waiting for server to shut down....2024-03-11 04:38:11.677 GMT [48] LOG:  received fast shutdown request
+db     | 2024-03-11 04:38:11.686 GMT [48] LOG:  aborting any active transactions
+db     | 2024-03-11 04:38:11.688 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db     | 2024-03-11 04:38:11.689 GMT [49] LOG:  shutting down
+db     | 2024-03-11 04:38:11.695 GMT [49] LOG:  checkpoint starting: shutdown immediate
+db     | 2024-03-11 04:38:12.179 GMT [49] LOG:  checkpoint complete: wrote 933 buffers (7.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.367 s, sync=0.104 s, total=0.490 s; sync files=307, longest=0.059 s, average=0.001 s; distance=4285 kB, estimate=4285 kB; lsn=0/191A170, redo lsn=0/191A170
+db     | 2024-03-11 04:38:12.185 GMT [48] LOG:  database system is shut down
+db     |  done
+db     | server stopped
+db     | 
+db     | PostgreSQL init process complete; ready for start up.
+db     | 
+db     | 2024-03-11 04:38:12.302 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db     | 2024-03-11 04:38:12.303 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db     | 2024-03-11 04:38:12.303 GMT [1] LOG:  listening on IPv6 address "::", port 5432
+db     | 2024-03-11 04:38:12.310 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db     | 2024-03-11 04:38:12.319 GMT [66] LOG:  database system was shut down at 2024-03-11 04:38:12 GMT
+db     | 2024-03-11 04:38:12.325 GMT [1] LOG:  database system is ready to accept connections
+api02  | 2024/03/11 04:38:15 maxprocs: Updating GOMAXPROCS=1: using minimum allowed GOMAXPROCS
+api01  | 2024/03/11 04:38:15 maxprocs: Updating GOMAXPROCS=1: using minimum allowed GOMAXPROCS
+api01  | time=2024-03-11T04:38:15.953Z level=INFO msg="server will listen to addr: :8081"
+api02  | time=2024-03-11T04:38:15.953Z level=INFO msg="server will listen to addr: :8082"
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:430] initializing epoch 0 (base id=0, hot restart version=11.104)
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:432] statically linked extensions:
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.thrift_proxy.protocols: auto, binary, binary/non-strict, compact, twitter
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.router.cluster_specifier_plugin: envoy.router.cluster_specifier_plugin.lua
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.dubbo_proxy.filters: envoy.filters.dubbo.router
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.http.original_ip_detection: envoy.http.original_ip_detection.custom_header, envoy.http.original_ip_detection.xff
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.matching.network.custom_matchers: envoy.matching.custom_matchers.trie_matcher
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.upstream_options: envoy.extensions.upstreams.http.v3.HttpProtocolOptions, envoy.extensions.upstreams.tcp.v3.TcpProtocolOptions, envoy.upstreams.http.http_protocol_options, envoy.upstreams.tcp.tcp_protocol_options
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.rate_limit_descriptors: envoy.rate_limit_descriptors.expr
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   quic.http_server_connection: quic.http_server_connection.default
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   network.connection.client: default, envoy_internal
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.geoip_providers: envoy.geoip_providers.maxmind
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.network.dns_resolver: envoy.network.dns_resolver.cares, envoy.network.dns_resolver.getaddrinfo
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.grpc_credentials: envoy.grpc_credentials.aws_iam, envoy.grpc_credentials.default, envoy.grpc_credentials.file_based_metadata
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.filters.http.upstream: envoy.buffer, envoy.filters.http.admission_control, envoy.filters.http.buffer, envoy.filters.http.header_mutation, envoy.filters.http.upstream_codec
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.resolvers: envoy.ip
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.resource_monitors: envoy.resource_monitors.fixed_heap, envoy.resource_monitors.injected_resource
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.clusters: envoy.cluster.eds, envoy.cluster.logical_dns, envoy.cluster.original_dst, envoy.cluster.static, envoy.cluster.strict_dns, envoy.clusters.aggregate, envoy.clusters.dynamic_forward_proxy, envoy.clusters.redis
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.http.cache: envoy.extensions.http.cache.file_system_http_cache, envoy.extensions.http.cache.simple
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.transport_sockets.downstream: envoy.transport_sockets.alts, envoy.transport_sockets.quic, envoy.transport_sockets.raw_buffer, envoy.transport_sockets.starttls, envoy.transport_sockets.tap, envoy.transport_sockets.tcp_stats, envoy.transport_sockets.tls, raw_buffer, starttls, tls
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.guarddog_actions: envoy.watchdog.abort_action, envoy.watchdog.profile_action
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.config_subscription: envoy.config_subscription.ads, envoy.config_subscription.ads_collection, envoy.config_subscription.aggregated_grpc_collection, envoy.config_subscription.delta_grpc, envoy.config_subscription.delta_grpc_collection, envoy.config_subscription.filesystem, envoy.config_subscription.filesystem_collection, envoy.config_subscription.grpc, envoy.config_subscription.rest
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.filters.network: envoy.echo, envoy.ext_authz, envoy.filters.network.connection_limit, envoy.filters.network.direct_response, envoy.filters.network.dubbo_proxy, envoy.filters.network.echo, envoy.filters.network.ext_authz, envoy.filters.network.http_connection_manager, envoy.filters.network.local_ratelimit, envoy.filters.network.mongo_proxy, envoy.filters.network.ratelimit, envoy.filters.network.rbac, envoy.filters.network.redis_proxy, envoy.filters.network.set_filter_state, envoy.filters.network.sni_cluster, envoy.filters.network.sni_dynamic_forward_proxy, envoy.filters.network.tcp_proxy, envoy.filters.network.thrift_proxy, envoy.filters.network.wasm, envoy.filters.network.zookeeper_proxy, envoy.http_connection_manager, envoy.mongo_proxy, envoy.ratelimit, envoy.redis_proxy, envoy.tcp_proxy
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.udp_packet_writer: envoy.udp_packet_writer.default, envoy.udp_packet_writer.gso
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.dubbo_proxy.serializers: dubbo.hessian2
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.regex_engines: envoy.regex_engines.google_re2
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.filters.listener: envoy.filters.listener.http_inspector, envoy.filters.listener.local_ratelimit, envoy.filters.listener.original_dst, envoy.filters.listener.original_src, envoy.filters.listener.proxy_protocol, envoy.filters.listener.tls_inspector, envoy.listener.http_inspector, envoy.listener.original_dst, envoy.listener.original_src, envoy.listener.proxy_protocol, envoy.listener.tls_inspector
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.load_balancing_policies: envoy.load_balancing_policies.cluster_provided, envoy.load_balancing_policies.least_request, envoy.load_balancing_policies.maglev, envoy.load_balancing_policies.random, envoy.load_balancing_policies.ring_hash, envoy.load_balancing_policies.round_robin, envoy.load_balancing_policies.subset
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.request_id: envoy.request_id.uuid
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.http.header_validators: envoy.http.header_validators.envoy_default
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.quic.server.crypto_stream: envoy.quic.crypto_stream.server.quiche
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.internal_redirect_predicates: envoy.internal_redirect_predicates.allow_listed_routes, envoy.internal_redirect_predicates.previous_routes, envoy.internal_redirect_predicates.safe_cross_scheme
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.matching.common_inputs: envoy.matching.common_inputs.environment_variable
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.quic.server_preferred_address: quic.server_preferred_address.fixed
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.listener_manager_impl: envoy.listener_manager_impl.default, envoy.listener_manager_impl.validation
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.matching.http.input: envoy.matching.inputs.cel_data_input, envoy.matching.inputs.destination_ip, envoy.matching.inputs.destination_port, envoy.matching.inputs.direct_source_ip, envoy.matching.inputs.dns_san, envoy.matching.inputs.request_headers, envoy.matching.inputs.request_trailers, envoy.matching.inputs.response_headers, envoy.matching.inputs.response_trailers, envoy.matching.inputs.server_name, envoy.matching.inputs.source_ip, envoy.matching.inputs.source_port, envoy.matching.inputs.source_type, envoy.matching.inputs.status_code_class_input, envoy.matching.inputs.status_code_input, envoy.matching.inputs.subject, envoy.matching.inputs.uri_san, query_params
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.upstreams: envoy.filters.connection_pools.tcp.generic
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.compression.decompressor: envoy.compression.brotli.decompressor, envoy.compression.gzip.decompressor, envoy.compression.zstd.decompressor
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.path.rewrite: envoy.path.rewrite.uri_template.uri_template_rewriter
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.quic.connection_id_generator: envoy.quic.deterministic_connection_id_generator
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.filters.udp_listener: envoy.filters.udp.dns_filter, envoy.filters.udp_listener.udp_proxy
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.health_check.event_sinks: envoy.health_check.event_sink.file
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.http.stateful_header_formatters: envoy.http.stateful_header_formatters.preserve_case, preserve_case
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.connection_handler: envoy.connection_handler.default
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.formatter: envoy.formatter.cel, envoy.formatter.metadata, envoy.formatter.req_without_query
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.compression.compressor: envoy.compression.brotli.compressor, envoy.compression.gzip.compressor, envoy.compression.zstd.compressor
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.http.stateful_session: envoy.http.stateful_session.cookie, envoy.http.stateful_session.header
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.matching.action: envoy.matching.actions.format_string, filter-chain-name
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.tracers.opentelemetry.samplers: envoy.tracers.opentelemetry.samplers.always_on
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.tracers.opentelemetry.resource_detectors: envoy.tracers.opentelemetry.resource_detectors.dynatrace, envoy.tracers.opentelemetry.resource_detectors.environment
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.dubbo_proxy.protocols: dubbo
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.matching.input_matchers: envoy.matching.matchers.cel_matcher, envoy.matching.matchers.consistent_hashing, envoy.matching.matchers.ip, envoy.matching.matchers.runtime_fraction
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.retry_host_predicates: envoy.retry_host_predicates.omit_canary_hosts, envoy.retry_host_predicates.omit_host_metadata, envoy.retry_host_predicates.previous_hosts
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.common.key_value: envoy.key_value.file_based
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.thrift_proxy.transports: auto, framed, header, unframed
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.matching.http.custom_matchers: envoy.matching.custom_matchers.trie_matcher
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.http.custom_response: envoy.extensions.http.custom_response.local_response_policy, envoy.extensions.http.custom_response.redirect_policy
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.transport_sockets.upstream: envoy.transport_sockets.alts, envoy.transport_sockets.http_11_proxy, envoy.transport_sockets.internal_upstream, envoy.transport_sockets.quic, envoy.transport_sockets.raw_buffer, envoy.transport_sockets.starttls, envoy.transport_sockets.tap, envoy.transport_sockets.tcp_stats, envoy.transport_sockets.tls, envoy.transport_sockets.upstream_proxy_protocol, raw_buffer, starttls, tls
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.filters.http: envoy.bandwidth_limit, envoy.buffer, envoy.cors, envoy.csrf, envoy.ext_authz, envoy.ext_proc, envoy.fault, envoy.filters.http.adaptive_concurrency, envoy.filters.http.admission_control, envoy.filters.http.alternate_protocols_cache, envoy.filters.http.aws_lambda, envoy.filters.http.aws_request_signing, envoy.filters.http.bandwidth_limit, envoy.filters.http.basic_auth, envoy.filters.http.buffer, envoy.filters.http.cache, envoy.filters.http.cdn_loop, envoy.filters.http.composite, envoy.filters.http.compressor, envoy.filters.http.connect_grpc_bridge, envoy.filters.http.cors, envoy.filters.http.csrf, envoy.filters.http.custom_response, envoy.filters.http.decompressor, envoy.filters.http.dynamic_forward_proxy, envoy.filters.http.ext_authz, envoy.filters.http.ext_proc, envoy.filters.http.fault, envoy.filters.http.file_system_buffer, envoy.filters.http.gcp_authn, envoy.filters.http.geoip, envoy.filters.http.grpc_field_extraction, envoy.filters.http.grpc_http1_bridge, envoy.filters.http.grpc_http1_reverse_bridge, envoy.filters.http.grpc_json_transcoder, envoy.filters.http.grpc_stats, envoy.filters.http.grpc_web, envoy.filters.http.header_mutation, envoy.filters.http.header_to_metadata, envoy.filters.http.health_check, envoy.filters.http.ip_tagging, envoy.filters.http.json_to_metadata, envoy.filters.http.jwt_authn, envoy.filters.http.local_ratelimit, envoy.filters.http.lua, envoy.filters.http.match_delegate, envoy.filters.http.oauth2, envoy.filters.http.on_demand, envoy.filters.http.original_src, envoy.filters.http.rate_limit_quota, envoy.filters.http.ratelimit, envoy.filters.http.rbac, envoy.filters.http.router, envoy.filters.http.set_filter_state, envoy.filters.http.set_metadata, envoy.filters.http.stateful_session, envoy.filters.http.tap, envoy.filters.http.wasm, envoy.geoip, envoy.grpc_http1_bridge, envoy.grpc_json_transcoder, envoy.grpc_web, envoy.health_check, envoy.ip_tagging, envoy.local_rate_limit, envoy.lua, envoy.rate_limit, envoy.router
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.filters.udp.session: envoy.filters.udp.session.dynamic_forward_proxy, envoy.filters.udp.session.http_capsule
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.config.validators: envoy.config.validators.minimum_clusters, envoy.config.validators.minimum_clusters_validator
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.rbac.matchers: envoy.rbac.matchers.upstream_ip_port
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.tracers: envoy.dynamic.ot, envoy.tracers.datadog, envoy.tracers.dynamic_ot, envoy.tracers.opencensus, envoy.tracers.opentelemetry, envoy.tracers.skywalking, envoy.tracers.xray, envoy.tracers.zipkin, envoy.zipkin
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   filter_state.object: envoy.filters.listener.original_dst.local_ip, envoy.filters.listener.original_dst.remote_ip, envoy.network.application_protocols, envoy.network.transport_socket.original_dst_address, envoy.network.upstream_server_name, envoy.network.upstream_subject_alt_names, envoy.string, envoy.tcp_proxy.cluster, envoy.tcp_proxy.disable_tunneling, envoy.upstream.dynamic_host, envoy.upstream.dynamic_port
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.upstream.local_address_selector: envoy.upstream.local_address_selector.default_local_address_selector
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.access_loggers: envoy.access_loggers.file, envoy.access_loggers.http_grpc, envoy.access_loggers.open_telemetry, envoy.access_loggers.stderr, envoy.access_loggers.stdout, envoy.access_loggers.tcp_grpc, envoy.access_loggers.wasm, envoy.file_access_log, envoy.http_grpc_access_log, envoy.open_telemetry_access_log, envoy.stderr_access_log, envoy.stdout_access_log, envoy.tcp_grpc_access_log, envoy.wasm_access_log
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.bootstrap: envoy.bootstrap.internal_listener, envoy.bootstrap.wasm, envoy.extensions.network.socket_interface.default_socket_interface
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.retry_priorities: envoy.retry_priorities.previous_priorities
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.config_mux: envoy.config_mux.delta_grpc_mux_factory, envoy.config_mux.grpc_mux_factory, envoy.config_mux.new_grpc_mux_factory, envoy.config_mux.sotw_grpc_mux_factory
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.health_checkers: envoy.health_checkers.grpc, envoy.health_checkers.http, envoy.health_checkers.redis, envoy.health_checkers.tcp, envoy.health_checkers.thrift
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.tls.cert_validator: envoy.tls.cert_validator.default, envoy.tls.cert_validator.spiffe
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.quic.proof_source: envoy.quic.proof_source.filter_chain
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.http.early_header_mutation: envoy.http.early_header_mutation.header_mutation
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.access_loggers.extension_filters: envoy.access_loggers.extension_filters.cel
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.path.match: envoy.path.match.uri_template.uri_template_matcher
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.wasm.runtime: envoy.wasm.runtime.null, envoy.wasm.runtime.v8
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.stats_sinks: envoy.dog_statsd, envoy.graphite_statsd, envoy.metrics_service, envoy.open_telemetry_stat_sink, envoy.stat_sinks.dog_statsd, envoy.stat_sinks.graphite_statsd, envoy.stat_sinks.hystrix, envoy.stat_sinks.metrics_service, envoy.stat_sinks.open_telemetry, envoy.stat_sinks.statsd, envoy.stat_sinks.wasm, envoy.statsd
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.thrift_proxy.filters: envoy.filters.thrift.header_to_metadata, envoy.filters.thrift.payload_to_metadata, envoy.filters.thrift.rate_limit, envoy.filters.thrift.router
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.matching.network.input: envoy.matching.inputs.application_protocol, envoy.matching.inputs.destination_ip, envoy.matching.inputs.destination_port, envoy.matching.inputs.direct_source_ip, envoy.matching.inputs.dns_san, envoy.matching.inputs.filter_state, envoy.matching.inputs.server_name, envoy.matching.inputs.source_ip, envoy.matching.inputs.source_port, envoy.matching.inputs.source_type, envoy.matching.inputs.subject, envoy.matching.inputs.transport_protocol, envoy.matching.inputs.uri_san
+envoy  | [2024-03-11 04:38:16.127][1][info][main] [source/server/server.cc:434]   envoy.route.early_data_policy: envoy.route.early_data_policy.default
+envoy  | [2024-03-11 04:38:16.129][1][warning][misc] [source/common/protobuf/message_validator_impl.cc:21] Deprecated field: type envoy.config.bootstrap.v3.Admin Using deprecated option 'envoy.config.bootstrap.v3.Admin.access_log_path' from file bootstrap.proto. This configuration will be removed from Envoy soon. Please see https://www.envoyproxy.io/docs/envoy/latest/version_history/version_history for details. If continued use of this field is absolutely necessary, see https://www.envoyproxy.io/docs/envoy/latest/configuration/operations/runtime#using-runtime-overrides-for-deprecated-features for how to apply a temporary and highly discouraged override.
+envoy  | [2024-03-11 04:38:16.130][1][info][main] [source/server/server.cc:488] HTTP header map info:
+envoy  | [2024-03-11 04:38:16.131][1][info][main] [source/server/server.cc:491]   request header map: 664 bytes: :authority,:method,:path,:protocol,:scheme,accept,accept-encoding,access-control-request-headers,access-control-request-method,access-control-request-private-network,authentication,authorization,cache-control,cdn-loop,connection,content-encoding,content-length,content-type,expect,grpc-accept-encoding,grpc-timeout,if-match,if-modified-since,if-none-match,if-range,if-unmodified-since,keep-alive,origin,pragma,proxy-connection,proxy-status,referer,te,transfer-encoding,upgrade,user-agent,via,x-client-trace-id,x-envoy-attempt-count,x-envoy-decorator-operation,x-envoy-downstream-service-cluster,x-envoy-downstream-service-node,x-envoy-expected-rq-timeout-ms,x-envoy-external-address,x-envoy-force-trace,x-envoy-hedge-on-per-try-timeout,x-envoy-internal,x-envoy-ip-tags,x-envoy-is-timeout-retry,x-envoy-max-retries,x-envoy-original-path,x-envoy-original-url,x-envoy-retriable-header-names,x-envoy-retriable-status-codes,x-envoy-retry-grpc-on,x-envoy-retry-on,x-envoy-upstream-alt-stat-name,x-envoy-upstream-rq-per-try-timeout-ms,x-envoy-upstream-rq-timeout-alt-response,x-envoy-upstream-rq-timeout-ms,x-envoy-upstream-stream-duration-ms,x-forwarded-client-cert,x-forwarded-for,x-forwarded-host,x-forwarded-port,x-forwarded-proto,x-ot-span-context,x-request-id
+envoy  | [2024-03-11 04:38:16.131][1][info][main] [source/server/server.cc:491]   request trailer map: 120 bytes: 
+envoy  | [2024-03-11 04:38:16.131][1][info][main] [source/server/server.cc:491]   response header map: 432 bytes: :status,access-control-allow-credentials,access-control-allow-headers,access-control-allow-methods,access-control-allow-origin,access-control-allow-private-network,access-control-expose-headers,access-control-max-age,age,cache-control,connection,content-encoding,content-length,content-type,date,etag,expires,grpc-message,grpc-status,keep-alive,last-modified,location,proxy-connection,proxy-status,server,transfer-encoding,upgrade,vary,via,x-envoy-attempt-count,x-envoy-decorator-operation,x-envoy-degraded,x-envoy-immediate-health-check-fail,x-envoy-ratelimited,x-envoy-upstream-canary,x-envoy-upstream-healthchecked-cluster,x-envoy-upstream-service-time,x-request-id
+envoy  | [2024-03-11 04:38:16.131][1][info][main] [source/server/server.cc:491]   response trailer map: 144 bytes: grpc-message,grpc-status
+envoy  | [2024-03-11 04:38:16.135][1][info][main] [source/server/server.cc:845] runtime: {}
+envoy  | [2024-03-11 04:38:16.136][1][info][main] [source/server/server.cc:717] No admin address given, so no admin HTTP server started.
+envoy  | [2024-03-11 04:38:16.136][1][info][config] [source/server/configuration_impl.cc:160] loading tracing configuration
+envoy  | [2024-03-11 04:38:16.136][1][info][config] [source/server/configuration_impl.cc:119] loading 0 static secret(s)
+envoy  | [2024-03-11 04:38:16.136][1][info][config] [source/server/configuration_impl.cc:125] loading 1 cluster(s)
+envoy  | [2024-03-11 04:38:16.137][1][info][config] [source/server/configuration_impl.cc:129] loading 1 listener(s)
+envoy  | [2024-03-11 04:38:16.138][1][info][config] [source/server/configuration_impl.cc:146] loading stats configuration
+envoy  | [2024-03-11 04:38:16.138][1][info][runtime] [source/common/runtime/runtime_impl.cc:584] RTDS has finished initialization
+envoy  | [2024-03-11 04:38:16.138][1][info][upstream] [source/common/upstream/cluster_manager_impl.cc:240] cm init: all clusters initialized
+envoy  | [2024-03-11 04:38:16.138][1][warning][main] [source/server/server.cc:910] There is no configured limit to the number of allowed active downstream connections. Configure a limit in `envoy.resource_monitors.downstream_connections` resource monitor.
+envoy  | [2024-03-11 04:38:16.138][1][info][main] [source/server/server.cc:932] all clusters initialized. initializing init manager
+envoy  | [2024-03-11 04:38:16.138][1][info][config] [source/common/listener_manager/listener_manager_impl.cc:926] all dependencies initialized. starting workers
+envoy  | [2024-03-11 04:38:16.139][1][info][main] [source/server/server.cc:951] starting main dispatch loop
+envoy  | [2024-03-11 04:42:28.666][1][warning][main] [source/server/server.cc:881] caught ENVOY_SIGTERM
+envoy  | [2024-03-11 04:42:28.666][1][info][main] [source/server/server.cc:1019] shutting down server instance
+envoy  | [2024-03-11 04:42:28.666][1][info][main] [source/server/server.cc:959] main dispatch loop exited
+envoy  | [2024-03-11 04:42:28.668][1][info][main] [source/server/server.cc:1011] exiting
+envoy exited with code 0
+envoy exited with code 0
 api01 exited with code 0
 api01 exited with code 0
-bouncer exited with code 0
-bouncer exited with code 137
-db       | 2024-03-10 21:34:57.397 UTC [1] LOG:  received fast shutdown request
-db       | 2024-03-10 21:34:57.401 UTC [1] LOG:  aborting any active transactions
-db       | 2024-03-10 21:34:57.403 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
-db       | 2024-03-10 21:34:57.403 UTC [64] LOG:  shutting down
-db       | 2024-03-10 21:34:57.407 UTC [64] LOG:  checkpoint starting: shutdown immediate
-db       | 2024-03-10 21:34:57.560 UTC [64] LOG:  checkpoint complete: wrote 833 buffers (5.1%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.011 s, sync=0.127 s, total=0.157 s; sync files=29, longest=0.121 s, average=0.005 s; distance=16543 kB, estimate=16543 kB; lsn=0/2941DB0, redo lsn=0/2941DB0
-db       | 2024-03-10 21:34:57.564 UTC [1] LOG:  database system is shut down
+api02 exited with code 0
+api02 exited with code 0
+db     | 2024-03-11 04:42:29.540 GMT [1] LOG:  received fast shutdown request
+db     | 2024-03-11 04:42:29.547 GMT [1] LOG:  aborting any active transactions
+db     | 2024-03-11 04:42:29.549 GMT [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+db     | 2024-03-11 04:42:29.550 GMT [64] LOG:  shutting down
+db     | 2024-03-11 04:42:29.554 GMT [64] LOG:  checkpoint starting: shutdown immediate
+db     | 2024-03-11 04:42:29.700 GMT [64] LOG:  checkpoint complete: wrote 835 buffers (6.8%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.012 s, sync=0.113 s, total=0.151 s; sync files=29, longest=0.106 s, average=0.004 s; distance=16512 kB, estimate=16512 kB; lsn=0/293A408, redo lsn=0/293A408
+db     | 2024-03-11 04:42:29.705 GMT [1] LOG:  database system is shut down
 db exited with code 0

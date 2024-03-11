@@ -1,15 +1,20 @@
- Volume "richardnfag-vernal_lmdb-data"  Creating
- Volume "richardnfag-vernal_lmdb-data"  Created
+ Network richardnfag-vernal_default  Creating
+ Network richardnfag-vernal_default  Created
+ Volume "sockets"  Creating
+ Volume "sockets"  Created
+ Volume "lmdb-data"  Creating
+ Volume "lmdb-data"  Created
  Container richardnfag-vernal-api02-1  Creating
  Container richardnfag-vernal-api01-1  Creating
- Container richardnfag-vernal-api01-1  Created
  Container richardnfag-vernal-api02-1  Created
+ Container richardnfag-vernal-api01-1  Created
  Container richardnfag-vernal-lb-1  Creating
  Container richardnfag-vernal-lb-1  Created
 Attaching to api01-1, api02-1, lb-1
-api01-1  | Server running on port: 8001
-api02-1  | Server running on port: 8002
+api01-1  | Server running on unix socket: /app/sockets/api1.socket
+api02-1  | Server running on unix socket: /app/sockets/api2.socket
 lb-1     | Listening on port 9999
+lb-1     | Proxying to ["/app/sockets/api1.socket", "/app/sockets/api2.socket"]
 lb-1     | thread 'main' panicked at src/main.rs:58:18:
 lb-1     | called `Result::unwrap()` on an `Err` value: Os { code: 107, kind: NotConnected, message: "Socket not connected" }
 lb-1     | note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
@@ -493,8 +498,3 @@ lb-1     | thread 'main' panicked at src/main.rs:58:18:
 lb-1     | called `Result::unwrap()` on an `Err` value: Os { code: 107, kind: NotConnected, message: "Socket not connected" }
 lb-1     | thread 'main' panicked at src/main.rs:58:18:
 lb-1     | called `Result::unwrap()` on an `Err` value: Os { code: 107, kind: NotConnected, message: "Socket not connected" }
-lb-1     | thread 'main' panicked at src/main.rs:58:18:
-lb-1     | called `Result::unwrap()` on an `Err` value: Os { code: 107, kind: NotConnected, message: "Socket not connected" }
-lb-1     | thread 'main' panicked at src/main.rs:58:18:
-lb-1     | called `Result::unwrap()` on an `Err` value: Os { code: 107, kind: NotConnected, message: "Socket not connected" }
-lb-1     | thread 'main' panicked at src/main.rs:58:18:

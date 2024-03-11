@@ -1,0 +1,316 @@
+ Network rinha-nginx-2024q1  Creating
+ Network rinha-nginx-2024q1  Created
+ Container julioriffel-fastapi-db-1  Creating
+ Container julioriffel-fastapi-redis-1  Creating
+ Container julioriffel-fastapi-redis-1  Created
+ Container julioriffel-fastapi-db-1  Created
+ Container julioriffel-fastapi-api-2  Creating
+ Container julioriffel-fastapi-api-1  Creating
+ Container julioriffel-fastapi-api-2  Created
+ Container julioriffel-fastapi-api-1  Created
+ Container julioriffel-fastapi-nginx-1  Creating
+ Container julioriffel-fastapi-nginx-1  Created
+Attaching to api-1, api-2, db-1, nginx-1, redis-1
+redis-1  | 1:C 11 Mar 2024 01:53:23.633 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+redis-1  | 1:C 11 Mar 2024 01:53:23.633 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1  | 1:C 11 Mar 2024 01:53:23.633 * Redis version=7.2.4, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-1  | 1:C 11 Mar 2024 01:53:23.633 * Configuration loaded
+redis-1  | 1:M 11 Mar 2024 01:53:23.633 * monotonic clock: POSIX clock_gettime
+redis-1  | 1:M 11 Mar 2024 01:53:23.634 * Running mode=standalone, port=6379.
+redis-1  | 1:M 11 Mar 2024 01:53:23.634 * Server initialized
+redis-1  | 1:M 11 Mar 2024 01:53:23.634 * Ready to accept connections tcp
+db-1     | The files belonging to this database system will be owned by user "postgres".
+db-1     | This user must also own the server process.
+db-1     | 
+db-1     | The database cluster will be initialized with locale "en_US.utf8".
+db-1     | The default database encoding has accordingly been set to "UTF8".
+db-1     | The default text search configuration will be set to "english".
+db-1     | 
+db-1     | Data page checksums are disabled.
+db-1     | 
+db-1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1     | creating subdirectories ... ok
+db-1     | selecting dynamic shared memory implementation ... posix
+db-1     | selecting default max_connections ... 100
+db-1     | selecting default shared_buffers ... 128MB
+db-1     | selecting default time zone ... Etc/UTC
+db-1     | creating configuration files ... ok
+api-1    | [2024-03-11 01:53:24 +0000] [1] [INFO] Starting gunicorn 21.2.0
+api-1    | [2024-03-11 01:53:24 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+api-1    | [2024-03-11 01:53:24 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+api-1    | [2024-03-11 01:53:24 +0000] [7] [INFO] Booting worker with pid: 7
+api-1    | [2024-03-11 01:53:24 +0000] [8] [INFO] Booting worker with pid: 8
+api-2    | [2024-03-11 01:53:24 +0000] [1] [INFO] Starting gunicorn 21.2.0
+api-2    | [2024-03-11 01:53:24 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+api-2    | [2024-03-11 01:53:24 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+api-2    | [2024-03-11 01:53:24 +0000] [7] [INFO] Booting worker with pid: 7
+api-2    | [2024-03-11 01:53:24 +0000] [8] [INFO] Booting worker with pid: 8
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db-1     | running bootstrap script ... ok
+db-1     | performing post-bootstrap initialization ... ok
+api-1    | [2024-03-11 01:53:27 +0000] [7] [INFO] Started server process [7]
+api-1    | [2024-03-11 01:53:27 +0000] [7] [INFO] Waiting for application startup.
+api-1    | [2024-03-11 01:53:27 +0000] [7] [ERROR] Traceback (most recent call last):
+api-1    |   File "/code/main.py", line 17, in lifespan
+api-1    |     app.state.pool = await get_pool()
+api-1    |                      ^^^^^^^^^^^^^^^^
+api-1    |   File "/code/core/database.py", line 12, in get_pool
+api-1    |     pool = await asyncpg.create_pool(
+api-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/pool.py", line 403, in _async__init__
+api-1    |     await self._initialize()
+api-1    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/pool.py", line 430, in _initialize
+api-1    |     await first_ch.connect()
+api-1    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/pool.py", line 128, in connect
+api-1    |     self._con = await self._pool._get_new_connection()
+api-1    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/pool.py", line 502, in _get_new_connection
+api-1    |     con = await connection.connect(
+api-1    |           ^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/connection.py", line 2329, in connect
+api-1    |     return await connect_utils._connect(
+api-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/connect_utils.py", line 1017, in _connect
+api-1    |     raise last_error or exceptions.TargetServerAttributeNotMatched(
+api-1    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/connect_utils.py", line 991, in _connect
+api-1    |     conn = await _connect_addr(
+api-1    |            ^^^^^^^^^^^^^^^^^^^^
+api-1    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/connect_utils.py", line 828, in _connect_addr
+api-1    |     return await __connect_addr(params, True, *args)
+api-1    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/connect_utils.py", line 873, in __connect_addr
+api-1    |     tr, pr = await connector
+api-1    |              ^^^^^^^^^^^^^^^
+api-1    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/connect_utils.py", line 744, in _create_ssl_connection
+api-1    |     tr, pr = await loop.create_connection(
+api-1    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1    |   File "uvloop/loop.pyx", line 2039, in create_connection
+api-1    |   File "uvloop/loop.pyx", line 2016, in uvloop.loop.Loop.create_connection
+api-1    | ConnectionRefusedError: [Errno 111] Connection refused
+api-1    | 
+api-1    | During handling of the above exception, another exception occurred:
+api-1    | 
+api-1    | Traceback (most recent call last):
+api-1    |   File "/usr/local/lib/python3.12/site-packages/starlette/datastructures.py", line 699, in __getattr__
+api-1    |     return self._state[key]
+api-1    |            ~~~~~~~~~~~^^^^^
+api-1    | KeyError: 'pool'
+api-1    | 
+api-1    | During handling of the above exception, another exception occurred:
+api-1    | 
+api-1    | Traceback (most recent call last):
+api-1    |   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 734, in lifespan
+api-1    |     async with self.lifespan_context(app) as maybe_state:
+api-1    |   File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+api-1    |     return await anext(self.gen)
+api-1    |            ^^^^^^^^^^^^^^^^^^^^^
+api-1    |   File "/code/main.py", line 20, in lifespan
+api-1    |     await app.state.pool.close()
+api-1    |           ^^^^^^^^^^^^^^
+api-1    |   File "/usr/local/lib/python3.12/site-packages/starlette/datastructures.py", line 702, in __getattr__
+api-1    |     raise AttributeError(message.format(self.__class__.__name__, key))
+api-1    | AttributeError: 'State' object has no attribute 'pool'
+api-1    | 
+api-1    | [2024-03-11 01:53:27 +0000] [7] [ERROR] Application startup failed. Exiting.
+api-1    | [2024-03-11 01:53:27 +0000] [7] [INFO] Worker exiting (pid: 7)
+api-2    | [2024-03-11 01:53:27 +0000] [7] [INFO] Started server process [7]
+api-2    | [2024-03-11 01:53:27 +0000] [7] [INFO] Waiting for application startup.
+api-2    | [2024-03-11 01:53:27 +0000] [7] [ERROR] Traceback (most recent call last):
+api-2    |   File "/code/main.py", line 17, in lifespan
+api-2    |     app.state.pool = await get_pool()
+api-2    |                      ^^^^^^^^^^^^^^^^
+api-2    |   File "/code/core/database.py", line 12, in get_pool
+api-2    |     pool = await asyncpg.create_pool(
+api-2    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-2    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/pool.py", line 403, in _async__init__
+api-2    |     await self._initialize()
+api-2    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/pool.py", line 430, in _initialize
+api-2    |     await first_ch.connect()
+api-2    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/pool.py", line 128, in connect
+api-2    |     self._con = await self._pool._get_new_connection()
+api-2    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-2    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/pool.py", line 502, in _get_new_connection
+api-2    |     con = await connection.connect(
+api-2    |           ^^^^^^^^^^^^^^^^^^^^^^^^^
+api-2    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/connection.py", line 2329, in connect
+api-2    |     return await connect_utils._connect(
+api-2    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-2    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/connect_utils.py", line 1017, in _connect
+api-2    |     raise last_error or exceptions.TargetServerAttributeNotMatched(
+api-2    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/connect_utils.py", line 991, in _connect
+api-2    |     conn = await _connect_addr(
+api-2    |            ^^^^^^^^^^^^^^^^^^^^
+api-2    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/connect_utils.py", line 828, in _connect_addr
+api-2    |     return await __connect_addr(params, True, *args)
+api-2    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-2    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/connect_utils.py", line 873, in __connect_addr
+api-2    |     tr, pr = await connector
+api-2    |              ^^^^^^^^^^^^^^^
+api-2    |   File "/usr/local/lib/python3.12/site-packages/asyncpg/connect_utils.py", line 744, in _create_ssl_connection
+api-2    |     tr, pr = await loop.create_connection(
+api-2    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-2    |   File "uvloop/loop.pyx", line 2039, in create_connection
+api-2    |   File "uvloop/loop.pyx", line 2016, in uvloop.loop.Loop.create_connection
+api-2    | ConnectionRefusedError: [Errno 111] Connection refused
+api-2    | 
+api-2    | During handling of the above exception, another exception occurred:
+api-2    | 
+api-2    | Traceback (most recent call last):
+api-2    |   File "/usr/local/lib/python3.12/site-packages/starlette/datastructures.py", line 699, in __getattr__
+api-2    |     return self._state[key]
+api-2    |            ~~~~~~~~~~~^^^^^
+api-2    | KeyError: 'pool'
+api-2    | 
+api-2    | During handling of the above exception, another exception occurred:
+api-2    | 
+api-2    | Traceback (most recent call last):
+api-2    |   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 734, in lifespan
+api-2    |     async with self.lifespan_context(app) as maybe_state:
+api-2    |   File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+api-2    |     return await anext(self.gen)
+api-2    |            ^^^^^^^^^^^^^^^^^^^^^
+api-2    |   File "/code/main.py", line 20, in lifespan
+api-2    |     await app.state.pool.close()
+api-2    |           ^^^^^^^^^^^^^^
+api-2    |   File "/usr/local/lib/python3.12/site-packages/starlette/datastructures.py", line 702, in __getattr__
+api-2    |     raise AttributeError(message.format(self.__class__.__name__, key))
+api-2    | AttributeError: 'State' object has no attribute 'pool'
+api-2    | 
+api-2    | [2024-03-11 01:53:27 +0000] [7] [ERROR] Application startup failed. Exiting.
+api-2    | [2024-03-11 01:53:27 +0000] [7] [INFO] Worker exiting (pid: 7)
+api-1    | [2024-03-11 01:53:27 +0000] [1] [ERROR] Worker (pid:7) exited with code 3
+api-1    | [2024-03-11 01:53:27 +0000] [1] [ERROR] Worker (pid:8) was sent SIGTERM!
+api-1    | [2024-03-11 01:53:27 +0000] [1] [ERROR] Shutting down: Master
+api-1    | [2024-03-11 01:53:27 +0000] [1] [ERROR] Reason: Worker failed to boot.
+api-2    | [2024-03-11 01:53:27 +0000] [1] [ERROR] Worker (pid:7) exited with code 3
+api-2    | [2024-03-11 01:53:27 +0000] [1] [ERROR] Worker (pid:8) was sent SIGTERM!
+nginx-1  | 2024/03/11 01:53:27 [error] 29#29: *1 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.64.5:8000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/11 01:53:27 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.64.4:8000/clientes/1/extrato", host: "localhost:9999"
+api-2    | [2024-03-11 01:53:27 +0000] [1] [ERROR] Shutting down: Master
+api-2    | [2024-03-11 01:53:27 +0000] [1] [ERROR] Reason: Worker failed to boot.
+db-1     | syncing data to disk ... ok
+db-1     | 
+db-1     | 
+db-1     | Success. You can now start the database server using:
+db-1     | 
+db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1     | 
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1     | waiting for server to start....2024-03-11 01:53:29.232 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-11 01:53:29.232 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-11 01:53:29.234 UTC [51] LOG:  database system was shut down at 2024-03-11 01:53:27 UTC
+db-1     | 2024-03-11 01:53:29.318 UTC [48] LOG:  database system is ready to accept connections
+db-1     |  done
+db-1     | server started
+db-1     | 
+db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
+db-1     | BEGIN
+db-1     | CREATE TABLE
+db-1     | CREATE TABLE
+db-1     | INSERT 0 5
+db-1     | COMMIT
+db-1     | 
+db-1     | 
+db-1     | waiting for server to shut down...2024-03-11 01:53:29.625 UTC [48] LOG:  received fast shutdown request
+db-1     | 2024-03-11 01:53:29.625 UTC [48] LOG:  aborting any active transactions
+db-1     | .2024-03-11 01:53:29.627 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-03-11 01:53:29.628 UTC [49] LOG:  shutting down
+db-1     | 2024-03-11 01:53:29.628 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-03-11 01:53:29.630 UTC [49] LOG:  checkpoint complete: wrote 52 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.002 s; sync files=0, longest=0.000 s, average=0.000 s; distance=24 kB, estimate=24 kB; lsn=0/14F0AE8, redo lsn=0/14F0AE8
+db-1     | 2024-03-11 01:53:29.718 UTC [48] LOG:  database system is shut down
+db-1     |  done
+db-1     | server stopped
+db-1     | 
+db-1     | PostgreSQL init process complete; ready for start up.
+db-1     | 
+db-1     | 2024-03-11 01:53:29.817 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-11 01:53:29.840 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-03-11 01:53:29.840 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+nginx-1  | 2024/03/11 01:53:29 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-1     | 2024-03-11 01:53:29.840 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-11 01:53:29.842 UTC [64] LOG:  database system was shut down at 2024-03-11 01:53:29 UTC
+db-1     | 2024-03-11 01:53:29.846 UTC [1] LOG:  database system is ready to accept connections
+api-1 exited with code 0
+api-2 exited with code 0
+api-1    | [2024-03-11 01:53:30 +0000] [1] [INFO] Starting gunicorn 21.2.0
+api-1    | [2024-03-11 01:53:30 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+api-1    | [2024-03-11 01:53:30 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+api-1    | [2024-03-11 01:53:30 +0000] [7] [INFO] Booting worker with pid: 7
+api-1    | [2024-03-11 01:53:30 +0000] [8] [INFO] Booting worker with pid: 8
+api-2    | [2024-03-11 01:53:30 +0000] [1] [INFO] Starting gunicorn 21.2.0
+api-2    | [2024-03-11 01:53:30 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+api-2    | [2024-03-11 01:53:30 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+api-2    | [2024-03-11 01:53:30 +0000] [7] [INFO] Booting worker with pid: 7
+api-2    | [2024-03-11 01:53:30 +0000] [8] [INFO] Booting worker with pid: 8
+nginx-1  | 2024/03/11 01:53:31 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api-2    | [2024-03-11 01:53:33 +0000] [7] [INFO] Started server process [7]
+api-2    | [2024-03-11 01:53:33 +0000] [7] [INFO] Waiting for application startup.
+api-1    | [2024-03-11 01:53:33 +0000] [7] [INFO] Started server process [7]
+api-1    | [2024-03-11 01:53:33 +0000] [7] [INFO] Waiting for application startup.
+api-1    | [2024-03-11 01:53:33 +0000] [8] [INFO] Started server process [8]
+api-1    | [2024-03-11 01:53:33 +0000] [8] [INFO] Waiting for application startup.
+nginx-1  | 2024/03/11 01:53:33 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api-2    | [2024-03-11 01:53:33 +0000] [8] [INFO] Started server process [8]
+api-2    | [2024-03-11 01:53:33 +0000] [8] [INFO] Waiting for application startup.
+api-1    | [2024-03-11 01:53:35 +0000] [8] [INFO] Application startup complete.
+api-2    | [2024-03-11 01:53:35 +0000] [7] [INFO] Application startup complete.
+api-1    | [2024-03-11 01:53:35 +0000] [7] [INFO] Application startup complete.
+api-2    | [2024-03-11 01:53:35 +0000] [8] [INFO] Application startup complete.
+nginx-1  | 2024/03/11 01:53:35 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/11 01:53:37 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.64.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api-1    | [2024-03-11 01:57:52 +0000] [1] [INFO] Handling signal: term
+api-2    | [2024-03-11 01:57:52 +0000] [1] [INFO] Handling signal: term
+api-1    | [2024-03-11 01:57:52 +0000] [7] [INFO] Shutting down
+api-1    | [2024-03-11 01:57:52 +0000] [7] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+api-2    | [2024-03-11 01:57:52 +0000] [7] [INFO] Shutting down
+api-2    | [2024-03-11 01:57:52 +0000] [7] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+api-1    | [2024-03-11 01:57:52 +0000] [8] [INFO] Shutting down
+api-1    | [2024-03-11 01:57:52 +0000] [8] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+api-2    | [2024-03-11 01:57:52 +0000] [8] [INFO] Shutting down
+api-2    | [2024-03-11 01:57:52 +0000] [8] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+api-1    | [2024-03-11 01:57:52 +0000] [7] [INFO] Waiting for application shutdown.
+api-2    | [2024-03-11 01:57:52 +0000] [7] [INFO] Waiting for application shutdown.
+api-1    | [2024-03-11 01:57:52 +0000] [8] [INFO] Waiting for application shutdown.
+api-2    | [2024-03-11 01:57:53 +0000] [8] [INFO] Waiting for application shutdown.
+api-1    | [2024-03-11 01:57:53 +0000] [7] [INFO] Application shutdown complete.
+api-1    | [2024-03-11 01:57:53 +0000] [7] [INFO] Finished server process [7]
+api-1    | [2024-03-11 01:57:53 +0000] [7] [INFO] Worker exiting (pid: 7)
+api-1    | [2024-03-11 01:57:53 +0000] [8] [INFO] Application shutdown complete.
+api-1    | [2024-03-11 01:57:53 +0000] [8] [INFO] Finished server process [8]
+api-1    | [2024-03-11 01:57:53 +0000] [8] [INFO] Worker exiting (pid: 8)
+api-2    | [2024-03-11 01:57:53 +0000] [8] [INFO] Application shutdown complete.
+api-2    | [2024-03-11 01:57:53 +0000] [8] [INFO] Finished server process [8]
+api-2    | [2024-03-11 01:57:53 +0000] [8] [INFO] Worker exiting (pid: 8)
+api-2    | [2024-03-11 01:57:53 +0000] [7] [INFO] Application shutdown complete.
+api-2    | [2024-03-11 01:57:53 +0000] [7] [INFO] Finished server process [7]
+api-2    | [2024-03-11 01:57:53 +0000] [7] [INFO] Worker exiting (pid: 7)
+api-1    | [2024-03-11 01:57:53 +0000] [1] [INFO] Shutting down: Master
+api-2    | [2024-03-11 01:57:53 +0000] [1] [INFO] Shutting down: Master
+api-1 exited with code 0
+api-1 exited with code 0
+api-2 exited with code 0
+api-2 exited with code 0
+redis-1  | 1:signal-handler (1710122274) Received SIGTERM scheduling shutdown...
+db-1     | 2024-03-11 01:57:54.512 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-03-11 01:57:54.512 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-03-11 01:57:54.514 UTC [1] LOG:  background worker "logical replication launcher" (PID 67) exited with exit code 1
+db-1     | 2024-03-11 01:57:54.514 UTC [62] LOG:  shutting down
+db-1     | 2024-03-11 01:57:54.514 UTC [62] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-03-11 01:57:54.517 UTC [62] LOG:  checkpoint complete: wrote 637 buffers (3.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.001 s, total=0.004 s; sync files=0, longest=0.000 s, average=0.000 s; distance=1887 kB, estimate=1887 kB; lsn=0/16C89A8, redo lsn=0/16C89A8
+db-1     | 2024-03-11 01:57:54.520 UTC [1] LOG:  database system is shut down
+redis-1  | 1:M 11 Mar 2024 01:57:54.524 * User requested shutdown...
+redis-1  | 1:M 11 Mar 2024 01:57:54.524 # Redis is now ready to exit, bye bye...
+db-1 exited with code 0
+db-1 exited with code 0
+redis-1 exited with code 0

@@ -1,0 +1,77 @@
+version: '3.4'
+
+services:
+  app1: &app
+    image: rafaumlemos/rinha-backend-2024-1:latest
+    hostname: app1
+    environment:
+      DB_URL: "postgres://postgres:password@postgres:5432/postgres"
+      DB_POOL: 15
+      NODE_ENV: production
+      CLUSTER: true
+    ports:
+      - "3001:3000"
+    depends_on:
+      - postgres
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.35'
+          memory: '80MB'
+    restart: unless-stopped
+  app2:
+    <<: *app
+    hostname: app2
+    environment:
+      DB_URL: "postgres://postgres:password@postgres:5432/postgres"
+      DB_POOL: 15
+      NODE_ENV: production
+      CLUSTER: true
+    ports:
+      - "3002:3000"
+
+  postgres:
+    image: postgres
+    command: 'postgres -c max_connections=200'
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '256MB'
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app1
+      - app2
+    ports:
+      - "9999:9999"
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '134MB'
