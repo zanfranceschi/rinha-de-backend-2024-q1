@@ -1,0 +1,66 @@
+version: "3.8"
+
+services:
+  api-east: &api
+    image: ghcr.io/rycastr/crebito-ex:main
+    environment:
+      DATABASE_URL: ecto://postgres:postgres@localhost:5432/crebito
+      PORT: 4000
+      POOL_SIZE: 1
+      RELEASE_DISTRIBUTION: "name"
+      RELEASE_NAME: "east"
+      RELEASE_NODE: "east@127.0.0.1"
+      ERL_FLAGS: "-smp enable +S 1:1"
+      ERL_MAX_PORTS: "2048"
+    network_mode: host
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.35'
+          memory: '165MB'
+
+  api-west:
+    <<: *api 
+    environment:
+      DATABASE_URL: ecto://postgres:postgres@localhost:5432/crebito
+      PORT: 4001
+      POOL_SIZE: 1
+      RELEASE_DISTRIBUTION: "name"
+      RELEASE_NAME: "west"
+      RELEASE_NODE: "west@127.0.0.1"
+      ERL_FLAGS: "-smp enable +S 1:1"
+      ERL_MAX_PORTS: "2048"
+ 
+  nginx:
+    image: nginx:alpine3.18
+    restart: on-failure
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api-east
+      - api-west
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '20MB'
+
+  db:
+    image: postgres:16-alpine3.18
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=crebito
+    command: postgres -c config_file=/etc/postgresql.conf
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres/postgres.conf:/etc/postgresql.conf
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: '200MB'

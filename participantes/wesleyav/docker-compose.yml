@@ -1,0 +1,96 @@
+version: '3.8'
+services:
+  api01:
+    container_name: api01
+    hostname: api01
+    restart: always
+    # build:
+    #   context: .
+    image: docker.io/wesleyav/rinha-de-backend-2024-q1:latest
+    ports:
+      - "8082:8080"
+    environment:
+      - SERVER_PORT=8082
+      - MYSQL_URL=jdbc:mysql://mysqlserver/db_api
+    depends_on:
+      - mysqlserver
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://mysqlserver:3306"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: 155MB
+  api02:
+    container_name: api02
+    hostname: api02
+    restart: always
+    # build:
+    #   context: .
+    image: docker.io/wesleyav/rinha-de-backend-2024-q1:latest
+    ports:
+      - "8083:8080"
+    environment:
+      - SERVER_PORT=8083
+      - MYSQL_URL=jdbc:mysql://mysqlserver/db_api
+    depends_on:
+      - api01
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://mysqlserver:3306"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: 155MB
+  nginx:
+    container_name: load-balancer
+    hostname: nginx
+    restart: always
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.17'
+          memory: 10MB
+  mysqlserver:
+    container_name: db-mysql
+    hostname: mysql
+    restart: always
+    image: mysql:8.0.33
+    environment:
+      MYSQL_ROOT_PASSWORD: asdf
+      MYSQL_DATABASE: db_api
+      MYSQL_USER: seiya
+      MYSQL_PASSWORD: asdf
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+    deploy:
+      resources:
+        limits:
+          cpus: '0.13'
+          memory: 230MB
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

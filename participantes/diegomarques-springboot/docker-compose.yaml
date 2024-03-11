@@ -2,7 +2,6 @@ version: "3.8"
 services:
   api01: &api
     image: dmsantosd/rinha-backend:latest
-    #build: .
     hostname: api01
     environment:
       - DATABASE_URL=jdbc:postgresql://db:5432/rinhadb
@@ -11,14 +10,15 @@ services:
       - DB_HOSTNAME=db
       - PORT=8080
     ports:
-      - "8081:8080"
+      - "8081"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
-          cpus: "0.6"
-          memory: "200MB"
+          cpus: "0.5"
+          memory: "190MB"
 
   api02:
     <<: *api
@@ -30,7 +30,7 @@ services:
       - DB_HOSTNAME=db
       - PORT=8080
     ports:
-      - "8082:8080"
+      - "8082"
 
   nginx:
     image: nginx:latest
@@ -45,7 +45,7 @@ services:
       resources:
         limits:
           cpus: "0.17"
-          memory: "10MB"
+          memory: "30MB"
 
   db:
     image: postgres:latest
@@ -58,11 +58,17 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql:ro
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "admin", "-d", "rinhadb" ]
+      start_period: 5s
+      timeout: 5s
+      interval: 5s
+      retries: 10
     deploy:
       resources:
         limits:
-          cpus: "0.13"
+          cpus: "0.33"
           memory: "140MB"
 
 networks:

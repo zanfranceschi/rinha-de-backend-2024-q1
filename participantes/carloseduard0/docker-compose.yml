@@ -1,0 +1,61 @@
+version: '3.1'
+
+services:
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - sockets:/sockets
+    network_mode: host
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "10MB"
+
+  api1: &api
+    image: carloseduard0/rinha-de-backend-2024-q1-dotnet
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    network_mode: host
+    environment:
+      UNIX_SOCKET: /sockets/api1.sock
+      ConnectionStrings__PostgreSQL: Host=/sockets;Port=30003;Database=postgres;Username=postgres;Password=postgres;Enlist=false;No Reset On Close=true;Multiplexing=true;Max Auto Prepare=100;Auto Prepare Min Usages=1;
+    volumes:
+      - sockets:/sockets
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "30MB"
+
+  api2:
+    <<: *api
+    environment:
+      UNIX_SOCKET: /sockets/api2.sock
+      ConnectionStrings__PostgreSQL: Host=/sockets;Port=30003;Database=postgres;Username=postgres;Password=postgres;Enlist=false;No Reset On Close=true;Multiplexing=true;Max Auto Prepare=100;Auto Prepare Min Usages=1;
+
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./postgres.conf:/etc/postgresql/postgresql.conf:ro
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - sockets:/var/run/postgresql/
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "480MB"
+
+volumes:
+  sockets:
