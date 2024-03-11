@@ -1,0 +1,68 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: ryanmourabrocco/rinha-de-backend-2024-q1:ryansdb
+    hostname: api01
+    networks:
+    - rinha-network
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "150MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api 
+    hostname: api02
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8082:8080"
+ 
+  nginx:
+    image: nginx:latest
+    networks:
+      - rinha-network
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+  db:
+    image: ryanmourabrocco/ryansdb:rinha
+    hostname: db
+    networks:
+      - rinha-network
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "200MB"
+
+# O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
+# A edição anterior se beneficiou do modo host pois o volume de requisições
+# era relativamente alto e a virtualização da rede se tornou um gargalo, mas
+# este modo é mais complexo de ser configurado. Fique à vontade para usar o
+# modo que quiser desde que não conflite com portas trivialmente usadas em um
+# SO.
+networks:
+  rinha-network:
+    driver: bridge

@@ -1,0 +1,64 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - '9999:9999'
+    expose:
+      - '9999'
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: '10MB'
+    networks:
+      - app_network
+
+  api1: &api
+    image: gtadashii/rinha-back-bun-q1-24:latest
+    hostname: api1
+    build: .
+    depends_on:
+      - db
+    expose:
+      - '8080'
+    networks:
+      - app_network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: '200MB'
+    environment:
+      - DB_HOSTNAME=db
+
+  api2:
+    <<: *api
+    hostname: api2
+
+  db:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: crebito
+    networks:
+      - app_network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: '140MB'
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/1_script.sql
+
+networks:
+  app_network:
+    driver: bridge
