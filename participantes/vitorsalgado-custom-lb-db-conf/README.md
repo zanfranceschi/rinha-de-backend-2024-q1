@@ -4,19 +4,17 @@
 ### Stack
 
 - Go
-- Load Balancer Próprio (Go)
+- Envoy
 - Postgres
-- PgBouncer
 
 ### Sobre
 
-Similar a submissão anterior com um custom load balancer. 
+Similar a submissão original em Go. 
 Aqui as configs e as tabelas do Postgres estão usando um setup um pouco mais realista (ex.: sem tabelas com __unlogged__).  
-Quero ver como essa submissão performa frente as outras.
+Quero ver como essa submissão performa frente as outras. 
 
 ### Links
 
-- [Repositório](https://github.com/vitorsalgado/rinha-2024-q1-custom-lb)
-- [Resultados](https://vitorsalgado.github.io/rinha-2024-q1-custom-lb/)
+- [Repositório](https://github.com/vitorsalgado/rinha-2024-q1)
 - [LinkedIn](https://www.linkedin.com/in/vitorsalgado/)
 - [Twitter](https://twitter.com/vtrsalgado)

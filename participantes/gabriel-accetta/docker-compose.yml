@@ -1,0 +1,59 @@
+version: "3.5"
+
+services:
+  # API 1
+  api01: &api
+    image: gabrielaccetta/apirinha2024:1.0
+    hostname: api01
+    depends_on:
+      - db
+    expose:
+      - "8080"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "200MB"
+    environment:
+        - DATABASE_URL=postgresql://admin:123@db:5432/rinha?schema=public
+
+  
+  # API 2
+  api02:
+    <<: *api
+    hostname: api02
+
+  # Load Balancer
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "75MB"
+
+  # Database
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "75MB"

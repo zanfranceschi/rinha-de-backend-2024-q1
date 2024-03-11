@@ -1,0 +1,500 @@
+ Network jazielloureiro_default  Creating
+ Network jazielloureiro_default  Created
+ Volume "jazielloureiro_postgres"  Creating
+ Volume "jazielloureiro_postgres"  Created
+ Container jazielloureiro-postgres-1  Creating
+ Container jazielloureiro-postgres-1  Created
+ Container jazielloureiro-server1-1  Creating
+ Container jazielloureiro-server2-1  Creating
+ Container jazielloureiro-server1-1  Created
+ Container jazielloureiro-server2-1  Created
+ Container jazielloureiro-nginx-1  Creating
+ Container jazielloureiro-nginx-1  Created
+Attaching to nginx-1, postgres-1, server1-1, server2-1
+postgres-1  | The files belonging to this database system will be owned by user "postgres".
+postgres-1  | This user must also own the server process.
+postgres-1  | 
+postgres-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgres-1  | The default database encoding has accordingly been set to "UTF8".
+postgres-1  | The default text search configuration will be set to "english".
+postgres-1  | 
+postgres-1  | Data page checksums are disabled.
+postgres-1  | 
+postgres-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres-1  | creating subdirectories ... ok
+postgres-1  | selecting dynamic shared memory implementation ... posix
+postgres-1  | selecting default max_connections ... 100
+postgres-1  | selecting default shared_buffers ... 128MB
+postgres-1  | selecting default time zone ... Etc/UTC
+postgres-1  | creating configuration files ... ok
+postgres-1  | running bootstrap script ... ok
+server1-1   | 2024/03/11 01:08:09 dial tcp 172.27.0.2:5432: connect: connection refused
+postgres-1  | performing post-bootstrap initialization ... ok
+server2-1   | 2024/03/11 01:08:09 dial tcp 172.27.0.2:5432: connect: connection refused
+postgres-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres-1  | syncing data to disk ... ok
+postgres-1  | 
+postgres-1  | 
+postgres-1  | Success. You can now start the database server using:
+postgres-1  | 
+postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres-1  | 
+postgres-1  | waiting for server to start....2024-03-11 01:08:11.157 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres-1  | 2024-03-11 01:08:11.309 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2024-03-11 01:08:11.867 UTC [51] LOG:  database system was shut down at 2024-03-11 01:08:09 UTC
+nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+postgres-1  | 2024-03-11 01:08:11.915 UTC [48] LOG:  database system is ready to accept connections
+nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
+postgres-1  |  done
+postgres-1  | server started
+nginx-1     | 2024/03/11 01:08:12 [emerg] 1#1: host not found in upstream "server1:8000" in /etc/nginx/nginx.conf:10
+nginx-1     | nginx: [emerg] host not found in upstream "server1:8000" in /etc/nginx/nginx.conf:10
+postgres-1  | CREATE DATABASE
+postgres-1  | 
+postgres-1  | 
+postgres-1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/DDL.sql
+postgres-1  | CREATE TABLE
+postgres-1  | CREATE TABLE
+postgres-1  | 
+postgres-1  | 
+postgres-1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/DML.sql
+postgres-1  | INSERT 0 5
+postgres-1  | 
+postgres-1  | 
+postgres-1  | waiting for server to shut down...2024-03-11 01:08:12.271 UTC [48] LOG:  received fast shutdown request
+postgres-1  | .2024-03-11 01:08:12.274 UTC [48] LOG:  aborting any active transactions
+postgres-1  | 2024-03-11 01:08:12.277 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres-1  | 2024-03-11 01:08:12.278 UTC [49] LOG:  shutting down
+postgres-1  | 2024-03-11 01:08:12.281 UTC [49] LOG:  checkpoint starting: shutdown immediate
+server1-1 exited with code 0
+postgres-1  | 2024-03-11 01:08:12.878 UTC [49] LOG:  checkpoint complete: wrote 938 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.430 s, sync=0.155 s, total=0.600 s; sync files=306, longest=0.053 s, average=0.001 s; distance=4290 kB, estimate=4290 kB; lsn=0/191B4F8, redo lsn=0/191B4F8
+postgres-1  | 2024-03-11 01:08:12.885 UTC [48] LOG:  database system is shut down
+postgres-1  |  done
+postgres-1  | server stopped
+postgres-1  | 
+postgres-1  | PostgreSQL init process complete; ready for start up.
+postgres-1  | 
+postgres-1  | 2024-03-11 01:08:13.473 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres-1  | 2024-03-11 01:08:13.473 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2024-03-11 01:08:13.473 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2024-03-11 01:08:13.516 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2024-03-11 01:08:13.527 UTC [68] LOG:  database system was shut down at 2024-03-11 01:08:12 UTC
+postgres-1  | 2024-03-11 01:08:13.536 UTC [1] LOG:  database system is ready to accept connections
+server2-1 exited with code 1
+nginx-1 exited with code 0
+server1-1 exited with code 0
+server2-1 exited with code 0
+postgres-1  | 2024-03-11 01:08:33.603 UTC [72] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:33.603 UTC [72] DETAIL:  Failing row contains (2, 80000, -87800).
+postgres-1  | 2024-03-11 01:08:33.603 UTC [72] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:33.664 UTC [74] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:33.664 UTC [74] DETAIL:  Failing row contains (2, 80000, -80077).
+postgres-1  | 2024-03-11 01:08:33.664 UTC [74] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:33.727 UTC [74] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:33.727 UTC [74] DETAIL:  Failing row contains (2, 80000, -83679).
+postgres-1  | 2024-03-11 01:08:33.727 UTC [74] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:33.852 UTC [74] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:33.852 UTC [74] DETAIL:  Failing row contains (2, 80000, -82741).
+postgres-1  | 2024-03-11 01:08:33.852 UTC [74] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:33.913 UTC [74] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:33.913 UTC [74] DETAIL:  Failing row contains (2, 80000, -80570).
+postgres-1  | 2024-03-11 01:08:33.913 UTC [74] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:34.539 UTC [74] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:34.539 UTC [74] DETAIL:  Failing row contains (2, 80000, -84379).
+postgres-1  | 2024-03-11 01:08:34.539 UTC [74] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:35.902 UTC [74] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:35.902 UTC [74] DETAIL:  Failing row contains (2, 80000, -85329).
+postgres-1  | 2024-03-11 01:08:35.902 UTC [74] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:35.952 UTC [72] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:35.952 UTC [72] DETAIL:  Failing row contains (2, 80000, -80744).
+postgres-1  | 2024-03-11 01:08:35.952 UTC [72] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:36.102 UTC [72] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:36.102 UTC [72] DETAIL:  Failing row contains (2, 80000, -80433).
+postgres-1  | 2024-03-11 01:08:36.102 UTC [72] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:36.202 UTC [74] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:36.202 UTC [74] DETAIL:  Failing row contains (2, 80000, -82427).
+postgres-1  | 2024-03-11 01:08:36.202 UTC [74] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:36.402 UTC [74] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:36.402 UTC [74] DETAIL:  Failing row contains (2, 80000, -84123).
+postgres-1  | 2024-03-11 01:08:36.402 UTC [74] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:36.502 UTC [74] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:36.502 UTC [74] DETAIL:  Failing row contains (2, 80000, -81564).
+postgres-1  | 2024-03-11 01:08:36.502 UTC [74] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:36.737 UTC [72] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:36.737 UTC [72] DETAIL:  Failing row contains (2, 80000, -88002).
+postgres-1  | 2024-03-11 01:08:36.737 UTC [72] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:38.018 UTC [74] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:38.018 UTC [74] DETAIL:  Failing row contains (2, 80000, -80210).
+postgres-1  | 2024-03-11 01:08:38.018 UTC [74] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:38.102 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:38.102 UTC [73] DETAIL:  Failing row contains (2, 80000, -81950).
+postgres-1  | 2024-03-11 01:08:38.102 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:38.143 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:38.143 UTC [82] DETAIL:  Failing row contains (2, 80000, -84673).
+postgres-1  | 2024-03-11 01:08:38.143 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:38.435 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:38.435 UTC [73] DETAIL:  Failing row contains (2, 80000, -81532).
+postgres-1  | 2024-03-11 01:08:38.435 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:38.560 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:38.560 UTC [73] DETAIL:  Failing row contains (2, 80000, -84437).
+postgres-1  | 2024-03-11 01:08:38.560 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:38.722 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:38.722 UTC [82] DETAIL:  Failing row contains (2, 80000, -81684).
+postgres-1  | 2024-03-11 01:08:38.722 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:40.945 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:40.945 UTC [82] DETAIL:  Failing row contains (2, 80000, -80638).
+postgres-1  | 2024-03-11 01:08:40.945 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:41.049 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:41.049 UTC [82] DETAIL:  Failing row contains (2, 80000, -83683).
+postgres-1  | 2024-03-11 01:08:41.049 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:41.188 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:41.188 UTC [73] DETAIL:  Failing row contains (2, 80000, -84691).
+postgres-1  | 2024-03-11 01:08:41.188 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:41.359 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:41.359 UTC [73] DETAIL:  Failing row contains (2, 80000, -81923).
+postgres-1  | 2024-03-11 01:08:41.359 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:41.428 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:41.428 UTC [82] DETAIL:  Failing row contains (2, 80000, -85148).
+postgres-1  | 2024-03-11 01:08:41.428 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:41.497 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:41.497 UTC [73] DETAIL:  Failing row contains (2, 80000, -87820).
+postgres-1  | 2024-03-11 01:08:41.497 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:41.532 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:41.532 UTC [82] DETAIL:  Failing row contains (2, 80000, -82566).
+postgres-1  | 2024-03-11 01:08:41.532 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:42.149 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:42.149 UTC [73] DETAIL:  Failing row contains (2, 80000, -88227).
+postgres-1  | 2024-03-11 01:08:42.149 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:42.247 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:42.247 UTC [82] DETAIL:  Failing row contains (2, 80000, -86132).
+postgres-1  | 2024-03-11 01:08:42.247 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:42.310 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:42.310 UTC [73] DETAIL:  Failing row contains (1, 100000, -104186).
+postgres-1  | 2024-03-11 01:08:42.310 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:42.408 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:42.408 UTC [73] DETAIL:  Failing row contains (1, 100000, -105633).
+postgres-1  | 2024-03-11 01:08:42.408 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:42.472 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:42.472 UTC [82] DETAIL:  Failing row contains (2, 80000, -86390).
+postgres-1  | 2024-03-11 01:08:42.472 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:42.536 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:42.536 UTC [73] DETAIL:  Failing row contains (2, 80000, -84312).
+postgres-1  | 2024-03-11 01:08:42.536 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:42.752 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:42.752 UTC [73] DETAIL:  Failing row contains (2, 80000, -88946).
+postgres-1  | 2024-03-11 01:08:42.752 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:42.781 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:42.781 UTC [73] DETAIL:  Failing row contains (2, 80000, -88635).
+postgres-1  | 2024-03-11 01:08:42.781 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:42.813 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:42.813 UTC [82] DETAIL:  Failing row contains (2, 80000, -87228).
+postgres-1  | 2024-03-11 01:08:42.813 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:42.872 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:42.872 UTC [73] DETAIL:  Failing row contains (2, 80000, -85361).
+postgres-1  | 2024-03-11 01:08:42.872 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:42.934 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:42.934 UTC [73] DETAIL:  Failing row contains (2, 80000, -81001).
+postgres-1  | 2024-03-11 01:08:42.934 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:43.266 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:43.266 UTC [73] DETAIL:  Failing row contains (2, 80000, -81196).
+postgres-1  | 2024-03-11 01:08:43.266 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:43.743 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:43.743 UTC [82] DETAIL:  Failing row contains (1, 100000, -103332).
+postgres-1  | 2024-03-11 01:08:43.743 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:43.829 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:43.829 UTC [82] DETAIL:  Failing row contains (1, 100000, -107841).
+postgres-1  | 2024-03-11 01:08:43.829 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:43.915 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:43.915 UTC [73] DETAIL:  Failing row contains (1, 100000, -105173).
+postgres-1  | 2024-03-11 01:08:43.915 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:43.972 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:43.972 UTC [82] DETAIL:  Failing row contains (1, 100000, -102822).
+postgres-1  | 2024-03-11 01:08:43.972 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:44.790 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:44.790 UTC [73] DETAIL:  Failing row contains (2, 80000, -80229).
+postgres-1  | 2024-03-11 01:08:44.790 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:45.060 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:45.060 UTC [73] DETAIL:  Failing row contains (2, 80000, -84182).
+postgres-1  | 2024-03-11 01:08:45.060 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:45.114 UTC [72] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:45.114 UTC [72] DETAIL:  Failing row contains (2, 80000, -80579).
+postgres-1  | 2024-03-11 01:08:45.114 UTC [72] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:45.485 UTC [83] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:45.485 UTC [83] DETAIL:  Failing row contains (2, 80000, -83026).
+postgres-1  | 2024-03-11 01:08:45.485 UTC [83] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:45.489 UTC [72] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:45.489 UTC [72] DETAIL:  Failing row contains (2, 80000, -81221).
+postgres-1  | 2024-03-11 01:08:45.489 UTC [72] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:45.493 UTC [72] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:45.493 UTC [72] DETAIL:  Failing row contains (2, 80000, -80184).
+postgres-1  | 2024-03-11 01:08:45.493 UTC [72] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:45.915 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:45.915 UTC [79] DETAIL:  Failing row contains (1, 100000, -102516).
+postgres-1  | 2024-03-11 01:08:45.915 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:46.048 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:46.048 UTC [73] DETAIL:  Failing row contains (1, 100000, -100630).
+postgres-1  | 2024-03-11 01:08:46.048 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:46.179 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:46.179 UTC [79] DETAIL:  Failing row contains (1, 100000, -105346).
+postgres-1  | 2024-03-11 01:08:46.179 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:46.521 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:46.521 UTC [79] DETAIL:  Failing row contains (1, 100000, -104044).
+postgres-1  | 2024-03-11 01:08:46.521 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:46.675 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:46.675 UTC [82] DETAIL:  Failing row contains (1, 100000, -100374).
+postgres-1  | 2024-03-11 01:08:46.675 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:46.850 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:46.850 UTC [82] DETAIL:  Failing row contains (1, 100000, -106797).
+postgres-1  | 2024-03-11 01:08:46.850 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:46.900 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:46.900 UTC [73] DETAIL:  Failing row contains (1, 100000, -106788).
+postgres-1  | 2024-03-11 01:08:46.900 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:47.025 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:47.025 UTC [82] DETAIL:  Failing row contains (1, 100000, -107801).
+postgres-1  | 2024-03-11 01:08:47.025 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:47.767 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:47.767 UTC [73] DETAIL:  Failing row contains (2, 80000, -84394).
+postgres-1  | 2024-03-11 01:08:47.767 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:47.839 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:47.839 UTC [82] DETAIL:  Failing row contains (2, 80000, -82723).
+postgres-1  | 2024-03-11 01:08:47.839 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:47.862 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:47.862 UTC [73] DETAIL:  Failing row contains (2, 80000, -84212).
+postgres-1  | 2024-03-11 01:08:47.862 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:48.053 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:48.053 UTC [73] DETAIL:  Failing row contains (2, 80000, -81436).
+postgres-1  | 2024-03-11 01:08:48.053 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:48.267 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:48.267 UTC [79] DETAIL:  Failing row contains (2, 80000, -83511).
+postgres-1  | 2024-03-11 01:08:48.267 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:48.386 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:48.386 UTC [79] DETAIL:  Failing row contains (2, 80000, -83903).
+postgres-1  | 2024-03-11 01:08:48.386 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:48.691 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:48.691 UTC [73] DETAIL:  Failing row contains (2, 80000, -84735).
+postgres-1  | 2024-03-11 01:08:48.691 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:48.874 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:48.874 UTC [79] DETAIL:  Failing row contains (2, 80000, -82914).
+postgres-1  | 2024-03-11 01:08:48.874 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:49.396 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:49.396 UTC [73] DETAIL:  Failing row contains (1, 100000, -100628).
+postgres-1  | 2024-03-11 01:08:49.396 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:49.441 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:49.441 UTC [79] DETAIL:  Failing row contains (1, 100000, -100440).
+postgres-1  | 2024-03-11 01:08:49.441 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:49.487 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:49.487 UTC [73] DETAIL:  Failing row contains (2, 80000, -87655).
+postgres-1  | 2024-03-11 01:08:49.487 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:49.511 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:49.511 UTC [79] DETAIL:  Failing row contains (2, 80000, -80512).
+postgres-1  | 2024-03-11 01:08:49.511 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:49.533 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:49.533 UTC [79] DETAIL:  Failing row contains (2, 80000, -80130).
+postgres-1  | 2024-03-11 01:08:49.533 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:49.622 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:49.622 UTC [73] DETAIL:  Failing row contains (1, 100000, -101608).
+postgres-1  | 2024-03-11 01:08:49.622 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:49.709 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:49.709 UTC [73] DETAIL:  Failing row contains (2, 80000, -81794).
+postgres-1  | 2024-03-11 01:08:49.709 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:49.731 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:49.731 UTC [79] DETAIL:  Failing row contains (2, 80000, -83572).
+postgres-1  | 2024-03-11 01:08:49.731 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:49.774 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:49.774 UTC [79] DETAIL:  Failing row contains (2, 80000, -87208).
+postgres-1  | 2024-03-11 01:08:49.774 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:49.818 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:49.818 UTC [73] DETAIL:  Failing row contains (2, 80000, -84857).
+postgres-1  | 2024-03-11 01:08:49.818 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:49.883 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:49.883 UTC [73] DETAIL:  Failing row contains (2, 80000, -86115).
+postgres-1  | 2024-03-11 01:08:49.883 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.079 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.079 UTC [79] DETAIL:  Failing row contains (2, 80000, -88371).
+postgres-1  | 2024-03-11 01:08:50.079 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.209 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.209 UTC [73] DETAIL:  Failing row contains (2, 80000, -87233).
+postgres-1  | 2024-03-11 01:08:50.209 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.253 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.253 UTC [79] DETAIL:  Failing row contains (2, 80000, -81835).
+postgres-1  | 2024-03-11 01:08:50.253 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.340 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.340 UTC [79] DETAIL:  Failing row contains (2, 80000, -88371).
+postgres-1  | 2024-03-11 01:08:50.340 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.427 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.427 UTC [73] DETAIL:  Failing row contains (1, 100000, -108177).
+postgres-1  | 2024-03-11 01:08:50.427 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.535 UTC [79] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.535 UTC [79] DETAIL:  Failing row contains (1, 100000, -108482).
+postgres-1  | 2024-03-11 01:08:50.535 UTC [79] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.557 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.557 UTC [73] DETAIL:  Failing row contains (1, 100000, -105556).
+postgres-1  | 2024-03-11 01:08:50.557 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.622 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.622 UTC [73] DETAIL:  Failing row contains (1, 100000, -105311).
+postgres-1  | 2024-03-11 01:08:50.622 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.664 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.664 UTC [82] DETAIL:  Failing row contains (1, 100000, -106611).
+postgres-1  | 2024-03-11 01:08:50.664 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.686 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.686 UTC [82] DETAIL:  Failing row contains (1, 100000, -105268).
+postgres-1  | 2024-03-11 01:08:50.686 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.728 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.728 UTC [73] DETAIL:  Failing row contains (2, 80000, -80311).
+postgres-1  | 2024-03-11 01:08:50.728 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.813 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.813 UTC [73] DETAIL:  Failing row contains (1, 100000, -109725).
+postgres-1  | 2024-03-11 01:08:50.813 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.835 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.835 UTC [82] DETAIL:  Failing row contains (1, 100000, -106605).
+postgres-1  | 2024-03-11 01:08:50.835 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.856 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.856 UTC [82] DETAIL:  Failing row contains (1, 100000, -104456).
+postgres-1  | 2024-03-11 01:08:50.856 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:50.920 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:50.920 UTC [82] DETAIL:  Failing row contains (1, 100000, -104024).
+postgres-1  | 2024-03-11 01:08:50.920 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.196 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.196 UTC [73] DETAIL:  Failing row contains (1, 100000, -102481).
+postgres-1  | 2024-03-11 01:08:51.196 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.219 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.219 UTC [73] DETAIL:  Failing row contains (2, 80000, -83017).
+postgres-1  | 2024-03-11 01:08:51.219 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.260 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.260 UTC [82] DETAIL:  Failing row contains (2, 80000, -83241).
+postgres-1  | 2024-03-11 01:08:51.260 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.281 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.281 UTC [73] DETAIL:  Failing row contains (1, 100000, -105740).
+postgres-1  | 2024-03-11 01:08:51.281 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.345 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.345 UTC [73] DETAIL:  Failing row contains (1, 100000, -102202).
+postgres-1  | 2024-03-11 01:08:51.345 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.452 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.452 UTC [73] DETAIL:  Failing row contains (2, 80000, -83042).
+postgres-1  | 2024-03-11 01:08:51.452 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.515 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.515 UTC [73] DETAIL:  Failing row contains (1, 100000, -102896).
+postgres-1  | 2024-03-11 01:08:51.515 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.640 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.640 UTC [73] DETAIL:  Failing row contains (2, 80000, -83390).
+postgres-1  | 2024-03-11 01:08:51.640 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.700 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.700 UTC [82] DETAIL:  Failing row contains (2, 80000, -81097).
+postgres-1  | 2024-03-11 01:08:51.700 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.801 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.801 UTC [82] DETAIL:  Failing row contains (1, 100000, -101195).
+postgres-1  | 2024-03-11 01:08:51.801 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.840 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.840 UTC [82] DETAIL:  Failing row contains (1, 100000, -101445).
+postgres-1  | 2024-03-11 01:08:51.840 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.940 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.940 UTC [73] DETAIL:  Failing row contains (1, 100000, -102046).
+postgres-1  | 2024-03-11 01:08:51.940 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:51.960 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:51.960 UTC [82] DETAIL:  Failing row contains (1, 100000, -102679).
+postgres-1  | 2024-03-11 01:08:51.960 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:52.040 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:52.040 UTC [82] DETAIL:  Failing row contains (1, 100000, -102941).
+postgres-1  | 2024-03-11 01:08:52.040 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:52.220 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:52.220 UTC [82] DETAIL:  Failing row contains (1, 100000, -102907).
+postgres-1  | 2024-03-11 01:08:52.220 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:52.340 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:52.340 UTC [82] DETAIL:  Failing row contains (1, 100000, -108031).
+postgres-1  | 2024-03-11 01:08:52.340 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:52.361 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:52.361 UTC [73] DETAIL:  Failing row contains (1, 100000, -103157).
+postgres-1  | 2024-03-11 01:08:52.361 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:52.380 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:52.380 UTC [73] DETAIL:  Failing row contains (1, 100000, -101611).
+postgres-1  | 2024-03-11 01:08:52.380 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:52.460 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:52.460 UTC [73] DETAIL:  Failing row contains (1, 100000, -101891).
+postgres-1  | 2024-03-11 01:08:52.460 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:52.560 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:52.560 UTC [82] DETAIL:  Failing row contains (1, 100000, -103666).
+postgres-1  | 2024-03-11 01:08:52.560 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:52.620 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:52.620 UTC [82] DETAIL:  Failing row contains (1, 100000, -104229).
+postgres-1  | 2024-03-11 01:08:52.620 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:52.855 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:52.855 UTC [82] DETAIL:  Failing row contains (1, 100000, -104875).
+postgres-1  | 2024-03-11 01:08:52.855 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:53.031 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:53.031 UTC [73] DETAIL:  Failing row contains (2, 80000, -83994).
+postgres-1  | 2024-03-11 01:08:53.031 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:53.051 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:53.051 UTC [82] DETAIL:  Failing row contains (2, 80000, -84193).
+postgres-1  | 2024-03-11 01:08:53.051 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:53.071 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:53.071 UTC [82] DETAIL:  Failing row contains (2, 80000, -86889).
+postgres-1  | 2024-03-11 01:08:53.071 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:53.091 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:53.091 UTC [73] DETAIL:  Failing row contains (1, 100000, -104094).
+postgres-1  | 2024-03-11 01:08:53.091 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:53.267 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:53.267 UTC [82] DETAIL:  Failing row contains (1, 100000, -106546).
+postgres-1  | 2024-03-11 01:08:53.267 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:53.287 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:53.287 UTC [73] DETAIL:  Failing row contains (1, 100000, -105729).
+postgres-1  | 2024-03-11 01:08:53.287 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:53.463 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:53.463 UTC [73] DETAIL:  Failing row contains (1, 100000, -104349).
+postgres-1  | 2024-03-11 01:08:53.463 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:53.483 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:53.483 UTC [82] DETAIL:  Failing row contains (1, 100000, -102467).
+postgres-1  | 2024-03-11 01:08:53.483 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:53.733 UTC [83] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:53.733 UTC [83] DETAIL:  Failing row contains (2, 80000, -81463).
+postgres-1  | 2024-03-11 01:08:53.733 UTC [83] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:53.865 UTC [83] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:53.865 UTC [83] DETAIL:  Failing row contains (1, 100000, -102869).
+postgres-1  | 2024-03-11 01:08:53.865 UTC [83] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:54.129 UTC [83] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:54.129 UTC [83] DETAIL:  Failing row contains (1, 100000, -103040).
+postgres-1  | 2024-03-11 01:08:54.129 UTC [83] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:54.299 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:54.299 UTC [82] DETAIL:  Failing row contains (2, 80000, -80572).
+postgres-1  | 2024-03-11 01:08:54.299 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:54.374 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:54.374 UTC [82] DETAIL:  Failing row contains (1, 100000, -101301).
+postgres-1  | 2024-03-11 01:08:54.374 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:54.525 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:54.525 UTC [82] DETAIL:  Failing row contains (1, 100000, -106331).
+postgres-1  | 2024-03-11 01:08:54.525 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:54.544 UTC [83] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:54.544 UTC [83] DETAIL:  Failing row contains (1, 100000, -102407).
+postgres-1  | 2024-03-11 01:08:54.544 UTC [83] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:54.727 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:54.727 UTC [73] DETAIL:  Failing row contains (1, 100000, -104672).
+postgres-1  | 2024-03-11 01:08:54.727 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:55.127 UTC [73] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:55.127 UTC [73] DETAIL:  Failing row contains (2, 80000, -84461).
+postgres-1  | 2024-03-11 01:08:55.127 UTC [73] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:55.778 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:55.778 UTC [82] DETAIL:  Failing row contains (1, 100000, -101614).
+postgres-1  | 2024-03-11 01:08:55.778 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:55.796 UTC [83] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:55.796 UTC [83] DETAIL:  Failing row contains (1, 100000, -100527).
+postgres-1  | 2024-03-11 01:08:55.796 UTC [83] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:55.957 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:55.957 UTC [82] DETAIL:  Failing row contains (1, 100000, -101714).
+postgres-1  | 2024-03-11 01:08:55.957 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:56.208 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:56.208 UTC [82] DETAIL:  Failing row contains (1, 100000, -107039).
+postgres-1  | 2024-03-11 01:08:56.208 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:57.277 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:57.277 UTC [82] DETAIL:  Failing row contains (2, 80000, -82812).
+postgres-1  | 2024-03-11 01:08:57.277 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:57.481 UTC [82] ERROR:  new row for relation "Account" violates check constraint "MinValue"
+postgres-1  | 2024-03-11 01:08:57.481 UTC [82] DETAIL:  Failing row contains (2, 80000, -80892).
+postgres-1  | 2024-03-11 01:08:57.481 UTC [82] STATEMENT:  UPDATE "Account" SET "Value" = "Value" + $1 WHERE "Id" = $2 RETURNING "Value"
+postgres-1  | 2024-03-11 01:08:57.884 UTC [83] ERROR:  new row for relation "Account" violates check constraint "MinValue"
