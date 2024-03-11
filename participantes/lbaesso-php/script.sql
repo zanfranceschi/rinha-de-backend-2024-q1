@@ -10,9 +10,9 @@ CREATE UNLOGGED TABLE clientes (
     saldo int
 );
 
-CREATE INDEX idx_clientes_id ON clientes (id);
-CREATE INDEX idx_clientes_saldo ON clientes (saldo);
-CREATE INDEX idx_clientes_limite ON clientes (limite);
+-- CREATE INDEX idx_clientes_id ON clientes (id);
+-- CREATE INDEX idx_clientes_saldo ON clientes (saldo);
+-- CREATE INDEX idx_clientes_limite ON clientes (limite);
 
 CREATE UNLOGGED TABLE transacoes (
     id SERIAL PRIMARY KEY,
@@ -26,7 +26,7 @@ CREATE UNLOGGED TABLE transacoes (
     ultimosaldo int
 );
 
-CREATE INDEX idx_transacoes_id ON transacoes (id DESC);
+-- CREATE INDEX idx_transacoes_id ON transacoes (id DESC);
 CREATE INDEX idx_transacoes_clienteid ON transacoes (clienteid);
 
 INSERT INTO clientes (id, nome, limite, saldo)

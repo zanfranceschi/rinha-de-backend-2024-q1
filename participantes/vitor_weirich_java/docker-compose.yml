@@ -19,7 +19,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.230"
+          cpus: "0.2"
           memory: "128MB"
   app2:
     <<: *app
@@ -27,7 +27,7 @@ services:
 
   postgres:
     image: postgres:latest
-    command: "postgres -c max_connections=200 -c shared_buffers=512MB -c effective_cache_size=1536MB -c maintenance_work_mem=128MB -c checkpoint_completion_target=0.9 -c wal_buffers=16MB -c default_statistics_target=100 -c random_page_cost=1.1 -c effective_io_concurrency=200 -c work_mem=1310kB -c huge_pages=off -c min_wal_size=1GB -c max_wal_size=4GB"
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
@@ -36,6 +36,7 @@ services:
       - 5432:5432
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
       interval: 5s
@@ -44,7 +45,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1"
+          cpus: "1.06"
           memory: "252MB"
 
   nginx: # Load Balancer

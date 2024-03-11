@@ -1,0 +1,73 @@
+version: '3.9'
+name: 'rinha-brunoquinelato'
+
+services:
+  api01: &api
+    image: bquinelato/rinha-back-2024:240229
+    hostname: api01
+    environment:
+      - CUSTOMCONNSTR_DbConnection=Server=db;Username=admin;Database=db_transactions;Port=5432;Password=admin;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=2000;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+    ports:
+      - "8081:8080"
+    depends_on:
+      - "db"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "135MB"      
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - CUSTOMCONNSTR_DbConnection=Server=db;Username=admin;Database=db_transactions;Port=5432;Password=admin;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=2000;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+    ports:
+      - "8082:8080"
+    depends_on:
+      - "db"      
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "135MB"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+
+  db:
+    image: 'postgres:latest'
+    container_name: db-transactions    
+    command: 'postgres -c max_connections=300 -c shared_buffers=96MB -c checkpoint_timeout=600 -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c work_mem=16MB'
+    hostname: db    
+    environment:
+      - POSTGRES_DB=db_transactions
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - ./sql/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+      - ./sql/dml.sql:/docker-entrypoint-initdb.d/dml.sql
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "230MB"  
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

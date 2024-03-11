@@ -1,0 +1,84 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: ryanmourabrocco/rinha-de-backend-2024-q1:latest
+    hostname: api01
+    networks:
+    - rinha-network
+    environment:
+      - DB_HOSTNAME=db
+      - DB_PASSWORD=BabyDoBiruleibe123#
+    ports:
+      - "8081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "60MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api 
+    hostname: api02
+    environment:
+      - DB_HOSTNAME=db
+      - DB_PASSWORD=BabyDoBiruleibe123#
+    ports:
+      - "8082:8080"
+ 
+  nginx:
+    image: nginx:latest
+    networks:
+      - rinha-network
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "30MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    command: 'postgres -c max_connections=20'
+    networks:
+      - rinha-network
+    environment:
+      - POSTGRES_PASSWORD=BabyDoBiruleibe123#
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=Rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "400MB"
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "admin", "--dbname", "Rinha"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+# O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
+# A edição anterior se beneficiou do modo host pois o volume de requisições
+# era relativamente alto e a virtualização da rede se tornou um gargalo, mas
+# este modo é mais complexo de ser configurado. Fique à vontade para usar o
+# modo que quiser desde que não conflite com portas trivialmente usadas em um
+# SO.
+networks:
+  rinha-network:
+    driver: bridge

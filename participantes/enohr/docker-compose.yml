@@ -1,0 +1,77 @@
+version: "3.9"
+
+services:
+  api1: &api
+    image: eduardonohr/rinha-backend:1.0.0
+    hostname: api1
+    environment:
+      DB_PORT: 5432
+      DB_HOST: db
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: rinha
+      API_PORT: 8080
+      FIBER_ENV: production
+    expose:
+      - 8080
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "25MB"
+    volumes:
+      - shared:/var/lib/postgresql
+
+  api2:
+    <<: *api
+    hostname: api2
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "9999:9999"
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "200MB"
+
+  db: 
+    image: postgres
+    hostname: db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: rinha
+    volumes:
+      - shared:/var/lib/postgresql/data
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: 'postgres -c config_file=/etc/postgresql/postgresql.conf'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.80"
+          memory: "300MB"
+
+volumes:
+  shared:
+
+networks:
+  default:
+    driver: bridge

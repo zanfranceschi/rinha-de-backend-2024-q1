@@ -1,0 +1,59 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - 5432:5432
+    volumes:
+      - ./ddl.sql:/docker-entrypoint-initdb.d/1-init.sql
+      - ./seed.sql:/docker-entrypoint-initdb.d/1-seed.sql
+      - ./postgres.conf:/docker-entrypoint-initdb.d/postgres.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.56"
+          memory: "400MB"
+
+  api01: &api
+    image: micaelortega/crebito-api
+    hostname: api01
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.37"
+          memory: "50MB"
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+      - POSTGRES_HOSTNAME=db
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "8081:8080"
+
+  loadbalancer:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"

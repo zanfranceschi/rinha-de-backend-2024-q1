@@ -1,8 +1,8 @@
 version: "3.5"
   # Note que a soma de todos os limites dos serviços
   # aqui declarados é de 1.5 unidades de CPU e 550MB
-  # de memória. A distribuição feita aqui é apenas
-  # um exemplo – distribua como quiser.
+# de memória. A distribuição feita aqui é apenas
+# um exemplo – distribua como quiser.
 
 services:
   api01: &api
@@ -16,11 +16,12 @@ services:
     ports:
       - "8081:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
-          cpus: "0.525"
+          cpus: "0.5"
           memory: "220MB"
 
   api02:
@@ -37,13 +38,14 @@ services:
     depends_on:
       - api01
       - api02
+
     ports:
       # Obrigatório expor/usar a porta 9999 no load balancer!
       - "9999:9999"
     deploy:
       resources:
         limits:
-          cpus: "0.05"
+          cpus: "0.1"
           memory: "10MB"
 
   db:
@@ -60,9 +62,9 @@ services:
     command: "postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c full_page_writes=0"
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U rinha" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      interval: 3s
+      timeout: 3s
+      retries: 10
     deploy:
       resources:
         limits:

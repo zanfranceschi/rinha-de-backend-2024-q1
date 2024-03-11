@@ -1,0 +1,81 @@
+version: '3.5'
+
+services:
+  api1: &api
+    image: thyagopiske/rinha-api
+    # ports:
+    #   - 8080:8080
+    environment:
+      - HOST=db
+      # - ASPNETCORE_HTTP_PORTS=8080
+      # - UnixSocketPath=/tmp/api1.sock
+    networks: 
+      - mynet
+    volumes: 
+      - /var/run/postgresql_tp:/var/run/postgresql
+      # - /tmp/api1.sock:/tmp/api1.sock
+    # network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 150M
+
+  api2:
+    <<: *api
+    # environment:
+    #   - ASPNETCORE_HTTP_PORTS=8081
+    #   - UnixSocketPath=/tmp/api2.sock
+    ports:
+      - 8081:8080
+    # volumes:
+      # - /tmp/api2.sock:/tmp/api2.sock
+
+  db:
+    image: postgres:latest
+    command: postgres -c max_connections=50 -c synchronous_commit='off' 
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: mydb
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata_tp:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - /var/run/postgresql_tp:/var/run/postgresql/
+    networks:
+      - mynet
+    # network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 240M
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 9999:9999
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      # - /tmp/api1.sock:/tmp/api1.sock
+      # - /tmp/api2.sock:/tmp/api2.sock
+    depends_on:
+      - api1
+      - api2
+    networks:
+      - mynet
+    # network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: 10M
+
+networks:
+  mynet:
+    driver: bridge
+
+volumes:
+  pgdata_tp:

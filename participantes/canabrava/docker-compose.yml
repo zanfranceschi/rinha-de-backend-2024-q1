@@ -5,11 +5,12 @@ services:
     image: leandronsp/canabrava
     container_name: api1
     depends_on:
-      - pgbouncer
+      postgres:
+        condition: service_healthy
     deploy:
       resources:
         limits:
-          cpus: '0.2'
+          cpus: '0.4'
           memory: '100MB'
 
   api2: 
@@ -35,8 +36,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.7'
-          memory: '200MB'
+          cpus: '0.5'
+          memory: '100MB'
 
   pgbouncer:
     image: pgbouncer/pgbouncer
@@ -58,8 +59,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.2'
-          memory: '100MB'
+          cpus: '0.1'
+          memory: '50MB'
 
   nginx:
     image: nginx 
@@ -69,10 +70,11 @@ services:
     ports:
       - 9999:9999
     depends_on:
+      - pgbouncer
       - api1
       - api2
     deploy:
       resources:
         limits:
-          cpus: '0.2'
+          cpus: '0.1'
           memory: '50MB'

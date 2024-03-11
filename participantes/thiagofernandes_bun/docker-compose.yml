@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  api01: &api
+    hostname: api01
+    image: tr0n1337/rinhabackend:1
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "150MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+
+  nginx:
+    image: nginx:1.25.4-alpine
+    volumes:
+      - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "10MB"
+
+  db:
+    image: postgres:16-alpine
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinhabackend
+    volumes:
+      - ./.docker/postgres/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./.docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "240MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

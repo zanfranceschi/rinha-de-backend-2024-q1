@@ -23,8 +23,8 @@ docker-compose up
 
 # Teste de Integridade das transações
 
-Dump de todas as transações de um cliente: http://localhost:9999/clientes/{id}/dump 
-Saldo de todas as transações de um cliente: http://localhost:9999/clientes/{id}/saldo
+- Dump de todas as transações de um cliente: http://localhost:9999/clientes/{id}/dump 
+- Saldo de todas as transações de um cliente: http://localhost:9999/clientes/{id}/saldo
 
 # Repositório
 
