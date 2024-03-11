@@ -1,0 +1,71 @@
+version: "3.5"
+name: "rinha-de-backend"
+
+
+services:
+
+  # Temporary busybox container to set correct permissions to shared socket folder
+  tmp:
+    image: busybox
+    command: sh -c "mkdir /tmp/docker && rm -rf /tmp/docker/* && chmod -R 777 /tmp/docker/"
+    volumes:
+      - /tmp/docker/
+
+  load-balancer:
+    image: nginx:latest
+    hostname: nginx
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    volumes_from:
+      - tmp
+    depends_on:
+      - tmp
+      - sv-01
+      - sv-02
+    privileged: true
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "100MB"
+
+  sv-01: &server-base
+    hostname: sv-01
+    image: martinmariano/rinha-q1:0.2
+    ipc: host
+    expose:
+      - "8080"
+    volumes:
+      - db-volume:/db
+    depends_on:
+      - tmp
+      - redis
+    volumes_from:
+      - tmp
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "200MB"
+
+  sv-02:
+    hostname: sv-02
+    <<: *server-base
+
+  redis:
+    image: redis:latest
+    command: redis-server /etc/redis.conf
+    volumes:
+      - ./config/redis.conf:/etc/redis.conf:ro
+    volumes_from:
+      - tmp
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+
+volumes:
+  db-volume:
