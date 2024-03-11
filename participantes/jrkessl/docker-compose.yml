@@ -1,0 +1,91 @@
+version: '3.5' # mudar para 3.8
+
+# 1.5 unidades de CPU
+# 0.2 nginx 
+# 0.8 web 
+# 0.5 banco 
+
+# 550MB de memória
+# banco 150
+# web   300
+# nginx 100
+
+services:
+  db: # Banco de dados
+    image: postgres
+    hostname: db
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234 
+      POSTGRES_DB: rinhadb
+    ports:
+      - 5432:5432
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '150MB'
+
+  nginx: # Load Balancer
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "9999:9999"
+    environment:
+      workers: 2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: '0.5GB'  
+    depends_on:
+      - web1
+      - web2
+
+  web1:
+    image: jrkessl/rinha-backend-2.0:latest
+    environment:
+      DATABASE_HOST: db
+      workers: 1
+    expose: 
+      - "8001"
+    depends_on:
+      - db      
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '150MB'
+
+  web2:
+    image: jrkessl/rinha-backend-2.0:latest
+    environment:
+      DATABASE_HOST: db
+      workers: 1
+    expose: 
+      - "8001"
+    depends_on:
+      - db      
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '150MB'
+
+  # aux01: # API - Instância 01
+  #   image: ubuntu
+  #   hostname: aux01
+  #   command: sleep infinity
+
+  # Instale essas coisas no aux01 pra facilitar:
+      #  apt-get install curl  -y 
+      #  apt install netcat -y
+      #  apt-get install dnsutils -y
+  # logar no container com:
+  # docker exec -it rinhabackend20_aux01_1 bash
+
+networks:
+  default:
+    driver: bridge
+    name: rinha

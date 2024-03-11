@@ -3,6 +3,7 @@ version: "3.8"
 services:
   app1: &app1
     image: ogabriel/rinha-de-backend-2024-q1:elixir
+    restart: always
     environment: &env_app1
       MIX_ENV: prod
       PHX_SERVER: true
@@ -25,7 +26,7 @@ services:
       resources:
         limits:
           cpus: '0.35'
-          memory: '150MB'
+          memory: '120MB'
 
   app2:
     <<: *app1
@@ -39,6 +40,7 @@ services:
 
   nginx:
     image: nginx:1.25.3-alpine
+    restart: always
     volumes:
     - ./nginx.conf:/etc/nginx/nginx.conf
     command: ["nginx", "-g", "daemon off;"]
@@ -68,4 +70,4 @@ services:
       resources:
         limits:
           cpus: '0.6'
-          memory: '200MB'
+          memory: '260MB'

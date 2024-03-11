@@ -1,36 +1,14 @@
  Network felipeparaujo_default  Creating
  Network felipeparaujo_default  Created
+ Container db  Creating
+ Container db  Created
  Container api1  Creating
  Container api2  Creating
- Container db  Creating
- Container lb  Creating
  Container api2  Created
  Container api1  Created
+ Container lb  Creating
  Container lb  Created
- Container db  Created
 Attaching to api1, api2, db, lb
-api2  | panic: unable to open database file: no such file or directory
-api2  | 
-api2  | goroutine 1 [running]:
-api2  | github.com/felipeparaujo/rinha-de-backend-24q1/api.(*App).Listen(0xc00018e000)
-api2  | 	/opt/rinha/api/server.go:29 +0x4f0
-api2  | main.main()
-api2  | 	/opt/rinha/api/cmd/main.go:52 +0x265
-api1  | panic: unable to open database file: no such file or directory
-api1  | 
-api1  | goroutine 1 [running]:
-api1  | github.com/felipeparaujo/rinha-de-backend-24q1/api.(*App).Listen(0xc000106000)
-api1  | 	/opt/rinha/api/server.go:29 +0x4f0
-api1  | main.main()
-api1  | 	/opt/rinha/api/cmd/main.go:52 +0x265
-lb    | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
-lb    | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
-lb    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-lb    | 10-listen-on-ipv6-by-default.sh: info: /etc/nginx/conf.d/default.conf is not a file or does not exist
-lb    | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-lb    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-lb    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-lb    | /docker-entrypoint.sh: Configuration complete; ready for start up
 db    | The files belonging to this database system will be owned by user "postgres".
 db    | This user must also own the server process.
 db    | 
@@ -48,8 +26,14 @@ db    | selecting default shared_buffers ... 128MB
 db    | selecting default time zone ... Etc/UTC
 db    | creating configuration files ... ok
 db    | running bootstrap script ... ok
-api2 exited with code 2
-api1 exited with code 2
+lb    | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+lb    | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+lb    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+lb    | 10-listen-on-ipv6-by-default.sh: info: /etc/nginx/conf.d/default.conf is not a file or does not exist
+lb    | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+lb    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+lb    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+lb    | /docker-entrypoint.sh: Configuration complete; ready for start up
 db    | performing post-bootstrap initialization ... ok
 db    | syncing data to disk ... ok
 db    | 
@@ -87,31 +71,36 @@ db    | server stopped
 db    | 
 db    | PostgreSQL init process complete; ready for start up.
 db    | 
-lb    | 2024/03/10 18:53:35 [error] 20#20: *1 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.128.3:8080/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:53:38 [error] 20#20: *1 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.128.2:8080/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:53:40 [error] 20#20: *4 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:53:42 [error] 20#20: *5 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:53:44 [error] 20#20: *6 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:53:49 [error] 20#20: *7 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.128.3:8080/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:53:53 [error] 20#20: *7 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.128.2:8080/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:53:55 [error] 20#20: *10 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:53:57 [error] 20#20: *11 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:53:59 [error] 20#20: *12 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:04 [error] 20#20: *13 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.128.3:8080/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:07 [error] 20#20: *13 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.128.2:8080/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:09 [error] 20#20: *16 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:11 [error] 20#20: *17 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:13 [error] 20#20: *18 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:18 [error] 20#20: *19 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.128.3:8080/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:21 [error] 20#20: *19 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.128.2:8080/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:23 [error] 20#20: *22 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:25 [error] 20#20: *23 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:27 [error] 20#20: *24 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:32 [error] 20#20: *25 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.128.3:8080/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:35 [error] 20#20: *25 connect() failed (113: No route to host) while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.128.2:8080/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:37 [error] 20#20: *28 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:39 [error] 20#20: *29 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-lb    | 2024/03/10 18:54:41 [error] 20#20: *30 no live upstreams while connecting to upstream, client: 192.168.128.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-db exited with code 0
-db exited with code 0
+api1  | 
+api1  |  ┌───────────────────────────────────────────────────┐  ┌───────────────────────────────────────────────────┐
+api1  |  │                   Fiber v2.52.1                   │  │ Child PIDs ... 15, 16, 17                         │
+api1  |  │               http://127.0.0.1:8080               │  └───────────────────────────────────────────────────┘
+api1  |  │       (bound on host 0.0.0.0 and port 8080)       │ 
+api1  |  │                                                   │ 
+api1  |  │ Handlers ............. 5  Processes ........... 3 │ 
+api1  |  │ Prefork ........ Enabled  PID ................. 7 │ 
+api1  |  └───────────────────────────────────────────────────┘ 
+api1  | 
+api2  | 
+api2  |  ┌───────────────────────────────────────────────────┐  ┌───────────────────────────────────────────────────┐
+api2  |  │                   Fiber v2.52.1                   │  │ Child PIDs ... 15, 16, 17                         │
+api2  |  │               http://127.0.0.1:8080               │  └───────────────────────────────────────────────────┘
+api2  |  │       (bound on host 0.0.0.0 and port 8080)       │ 
+api2  |  │                                                   │ 
+api2  |  │ Handlers ............. 5  Processes ........... 3 │ 
+api2  |  │ Prefork ........ Enabled  PID ................. 7 │ 
+api2  |  └───────────────────────────────────────────────────┘ 
+api2  | 
 lb exited with code 0
+lb exited with code 0
+api2  | 2024/03/10 22:28:08 Shutting down...
+api2  | 2024/03/10 22:28:08 Shutting down...
+api2  | 2024/03/10 22:28:08 Shutting down...
+api2  | 2024/03/10 22:28:08 Shutting down...
+api1  | 2024/03/10 22:28:08 Shutting down...
+api1  | 2024/03/10 22:28:08 Shutting down...
+api1  | 2024/03/10 22:28:08 Shutting down...
+api1  | 2024/03/10 22:28:08 Shutting down...
+api1 exited with code 0
+api1 exited with code 1
+db exited with code 0

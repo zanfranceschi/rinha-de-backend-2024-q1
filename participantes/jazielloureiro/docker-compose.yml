@@ -1,0 +1,51 @@
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - server1
+      - server2
+    ports:
+      - 9999:9999
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.22"
+          memory: "30MB"
+
+  server1: &server
+    hostname: server1
+    image: jazielloureiro/rinha-backend-2024-q1-go:latest
+    env_file:
+      - ./.env
+    depends_on:
+      - postgres
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.33"
+          memory: "50MB"
+    
+  server2:
+    <<: *server
+    hostname: server2
+
+  postgres:
+    image: postgres:latest
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./sql/:/docker-entrypoint-initdb.d/
+    env_file:
+      - ./.env
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.64"
+          memory: "420MB"
+
+volumes:
+  postgres:

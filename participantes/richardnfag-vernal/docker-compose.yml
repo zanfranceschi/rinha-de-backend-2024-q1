@@ -1,0 +1,54 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: richardnas/vernal-api:lastest
+    hostname: api01
+    volumes:
+      - lmdb-data:/app/data
+      - sockets:/app/sockets
+
+    environment:
+      - VERNAL_UNIX_SOCKET=/app/sockets/api1.socket
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "100MB"
+
+  api02:
+    <<: *api 
+    hostname: api02
+    volumes:
+      - lmdb-data:/app/data
+      - sockets:/app/sockets
+    environment:
+      - VERNAL_UNIX_SOCKET=/app/sockets/api2.socket
+
+  lb:
+    image: richardnas/vernal-load-balancer:lastest
+    hostname: load-balancer
+    network_mode: "host"
+    depends_on:
+      - api01
+      - api02
+    environment:
+      - LISTEN_PORT=9999
+      - VERNAL_LB_ADDRS=0.0.0.0:8001,0.0.0.0:8002
+      - VERNAL_LB_SOCKETS=/app/sockets/api1.socket,/app/sockets/api2.socket
+
+    volumes:
+      - sockets:/app/sockets
+
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "350MB"
+ 
+volumes:
+  lmdb-data:
+    name: lmdb-data
+
+  sockets:
+    name: sockets
