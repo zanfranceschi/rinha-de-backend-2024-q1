@@ -2,8 +2,8 @@
  Container lucianovilela-db-1  Created
  Container lucianovilela-api02-1  Creating
  Container lucianovilela-api01-1  Creating
- Container lucianovilela-api01-1  Created
  Container lucianovilela-api02-1  Created
+ Container lucianovilela-api01-1  Created
  Container lucianovilela-nginx-1  Creating
  Container lucianovilela-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -26,17 +26,17 @@ db-1     | creating configuration files ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+db-1     | running bootstrap script ... ok
 nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
 nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
 nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-db-1     | running bootstrap script ... ok
-api02-1  | Erro ao conectar com o banco de dados 2024-03-07T17:12:02.540Z
-api01-1  | Erro ao conectar com o banco de dados 2024-03-07T17:12:02.548Z
-api01-1  | Erro ao conectar com o banco de dados 2024-03-07T17:12:02.614Z
-api02-1  | Erro ao conectar com o banco de dados 2024-03-07T17:12:02.617Z
+api02-1  | Erro ao conectar com o banco de dados 2024-03-11T02:04:04.918Z
+api01-1  | Erro ao conectar com o banco de dados 2024-03-11T02:04:04.926Z
+api01-1  | Erro ao conectar com o banco de dados 2024-03-11T02:04:04.931Z
+api02-1  | Erro ao conectar com o banco de dados 2024-03-11T02:04:04.948Z
 db-1     | performing post-bootstrap initialization ... ok
 db-1     | initdb: warning: enabling "trust" authentication for local connections
 db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
@@ -60,441 +60,54 @@ db-1     | CREATE TABLE
 db-1     | DO
 db-1     | 
 db-1     | 
+api02-1  | Erro ao conectar com o banco de dados 2024-03-11T02:04:06.923Z
+api01-1  | Erro ao conectar com o banco de dados 2024-03-11T02:04:06.932Z
+api01-1  | Erro ao conectar com o banco de dados 2024-03-11T02:04:06.934Z
+api02-1  | Erro ao conectar com o banco de dados 2024-03-11T02:04:06.951Z
 db-1     | waiting for server to shut down.... done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-api02-1  | Erro ao conectar com o banco de dados 2024-03-07T17:12:04.546Z
-api01-1  | Conexão com o banco de dados estabelecida com sucesso
-api01-1  | Conexão com o banco de dados estabelecida com sucesso
+nginx-1  | 2024/03/11 02:04:08 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:08 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:08 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:08 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/extrato", host: "localhost:9999"
 api02-1  | Conexão com o banco de dados estabelecida com sucesso
+api01-1  | Conexão com o banco de dados estabelecida com sucesso
+api02-1  | Servidor rodando na porta 9003
+api01-1  | Conexão com o banco de dados estabelecida com sucesso
 api01-1  | Servidor rodando na porta 9000
 api01-1  | Servidor rodando na porta 9001
-api02-1  | Servidor rodando na porta 9003
 api02-1  | Conexão com o banco de dados estabelecida com sucesso
 api02-1  | Servidor rodando na porta 9004
-api02-1  | node:events:505
-api02-1  |       throw er; // Unhandled 'error' event
-api02-1  |       ^
-api02-1  | 
-api02-1  | Error: Connection terminated unexpectedly
-api02-1  |     at Connection.<anonymous> (/app/node_modules/pg/lib/client.js:132:73)
-api02-1  |     at Object.onceWrapper (node:events:641:28)
-api02-1  |     at Connection.emit (node:events:527:28)
-api02-1  |     at Socket.<anonymous> (/app/node_modules/pg/lib/connection.js:63:12)
-api02-1  |     at Socket.emit (node:events:527:28)
-api02-1  |     at TCP.<anonymous> (node:net:715:12)
-api02-1  | Emitted 'error' event on Client instance at:
-api02-1  |     at Client._handleErrorEvent (/app/node_modules/pg/lib/client.js:341:10)
-api02-1  |     at Connection.<anonymous> (/app/node_modules/pg/lib/client.js:150:16)
-api02-1  |     at Object.onceWrapper (node:events:641:28)
-api02-1  |     [... lines matching original stack trace ...]
-api02-1  |     at TCP.<anonymous> (node:net:715:12)
-api02-1  | 
-api02-1  | Node.js v17.9.1
-api01-1  | node:events:505
-api01-1  |       throw er; // Unhandled 'error' event
-api01-1  |       ^
-api01-1  | 
-api01-1  | Error: Connection terminated unexpectedly
-api01-1  |     at Connection.<anonymous> (/app/node_modules/pg/lib/client.js:132:73)
-api01-1  |     at Object.onceWrapper (node:events:641:28)
-api01-1  |     at Connection.emit (node:events:527:28)
-api01-1  |     at Socket.<anonymous> (/app/node_modules/pg/lib/connection.js:63:12)
-api01-1  |     at Socket.emit (node:events:527:28)
-api01-1  |     at TCP.<anonymous> (node:net:715:12)
-api01-1  | Emitted 'error' event on Client instance at:
-api01-1  |     at Client._handleErrorEvent (/app/node_modules/pg/lib/client.js:341:10)
-api01-1  |     at Connection.<anonymous> (/app/node_modules/pg/lib/client.js:150:16)
-api01-1  |     at Object.onceWrapper (node:events:641:28)
-api01-1  |     [... lines matching original stack trace ...]
-api01-1  |     at TCP.<anonymous> (node:net:715:12)
-api01-1  | 
-api01-1  | Node.js v17.9.1
-api01-1  | node:events:505
-api01-1  |       throw er; // Unhandled 'error' event
-api01-1  |       ^
-api01-1  | 
-api01-1  | Error: Connection terminated unexpectedly
-api01-1  |     at Connection.<anonymous> (/app/node_modules/pg/lib/client.js:132:73)
-api01-1  |     at Object.onceWrapper (node:events:641:28)
-api01-1  |     at Connection.emit (node:events:527:28)
-api01-1  |     at Socket.<anonymous> (/app/node_modules/pg/lib/connection.js:63:12)
-api01-1  |     at Socket.emit (node:events:527:28)
-api01-1  |     at TCP.<anonymous> (node:net:715:12)
-api01-1  | Emitted 'error' event on Client instance at:
-api01-1  |     at Client._handleErrorEvent (/app/node_modules/pg/lib/client.js:341:10)
-api01-1  |     at Connection.<anonymous> (/app/node_modules/pg/lib/client.js:150:16)
-api01-1  |     at Object.onceWrapper (node:events:641:28)
-api01-1  |     [... lines matching original stack trace ...]
-api01-1  |     at TCP.<anonymous> (node:net:715:12)
-api01-1  | 
-api01-1  | Node.js v17.9.1
-api02-1  | node:events:505
-api02-1  |       throw er; // Unhandled 'error' event
-api02-1  |       ^
-api02-1  | 
-api02-1  | Error: Connection terminated unexpectedly
-api02-1  |     at Connection.<anonymous> (/app/node_modules/pg/lib/client.js:132:73)
-api02-1  |     at Object.onceWrapper (node:events:641:28)
-api02-1  |     at Connection.emit (node:events:527:28)
-api02-1  |     at Socket.<anonymous> (/app/node_modules/pg/lib/connection.js:63:12)
-api02-1  |     at Socket.emit (node:events:527:28)
-api02-1  |     at TCP.<anonymous> (node:net:715:12)
-api02-1  | Emitted 'error' event on Client instance at:
-api02-1  |     at Client._handleErrorEvent (/app/node_modules/pg/lib/client.js:341:10)
-api02-1  |     at Connection.<anonymous> (/app/node_modules/pg/lib/client.js:150:16)
-api02-1  |     at Object.onceWrapper (node:events:641:28)
-api02-1  |     [... lines matching original stack trace ...]
-api02-1  |     at TCP.<anonymous> (node:net:715:12)
-api02-1  | 
-api02-1  | Node.js v17.9.1
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62043 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62101 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62033 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61909 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62093 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62085 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62055 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61841 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61821 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61973 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61965 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61957 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61897 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61949 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62025 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62015 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61767 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/2/transacoes", host: "localhost:9999"
-api02-1  | Processo filho terminou, terminando o processo pai...
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62045 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62035 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62027 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62019 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61901 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61889 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61911 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61776 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61923 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62077 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62069 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62057 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62037 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "GET /clientes/2/extrato HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/2/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61899 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61805 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62079 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62071 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62059 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62047 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61907 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61807 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61943 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61935 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61927 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62111 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62011 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62003 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61995 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61883 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61875 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62113 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62013 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62004 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61997 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61885 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61877 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61838 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61989 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62103 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "GET /clientes/2/extrato HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62095 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62087 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62065 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61975 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61967 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61959 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61951 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61861 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62107 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62096 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61869 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9004/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62089 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62104 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62066 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62081 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62039 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62072 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62061 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62029 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62051 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62021 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61981 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61977 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62007 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61999 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61903 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61991 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61968 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "GET /clientes/4/extrato HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/4/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61891 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61845 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61829 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61961 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61953 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61865 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61945 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61817 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61937 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61733 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61929 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61853 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62115 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61913 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61917 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61779 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61901 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62099 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62091 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62041 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62083 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62049 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62031 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61971 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62023 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61834 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61982 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61819 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61830 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62075 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61785 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62063 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61773 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62053 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62017 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61765 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61811 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61757 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61803 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61663 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61794 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61631 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61781 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61905 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61685 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61895 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61665 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61893 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61939 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61931 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61919 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61727 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61879 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61707 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61749 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61693 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61979 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61963 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61955 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61856 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61947 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62119 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61719 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62127 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9000/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62109 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62009 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62001 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61993 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61985 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61826 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61751 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61743 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61735 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61694 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61694 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61613 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61572 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61492 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "GET /clientes/5/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61492 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/5/extrato HTTP/1.1", upstream: "http://api/clientes/5/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61881 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61873 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61862 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61855 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62037 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "GET /clientes/2/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62037 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/2/extrato HTTP/1.1", upstream: "http://api/clientes/2/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62121 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61653 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61915 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62116 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61901 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61901 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62103 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "GET /clientes/2/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/2/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *62103 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/2/extrato HTTP/1.1", upstream: "http://api/clientes/2/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61968 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "GET /clientes/4/extrato HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/4/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61968 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/4/extrato HTTP/1.1", upstream: "http://api/clientes/4/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61847 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9001/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61941 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61933 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61925 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *61782 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/2/transacoes", host: "localhost:9999"
-api02-1  | ChildProcess {
-api02-1  |   _events: [Object: null prototype] {
-api02-1  |     internalMessage: [Function (anonymous)],
-api02-1  |     newListener: [Function (anonymous)],
-api02-1  |     message: [Function (anonymous)],
-api02-1  |     exit: [Function (anonymous)]
-api02-1  |   },
-api02-1  |   _eventsCount: 4,
-api02-1  |   _maxListeners: undefined,
-api02-1  |   _closesNeeded: 2,
-api02-1  |   _closesGot: 1,
-api02-1  |   connected: false,
-api02-1  |   signalCode: null,
-api02-1  |   exitCode: 1,
-api02-1  |   killed: false,
-api02-1  |   spawnfile: '/usr/local/bin/node',
-api02-1  |   _handle: null,
-api02-1  |   spawnargs: [ '/usr/local/bin/node', './index.js', '9004' ],
-api02-1  |   pid: 15,
-api02-1  |   stdin: null,
-api02-1  |   stdout: null,
-api02-1  |   stderr: null,
-api02-1  |   stdio: [ null, null, null, null ],
-api02-1  |   channel: null,
-api02-1  |   _handleQueue: null,
-api02-1  |   _pendingMessage: null,
-api02-1  |   send: [Function (anonymous)],
-api02-1  |   _send: [Function (anonymous)],
-api02-1  |   disconnect: [Function (anonymous)],
-api02-1  |   _disconnect: [Function (anonymous)],
-api02-1  |   [Symbol(kCapture)]: false,
-api02-1  |   [Symbol(kChannelHandle)]: null
-api02-1  | }
-api02-1  | Processo filho terminou, terminando o processo pai...
-api02-1  | ChildProcess {
-api02-1  |   _events: [Object: null prototype] {
-api02-1  |     internalMessage: [Function (anonymous)],
-api02-1  |     newListener: [Function (anonymous)],
-api02-1  |     message: [Function (anonymous)],
-api02-1  |     exit: [Function (anonymous)]
-api02-1  |   },
-api02-1  |   _eventsCount: 4,
-api02-1  |   _maxListeners: undefined,
-api02-1  |   _closesNeeded: 2,
-api02-1  |   _closesGot: 1,
-api02-1  |   connected: false,
-api02-1  |   signalCode: null,
-api02-1  |   exitCode: 1,
-api02-1  |   killed: false,
-api02-1  |   spawnfile: '/usr/local/bin/node',
-api02-1  |   _handle: null,
-api02-1  |   spawnargs: [ '/usr/local/bin/node', './index.js', '9003' ],
-api02-1  |   pid: 14,
-api02-1  |   stdin: null,
-api02-1  |   stdout: null,
-api02-1  |   stderr: null,
-api02-1  |   stdio: [ null, null, null, null ],
-api02-1  |   channel: null,
-api02-1  |   _handleQueue: null,
-api02-1  |   _pendingMessage: null,
-api02-1  |   send: [Function (anonymous)],
-api02-1  |   _send: [Function (anonymous)],
-api02-1  |   disconnect: [Function (anonymous)],
-api02-1  |   _disconnect: [Function (anonymous)],
-api02-1  |   [Symbol(kCapture)]: false,
-api02-1  |   [Symbol(kChannelHandle)]: null
-api02-1  | }
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62137 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://api/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 30#30: *61859 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *61987 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62123 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *61921 upstream prematurely closed connection while reading response header from upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://127.0.0.1:9003/clientes/3/transacoes", host: "localhost:9999"
-api01-1  | Processo filho terminou, terminando o processo pai...
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62138 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-api01-1  | ChildProcess {
-api01-1  |   _events: [Object: null prototype] {
-api01-1  |     internalMessage: [Function (anonymous)],
-api01-1  |     newListener: [Function (anonymous)],
-api01-1  |     message: [Function (anonymous)],
-api01-1  |     exit: [Function (anonymous)]
-api01-1  |   },
-api01-1  |   _eventsCount: 4,
-api01-1  |   _maxListeners: undefined,
-api01-1  |   _closesNeeded: 2,
-api01-1  |   _closesGot: 1,
-api01-1  |   connected: false,
-api01-1  |   signalCode: null,
-api01-1  |   exitCode: 1,
-api01-1  |   killed: false,
-api01-1  |   spawnfile: '/usr/local/bin/node',
-api01-1  |   _handle: null,
-api01-1  |   spawnargs: [ '/usr/local/bin/node', './index.js', '9000' ],
-api01-1  |   pid: 14,
-api01-1  |   stdin: null,
-api01-1  |   stdout: null,
-api01-1  |   stderr: null,
-api01-1  |   stdio: [ null, null, null, null ],
-api01-1  |   channel: null,
-api01-1  |   _handleQueue: null,
-api01-1  |   _pendingMessage: null,
-api01-1  |   send: [Function (anonymous)],
-api01-1  |   _send: [Function (anonymous)],
-api01-1  |   disconnect: [Function (anonymous)],
-api01-1  |   _disconnect: [Function (anonymous)],
-api01-1  |   [Symbol(kCapture)]: false,
-api01-1  |   [Symbol(kChannelHandle)]: null
-api01-1  | }
-api01-1  | Processo filho terminou, terminando o processo pai...
-api01-1  | ChildProcess {
-api01-1  |   _events: [Object: null prototype] {
-api01-1  |     internalMessage: [Function (anonymous)],
-api01-1  |     newListener: [Function (anonymous)],
-api01-1  |     message: [Function (anonymous)],
-api01-1  |     exit: [Function (anonymous)]
-api01-1  |   },
-api01-1  |   _eventsCount: 4,
-api01-1  |   _maxListeners: undefined,
-api01-1  |   _closesNeeded: 2,
-api01-1  |   _closesGot: 1,
-api01-1  |   connected: false,
-api01-1  |   signalCode: null,
-api01-1  |   exitCode: 1,
-api01-1  |   killed: false,
-api01-1  |   spawnfile: '/usr/local/bin/node',
-api01-1  |   _handle: null,
-api01-1  |   spawnargs: [ '/usr/local/bin/node', './index.js', '9001' ],
-api01-1  |   pid: 15,
-api01-1  |   stdin: null,
-api01-1  |   stdout: null,
-api01-1  |   stderr: null,
-api01-1  |   stdio: [ null, null, null, null ],
-api01-1  |   channel: null,
-api01-1  |   _handleQueue: null,
-api01-1  |   _pendingMessage: null,
-api01-1  |   send: [Function (anonymous)],
-api01-1  |   _send: [Function (anonymous)],
-api01-1  |   disconnect: [Function (anonymous)],
-api01-1  |   _disconnect: [Function (anonymous)],
-api01-1  |   [Symbol(kCapture)]: false,
-api01-1  |   [Symbol(kChannelHandle)]: null
-api01-1  | }
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62134 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62135 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://api/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62136 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62139 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://api/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62140 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://api/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62141 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://api/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62142 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://api/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62132 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62133 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://api/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62143 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://api/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62144 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 28#28: *62145 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://api/clientes/4/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62146 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://api/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62147 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://api/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62148 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://api/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62149 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62150 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://api/clientes/3/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 31#31: *62151 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://api/clientes/5/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62152 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://api/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62153 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/2/transacoes HTTP/1.1", upstream: "http://api/clientes/2/transacoes", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62154 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/5/extrato HTTP/1.1", upstream: "http://api/clientes/5/extrato", host: "localhost:9999"
-nginx-1  | 2024/03/07 17:14:45 [error] 29#29: *62155 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://api/clientes/3/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *11 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *12 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *15 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *19 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *21 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *26 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *23 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *27 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *24 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *25 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *17 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *18 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:14 [error] 29#29: *20 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:16 [error] 29#29: *84 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:16 [error] 29#29: *85 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:16 [error] 29#29: *86 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:18 [error] 29#29: *150 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:18 [error] 29#29: *152 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:18 [error] 29#29: *150 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999"
+nginx-1  | 2024/03/11 02:04:18 [error] 29#29: *152 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://api/clientes/1/transacoes", host: "localhost:9999", referrer: "http://localhost:9999/clientes/1/transacoes"
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api01-1 exited with code 0
+api01-1 exited with code 137
+api02-1 exited with code 0
+api02-1 exited with code 137
+db-1 exited with code 0

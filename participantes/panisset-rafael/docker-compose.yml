@@ -1,0 +1,78 @@
+version: "3.5"
+
+services:
+  api01: &api
+    restart: unless-stopped
+    container_name: rinha-api1
+    image: panissetrafael/rinha-2024
+    hostname: api01
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api 
+    container_name: rinha-api2
+    hostname: api02
+    environment:
+      - DB_HOSTNAME=db
+    ports:
+      - "8082:8080"
+
+  nginx:
+    container_name: load-balance
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+        # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "10MB"
+  db:
+    restart: unless-stopped
+    container_name: rinha-db
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    healthcheck:
+        test: ["CMD", "pg_isready", "-U", "admin"]
+        interval: 10s
+        retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.13"
+          memory: "140MB"
+
+
+# O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
+# A edição anterior se beneficiou do modo host pois o volume de requisições
+# era relativamente alto e a virtualização da rede se tornou um gargalo, mas
+# este modo é mais complexo de ser configurado. Fique à vontade para usar o
+# modo que quiser desde que não conflite com portas trivialmente usadas em um
+# SO.
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

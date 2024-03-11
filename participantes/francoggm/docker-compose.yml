@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  api01: &api
+    image: francogm/rinha-backend:latest
+    ports:
+      - 8081:8080
+    depends_on:
+      - neo
+    environment:
+      - DB_HOSTNAME=neo
+      - PORT=8080
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "60MB"
+
+  api02:
+    <<: *api
+    ports:
+      - 8082:8080
+
+  neo:
+    image: neo4j:latest
+    ports: 
+      - 7474:7474
+      - 7687:7687
+    restart: on-failure
+    environment:
+      - NEO4J_AUTH=neo4j/password
+      - NEO4J_db_lock_acquisition_timeout=30
+      - NEO4J_db_relationship__grouping__threshold=10000
+      - NEO4J_server_memory_heap_initial__size=130m
+      - NEO4J_server_memory_heap_max__size=130m
+
+    # infelizmente neo4j não suporta configuração de recursos via container, (descoberto as 21h do dia 10/03) :(
+    # fiz os cálculos apróximados da heap para limitar até 400MB de memória, que seria o valor configurado do limite, espero que aceitem 
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+     #       memory: "400MB"
+  
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "30MB"
+
+networks:
+  default:
+    driver: bridge

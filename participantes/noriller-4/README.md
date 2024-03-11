@@ -7,6 +7,7 @@ Submissão feita com:
 - `nginx` como load balancer
 - `better-sqlite3` como banco de dados
 - `next.js` para api
+  - porque next? ué... porque sim!
   - `drizzle` como ORM
   - `ts` para api
 
@@ -18,7 +19,7 @@ Percebi que, nos testes de estresse que fiz, 4 instancias rendeu o melhor result
 
 Como não sei se poderia utilizar mais que as 2 instancias
 (as regras falam de arquitetura mínima, mas não comenta sobre se pode utilizar mais),
-então estou fazendo uma submissão com 2 e esta com 4.
+então estou fazendo esta submissão com 4.
 
 ### Repositório da API
 

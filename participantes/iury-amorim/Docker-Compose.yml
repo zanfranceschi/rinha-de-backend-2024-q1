@@ -1,0 +1,63 @@
+services:
+  api01: &api
+    image: iuryasilva/api
+    network_mode: bridge
+    ports:
+      - "8082:8888"
+    environment:
+      - PGHOST=172.17.0.2
+    depends_on:
+      - db
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.45'
+          memory: '175MB'
+
+  api02:
+    <<: *api
+    network_mode: bridge
+    restart: always
+    environment:
+      - PGHOST=172.17.0.2
+    ports:
+      - "8080:8888"
+
+  nginx:
+    image: nginx:latest
+    network_mode: bridge
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api01
+      - api02
+    ports:
+      # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: '10MB'
+
+  db:
+    image: postgres:alpine
+    hostname: db
+    network_mode: bridge
+    volumes:
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      # - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
+    environment:
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    command: [ "postgres", "-c", "config_file=/etc/postgresql/postgresql.conf" ]
+    deploy:
+      resources:
+        limits:
+          cpus: '0.45'
+          memory: '140MB'
