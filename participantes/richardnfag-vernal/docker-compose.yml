@@ -4,12 +4,12 @@ services:
   api01: &api
     image: richardnas/vernal-api:lastest
     hostname: api01
-    network_mode: "host"
     volumes:
       - lmdb-data:/app/data
+      - sockets:/app/sockets
 
     environment:
-      - HTTP_SERVER_PORT=8001
+      - VERNAL_UNIX_SOCKET=/app/sockets/api1.socket
     deploy:
       resources:
         limits:
@@ -19,11 +19,11 @@ services:
   api02:
     <<: *api 
     hostname: api02
-    network_mode: "host"
     volumes:
       - lmdb-data:/app/data
+      - sockets:/app/sockets
     environment:
-      - HTTP_SERVER_PORT=8002
+      - VERNAL_UNIX_SOCKET=/app/sockets/api2.socket
 
   lb:
     image: richardnas/vernal-load-balancer:lastest
@@ -35,6 +35,10 @@ services:
     environment:
       - LISTEN_PORT=9999
       - VERNAL_LB_ADDRS=0.0.0.0:8001,0.0.0.0:8002
+      - VERNAL_LB_SOCKETS=/app/sockets/api1.socket,/app/sockets/api2.socket
+
+    volumes:
+      - sockets:/app/sockets
 
     deploy:
       resources:
@@ -44,4 +48,7 @@ services:
  
 volumes:
   lmdb-data:
-    driver: local
+    name: lmdb-data
+
+  sockets:
+    name: sockets
