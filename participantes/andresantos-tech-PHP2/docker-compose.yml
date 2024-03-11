@@ -1,0 +1,62 @@
+version: "3.5"
+
+services:
+
+  rinha_v2_nginx:
+    image: nginx:latest
+    container_name: rinha_v2_nginx
+    volumes:
+      - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "9999:9999"
+    depends_on:
+      - rinha_v2_app1
+      - rinha_v2_app2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+
+  rinha_v2_app1: &app1
+    container_name: rinha_v2_app1
+    image: devnote/php-8.3-rr:rinha-backend-v2-prod
+    depends_on:
+      - rinha_v2_postgres
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '150MB'
+
+  rinha_v2_app2:
+    <<: *app1
+    container_name: rinha_v2_app2
+
+  rinha_v2_postgres:
+    image: postgres:16
+    container_name: rinha_v2_postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.docker/postgres/init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./.docker/postgres/create_function.sql:/docker-entrypoint-initdb.d/05-create_function.sql
+    command: postgres -c max_connections=30 -c shared_buffers=128MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c log_checkpoints=off
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: '150MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

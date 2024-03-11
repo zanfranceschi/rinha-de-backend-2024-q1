@@ -1,10 +1,500 @@
-#0 building with "default" instance using docker driver
-
-#1 [api01 internal] load build definition from Dockerfile
-#1 transferring dockerfile: 2B done
-#1 DONE 0.1s
-
-#2 [api02 internal] load build definition from Dockerfile
-#2 transferring dockerfile: 2B done
-#2 DONE 0.1s
-failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+ Network rinhabackend  Creating
+ Network rinhabackend  Created
+ Container db  Creating
+ Container db  Created
+ Container api01  Creating
+ Container api02  Creating
+ Container api02  Created
+ Container api01  Created
+ Container nginx  Creating
+ Container nginx  Created
+Attaching to api01, api02, db, nginx
+db     | The files belonging to this database system will be owned by user "postgres".
+db     | This user must also own the server process.
+db     | 
+db     | The database cluster will be initialized with locale "en_US.utf8".
+db     | The default database encoding has accordingly been set to "UTF8".
+db     | The default text search configuration will be set to "english".
+db     | 
+db     | Data page checksums are disabled.
+db     | 
+db     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db     | creating subdirectories ... ok
+db     | selecting dynamic shared memory implementation ... posix
+db     | selecting default max_connections ... 100
+db     | selecting default shared_buffers ... 128MB
+db     | selecting default time zone ... UTC
+db     | creating configuration files ... ok
+db     | running bootstrap script ... ok
+nginx  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db     | sh: locale: not found
+db     | 2024-03-10 16:48:22.960 UTC [30] WARNING:  no usable system locales were found
+db     | performing post-bootstrap initialization ... ok
+api01  | INFO:     Started server process [1]
+api01  | INFO:     Waiting for application startup.
+api01  | INFO:     Application startup complete.
+api01  | INFO:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+api02  | INFO:     Started server process [1]
+api02  | INFO:     Waiting for application startup.
+api02  | INFO:     Application startup complete.
+api02  | INFO:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+db     | initdb: warning: enabling "trust" authentication for local connections
+db     | You can change this by editing pg_hba.conf or using the option -A, or
+db     | --auth-local and --auth-host, the next time you run initdb.
+db     | syncing data to disk ... ok
+db     | 
+db     | 
+db     | Success. You can now start the database server using:
+db     | 
+db     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db     | 
+db     | waiting for server to start....2024-03-10 16:48:25.463 GMT [36] LOG:  starting PostgreSQL 14.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 10.3.1_git20211027) 10.3.1 20211027, 64-bit
+db     | 2024-03-10 16:48:25.469 GMT [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db     | 2024-03-10 16:48:25.480 GMT [37] LOG:  database system was shut down at 2024-03-10 16:48:24 GMT
+db     | 2024-03-10 16:48:25.486 GMT [36] LOG:  database system is ready to accept connections
+db     |  done
+db     | server started
+api01  | INFO:     172.20.0.5:49870 - "GET /clientes/1/extrato HTTP/1.0" 500 Internal Server Error
+api01  | ERROR:    Exception in ASGI application
+api01  | Traceback (most recent call last):
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 145, in __init__
+api01  |     self._dbapi_connection = engine.raw_connection()
+api01  |                              ^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3282, in raw_connection
+api01  |     return self.pool.connect()
+api01  |            ^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+api01  |     return _ConnectionFairy._checkout(self)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1263, in _checkout
+api01  |     fairy = _ConnectionRecord.checkout(pool)
+api01  |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+api01  |     rec = pool._do_get()
+api01  |           ^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 168, in _do_get
+api01  |     with util.safe_reraise():
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+api01  |     raise exc_value.with_traceback(exc_tb)
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 166, in _do_get
+api01  |     return self._create_connection()
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+api01  |     return _ConnectionRecord(self)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+api01  |     self.__connect()
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+api01  |     with util.safe_reraise():
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+api01  |     raise exc_value.with_traceback(exc_tb)
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+api01  |     self.dbapi_connection = connection = pool._invoke_creator(self)
+api01  |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 643, in connect
+api01  |     return dialect.connect(*cargs, **cparams)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 616, in connect
+api01  |     return self.loaded_dbapi.connect(*cargs, **cparams)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+api01  |     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  | psycopg2.OperationalError: connection to server at "db" (172.20.0.2), port 5432 failed: Connection refused
+api01  | 	Is the server running on that host and accepting TCP/IP connections?
+api01  | 
+api01  | 
+api01  | The above exception was the direct cause of the following exception:
+api01  | 
+api01  | Traceback (most recent call last):
+api01  |   File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 419, in run_asgi
+api01  |     result = await app(  # type: ignore[func-returns-value]
+api01  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+api01  |     return await self.app(scope, receive, send)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1054, in __call__
+api01  |     await super().__call__(scope, receive, send)
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 123, in __call__
+api01  |     await self.middleware_stack(scope, receive, send)
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+api01  |     raise exc
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+api01  |     await self.app(scope, receive, _send)
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+api01  |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+api01  |     raise exc
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+api01  |     await app(scope, receive, sender)
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 758, in __call__
+api01  |     await self.middleware_stack(scope, receive, send)
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 778, in app
+api01  |     await route.handle(scope, receive, send)
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 299, in handle
+api01  |     await self.app(scope, receive, send)
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 79, in app
+api01  |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+api01  |     raise exc
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+api01  |     await app(scope, receive, sender)
+api01  |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 74, in app
+api01  |     response = await func(request)
+api01  |                ^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 278, in app
+api01  |     raw_response = await run_endpoint_function(
+api01  |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+api01  |     return await dependant.call(**values)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/src/src/app.py", line 54, in get_extrato
+api01  |     client = db_session.get(Cliente, id)
+api01  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 3637, in get
+api01  |     return self._get_impl(
+api01  |            ^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 3817, in _get_impl
+api01  |     return db_load_fn(
+api01  |            ^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/loading.py", line 694, in load_on_pk_identity
+api01  |     session.execute(
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+api01  |     return self._execute_internal(
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2181, in _execute_internal
+api01  |     conn = self._connection_for_bind(bind)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2050, in _connection_for_bind
+api01  |     return trans._connection_for_bind(engine, execution_options)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "<string>", line 2, in _connection_for_bind
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+api01  |     ret_value = fn(self, *arg, **kw)
+api01  |                 ^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1144, in _connection_for_bind
+api01  |     conn = bind.connect()
+api01  |            ^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3258, in connect
+api01  |     return self._connection_cls(self)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 147, in __init__
+api01  |     Connection._handle_dbapi_exception_noconnection(
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2422, in _handle_dbapi_exception_noconnection
+api01  |     raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 145, in __init__
+api01  |     self._dbapi_connection = engine.raw_connection()
+api01  |                              ^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3282, in raw_connection
+api01  |     return self.pool.connect()
+api01  |            ^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+api01  |     return _ConnectionFairy._checkout(self)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1263, in _checkout
+api01  |     fairy = _ConnectionRecord.checkout(pool)
+api01  |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+api01  |     rec = pool._do_get()
+api01  |           ^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 168, in _do_get
+api01  |     with util.safe_reraise():
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+api01  |     raise exc_value.with_traceback(exc_tb)
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 166, in _do_get
+api01  |     return self._create_connection()
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+api01  |     return _ConnectionRecord(self)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+api01  |     self.__connect()
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+api01  |     with util.safe_reraise():
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+api01  |     raise exc_value.with_traceback(exc_tb)
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+api01  |     self.dbapi_connection = connection = pool._invoke_creator(self)
+api01  |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 643, in connect
+api01  |     return dialect.connect(*cargs, **cparams)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 616, in connect
+api01  |     return self.loaded_dbapi.connect(*cargs, **cparams)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  |   File "/usr/local/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+api01  |     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+api01  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api01  | sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "db" (172.20.0.2), port 5432 failed: Connection refused
+api01  | 	Is the server running on that host and accepting TCP/IP connections?
+api01  | 
+api01  | (Background on this error at: https://sqlalche.me/e/20/e3q8)
+db     | CREATE DATABASE
+db     | 
+db     | 
+db     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
+db     | CREATE TABLE
+db     | CREATE TABLE
+db     | CREATE INDEX
+db     | INSERT 0 5
+db     | SET
+db     | SET
+db     | SET
+db     | SET
+db     | SET
+db     | SET
+db     | SET
+db     | SET
+db     | SET
+db     | SET
+db     | SET
+db     | 
+db     | 
+db     | waiting for server to shut down....2024-03-10 16:48:26.289 GMT [36] LOG:  received fast shutdown request
+db     | 2024-03-10 16:48:26.292 GMT [36] LOG:  aborting any active transactions
+db     | 2024-03-10 16:48:26.292 GMT [36] LOG:  background worker "logical replication launcher" (PID 43) exited with exit code 1
+db     | 2024-03-10 16:48:26.292 GMT [38] LOG:  shutting down
+db     | 2024-03-10 16:48:26.414 GMT [36] LOG:  database system is shut down
+db     |  done
+db     | server stopped
+db     | 
+db     | PostgreSQL init process complete; ready for start up.
+db     | 
+db     | 2024-03-10 16:48:26.506 GMT [1] LOG:  starting PostgreSQL 14.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 10.3.1_git20211027) 10.3.1 20211027, 64-bit
+db     | 2024-03-10 16:48:26.507 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db     | 2024-03-10 16:48:26.507 GMT [1] LOG:  listening on IPv6 address "::", port 5432
+db     | 2024-03-10 16:48:26.512 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db     | 2024-03-10 16:48:26.520 GMT [52] LOG:  database system was shut down at 2024-03-10 16:48:26 GMT
+db     | 2024-03-10 16:48:26.526 GMT [1] LOG:  database system is ready to accept connections
+api01  | INFO:     172.20.0.5:49878 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:49882 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60660 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54336 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60672 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54338 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60684 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54346 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54356 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60688 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54366 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54368 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60692 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54382 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60702 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54392 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60712 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54398 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60722 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54408 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54424 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60736 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60744 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54432 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60750 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60756 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60764 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54434 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60772 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54450 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54458 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60788 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54468 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60800 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54472 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60804 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54486 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60820 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54498 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60830 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54512 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60844 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54528 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60846 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54530 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60852 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54542 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60858 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54558 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60874 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60882 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54574 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54582 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60896 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54584 - "GET /clientes/6/extrato HTTP/1.0" 404 Not Found
+api02  | INFO:     172.20.0.5:54596 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60898 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54602 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60900 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54616 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60906 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60914 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54620 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60918 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54632 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60930 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54634 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60936 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54648 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60942 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54652 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60952 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54664 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60962 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54670 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60970 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54686 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60978 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:60984 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54694 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32768 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54700 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32772 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54714 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32774 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54728 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32786 - "GET /clientes/4/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54730 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32796 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54734 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32806 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54736 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32814 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54740 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54742 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32820 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54752 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32828 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54756 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32832 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54764 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.20.0.5:54772 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32842 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.20.0.5:54788 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32850 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.20.0.5:54792 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.20.0.5:54798 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32860 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.20.0.5:54802 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32868 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32870 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.20.0.5:54808 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.20.0.5:54822 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.20.0.5:54834 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32882 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32886 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32898 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32908 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32924 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.20.0.5:54842 - "POST /clientes/5/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.20.0.5:54850 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.20.0.5:54856 - "POST /clientes/3/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32922 - "POST /clientes/4/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32936 - "POST /clientes/1/transacoes HTTP/1.0" 422 Unprocessable Entity
+api01  | INFO:     172.20.0.5:32948 - "POST /clientes/2/transacoes HTTP/1.0" 422 Unprocessable Entity
+api02  | INFO:     172.20.0.5:54870 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54886 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32962 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32974 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54902 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54918 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32978 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:32994 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:54928 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:59904 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54806 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:59918 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54808 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:59926 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54812 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:59928 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54814 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:59940 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:59952 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54828 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:59968 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54834 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:59978 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54836 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:59990 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54850 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:59998 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54862 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60006 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54866 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60014 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54872 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60016 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54884 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60018 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54900 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60028 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54902 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60042 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54904 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54920 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60046 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54924 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60048 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54934 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60064 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54942 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60080 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54958 - "GET /clientes/2/extrato HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60092 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54972 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54988 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60098 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:54990 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60106 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55006 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60112 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60122 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55016 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60126 - "GET /clientes/1/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55020 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60134 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55032 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60142 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55048 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60146 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55050 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60148 - "GET /clientes/5/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55056 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60150 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55064 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60166 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55068 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60168 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60174 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55072 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60188 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55076 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60196 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55086 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60212 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55096 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60214 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55102 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60226 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55118 - "POST /clientes/2/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60234 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55126 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60248 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55140 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60256 - "GET /clientes/3/extrato HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55150 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60260 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55152 - "POST /clientes/4/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60270 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55154 - "POST /clientes/1/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60284 - "POST /clientes/3/transacoes HTTP/1.0" 200 OK
+api01  | INFO:     172.20.0.5:55164 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK
+api02  | INFO:     172.20.0.5:60298 - "POST /clientes/5/transacoes HTTP/1.0" 200 OK

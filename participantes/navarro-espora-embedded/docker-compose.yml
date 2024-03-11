@@ -2,44 +2,49 @@ version: "3.5"
 
 services:
   api01: &api
-    image: rnavarro/rinha-backend-2024:1
+    image: rnavarro/rinha-backend-2024:1.2
     command: /app/rinha-espora-embedded
     hostname: api1
     network_mode: host
     environment:
-      PORT: 9998
+      UNIX_SOCKET: /app/unix-sockets/rinha-app1.socket
       DB: "/db"
     volumes:
       - db:/db
+      - sockets:/app/unix-sockets
     deploy:
       resources:
         limits:
           cpus: "0.6"
-          memory: "100MB"
+          memory: "200MB"
 
   api02:
     <<: *api
     hostname: api2
     environment:
-      PORT: 9997
+      UNIX_SOCKET: /app/unix-sockets/rinha-app2.socket
       DB: "/db"
 
   lb:
-    image: rnavarro/rinha-backend-2024:1
+    image: rnavarro/rinha-backend-2024:1.2
     command: /app/rinha-load-balancer-tcp
     depends_on:
       - api01
       - api02
     environment:
       PORT: 9999
-      UPSTREAMS: "0.0.0.0:9997,0.0.0.0:9998"
+      UPSTREAMS: "/app/unix-sockets/rinha-app1.socket,/app/unix-sockets/rinha-app2.socket"
     network_mode: host
     deploy:
       resources:
         limits:
           cpus: "0.3"
-          memory: "100MB"
+          memory: "150MB"
+    volumes:
+      - sockets:/app/unix-sockets
 
 volumes:
   db:
     name: db
+  sockets:
+    name: unix-sockets

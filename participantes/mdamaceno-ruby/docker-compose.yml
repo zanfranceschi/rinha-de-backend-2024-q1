@@ -7,8 +7,6 @@ services:
     environment:
       APP_ENV: "production"
       DATABASE_URL: "postgres://postgres:postgres@db:5432/rinha2024"
-    volumes:
-      - .:/rinha
     networks:
       - rinha-network
     depends_on:
@@ -32,7 +30,9 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: rinha2024
     volumes:
-      - ./docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - type: bind
+        source: ./init.sql
+        target: /docker-entrypoint-initdb.d/init.sql
     ports:
       - 5432:5432
     networks:
@@ -53,7 +53,10 @@ services:
     ports:
       - 9999:9999
     volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
     networks:
       - rinha-network
     depends_on:
