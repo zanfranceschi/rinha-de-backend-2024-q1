@@ -2,13 +2,12 @@ services:
   api01: &api
     image: cassiogangrel/deno_rinha_e2:1.0.0
     hostname: api01
-    network_mode: host
     depends_on:
       - postgres
     restart: on-failure
     environment: 
       - PORT=8080
-      - DB_HOST=localhost
+      - DB_HOST=postgres
       - DB_POOL_SIZE=30
     healthcheck:
       test:
@@ -28,14 +27,9 @@ services:
     depends_on:
       - api01
       - postgres
-    environment: 
-      - PORT=8081
-      - DB_HOST=localhost
-      - DB_POOL_SIZE=30
 
   postgres:
     image: postgres
-    network_mode: host
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/script.sql
     environment:
@@ -50,7 +44,6 @@ services:
 
   nginx:
     image: nginx:latest
-    network_mode: host
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     restart: on-failure
@@ -64,3 +57,8 @@ services:
         limits:
           cpus: "0.20"
           memory: "10MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha
