@@ -1,0 +1,51 @@
+services:
+
+  lb:
+    restart: unless-stopped
+    platform: linux/amd64
+    image: nginx:latest
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+     - "9999:80"
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "50MB"
+
+  api01: &api
+    restart: unless-stopped
+    platform: linux/amd64
+    image: unclelobs/rinha-2024q1:latest
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+    depends_on:
+      - db
+
+  api02:
+    <<: *api
+
+  db:
+    platform: linux/amd64
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_PASSWORD=rinha
+    volumes:
+      - ./docker/postgresql/script.sql:/docker-entrypoint-initdb.d/script.sql
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "400MB"

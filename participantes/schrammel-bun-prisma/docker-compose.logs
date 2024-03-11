@@ -1,0 +1,196 @@
+ Network schrammel-bun-prisma_default  Creating
+ Network schrammel-bun-prisma_default  Created
+ Container schrammel-bun-prisma-nginx-1  Creating
+ Container schrammel-bun-prisma-app2-1  Creating
+ Container schrammel-bun-prisma-app1-1  Creating
+ Container schrammel-bun-prisma-postgresdb-1  Creating
+ Container schrammel-bun-prisma-app2-1  Created
+ Container schrammel-bun-prisma-nginx-1  Created
+ Container schrammel-bun-prisma-app1-1  Created
+ Container schrammel-bun-prisma-postgresdb-1  Created
+Attaching to app1-1, app2-1, nginx-1, postgresdb-1
+app1-1        | $ cd src && bunx prisma migrate dev && bun prisma/seed.ts && bun index.ts
+postgresdb-1  | The files belonging to this database system will be owned by user "postgres".
+postgresdb-1  | This user must also own the server process.
+postgresdb-1  | 
+postgresdb-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgresdb-1  | The default database encoding has accordingly been set to "UTF8".
+postgresdb-1  | The default text search configuration will be set to "english".
+postgresdb-1  | 
+postgresdb-1  | Data page checksums are disabled.
+postgresdb-1  | 
+postgresdb-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgresdb-1  | creating subdirectories ... ok
+postgresdb-1  | selecting dynamic shared memory implementation ... posix
+app2-1        | $ cd src && bunx prisma migrate dev && bun index.ts
+postgresdb-1  | selecting default max_connections ... 100
+nginx-1       | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1       | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1       | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+postgresdb-1  | selecting default shared_buffers ... 128MB
+nginx-1       | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+postgresdb-1  | selecting default time zone ... Etc/UTC
+postgresdb-1  | creating configuration files ... ok
+nginx-1       | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1       | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1       | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1       | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1       | /docker-entrypoint.sh: Configuration complete; ready for start up
+postgresdb-1  | running bootstrap script ... ok
+app1-1        | Environment variables loaded from .env
+app1-1        | Prisma schema loaded from prisma/schema.prisma
+app1-1        | Datasource "db": PostgreSQL database "rinha", schema "public" at "postgresdb:5432"
+app1-1        | 
+app2-1        | Environment variables loaded from .env
+app2-1        | Prisma schema loaded from prisma/schema.prisma
+app2-1        | Datasource "db": PostgreSQL database "rinha", schema "public" at "postgresdb:5432"
+app2-1        | 
+app1-1        | Error: P1001: Can't reach database server at `postgresdb`:`5432`
+app1-1        | 
+app1-1        | Please make sure your database server is running at `postgresdb`:`5432`.
+app2-1        | Error: P1001: Can't reach database server at `postgresdb`:`5432`
+app2-1        | 
+app2-1        | Please make sure your database server is running at `postgresdb`:`5432`.
+app1-1        | error: script "prod:migration" exited with code 1
+app2-1        | error: script "prod" exited with code 1
+postgresdb-1  | performing post-bootstrap initialization ... ok
+postgresdb-1  | syncing data to disk ... ok
+postgresdb-1  | 
+postgresdb-1  | 
+postgresdb-1  | Success. You can now start the database server using:
+postgresdb-1  | 
+postgresdb-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgresdb-1  | 
+postgresdb-1  | initdb: warning: enabling "trust" authentication for local connections
+postgresdb-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgresdb-1  | waiting for server to start....2024-03-11 04:51:29.939 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgresdb-1  | 2024-03-11 04:51:29.943 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+app1-1 exited with code 0
+postgresdb-1  | 2024-03-11 04:51:30.015 UTC [51] LOG:  database system was shut down at 2024-03-11 04:51:28 UTC
+postgresdb-1  | 2024-03-11 04:51:30.023 UTC [48] LOG:  database system is ready to accept connections
+app2-1 exited with code 0
+postgresdb-1  |  done
+postgresdb-1  | server started
+postgresdb-1  | CREATE DATABASE
+postgresdb-1  | 
+postgresdb-1  | 
+postgresdb-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgresdb-1  | 
+postgresdb-1  | waiting for server to shut down....2024-03-11 04:51:30.545 UTC [48] LOG:  received fast shutdown request
+postgresdb-1  | 2024-03-11 04:51:30.550 UTC [48] LOG:  aborting any active transactions
+postgresdb-1  | 2024-03-11 04:51:30.552 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgresdb-1  | 2024-03-11 04:51:30.616 UTC [49] LOG:  shutting down
+postgresdb-1  | 2024-03-11 04:51:30.619 UTC [49] LOG:  checkpoint starting: shutdown immediate
+nginx-1       | 2024/03/11 04:51:30 [error] 31#31: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.3:9999/clientes/1/extrato", host: "localhost:9999"
+nginx-1       | 2024/03/11 04:51:30 [error] 31#31: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.48.5:9999/clientes/1/extrato", host: "localhost:9999"
+postgresdb-1  | 2024-03-11 04:51:31.114 UTC [49] LOG:  checkpoint complete: wrote 923 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.391 s, sync=0.094 s, total=0.498 s; sync files=301, longest=0.071 s, average=0.001 s; distance=4256 kB, estimate=4256 kB; lsn=0/1912CE8, redo lsn=0/1912CE8
+postgresdb-1  | 2024-03-11 04:51:31.121 UTC [48] LOG:  database system is shut down
+postgresdb-1  |  done
+postgresdb-1  | server stopped
+postgresdb-1  | 
+postgresdb-1  | PostgreSQL init process complete; ready for start up.
+postgresdb-1  | 
+postgresdb-1  | 2024-03-11 04:51:31.216 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgresdb-1  | 2024-03-11 04:51:31.216 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgresdb-1  | 2024-03-11 04:51:31.216 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgresdb-1  | 2024-03-11 04:51:31.229 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+app1-1        | Environment variables loaded from .env
+app1-1        | Prisma schema loaded from prisma/schema.prisma
+postgresdb-1  | 2024-03-11 04:51:31.239 UTC [64] LOG:  database system was shut down at 2024-03-11 04:51:31 UTC
+postgresdb-1  | 2024-03-11 04:51:31.246 UTC [1] LOG:  database system is ready to accept connections
+app2-1        | Environment variables loaded from .env
+app2-1        | Prisma schema loaded from prisma/schema.prisma
+app2-1        | Datasource "db": PostgreSQL database "rinha", schema "public" at "postgresdb:5432"
+app2-1        | 
+app1-1        | Datasource "db": PostgreSQL database "rinha", schema "public" at "postgresdb:5432"
+app1-1        | 
+postgresdb-1  | 2024-03-11 04:51:31.548 UTC [71] ERROR:  relation "_prisma_migrations" does not exist at character 126
+postgresdb-1  | 2024-03-11 04:51:31.548 UTC [71] STATEMENT:  SELECT "id", "checksum", "finished_at", "migration_name", "logs", "rolled_back_at", "started_at", "applied_steps_count" FROM "_prisma_migrations" ORDER BY "started_at" ASC
+postgresdb-1  | 2024-03-11 04:51:31.618 UTC [70] ERROR:  relation "_prisma_migrations" does not exist at character 126
+postgresdb-1  | 2024-03-11 04:51:31.618 UTC [70] STATEMENT:  SELECT "id", "checksum", "finished_at", "migration_name", "logs", "rolled_back_at", "started_at", "applied_steps_count" FROM "_prisma_migrations" ORDER BY "started_at" ASC
+postgresdb-1  | 2024-03-11 04:51:31.883 UTC [62] LOG:  checkpoint starting: immediate force wait
+postgresdb-1  | 2024-03-11 04:51:32.385 UTC [62] LOG:  checkpoint complete: wrote 923 buffers (5.6%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.432 s, sync=0.051 s, total=0.503 s; sync files=5, longest=0.041 s, average=0.011 s; distance=8513 kB, estimate=8513 kB; lsn=0/21634D0, redo lsn=0/21633A8
+postgresdb-1  | 2024-03-11 04:51:32.386 UTC [62] LOG:  checkpoint starting: immediate force wait
+postgresdb-1  | 2024-03-11 04:51:32.408 UTC [62] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.007 s, total=0.023 s; sync files=1, longest=0.007 s, average=0.007 s; distance=0 kB, estimate=7662 kB; lsn=0/2163618, redo lsn=0/2163548
+nginx-1       | 2024/03/11 04:51:32 [error] 31#31: *4 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+postgresdb-1  | 2024-03-11 04:51:32.924 UTC [62] LOG:  checkpoint starting: immediate force wait
+postgresdb-1  | 2024-03-11 04:51:33.373 UTC [62] LOG:  checkpoint complete: wrote 929 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.385 s, sync=0.054 s, total=0.450 s; sync files=4, longest=0.052 s, average=0.014 s; distance=8611 kB, estimate=8611 kB; lsn=0/29CC4A8, redo lsn=0/29CC380
+postgresdb-1  | 2024-03-11 04:51:33.374 UTC [62] LOG:  checkpoint starting: immediate force wait
+postgresdb-1  | 2024-03-11 04:51:33.392 UTC [62] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.005 s, total=0.019 s; sync files=1, longest=0.005 s, average=0.005 s; distance=0 kB, estimate=7750 kB; lsn=0/29CC5F0, redo lsn=0/29CC520
+app1-1        | Applying migration `20240213021853_init`
+app1-1        | 
+app1-1        | The following migration(s) have been applied:
+app1-1        | 
+app1-1        | migrations/
+app1-1        |   └─ 20240213021853_init/
+app1-1        |     └─ migration.sql
+postgresdb-1  | 2024-03-11 04:51:33.634 UTC [62] LOG:  checkpoint starting: immediate force wait
+postgresdb-1  | 2024-03-11 04:51:33.738 UTC [62] LOG:  checkpoint complete: wrote 83 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.084 s, total=0.105 s; sync files=60, longest=0.075 s, average=0.002 s; distance=4372 kB, estimate=7412 kB; lsn=0/2E11858, redo lsn=0/2E11820
+postgresdb-1  | 2024-03-11 04:51:33.951 UTC [62] LOG:  checkpoint starting: immediate force wait
+postgresdb-1  | 2024-03-11 04:51:33.975 UTC [62] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.006 s, sync=0.004 s, total=0.024 s; sync files=4, longest=0.003 s, average=0.001 s; distance=4306 kB, estimate=7102 kB; lsn=0/3246068, redo lsn=0/3246030
+app1-1        | 
+app1-1        | Your database is now in sync with your schema.
+app1-1        | 
+app1-1        | Running generate... (Use --skip-generate to skip the generators)
+postgresdb-1  | 2024-03-11 04:51:34.261 UTC [62] LOG:  checkpoint starting: immediate force wait
+postgresdb-1  | 2024-03-11 04:51:34.284 UTC [62] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.006 s, total=0.024 s; sync files=9, longest=0.003 s, average=0.001 s; distance=4306 kB, estimate=6822 kB; lsn=0/367A888, redo lsn=0/367A850
+postgresdb-1  | 2024-03-11 04:51:34.415 UTC [62] LOG:  checkpoint starting: immediate force wait
+postgresdb-1  | 2024-03-11 04:51:34.437 UTC [62] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.004 s, total=0.023 s; sync files=4, longest=0.003 s, average=0.001 s; distance=4305 kB, estimate=6570 kB; lsn=0/3AAF060, redo lsn=0/3AAF028
+app2-1        | Already in sync, no schema change or pending migration was found.
+app2-1        | 
+app2-1        | Running generate... (Use --skip-generate to skip the generators)
+nginx-1       | 2024/03/11 04:51:34 [error] 31#31: *5 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+app1-1        | [2K[1A[2K[GRunning generate... - Prisma Client
+app1-1        | [2K[1A[2K[G✔ Generated Prisma Client (v5.9.1) to ./../node_modules/@prisma/client in 250ms
+app1-1        | 
+app1-1        | 
+app2-1        | [2K[1A[2K[GRunning generate... - Prisma Client
+app1-1        | Database seeded successfully!
+app2-1        | [2K[1A[2K[G✔ Generated Prisma Client (v5.9.1) to ./../node_modules/@prisma/client in 296ms
+app2-1        | 
+app2-1        | 
+app1-1        | init app
+app2-1        | init app
+nginx-1       | 2024/03/11 04:51:36 [error] 31#31: *6 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1       | 2024/03/11 04:51:38 [error] 31#31: *7 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1       | 2024/03/11 04:51:40 [error] 31#31: *8 no live upstreams while connecting to upstream, client: 192.168.48.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+postgresdb-1  | 2024-03-11 04:55:54.461 UTC [1] LOG:  received fast shutdown request
+postgresdb-1  | 2024-03-11 04:55:54.465 UTC [1] LOG:  aborting any active transactions
+postgresdb-1  | 2024-03-11 04:55:54.465 UTC [113] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.465 UTC [104] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.465 UTC [105] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.465 UTC [102] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.465 UTC [95] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.466 UTC [92] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.466 UTC [96] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.466 UTC [90] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.468 UTC [98] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.468 UTC [84] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.469 UTC [94] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.470 UTC [91] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.470 UTC [101] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.470 UTC [82] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.470 UTC [89] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.471 UTC [103] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.514 UTC [81] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.514 UTC [97] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.515 UTC [87] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.517 UTC [83] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.517 UTC [86] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.517 UTC [85] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.518 UTC [99] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.520 UTC [100] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.614 UTC [88] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.614 UTC [1] LOG:  background worker "logical replication launcher" (PID 67) exited with exit code 1
+postgresdb-1  | 2024-03-11 04:55:54.617 UTC [93] FATAL:  terminating connection due to administrator command
+postgresdb-1  | 2024-03-11 04:55:54.619 UTC [62] LOG:  shutting down
+postgresdb-1  | 2024-03-11 04:55:54.623 UTC [62] LOG:  checkpoint starting: shutdown immediate
+postgresdb-1  | 2024-03-11 04:55:54.756 UTC [62] LOG:  checkpoint complete: wrote 601 buffers (3.7%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.011 s, sync=0.108 s, total=0.137 s; sync files=31, longest=0.095 s, average=0.004 s; distance=16722 kB, estimate=16722 kB; lsn=0/4B03900, redo lsn=0/4B03900
+postgresdb-1  | 2024-03-11 04:55:54.761 UTC [1] LOG:  database system is shut down
+postgresdb-1 exited with code 0
+postgresdb-1 exited with code 0
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+app2-1 exited with code 0
+app2-1 exited with code 137
+app1-1 exited with code 0

@@ -1,0 +1,311 @@
+ Network rinha-nginx-2024q1  Creating
+ Network rinha-nginx-2024q1  Created
+ Container db-mysql  Creating
+ Container db-mysql  Created
+ Container api01  Creating
+ Container api01  Created
+ Container api02  Creating
+ Container api02  Created
+ Container load-balancer  Creating
+ Container load-balancer  Created
+Attaching to api01, api02, db-mysql, load-balancer
+db-mysql       | 2024-03-11 02:57:00+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.33-1.el8 started.
+load-balancer  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+load-balancer  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+load-balancer  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+load-balancer  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+load-balancer  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+load-balancer  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+load-balancer  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+load-balancer  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+load-balancer  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db-mysql       | 2024-03-11 02:57:02+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+db-mysql       | 2024-03-11 02:57:02+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.33-1.el8 started.
+db-mysql       | 2024-03-11 02:57:04+00:00 [Note] [Entrypoint]: Initializing database files
+db-mysql       | 2024-03-11T02:57:04.116128Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+db-mysql       | 2024-03-11T02:57:04.116279Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.33) initializing of server in progress as process 80
+db-mysql       | 2024-03-11T02:57:04.129059Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+load-balancer  | 2024/03/11 02:57:04 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.3:8082/clientes/1/extrato", host: "localhost:9999"
+load-balancer  | 2024/03/11 02:57:04 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.4:8083/clientes/1/extrato", host: "localhost:9999"
+api01          | [INFO] Scanning for projects...
+api02          | [INFO] Scanning for projects...
+load-balancer  | 2024/03/11 02:57:06 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.3:8082/clientes/1/extrato", host: "localhost:9999"
+load-balancer  | 2024/03/11 02:57:06 [error] 30#30: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.4:8083/clientes/1/extrato", host: "localhost:9999"
+api01          | [INFO] 
+api01          | [INFO] ----------------------< com.github.wesleyav:api >-----------------------
+api01          | [INFO] Building api 0.0.1-SNAPSHOT
+api01          | [INFO]   from pom.xml
+api01          | [INFO] --------------------------------[ jar ]---------------------------------
+api02          | [INFO] 
+api02          | [INFO] ----------------------< com.github.wesleyav:api >-----------------------
+api02          | [INFO] Building api 0.0.1-SNAPSHOT
+api02          | [INFO]   from pom.xml
+api02          | [INFO] --------------------------------[ jar ]---------------------------------
+api01          | [INFO] 
+api01          | [INFO] >>> spring-boot:3.2.2:run (default-cli) > test-compile @ api >>>
+api02          | [INFO] 
+api02          | [INFO] >>> spring-boot:3.2.2:run (default-cli) > test-compile @ api >>>
+db-mysql       | 2024-03-11T02:57:07.123914Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+load-balancer  | 2024/03/11 02:57:08 [error] 31#31: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.3:8082/clientes/1/extrato", host: "localhost:9999"
+load-balancer  | 2024/03/11 02:57:08 [error] 31#31: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.4:8083/clientes/1/extrato", host: "localhost:9999"
+api01          | [INFO] 
+api01          | [INFO] --- resources:3.3.1:resources (default-resources) @ api ---
+api02          | [INFO] 
+api02          | [INFO] --- resources:3.3.1:resources (default-resources) @ api ---
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.3.1/maven-filtering-3.3.1.pom
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.3.1/maven-filtering-3.3.1.pom
+api02          | Progress (1): 1.4/6.0 kBProgress (1): 2.8/6.0 kBProgress (1): 4.1/6.0 kBProgress (1): 5.5/6.0 kBProgress (1): 6.0 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.3.1/maven-filtering-3.3.1.pom (6.0 kB at 9.7 kB/s)
+api01          | Progress (1): 1.4/6.0 kBProgress (1): 2.8/6.0 kBProgress (1): 4.1/6.0 kBProgress (1): 5.5/6.0 kBProgress (1): 6.0 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.3.1/maven-filtering-3.3.1.pom (6.0 kB at 8.6 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.5.0/plexus-utils-3.5.0.pom
+api02          | Progress (1): 1.4/8.0 kBProgress (1): 2.8/8.0 kBProgress (1): 4.1/8.0 kBProgress (1): 5.5/8.0 kBProgress (1): 6.9/8.0 kBProgress (1): 8.0 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.5.0/plexus-utils-3.5.0.pom (8.0 kB at 99 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.5.0/plexus-utils-3.5.0.pom
+api01          | Progress (1): 1.4/8.0 kBProgress (1): 2.8/8.0 kBProgress (1): 4.1/8.0 kBProgress (1): 5.5/8.0 kBProgress (1): 6.9/8.0 kBProgress (1): 8.0 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.5.0/plexus-utils-3.5.0.pom (8.0 kB at 93 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.26/plexus-interpolation-1.26.jar
+api02          | Progress (1): 16/85 kBProgress (1): 33/85 kBProgress (1): 49/85 kBProgress (1): 66/85 kBProgress (1): 82/85 kBProgress (1): 85 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.26/plexus-interpolation-1.26.jar (85 kB at 871 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.3.1/maven-filtering-3.3.1.jar
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.26/plexus-interpolation-1.26.jar
+load-balancer  | 2024/03/11 02:57:10 [error] 32#32: *10 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.3:8082/clientes/1/extrato", host: "localhost:9999"
+load-balancer  | 2024/03/11 02:57:10 [error] 32#32: *10 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.4:8083/clientes/1/extrato", host: "localhost:9999"
+api01          | Progress (1): 1.4/85 kBProgress (1): 2.8/85 kBProgress (1): 4.1/85 kBProgress (1): 5.5/85 kBProgress (1): 6.9/85 kBProgress (1): 8.3/85 kBProgress (1): 9.7/85 kBProgress (1): 11/85 kB Progress (1): 12/85 kBProgress (1): 14/85 kBProgress (1): 15/85 kBProgress (1): 16/85 kBProgress (1): 32/85 kBProgress (1): 49/85 kBProgress (1): 65/85 kBProgress (1): 81/85 kBProgress (1): 85 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.26/plexus-interpolation-1.26.jar (85 kB at 992 kB/s)
+api02          | Progress (1): 16/55 kBProgress (1): 32/55 kBProgress (1): 49/55 kBProgress (1): 55 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.3.1/maven-filtering-3.3.1.jar (55 kB at 478 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.3.1/maven-filtering-3.3.1.jar
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar
+api01          | Progress (1): 16/55 kBProgress (1): 33/55 kBProgress (1): 49/55 kBProgress (1): 55 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.3.1/maven-filtering-3.3.1.jar (55 kB at 539 kB/s)
+api02          | Progress (1): 16/327 kBProgress (1): 33/327 kBProgress (2): 33/327 kB | 16/587 kBProgress (2): 33/327 kB | 33/587 kBProgress (2): 49/327 kB | 33/587 kBProgress (2): 49/327 kB | 49/587 kBProgress (2): 66/327 kB | 49/587 kBProgress (2): 66/327 kB | 66/587 kBProgress (2): 82/327 kB | 66/587 kBProgress (2): 82/327 kB | 82/587 kBProgress (2): 98/327 kB | 82/587 kBProgress (2): 98/327 kB | 98/587 kBProgress (2): 115/327 kB | 98/587 kBProgress (2): 115/327 kB | 115/587 kBProgress (2): 115/327 kB | 131/587 kBProgress (2): 115/327 kB | 147/587 kBProgress (2): 115/327 kB | 164/587 kBProgress (2): 115/327 kB | 180/587 kBProgress (2): 115/327 kB | 197/587 kBProgress (2): 131/327 kB | 197/587 kBProgress (2): 131/327 kB | 213/587 kBProgress (2): 147/327 kB | 213/587 kBProgress (2): 147/327 kB | 229/587 kBProgress (2): 164/327 kB | 229/587 kBProgress (2): 164/327 kB | 246/587 kBProgress (2): 164/327 kB | 256/587 kBProgress (2): 180/327 kB | 256/587 kBProgress (2): 180/327 kB | 272/587 kBProgress (2): 197/327 kB | 272/587 kBProgress (2): 197/327 kB | 289/587 kBProgress (2): 197/327 kB | 305/587 kBProgress (2): 213/327 kB | 305/587 kBProgress (2): 213/327 kB | 321/587 kBProgress (2): 213/327 kB | 338/587 kBProgress (2): 213/327 kB | 354/587 kBProgress (2): 229/327 kB | 354/587 kBProgress (2): 229/327 kB | 370/587 kBProgress (2): 229/327 kB | 387/587 kBProgress (2): 246/327 kB | 387/587 kBProgress (2): 256/327 kB | 387/587 kBProgress (2): 272/327 kB | 387/587 kBProgress (2): 272/327 kB | 403/587 kBProgress (2): 289/327 kB | 403/587 kBProgress (2): 305/327 kB | 403/587 kBProgress (2): 305/327 kB | 420/587 kBProgress (2): 321/327 kB | 420/587 kBProgress (2): 327 kB | 420/587 kB    Progress (2): 327 kB | 436/587 kBProgress (2): 327 kB | 452/587 kB                                 Downloaded from central: https://repo.maven.apache.org/maven2/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar (327 kB at 635 kB/s)
+api01          | Progress (1): 16/327 kBProgress (2): 16/327 kB | 1.4/587 kBProgress (2): 16/327 kB | 2.8/587 kBProgress (2): 16/327 kB | 4.1/587 kBProgress (2): 16/327 kB | 5.5/587 kBProgress (2): 16/327 kB | 6.9/587 kBProgress (2): 33/327 kB | 6.9/587 kBProgress (2): 33/327 kB | 8.3/587 kBProgress (2): 33/327 kB | 9.7/587 kBProgress (2): 33/327 kB | 11/587 kB Progress (2): 49/327 kB | 11/587 kBProgress (2): 49/327 kB | 12/587 kBProgress (2): 49/327 kB | 14/587 kBProgress (2): 66/327 kB | 14/587 kBProgress (2): 82/327 kB | 14/587 kBProgress (2): 82/327 kB | 15/587 kBProgress (2): 82/327 kB | 16/587 kBProgress (2): 98/327 kB | 16/587 kBProgress (2): 98/327 kB | 32/587 kBProgress (2): 98/327 kB | 49/587 kBProgress (2): 98/327 kB | 65/587 kBProgress (2): 115/327 kB | 65/587 kBProgress (2): 115/327 kB | 81/587 kBProgress (2): 131/327 kB | 81/587 kBProgress (2): 147/327 kB | 81/587 kBProgress (2): 147/327 kB | 98/587 kBProgress (2): 164/327 kB | 98/587 kBProgress (2): 180/327 kB | 98/587 kBProgress (2): 180/327 kB | 114/587 kBProgress (2): 197/327 kB | 114/587 kBProgress (2): 213/327 kB | 114/587 kBProgress (2): 229/327 kB | 114/587 kBProgress (2): 229/327 kB | 130/587 kBProgress (2): 246/327 kB | 130/587 kBProgress (2): 256/327 kB | 130/587 kBProgress (2): 272/327 kB | 130/587 kBProgress (2): 289/327 kB | 130/587 kBProgress (2): 305/327 kB | 130/587 kBProgress (2): 321/327 kB | 130/587 kBProgress (2): 321/327 kB | 147/587 kBProgress (2): 321/327 kB | 163/587 kBProgress (2): 321/327 kB | 180/587 kBProgress (2): 321/327 kB | 196/587 kBProgress (2): 321/327 kB | 212/587 kBProgress (2): 327 kB | 212/587 kB    Progress (2): 327 kB | 229/587 kB                                 Downloaded from central: https://repo.maven.apache.org/maven2/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar (327 kB at 816 kB/s)
+api02          | Progress (1): 469/587 kBProgress (1): 485/587 kBProgress (1): 502/587 kBProgress (1): 518/587 kBProgress (1): 534/587 kBProgress (1): 551/587 kBProgress (1): 567/587 kBProgress (1): 583/587 kBProgress (1): 587 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar (587 kB at 955 kB/s)
+api01          | Progress (1): 245/587 kBProgress (1): 262/587 kBProgress (1): 278/587 kBProgress (1): 294/587 kBProgress (1): 311/587 kBProgress (1): 327/587 kBProgress (1): 343/587 kBProgress (1): 360/587 kBProgress (1): 376/587 kBProgress (1): 393/587 kBProgress (1): 402/587 kBProgress (1): 418/587 kBProgress (1): 435/587 kBProgress (1): 451/587 kBProgress (1): 468/587 kBProgress (1): 484/587 kBProgress (1): 500/587 kBProgress (1): 517/587 kBProgress (1): 533/587 kBProgress (1): 549/587 kBProgress (1): 566/587 kBProgress (1): 582/587 kBProgress (1): 587 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar (587 kB at 1.0 MB/s)
+api02          | [INFO] Copying 4 resources from src/main/resources to target/classes
+api01          | [INFO] Copying 4 resources from src/main/resources to target/classes
+api02          | [INFO] Copying 1 resource from src/main/resources to target/classes
+api02          | [INFO] 
+api02          | [INFO] --- compiler:3.11.0:compile (default-compile) @ api ---
+api01          | [INFO] Copying 1 resource from src/main/resources to target/classes
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.pom
+api01          | [INFO] 
+api01          | [INFO] --- compiler:3.11.0:compile (default-compile) @ api ---
+api02          | Progress (1): 4.7 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.pom (4.7 kB at 474 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-components/19/maven-shared-components-19.pom
+api02          | Progress (1): 6.4 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-components/19/maven-shared-components-19.pom (6.4 kB at 72 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.pom
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-java/1.1.2/plexus-java-1.1.2.pom
+api01          | Progress (1): 4.7 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.pom (4.7 kB at 279 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-components/19/maven-shared-components-19.pom
+api02          | Progress (1): 5.0 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-java/1.1.2/plexus-java-1.1.2.pom (5.0 kB at 452 kB/s)
+api01          | Progress (1): 6.4 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-components/19/maven-shared-components-19.pom (6.4 kB at 908 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-languages/1.1.2/plexus-languages-1.1.2.pom
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-java/1.1.2/plexus-java-1.1.2.pom
+api02          | Progress (1): 4.1 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-languages/1.1.2/plexus-languages-1.1.2.pom (4.1 kB at 319 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.4/asm-9.4.pom
+api01          | Progress (1): 5.0 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-java/1.1.2/plexus-java-1.1.2.pom (5.0 kB at 331 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-languages/1.1.2/plexus-languages-1.1.2.pom
+api02          | Progress (1): 2.4 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.4/asm-9.4.pom (2.4 kB at 182 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/com/thoughtworks/qdox/qdox/2.0.3/qdox-2.0.3.pom
+api01          | Progress (1): 4.1 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-languages/1.1.2/plexus-languages-1.1.2.pom (4.1 kB at 57 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.4/asm-9.4.pom
+api02          | Progress (1): 16/17 kBProgress (1): 17 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/com/thoughtworks/qdox/qdox/2.0.3/qdox-2.0.3.pom (17 kB at 230 kB/s)
+api01          | Progress (1): 2.4 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.4/asm-9.4.pom (2.4 kB at 339 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/com/thoughtworks/qdox/qdox/2.0.3/qdox-2.0.3.pom
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.13.0/plexus-compiler-api-2.13.0.pom
+api01          | Progress (1): 16/17 kBProgress (1): 17 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/com/thoughtworks/qdox/qdox/2.0.3/qdox-2.0.3.pom (17 kB at 2.2 MB/s)
+api02          | Progress (1): 1.1 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.13.0/plexus-compiler-api-2.13.0.pom (1.1 kB at 151 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.13.0/plexus-compiler-api-2.13.0.pom
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler/2.13.0/plexus-compiler-2.13.0.pom
+api02          | Progress (1): 8.4 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler/2.13.0/plexus-compiler-2.13.0.pom (8.4 kB at 1.2 MB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/10.0/plexus-components-10.0.pom
+api02          | Progress (1): 2.7 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/10.0/plexus-components-10.0.pom (2.7 kB at 43 kB/s)
+api01          | Progress (1): 1.1 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.13.0/plexus-compiler-api-2.13.0.pom (1.1 kB at 106 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.13.0/plexus-compiler-manager-2.13.0.pom
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler/2.13.0/plexus-compiler-2.13.0.pom
+api02          | Progress (1): 1.1 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.13.0/plexus-compiler-manager-2.13.0.pom (1.1 kB at 163 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-component-annotations/2.1.1/plexus-component-annotations-2.1.1.pom
+api01          | Progress (1): 8.4 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler/2.13.0/plexus-compiler-2.13.0.pom (8.4 kB at 762 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/10.0/plexus-components-10.0.pom
+api02          | Progress (1): 770 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-component-annotations/2.1.1/plexus-component-annotations-2.1.1.pom (770 B at 110 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-containers/2.1.1/plexus-containers-2.1.1.pom
+api01          | Progress (1): 2.7 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/10.0/plexus-components-10.0.pom (2.7 kB at 244 kB/s)
+api02          | Progress (1): 6.0 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-containers/2.1.1/plexus-containers-2.1.1.pom (6.0 kB at 862 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/6.5/plexus-6.5.pom
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.13.0/plexus-compiler-manager-2.13.0.pom
+api02          | Progress (1): 16/26 kBProgress (1): 26 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/6.5/plexus-6.5.pom (26 kB at 2.9 MB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.13.0/plexus-compiler-javac-2.13.0.pom
+api01          | Progress (1): 1.1 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.13.0/plexus-compiler-manager-2.13.0.pom (1.1 kB at 16 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-component-annotations/2.1.1/plexus-component-annotations-2.1.1.pom
+api02          | Progress (1): 1.2 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.13.0/plexus-compiler-javac-2.13.0.pom (1.2 kB at 120 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compilers/2.13.0/plexus-compilers-2.13.0.pom
+api01          | Progress (1): 770 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-component-annotations/2.1.1/plexus-component-annotations-2.1.1.pom (770 B at 96 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-containers/2.1.1/plexus-containers-2.1.1.pom
+api02          | Progress (1): 1.3 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compilers/2.13.0/plexus-compilers-2.13.0.pom (1.3 kB at 165 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-utils/3.3.4/maven-shared-utils-3.3.4.jar
+api01          | Progress (1): 6.0 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-containers/2.1.1/plexus-containers-2.1.1.pom (6.0 kB at 503 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/6.5/plexus-6.5.pom
+api01          | Progress (1): 16/26 kBProgress (1): 26 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/6.5/plexus-6.5.pom (26 kB at 3.7 MB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.13.0/plexus-compiler-javac-2.13.0.pom
+api02          | Progress (1): 16/153 kBProgress (1): 33/153 kBProgress (1): 49/153 kBProgress (1): 66/153 kBProgress (1): 82/153 kBProgress (1): 98/153 kBProgress (1): 115/153 kBProgress (1): 131/153 kBProgress (1): 147/153 kBProgress (1): 153 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-utils/3.3.4/maven-shared-utils-3.3.4.jar (153 kB at 1.9 MB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/commons-io/commons-io/2.6/commons-io-2.6.jar
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.jar
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.jar
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-java/1.1.2/plexus-java-1.1.2.jar
+api01          | Progress (1): 1.2 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.13.0/plexus-compiler-javac-2.13.0.pom (1.2 kB at 120 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.4/asm-9.4.jar
+api02          | Progress (1): 16/215 kBProgress (1): 32/215 kBProgress (2): 32/215 kB | 14 kBProgress (2): 49/215 kB | 14 kBProgress (2): 65/215 kB | 14 kB                               Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.jar (14 kB at 1.5 MB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/com/thoughtworks/qdox/qdox/2.0.3/qdox-2.0.3.jar
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compilers/2.13.0/plexus-compilers-2.13.0.pom
+api01          | Progress (1): 1.3 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compilers/2.13.0/plexus-compilers-2.13.0.pom (1.3 kB at 189 kB/s)
+api02          | Progress (1): 81/215 kBProgress (1): 98/215 kBProgress (2): 98/215 kB | 4.2 kB                                Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.jar (4.2 kB at 234 kB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.13.0/plexus-compiler-api-2.13.0.jar
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-utils/3.3.4/maven-shared-utils-3.3.4.jar
+api02          | Progress (1): 114/215 kBProgress (1): 130/215 kBProgress (1): 147/215 kBProgress (1): 163/215 kBProgress (1): 180/215 kBProgress (1): 196/215 kBProgress (1): 212/215 kBProgress (1): 215 kB    Progress (2): 215 kB | 16/334 kBProgress (3): 215 kB | 16/334 kB | 16/27 kBProgress (3): 215 kB | 16/334 kB | 27 kB   Progress (3): 215 kB | 33/334 kB | 27 kBProgress (3): 215 kB | 49/334 kB | 27 kBProgress (3): 215 kB | 66/334 kB | 27 kBProgress (3): 215 kB | 82/334 kB | 27 kBProgress (3): 215 kB | 98/334 kB | 27 kBProgress (3): 215 kB | 115/334 kB | 27 kB                                         Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.13.0/plexus-compiler-api-2.13.0.jar (27 kB at 287 kB/s)
+api02          | Progress (3): 215 kB | 115/334 kB | 1.4/55 kB                                             Downloaded from central: https://repo.maven.apache.org/maven2/commons-io/commons-io/2.6/commons-io-2.6.jar (215 kB at 2.1 MB/s)
+api02          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.5.0/plexus-utils-3.5.0.jar
+api02          | Progress (2): 115/334 kB | 2.8/55 kBProgress (2): 115/334 kB | 4.1/55 kBProgress (2): 115/334 kB | 5.5/55 kBProgress (2): 115/334 kB | 6.9/55 kBProgress (2): 115/334 kB | 8.3/55 kBProgress (2): 115/334 kB | 9.7/55 kBProgress (2): 115/334 kB | 11/55 kB Progress (2): 115/334 kB | 12/55 kBProgress (2): 115/334 kB | 14/55 kBProgress (2): 115/334 kB | 15/55 kBProgress (2): 115/334 kB | 17/55 kB                                   Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.13.0/plexus-compiler-manager-2.13.0.jar
+api02          | Progress (2): 115/334 kB | 18/55 kBProgress (2): 115/334 kB | 19/55 kBProgress (2): 115/334 kB | 21/55 kBProgress (2): 115/334 kB | 22/55 kBProgress (2): 115/334 kB | 23/55 kBProgress (2): 115/334 kB | 25/55 kBProgress (2): 115/334 kB | 26/55 kBProgress (2): 115/334 kB | 28/55 kBProgress (3): 115/334 kB | 28/55 kB | 16/267 kBProgress (4): 115/334 kB | 28/55 kB | 16/267 kB | 16/122 kBProgress (4): 115/334 kB | 29/55 kB | 16/267 kB | 16/122 kBProgress (4): 115/334 kB | 29/55 kB | 32/267 kB | 16/122 kBProgress (4): 115/334 kB | 29/55 kB | 49/267 kB | 16/122 kBProgress (4): 115/334 kB | 29/55 kB | 65/267 kB | 16/122 kBProgress (4): 115/334 kB | 30/55 kB | 65/267 kB | 16/122 kBProgress (4): 115/334 kB | 32/55 kB | 65/267 kB | 16/122 kBProgress (4): 131/334 kB | 32/55 kB | 65/267 kB | 16/122 kBProgress (4): 131/334 kB | 32/55 kB | 65/267 kB | 33/122 kBProgress (4): 131/334 kB | 33/55 kB | 65/267 kB | 33/122 kBProgress (4): 131/334 kB | 33/55 kB | 81/267 kB | 33/122 kBProgress (4): 131/334 kB | 33/55 kB | 98/267 kB | 33/122 kBProgress (4): 131/334 kB | 33/55 kB | 114/267 kB | 33/122 kBProgress (5): 131/334 kB | 33/55 kB | 114/267 kB | 33/122 kB | 4.7 kBProgress (5): 131/334 kB | 33/55 kB | 114/267 kB | 49/122 kB | 4.7 kBProgress (5): 131/334 kB | 33/55 kB | 130/267 kB | 49/122 kB | 4.7 kB                                                                     Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.13.0/plexus-compiler-manager-2.13.0.jar (4.7 kB at 42 kB/s)
+api02          | Progress (4): 131/334 kB | 33/55 kB | 130/267 kB | 66/122 kBProgress (4): 131/334 kB | 33/55 kB | 147/267 kB | 66/122 kBProgress (4): 131/334 kB | 33/55 kB | 147/267 kB | 82/122 kBProgress (4): 147/334 kB | 33/55 kB | 147/267 kB | 82/122 kB                                                            Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.13.0/plexus-compiler-javac-2.13.0.jar
+api01          | Progress (1): 16/153 kBProgress (1): 32/153 kBProgress (1): 49/153 kBProgress (1): 65/153 kBProgress (1): 81/153 kBProgress (1): 98/153 kBProgress (1): 114/153 kBProgress (1): 131/153 kBProgress (1): 147/153 kBProgress (1): 153 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-utils/3.3.4/maven-shared-utils-3.3.4.jar (153 kB at 1.6 MB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/commons-io/commons-io/2.6/commons-io-2.6.jar
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.jar
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.jar
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-java/1.1.2/plexus-java-1.1.2.jar
+api01          | Progress (1): 16/215 kBProgress (1): 33/215 kBProgress (1): 49/215 kBProgress (2): 49/215 kB | 14 kBProgress (2): 66/215 kB | 14 kBProgress (3): 66/215 kB | 14 kB | 4.2 kBProgress (3): 82/215 kB | 14 kB | 4.2 kB                                        Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.jar (4.2 kB at 53 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/com/thoughtworks/qdox/qdox/2.0.3/qdox-2.0.3.jar
+api02          | Progress (4): 147/334 kB | 33/55 kB | 163/267 kB | 82/122 kBProgress (4): 147/334 kB | 33/55 kB | 180/267 kB | 82/122 kBProgress (4): 147/334 kB | 33/55 kB | 196/267 kB | 82/122 kBProgress (4): 147/334 kB | 33/55 kB | 212/267 kB | 82/122 kBProgress (4): 147/334 kB | 33/55 kB | 229/267 kB | 82/122 kBProgress (4): 147/334 kB | 33/55 kB | 245/267 kB | 82/122 kBProgress (4): 147/334 kB | 33/55 kB | 262/267 kB | 82/122 kBProgress (4): 147/334 kB | 33/55 kB | 267 kB | 82/122 kB    Progress (4): 164/334 kB | 33/55 kB | 267 kB | 82/122 kBProgress (4): 180/334 kB | 33/55 kB | 267 kB | 82/122 kBProgress (4): 197/334 kB | 33/55 kB | 267 kB | 82/122 kBProgress (4): 213/334 kB | 33/55 kB | 267 kB | 82/122 kBProgress (4): 229/334 kB | 33/55 kB | 267 kB | 82/122 kBProgress (4): 246/334 kB | 33/55 kB | 267 kB | 82/122 kBProgress (4): 256/334 kB | 33/55 kB | 267 kB | 82/122 kBProgress (4): 256/334 kB | 33/55 kB | 267 kB | 98/122 kBProgress (4): 272/334 kB | 33/55 kB | 267 kB | 98/122 kBProgress (4): 272/334 kB | 33/55 kB | 267 kB | 115/122 kBProgress (4): 272/334 kB | 33/55 kB | 267 kB | 122 kB    Progress (5): 272/334 kB | 33/55 kB | 267 kB | 122 kB | 16/23 kBProgress (5): 272/334 kB | 33/55 kB | 267 kB | 122 kB | 23 kB                                                                Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.13.0/plexus-compiler-javac-2.13.0.jar (23 kB at 117 kB/s)
+api02          | Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.5.0/plexus-utils-3.5.0.jar (267 kB at 1.4 MB/s)
+api01          | Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.jar (14 kB at 167 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.13.0/plexus-compiler-api-2.13.0.jar
+api02          | Progress (3): 289/334 kB | 33/55 kB | 122 kBProgress (3): 305/334 kB | 33/55 kB | 122 kBProgress (3): 321/334 kB | 33/55 kB | 122 kBProgress (3): 334 kB | 33/55 kB | 122 kB                                            Downloaded from central: https://repo.maven.apache.org/maven2/com/thoughtworks/qdox/qdox/2.0.3/qdox-2.0.3.jar (334 kB at 1.7 MB/s)
+api02          | Progress (2): 34/55 kB | 122 kBProgress (2): 36/55 kB | 122 kBProgress (2): 37/55 kB | 122 kBProgress (2): 39/55 kB | 122 kBProgress (2): 40/55 kB | 122 kBProgress (2): 41/55 kB | 122 kBProgress (2): 43/55 kB | 122 kBProgress (2): 44/55 kB | 122 kBProgress (2): 46/55 kB | 122 kBProgress (2): 47/55 kB | 122 kBProgress (2): 48/55 kB | 122 kBProgress (2): 50/55 kB | 122 kBProgress (2): 51/55 kB | 122 kBProgress (2): 52/55 kB | 122 kBProgress (2): 54/55 kB | 122 kBProgress (2): 55 kB | 122 kB                               Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-java/1.1.2/plexus-java-1.1.2.jar (55 kB at 263 kB/s)
+api02          | Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.4/asm-9.4.jar (122 kB at 589 kB/s)
+api01          | Progress (1): 98/215 kBProgress (1): 115/215 kB                        Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.4/asm-9.4.jar
+api01          | Progress (1): 131/215 kBProgress (1): 147/215 kBProgress (1): 164/215 kBProgress (1): 180/215 kBProgress (1): 197/215 kBProgress (1): 213/215 kBProgress (1): 215 kB    Progress (2): 215 kB | 16/27 kBProgress (2): 215 kB | 27 kB                               Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.13.0/plexus-compiler-api-2.13.0.jar (27 kB at 872 kB/s)
+api01          | Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.5.0/plexus-utils-3.5.0.jar
+load-balancer  | 2024/03/11 02:57:12 [error] 29#29: *13 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01          | Progress (2): 215 kB | 16/122 kBProgress (2): 215 kB | 33/122 kBProgress (2): 215 kB | 49/122 kBProgress (3): 215 kB | 49/122 kB | 16/334 kBProgress (4): 215 kB | 49/122 kB | 16/334 kB | 1.4/55 kBProgress (4): 215 kB | 49/122 kB | 33/334 kB | 1.4/55 kBProgress (4): 215 kB | 66/122 kB | 33/334 kB | 1.4/55 kBProgress (4): 215 kB | 82/122 kB | 33/334 kB | 1.4/55 kBProgress (4): 215 kB | 98/122 kB | 33/334 kB | 1.4/55 kBProgress (4): 215 kB | 98/122 kB | 33/334 kB | 2.8/55 kBProgress (4): 215 kB | 98/122 kB | 33/334 kB | 4.1/55 kBProgress (4): 215 kB | 98/122 kB | 33/334 kB | 5.5/55 kB                                                        Downloaded from central: https://repo.maven.apache.org/maven2/commons-io/commons-io/2.6/commons-io-2.6.jar (215 kB at 1.1 MB/s)
+api01          | Progress (3): 98/122 kB | 49/334 kB | 5.5/55 kBProgress (3): 98/122 kB | 49/334 kB | 6.9/55 kBProgress (3): 98/122 kB | 49/334 kB | 8.3/55 kBProgress (3): 98/122 kB | 49/334 kB | 9.7/55 kBProgress (4): 98/122 kB | 49/334 kB | 9.7/55 kB | 16/267 kBProgress (4): 98/122 kB | 49/334 kB | 11/55 kB | 16/267 kB Progress (4): 98/122 kB | 66/334 kB | 11/55 kB | 16/267 kBProgress (4): 98/122 kB | 66/334 kB | 12/55 kB | 16/267 kBProgress (4): 98/122 kB | 66/334 kB | 14/55 kB | 16/267 kBProgress (4): 98/122 kB | 66/334 kB | 15/55 kB | 16/267 kBProgress (4): 98/122 kB | 66/334 kB | 17/55 kB | 16/267 kBProgress (4): 115/122 kB | 66/334 kB | 17/55 kB | 16/267 kB                                                           Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.13.0/plexus-compiler-manager-2.13.0.jar
+api01          | Progress (4): 115/122 kB | 82/334 kB | 17/55 kB | 16/267 kBProgress (4): 115/122 kB | 82/334 kB | 17/55 kB | 33/267 kBProgress (4): 115/122 kB | 82/334 kB | 17/55 kB | 49/267 kBProgress (4): 115/122 kB | 98/334 kB | 17/55 kB | 49/267 kBProgress (4): 115/122 kB | 115/334 kB | 17/55 kB | 49/267 kBProgress (5): 115/122 kB | 115/334 kB | 17/55 kB | 49/267 kB | 4.7 kBProgress (5): 115/122 kB | 131/334 kB | 17/55 kB | 49/267 kB | 4.7 kBProgress (5): 115/122 kB | 131/334 kB | 17/55 kB | 66/267 kB | 4.7 kBProgress (5): 115/122 kB | 147/334 kB | 17/55 kB | 66/267 kB | 4.7 kBProgress (5): 115/122 kB | 164/334 kB | 17/55 kB | 66/267 kB | 4.7 kBProgress (5): 115/122 kB | 164/334 kB | 18/55 kB | 66/267 kB | 4.7 kB                                                                     Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.13.0/plexus-compiler-manager-2.13.0.jar (4.7 kB at 23 kB/s)
+api01          | Progress (4): 115/122 kB | 164/334 kB | 18/55 kB | 82/267 kBProgress (4): 115/122 kB | 180/334 kB | 18/55 kB | 82/267 kBProgress (4): 115/122 kB | 180/334 kB | 19/55 kB | 82/267 kB                                                            Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.13.0/plexus-compiler-javac-2.13.0.jar
+api01          | Progress (4): 122 kB | 180/334 kB | 19/55 kB | 82/267 kBProgress (4): 122 kB | 180/334 kB | 19/55 kB | 98/267 kBProgress (4): 122 kB | 197/334 kB | 19/55 kB | 98/267 kBProgress (4): 122 kB | 197/334 kB | 21/55 kB | 98/267 kBProgress (4): 122 kB | 197/334 kB | 21/55 kB | 115/267 kBProgress (4): 122 kB | 197/334 kB | 22/55 kB | 115/267 kBProgress (4): 122 kB | 197/334 kB | 23/55 kB | 115/267 kBProgress (4): 122 kB | 197/334 kB | 25/55 kB | 115/267 kBProgress (4): 122 kB | 197/334 kB | 26/55 kB | 115/267 kB                                                         Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.4/asm-9.4.jar (122 kB at 419 kB/s)
+api01          | Progress (3): 213/334 kB | 26/55 kB | 115/267 kBProgress (4): 213/334 kB | 26/55 kB | 115/267 kB | 16/23 kBProgress (4): 213/334 kB | 26/55 kB | 131/267 kB | 16/23 kBProgress (4): 229/334 kB | 26/55 kB | 131/267 kB | 16/23 kBProgress (4): 229/334 kB | 26/55 kB | 131/267 kB | 23 kB   Progress (4): 229/334 kB | 28/55 kB | 131/267 kB | 23 kBProgress (4): 246/334 kB | 28/55 kB | 131/267 kB | 23 kBProgress (4): 256/334 kB | 28/55 kB | 131/267 kB | 23 kBProgress (4): 272/334 kB | 28/55 kB | 131/267 kB | 23 kBProgress (4): 289/334 kB | 28/55 kB | 131/267 kB | 23 kBProgress (4): 305/334 kB | 28/55 kB | 131/267 kB | 23 kBProgress (4): 305/334 kB | 28/55 kB | 147/267 kB | 23 kBProgress (4): 321/334 kB | 28/55 kB | 147/267 kB | 23 kBProgress (4): 321/334 kB | 29/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 29/55 kB | 147/267 kB | 23 kB    Progress (4): 334 kB | 30/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 32/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 33/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 34/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 36/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 37/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 39/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 40/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 41/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 43/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 44/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 46/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 47/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 48/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 50/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 51/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 52/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 54/55 kB | 147/267 kB | 23 kBProgress (4): 334 kB | 55 kB | 147/267 kB | 23 kB                                                    Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-java/1.1.2/plexus-java-1.1.2.jar (55 kB at 145 kB/s)
+api01          | Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.13.0/plexus-compiler-javac-2.13.0.jar (23 kB at 73 kB/s)
+api01          | Downloaded from central: https://repo.maven.apache.org/maven2/com/thoughtworks/qdox/qdox/2.0.3/qdox-2.0.3.jar (334 kB at 1.1 MB/s)
+api01          | Progress (1): 164/267 kBProgress (1): 180/267 kBProgress (1): 197/267 kBProgress (1): 213/267 kBProgress (1): 229/267 kBProgress (1): 246/267 kBProgress (1): 262/267 kBProgress (1): 267 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.5.0/plexus-utils-3.5.0.jar (267 kB at 838 kB/s)
+api02          | [INFO] Changes detected - recompiling the module! :source
+api02          | [INFO] Compiling 24 source files with javac [debug release 17] to target/classes
+api01          | [INFO] Changes detected - recompiling the module! :source
+api01          | [INFO] Compiling 24 source files with javac [debug release 17] to target/classes
+db-mysql       | 2024-03-11T02:57:13.928549Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+load-balancer  | 2024/03/11 02:57:14 [error] 29#29: *14 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01 exited with code 0
+api02 exited with code 0
+load-balancer  | 2024/03/11 02:57:17 [error] 29#29: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.4:8083/clientes/1/extrato", host: "localhost:9999"
+load-balancer  | 2024/03/11 02:57:17 [error] 29#29: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.3:8082/clientes/1/extrato", host: "localhost:9999"
+load-balancer  | 2024/03/11 02:57:19 [error] 29#29: *18 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01          | [INFO] Scanning for projects...
+load-balancer  | 2024/03/11 02:57:21 [error] 29#29: *19 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02          | [INFO] Scanning for projects...
+api01          | [INFO] 
+api01          | [INFO] ----------------------< com.github.wesleyav:api >-----------------------
+api01          | [INFO] Building api 0.0.1-SNAPSHOT
+api01          | [INFO]   from pom.xml
+api01          | [INFO] --------------------------------[ jar ]---------------------------------
+api01          | [INFO] 
+api01          | [INFO] >>> spring-boot:3.2.2:run (default-cli) > test-compile @ api >>>
+api02          | [INFO] 
+api02          | [INFO] ----------------------< com.github.wesleyav:api >-----------------------
+api02          | [INFO] Building api 0.0.1-SNAPSHOT
+api02          | [INFO]   from pom.xml
+api02          | [INFO] --------------------------------[ jar ]---------------------------------
+api02          | [INFO] 
+api02          | [INFO] >>> spring-boot:3.2.2:run (default-cli) > test-compile @ api >>>
+load-balancer  | 2024/03/11 02:57:23 [error] 29#29: *20 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01          | [INFO] 
+api01          | [INFO] --- resources:3.3.1:resources (default-resources) @ api ---
+api02          | [INFO] 
+api02          | [INFO] --- resources:3.3.1:resources (default-resources) @ api ---
+api01          | [INFO] Copying 4 resources from src/main/resources to target/classes
+api02          | [INFO] Copying 4 resources from src/main/resources to target/classes
+api01          | [INFO] Copying 1 resource from src/main/resources to target/classes
+api01          | [INFO] 
+api01          | [INFO] --- compiler:3.11.0:compile (default-compile) @ api ---
+load-balancer  | 2024/03/11 02:57:25 [error] 29#29: *21 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02          | [INFO] Copying 1 resource from src/main/resources to target/classes
+api02          | [INFO] 
+api02          | [INFO] --- compiler:3.11.0:compile (default-compile) @ api ---
+api01          | [INFO] Changes detected - recompiling the module! :source
+api01          | [INFO] Compiling 24 source files with javac [debug release 17] to target/classes
+api02          | [INFO] Changes detected - recompiling the module! :source
+api02          | [INFO] Compiling 24 source files with javac [debug release 17] to target/classes
+db-mysql       | 2024-03-11 02:57:26+00:00 [Note] [Entrypoint]: Database files initialized
+db-mysql       | 2024-03-11 02:57:26+00:00 [Note] [Entrypoint]: Starting temporary server
+load-balancer  | 2024/03/11 02:57:27 [error] 29#29: *22 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-mysql       | /usr/local/bin/docker-entrypoint.sh: line 122:   130 Killed                  "$@" --daemonize --skip-networking --default-time-zone=SYSTEM --socket="${SOCKET}"
+db-mysql       | 2024-03-11 02:57:28+00:00 [ERROR] [Entrypoint]: Unable to start server.
+db-mysql exited with code 0
+load-balancer  | 2024/03/11 02:57:29 [error] 29#29: *23 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.4:8083/clientes/1/extrato", host: "localhost:9999"
+load-balancer  | 2024/03/11 02:57:29 [error] 29#29: *23 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.3:8082/clientes/1/extrato", host: "localhost:9999"
+db-mysql       | 2024-03-11 02:57:31+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+db-mysql       | 2024-03-11 02:57:31+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.33-1.el8 started.
+load-balancer  | 2024/03/11 02:57:31 [error] 29#29: *26 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-mysql       | '/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+api02 exited with code 0
+api01 exited with code 0
+load-balancer  | 2024/03/11 02:57:33 [error] 29#29: *27 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-mysql exited with code 0
+load-balancer  | 2024/03/11 02:57:35 [error] 29#29: *28 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-mysql       | 2024-03-11 02:57:37+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+db-mysql       | 2024-03-11 02:57:37+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.33-1.el8 started.
+load-balancer  | 2024/03/11 02:57:37 [error] 29#29: *29 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02          | [INFO] Scanning for projects...
+api01          | [INFO] Scanning for projects...
+db-mysql       | '/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+api02          | [INFO] 
+api02          | [INFO] ----------------------< com.github.wesleyav:api >-----------------------
+api02          | [INFO] Building api 0.0.1-SNAPSHOT
+api02          | [INFO]   from pom.xml
+api02          | [INFO] --------------------------------[ jar ]---------------------------------
+api01          | [INFO] 
+api01          | [INFO] ----------------------< com.github.wesleyav:api >-----------------------
+api01          | [INFO] Building api 0.0.1-SNAPSHOT
+api01          | [INFO]   from pom.xml
+api01          | [INFO] --------------------------------[ jar ]---------------------------------
+api02          | [INFO] 
+api02          | [INFO] >>> spring-boot:3.2.2:run (default-cli) > test-compile @ api >>>
+api01          | [INFO] 
+api01          | [INFO] >>> spring-boot:3.2.2:run (default-cli) > test-compile @ api >>>
+load-balancer  | 2024/03/11 02:57:39 [error] 29#29: *30 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01          | [INFO] 
+api01          | [INFO] --- resources:3.3.1:resources (default-resources) @ api ---
+api02          | [INFO] 
+api02          | [INFO] --- resources:3.3.1:resources (default-resources) @ api ---
+load-balancer  | 2024/03/11 02:57:41 [error] 29#29: *31 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.4:8083/clientes/1/extrato", host: "localhost:9999"
+load-balancer  | 2024/03/11 02:57:41 [error] 29#29: *31 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.224.3:8082/clientes/1/extrato", host: "localhost:9999"
+api01          | [INFO] Copying 4 resources from src/main/resources to target/classes
+api02          | [INFO] Copying 4 resources from src/main/resources to target/classes
+db-mysql exited with code 0
+api02          | [INFO] Copying 1 resource from src/main/resources to target/classes
+api02          | [INFO] 
+api02          | [INFO] --- compiler:3.11.0:compile (default-compile) @ api ---
+api01          | [INFO] Copying 1 resource from src/main/resources to target/classes
+api01          | [INFO] 
+api01          | [INFO] --- compiler:3.11.0:compile (default-compile) @ api ---
+api02          | [INFO] Changes detected - recompiling the module! :source
+api02          | [INFO] Compiling 24 source files with javac [debug release 17] to target/classes
+api01          | [INFO] Changes detected - recompiling the module! :source
+api01          | [INFO] Compiling 24 source files with javac [debug release 17] to target/classes
+db-mysql       | 2024-03-11 02:57:43+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+db-mysql       | 2024-03-11 02:57:43+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.33-1.el8 started.
+load-balancer  | 2024/03/11 02:57:43 [error] 29#29: *34 no live upstreams while connecting to upstream, client: 192.168.224.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-mysql       | '/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+load-balancer exited with code 0
+load-balancer exited with code 0
+db-mysql exited with code 137
+api02 exited with code 0
+api02 exited with code 143
+api01 exited with code 0
+api01 exited with code 143
+db-mysql       | 2024-03-11 02:57:49+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+db-mysql       | 2024-03-11 02:57:49+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.33-1.el8 started.
+db-mysql       | '/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+db-mysql exited with code 0

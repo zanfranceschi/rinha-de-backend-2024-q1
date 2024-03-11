@@ -1,0 +1,37 @@
+services:
+  db:
+    restart: always
+    image: fmarkson/rinha-backend-q1-2024-rust:database_r1
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "260MB"
+
+  api1: &api
+    restart: always
+    image: fmarkson/rinha-backend-q1-2024-rust:backend_r1
+    environment:
+      PORT: 8000
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "6MB" # 2MB is enougth, but docker only permit 6MB :(
+
+  api2:
+    <<: *api
+    environment:
+      PORT: 8001
+
+  loadbalancer:
+    restart: always
+    image: fmarkson/rinha-backend-q1-2024-rust:httpserver_r1
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "260MB"
