@@ -1,0 +1,69 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./conf/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./conf/postgresql.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "230MB"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "--dbname=rinha",
+          "--username=postgres"
+        ]
+      interval: 2s
+      timeout: 1m
+      retries: 5
+      start_period: 10s
+
+  api1: &api1
+    image: rafaelpadovezi/rinha-2-django-orm:1.0
+    hostname: api1
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - USE_STATIC_FILE_HANDLER_FROM_WSGI=TRUE
+      - DATABASE_URL=host=db dbname=rinha user=postgres password=postgres
+      - GUNICORN_WORKERS=2
+      - GUNICORN_WORKER_CONNECTIONS=5
+      - DEBUG=FALSE
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "150MB"
+  api2: 
+    <<: *api1
+    hostname: api2
+    ports:
+      - "8081:8080"
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "20MB"
