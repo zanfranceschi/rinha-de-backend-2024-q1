@@ -2,22 +2,20 @@ version: "3.8"
 
 services:
   app1: &app1
-    image: ogabriel/rinha-de-backend-2024-q1:elixir
+    image: ogabriel/rinha-de-backend-2024-q1:golang
     restart: always
     environment: &env_app1
-      MIX_ENV: prod
-      PHX_SERVER: true
       DATABASE_HOST: 127.0.0.1
-      DATABASE_URL: ecto://postgres:postgres@127.0.0.1/rinha
-      DATABASE_POOL_SIZE: 6
-      DATABASE_TIMEOUT: 20000
-      DATABASE_QUEUE_TARGET: 5000
-      DATABASE_QUEUE_INTERVAL: 10000
-      SECRET_KEY_BASE: xUZ2aYKI10TzUGY4juCkDIpip9LaDi8KOj0emd8HOHiFZh2zKT5sLXg+0/wzHfnw
-      ERL_MAX_PORTS: 2046
+      DATABASE_USER: postgres
+      DATABASE_PASS: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: rinha
+      DATABASE_POOL: 2
       PORT: 9997
-      RELEASE_DISTRIBUTION: name
-      RELEASE_NODE: app1@127.0.0.1
+      GIN_MODE: release
+      GOGC: off
+      GOMEMLIMIT: 110MiB
+      GOMAXPROCS: 1
     network_mode: host
     depends_on:
     - postgres
@@ -25,7 +23,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.35'
+          cpus: '0.25'
           memory: '120MB'
 
   app2:
@@ -35,7 +33,6 @@ services:
     environment:
       <<: *env_app1
       PORT: 9998
-      RELEASE_NODE: app2@127.0.0.1
     command: ["release"]
 
   nginx:
@@ -51,7 +48,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.2'
+          cpus: '0.3'
           memory: '50MB'
 
   postgres:
@@ -60,8 +57,6 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-    ports:
-    - 5432:5432
     network_mode: host
     volumes:
     - ./postgresql.conf:/etc/postgresql.conf
@@ -69,5 +64,5 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.6'
+          cpus: '0.7'
           memory: '260MB'
