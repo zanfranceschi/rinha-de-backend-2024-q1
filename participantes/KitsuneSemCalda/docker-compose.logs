@@ -4,8 +4,8 @@
  Container kitsunesemcalda-db-1  Created
  Container kitsunesemcalda-api02-1  Creating
  Container kitsunesemcalda-api01-1  Creating
- Container kitsunesemcalda-api01-1  Created
  Container kitsunesemcalda-api02-1  Created
+ Container kitsunesemcalda-api01-1  Created
  Container kitsunesemcalda-nginx-1  Creating
  Container kitsunesemcalda-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -20,24 +20,25 @@ db-1     | Data page checksums are disabled.
 db-1     | 
 db-1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
 db-1     | creating subdirectories ... ok
-db-1     | selecting dynamic shared memory implementation ... posix
 db-1     | selecting default max_connections ... 100
 db-1     | selecting default shared_buffers ... 128MB
-db-1     | selecting default time zone ... Etc/UTC
+db-1     | selecting default timezone ... Etc/UTC
+db-1     | selecting dynamic shared memory implementation ... posix
 db-1     | creating configuration files ... ok
-api01-1  | 2024/03/02 07:10:28 Unsecure show me the DSN: host=db user=postgres password=postgres dbname=rinha sslmode=disable
-api01-1  | 2024/03/02 07:10:28 Error: Unknown error opening gorm: failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.80.2:5432: connect: connection refused)
-api01-1  | 2024/03/02 07:10:28 Retrying in 1 seconds...
-api01-1  | 
-api01-1  | 2024/03/02 07:10:28 [35m/app/app/database/openDB.go:21
-api01-1  | [0m[31m[error] [0mfailed to initialize database, got error failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.80.2:5432: connect: connection refused)
-api02-1  | 2024/03/02 07:10:28 Unsecure show me the DSN: host=db user=postgres password=postgres dbname=rinha sslmode=disable
-api02-1  | 2024/03/02 07:10:28 Error: Unknown error opening gorm: failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.80.2:5432: connect: connection refused)
-api02-1  | 2024/03/02 07:10:28 Retrying in 1 seconds...
-api02-1  | 
-api02-1  | 2024/03/02 07:10:28 [35m/app/app/database/openDB.go:21
-api02-1  | [0m[31m[error] [0mfailed to initialize database, got error failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.80.2:5432: connect: connection refused)
 db-1     | running bootstrap script ... ok
+api01-1  | 2024/03/10 04:03:27 Unsecure show me the DSN: host=db user=admin password=123 dbname=rinha port=5432 sslmode=disable
+api01-1  | 
+api01-1  | 2024/03/10 04:03:27 [35m/app/app/database/openDB.go:21
+api01-1  | [0m[31m[error] [0mfailed to initialize database, got error failed to connect to `host=db user=admin database=rinha`: dial error (dial tcp 172.29.0.2:5432: connect: connection refused)
+api01-1  | 2024/03/10 04:03:27 Error: Unknown error opening gorm: failed to connect to `host=db user=admin database=rinha`: dial error (dial tcp 172.29.0.2:5432: connect: connection refused)
+api01-1  | 2024/03/10 04:03:27 Retrying in 3 seconds...
+api02-1  | 2024/03/10 04:03:27 Unsecure show me the DSN: host=db user=admin password=123 dbname=rinha port=5432 sslmode=disable
+api02-1  | 
+api02-1  | 2024/03/10 04:03:27 [35m/app/app/database/openDB.go:21
+api02-1  | [0m[31m[error] [0mfailed to initialize database, got error failed to connect to `host=db user=admin database=rinha`: dial error (dial tcp 172.29.0.2:5432: connect: connection refused)
+api02-1  | 2024/03/10 04:03:27 Error: Unknown error opening gorm: failed to connect to `host=db user=admin database=rinha`: dial error (dial tcp 172.29.0.2:5432: connect: connection refused)
+api02-1  | 2024/03/10 04:03:27 Retrying in 3 seconds...
+db-1     | performing post-bootstrap initialization ... ok
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -47,197 +48,75 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1  | 2024/03/02 07:10:28 [alert] 1#1: worker process 32 exited on signal 9
-nginx-1  | 2024/03/02 07:10:29 [alert] 1#1: worker process 30 exited on signal 9
-nginx-1  | 2024/03/02 07:10:29 [alert] 1#1: worker process 29 exited on signal 9
-api01-1  | 
-api01-1  | 2024/03/02 07:10:29 [35m/app/app/database/openDB.go:21
-api01-1  | [0m[31m[error] [0mfailed to initialize database, got error failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.80.2:5432: connect: connection refused)
-api01-1  | 2024/03/02 07:10:29 Error: Unknown error opening gorm: failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.80.2:5432: connect: connection refused)
-api01-1  | 2024/03/02 07:10:29 Retrying in 2 seconds...
-api02-1  | 
-api02-1  | 2024/03/02 07:10:29 [35m/app/app/database/openDB.go:21
-api02-1  | [0m[31m[error] [0mfailed to initialize database, got error failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.80.2:5432: connect: connection refused)
-api02-1  | 2024/03/02 07:10:29 Error: Unknown error opening gorm: failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.80.2:5432: connect: connection refused)
-api02-1  | 2024/03/02 07:10:29 Retrying in 2 seconds...
-nginx-1  | 2024/03/02 07:10:29 [alert] 1#1: worker process 33 exited on signal 9
-nginx-1  | 2024/03/02 07:10:29 [alert] 1#1: worker process 31 exited on signal 9
-db-1     | performing post-bootstrap initialization ... ok
-nginx-1  | 2024/03/02 07:10:29 [alert] 1#1: worker process 35 exited on signal 9
-nginx-1  | 2024/03/02 07:10:29 [alert] 1#1: worker process 34 exited on signal 9
-nginx-1  | 2024/03/02 07:10:30 [alert] 1#1: worker process 36 exited on signal 9
-nginx-1  | 2024/03/02 07:10:30 [alert] 1#1: worker process 37 exited on signal 9
-nginx-1  | 2024/03/02 07:10:30 [alert] 1#1: worker process 38 exited on signal 9
-nginx-1  | 2024/03/02 07:10:30 [alert] 1#1: worker process 39 exited on signal 9
-nginx-1  | 2024/03/02 07:10:30 [alert] 1#1: worker process 40 exited on signal 9
-nginx-1  | 2024/03/02 07:10:30 [alert] 1#1: worker process 41 exited on signal 9
 db-1     | syncing data to disk ... ok
-db-1     | 
 db-1     | 
 db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-03-02 07:10:30.940 UTC [47] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-03-02 07:10:30.944 UTC [47] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-03-02 07:10:30.953 UTC [50] LOG:  database system was shut down at 2024-03-02 07:10:29 UTC
-db-1     | 2024-03-02 07:10:30.960 UTC [47] LOG:  database system is ready to accept connections
+db-1     | 
+db-1     | WARNING: enabling "trust" authentication for local connections
+db-1     | You can change this by editing pg_hba.conf or using the option -A, or
+db-1     | --auth-local and --auth-host, the next time you run initdb.
+db-1     | waiting for server to start....2024-03-10 04:03:28.480 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-10 04:03:28.502 UTC [49] LOG:  database system was shut down at 2024-03-10 04:03:27 UTC
+db-1     | 2024-03-10 04:03:28.509 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
-api01-1  | 2024/03/02 07:10:31 Error: Unknown error opening gorm: failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.80.2:5432: connect: connection refused)
-api01-1  | 2024/03/02 07:10:31 Retrying in 3 seconds...
-api01-1  | 
-api01-1  | 2024/03/02 07:10:31 [35m/app/app/database/openDB.go:21
-api01-1  | [0m[31m[error] [0mfailed to initialize database, got error failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.80.2:5432: connect: connection refused)
 db-1     | CREATE DATABASE
 db-1     | 
 db-1     | 
 db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
-api02-1  | 
-api02-1  | 2024/03/02 07:10:31 [35m/app/app/database/openDB.go:21
-api02-1  | [0m[31m[error] [0mfailed to initialize database, got error failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.80.2:5432: connect: connection refused)
-api02-1  | 2024/03/02 07:10:31 Error: Unknown error opening gorm: failed to connect to `host=db user=postgres database=rinha`: dial error (dial tcp 192.168.80.2:5432: connect: connection refused)
-api02-1  | 2024/03/02 07:10:31 Retrying in 3 seconds...
 db-1     | CREATE TABLE
 db-1     | CREATE TABLE
 db-1     | INSERT 0 5
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down....2024-03-02 07:10:31.613 UTC [47] LOG:  received fast shutdown request
-db-1     | 2024-03-02 07:10:32.163 UTC [47] LOG:  aborting any active transactions
-db-1     | 2024-03-02 07:10:32.165 UTC [47] LOG:  background worker "logical replication launcher" (PID 53) exited with exit code 1
-db-1     | 2024-03-02 07:10:32.165 UTC [48] LOG:  shutting down
-db-1     | 2024-03-02 07:10:32.606 UTC [48] LOG:  checkpoint starting: shutdown immediate
-db-1     | .2024-03-02 07:10:33.461 UTC [48] LOG:  checkpoint complete: wrote 938 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.633 s, sync=0.132 s, total=1.296 s; sync files=307, longest=0.055 s, average=0.001 s; distance=4290 kB, estimate=4290 kB; lsn=0/191B388, redo lsn=0/191B388
-db-1     | 2024-03-02 07:10:33.467 UTC [47] LOG:  database system is shut down
+db-1     | 2024-03-10 04:03:29.252 UTC [48] LOG:  received fast shutdown request
+db-1     | waiting for server to shut down....2024-03-10 04:03:29.255 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-03-10 04:03:29.256 UTC [48] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+db-1     | 2024-03-10 04:03:29.257 UTC [50] LOG:  shutting down
+db-1     | 2024-03-10 04:03:29.389 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-03-02 07:10:33.540 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-03-02 07:10:33.562 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-03-02 07:10:33.562 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-03-02 07:10:33.569 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-03-02 07:10:33.577 UTC [65] LOG:  database system was shut down at 2024-03-02 07:10:33 UTC
-db-1     | 2024-03-02 07:10:33.584 UTC [1] LOG:  database system is ready to accept connections
+db-1     | 2024-03-10 04:03:29.464 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-03-10 04:03:29.464 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-03-10 04:03:29.472 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-10 04:03:29.488 UTC [85] LOG:  database system was shut down at 2024-03-10 04:03:29 UTC
+db-1     | 2024-03-10 04:03:29.494 UTC [1] LOG:  database system is ready to accept connections
+api01-1  | 2024/03/10 04:03:30 OK: Gorm connect with success
+api02-1  | 2024/03/10 04:03:30 OK: Gorm connect with success
+api01-1  | 2024/03/10 04:03:39 Error: unconsistent transaction type: x
+api01-1  | 2024/03/10 04:03:39 Error: unconsistent transaction type: x
+api02-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 25
+api01-1  | 2024/03/10 04:03:39 Error: unconsistent transaction type: x
+api02-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 0
+api02-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 25
+api01-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 0
+api01-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 25
+api01-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 25
+api01-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 25
+api01-1  | 2024/03/10 04:03:39 Error: unconsistent transaction type: x
+api02-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 0
+api02-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 25
+api02-1  | 2024/03/10 04:03:39 Error: unconsistent transaction type: x
+api02-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 25
+api01-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 0
+api01-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 0
+api01-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 0
+api02-1  | 2024/03/10 04:03:39 Error: unconsistent transaction description: size equal 25
 nginx-1 exited with code 0
-nginx-1  | 10-listen-on-ipv6-by-default.sh: info: IPv6 listen already enabled
-nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1  | 2024/03/02 07:10:33 [alert] 1#1: worker process 23 exited on signal 9
-nginx-1  | 2024/03/02 07:10:34 [alert] 1#1: worker process 22 exited on signal 9
-nginx-1  | 2024/03/02 07:10:34 [alert] 1#1: worker process 24 exited on signal 9
-nginx-1  | 2024/03/02 07:10:34 [alert] 1#1: worker process 25 exited on signal 9
-nginx-1  | 2024/03/02 07:10:34 [alert] 1#1: worker process 27 exited on signal 9
-nginx-1  | 2024/03/02 07:10:34 [alert] 1#1: worker process 26 exited on signal 9
-nginx-1  | 2024/03/02 07:10:35 [alert] 1#1: worker process 28 exited on signal 9
-nginx-1  | 2024/03/02 07:10:35 [alert] 1#1: worker process 29 exited on signal 9
-nginx-1  | 2024/03/02 07:10:35 [alert] 1#1: worker process 30 exited on signal 9
-nginx-1  | 2024/03/02 07:10:35 [alert] 1#1: worker process 31 exited on signal 9
-nginx-1  | 2024/03/02 07:10:35 [alert] 1#1: worker process 32 exited on signal 9
-nginx-1  | 2024/03/02 07:10:36 [alert] 1#1: worker process 33 exited on signal 9
-nginx-1 exited with code 0
-nginx-1  | 10-listen-on-ipv6-by-default.sh: info: IPv6 listen already enabled
-nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1 exited with code 0
-nginx-1 exited with code 0
-nginx-1  | 10-listen-on-ipv6-by-default.sh: info: IPv6 listen already enabled
-nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1 exited with code 137
-nginx-1  | 2024/03/02 07:10:42 [alert] 1#1: worker process 24 exited on signal 9
-nginx-1  | 2024/03/02 07:10:43 [alert] 1#1: worker process 26 exited on signal 9
-nginx-1  | 2024/03/02 07:10:43 [alert] 1#1: worker process 23 exited on signal 9
-nginx-1  | 2024/03/02 07:10:43 [alert] 1#1: worker process 25 exited on signal 9
-nginx-1  | 2024/03/02 07:10:43 [alert] 1#1: worker process 27 exited on signal 9
-nginx-1  | 2024/03/02 07:10:43 [alert] 1#1: worker process 28 exited on signal 9
-nginx-1  | 2024/03/02 07:10:43 [alert] 1#1: worker process 29 exited on signal 9
-nginx-1  | 2024/03/02 07:10:44 [alert] 1#1: worker process 31 exited on signal 9
-nginx-1  | 2024/03/02 07:10:44 [alert] 1#1: worker process 32 exited on signal 9
-nginx-1  | 2024/03/02 07:10:44 [alert] 1#1: worker process 30 exited on signal 9
-nginx-1  | 2024/03/02 07:10:44 [alert] 1#1: worker process 33 exited on signal 9
-nginx-1  | 2024/03/02 07:10:44 [alert] 1#1: worker process 34 exited on signal 9
-nginx-1  | 2024/03/02 07:10:45 [alert] 1#1: worker process 35 exited on signal 9
-nginx-1  | 2024/03/02 07:10:45 [alert] 1#1: worker process 37 exited on signal 9
-nginx-1  | 2024/03/02 07:10:45 [alert] 1#1: worker process 36 exited on signal 9
-nginx-1  | 2024/03/02 07:10:45 [alert] 1#1: worker process 38 exited on signal 9
-nginx-1  | 2024/03/02 07:10:45 [alert] 1#1: worker process 39 exited on signal 9
-nginx-1  | 2024/03/02 07:10:45 [alert] 1#1: worker process 40 exited on signal 9
-nginx-1  | 2024/03/02 07:10:46 [alert] 1#1: worker process 41 exited on signal 9
-nginx-1  | 2024/03/02 07:10:46 [alert] 1#1: worker process 42 exited on signal 9
-nginx-1  | 2024/03/02 07:10:46 [alert] 1#1: worker process 43 exited on signal 9
-nginx-1  | 2024/03/02 07:10:46 [alert] 1#1: worker process 44 exited on signal 9
-nginx-1  | 2024/03/02 07:10:46 [alert] 1#1: worker process 45 exited on signal 9
-nginx-1  | 2024/03/02 07:10:47 [alert] 1#1: worker process 46 exited on signal 9
-nginx-1  | 2024/03/02 07:10:47 [alert] 1#1: worker process 48 exited on signal 9
-nginx-1  | 2024/03/02 07:10:47 [alert] 1#1: worker process 47 exited on signal 9
-nginx-1  | 2024/03/02 07:10:47 [alert] 1#1: worker process 49 exited on signal 9
-nginx-1  | 2024/03/02 07:10:47 [alert] 1#1: worker process 50 exited on signal 9
-nginx-1  | 2024/03/02 07:10:47 [alert] 1#1: worker process 51 exited on signal 9
-nginx-1  | 2024/03/02 07:10:48 [alert] 1#1: worker process 52 exited on signal 9
-nginx-1  | 2024/03/02 07:10:48 [alert] 1#1: worker process 54 exited on signal 9
-nginx-1  | 2024/03/02 07:10:48 [alert] 1#1: worker process 53 exited on signal 9
-nginx-1  | 2024/03/02 07:10:48 [alert] 1#1: worker process 55 exited on signal 9
-nginx-1  | 2024/03/02 07:10:48 [alert] 1#1: worker process 57 exited on signal 9
-nginx-1  | 2024/03/02 07:10:48 [alert] 1#1: worker process 56 exited on signal 9
-nginx-1  | 2024/03/02 07:10:49 [alert] 1#1: worker process 58 exited on signal 9
-nginx-1  | 2024/03/02 07:10:49 [alert] 1#1: worker process 59 exited on signal 9
-nginx-1  | 2024/03/02 07:10:49 [alert] 1#1: worker process 61 exited on signal 9
-nginx-1 exited with code 137
-nginx-1 exited with code 137
-nginx-1  | 10-listen-on-ipv6-by-default.sh: info: IPv6 listen already enabled
-nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1 exited with code 137
-nginx-1  | 2024/03/02 07:11:13 [alert] 1#1: worker process 22 exited on signal 9
-nginx-1  | 2024/03/02 07:11:13 [alert] 1#1: worker process 23 exited on signal 9
-nginx-1  | 2024/03/02 07:11:13 [alert] 1#1: worker process 25 exited on signal 9
-nginx-1  | 2024/03/02 07:11:13 [alert] 1#1: worker process 24 exited on signal 9
-nginx-1  | 2024/03/02 07:11:14 [alert] 1#1: worker process 26 exited on signal 9
-nginx-1  | 2024/03/02 07:11:14 [alert] 1#1: worker process 27 exited on signal 9
-nginx-1  | 2024/03/02 07:11:14 [alert] 1#1: worker process 28 exited on signal 9
-nginx-1  | 2024/03/02 07:11:14 [alert] 1#1: worker process 29 exited on signal 9
-nginx-1  | 2024/03/02 07:11:14 [alert] 1#1: worker process 30 exited on signal 9
-nginx-1  | 2024/03/02 07:11:14 [alert] 1#1: worker process 31 exited on signal 9
-nginx-1  | 2024/03/02 07:11:15 [alert] 1#1: worker process 33 exited on signal 9
-nginx-1  | 2024/03/02 07:11:15 [alert] 1#1: worker process 34 exited on signal 9
-nginx-1  | 2024/03/02 07:11:15 [alert] 1#1: worker process 32 exited on signal 9
-nginx-1  | 2024/03/02 07:11:15 [alert] 1#1: worker process 35 exited on signal 9
-nginx-1  | 2024/03/02 07:11:15 [alert] 1#1: worker process 36 exited on signal 9
-nginx-1  | 2024/03/02 07:11:15 [alert] 1#1: worker process 37 exited on signal 9
-nginx-1  | 2024/03/02 07:11:16 [alert] 1#1: worker process 38 exited on signal 9
-nginx-1  | 2024/03/02 07:11:16 [alert] 1#1: worker process 39 exited on signal 9
-nginx-1  | 2024/03/02 07:11:16 [alert] 1#1: worker process 40 exited on signal 9
-nginx-1  | 2024/03/02 07:11:16 [alert] 1#1: worker process 41 exited on signal 9
-nginx-1  | 2024/03/02 07:11:16 [alert] 1#1: worker process 42 exited on signal 9
-nginx-1  | 2024/03/02 07:11:16 [alert] 1#1: worker process 43 exited on signal 9
-nginx-1  | 2024/03/02 07:11:17 [alert] 1#1: worker process 44 exited on signal 9
-nginx-1  | 2024/03/02 07:11:17 [alert] 1#1: worker process 45 exited on signal 9
-nginx-1  | 2024/03/02 07:11:17 [alert] 1#1: worker process 46 exited on signal 9
-nginx-1  | 2024/03/02 07:11:17 [alert] 1#1: worker process 48 exited on signal 9
-nginx-1 exited with code 137
 nginx-1 exited with code 0
 api02-1 exited with code 0
 api02-1 exited with code 2
 api01-1 exited with code 0
 api01-1 exited with code 2
-db-1     | 2024-03-02 07:11:26.781 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-03-02 07:11:26.786 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-03-02 07:11:26.788 UTC [1] LOG:  background worker "logical replication launcher" (PID 68) exited with exit code 1
-db-1     | 2024-03-02 07:11:26.788 UTC [63] LOG:  shutting down
-db-1     | 2024-03-02 07:11:26.791 UTC [63] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-03-02 07:11:26.849 UTC [63] LOG:  checkpoint complete: wrote 48 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.032 s, total=0.062 s; sync files=17, longest=0.006 s, average=0.002 s; distance=238 kB, estimate=238 kB; lsn=0/1956F20, redo lsn=0/1956F20
-db-1     | 2024-03-02 07:11:26.853 UTC [1] LOG:  database system is shut down
+db-1     | 2024-03-10 04:07:45.001 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-03-10 04:07:45.005 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-03-10 04:07:45.007 UTC [1] LOG:  background worker "logical replication launcher" (PID 91) exited with exit code 1
+db-1     | 2024-03-10 04:07:45.007 UTC [86] LOG:  shutting down
+db-1     | 2024-03-10 04:07:45.155 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0

@@ -1,29 +1,33 @@
 services:
   api1: &api
-    image: thiagotn/rinhafastapi:1.0
-    hostname: api1
-    command: uvicorn app.main:app --port 3000
+    image: thiagotn/rinhafastapi:3.0
+    container_name: api1
+    command: uvicorn app.main:app --host 0.0.0.0 --port 3000
     network_mode: host
     environment:
       - MAX_CONNECTIONS=5
       - MIN_CONNECTIONS=1
+      - POSTGRES_DB=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_HOST=localhost
     depends_on:
       db:
         condition: service_healthy
     deploy:
       resources:
         limits:
-          cpus: "0.4"
-          memory: "95MB"
+          cpus: "590m"
+          memory: "105MB"
 
   api2: 
     <<: *api
-    hostname: api2
-    command: uvicorn app.main:app --port 3001
+    container_name: api2
+    command: uvicorn app.main:app --host 0.0.0.0 --port 3001
 
   db:
     image: postgres:16
-    hostname: db
+    container_name: db
     volumes:
       - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./config/postgresql.conf:/etc/postgresql/postgresql.conf
@@ -43,11 +47,12 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: "330MB"
+          cpus: "240m"
+          memory: "320MB"
 
   nginx:
     image: nginx 
+    container_name: nginx
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
     network_mode: host
@@ -57,5 +62,5 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.2"
-          memory: "30MB"
+          cpus: "80m"
+          memory: "20MB"

@@ -26,14 +26,15 @@ services:
       - DATABASE_URL=postgres://postgres:postgres@localhost:5432/rinha
       - APP_PORT=:8888
 
-  nginx:
-    image: nginx:latest
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  lb:
+    image: arthurqueiroz04/rinha-lb-http:latest
     network_mode: "host"
     depends_on:
       - api01
       - api02
+    environment:
+      - API01_PORT=8889
+      - API02_PORT=8888
     deploy:
       resources:
         limits:

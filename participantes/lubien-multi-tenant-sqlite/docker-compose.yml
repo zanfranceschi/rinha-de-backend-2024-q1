@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   rinha1: &api
-    image: lubien/backend-fight-2024-q1-multitenant:v0.0.1
+    image: lubien/backend-fight-2024-q1-multitenant:v0.0.3
     hostname: rinha1
     environment:
       - DB_HOSTNAME=db
@@ -13,7 +13,9 @@ services:
       - RINHA_APP_NAME=rinha1
       - IP_V4_ADDRESS=192.0.1.11
       - PRIMARY_REGION=primary
+      - SECONDARY_REGION=replica
       - MY_REGION=primary
+      - USE_DNS_CLUSTER_RESOLVER=true
     ports:
       - "3001:3000"
     deploy:
@@ -36,6 +38,8 @@ services:
       - IP_V4_ADDRESS=192.0.1.12
       - PRIMARY_REGION=primary
       - MY_REGION=replica
+      - SECONDARY_REGION=replica
+      - USE_DNS_CLUSTER_RESOLVER=true
     ports:
       - "3002:3000"
     deploy:

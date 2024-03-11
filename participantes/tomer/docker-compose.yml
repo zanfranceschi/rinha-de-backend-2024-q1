@@ -1,0 +1,63 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: tdlsimis/herebedragons
+    hostname: api01
+    user: root
+    network_mode: host
+    environment:
+      - SOCK=/dev/shm/api01.sock
+      - RUST_LOG="herebedragons"
+      - SQLITE_POOL_SIZE=4
+    volumes:
+      - ./dbs:/app/dbs
+      - /dev/shm/:/dev/shm/:rw
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "125MB"
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - SOCK=/dev/shm/api02.sock
+      - SQLITE_POOL_SIZE=4
+
+  nginx:
+    image: nginx:mainline
+    network_mode: host
+    user: root
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /dev/shm/:/dev/shm/:rw
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "300MB"
+        reservations:
+          cpus: "0.5"
+          memory: "300MB"
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    logging:
+      driver: none
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

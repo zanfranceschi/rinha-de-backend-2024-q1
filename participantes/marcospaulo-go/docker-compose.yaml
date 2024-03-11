@@ -1,0 +1,78 @@
+version: '3.5'
+
+services:
+
+  api1: &app
+    container_name: marcospaulo-go-api1
+    image: marcosisocram/rinha-go-2024-q1:1.0.0
+    hostname: api1
+    network_mode: "host"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - PORT=8180
+      - DB_CONNECTION=postgresql://user:rinha-de-bK@localhost:5433/postgres
+      - GIN_MODE=release
+      - DB_MAX_CONN=2
+      - DB_MIN_CONN=1
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2687'
+          memory: "70MB"
+
+  api2: # API - Instância 02
+    <<: *app
+    container_name: marcospaulo-go-api2
+    hostname: api2
+    environment:
+      - PORT=8280
+      - DB_CONNECTION=postgresql://user:rinha-de-bK@localhost:5433/postgres
+      - GIN_MODE=release
+      - DB_MAX_CONN=2
+      - DB_MIN_CONN=1
+
+  db:
+    image: postgres:16.2
+    container_name: marcospaulo-go-postgresql
+    hostname: db
+    network_mode: "host"
+    environment:
+      - POSTGRES_PASSWORD=rinha-de-bK
+      - POSTGRES_USER=user
+      - POSTGRES_DB=postgres
+      - PGPORT=5433
+    expose:
+      - "5433"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.725'
+          memory: '300MB'
+
+  nginx: # Load Balancer
+    container_name: marcospaulo-go-nginx
+    image: nginx:1.25.4-alpine
+    network_mode: "host"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    expose:
+      - "9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2375'
+          memory: '70MB'
+ 

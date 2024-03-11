@@ -1,0 +1,76 @@
+version: "3.5"
+
+services:
+  api01: &api
+    # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
+    # publicamente acessível! Ex.: hub.docker.com
+    image: gabrielsantoslima/fast.money:latest
+    hostname: api01
+    environment:
+      - NODE_ENV=production
+      - DB_URL=postgresql://db:5432/FMDB?user=admin&password=fastmoneyapi
+
+    # Não é necessário expor qualquer porta além da porta do load balancer,
+    # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
+    # ao banco de dados na fase de desenvolvimento.
+    ports:
+      - "8081:3000"
+    depends_on:
+      - db
+    networks:
+      - api
+    deploy:
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: "200MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api
+    hostname: api02
+    environment:
+      - NODE_ENV=production
+      - DB_URL=postgresql://db:5432/FMDB?user=admin&password=fastmoneyapi
+    networks:
+      - api
+    ports:
+      - "8082:3000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    networks:
+      - api
+    deploy:
+      resources:
+        limits:
+          cpus: "0.17"
+          memory: "10MB"
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=fastmoneyapi
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=FMDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/script.sql
+    networks:
+      - api
+    deploy:
+      resources:
+        limits:
+          cpus: "0.13"
+          memory: "140MB"
+
+networks:
+  api:
+    driver: bridge
