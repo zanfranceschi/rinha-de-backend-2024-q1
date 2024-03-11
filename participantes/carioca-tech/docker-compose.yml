@@ -1,0 +1,80 @@
+services:
+  nginx:
+    image: nginx:mainline-alpine
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    environment:
+      - NGINX_ENTRYPOINT_WORKER_PROCESSES_AUTOTUNE:1
+    ports:
+      - "9999:9999"
+    sysctls:
+      net.core.somaxconn: 3000
+      net.ipv4.ip_local_port_range: 32768 60999
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: '64MB'
+    depends_on:
+      app1:
+        condition: service_started
+      app2:
+        condition: service_started
+  app1: &app
+    image: otiluke/rinha-2024-q1:0.0.1
+    networks:
+      - app-network
+    depends_on:
+      db-postgresql:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: '96MB'
+  app2: *app
+  db-postgresql:
+    command: 'postgres -c max_connections=350 -c shared_buffers=256MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off -c log_statement=none -c log_duration=off -c log_lock_waits=off -c log_error_verbosity=terse -c log_min_messages=panic -c log_min_error_statement=panic -c effective_io_concurrency=3 -c enable_partition_pruning=true'
+    user: 999:999
+    hostname: db-postgresql
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=rinha123
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinhadb
+      - POSTGRES_INITDB_ARGS ="--encoding=ISO88591 --lc-collate=C --lc-ctype=C"
+    volumes:
+      - ./docker/postgres/initdb:/docker-entrypoint-initdb.d
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: '294MB'
+    healthcheck:
+      test: "pg_isready"
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
