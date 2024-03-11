@@ -1,0 +1,88 @@
+ Container ogabriel-golang-postgres-1  Creating
+ Container ogabriel-golang-postgres-1  Created
+ Container ogabriel-golang-app1-1  Creating
+ Container ogabriel-golang-app1-1  Created
+ Container ogabriel-golang-app2-1  Creating
+ Container ogabriel-golang-app2-1  Created
+ Container ogabriel-golang-nginx-1  Creating
+ Container ogabriel-golang-nginx-1  Created
+Attaching to app1-1, app2-1, nginx-1, postgres-1
+postgres-1  | The files belonging to this database system will be owned by user "postgres".
+postgres-1  | This user must also own the server process.
+postgres-1  | 
+postgres-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgres-1  | The default database encoding has accordingly been set to "UTF8".
+postgres-1  | The default text search configuration will be set to "english".
+postgres-1  | 
+postgres-1  | Data page checksums are disabled.
+postgres-1  | 
+postgres-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres-1  | creating subdirectories ... ok
+postgres-1  | selecting dynamic shared memory implementation ... posix
+postgres-1  | selecting default max_connections ... 100
+postgres-1  | selecting default shared_buffers ... 128MB
+app1-1      | until nc -z -v -w30 127.0.0.1 5432; do \
+app1-1      |   sleep 1; \
+app1-1      | done
+postgres-1  | selecting default time zone ... UTC
+postgres-1  | creating configuration files ... ok
+app2-1      | until nc -z -v -w30 127.0.0.1 5432; do \
+app2-1      |   sleep 1; \
+app2-1      | done
+nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+postgres-1  | running bootstrap script ... ok
+nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
+postgres-1  | sh: locale: not found
+postgres-1  | 2024-03-11 02:23:29.317 UTC [30] WARNING:  no usable system locales were found
+postgres-1  | performing post-bootstrap initialization ... ok
+postgres-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres-1  | syncing data to disk ... ok
+postgres-1  | 
+postgres-1  | 
+postgres-1  | Success. You can now start the database server using:
+postgres-1  | 
+postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres-1  | 
+postgres-1  | waiting for server to start.... done
+postgres-1  | server started
+postgres-1  | 
+postgres-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres-1  | 
+postgres-1  | waiting for server to shut down.... done
+postgres-1  | server stopped
+postgres-1  | 
+postgres-1  | PostgreSQL init process complete; ready for start up.
+postgres-1  | 
+app1-1      | 127.0.0.1 (127.0.0.1:5432) open
+app1-1      | psql postgres://postgres:postgres@127.0.0.1:5432 -c "DROP DATABASE rinha" || exit 0
+app1-1      | psql: error: connection to server at "127.0.0.1", port 5432 failed: FATAL:  the database system is starting up
+app1-1      | psql postgres://postgres:postgres@127.0.0.1:5432 -c "CREATE DATABASE rinha"
+app1-1      | CREATE DATABASE
+app1-1      | migrate -path migrations/ -database postgres://postgres:postgres@127.0.0.1:5432/rinha?sslmode=disable -verbose up
+app1-1      | 2024/03/11 02:23:30 Start buffering 1/u create_clientes
+app1-1      | 2024/03/11 02:23:30 Start buffering 2/u create_transacoes
+app1-1      | 2024/03/11 02:23:30 Start buffering 3/u populate_clientes
+app1-1      | 2024/03/11 02:23:30 Read and execute 1/u create_clientes
+app1-1      | 2024/03/11 02:23:30 Finished 1/u create_clientes (read 1.684829ms, ran 43.425248ms)
+app1-1      | 2024/03/11 02:23:30 Read and execute 2/u create_transacoes
+app1-1      | 2024/03/11 02:23:30 Finished 2/u create_transacoes (read 46.562837ms, ran 4.39106ms)
+app1-1      | 2024/03/11 02:23:30 Read and execute 3/u populate_clientes
+app2-1      | 127.0.0.1 (127.0.0.1:5432) open
+app1-1      | 2024/03/11 02:23:30 Finished 3/u populate_clientes (read 52.239053ms, ran 2.286899ms)
+app1-1      | 2024/03/11 02:23:30 Finished after 55.428457ms
+app1-1      | 2024/03/11 02:23:30 Closing source and database
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+app2-1 exited with code 0
+app2-1 exited with code 2
+app1-1 exited with code 0
+app1-1 exited with code 2
+postgres-1 exited with code 0

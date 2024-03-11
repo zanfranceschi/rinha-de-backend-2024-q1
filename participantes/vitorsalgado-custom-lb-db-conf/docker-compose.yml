@@ -8,10 +8,10 @@ services:
     hostname: api01
     network_mode: host
     environment:
-      - DB_CONN_STRING=user=rinha password=rinha dbname=rinha host=0.0.0.0 port=6432 sslmode=disable pool_min_conns=5 pool_max_conns=5
+      - DB_CONN_STRING=user=rinha password=rinha dbname=rinha host=0.0.0.0 port=5432 sslmode=disable pool_min_conns=5 pool_max_conns=5
       - ADDR=:8081
-      - GOGC=400
-      - GOMEMLIMIT=70MiB
+      - GOGC=off
+      - GOMEMLIMIT=120MiB
     depends_on:
       db:
         condition: service_healthy
@@ -19,7 +19,7 @@ services:
       resources:
         limits:
           cpus: "0.2"
-          memory: "75MB"
+          memory: "125MB"
 
   api02:
     <<: *api
@@ -27,24 +27,20 @@ services:
     hostname: api02
     network_mode: host
     environment:
-      - DB_CONN_STRING=user=rinha password=rinha dbname=rinha host=0.0.0.0 port=6432 sslmode=disable pool_min_conns=5 pool_max_conns=5
+      - DB_CONN_STRING=user=rinha password=rinha dbname=rinha host=0.0.0.0 port=5432 sslmode=disable pool_min_conns=5 pool_max_conns=5
       - ADDR=:8082
-      - GOGC=400
-      - GOMEMLIMIT=70MiB
+      - GOGC=off
+      - GOMEMLIMIT=120MiB
 
-  lb:
-    image: vitorsalgado/rinha-2024q1-lb
-    pull_policy: always
-    container_name: lb
-    hostname: lb
+  envoy:
+    image: envoyproxy/envoy:v1.29-latest
+    container_name: envoy
     network_mode: host
-    environment:
-      - BACKEND_ENDPOINTS=0.0.0.0:8081,0.0.0.0:8082
-      - ADDR=0.0.0.0:9999
-      - GOGC=400
-      - GOMEMLIMIT=75MiB
     expose:
       - "9999"
+    volumes:
+      - ./conf/envoy.yaml:/etc/envoy/envoy.yaml:ro
+    command: /usr/local/bin/envoy -c /etc/envoy/envoy.yaml --concurrency 1
     depends_on:
       - api01
       - api02
@@ -52,7 +48,7 @@ services:
       resources:
         limits:
           cpus: "0.3"
-          memory: "80MB"
+          memory: "100MB"
 
   db:
     image: postgres:16.2
@@ -66,7 +62,9 @@ services:
       - "5432"
     volumes:
       - ./conf/script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./conf/postgresql.conf:/etc/postgresql/postgresql.conf
       - data:/var/lib/postgresql/data
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     healthcheck:
       test: ["CMD", "pg_isready", "--username", "rinha"]
       interval: 5s
@@ -76,28 +74,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.6"
-          memory: "300MB"
-
-  bouncer:
-    image: vitorsalgado/rinha-2024q1-bouncer
-    pull_policy: always
-    container_name: bouncer
-    environment:
-      PGB_DATABASES: rinha = host=0.0.0.0 port=5432 pool_mode=statement pool_size=20
-      PGB_ADMIN_USERS: rinha
-      PGB_ADMIN_PASSWORDS: rinha
-    network_mode: host
-    expose:
-      - "6432"
-    depends_on:
-      db:
-        condition: service_healthy
-    deploy:
-      resources:
-        limits:
-          cpus: "0.2"
-          memory: "20MB"
+          cpus: "0.8"
+          memory: "200MB"
 
 volumes:
   data:
