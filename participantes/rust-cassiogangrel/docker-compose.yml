@@ -1,0 +1,59 @@
+services:
+  api01: &api
+    image: cassiogangrel/rust_rinha_2e:1.0.0
+    depends_on:
+      - postgres
+    restart: on-failure
+    environment: 
+      - DATABASE_URL=postgres://rinha:rinha@postgres:5432/rinha
+      - DATABASE_CONN_POOL_MIN=40
+      - DATABASE_CONN_POOL_MAX=40
+      - PORT=3000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "15MB"
+  api02:
+    <<: *api
+    depends_on:
+      - api01
+      - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: "500MB"
+    healthcheck:
+      test: 'pg_isready -U rinha --dbname=rinha'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: on-failure
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "20MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha

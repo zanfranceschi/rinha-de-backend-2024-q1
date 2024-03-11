@@ -1,0 +1,500 @@
+ Network rinha  Creating
+ Network rinha  Created
+ Container marincor-db-1  Creating
+ Container marincor-db-1  Created
+ Container marincor-api02-1  Creating
+ Container marincor-api01-1  Creating
+ Container marincor-api01-1  Created
+ Container marincor-api02-1  Created
+ Container marincor-haproxy-1  Creating
+ Container marincor-haproxy-1  Created
+Attaching to api01-1, api02-1, db-1, haproxy-1
+db-1       | The files belonging to this database system will be owned by user "postgres".
+db-1       | This user must also own the server process.
+db-1       | 
+db-1       | The database cluster will be initialized with locale "en_US.utf8".
+db-1       | The default database encoding has accordingly been set to "UTF8".
+db-1       | The default text search configuration will be set to "english".
+db-1       | 
+db-1       | Data page checksums are disabled.
+db-1       | 
+db-1       | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1       | creating subdirectories ... ok
+db-1       | selecting dynamic shared memory implementation ... posix
+db-1       | selecting default max_connections ... 100
+db-1       | selecting default shared_buffers ... 128MB
+db-1       | selecting default time zone ... UTC
+db-1       | creating configuration files ... ok
+db-1       | running bootstrap script ... ok
+db-1       | sh: locale: not found
+db-1       | 2024-02-19 11:40:36.961 UTC [30] WARNING:  no usable system locales were found
+api02-1    | panic: failed to connect to `host=db user=admin database=rinha`: dial error (dial tcp 172.29.0.2:5432: connect: connection refused)
+api02-1    | 
+api02-1    | goroutine 1 [running]:
+api02-1    | api.default.marincor.com/adapters/database.Connect({0xaeb1b8, 0xfd1a40})
+api02-1    | 	/app/adapters/database/database.go:44 +0x1ef
+api02-1    | api.default.marincor.com/pkg/app.ApplicationInit()
+api02-1    | 	/app/pkg/app/app.go:35 +0xdf
+api02-1    | main.main()
+api02-1    | 	/app/main.go:9 +0x25
+api01-1    | panic: failed to connect to `host=db user=admin database=rinha`: dial error (dial tcp 172.29.0.2:5432: connect: connection refused)
+api01-1    | 
+api01-1    | goroutine 1 [running]:
+api01-1    | api.default.marincor.com/adapters/database.Connect({0xaeb1b8, 0xfd1a40})
+api01-1    | 	/app/adapters/database/database.go:44 +0x1ef
+api01-1    | api.default.marincor.com/pkg/app.ApplicationInit()
+api01-1    | 	/app/pkg/app/app.go:35 +0xdf
+api01-1    | main.main()
+api01-1    | 	/app/main.go:9 +0x25
+db-1       | performing post-bootstrap initialization ... ok
+db-1       | syncing data to disk ... ok
+db-1       | 
+db-1       | 
+db-1       | Success. You can now start the database server using:
+db-1       | 
+db-1       |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1       | 
+db-1       | initdb: warning: enabling "trust" authentication for local connections
+db-1       | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+api02-1 exited with code 0
+api01-1 exited with code 0
+db-1       | waiting for server to start.... done
+db-1       | server started
+db-1       | CREATE DATABASE
+db-1       | 
+db-1       | 
+db-1       | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init_tables.sql
+db-1       | psql:/docker-entrypoint-initdb.d/init_tables.sql:1: NOTICE:  table "clientes" does not exist, skipping
+db-1       | DROP TABLE
+db-1       | psql:/docker-entrypoint-initdb.d/init_tables.sql:2: NOTICE:  table "transacoes" does not exist, skipping
+db-1       | DROP TABLE
+db-1       | psql:/docker-entrypoint-initdb.d/init_tables.sql:3: NOTICE:  type "tipo_transacao" does not exist, skipping
+db-1       | DROP TYPE
+db-1       | CREATE TYPE
+db-1       | CREATE TABLE
+db-1       | CREATE INDEX
+db-1       | CREATE TABLE
+db-1       | CREATE INDEX
+db-1       | INSERT 0 5
+db-1       | 
+db-1       | 
+db-1       | waiting for server to shut down..... done
+db-1       | server stopped
+db-1       | 
+db-1       | PostgreSQL init process complete; ready for start up.
+db-1       | 
+haproxy-1  | [NOTICE]   (1) : New worker (9) forked
+haproxy-1  | [NOTICE]   (1) : Loading success.
+api01-1    | 2024/02/19 11:40:41 database connected successfully
+api02-1    | 2024/02/19 11:40:41 database connected successfully
+api02-1    | 
+api02-1    |  ┌───────────────────────────────────────────────────┐ 
+api02-1    |  │                   Fiber v2.49.2                   │ 
+api02-1    |  │               http://127.0.0.1:3000               │ 
+api02-1    |  │       (bound on host 0.0.0.0 and port 3000)       │ 
+api02-1    |  │                                                   │ 
+api02-1    |  │ Handlers ............ 10  Processes ........... 1 │ 
+api01-1    | 
+api01-1    |  ┌───────────────────────────────────────────────────┐ 
+api01-1    |  │                   Fiber v2.49.2                   │ 
+api01-1    |  │               http://127.0.0.1:3000               │ 
+api01-1    |  │       (bound on host 0.0.0.0 and port 3000)       │ 
+api01-1    |  │                                                   │ 
+api01-1    |  │ Handlers ............ 10  Processes ........... 1 │ 
+api01-1    |  │ Prefork ....... Disabled  PID ................. 1 │ 
+api01-1    |  └───────────────────────────────────────────────────┘ 
+api01-1    | 
+api02-1    |  │ Prefork ....... Disabled  PID ................. 1 │ 
+api02-1    |  └───────────────────────────────────────────────────┘ 
+api02-1    | 
+api02-1 exited with code 0
+api01-1 exited with code 0
+api01-1    | 2024/02/19 11:40:41 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:1]] map[saldo:map[data_extrato:2024-02-19T11:40:41.92948Z limite:100000 total:0] ultimas_transacoes:[]]  172.29.0.5 GET /clientes/1/extrato }
+api01-1    | 2024/02/19 11:40:41 info
+api01-1    | 2024/02/19 11:40:41 <nil>
+api01-1    | 2024/02/19 11:40:41 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:1]] map[saldo:map[data_extrato:2024-02-19T11:40:41.92948Z limite:100000 total:0] ultimas_transacoes:[]]  172.29.0.5 GET /clientes/1/extrato }
+api01-1    | 2024/02/19 11:40:41 info
+api01-1    | 2024/02/19 11:40:41 <nil>
+api02-1    | 2024/02/19 11:40:41 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:1]] map[saldo:map[data_extrato:2024-02-19T11:40:41.938411Z limite:100000 total:0] ultimas_transacoes:[]]  172.29.0.5 GET /clientes/1/extrato }
+api02-1    | 2024/02/19 11:40:41 info
+api02-1    | 2024/02/19 11:40:41 <nil>
+api02-1    | 2024/02/19 11:40:41 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:1]] map[saldo:map[data_extrato:2024-02-19T11:40:41.938411Z limite:100000 total:0] ultimas_transacoes:[]]  172.29.0.5 GET /clientes/1/extrato }
+api02-1    | 2024/02/19 11:40:41 info
+api02-1    | 2024/02/19 11:40:41 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-1]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-1]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-2]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-2]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-3]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-3]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-4]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-4]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-5]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-5]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-7]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-7]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-6]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-6]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-8]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-8]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-10]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-10]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-9]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-9]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-12]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-12]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-13]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-13]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-11]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-11]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-15]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-15]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-14]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-14]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-16]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-16]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-17]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-17]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-18]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-18]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-19]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-19]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-20]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-20]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-21]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-21]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-22]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-22]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-23]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-23]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-24]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api01-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-24]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:47 info
+api01-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-25]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:47 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:d valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-25]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:47 info
+api02-1    | 2024/02/19 11:40:47 <nil>
+api02-1    | 2024/02/19 11:40:48 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:1]] map[saldo:map[data_extrato:2024-02-19T11:40:48.162993Z limite:100000 total:-25] ultimas_transacoes:[map[descricao:validacao realizada_em:2024-02-19T11:40:47.315514Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.29272Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.291191Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.28663Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.284808Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.279481Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.275507Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.27168Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.269339Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.266115Z tipo:d valor:1]]]  172.29.0.5 GET /clientes/1/extrato }
+api02-1    | 2024/02/19 11:40:48 info
+api02-1    | 2024/02/19 11:40:48 <nil>
+api02-1    | 2024/02/19 11:40:48 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:1]] map[saldo:map[data_extrato:2024-02-19T11:40:48.162993Z limite:100000 total:-25] ultimas_transacoes:[map[descricao:validacao realizada_em:2024-02-19T11:40:47.315514Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.29272Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.291191Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.28663Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.284808Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.279481Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.275507Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.27168Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.269339Z tipo:d valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:47.266115Z tipo:d valor:1]]]  172.29.0.5 GET /clientes/1/extrato }
+api02-1    | 2024/02/19 11:40:48 info
+api02-1    | 2024/02/19 11:40:48 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-24]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-24]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-23]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-23]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-21]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-22]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-21]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-22]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-20]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-20]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-19]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-19]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-18]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-18]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-17]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-17]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-16]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-16]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-15]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-15]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-14]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-14]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-13]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-13]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-12]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-12]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-11]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-11]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-10]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-10]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-9]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-9]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-8]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-8]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-7]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-7]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-6]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-6]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-5]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-5]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-4]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-4]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-3]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-3]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-2]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-2]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-1]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:-1]  172.29.0.5 POST /clientes/1/transacoes }
+api02-1    | 2024/02/19 11:40:49 info
+api02-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:0]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api01-1    | 2024/02/19 11:40:49 &{transaction successfully created  200 map[body:map[descricao:validacao tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:0]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:49 info
+api01-1    | 2024/02/19 11:40:49 <nil>
+api02-1    | 2024/02/19 11:40:50 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:1]] map[saldo:map[data_extrato:2024-02-19T11:40:50.162694Z limite:100000 total:0] ultimas_transacoes:[map[descricao:validacao realizada_em:2024-02-19T11:40:49.2548Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.253325Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.238063Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.235258Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.232024Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.230792Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.22737Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.225914Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.223352Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.221363Z tipo:c valor:1]]]  172.29.0.5 GET /clientes/1/extrato }
+api02-1    | 2024/02/19 11:40:50 info
+api02-1    | 2024/02/19 11:40:50 <nil>
+api02-1    | 2024/02/19 11:40:50 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:1]] map[saldo:map[data_extrato:2024-02-19T11:40:50.162694Z limite:100000 total:0] ultimas_transacoes:[map[descricao:validacao realizada_em:2024-02-19T11:40:49.2548Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.253325Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.238063Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.235258Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.232024Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.230792Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.22737Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.225914Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.223352Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.221363Z tipo:c valor:1]]]  172.29.0.5 GET /clientes/1/extrato }
+api02-1    | 2024/02/19 11:40:50 info
+api02-1    | 2024/02/19 11:40:50 <nil>
+api01-1    | 2024/02/19 11:40:51 &{error to get balance cliente id is missing 404 map[body:map[] query:map[] url_params:map[id:6]] <nil>  172.29.0.5 GET /clientes/6/extrato }
+api01-1    | 2024/02/19 11:40:51 error
+api01-1    | 2024/02/19 11:40:51 <nil>
+api01-1    | 2024/02/19 11:40:51 &{error to get balance cliente id is missing 404 map[body:map[] query:map[] url_params:map[id:6]] <nil>  172.29.0.5 GET /clientes/6/extrato }
+api01-1    | 2024/02/19 11:40:51 error
+api01-1    | 2024/02/19 11:40:51 <nil>
+api02-1    | 2024/02/19 11:40:51 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:1]] map[saldo:map[data_extrato:2024-02-19T11:40:51.166936Z limite:100000 total:0] ultimas_transacoes:[map[descricao:validacao realizada_em:2024-02-19T11:40:49.2548Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.253325Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.238063Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.235258Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.232024Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.230792Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.22737Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.225914Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.223352Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.221363Z tipo:c valor:1]]]  172.29.0.5 GET /clientes/1/extrato }
+api02-1    | 2024/02/19 11:40:51 info
+api02-1    | 2024/02/19 11:40:51 <nil>
+api02-1    | 2024/02/19 11:40:51 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:1]] map[saldo:map[data_extrato:2024-02-19T11:40:51.166936Z limite:100000 total:0] ultimas_transacoes:[map[descricao:validacao realizada_em:2024-02-19T11:40:49.2548Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.253325Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.238063Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.235258Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.232024Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.230792Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.22737Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.225914Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.223352Z tipo:c valor:1] map[descricao:validacao realizada_em:2024-02-19T11:40:49.221363Z tipo:c valor:1]]]  172.29.0.5 GET /clientes/1/extrato }
+api02-1    | 2024/02/19 11:40:51 info
+api02-1    | 2024/02/19 11:40:51 <nil>
+api01-1    | 2024/02/19 11:40:51 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:4]] map[saldo:map[data_extrato:2024-02-19T11:40:51.167094Z limite:1e+07 total:0] ultimas_transacoes:[]]  172.29.0.5 GET /clientes/4/extrato }
+api01-1    | 2024/02/19 11:40:51 info
+api01-1    | 2024/02/19 11:40:51 <nil>
+api01-1    | 2024/02/19 11:40:51 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:4]] map[saldo:map[data_extrato:2024-02-19T11:40:51.167094Z limite:1e+07 total:0] ultimas_transacoes:[]]  172.29.0.5 GET /clientes/4/extrato }
+api01-1    | 2024/02/19 11:40:51 info
+api01-1    | 2024/02/19 11:40:51 <nil>
+api01-1    | 2024/02/19 11:40:51 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:2]] map[saldo:map[data_extrato:2024-02-19T11:40:51.168777Z limite:80000 total:0] ultimas_transacoes:[]]  172.29.0.5 GET /clientes/2/extrato }
+api01-1    | 2024/02/19 11:40:51 info
+api01-1    | 2024/02/19 11:40:51 <nil>
+api01-1    | 2024/02/19 11:40:51 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:2]] map[saldo:map[data_extrato:2024-02-19T11:40:51.168777Z limite:80000 total:0] ultimas_transacoes:[]]  172.29.0.5 GET /clientes/2/extrato }
+api01-1    | 2024/02/19 11:40:51 info
+api01-1    | 2024/02/19 11:40:51 <nil>
+api02-1    | 2024/02/19 11:40:51 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:3]] map[saldo:map[data_extrato:2024-02-19T11:40:51.16853Z limite:1e+06 total:0] ultimas_transacoes:[]]  172.29.0.5 GET /clientes/3/extrato }
+api02-1    | 2024/02/19 11:40:51 info
+api02-1    | 2024/02/19 11:40:51 <nil>
+api02-1    | 2024/02/19 11:40:51 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:5]] map[saldo:map[data_extrato:2024-02-19T11:40:51.168238Z limite:500000 total:0] ultimas_transacoes:[]]  172.29.0.5 GET /clientes/5/extrato }
+api02-1    | 2024/02/19 11:40:51 info
+api02-1    | 2024/02/19 11:40:51 <nil>
+api02-1    | 2024/02/19 11:40:51 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:3]] map[saldo:map[data_extrato:2024-02-19T11:40:51.16853Z limite:1e+06 total:0] ultimas_transacoes:[]]  172.29.0.5 GET /clientes/3/extrato }
+api02-1    | 2024/02/19 11:40:51 info
+api02-1    | 2024/02/19 11:40:51 <nil>
+api02-1    | 2024/02/19 11:40:51 &{balance successfully retrieved  200 map[body:map[] query:map[] url_params:map[id:5]] map[saldo:map[data_extrato:2024-02-19T11:40:51.168238Z limite:500000 total:0] ultimas_transacoes:[]]  172.29.0.5 GET /clientes/5/extrato }
+api02-1    | 2024/02/19 11:40:51 info
+api02-1    | 2024/02/19 11:40:51 <nil>
+api01-1    | 2024/02/19 11:40:51 &{transaction successfully created  200 map[body:map[descricao:toma tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:1]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:51 info
+api01-1    | 2024/02/19 11:40:51 <nil>
+api01-1    | 2024/02/19 11:40:51 &{transaction successfully created  200 map[body:map[descricao:toma tipo:c valor:1] query:map[] url_params:map[id:1]] map[ID:1 limite:100000 saldo:1]  172.29.0.5 POST /clientes/1/transacoes }
+api01-1    | 2024/02/19 11:40:51 info
+api01-1    | 2024/02/19 11:40:51 <nil>
+api02-1    | 2024/02/19 11:40:51 &{transaction successfully created  200 map[body:map[descricao:toma tipo:c valor:1] query:map[] url_params:map[id:3]] map[ID:3 limite:1e+06 saldo:1]  172.29.0.5 POST /clientes/3/transacoes }
+api02-1    | 2024/02/19 11:40:51 info
+api02-1    | 2024/02/19 11:40:51 <nil>
+api02-1    | 2024/02/19 11:40:51 &{transaction successfully created  200 map[body:map[descricao:toma tipo:c valor:1] query:map[] url_params:map[id:2]] map[ID:2 limite:80000 saldo:1]  172.29.0.5 POST /clientes/2/transacoes }
+api02-1    | 2024/02/19 11:40:51 info
+api02-1    | 2024/02/19 11:40:51 <nil>
+api01-1    | 2024/02/19 11:40:51 &{transaction successfully created  200 map[body:map[descricao:toma tipo:c valor:1] query:map[] url_params:map[id:4]] map[ID:4 limite:1e+07 saldo:1]  172.29.0.5 POST /clientes/4/transacoes }
+api01-1    | 2024/02/19 11:40:51 info
+api01-1    | 2024/02/19 11:40:51 <nil>
+api01-1    | 2024/02/19 11:40:51 &{transaction successfully created  200 map[body:map[descricao:toma tipo:c valor:1] query:map[] url_params:map[id:5]] map[ID:5 limite:500000 saldo:1]  172.29.0.5 POST /clientes/5/transacoes }
+api01-1    | 2024/02/19 11:40:51 info
+api01-1    | 2024/02/19 11:40:51 <nil>
+api01-1    | 2024/02/19 11:40:51 &{transaction successfully created  200 map[body:map[descricao:toma tipo:c valor:1] query:map[] url_params:map[id:4]] map[ID:4 limite:1e+07 saldo:1]  172.29.0.5 POST /clientes/4/transacoes }
+api01-1    | 2024/02/19 11:40:51 info
+api01-1    | 2024/02/19 11:40:51 <nil>
+api01-1    | 2024/02/19 11:40:51 &{transaction successfully created  200 map[body:map[descricao:toma tipo:c valor:1] query:map[] url_params:map[id:5]] map[ID:5 limite:500000 saldo:1]  172.29.0.5 POST /clientes/5/transacoes }
+api01-1    | 2024/02/19 11:40:51 info
+api01-1    | 2024/02/19 11:40:51 <nil>
+api02-1    | 2024/02/19 11:40:51 &{transaction successfully created  200 map[body:map[descricao:toma tipo:c valor:1] query:map[] url_params:map[id:3]] map[ID:3 limite:1e+06 saldo:1]  172.29.0.5 POST /clientes/3/transacoes }
+api02-1    | 2024/02/19 11:40:51 info
+api02-1    | 2024/02/19 11:40:51 <nil>
+api02-1    | 2024/02/19 11:40:51 &{transaction successfully created  200 map[body:map[descricao:toma tipo:c valor:1] query:map[] url_params:map[id:2]] map[ID:2 limite:80000 saldo:1]  172.29.0.5 POST /clientes/2/transacoes }
+api02-1    | 2024/02/19 11:40:51 info

@@ -1,0 +1,500 @@
+ Network hfurlan-java_rinha-network  Creating
+ Network hfurlan-java_rinha-network  Created
+ Container hfurlan-java-db-1  Creating
+ Container hfurlan-java-db-1  Created
+ Container hfurlan-java-api02-1  Creating
+ Container hfurlan-java-api01-1  Creating
+ Container hfurlan-java-api01-1  Created
+ Container hfurlan-java-api02-1  Created
+ Container hfurlan-java-nginx-1  Creating
+ Container hfurlan-java-nginx-1  Created
+Attaching to api01-1, api02-1, db-1, nginx-1
+db-1     | The files belonging to this database system will be owned by user "postgres".
+db-1     | This user must also own the server process.
+db-1     | 
+db-1     | The database cluster will be initialized with locale "en_US.utf8".
+db-1     | The default database encoding has accordingly been set to "UTF8".
+db-1     | The default text search configuration will be set to "english".
+db-1     | 
+db-1     | Data page checksums are disabled.
+db-1     | 
+db-1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1     | creating subdirectories ... ok
+db-1     | selecting dynamic shared memory implementation ... posix
+db-1     | selecting default max_connections ... 100
+db-1     | selecting default shared_buffers ... 128MB
+db-1     | selecting default time zone ... Etc/UTC
+db-1     | creating configuration files ... ok
+db-1     | running bootstrap script ... ok
+api01-1  | Conectando no BD...
+api01-1  | DB_HOSTNAME:db
+api01-1  | DB_NAME:rinha
+api01-1  | DB_USERNAME:admin
+api01-1  | DB_MAX_CONNECTIONS:5
+api01-1  | VERSAO:0.0.1-SNAPSHOT
+api02-1  | Conectando no BD...
+api02-1  | DB_HOSTNAME:db
+api02-1  | DB_NAME:rinha
+api02-1  | DB_USERNAME:admin
+api02-1  | DB_MAX_CONNECTIONS:5
+api02-1  | VERSAO:0.0.1-SNAPSHOT
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+db-1     | performing post-bootstrap initialization ... ok
+api01-1  | Exception in thread "main" org.postgresql.util.PSQLException: Connection to db:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+api01-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:346)
+api01-1  | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+api01-1  | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:273)
+api01-1  | 	at org.postgresql.Driver.makeConnection(Driver.java:446)
+api01-1  | 	at org.postgresql.Driver.connect(Driver.java:298)
+api01-1  | 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:683)
+api01-1  | 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+api01-1  | 	at com.github.hfurlan.rinha.App.<init>(App.java:63)
+api01-1  | 	at com.github.hfurlan.rinha.App.main(App.java:320)
+api01-1  | Caused by: java.net.ConnectException: Connection refused
+api01-1  | 	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+api01-1  | 	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+api01-1  | 	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+api01-1  | 	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+api01-1  | 	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+api01-1  | 	at java.base/java.net.Socket.connect(Socket.java:751)
+api01-1  | 	at org.postgresql.core.PGStream.createSocket(PGStream.java:243)
+api01-1  | 	at org.postgresql.core.PGStream.<init>(PGStream.java:98)
+api01-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:136)
+api01-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:262)
+api01-1  | 	... 8 more
+api02-1  | Exception in thread "main" org.postgresql.util.PSQLException: Connection to db:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+api02-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:346)
+api02-1  | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+api02-1  | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:273)
+api02-1  | 	at org.postgresql.Driver.makeConnection(Driver.java:446)
+api02-1  | 	at org.postgresql.Driver.connect(Driver.java:298)
+api02-1  | 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:683)
+api02-1  | 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+api02-1  | 	at com.github.hfurlan.rinha.App.<init>(App.java:63)
+api02-1  | 	at com.github.hfurlan.rinha.App.main(App.java:320)
+api02-1  | Caused by: java.net.ConnectException: Connection refused
+api02-1  | 	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+api02-1  | 	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+api02-1  | 	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+api02-1  | 	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+api02-1  | 	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+api02-1  | 	at java.base/java.net.Socket.connect(Socket.java:751)
+api02-1  | 	at org.postgresql.core.PGStream.createSocket(PGStream.java:243)
+api02-1  | 	at org.postgresql.core.PGStream.<init>(PGStream.java:98)
+api02-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:136)
+api02-1  | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:262)
+api02-1  | 	... 8 more
+db-1     | syncing data to disk ... ok
+db-1     | 
+db-1     | 
+db-1     | Success. You can now start the database server using:
+db-1     | 
+db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1     | 
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1     | waiting for server to start....2024-03-08 02:47:45.455 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-08 02:47:45.464 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-08 02:47:45.509 UTC [51] LOG:  database system was shut down at 2024-03-08 02:47:42 UTC
+db-1     | 2024-03-08 02:47:45.559 UTC [48] LOG:  database system is ready to accept connections
+db-1     |  done
+db-1     | server started
+db-1     | CREATE DATABASE
+db-1     | 
+db-1     | 
+db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/ddl.sql
+db-1     | CREATE TABLE
+db-1     | CREATE TABLE
+db-1     | CREATE TABLE
+db-1     | CREATE FUNCTION
+db-1     | CREATE FUNCTION
+db-1     | CREATE TRIGGER
+db-1     | CREATE TRIGGER
+db-1     | CREATE FUNCTION
+db-1     | CREATE FUNCTION
+db-1     | 
+db-1     | 
+db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/dml.sql
+db-1     | INSERT 0 5
+db-1     | 
+db-1     | 
+db-1     | waiting for server to shut down...2024-03-08 02:47:45.926 UTC [48] LOG:  received fast shutdown request
+db-1     | .2024-03-08 02:47:45.929 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-03-08 02:47:45.931 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-03-08 02:47:45.931 UTC [49] LOG:  shutting down
+db-1     | 2024-03-08 02:47:45.935 UTC [49] LOG:  checkpoint starting: shutdown immediate
+api01-1 exited with code 0
+api02-1 exited with code 0
+db-1     | 2024-03-08 02:47:46.498 UTC [49] LOG:  checkpoint complete: wrote 939 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.443 s, sync=0.095 s, total=0.567 s; sync files=308, longest=0.048 s, average=0.001 s; distance=4306 kB, estimate=4306 kB; lsn=0/191F2C0, redo lsn=0/191F2C0
+db-1     | 2024-03-08 02:47:46.503 UTC [48] LOG:  database system is shut down
+db-1     |  done
+db-1     | server stopped
+db-1     | 
+db-1     | PostgreSQL init process complete; ready for start up.
+db-1     | 
+db-1     | 2024-03-08 02:47:46.562 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-08 02:47:46.563 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-03-08 02:47:46.563 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-03-08 02:47:46.573 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-08 02:47:46.584 UTC [68] LOG:  database system was shut down at 2024-03-08 02:47:46 UTC
+db-1     | 2024-03-08 02:47:46.591 UTC [1] LOG:  database system is ready to accept connections
+nginx-1  | 2024/03/08 02:47:46 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.20.0.3:8081/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/08 02:47:46 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.20.0.4:8082/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/08 02:47:48 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | Servidor iniciado e aguardando conexoes na PORTA 8082 (5 threads)
+api01-1  | Servidor iniciado e aguardando conexoes na PORTA 8081 (5 threads)
+nginx-1  | 2024/03/08 02:47:50 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/08 02:47:52 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/08 02:47:54 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/08 02:47:56 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.20.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-1     | 2024-03-08 02:48:20.702 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:20.911 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:21.369 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:21.577 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:21.779 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:21.859 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:21.939 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:22.019 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:22.139 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:22.299 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:22.419 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:22.579 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:22.725 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:22.869 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:23.047 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:23.119 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:23.369 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:23.477 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:23.686 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:23.824 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:23.893 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:23.929 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:24.101 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:24.239 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:24.412 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:24.515 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:24.550 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:25.005 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:25.424 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:25.553 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:25.585 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:25.648 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:25.860 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:26.042 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:26.225 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:26.284 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:26.437 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:26.496 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:26.527 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:26.621 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:26.647 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:26.817 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:26.846 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:26.960 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:27.275 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:27.503 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:27.591 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:27.699 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:28.078 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:28.294 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:28.933 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:29.275 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:29.591 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:29.793 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:30.043 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:30.068 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:30.118 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:30.168 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:30.193 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:30.418 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:30.443 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:30.664 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:30.815 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:30.927 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:31.046 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:31.094 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:31.188 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:31.237 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:31.474 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:31.618 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:31.777 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:31.800 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:31.868 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:31.981 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:32.027 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:32.072 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:32.299 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:32.436 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:32.527 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:32.572 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:32.595 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:32.639 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:32.683 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:32.704 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:32.857 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:32.944 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:33.009 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:33.487 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:33.680 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:33.766 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:34.128 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:34.341 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:34.362 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:34.490 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:34.554 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:34.618 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:34.738 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:34.918 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:34.957 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:34.978 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:34.998 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:35.098 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:35.158 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:35.298 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:35.418 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:35.695 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:35.813 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:35.852 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:35.872 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:35.989 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:36.009 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:36.205 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:36.322 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:36.712 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:36.919 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:36.995 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:37.108 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:37.259 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:37.581 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:37.618 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:37.654 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:37.672 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:37.890 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.018 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.036 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.054 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.090 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.127 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.163 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.236 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.254 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.290 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.308 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.381 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.399 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.490 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.527 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.581 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:38.599 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:39.081 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:39.153 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:39.170 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:39.493 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:39.563 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:39.617 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:39.735 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:39.820 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:39.906 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:40.176 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:40.261 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:40.312 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:40.447 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:40.481 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:40.601 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:40.715 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:40.934 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:41.068 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:41.151 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:41.168 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:41.301 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:41.368 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:41.551 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:41.713 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:41.827 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:41.843 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:41.876 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:41.908 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:41.956 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:42.118 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:42.150 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:42.376 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:42.851 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:42.913 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:43.015 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:43.024 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:43.118 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:43.148 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:43.242 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:43.368 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:43.429 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:43.618 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:43.830 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:43.875 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:44.193 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:44.208 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:44.254 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:44.602 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:44.618 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:44.632 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:44.794 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:44.956 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:44.970 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:45.353 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:45.441 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:45.456 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:45.470 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:45.545 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:45.631 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:45.790 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:45.906 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:45.964 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:46.066 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:46.167 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:46.269 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:46.327 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:46.457 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:46.588 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:46.602 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:46.632 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:46.757 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.040 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.181 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.195 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.279 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.294 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.336 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.434 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.448 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.477 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.491 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.533 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.547 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.672 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.699 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.712 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.753 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.861 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.874 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.915 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.928 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:47.955 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.009 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.050 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.063 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.077 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.118 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.172 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.185 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.199 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.239 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.253 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.374 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.401 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.415 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.469 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.496 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.523 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.577 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.618 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.765 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.846 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.954 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:48.968 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.144 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.171 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.292 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.306 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.319 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.414 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.427 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.441 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.454 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.468 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.535 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.589 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.603 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.629 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.669 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.694 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.746 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.811 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.824 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.876 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.903 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.916 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:49.967 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.045 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.058 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.071 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.136 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.188 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.266 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.279 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.305 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.370 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.552 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.604 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.643 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.744 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:50.909 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.263 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.339 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.352 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.364 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.415 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.428 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.529 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.554 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.580 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.592 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.617 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.629 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.654 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.667 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.804 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:51.817 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.079 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.242 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.255 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.329 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.354 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.404 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.479 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.579 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.618 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.703 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.715 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.727 UTC [78] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.898 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:52.983 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:53.154 UTC [72] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:53.191 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:53.215 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:53.315 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:53.349 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:53.386 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:53.398 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:53.447 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:53.544 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:53.843 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:53.902 UTC [80] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:54.082 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:54.093 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:54.105 UTC [79] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:54.141 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:54.164 UTC [81] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:54.366 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:54.378 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:54.402 UTC [76] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:54.414 UTC [73] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:54.450 UTC [75] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:54.521 UTC [74] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"
+db-1     | 2024-03-08 02:48:54.533 UTC [77] ERROR:  new row for relation "saldos" violates check constraint "saldo_valido"

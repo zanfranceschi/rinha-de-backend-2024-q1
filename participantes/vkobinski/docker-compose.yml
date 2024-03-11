@@ -6,21 +6,18 @@ services:
     # publicamente acessível! Ex.: hub.docker.com
     image: vkobinski/rinha
     hostname: api01
-    build:
-      context: .
-      dockerfile: ./Dockerfile
     environment:
       - DB_HOSTNAME=rinha
       - DATABASE_URL=postgres://rinha:rinha@db/rinha
       - PROD_PORT=8080
+      - CONNECTIONS=30
 
     # Não é necessário expor qualquer porta além da porta do load balancer,
     # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
     # ao banco de dados na fase de desenvolvimento.
-    ports:
-      - "8081:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -35,8 +32,7 @@ services:
       - DB_HOSTNAME=rinha
       - DATABASE_URL=postgres://rinha:rinha@db/rinha
       - PROD_PORT=8080
-    ports:
-      - "8082:8080"
+      - CONNECTIONS=30
 
   nginx:
     image: nginx:latest
@@ -62,9 +58,15 @@ services:
       - POSTGRES_DB=rinha
     ports:
       - "5432:5432"
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     volumes:
       - ./db/script.sql:/docker-entrypoint-initdb.d/script.sql
-      - ./postgres.conf:/docker-entrypoint-initdb.d/postgres.conf
+      - ./postgres.conf:/etc/postgresql/postgresql.conf:ro
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     deploy:
       resources:
         limits:

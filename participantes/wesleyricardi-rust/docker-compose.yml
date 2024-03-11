@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  api01: &api
+    image: wesleyricardi/rinha-backend-2024-q1-rust:latest
+    environment:
+      - PORT=8081
+      - DATABASE_URL=postgres://postgres:123456789@localhost:5432/rinha
+    depends_on:
+      database:
+        condition: service_healthy
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.19"
+          memory: "20MB"
+  api02:
+    <<: *api 
+    environment:
+      - PORT=8082
+      - DATABASE_URL=postgres://postgres:123456789@localhost:5432/rinha
+  database:
+      image: postgres:16
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: 123456789
+        POSTGRES_DB: rinha
+        TZ: America/Sao_Paulo
+      healthcheck:
+        test: ['CMD', 'pg_isready', '-U', 'postgres', '-d', 'rinha']
+        interval: 1s
+        timeout: 5s
+        retries: 10
+        start_period: 5s
+      network_mode: "host"
+      volumes:
+        - ./db_scripts:/docker-entrypoint-initdb.d:ro
+      deploy:
+        resources:
+          limits:
+            cpus: "0.75"
+            memory: "480MB"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.37"
+          memory: "30MB"

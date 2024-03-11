@@ -1,0 +1,69 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: accerqueira/rinha-de-backend-2024-q1-api
+    depends_on:
+      - db
+    environment:
+      - DB_CONNECTION_URL=http://127.0.0.1:8083
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "10MB"
+    command: -p 8081 -u -s
+
+  api02:
+    <<: *api
+    command: -p 8082 -u -s
+
+  lb:
+    image: accerqueira/rinha-de-backend-2024-q1-lb
+    depends_on:
+      - api01
+      - api02
+    environment:
+      - SERVERS=http://127.0.0.1:8081|http://127.0.0.1:8082
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "20MB"
+    command: -p 9999 -u -s
+
+  db:
+    image: accerqueira/rinha-de-backend-2024-q1-db
+    network_mode: host
+    environment:
+      - DB_INIT_SCRIPT=
+        CREATE TABLE IF NOT EXISTS clients (
+          "id" INTEGER PRIMARY KEY NOT NULL,
+          "balance" INTEGER NOT NULL,
+          "limit" INTEGER NOT NULL
+        );
+        DELETE FROM clients;
+        INSERT INTO clients ("id", "limit", "balance") VALUES
+          (1, 100000, 0),
+          (2, 80000, 0),
+          (3, 1000000, 0),
+          (4, 10000000, 0),
+          (5, 500000, 0);
+
+        CREATE TABLE IF NOT EXISTS transactions (
+          "client_id" INTEGER NOT NULL,
+          "type" INTEGER NOT NULL,
+          "value" INTEGER NOT NULL,
+          "description" VARCHAR(10) NOT NULL,
+          "performed_at" DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+        CREATE INDEX IF NOT EXISTS idx_transactions_client_id ON transactions ("client_id");
+        DELETE FROM transactions;
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "20MB"
+    command: -p 8083 -u -s

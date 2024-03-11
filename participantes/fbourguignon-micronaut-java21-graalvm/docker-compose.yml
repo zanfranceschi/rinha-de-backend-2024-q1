@@ -1,0 +1,67 @@
+version: "3.7"
+services:
+
+  db:
+    hostname: db
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: rinha
+      POSTGRES_PASSWORD: rinha
+    networks:
+     - rinha_backend_network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.60"
+          memory: "320MB"
+
+  api1: &app
+    image: bourguignon/rinha-backend-2024-q1-java21-graalvm-micronaut:0.1
+    hostname: api1
+    restart: unless-stopped
+    environment:
+      - JDBC_URL=jdbc:postgresql://db:5432/postgres
+      - JDBC_USER=rinha
+      - JDBC_PASSWORD=rinha
+    networks:
+     - rinha_backend_network
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "100MB"
+
+  api2:
+    <<: *app
+    hostname: api2
+    environment:
+      - JDBC_URL=jdbc:postgresql://db:5432/postgres
+      - JDBC_USER=rinha
+      - JDBC_PASSWORD=rinha
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999" 
+    networks:
+     - rinha_backend_network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "30MB"
+
+networks:
+  rinha_backend_network:
+    driver: bridge
+    name: rinha_backend_network

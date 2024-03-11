@@ -1,0 +1,74 @@
+version: '3.5'
+
+services:
+  api01: &api
+    image: mdssjc/rinha-de-backend-2024-q1:latest
+    hostname: api01
+    environment:
+      - DB_URL=jdbc:postgresql://db/rinha
+      - DB_USER=admin
+      - DB_PASSWORD=123
+    ports:
+      - '8081:8080'
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '190MB'
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - '8082:8080'
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - '9999:9999'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '20MB'
+  db:
+    image: postgres:16-alpine
+    hostname: db
+    environment:
+      - POSTGRES_DB=rinha
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql:ro
+    command: postgres
+      -c checkpoint_timeout=600
+      -c synchronous_commit=0
+      -c max_connections=100
+      -c effective_io_concurrency=200
+      -c full_page_writes=off
+      -c fsync=off
+      -c full_page_writes=off
+      -c synchronous_commit=off
+      -c max_wal_size=4096
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '150MB'
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

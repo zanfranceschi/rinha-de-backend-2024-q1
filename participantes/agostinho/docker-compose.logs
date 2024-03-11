@@ -4,8 +4,8 @@
  Container postgres  Created
  Container api2  Creating
  Container api1  Creating
- Container api2  Created
  Container api1  Created
+ Container api2  Created
  Container nginx  Creating
  Container nginx  Created
 Attaching to api1, api2, nginx, postgres
@@ -26,6 +26,49 @@ postgres  | selecting default shared_buffers ... 128MB
 postgres  | selecting default time zone ... Etc/UTC
 postgres  | creating configuration files ... ok
 postgres  | running bootstrap script ... ok
+postgres  | performing post-bootstrap initialization ... ok
+postgres  | syncing data to disk ... ok
+postgres  | 
+postgres  | 
+postgres  | Success. You can now start the database server using:
+postgres  | 
+postgres  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres  | 
+postgres  | initdb: warning: enabling "trust" authentication for local connections
+postgres  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres  | waiting for server to start....2024-02-29 00:01:49.835 GMT [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-02-29 00:01:49.837 GMT [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-02-29 00:01:49.848 GMT [51] LOG:  database system was shut down at 2024-02-29 00:01:48 GMT
+postgres  | 2024-02-29 00:01:49.859 GMT [48] LOG:  database system is ready to accept connections
+postgres  |  done
+postgres  | server started
+postgres  | 
+postgres  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+postgres  | CREATE TABLE
+postgres  | CREATE TABLE
+postgres  | CREATE INDEX
+postgres  | CREATE INDEX
+postgres  | DO
+postgres  | 
+postgres  | 
+postgres  | waiting for server to shut down....2024-02-29 00:01:50.001 GMT [48] LOG:  received fast shutdown request
+postgres  | 2024-02-29 00:01:50.005 GMT [48] LOG:  aborting any active transactions
+postgres  | 2024-02-29 00:01:50.015 GMT [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres  | 2024-02-29 00:01:50.015 GMT [49] LOG:  shutting down
+postgres  | 2024-02-29 00:01:50.018 GMT [49] LOG:  checkpoint starting: shutdown immediate
+postgres  | 2024-02-29 00:01:50.153 GMT [49] LOG:  checkpoint complete: wrote 71 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.114 s, total=0.139 s; sync files=50, longest=0.106 s, average=0.003 s; distance=208 kB, estimate=208 kB; lsn=0/151EBD0, redo lsn=0/151EBD0
+postgres  | 2024-02-29 00:01:50.156 GMT [48] LOG:  database system is shut down
+postgres  |  done
+postgres  | server stopped
+postgres  | 
+postgres  | PostgreSQL init process complete; ready for start up.
+postgres  | 
+postgres  | 2024-02-29 00:01:50.223 GMT [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-02-29 00:01:50.223 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres  | 2024-02-29 00:01:50.223 GMT [1] LOG:  listening on IPv6 address "::", port 5432
+postgres  | 2024-02-29 00:01:50.230 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-02-29 00:01:50.238 GMT [64] LOG:  database system was shut down at 2024-02-29 00:01:50 GMT
+postgres  | 2024-02-29 00:01:50.245 GMT [1] LOG:  database system is ready to accept connections
 nginx     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -35,93 +78,6 @@ nginx     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolv
 nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx     | /docker-entrypoint.sh: Configuration complete; ready for start up
-postgres  | performing post-bootstrap initialization ... ok
-postgres  | initdb: warning: enabling "trust" authentication for local connections
-postgres  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-postgres  | syncing data to disk ... ok
-postgres  | 
-postgres  | 
-postgres  | Success. You can now start the database server using:
-postgres  | 
-postgres  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
-postgres  | 
-postgres  | waiting for server to start....2024-02-11 20:48:51.948 GMT [50] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres  | 2024-02-11 20:48:51.951 GMT [50] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres  | 2024-02-11 20:48:51.963 GMT [53] LOG:  database system was shut down at 2024-02-11 20:48:51 GMT
-postgres  | 2024-02-11 20:48:51.973 GMT [50] LOG:  database system is ready to accept connections
-postgres  |  done
-postgres  | server started
-postgres  | 
-postgres  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
-postgres  | CREATE TABLE
-postgres  | CREATE TABLE
-postgres  | CREATE TABLE
-postgres  | DO
-postgres  | 
-postgres  | 
-postgres  | waiting for server to shut down...2024-02-11 20:48:52.181 GMT [50] LOG:  received fast shutdown request
-postgres  | .2024-02-11 20:48:52.184 GMT [50] LOG:  aborting any active transactions
-postgres  | 2024-02-11 20:48:52.198 GMT [50] LOG:  background worker "logical replication launcher" (PID 56) exited with exit code 1
-postgres  | 2024-02-11 20:48:52.200 GMT [51] LOG:  shutting down
-postgres  | 2024-02-11 20:48:52.205 GMT [51] LOG:  checkpoint starting: shutdown immediate
-postgres  | 2024-02-11 20:48:52.251 GMT [51] LOG:  checkpoint complete: wrote 75 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.025 s, sync=0.013 s, total=0.051 s; sync files=51, longest=0.007 s, average=0.001 s; distance=222 kB, estimate=222 kB; lsn=0/1522318, redo lsn=0/1522318
-postgres  | 2024-02-11 20:48:52.258 GMT [50] LOG:  database system is shut down
-postgres  |  done
-postgres  | server stopped
-postgres  | 
-postgres  | PostgreSQL init process complete; ready for start up.
-postgres  | 
-postgres  | 2024-02-11 20:48:52.327 GMT [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres  | 2024-02-11 20:48:52.328 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres  | 2024-02-11 20:48:52.328 GMT [1] LOG:  listening on IPv6 address "::", port 5432
-postgres  | 2024-02-11 20:48:52.336 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres  | 2024-02-11 20:48:52.350 GMT [66] LOG:  database system was shut down at 2024-02-11 20:48:52 GMT
-postgres  | 2024-02-11 20:48:52.359 GMT [1] LOG:  database system is ready to accept connections
-postgres  | 2024-02-11 20:49:08.372 GMT [71] ERROR:  invalid input syntax for type integer: "1.2"
-postgres  | 2024-02-11 20:49:08.372 GMT [71] CONTEXT:  unnamed portal parameter $2 = '...'
-postgres  | 2024-02-11 20:49:08.372 GMT [71] STATEMENT:  INSERT INTO transactions (account_id, amount, transaction_type, description)
-postgres  | 	VALUES ($1, $2, $3, $4)
-postgres  | 	
-postgres  | 2024-02-11 20:49:08.374 GMT [74] ERROR:  invalid input syntax for type integer: "1.2"
-postgres  | 2024-02-11 20:49:08.374 GMT [74] CONTEXT:  unnamed portal parameter $2 = '...'
-postgres  | 2024-02-11 20:49:08.374 GMT [74] STATEMENT:  INSERT INTO transactions (account_id, amount, transaction_type, description)
-postgres  | 	VALUES ($1, $2, $3, $4)
-postgres  | 	
-postgres  | 2024-02-11 20:49:08.379 GMT [77] ERROR:  invalid input syntax for type integer: "1.2"
-postgres  | 2024-02-11 20:49:08.379 GMT [77] CONTEXT:  unnamed portal parameter $2 = '...'
-postgres  | 2024-02-11 20:49:08.379 GMT [77] STATEMENT:  INSERT INTO transactions (account_id, amount, transaction_type, description)
-postgres  | 	VALUES ($1, $2, $3, $4)
-postgres  | 	
-postgres  | 2024-02-11 20:49:08.383 GMT [76] ERROR:  value too long for type character varying(10)
-postgres  | 2024-02-11 20:49:08.383 GMT [76] STATEMENT:  INSERT INTO transactions (account_id, amount, transaction_type, description)
-postgres  | 	VALUES ($1, $2, $3, $4)
-postgres  | 	
-postgres  | 2024-02-11 20:49:08.387 GMT [70] ERROR:  invalid input syntax for type integer: "1.2"
-postgres  | 2024-02-11 20:49:08.387 GMT [70] CONTEXT:  unnamed portal parameter $2 = '...'
-postgres  | 2024-02-11 20:49:08.387 GMT [70] STATEMENT:  INSERT INTO transactions (account_id, amount, transaction_type, description)
-postgres  | 	VALUES ($1, $2, $3, $4)
-postgres  | 	
-postgres  | 2024-02-11 20:49:08.399 GMT [78] ERROR:  invalid input syntax for type integer: "1.2"
-postgres  | 2024-02-11 20:49:08.399 GMT [78] CONTEXT:  unnamed portal parameter $2 = '...'
-postgres  | 2024-02-11 20:49:08.399 GMT [78] STATEMENT:  INSERT INTO transactions (account_id, amount, transaction_type, description)
-postgres  | 	VALUES ($1, $2, $3, $4)
-postgres  | 	
-postgres  | 2024-02-11 20:49:08.404 GMT [74] ERROR:  value too long for type character varying(10)
-postgres  | 2024-02-11 20:49:08.404 GMT [74] STATEMENT:  INSERT INTO transactions (account_id, amount, transaction_type, description)
-postgres  | 	VALUES ($1, $2, $3, $4)
-postgres  | 	
-postgres  | 2024-02-11 20:49:08.408 GMT [79] ERROR:  value too long for type character varying(10)
-postgres  | 2024-02-11 20:49:08.408 GMT [79] STATEMENT:  INSERT INTO transactions (account_id, amount, transaction_type, description)
-postgres  | 	VALUES ($1, $2, $3, $4)
-postgres  | 	
-postgres  | 2024-02-11 20:49:08.411 GMT [73] ERROR:  value too long for type character varying(10)
-postgres  | 2024-02-11 20:49:08.411 GMT [73] STATEMENT:  INSERT INTO transactions (account_id, amount, transaction_type, description)
-postgres  | 	VALUES ($1, $2, $3, $4)
-postgres  | 	
-postgres  | 2024-02-11 20:49:08.419 GMT [72] ERROR:  value too long for type character varying(10)
-postgres  | 2024-02-11 20:49:08.419 GMT [72] STATEMENT:  INSERT INTO transactions (account_id, amount, transaction_type, description)
-postgres  | 	VALUES ($1, $2, $3, $4)
-postgres  | 	
 api1      | |---/|
 api1      | | o_o |
 api1      |  _^_/
@@ -140,243 +96,243 @@ api1      | [800] Thread started
 api1      | [820] Thread started
 api1      | [840] Thread started
 api1      | 
-api1      | [2024-02-11 20:48:54 +0000] GET /clientes/1/extrato HTTP/1.0
+api1      | [2024-02-29 00:01:54 +0000] GET /clientes/1/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:48:54 +0000] GET /clientes/1/extrato HTTP/1.0
+api1      | [2024-02-29 00:01:54 +0000] GET /clientes/1/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:00 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:04 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:00 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:04 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:00 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:04 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:00 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:04 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:00 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:05 +0000] GET /clientes/1/extrato HTTP/1.0
+api1      | [2024-02-29 00:02:01 +0000] GET /clientes/1/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:03 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:07 +0000] GET /clientes/1/extrato HTTP/1.0
+api1      | [2024-02-29 00:02:04 +0000] GET /clientes/1/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] GET /clientes/3/extrato HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/1/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] GET /clientes/5/extrato HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/5/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] GET /clientes/2/extrato HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/2/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/5/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/5/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] GET /clientes/1/extrato HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/2/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/2/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/2/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] GET /clientes/2/extrato HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/1/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/4/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/3/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/5/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/2/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/5/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/5/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/3/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/4/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/1/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/1/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:08 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] GET /clientes/1/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:09 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/2/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:10 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/5/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:10 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/5/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:10 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:11 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:11 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/2/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:11 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/5/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:11 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/4/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:11 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:12 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:12 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:12 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:05 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:12 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:06 +0000] GET /clientes/1/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:12 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:06 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:12 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:07 +0000] POST /clientes/2/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:13 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:07 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:13 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:08 +0000] POST /clientes/4/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:13 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:08 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:13 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:08 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:13 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:09 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:13 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:09 +0000] POST /clientes/4/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:13 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:09 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:14 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:09 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:14 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:09 +0000] POST /clientes/2/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:14 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:09 +0000] POST /clientes/2/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:14 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:10 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:14 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:10 +0000] POST /clientes/5/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:14 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:10 +0000] POST /clientes/4/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:14 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:10 +0000] POST /clientes/5/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:14 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:10 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:14 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:10 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:15 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:10 +0000] POST /clientes/4/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:15 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:11 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:15 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:11 +0000] POST /clientes/4/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:15 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:11 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:15 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:11 +0000] POST /clientes/2/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:15 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:11 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:15 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:11 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:15 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:11 +0000] POST /clientes/5/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:15 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:12 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:15 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:12 +0000] POST /clientes/4/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:15 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:12 +0000] GET /clientes/4/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:16 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:12 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:16 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:12 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:16 +0000] GET /clientes/3/extrato HTTP/1.0
+api1      | [2024-02-29 00:02:12 +0000] POST /clientes/2/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:16 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:12 +0000] POST /clientes/5/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:16 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:12 +0000] GET /clientes/5/extrato HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:16 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:12 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:16 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:12 +0000] POST /clientes/5/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:16 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:13 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:16 +0000] GET /clientes/3/extrato HTTP/1.0
+api1      | [2024-02-29 00:02:13 +0000] POST /clientes/2/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:16 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:13 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:16 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:13 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:13 +0000] POST /clientes/4/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:13 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/5/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:13 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:13 +0000] POST /clientes/2/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:13 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:13 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:13 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:13 +0000] POST /clientes/2/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:14 +0000] POST /clientes/5/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:14 +0000] POST /clientes/3/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/2/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:14 +0000] POST /clientes/5/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/4/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:14 +0000] POST /clientes/1/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:17 +0000] POST /clientes/3/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:14 +0000] POST /clientes/4/transacoes HTTP/1.0
 api1      | 
-api1      | [2024-02-11 20:49:18 +0000] POST /clientes/1/transacoes HTTP/1.0
+api1      | [2024-02-29 00:02:14 +0000] POST /clientes/4/transacoes HTTP/1.0
 api2      | |---/|
 api2      | | o_o |
 api2      |  _^_/
@@ -395,106 +351,150 @@ api2      | [800] Thread started
 api2      | [820] Thread started
 api2      | [840] Thread started
 api2      | 
-api2      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:03 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:04 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:01:59 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:04 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:00 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:04 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:00 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:04 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:00 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:04 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:00 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:04 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:00 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:04 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:00 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:02 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:03 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:03 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:03 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:03 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:06 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:03 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] GET /clientes/6/extrato HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/6/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] GET /clientes/1/extrato HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/3/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] GET /clientes/4/extrato HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/4/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/3/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/4/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/5/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/3/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/2/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/2/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/4/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] GET /clientes/5/extrato HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/1/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] GET /clientes/3/extrato HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/5/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/2/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/4/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] GET /clientes/4/extrato HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/5/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/5/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/3/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/4/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/3/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/4/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/1/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/2/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/4/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/3/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/2/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/4/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/2/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/5/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/3/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/4/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/4/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/3/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/3/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/4/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:08 +0000] POST /clientes/2/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] GET /clientes/2/extrato HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:09 +0000] GET /clientes/4/extrato HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/3/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:09 +0000] POST /clientes/4/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/5/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:10 +0000] GET /clientes/3/extrato HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/3/transacoes HTTP/1.0
 api2      | 
-api2      | [2024-02-11 20:49:10 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/2/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/4/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/5/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/4/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/3/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/2/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/2/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/4/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/3/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:05 +0000] POST /clientes/4/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:06 +0000] POST /clientes/3/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:07 +0000] GET /clientes/4/extrato HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:07 +0000] POST /clientes/3/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:08 +0000] POST /clientes/3/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:08 +0000] POST /clientes/2/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:08 +0000] GET /clientes/2/extrato HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:08 +0000] POST /clientes/4/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:08 +0000] POST /clientes/4/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:09 +0000] POST /clientes/1/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:09 +0000] POST /clientes/2/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:09 +0000] POST /clientes/4/transacoes HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:09 +0000] GET /clientes/1/extrato HTTP/1.0
+api2      | 
+api2      | [2024-02-29 00:02:09 +0000] POST /clientes/4/transacoes HTTP/1.0

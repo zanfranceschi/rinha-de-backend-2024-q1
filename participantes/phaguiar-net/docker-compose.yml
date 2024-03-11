@@ -1,0 +1,58 @@
+services:
+  api01: &api
+    image: phaguiar/hackend:latest
+    container_name: instance01
+    environment:
+      - ASPNETCORE_URLS=http://+:3000
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "80MB"
+
+  api02:
+    <<: *api 
+    container_name: instance02
+
+  nginx:
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
+    image: nginx:1.25.4
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "90MB"
+
+  db:
+    image: postgres:16.2
+    hostname: db
+    environment:
+      - POSTGRES_DB=rinha
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgres.conf:/docker-entrypoint-initdb.d/postgres.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.9"
+          memory: "300MB"
+
+networks:
+  default:
+    driver: bridge
+    name: hackend-network

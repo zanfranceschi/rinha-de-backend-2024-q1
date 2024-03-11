@@ -2,19 +2,20 @@
  Network rinha-nginx-2024q1  Created
  Container aysion_nodejs-db-1  Creating
  Container aysion_nodejs-db-1  Created
- Container aysion_nodejs-api_01-1  Creating
  Container aysion_nodejs-api_02-1  Creating
+ Container aysion_nodejs-api_01-1  Creating
  Container aysion_nodejs-api_01-1  Created
  Container aysion_nodejs-api_02-1  Created
  Container aysion_nodejs-nginx-1  Creating
  Container aysion_nodejs-nginx-1  Created
 Attaching to api_01-1, api_02-1, db-1, nginx-1
-db-1      | 2024-02-11 21:06:44+00:00 [Note] [Entrypoint]: Entrypoint script for MariaDB Server 1:11.2.2+maria~ubu2204 started.
-db-1      | 2024-02-11 21:06:45+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
-db-1      | 2024-02-11 21:06:45+00:00 [Note] [Entrypoint]: Entrypoint script for MariaDB Server 1:11.2.2+maria~ubu2204 started.
-db-1      | 2024-02-11 21:06:45+00:00 [Note] [Entrypoint]: Initializing database files
-db-1      | 2024-02-11 21:06:45 0 [Warning] mariadbd: io_uring_queue_init() failed with errno 1
-db-1      | 2024-02-11 21:06:45 0 [Warning] InnoDB: liburing disabled: falling back to innodb_use_native_aio=OFF
+db-1      | 2024-02-19 01:20:35+00:00 [Note] [Entrypoint]: Entrypoint script for MariaDB Server 1:11.2.3+maria~ubu2204 started.
+db-1      | 2024-02-19 01:20:35+00:00 [Warn] [Entrypoint]: /sys/fs/cgroup///memory.pressure not writable, functionality unavailable to MariaDB
+db-1      | 2024-02-19 01:20:35+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+db-1      | 2024-02-19 01:20:36+00:00 [Note] [Entrypoint]: Entrypoint script for MariaDB Server 1:11.2.3+maria~ubu2204 started.
+db-1      | 2024-02-19 01:20:36+00:00 [Note] [Entrypoint]: Initializing database files
+db-1      | 2024-02-19  1:20:36 0 [Warning] mariadbd: io_uring_queue_init() failed with errno 1
+db-1      | 2024-02-19  1:20:36 0 [Warning] InnoDB: liburing disabled: falling back to innodb_use_native_aio=OFF
 nginx-1   | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1   | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -24,12 +25,45 @@ nginx-1   | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolv
 nginx-1   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1   | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1   | 2024/02/11 21:06:47 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.32.4:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1   | 2024/02/11 21:06:47 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.32.3:8080/clientes/1/extrato", host: "localhost:9999"
-api_02-1  | yarn run v1.22.19
 api_01-1  | yarn run v1.22.19
-api_02-1  | $ node index.mjs
+api_02-1  | yarn run v1.22.19
 api_01-1  | $ node index.mjs
+api_02-1  | $ node index.mjs
+api_01-1  | Server running at 8080
+api_02-1  | Server running at 8080
+api_01-1  | node:internal/process/promises:289
+api_01-1  |             triggerUncaughtException(err, true /* fromPromise */);
+api_01-1  |             ^
+api_01-1  | 
+api_01-1  | Error: connect ECONNREFUSED 192.168.0.2:3306
+api_01-1  |     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16) {
+api_01-1  |   errno: -111,
+api_01-1  |   code: 'ECONNREFUSED',
+api_01-1  |   syscall: 'connect',
+api_01-1  |   address: '192.168.0.2',
+api_01-1  |   port: 3306,
+api_01-1  |   fatal: true
+api_01-1  | }
+api_01-1  | 
+api_01-1  | Node.js v20.11.0
+nginx-1   | 2024/02/19 01:20:39 [error] 29#29: *1 upstream prematurely closed connection while reading response header from upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+api_01-1  | error Command failed with exit code 1.
+api_01-1  | info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+api_02-1  | node:internal/process/promises:289
+api_02-1  |             triggerUncaughtException(err, true /* fromPromise */);
+api_02-1  |             ^
+api_02-1  | 
+api_02-1  | Error: connect ECONNREFUSED 192.168.0.2:3306
+api_02-1  |     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16) {
+api_02-1  |   errno: -111,
+api_02-1  |   code: 'ECONNREFUSED',
+api_02-1  |   syscall: 'connect',
+api_02-1  |   address: '192.168.0.2',
+api_02-1  |   port: 3306,
+api_02-1  |   fatal: true
+api_02-1  | }
+api_02-1  | 
+api_02-1  | Node.js v20.11.0
 db-1      | 
 db-1      | 
 db-1      | PLEASE REMEMBER TO SET A PASSWORD FOR THE MariaDB root USER !
@@ -50,451 +84,129 @@ db-1      |
 db-1      | Consider joining MariaDB's strong and vibrant community:
 db-1      | https://mariadb.org/get-involved/
 db-1      | 
-db-1      | 2024-02-11 21:06:48+00:00 [Note] [Entrypoint]: Database files initialized
-db-1      | 2024-02-11 21:06:48+00:00 [Note] [Entrypoint]: Starting temporary server
-db-1      | 2024-02-11 21:06:48+00:00 [Note] [Entrypoint]: Waiting for server startup
-db-1      | 2024-02-11 21:06:48 0 [Note] Starting MariaDB 11.2.2-MariaDB-1:11.2.2+maria~ubu2204 source revision 929532a9426d085111c24c63de9c23cc54382259 as process 99
-db-1      | 2024-02-11 21:06:49 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
-db-1      | 2024-02-11 21:06:49 0 [Note] InnoDB: Number of transaction pools: 1
-db-1      | 2024-02-11 21:06:49 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
-db-1      | 2024-02-11 21:06:49 0 [Note] mariadbd: O_TMPFILE is not supported on /tmp (disabling future attempts)
-db-1      | 2024-02-11 21:06:49 0 [Warning] mariadbd: io_uring_queue_init() failed with errno 1
-db-1      | 2024-02-11 21:06:49 0 [Warning] InnoDB: liburing disabled: falling back to innodb_use_native_aio=OFF
-db-1      | 2024-02-11 21:06:49 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
-db-1      | 2024-02-11 21:06:49 0 [Note] InnoDB: Completed initialization of buffer pool
-db-1      | 2024-02-11 21:06:49 0 [Note] InnoDB: File system buffers for log disabled (block size=512 bytes)
-db-1      | 2024-02-11 21:06:49 0 [Note] InnoDB: End of log at LSN=47629
-db-1      | 2024-02-11 21:06:49 0 [Note] InnoDB: Opened 3 undo tablespaces
-db-1      | 2024-02-11 21:06:49 0 [Note] InnoDB: 128 rollback segments in 3 undo tablespaces are active.
-db-1      | 2024-02-11 21:06:49 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
-db-1      | 2024-02-11 21:06:49 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
-db-1      | 2024-02-11 21:06:49 0 [Note] InnoDB: log sequence number 47629; transaction id 14
-db-1      | 2024-02-11 21:06:49 0 [Note] Plugin 'FEEDBACK' is disabled.
-db-1      | 2024-02-11 21:06:49 0 [Note] Plugin 'wsrep-provider' is disabled.
-db-1      | 2024-02-11 21:06:49 0 [Warning] 'user' entry 'root@db' ignored in --skip-name-resolve mode.
-db-1      | 2024-02-11 21:06:49 0 [Warning] 'proxies_priv' entry '@% root@db' ignored in --skip-name-resolve mode.
-db-1      | 2024-02-11 21:06:49 0 [Note] mariadbd: Event Scheduler: Loaded 0 events
-db-1      | 2024-02-11 21:06:49 0 [Note] mariadbd: ready for connections.
-db-1      | Version: '11.2.2-MariaDB-1:11.2.2+maria~ubu2204'  socket: '/run/mysqld/mysqld.sock'  port: 0  mariadb.org binary distribution
-nginx-1   | 2024/02/11 21:06:49 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-1      | 2024-02-19 01:20:39+00:00 [Note] [Entrypoint]: Database files initialized
+db-1      | 2024-02-19 01:20:39+00:00 [Note] [Entrypoint]: Starting temporary server
+db-1      | 2024-02-19 01:20:39+00:00 [Note] [Entrypoint]: Waiting for server startup
+nginx-1   | 2024/02/19 01:20:39 [error] 29#29: *1 upstream prematurely closed connection while reading response header from upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.0.3:8080/clientes/1/extrato", host: "localhost:9999"
+db-1      | 2024-02-19  1:20:39 0 [Note] Starting MariaDB 11.2.3-MariaDB-1:11.2.3+maria~ubu2204 source revision 79580f4f96fc2547711f674eb8dd514abd312b4a as process 102
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: Using transactional memory
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: Number of transaction pools: 1
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
+db-1      | 2024-02-19  1:20:39 0 [Note] mariadbd: O_TMPFILE is not supported on /tmp (disabling future attempts)
+db-1      | 2024-02-19  1:20:39 0 [Warning] mariadbd: io_uring_queue_init() failed with errno 1
+db-1      | 2024-02-19  1:20:39 0 [Warning] InnoDB: liburing disabled: falling back to innodb_use_native_aio=OFF
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: Completed initialization of buffer pool
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: File system buffers for log disabled (block size=4096 bytes)
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: End of log at LSN=47763
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: Opened 3 undo tablespaces
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: 128 rollback segments in 3 undo tablespaces are active.
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+db-1      | 2024-02-19  1:20:39 0 [Note] InnoDB: log sequence number 47763; transaction id 14
+db-1      | 2024-02-19  1:20:39 0 [Note] Plugin 'FEEDBACK' is disabled.
+db-1      | 2024-02-19  1:20:39 0 [Note] Plugin 'wsrep-provider' is disabled.
+db-1      | 2024-02-19  1:20:39 0 [Warning] 'user' entry 'root@db' ignored in --skip-name-resolve mode.
+db-1      | 2024-02-19  1:20:39 0 [Warning] 'proxies_priv' entry '@% root@db' ignored in --skip-name-resolve mode.
+db-1      | 2024-02-19  1:20:39 0 [Note] mariadbd: Event Scheduler: Loaded 0 events
+db-1      | 2024-02-19  1:20:39 0 [Note] mariadbd: ready for connections.
+db-1      | Version: '11.2.3-MariaDB-1:11.2.3+maria~ubu2204'  socket: '/run/mysqld/mysqld.sock'  port: 0  mariadb.org binary distribution
+api_02-1  | error Command failed with exit code 1.
+api_02-1  | info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+db-1      | 2024-02-19 01:20:40+00:00 [Note] [Entrypoint]: Temporary server started.
+api_01-1 exited with code 0
+api_02-1 exited with code 0
+nginx-1   | 2024/02/19 01:20:41 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+db-1      | 2024-02-19 01:20:42+00:00 [Note] [Entrypoint]: Creating database rinha
+db-1      | 2024-02-19 01:20:42+00:00 [Note] [Entrypoint]: Securing system users (equivalent to running mysql_secure_installation)
+db-1      | 
+db-1      | 2024-02-19 01:20:42+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+db-1      | 
+db-1      | 
+db-1      | 2024-02-19 01:20:42+00:00 [Note] [Entrypoint]: Stopping temporary server
+db-1      | 2024-02-19  1:20:42 0 [Note] mariadbd (initiated by: unknown): Normal shutdown
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: FTS optimize thread exiting.
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: Starting shutdown...
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: Buffer pool(s) dump completed at 240219  1:20:42
+api_02-1  | yarn run v1.22.19
+api_01-1  | yarn run v1.22.19
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: Shutdown completed; log sequence number 54949; transaction id 27
+db-1      | 2024-02-19  1:20:42 0 [Note] mariadbd: Shutdown complete
+db-1      | 
+db-1      | 2024-02-19 01:20:42+00:00 [Note] [Entrypoint]: Temporary server stopped
+db-1      | 
+db-1      | 2024-02-19 01:20:42+00:00 [Note] [Entrypoint]: MariaDB init process done. Ready for start up.
+db-1      | 
+db-1      | 2024-02-19  1:20:42 0 [Note] Starting MariaDB 11.2.3-MariaDB-1:11.2.3+maria~ubu2204 source revision 79580f4f96fc2547711f674eb8dd514abd312b4a as process 1
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: Using transactional memory
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: Number of transaction pools: 1
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
+db-1      | 2024-02-19  1:20:42 0 [Note] mariadbd: O_TMPFILE is not supported on /tmp (disabling future attempts)
+db-1      | 2024-02-19  1:20:42 0 [Warning] mariadbd: io_uring_queue_init() failed with errno 1
+db-1      | 2024-02-19  1:20:42 0 [Warning] InnoDB: liburing disabled: falling back to innodb_use_native_aio=OFF
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: Completed initialization of buffer pool
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: File system buffers for log disabled (block size=4096 bytes)
+db-1      | 2024-02-19  1:20:42 0 [Note] InnoDB: End of log at LSN=54949
+db-1      | 2024-02-19  1:20:43 0 [Note] InnoDB: Opened 3 undo tablespaces
+db-1      | 2024-02-19  1:20:43 0 [Note] InnoDB: 128 rollback segments in 3 undo tablespaces are active.
+db-1      | 2024-02-19  1:20:43 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+db-1      | 2024-02-19  1:20:43 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+db-1      | 2024-02-19  1:20:43 0 [Note] InnoDB: log sequence number 54949; transaction id 28
+db-1      | 2024-02-19  1:20:43 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+db-1      | 2024-02-19  1:20:43 0 [Note] Plugin 'FEEDBACK' is disabled.
+db-1      | 2024-02-19  1:20:43 0 [Note] Plugin 'wsrep-provider' is disabled.
+db-1      | 2024-02-19  1:20:43 0 [Note] InnoDB: Buffer pool(s) load completed at 240219  1:20:43
+db-1      | 2024-02-19  1:20:43 0 [Note] Server socket created on IP: '0.0.0.0'.
+db-1      | 2024-02-19  1:20:43 0 [Note] Server socket created on IP: '::'.
+db-1      | 2024-02-19  1:20:43 0 [Note] mariadbd: Event Scheduler: Loaded 0 events
+db-1      | 2024-02-19  1:20:43 0 [Note] mariadbd: ready for connections.
+db-1      | Version: '11.2.3-MariaDB-1:11.2.3+maria~ubu2204'  socket: '/run/mysqld/mysqld.sock'  port: 3306  mariadb.org binary distribution
+api_01-1  | $ node index.mjs
+api_02-1  | $ node index.mjs
+nginx-1   | 2024/02/19 01:20:43 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
 api_02-1  | Server running at 8080
 api_01-1  | Server running at 8080
-db-1      | 2024-02-11 21:06:49+00:00 [Note] [Entrypoint]: Temporary server started.
-nginx-1   | 2024/02/11 21:06:51 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-db-1      | 2024-02-11 21:06:53+00:00 [Note] [Entrypoint]: Creating database rinha
-db-1      | 2024-02-11 21:06:53+00:00 [Note] [Entrypoint]: Securing system users (equivalent to running mysql_secure_installation)
+nginx-1   | 2024/02/19 01:20:45 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/02/19 01:20:47 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/02/19 01:20:49 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+db-1      | 2024-02-19  1:25:05 21 [Warning] Aborted connection 21 to db: 'rinha' user: 'root' host: '192.168.0.4' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 16 [Warning] Aborted connection 16 to db: 'rinha' user: 'root' host: '192.168.0.4' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 17 [Warning] Aborted connection 17 to db: 'rinha' user: 'root' host: '192.168.0.4' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 18 [Warning] Aborted connection 18 to db: 'rinha' user: 'root' host: '192.168.0.4' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 14 [Warning] Aborted connection 14 to db: 'rinha' user: 'root' host: '192.168.0.4' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 9 [Warning] Aborted connection 9 to db: 'rinha' user: 'root' host: '192.168.0.4' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 20 [Warning] Aborted connection 20 to db: 'rinha' user: 'root' host: '192.168.0.4' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 13 [Warning] Aborted connection 13 to db: 'rinha' user: 'root' host: '192.168.0.4' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 19 [Warning] Aborted connection 19 to db: 'rinha' user: 'root' host: '192.168.0.4' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 15 [Warning] Aborted connection 15 to db: 'rinha' user: 'root' host: '192.168.0.4' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 12 [Warning] Aborted connection 12 to db: 'rinha' user: 'root' host: '192.168.0.3' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 7 [Warning] Aborted connection 7 to db: 'rinha' user: 'root' host: '192.168.0.3' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 5 [Warning] Aborted connection 5 to db: 'rinha' user: 'root' host: '192.168.0.3' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 22 [Warning] Aborted connection 22 to db: 'rinha' user: 'root' host: '192.168.0.3' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 8 [Warning] Aborted connection 8 to db: 'rinha' user: 'root' host: '192.168.0.3' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 3 [Warning] Aborted connection 3 to db: 'rinha' user: 'root' host: '192.168.0.3' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 11 [Warning] Aborted connection 11 to db: 'rinha' user: 'root' host: '192.168.0.3' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 4 [Warning] Aborted connection 4 to db: 'rinha' user: 'root' host: '192.168.0.3' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 6 [Warning] Aborted connection 6 to db: 'rinha' user: 'root' host: '192.168.0.3' (Got an error reading communication packets)
+db-1      | 2024-02-19  1:25:05 10 [Warning] Aborted connection 10 to db: 'rinha' user: 'root' host: '192.168.0.3' (Got an error reading communication packets)
+api_01-1 exited with code 0
+api_01-1 exited with code 1
+api_02-1 exited with code 0
+api_02-1 exited with code 1
+db-1      | 2024-02-19  1:25:06 0 [Note] mariadbd (initiated by: unknown): Normal shutdown
+db-1      | 2024-02-19  1:25:06 0 [Note] InnoDB: FTS optimize thread exiting.
+db-1      | 2024-02-19  1:25:06 0 [Note] InnoDB: Starting shutdown...
+db-1      | 2024-02-19  1:25:06 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+db-1      | 2024-02-19  1:25:06 0 [Note] InnoDB: Buffer pool(s) dump completed at 240219  1:25:06
+db-1      | 2024-02-19  1:25:07 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
+db-1      | 2024-02-19  1:25:07 0 [Note] InnoDB: Shutdown completed; log sequence number 32188157; transaction id 186311
+db-1      | 2024-02-19  1:25:07 0 [Note] mariadbd: Shutdown complete
 db-1      | 
-db-1      | 2024-02-11 21:06:53+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
-db-1      | 
-db-1      | 
-db-1      | 2024-02-11 21:06:53+00:00 [Note] [Entrypoint]: Stopping temporary server
-db-1      | 2024-02-11 21:06:53 0 [Note] mariadbd (initiated by: unknown): Normal shutdown
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: FTS optimize thread exiting.
-nginx-1   | 2024/02/11 21:06:53 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Starting shutdown...
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Buffer pool(s) dump completed at 240211 21:06:53
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Shutdown completed; log sequence number 54815; transaction id 27
-db-1      | 2024-02-11 21:06:53 0 [Note] mariadbd: Shutdown complete
-db-1      | 
-db-1      | 2024-02-11 21:06:53+00:00 [Note] [Entrypoint]: Temporary server stopped
-db-1      | 
-db-1      | 2024-02-11 21:06:53+00:00 [Note] [Entrypoint]: MariaDB init process done. Ready for start up.
-db-1      | 
-db-1      | 2024-02-11 21:06:53 0 [Note] Starting MariaDB 11.2.2-MariaDB-1:11.2.2+maria~ubu2204 source revision 929532a9426d085111c24c63de9c23cc54382259 as process 1
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Number of transaction pools: 1
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
-db-1      | 2024-02-11 21:06:53 0 [Note] mariadbd: O_TMPFILE is not supported on /tmp (disabling future attempts)
-db-1      | 2024-02-11 21:06:53 0 [Warning] mariadbd: io_uring_queue_init() failed with errno 1
-db-1      | 2024-02-11 21:06:53 0 [Warning] InnoDB: liburing disabled: falling back to innodb_use_native_aio=OFF
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Completed initialization of buffer pool
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: File system buffers for log disabled (block size=512 bytes)
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: End of log at LSN=54815
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Opened 3 undo tablespaces
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: 128 rollback segments in 3 undo tablespaces are active.
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: log sequence number 54815; transaction id 28
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
-db-1      | 2024-02-11 21:06:53 0 [Note] Plugin 'FEEDBACK' is disabled.
-db-1      | 2024-02-11 21:06:53 0 [Note] Plugin 'wsrep-provider' is disabled.
-db-1      | 2024-02-11 21:06:53 0 [Note] InnoDB: Buffer pool(s) load completed at 240211 21:06:53
-db-1      | 2024-02-11 21:06:53 0 [Note] Server socket created on IP: '0.0.0.0'.
-db-1      | 2024-02-11 21:06:53 0 [Note] Server socket created on IP: '::'.
-db-1      | 2024-02-11 21:06:53 0 [Note] mariadbd: Event Scheduler: Loaded 0 events
-db-1      | 2024-02-11 21:06:53 0 [Note] mariadbd: ready for connections.
-db-1      | Version: '11.2.2-MariaDB-1:11.2.2+maria~ubu2204'  socket: '/run/mysqld/mysqld.sock'  port: 3306  mariadb.org binary distribution
-nginx-1   | 2024/02/11 21:06:55 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1   | 2024/02/11 21:06:57 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.32.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1   | 2024/02/11 21:09:01 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:12 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:12 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:12 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:15 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:27 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:27 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:27 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:43 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:43 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:43 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:46 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:46 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:46 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:46 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:48 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:49 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:50 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:53 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:54 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:55 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:56 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:56 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:56 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
-nginx-1   | 2024/02/11 21:09:57 [alert] 29#29: 1024 worker_connections are not enough
+db-1 exited with code 0

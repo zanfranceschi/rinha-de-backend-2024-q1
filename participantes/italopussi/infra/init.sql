@@ -1,10 +1,10 @@
-CREATE UNLOGGED TABLE clients (
+CREATE TABLE clients (
 	id SERIAL PRIMARY KEY,
 	credit_line INTEGER NOT NULL,
 	balance INTEGER NOT NULL
 );
 
-CREATE UNLOGGED TABLE transactions (
+CREATE TABLE transactions (
 	id SERIAL PRIMARY KEY,
 	client_id INTEGER NOT NULL,
 	amount INTEGER NOT NULL,

@@ -1,0 +1,71 @@
+version: "3.9"
+
+services:
+  api01: &api01
+    container_name: api01
+    hostname: api01
+    image: kelvinromero/rinha-2024-q1:nginx-fastapi-postgres
+    depends_on:
+      - db
+    volumes:
+      - ./:/src
+    ports:
+      - "81:80"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "170MB"
+
+  api02:
+    <<: *api01
+    container_name: api02
+    hostname: api02
+    ports:
+      - "82:80"
+
+  db:
+    image: postgres:14.1-alpine
+    command: postgres -c config_file="/etc/database.conf"
+    container_name: db
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    ports:
+      - '5432:5432'
+    volumes:
+      - .setup/script.sql:/docker-entrypoint-initdb.d/init.sql
+      - .setup/database.conf:/etc/database.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "150MB"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d rinha" ]
+      interval: 3s
+      timeout: 1s
+      retries: 10
+
+  lb:
+    image: nginx:latest
+    container_name: lb
+    volumes:
+      - .setup/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "60MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-2024-q1

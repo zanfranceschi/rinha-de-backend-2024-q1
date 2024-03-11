@@ -1,0 +1,51 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: ghcr.io/lpicanco/backend-dogfight-moonshine-24-q1:moonshine-api-v2
+    hostname: api01
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: localhost:9942
+      PORT: 3042
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: "50MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      DATABASE_URL: localhost:9942
+      PORT: 3043
+  lb:
+    image: ghcr.io/lpicanco/backend-dogfight-moonshine-24-q1:moonshine-lb-v2
+    hostname: lb
+    restart: unless-stopped
+    network_mode: host
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: "150M"
+  db:
+    image: ghcr.io/lpicanco/backend-dogfight-moonshine-24-q1:moonshine-db-v2
+    hostname: db
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      PORT: 9942
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: "300MB"
+

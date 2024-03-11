@@ -1,0 +1,95 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:16.1
+    command: 'postgres -c max_connections=60 -c shared_buffers=128MB -c fsync=off -c synchronous_commit=off -c full_page_writes=off -c checkpoint_timeout=1d -c shared_preload_libraries="pg_stat_statements" -c compute_query_id=on -c pg_stat_statements.max=10000 -c pg_stat_statements.track=all'
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: rinha
+      POSTGRES_DB: dev
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U rinha -d dev' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: '280MB'
+
+  redis:
+    image: redis:alpine
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '20MB'
+
+  api1:
+    image: h4ad/rinha-de-backend-2024-q1:latest
+    hostname: api1
+    restart: unless-stopped
+    healthcheck:
+      test: [ 'CMD-SHELL', 'curl http://localhost:3000/health' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    environment:
+      - DATABASE_URL=postgres://rinha:password@db:5432/dev
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '85MB'
+
+  api2:
+    image: h4ad/rinha-de-backend-2024-q1:latest
+    hostname: api2
+    restart: unless-stopped
+    healthcheck:
+      test: [ 'CMD-SHELL', 'curl http://localhost:3000/health' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    environment:
+      - DATABASE_URL=postgres://rinha:password@db:5432/dev
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '85MB'
+
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    volumes:
+      - ./default.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - '9999:9999'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '80MB'
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    sysctls:
+      net.core.somaxconn: 4096

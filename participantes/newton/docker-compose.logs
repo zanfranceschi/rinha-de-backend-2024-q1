@@ -4,8 +4,8 @@
  Container newton-db-1  Created
  Container newton-api01-1  Creating
  Container newton-api02-1  Creating
- Container newton-api02-1  Created
  Container newton-api01-1  Created
+ Container newton-api02-1  Created
  Container newton-nginx-1  Creating
  Container newton-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -27,8 +27,11 @@ db-1     | selecting default time zone ... UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
 db-1     | sh: locale: not found
-db-1     | 2024-02-14 20:53:05.301 UTC [30] WARNING:  no usable system locales were found
+db-1     | 2024-02-19 14:33:59.762 UTC [30] WARNING:  no usable system locales were found
 db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | You can change this by editing pg_hba.conf or using the option -A, or
+db-1     | --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -36,14 +39,7 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | You can change this by editing pg_hba.conf or using the option -A, or
-db-1     | --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-14 20:53:06.592 GMT [36] LOG:  starting PostgreSQL 14.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 10.3.1_git20211027) 10.3.1 20211027, 64-bit
-db-1     | 2024-02-14 20:53:06.594 GMT [36] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-14 20:53:06.601 GMT [37] LOG:  database system was shut down at 2024-02-14 20:53:06 GMT
-db-1     | 2024-02-14 20:53:06.608 GMT [36] LOG:  database system is ready to accept connections
-db-1     |  done
+db-1     | waiting for server to start.... done
 db-1     | server started
 db-1     | CREATE DATABASE
 db-1     | 
@@ -53,24 +49,26 @@ db-1     | CREATE TABLE
 db-1     | CREATE TABLE
 db-1     | CREATE INDEX
 db-1     | INSERT 0 5
+db-1     | CREATE FUNCTION
+db-1     | CREATE TRIGGER
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
+db-1     | SET
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down....2024-02-14 20:53:06.898 GMT [36] LOG:  received fast shutdown request
-db-1     | 2024-02-14 20:53:06.900 GMT [36] LOG:  aborting any active transactions
-db-1     | 2024-02-14 20:53:06.901 GMT [36] LOG:  background worker "logical replication launcher" (PID 43) exited with exit code 1
-db-1     | 2024-02-14 20:53:06.902 GMT [38] LOG:  shutting down
-db-1     | 2024-02-14 20:53:06.947 GMT [36] LOG:  database system is shut down
-db-1     |  done
+db-1     | waiting for server to shut down.... done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-14 20:53:07.022 GMT [1] LOG:  starting PostgreSQL 14.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 10.3.1_git20211027) 10.3.1 20211027, 64-bit
-db-1     | 2024-02-14 20:53:07.022 GMT [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-14 20:53:07.022 GMT [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-14 20:53:07.027 GMT [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-14 20:53:07.034 GMT [52] LOG:  database system was shut down at 2024-02-14 20:53:06 GMT
-db-1     | 2024-02-14 20:53:07.040 GMT [1] LOG:  database system is ready to accept connections
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -80,421 +78,423 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-nginx-1  | 2024/02/14 20:53:10 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.160.3:4000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 20:53:10 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.160.4:4000/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 20:53:12 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 20:53:14 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 20:53:16 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 20:53:17.696 [info] Running RinhaBackendWeb.Endpoint with Bandit 1.2.1 at :::4000 (http)
-api02-1  | 20:53:17.697 [info] Access RinhaBackendWeb.Endpoint at https://api02
-api01-1  | 20:53:17.699 [info] Running RinhaBackendWeb.Endpoint with Bandit 1.2.1 at :::4000 (http)
-api01-1  | 20:53:17.700 [info] Access RinhaBackendWeb.Endpoint at https://api01
-nginx-1  | 2024/02/14 20:53:18 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1  | 2024/02/14 20:53:20 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.160.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-api02-1  | 20:53:22.124 request_id=F7PWBVbiKeew5X4AAALB [info] GET /clientes/1/extrato
-api02-1  | 20:53:22.131 request_id=F7PWBVbiKeew5X4AAALB [info] Sent 200 in 6ms
-api02-1  | 20:53:22.140 request_id=F7PWBVfV9rL2x_AAAAMh [info] GET /clientes/1/extrato
-api02-1  | 20:53:22.147 request_id=F7PWBVfV9rL2x_AAAAMh [info] Sent 200 in 7ms
-api02-1  | 20:53:30.345 request_id=F7PWB0Dk2WAhLSIAAANB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:30.341 request_id=F7PWB0CkWfIJXwgAAALB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:30.349 request_id=F7PWB0CkWfIJXwgAAALB [info] Sent 200 in 8ms
-api01-1  | 20:53:30.352 request_id=F7PWB0FWxjxec2QAAAMB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.346 request_id=F7PWB0D2VUJ7rHcAAAOB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.347 request_id=F7PWB0ECZh1lH30AAAOh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:30.357 request_id=F7PWB0GXbjcbMMIAAAMh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.355 request_id=F7PWB0F5hpVdNLcAAAPB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.359 request_id=F7PWB0G-TA44Z08AAAPh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.359 request_id=F7PWB0HDB77UIZQAAAQB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.365 request_id=F7PWB0Ic74lwbAQAAAQh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:30.365 request_id=F7PWB0Ial5_QdEcAAANB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.366 request_id=F7PWB0IhJcaMBUAAAARB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:30.366 request_id=F7PWB0IgD93EU-sAAANh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:30.366 request_id=F7PWB0IhSxrU820AAAOB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:30.366 request_id=F7PWB0IiSUUosbUAAAOh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:30.371 request_id=F7PWB0J2CsYLR-QAAAPB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:30.374 request_id=F7PWB0KiB1HpLiMAAAPh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:30.379 request_id=F7PWB0LwQmGEN-cAAAQB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:30.380 request_id=F7PWB0L0d5qZb6sAAAQh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.366 request_id=F7PWB0IiN0SP9wwAAARh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.366 request_id=F7PWB0IjH3KEffUAAASB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.381 request_id=F7PWB0MLL-qF8msAAASh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.382 request_id=F7PWB0MYK0KcGdoAAATB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.383 request_id=F7PWB0MjNEL_o9UAAATh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.384 request_id=F7PWB0M8XPUpmgoAAAUB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:30.393 request_id=F7PWB0D2VUJ7rHcAAAOB [info] Sent 200 in 46ms
-api01-1  | 20:53:30.407 request_id=F7PWB0IiSUUosbUAAAOh [info] Sent 200 in 41ms
-api02-1  | 20:53:30.414 request_id=F7PWB0Dk2WAhLSIAAANB [info] Sent 200 in 68ms
-api02-1  | 20:53:30.420 request_id=F7PWB0ECZh1lH30AAAOh [info] Sent 200 in 72ms
-api01-1  | 20:53:30.425 request_id=F7PWB0FWxjxec2QAAAMB [info] Sent 200 in 72ms
-api01-1  | 20:53:30.427 request_id=F7PWB0GXbjcbMMIAAAMh [info] Sent 200 in 70ms
-api02-1  | 20:53:30.438 request_id=F7PWB0IiN0SP9wwAAARh [info] Sent 200 in 72ms
-api02-1  | 20:53:30.438 request_id=F7PWB0MLL-qF8msAAASh [info] Sent 200 in 57ms
-api02-1  | 20:53:30.442 request_id=F7PWB0MYK0KcGdoAAATB [info] Sent 200 in 59ms
-api01-1  | 20:53:30.466 request_id=F7PWB0IhSxrU820AAAOB [info] Sent 200 in 100ms
-api01-1  | 20:53:30.466 request_id=F7PWB0L0d5qZb6sAAAQh [info] Sent 200 in 86ms
-api01-1  | 20:53:30.470 request_id=F7PWB0KiB1HpLiMAAAPh [info] Sent 200 in 95ms
-api02-1  | 20:53:30.474 request_id=F7PWB0IjH3KEffUAAASB [info] Sent 200 in 107ms
-api02-1  | 20:53:30.477 request_id=F7PWB0M8XPUpmgoAAAUB [info] Sent 200 in 92ms
-api02-1  | 20:53:30.480 request_id=F7PWB0MjNEL_o9UAAATh [info] Sent 200 in 97ms
-api01-1  | 20:53:30.484 request_id=F7PWB0Ial5_QdEcAAANB [info] Sent 200 in 118ms
-api02-1  | 20:53:30.487 request_id=F7PWB0HDB77UIZQAAAQB [info] Sent 200 in 127ms
-api01-1  | 20:53:30.491 request_id=F7PWB0J2CsYLR-QAAAPB [info] Sent 200 in 119ms
-api02-1  | 20:53:30.494 request_id=F7PWB0F5hpVdNLcAAAPB [info] Sent 200 in 139ms
-api02-1  | 20:53:30.498 request_id=F7PWB0G-TA44Z08AAAPh [info] Sent 200 in 138ms
-api01-1  | 20:53:30.501 request_id=F7PWB0IgD93EU-sAAANh [info] Sent 200 in 135ms
-api02-1  | 20:53:30.504 request_id=F7PWB0Ic74lwbAQAAAQh [info] Sent 200 in 139ms
-api02-1  | 20:53:30.508 request_id=F7PWB0IhJcaMBUAAAARB [info] Sent 200 in 142ms
-api01-1  | 20:53:30.511 request_id=F7PWB0LwQmGEN-cAAAQB [info] Sent 200 in 132ms
-api01-1  | 20:53:31.287 request_id=F7PWB3kOF7Bl-egAAARB [info] GET /clientes/1/extrato
-api01-1  | 20:53:31.295 request_id=F7PWB3kOF7Bl-egAAARB [info] Sent 200 in 8ms
-api02-1  | 20:53:32.297 request_id=F7PWB7U9zEaCiJ4AAAUh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.297 request_id=F7PWB7VF2tBagtgAAAVB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.298 request_id=F7PWB7VHSE0hNGgAAAVh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.298 request_id=F7PWB7VIS_XjJYYAAAWB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.305 request_id=F7PWB7W6L_EJUT0AAAWh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.305 request_id=F7PWB7W-S0I-c7UAAAXB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.306 request_id=F7PWB7XIz3-piJgAAAXh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.306 request_id=F7PWB7XKa5AVAasAAAYB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.307 request_id=F7PWB7Xa0A54BoAAAAYh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.307 request_id=F7PWB7XcEWGBQ54AAAZB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.307 request_id=F7PWB7XdP9kGbAMAAAZh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.308 request_id=F7PWB7XnikWkiSUAAAaB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.308 request_id=F7PWB7Xovpb1qGEAAAah [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.316 request_id=F7PWB7W6L_EJUT0AAAWh [info] Sent 200 in 10ms
-api01-1  | 20:53:32.304 request_id=F7PWB7Wk-E8q-ykAAASh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:32.305 request_id=F7PWB7W14fV1_pgAAAYB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:32.304 request_id=F7PWB7WpUZqKUkMAAATB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.320 request_id=F7PWB7XdP9kGbAMAAAZh [info] Sent 200 in 12ms
-api01-1  | 20:53:32.304 request_id=F7PWB7WqfafDKbAAAATh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:32.304 request_id=F7PWB7WrZtj0t9UAAAUB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:32.304 request_id=F7PWB7WsQj4kNLMAAAUh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:32.304 request_id=F7PWB7WtSVCwlowAAAVB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:32.304 request_id=F7PWB7WuHrZ5HKMAAAVh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:32.304 request_id=F7PWB7Wu8WvpIgcAAAWB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:32.304 request_id=F7PWB7WvpIaJ5XQAAAWh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:32.304 request_id=F7PWB7WwRIGXp6UAAAXB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:32.304 request_id=F7PWB7Ww_HHfztwAAAXh [info] POST /clientes/1/transacoes
-api02-1  | 20:53:32.330 request_id=F7PWB7VHSE0hNGgAAAVh [info] Sent 200 in 32ms
-api02-1  | 20:53:32.334 request_id=F7PWB7XcEWGBQ54AAAZB [info] Sent 200 in 26ms
-api01-1  | 20:53:32.338 request_id=F7PWB7WpUZqKUkMAAATB [info] Sent 200 in 34ms
-api02-1  | 20:53:32.342 request_id=F7PWB7W-S0I-c7UAAAXB [info] Sent 200 in 36ms
-api01-1  | 20:53:32.345 request_id=F7PWB7Wk-E8q-ykAAASh [info] Sent 200 in 41ms
-api01-1  | 20:53:32.348 request_id=F7PWB7W14fV1_pgAAAYB [info] Sent 200 in 43ms
-api01-1  | 20:53:32.352 request_id=F7PWB7Wu8WvpIgcAAAWB [info] Sent 200 in 48ms
-api01-1  | 20:53:32.356 request_id=F7PWB7WqfafDKbAAAATh [info] Sent 200 in 52ms
-api01-1  | 20:53:32.360 request_id=F7PWB7WrZtj0t9UAAAUB [info] Sent 200 in 55ms
-api01-1  | 20:53:32.364 request_id=F7PWB7WtSVCwlowAAAVB [info] Sent 200 in 59ms
-api01-1  | 20:53:32.370 request_id=F7PWB7WsQj4kNLMAAAUh [info] Sent 200 in 65ms
-api02-1  | 20:53:32.374 request_id=F7PWB7U9zEaCiJ4AAAUh [info] Sent 200 in 77ms
-api01-1  | 20:53:32.378 request_id=F7PWB7WuHrZ5HKMAAAVh [info] Sent 200 in 73ms
-api02-1  | 20:53:32.379 request_id=F7PWB7XKa5AVAasAAAYB [info] Sent 200 in 73ms
-api01-1  | 20:53:32.385 request_id=F7PWB7WvpIaJ5XQAAAWh [info] Sent 200 in 80ms
-api02-1  | 20:53:32.387 request_id=F7PWB7XIz3-piJgAAAXh [info] Sent 200 in 80ms
-api02-1  | 20:53:32.392 request_id=F7PWB7VF2tBagtgAAAVB [info] Sent 200 in 94ms
-api02-1  | 20:53:32.394 request_id=F7PWB7VIS_XjJYYAAAWB [info] Sent 200 in 96ms
-api01-1  | 20:53:32.397 request_id=F7PWB7WwRIGXp6UAAAXB [info] Sent 200 in 92ms
-api02-1  | 20:53:32.399 request_id=F7PWB7XnikWkiSUAAAaB [info] Sent 200 in 91ms
-api01-1  | 20:53:32.402 request_id=F7PWB7Ww_HHfztwAAAXh [info] Sent 200 in 97ms
-api02-1  | 20:53:32.406 request_id=F7PWB7Xa0A54BoAAAAYh [info] Sent 200 in 98ms
-api02-1  | 20:53:32.406 request_id=F7PWB7Xovpb1qGEAAAah [info] Sent 200 in 98ms
-api01-1  | 20:53:33.287 request_id=F7PWB_A75jpqMj0AAAYh [info] GET /clientes/1/extrato
-api01-1  | 20:53:33.291 request_id=F7PWB_A75jpqMj0AAAYh [info] Sent 200 in 4ms
-api02-1  | 20:53:34.288 request_id=F7PWCCvpFTWWYdAAAAbB [info] GET /clientes/6/extrato
-api02-1  | 20:53:34.288 request_id=F7PWCCvpFTWWYdAAAAbB [info] Sent 404 in 157µs
-api02-1  | 20:53:34.296 request_id=F7PWCCxiF_YfcqkAAAbh [info] GET /clientes/4/extrato
-api01-1  | 20:53:34.297 request_id=F7PWCCx2goeyVVIAAAZB [info] GET /clientes/1/extrato
-api01-1  | 20:53:34.297 request_id=F7PWCCx7qdaNUvUAAAZh [info] GET /clientes/3/extrato
-api01-1  | 20:53:34.298 request_id=F7PWCCyJtVHVKYcAAAaB [info] GET /clientes/5/extrato
-api01-1  | 20:53:34.304 request_id=F7PWCCx2goeyVVIAAAZB [info] Sent 200 in 7ms
-api02-1  | 20:53:34.298 request_id=F7PWCCyC9WOafTsAAAcB [info] GET /clientes/2/extrato
-api02-1  | 20:53:34.307 request_id=F7PWCCyC9WOafTsAAAcB [info] Sent 200 in 8ms
-api02-1  | 20:53:34.307 request_id=F7PWCCxiF_YfcqkAAAbh [info] Sent 200 in 11ms
-api01-1  | 20:53:34.307 request_id=F7PWCCx7qdaNUvUAAAZh [info] Sent 200 in 9ms
-api01-1  | 20:53:34.311 request_id=F7PWCCyJtVHVKYcAAAaB [info] Sent 200 in 13ms
-api01-1  | 20:53:34.313 request_id=F7PWCC1nytrisxoAAAah [info] POST /clientes/1/transacoes
-api01-1  | 20:53:34.314 request_id=F7PWCC1rzNB04VIAAAbB [info] POST /clientes/3/transacoes
-api02-1  | 20:53:34.312 request_id=F7PWCC1fi9PJKuMAAAch [info] POST /clientes/2/transacoes
-api02-1  | 20:53:34.313 request_id=F7PWCC1lU6t3mBEAAAdB [info] POST /clientes/4/transacoes
-api01-1  | 20:53:34.317 request_id=F7PWCC1rzNB04VIAAAbB [info] Sent 200 in 4ms
-api02-1  | 20:53:34.317 request_id=F7PWCC2hjI9LnGgAAAdh [info] POST /clientes/5/transacoes
-api02-1  | 20:53:34.317 request_id=F7PWCC1lU6t3mBEAAAdB [info] Sent 200 in 4ms
-api02-1  | 20:53:34.320 request_id=F7PWCC1fi9PJKuMAAAch [info] Sent 200 in 7ms
-api02-1  | 20:53:34.326 request_id=F7PWCC4vVjof_5oAAAeB [info] POST /clientes/2/transacoes
-api01-1  | 20:53:34.322 request_id=F7PWCC1nytrisxoAAAah [info] Sent 200 in 9ms
-api01-1  | 20:53:34.326 request_id=F7PWCC4sDQJbSnMAAAbh [info] POST /clientes/3/transacoes
-api01-1  | 20:53:34.326 request_id=F7PWCC4wNg3sB6sAAAcB [info] POST /clientes/4/transacoes
-api01-1  | 20:53:34.331 request_id=F7PWCC4sDQJbSnMAAAbh [info] Sent 200 in 5ms
-api02-1  | 20:53:34.328 request_id=F7PWCC2hjI9LnGgAAAdh [info] Sent 200 in 11ms
-api02-1  | 20:53:34.329 request_id=F7PWCC5cQTqrsYUAAAeh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:34.332 request_id=F7PWCC6OYhIXlCwAAAch [info] POST /clientes/5/transacoes
-api02-1  | 20:53:34.333 request_id=F7PWCC4vVjof_5oAAAeB [info] Sent 200 in 6ms
-api01-1  | 20:53:34.333 request_id=F7PWCC4wNg3sB6sAAAcB [info] Sent 200 in 7ms
-api02-1  | 20:53:34.338 request_id=F7PWCC7ltckpvhMAAAfB [info] GET /clientes/2/extrato
-api02-1  | 20:53:34.338 request_id=F7PWCC7p00ucaAwAAAfh [info] GET /clientes/3/extrato
-api01-1  | 20:53:34.339 request_id=F7PWCC7yseRlFfMAAAdB [info] GET /clientes/4/extrato
-api01-1  | 20:53:34.343 request_id=F7PWCC6OYhIXlCwAAAch [info] Sent 200 in 11ms
-api02-1  | 20:53:34.339 request_id=F7PWCC5cQTqrsYUAAAeh [info] Sent 200 in 9ms
-api01-1  | 20:53:34.346 request_id=F7PWCC9g7Lqb7EgAAAdh [info] GET /clientes/1/extrato
-api01-1  | 20:53:34.352 request_id=F7PWCC7yseRlFfMAAAdB [info] Sent 200 in 13ms
-api01-1  | 20:53:34.358 request_id=F7PWCC9g7Lqb7EgAAAdh [info] Sent 200 in 11ms
-api01-1  | 20:53:34.364 request_id=F7PWCDB3zfEOkfkAAAeB [info] POST /clientes/2/transacoes
-api01-1  | 20:53:34.365 request_id=F7PWCDB3zfEOkfkAAAeB [info] Sent 422 in 190µs
-api02-1  | 20:53:34.349 request_id=F7PWCC7ltckpvhMAAAfB [info] Sent 200 in 10ms
-api01-1  | 20:53:34.369 request_id=F7PWCDDAq6e-TeUAAAeh [info] POST /clientes/2/transacoes
-api01-1  | 20:53:34.369 request_id=F7PWCDDAq6e-TeUAAAeh [info] Sent 422 in 165µs
-api02-1  | 20:53:34.367 request_id=F7PWCC7p00ucaAwAAAfh [info] Sent 200 in 28ms
-api01-1  | 20:53:34.373 request_id=F7PWCDD0xTph2MoAAAfB [info] POST /clientes/4/transacoes
-api01-1  | 20:53:34.373 request_id=F7PWCDD0xTph2MoAAAfB [info] Sent 422 in 178µs
-api02-1  | 20:53:34.368 request_id=F7PWCDCxsDn5lxcAAAgB [info] GET /clientes/5/extrato
-api02-1  | 20:53:34.369 request_id=F7PWCDC_ASY_E-4AAAgh [info] POST /clientes/4/transacoes
-api02-1  | 20:53:34.369 request_id=F7PWCDC_ASY_E-4AAAgh [info] Sent 422 in 176µs
-api02-1  | 20:53:34.373 request_id=F7PWCDD13Nlvw4UAAAhB [info] POST /clientes/3/transacoes
-api02-1  | 20:53:34.373 request_id=F7PWCDD13Nlvw4UAAAhB [info] Sent 422 in 164µs
-api02-1  | 20:53:34.377 request_id=F7PWCDE8G2lFodQAAAhh [info] POST /clientes/2/transacoes
-api02-1  | 20:53:34.377 request_id=F7PWCDE8G2lFodQAAAhh [info] Sent 422 in 188µs
-api01-1  | 20:53:34.379 request_id=F7PWCDFZ4RxR4hYAAAfh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:34.379 request_id=F7PWCDFZ4RxR4hYAAAfh [info] Sent 422 in 178µs
-api02-1  | 20:53:34.379 request_id=F7PWCDCxsDn5lxcAAAgB [info] Sent 200 in 10ms
-api01-1  | 20:53:34.382 request_id=F7PWCDGI2LjoENoAAAgB [info] POST /clientes/4/transacoes
-api01-1  | 20:53:34.382 request_id=F7PWCDGI2LjoENoAAAgB [info] Sent 422 in 204µs
-api02-1  | 20:53:34.383 request_id=F7PWCDGPkAwvRVAAAAiB [info] POST /clientes/3/transacoes
-api02-1  | 20:53:34.383 request_id=F7PWCDGPkAwvRVAAAAiB [info] Sent 422 in 170µs
-api02-1  | 20:53:34.383 request_id=F7PWCDGTuX6_YMIAAAih [info] POST /clientes/2/transacoes
-api02-1  | 20:53:34.384 request_id=F7PWCDGTuX6_YMIAAAih [info] Sent 422 in 1ms
-api01-1  | 20:53:34.389 request_id=F7PWCDHpTIdkMKgAAAgh [info] POST /clientes/2/transacoes
-api01-1  | 20:53:34.389 request_id=F7PWCDHpTIdkMKgAAAgh [info] Sent 422 in 186µs
-api02-1  | 20:53:34.391 request_id=F7PWCDIOHwXcgbQAAAjB [info] POST /clientes/3/transacoes
-api01-1  | 20:53:34.391 request_id=F7PWCDINEypj85QAAAhB [info] POST /clientes/5/transacoes
-api01-1  | 20:53:34.391 request_id=F7PWCDINEypj85QAAAhB [info] Sent 422 in 184µs
-api02-1  | 20:53:34.391 request_id=F7PWCDIOHwXcgbQAAAjB [info] Sent 422 in 172µs
-api02-1  | 20:53:34.394 request_id=F7PWCDJBvNUYMC0AAAjh [info] POST /clientes/4/transacoes
-api01-1  | 20:53:34.393 request_id=F7PWCDIs8StatBsAAAhh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:34.393 request_id=F7PWCDIs8StatBsAAAhh [info] Sent 422 in 195µs
-api01-1  | 20:53:34.397 request_id=F7PWCDJowCERCOAAAAiB [info] POST /clientes/5/transacoes
-api01-1  | 20:53:34.397 request_id=F7PWCDJowCERCOAAAAiB [info] Sent 422 in 180µs
-api02-1  | 20:53:34.395 request_id=F7PWCDJBvNUYMC0AAAjh [info] Sent 422 in 176µs
-api01-1  | 20:53:34.401 request_id=F7PWCDKnzbf5mlUAAAih [info] POST /clientes/5/transacoes
-api01-1  | 20:53:34.401 request_id=F7PWCDKnzbf5mlUAAAih [info] Sent 422 in 166µs
-api01-1  | 20:53:34.406 request_id=F7PWCDLzfteOEVgAAAjB [info] POST /clientes/5/transacoes
-api01-1  | 20:53:34.406 request_id=F7PWCDLzfteOEVgAAAjB [info] Sent 422 in 184µs
-api02-1  | 20:53:34.400 request_id=F7PWCDKTg67TiHwAAAkB [info] POST /clientes/3/transacoes
-api02-1  | 20:53:34.400 request_id=F7PWCDKTg67TiHwAAAkB [info] Sent 422 in 178µs
-api02-1  | 20:53:34.401 request_id=F7PWCDKmE0skkHkAAAkh [info] POST /clientes/4/transacoes
-api02-1  | 20:53:34.401 request_id=F7PWCDKmE0skkHkAAAkh [info] Sent 422 in 173µs
-api02-1  | 20:53:34.404 request_id=F7PWCDLT3qPqRa0AAAlB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:34.404 request_id=F7PWCDLT3qPqRa0AAAlB [info] Sent 422 in 190µs
-api02-1  | 20:53:34.406 request_id=F7PWCDL0RVIq8bQAAAlh [info] POST /clientes/3/transacoes
-api02-1  | 20:53:34.406 request_id=F7PWCDL0RVIq8bQAAAlh [info] Sent 422 in 164µs
-api02-1  | 20:53:34.412 request_id=F7PWCDNLVo1xfOkAAAmB [info] POST /clientes/5/transacoes
-api02-1  | 20:53:34.412 request_id=F7PWCDNLVo1xfOkAAAmB [info] Sent 422 in 164µs
-api01-1  | 20:53:34.411 request_id=F7PWCDNHLoomqHMAAAjh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:34.412 request_id=F7PWCDNHLoomqHMAAAjh [info] Sent 422 in 180µs
-api01-1  | 20:53:34.416 request_id=F7PWCDOGm8gCc_gAAAkB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:34.416 request_id=F7PWCDOGm8gCc_gAAAkB [info] Sent 422 in 180µs
-api02-1  | 20:53:35.307 request_id=F7PWCGikqSF0LN0AAAmh [info] GET /clientes/1/extrato
-api01-1  | 20:53:35.311 request_id=F7PWCGjeBLtBSWEAAAkh [info] POST /clientes/3/transacoes
-api01-1  | 20:53:35.314 request_id=F7PWCGjeBLtBSWEAAAkh [info] Sent 200 in 3ms
-api02-1  | 20:53:35.310 request_id=F7PWCGikqSF0LN0AAAmh [info] Sent 200 in 3ms
-api02-1  | 20:53:35.312 request_id=F7PWCGjwkcW-0dcAAAnB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:35.316 request_id=F7PWCGjwkcW-0dcAAAnB [info] Sent 200 in 3ms
-api01-1  | 20:53:36.289 request_id=F7PWCKMpLHYGTxQAAAlB [info] POST /clientes/4/transacoes
-api02-1  | 20:53:36.292 request_id=F7PWCKNWqYOmRb8AAAnh [info] GET /clientes/3/extrato
-api02-1  | 20:53:36.294 request_id=F7PWCKNWqYOmRb8AAAnh [info] Sent 200 in 2ms
-api01-1  | 20:53:36.294 request_id=F7PWCKMpLHYGTxQAAAlB [info] Sent 200 in 5ms
-api01-1  | 20:53:36.299 request_id=F7PWCKPBwzium30AAAlh [info] POST /clientes/5/transacoes
-api01-1  | 20:53:36.301 request_id=F7PWCKPBwzium30AAAlh [info] Sent 200 in 2ms
-api02-1  | 20:53:36.538 request_id=F7PWCLIElde5ZrgAAAoB [info] POST /clientes/2/transacoes
-api02-1  | 20:53:36.540 request_id=F7PWCLIElde5ZrgAAAoB [info] Sent 200 in 2ms
-api02-1  | 20:53:36.788 request_id=F7PWCMDrpCqpjaEAAAoh [info] POST /clientes/4/transacoes
-api01-1  | 20:53:36.788 request_id=F7PWCMDp3Dxtj50AAAmB [info] POST /clientes/4/transacoes
-api02-1  | 20:53:36.790 request_id=F7PWCMDrpCqpjaEAAAoh [info] Sent 200 in 1ms
-api01-1  | 20:53:36.791 request_id=F7PWCMDp3Dxtj50AAAmB [info] Sent 200 in 3ms
-api01-1  | 20:53:37.039 request_id=F7PWCM_frhZ2JAIAAAmh [info] POST /clientes/5/transacoes
-api01-1  | 20:53:37.041 request_id=F7PWCM_frhZ2JAIAAAmh [info] Sent 200 in 2ms
-api01-1  | 20:53:37.289 request_id=F7PWCN7NKsSmDb0AAAnB [info] POST /clientes/2/transacoes
-api02-1  | 20:53:37.288 request_id=F7PWCN62Ea7y6rgAAApB [info] POST /clientes/5/transacoes
-api02-1  | 20:53:37.289 request_id=F7PWCN7P3lFmq5AAAAph [info] GET /clientes/1/extrato
-api01-1  | 20:53:37.294 request_id=F7PWCN7NKsSmDb0AAAnB [info] Sent 200 in 4ms
-api02-1  | 20:53:37.295 request_id=F7PWCN62Ea7y6rgAAApB [info] Sent 200 in 7ms
-api02-1  | 20:53:37.296 request_id=F7PWCN7P3lFmq5AAAAph [info] Sent 200 in 7ms
-api01-1  | 20:53:37.454 request_id=F7PWCOic0OK7SkcAAAnh [info] POST /clientes/4/transacoes
-api01-1  | 20:53:37.457 request_id=F7PWCOic0OK7SkcAAAnh [info] Sent 200 in 3ms
-api02-1  | 20:53:37.537 request_id=F7PWCO2YFwRCoA0AAAqB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:37.541 request_id=F7PWCO2YFwRCoA0AAAqB [info] Sent 200 in 3ms
-api01-1  | 20:53:37.620 request_id=F7PWCPKH7bFMPMMAAAoB [info] POST /clientes/3/transacoes
-api01-1  | 20:53:37.623 request_id=F7PWCPKH7bFMPMMAAAoB [info] Sent 200 in 2ms
-api01-1  | 20:53:37.788 request_id=F7PWCPyKxBFjvI8AAAoh [info] POST /clientes/5/transacoes
-api02-1  | 20:53:37.788 request_id=F7PWCPyJhD9HTfkAAAqh [info] POST /clientes/2/transacoes
-api01-1  | 20:53:37.792 request_id=F7PWCPyKxBFjvI8AAAoh [info] Sent 200 in 4ms
-api02-1  | 20:53:37.793 request_id=F7PWCPyJhD9HTfkAAAqh [info] Sent 200 in 4ms
-api02-1  | 20:53:37.954 request_id=F7PWCQZukl59f90AAArB [info] POST /clientes/4/transacoes
-api02-1  | 20:53:37.956 request_id=F7PWCQZukl59f90AAArB [info] Sent 200 in 2ms
-api01-1  | 20:53:38.038 request_id=F7PWCQtqev5aD4kAAApB [info] POST /clientes/5/transacoes
-api01-1  | 20:53:38.039 request_id=F7PWCQtqev5aD4kAAApB [info] Sent 200 in 1ms
-api02-1  | 20:53:38.121 request_id=F7PWCRBlyqNupgcAAArh [info] POST /clientes/5/transacoes
-api02-1  | 20:53:38.123 request_id=F7PWCRBlyqNupgcAAArh [info] Sent 200 in 1ms
-api02-1  | 20:53:38.288 request_id=F7PWCRpd8D8Y1RsAAAsB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:38.290 request_id=F7PWCRp7Uesz2HEAAAph [info] GET /clientes/3/extrato
-api01-1  | 20:53:38.293 request_id=F7PWCRqiWUKvdz4AAAqB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:38.296 request_id=F7PWCRp7Uesz2HEAAAph [info] Sent 200 in 5ms
-api01-1  | 20:53:38.297 request_id=F7PWCRqiWUKvdz4AAAqB [info] Sent 200 in 4ms
-api02-1  | 20:53:38.301 request_id=F7PWCRpd8D8Y1RsAAAsB [info] Sent 200 in 12ms
-api02-1  | 20:53:38.429 request_id=F7PWCSLCeRqaiRUAAAsh [info] POST /clientes/3/transacoes
-api02-1  | 20:53:38.431 request_id=F7PWCSLCeRqaiRUAAAsh [info] Sent 200 in 1ms
-api01-1  | 20:53:38.537 request_id=F7PWCSkqK0Qu1LAAAAqh [info] POST /clientes/2/transacoes
-api01-1  | 20:53:38.540 request_id=F7PWCSkqK0Qu1LAAAAqh [info] Sent 200 in 2ms
-api02-1  | 20:53:38.572 request_id=F7PWCStDQFVG9KoAAAtB [info] POST /clientes/3/transacoes
-api02-1  | 20:53:38.576 request_id=F7PWCStDQFVG9KoAAAtB [info] Sent 200 in 3ms
-api01-1  | 20:53:38.716 request_id=F7PWCTPc1IJ3PmgAAArB [info] POST /clientes/1/transacoes
-api01-1  | 20:53:38.719 request_id=F7PWCTPc1IJ3PmgAAArB [info] Sent 200 in 3ms
-api02-1  | 20:53:38.787 request_id=F7PWCTgYOvpLjLYAAAth [info] POST /clientes/3/transacoes
-api02-1  | 20:53:38.790 request_id=F7PWCTgYOvpLjLYAAAth [info] Sent 200 in 3ms
-api01-1  | 20:53:38.859 request_id=F7PWCTxZ4sYgsTUAAArh [info] POST /clientes/2/transacoes
-api01-1  | 20:53:38.862 request_id=F7PWCTxZ4sYgsTUAAArh [info] Sent 200 in 3ms
-api02-1  | 20:53:39.002 request_id=F7PWCUTp6L_a6_QAAAuB [info] POST /clientes/4/transacoes
-api02-1  | 20:53:39.005 request_id=F7PWCUTp6L_a6_QAAAuB [info] Sent 200 in 2ms
-api01-1  | 20:53:39.038 request_id=F7PWCUcFpDvzCvUAAAsB [info] POST /clientes/4/transacoes
-api01-1  | 20:53:39.041 request_id=F7PWCUcFpDvzCvUAAAsB [info] Sent 200 in 3ms
-api02-1  | 20:53:39.145 request_id=F7PWCU1ub9nuS1oAAAuh [info] POST /clientes/3/transacoes
-api02-1  | 20:53:39.148 request_id=F7PWCU1ub9nuS1oAAAuh [info] Sent 200 in 3ms
-api01-1  | 20:53:39.287 request_id=F7PWCVXiZr0TmdAAAAsh [info] POST /clientes/5/transacoes
-api01-1  | 20:53:39.288 request_id=F7PWCVXwEJpthDUAAAtB [info] GET /clientes/1/extrato
-api02-1  | 20:53:39.287 request_id=F7PWCVXj_HHuk0oAAAvB [info] POST /clientes/4/transacoes
-api01-1  | 20:53:39.292 request_id=F7PWCVXiZr0TmdAAAAsh [info] Sent 200 in 4ms
-api02-1  | 20:53:39.291 request_id=F7PWCVXj_HHuk0oAAAvB [info] Sent 200 in 3ms
-api01-1  | 20:53:39.295 request_id=F7PWCVXwEJpthDUAAAtB [info] Sent 200 in 7ms
-api02-1  | 20:53:39.398 request_id=F7PWCVx_jUEPoIYAAAvh [info] POST /clientes/3/transacoes
-api02-1  | 20:53:39.401 request_id=F7PWCVx_jUEPoIYAAAvh [info] Sent 200 in 2ms
-api01-1  | 20:53:39.487 request_id=F7PWCWHKoYGL6BoAAAth [info] POST /clientes/2/transacoes
-api01-1  | 20:53:39.490 request_id=F7PWCWHKoYGL6BoAAAth [info] Sent 200 in 3ms
-api02-1  | 20:53:39.510 request_id=F7PWCWMmX5FkoeYAAAwB [info] POST /clientes/1/transacoes
-api02-1  | 20:53:39.513 request_id=F7PWCWMmX5FkoeYAAAwB [info] Sent 200 in 3ms
-api01-1  | 20:53:39.621 request_id=F7PWCWnHyGNGyP4AAAuB [info] POST /clientes/3/transacoes
-api01-1  | 20:53:39.623 request_id=F7PWCWnHyGNGyP4AAAuB [info] Sent 200 in 1ms
-api02-1  | 20:53:39.687 request_id=F7PWCW28CTvpFPgAAAwh [info] POST /clientes/4/transacoes
-api02-1  | 20:53:39.689 request_id=F7PWCW28CTvpFPgAAAwh [info] Sent 200 in 1ms
-api01-1  | 20:53:39.732 request_id=F7PWCXBlFVMfWGIAAAuh [info] POST /clientes/1/transacoes
-api01-1  | 20:53:39.734 request_id=F7PWCXBlFVMfWGIAAAuh [info] Sent 200 in 1ms
-api02-1  | 20:53:39.843 request_id=F7PWCXcGO3WDJosAAAxB [info] POST /clientes/5/transacoes
-api02-1  | 20:53:39.845 request_id=F7PWCXcGO3WDJosAAAxB [info] Sent 200 in 1ms
-api01-1  | 20:53:39.887 request_id=F7PWCXmqEPBsMH4AAAvB [info] POST /clientes/4/transacoes
-api01-1  | 20:53:39.889 request_id=F7PWCXmqEPBsMH4AAAvB [info] Sent 200 in 2ms
-api02-1  | 20:53:39.954 request_id=F7PWCX2pDXfCwKIAAAxh [info] POST /clientes/4/transacoes
-api02-1  | 20:53:39.956 request_id=F7PWCX2pDXfCwKIAAAxh [info] Sent 200 in 1ms
-api01-1  | 20:53:40.066 request_id=F7PWCYROHruJUR8AAAvh [info] POST /clientes/4/transacoes
-api01-1  | 20:53:40.068 request_id=F7PWCYROHruJUR8AAAvh [info] Sent 200 in 2ms
-api02-1  | 20:53:40.087 request_id=F7PWCYWWUPSiHSMAAAyB [info] POST /clientes/4/transacoes
-api02-1  | 20:53:40.089 request_id=F7PWCYWWUPSiHSMAAAyB [info] Sent 200 in 1ms
-api01-1  | 20:53:40.177 request_id=F7PWCYrne5ylvoEAAAwB [info] POST /clientes/4/transacoes
-api01-1  | 20:53:40.178 request_id=F7PWCYrne5ylvoEAAAwB [info] Sent 200 in 1ms
-api02-1  | 20:53:40.287 request_id=F7PWCZF5yvOQeEIAAAyh [info] GET /clientes/5/extrato
-api01-1  | 20:53:40.288 request_id=F7PWCZGOobm-HPoAAAwh [info] POST /clientes/3/transacoes
-api02-1  | 20:53:40.289 request_id=F7PWCZGd5Q36dqYAAAzB [info] POST /clientes/2/transacoes
-api01-1  | 20:53:40.291 request_id=F7PWCZGOobm-HPoAAAwh [info] Sent 200 in 3ms
-api02-1  | 20:53:40.292 request_id=F7PWCZF5yvOQeEIAAAyh [info] Sent 200 in 5ms
-api02-1  | 20:53:40.295 request_id=F7PWCZGd5Q36dqYAAAzB [info] Sent 200 in 5ms
-api01-1  | 20:53:40.377 request_id=F7PWCZbcELrFBisAAAxB [info] POST /clientes/2/transacoes
-api01-1  | 20:53:40.379 request_id=F7PWCZbcELrFBisAAAxB [info] Sent 200 in 2ms
-api02-1  | 20:53:40.453 request_id=F7PWCZtfIVK2kD4AAAzh [info] POST /clientes/2/transacoes
-api02-1  | 20:53:40.456 request_id=F7PWCZtfIVK2kD4AAAzh [info] Sent 200 in 2ms
-api01-1  | 20:53:40.468 request_id=F7PWCZxIbi-E85gAAAxh [info] POST /clientes/5/transacoes
-api01-1  | 20:53:40.471 request_id=F7PWCZxIbi-E85gAAAxh [info] Sent 200 in 3ms
-api02-1  | 20:53:40.559 request_id=F7PWCaGxGmADDr4AAA0B [info] POST /clientes/5/transacoes
-api02-1  | 20:53:40.562 request_id=F7PWCaGxGmADDr4AAA0B [info] Sent 200 in 3ms
-api01-1  | 20:53:40.620 request_id=F7PWCaVOuIocnsAAAAyB [info] POST /clientes/5/transacoes
-api01-1  | 20:53:40.623 request_id=F7PWCaVOuIocnsAAAAyB [info] Sent 200 in 3ms
-api02-1  | 20:53:40.650 request_id=F7PWCaccqhPlmn8AAA0h [info] POST /clientes/5/transacoes
-api02-1  | 20:53:40.653 request_id=F7PWCaccqhPlmn8AAA0h [info] Sent 200 in 2ms
-api01-1  | 20:53:40.741 request_id=F7PWCayMevhSIQcAAAyh [info] POST /clientes/5/transacoes
-api01-1  | 20:53:40.744 request_id=F7PWCayMevhSIQcAAAyh [info] Sent 200 in 2ms
-api02-1  | 20:53:40.786 request_id=F7PWCa8-yDB0URsAAA1B [info] POST /clientes/3/transacoes
-api01-1  | 20:53:40.787 request_id=F7PWCa9RLBhsLcsAAAzB [info] GET /clientes/4/extrato
-api02-1  | 20:53:40.791 request_id=F7PWCa8-yDB0URsAAA1B [info] Sent 200 in 4ms
-api01-1  | 20:53:40.793 request_id=F7PWCa9RLBhsLcsAAAzB [info] Sent 200 in 5ms
-api02-1  | 20:53:40.832 request_id=F7PWCbH3qdTEtJEAAA1h [info] POST /clientes/5/transacoes
-api02-1  | 20:53:40.835 request_id=F7PWCbH3qdTEtJEAAA1h [info] Sent 200 in 3ms
-api01-1  | 20:53:40.923 request_id=F7PWCbdo1Mi_09sAAAzh [info] POST /clientes/4/transacoes
-api01-1  | 20:53:40.926 request_id=F7PWCbdo1Mi_09sAAAzh [info] Sent 200 in 2ms
-api02-1  | 20:53:40.952 request_id=F7PWCbkdjBPWOBwAAA2B [info] POST /clientes/1/transacoes
-api02-1  | 20:53:40.955 request_id=F7PWCbkdjBPWOBwAAA2B [info] Sent 200 in 2ms
-api01-1  | 20:53:41.015 request_id=F7PWCbzboJUm_QQAAA0B [info] POST /clientes/5/transacoes
-api01-1  | 20:53:41.017 request_id=F7PWCbzboJUm_QQAAA0B [info] Sent 200 in 2ms
-api02-1  | 20:53:41.105 request_id=F7PWCcI-pPYMmL4AAA2h [info] POST /clientes/5/transacoes
-api02-1  | 20:53:41.108 request_id=F7PWCcI-pPYMmL4AAA2h [info] Sent 200 in 2ms
-api01-1  | 20:53:41.119 request_id=F7PWCcMard2d4V0AAA0h [info] POST /clientes/2/transacoes
-api01-1  | 20:53:41.121 request_id=F7PWCcMard2d4V0AAA0h [info] Sent 200 in 1ms
-api02-1  | 20:53:41.197 request_id=F7PWCce0PZvwJQMAAA3B [info] POST /clientes/5/transacoes
-api02-1  | 20:53:41.198 request_id=F7PWCce0PZvwJQMAAA3B [info] Sent 200 in 1ms
-api01-1  | 20:53:41.288 request_id=F7PWCc0gwvDUpqkAAA1B [info] POST /clientes/4/transacoes
-api01-1  | 20:53:41.289 request_id=F7PWCc0vAx07520AAA1h [info] GET /clientes/4/extrato
-api01-1  | 20:53:41.291 request_id=F7PWCc0gwvDUpqkAAA1B [info] Sent 200 in 3ms
-api02-1  | 20:53:41.292 request_id=F7PWCc1oknlNk9AAAA3h [info] POST /clientes/5/transacoes
-api02-1  | 20:53:41.295 request_id=F7PWCc1oknlNk9AAAA3h [info] Sent 200 in 2ms
-api01-1  | 20:53:41.295 request_id=F7PWCc0vAx07520AAA1h [info] Sent 200 in 6ms
-api02-1  | 20:53:41.363 request_id=F7PWCdGffmFMTsoAAA4B [info] POST /clientes/3/transacoes
-api02-1  | 20:53:41.365 request_id=F7PWCdGffmFMTsoAAA4B [info] Sent 200 in 1ms
-api01-1  | 20:53:41.429 request_id=F7PWCdWNAG-d01YAAA2B [info] POST /clientes/5/transacoes
-api01-1  | 20:53:41.432 request_id=F7PWCdWNAG-d01YAAA2B [info] Sent 200 in 2ms
-api02-1  | 20:53:41.440 request_id=F7PWCdY5noneJ1wAAA4h [info] POST /clientes/5/transacoes
-api02-1  | 20:53:41.442 request_id=F7PWCdY5noneJ1wAAA4h [info] Sent 200 in 2ms
-api01-1  | 20:53:41.517 request_id=F7PWCdrUaMpNh0gAAA2h [info] POST /clientes/3/transacoes
-api01-1  | 20:53:41.519 request_id=F7PWCdrUaMpNh0gAAA2h [info] Sent 200 in 1ms
-api02-1  | 20:53:41.572 request_id=F7PWCd4OoVTux5IAAA5B [info] POST /clientes/5/transacoes
-api02-1  | 20:53:41.573 request_id=F7PWCd4OoVTux5IAAA5B [info] Sent 200 in 1ms
-api01-1  | 20:53:41.594 request_id=F7PWCd9hVy-avygAAA3B [info] POST /clientes/4/transacoes
-api01-1  | 20:53:41.596 request_id=F7PWCd9hVy-avygAAA3B [info] Sent 200 in 2ms
-api02-1  | 20:53:41.671 request_id=F7PWCeP-SwcTp7AAAA5h [info] POST /clientes/3/transacoes
-api02-1  | 20:53:41.673 request_id=F7PWCeP-SwcTp7AAAA5h [info] Sent 200 in 1ms
-api01-1  | 20:53:41.717 request_id=F7PWCea76a9J130AAA3h [info] POST /clientes/2/transacoes
-api01-1  | 20:53:41.719 request_id=F7PWCea76a9J130AAA3h [info] Sent 200 in 1ms
-api02-1  | 20:53:41.748 request_id=F7PWCeiSs6Y44A4AAA6B [info] POST /clientes/2/transacoes
-api02-1  | 20:53:41.750 request_id=F7PWCeiSs6Y44A4AAA6B [info] Sent 200 in 1ms
-api01-1  | 20:53:41.825 request_id=F7PWCe0qpy7hS8YAAA4B [info] POST /clientes/2/transacoes
-api01-1  | 20:53:41.827 request_id=F7PWCe0qpy7hS8YAAA4B [info] Sent 200 in 2ms
-api02-1  | 20:53:41.858 request_id=F7PWCe8ecBBgUNoAAA6h [info] POST /clientes/3/transacoes
-api02-1  | 20:53:41.860 request_id=F7PWCe8ecBBgUNoAAA6h [info] Sent 200 in 1ms
-api01-1  | 20:53:41.902 request_id=F7PWCfG9nLO_dVYAAA4h [info] POST /clientes/5/transacoes
-api01-1  | 20:53:41.904 request_id=F7PWCfG9nLO_dVYAAA4h [info] Sent 200 in 2ms
-api02-1  | 20:53:41.980 request_id=F7PWCfZiJaxxj3QAAA7B [info] POST /clientes/5/transacoes
-api02-1  | 20:53:41.981 request_id=F7PWCfZiJaxxj3QAAA7B [info] Sent 200 in 1ms
-api01-1  | 20:53:42.001 request_id=F7PWCfeg8KPhW7MAAA5B [info] POST /clientes/4/transacoes
-api01-1  | 20:53:42.003 request_id=F7PWCfeg8KPhW7MAAA5B [info] Sent 200 in 2ms
-api02-1  | 20:53:42.056 request_id=F7PWCfrycGD46DUAAA7h [info] POST /clientes/4/transacoes
-api02-1  | 20:53:42.058 request_id=F7PWCfrycGD46DUAAA7h [info] Sent 200 in 1ms
-api01-1  | 20:53:42.133 request_id=F7PWCf-IByG6OgkAAA5h [info] POST /clientes/1/transacoes
-api01-1  | 20:53:42.135 request_id=F7PWCf-IByG6OgkAAA5h [info] Sent 200 in 1ms
-api02-1  | 20:53:42.143 request_id=F7PWCgAj6T-aQ7QAAA8B [info] POST /clientes/1/transacoes
-api02-1  | 20:53:42.145 request_id=F7PWCgAj6T-aQ7QAAA8B [info] Sent 200 in 1ms
-api01-1  | 20:53:42.210 request_id=F7PWCgQgNcmE6kkAAA6B [info] POST /clientes/5/transacoes
-api01-1  | 20:53:42.212 request_id=F7PWCgQgNcmE6kkAAA6B [info] Sent 200 in 1ms
-api01-1  | 20:53:42.287 request_id=F7PWCgizON38A6QAAA6h [info] POST /clientes/4/transacoes
-api02-1  | 20:53:42.289 request_id=F7PWCgjLmHtpxpEAAA8h [info] GET /clientes/3/extrato
-api02-1  | 20:53:42.290 request_id=F7PWCgjaA6FnXJYAAA9B [info] POST /clientes/4/transacoes
-api02-1  | 20:53:42.292 request_id=F7PWCgjaA6FnXJYAAA9B [info] Sent 200 in 2ms
-api01-1  | 20:53:42.291 request_id=F7PWCgizON38A6QAAA6h [info] Sent 200 in 3ms
-api02-1  | 20:53:42.294 request_id=F7PWCgjLmHtpxpEAAA8h [info] Sent 200 in 5ms
-api01-1  | 20:53:42.352 request_id=F7PWCgyOL0xTJN0AAA7B [info] POST /clientes/2/transacoes
-api01-1  | 20:53:42.354 request_id=F7PWCgyOL0xTJN0AAA7B [info] Sent 200 in 2ms
-api02-1  | 20:53:42.412 request_id=F7PWChAgPB1CY4AAAA9h [info] POST /clientes/3/transacoes
-api02-1  | 20:53:42.414 request_id=F7PWChAgPB1CY4AAAA9h [info] Sent 200 in 2ms
-api01-1  | 20:53:42.419 request_id=F7PWChCM_x41SjkAAA7h [info] POST /clientes/1/transacoes
-api01-1  | 20:53:42.420 request_id=F7PWChCM_x41SjkAAA7h [info] Sent 200 in 1ms
-api02-1  | 20:53:42.487 request_id=F7PWChSXVGcSFDsAAA-B [info] POST /clientes/4/transacoes
-api02-1  | 20:53:42.489 request_id=F7PWChSXVGcSFDsAAA-B [info] Sent 200 in 2ms
-api01-1  | 20:53:42.537 request_id=F7PWChebdEzM4_sAAA8B [info] POST /clientes/1/transacoes
-api01-1  | 20:53:42.539 request_id=F7PWChebdEzM4_sAAA8B [info] Sent 200 in 1ms
-api02-1  | 20:53:42.552 request_id=F7PWChiC6hxUDG8AAA-h [info] POST /clientes/3/transacoes
-api02-1  | 20:53:42.554 request_id=F7PWChiC6hxUDG8AAA-h [info] Sent 200 in 2ms
-api01-1  | 20:53:42.619 request_id=F7PWChyCiHkxKK0AAA8h [info] POST /clientes/4/transacoes
-api01-1  | 20:53:42.621 request_id=F7PWChyCiHkxKK0AAA8h [info] Sent 200 in 1ms
-api02-1  | 20:53:42.663 request_id=F7PWCh8XRwRs1l8AAA_B [info] POST /clientes/2/transacoes
-api02-1  | 20:53:42.665 request_id=F7PWCh8XRwRs1l8AAA_B [info] Sent 200 in 2ms
-api01-1  | 20:53:42.687 request_id=F7PWCiCGHck7CLEAAA9B [info] POST /clientes/2/transacoes
-api01-1  | 20:53:42.689 request_id=F7PWCiCGHck7CLEAAA9B [info] Sent 200 in 2ms
-api02-1  | 20:53:42.752 request_id=F7PWCiRvjhWdbgwAAA_h [info] POST /clientes/3/transacoes
-api02-1  | 20:53:42.754 request_id=F7PWCiRvjhWdbgwAAA_h [info] Sent 200 in 1ms
-api01-1  | 20:53:42.787 request_id=F7PWCiZ57yymbeEAAA9h [info] GET /clientes/4/extrato
-api02-1  | 20:53:42.787 request_id=F7PWCiaDzBnlfpgAABAB [info] POST /clientes/2/transacoes
-api02-1  | 20:53:42.789 request_id=F7PWCiaDzBnlfpgAABAB [info] Sent 200 in 1ms
-api01-1  | 20:53:42.791 request_id=F7PWCiZ57yymbeEAAA9h [info] Sent 200 in 4ms
-api01-1  | 20:53:42.819 request_id=F7PWCihomIGFF3oAAA-B [info] POST /clientes/1/transacoes
+nginx-1  | 2024/02/19 14:34:05 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.192.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.192.3:4000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 14:34:05 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.192.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://192.168.192.4:4000/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 14:34:07 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 192.168.192.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api01-1  | 14:34:07.934 [info] Running RinhaBackendWeb.Endpoint with Bandit 1.2.1 at :::4000 (http)
+api01-1  | "warmming up!.."
+api01-1  | 14:34:07.935 [info] Access RinhaBackendWeb.Endpoint at https://api01
+api02-1  | 14:34:08.019 [info] Running RinhaBackendWeb.Endpoint with Bandit 1.2.1 at :::4000 (http)
+api02-1  | "warmming up!.."
+api02-1  | 14:34:08.020 [info] Access RinhaBackendWeb.Endpoint at https://api01
+api01-1  | "done!.."
+api02-1  | "done!.."
+nginx-1  | 2024/02/19 14:34:09 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 192.168.192.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 14:34:11 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 192.168.192.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 14:34:13 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 192.168.192.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/02/19 14:34:15 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 192.168.192.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | 14:34:17.277 request_id=F7VKPHrmr6VdNLcAAAMh [info] GET /clientes/1/extrato
+api02-1  | 14:34:17.280 request_id=F7VKPHrmr6VdNLcAAAMh [info] Sent 200 in 2ms
+api02-1  | 14:34:17.285 request_id=F7VKPHtnpN84Z08AAANh [info] GET /clientes/1/extrato
+api02-1  | 14:34:17.288 request_id=F7VKPHtnpN84Z08AAANh [info] Sent 200 in 2ms
+api01-1  | 14:34:22.728 request_id=F7VKPb_N0M_U820AAAMh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.729 request_id=F7VKPb_aK3TUIZQAAAOB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.729 request_id=F7VKPb_d7wRwbAQAAAOh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.735 request_id=F7VKPcA2psuMBUAAAAPB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.735 request_id=F7VKPcA55r2P9wwAAAPh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.737 request_id=F7VKPcBU23CEffUAAAQB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.739 request_id=F7VKPcBzc32F8msAAAQh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.739 request_id=F7VKPcB1wpGcGdoAAARB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.741 request_id=F7VKPcCQo27_o9UAAARh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.742 request_id=F7VKPcCi2EopmgoAAASB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.743 request_id=F7VKPcC4zO-CiJ4AAASh [info] POST /clientes/1/transacoes
+api01-1  | 14:34:22.739 request_id=F7VKPb_N0M_U820AAAMh [info] Sent 200 in 11ms
+api01-1  | 14:34:22.741 request_id=F7VKPcCao30osbUAAANB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:22.743 request_id=F7VKPcCvuPELR-QAAANh [info] POST /clientes/1/transacoes
+api01-1  | 14:34:22.744 request_id=F7VKPcDDKOPpLiMAAAOB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:22.744 request_id=F7VKPcDLJuWEN-cAAAOh [info] POST /clientes/1/transacoes
+api01-1  | 14:34:22.745 request_id=F7VKPcDXHtqZb6sAAAPB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.746 request_id=F7VKPb_aK3TUIZQAAAOB [info] Sent 200 in 17ms
+api02-1  | 14:34:22.747 request_id=F7VKPcD3tKdagtgAAATB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.748 request_id=F7VKPcD6CBUhNGgAAATh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.748 request_id=F7VKPcD6tCXjJYYAAAUB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:22.755 request_id=F7VKPcFt5XFl-egAAAPh [info] POST /clientes/1/transacoes
+api01-1  | 14:34:22.758 request_id=F7VKPcGaYnYq-ykAAAQB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:22.758 request_id=F7VKPcGc3VeKUkMAAAQh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.755 request_id=F7VKPcFtX5sJUT0AAAUh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.758 request_id=F7VKPcGW3XU-c7UAAAVB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.758 request_id=F7VKPcGdcOypiJgAAAVh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:22.765 request_id=F7VKPb_d7wRwbAQAAAOh [info] Sent 200 in 35ms
+api02-1  | 14:34:22.769 request_id=F7VKPcD6tCXjJYYAAAUB [info] Sent 200 in 21ms
+api02-1  | 14:34:22.771 request_id=F7VKPcBU23CEffUAAAQB [info] Sent 200 in 34ms
+api02-1  | 14:34:22.774 request_id=F7VKPcGdcOypiJgAAAVh [info] Sent 200 in 15ms
+api02-1  | 14:34:22.776 request_id=F7VKPcGW3XU-c7UAAAVB [info] Sent 200 in 18ms
+api02-1  | 14:34:22.778 request_id=F7VKPcA2psuMBUAAAAPB [info] Sent 200 in 43ms
+api01-1  | 14:34:22.781 request_id=F7VKPcGaYnYq-ykAAAQB [info] Sent 200 in 23ms
+api02-1  | 14:34:22.783 request_id=F7VKPcC4zO-CiJ4AAASh [info] Sent 200 in 39ms
+api02-1  | 14:34:22.785 request_id=F7VKPcFtX5sJUT0AAAUh [info] Sent 200 in 29ms
+api02-1  | 14:34:22.815 request_id=F7VKPcD6CBUhNGgAAATh [info] Sent 200 in 67ms
+api02-1  | 14:34:22.816 request_id=F7VKPcB1wpGcGdoAAARB [info] Sent 200 in 77ms
+api02-1  | 14:34:22.818 request_id=F7VKPcBzc32F8msAAAQh [info] Sent 200 in 79ms
+api02-1  | 14:34:22.820 request_id=F7VKPcD3tKdagtgAAATB [info] Sent 200 in 72ms
+api02-1  | 14:34:22.822 request_id=F7VKPcCQo27_o9UAAARh [info] Sent 200 in 80ms
+api01-1  | 14:34:22.823 request_id=F7VKPcCao30osbUAAANB [info] Sent 200 in 81ms
+api02-1  | 14:34:22.824 request_id=F7VKPcCi2EopmgoAAASB [info] Sent 200 in 81ms
+api02-1  | 14:34:22.825 request_id=F7VKPcA55r2P9wwAAAPh [info] Sent 200 in 90ms
+api01-1  | 14:34:22.826 request_id=F7VKPcFt5XFl-egAAAPh [info] Sent 200 in 71ms
+api01-1  | 14:34:22.828 request_id=F7VKPcGc3VeKUkMAAAQh [info] Sent 200 in 69ms
+api01-1  | 14:34:22.829 request_id=F7VKPcDLJuWEN-cAAAOh [info] Sent 200 in 84ms
+api01-1  | 14:34:22.830 request_id=F7VKPcCvuPELR-QAAANh [info] Sent 200 in 87ms
+api01-1  | 14:34:22.832 request_id=F7VKPcDXHtqZb6sAAAPB [info] Sent 200 in 86ms
+api01-1  | 14:34:22.833 request_id=F7VKPcDDKOPpLiMAAAOB [info] Sent 200 in 89ms
+api01-1  | 14:34:23.702 request_id=F7VKPfndZZHDKbAAAARB [info] GET /clientes/1/extrato
+api01-1  | 14:34:23.706 request_id=F7VKPfndZZHDKbAAAARB [info] Sent 200 in 3ms
+api01-1  | 14:34:24.705 request_id=F7VKPjWg9sb0t9UAAASB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:24.705 request_id=F7VKPjWk6hckNLMAAASh [info] POST /clientes/1/transacoes
+api01-1  | 14:34:24.706 request_id=F7VKPjW8je6wlowAAATB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.704 request_id=F7VKPjWPUOQVAasAAAWB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.705 request_id=F7VKPjWr3C54BoAAAAWh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.706 request_id=F7VKPjWu47KBQ54AAAXB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.706 request_id=F7VKPjW5us4GbAMAAAXh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.711 request_id=F7VKPjW5us4GbAMAAAXh [info] Sent 200 in 4ms
+api01-1  | 14:34:24.713 request_id=F7VKPjYgn2B5HKMAAATh [info] POST /clientes/1/transacoes
+api01-1  | 14:34:24.713 request_id=F7VKPjYj5JPpIgcAAAUB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.716 request_id=F7VKPjWr3C54BoAAAAWh [info] Sent 200 in 10ms
+api01-1  | 14:34:24.713 request_id=F7VKPjYkmaeJ5XQAAAUh [info] POST /clientes/1/transacoes
+api01-1  | 14:34:24.718 request_id=F7VKPjZlkxWXp6UAAAVB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:24.718 request_id=F7VKPjZoSVvfztwAAAVh [info] POST /clientes/1/transacoes
+api01-1  | 14:34:24.718 request_id=F7VKPjZo9cV1_pgAAAWB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.718 request_id=F7VKPjZvP0GkiSUAAAYB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:24.718 request_id=F7VKPjZpa1FqMj0AAAWh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.719 request_id=F7VKPjWPUOQVAasAAAWB [info] Sent 200 in 15ms
+api02-1  | 14:34:24.718 request_id=F7VKPjZzDSj1qGEAAAYh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.719 request_id=F7VKPjZ11ByWYdAAAAZB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:24.718 request_id=F7VKPjZp3AayVVIAAAXB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.719 request_id=F7VKPjZ2zGYfcqkAAAZh [info] POST /clientes/1/transacoes
+api01-1  | 14:34:24.718 request_id=F7VKPjZx4TKNUvUAAAXh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.719 request_id=F7VKPjZ3WSmafTsAAAaB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.719 request_id=F7VKPjZ3z2F3mBEAAAah [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.719 request_id=F7VKPjZ4THPJKuMAAAbB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.719 request_id=F7VKPjZ8S3lLnGgAAAbh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.721 request_id=F7VKPjaY41gf_5oAAAcB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:24.730 request_id=F7VKPjWu47KBQ54AAAXB [info] Sent 200 in 24ms
+api02-1  | 14:34:24.731 request_id=F7VKPjZ8S3lLnGgAAAbh [info] Sent 200 in 12ms
+api02-1  | 14:34:24.736 request_id=F7VKPjZvP0GkiSUAAAYB [info] Sent 200 in 17ms
+api02-1  | 14:34:24.737 request_id=F7VKPjZ3z2F3mBEAAAah [info] Sent 200 in 17ms
+api02-1  | 14:34:24.738 request_id=F7VKPjaY41gf_5oAAAcB [info] Sent 200 in 17ms
+api02-1  | 14:34:24.740 request_id=F7VKPjZ4THPJKuMAAAbB [info] Sent 200 in 20ms
+api01-1  | 14:34:24.741 request_id=F7VKPjYj5JPpIgcAAAUB [info] Sent 200 in 27ms
+api01-1  | 14:34:24.743 request_id=F7VKPjZx4TKNUvUAAAXh [info] Sent 200 in 24ms
+api01-1  | 14:34:24.744 request_id=F7VKPjZoSVvfztwAAAVh [info] Sent 200 in 26ms
+api02-1  | 14:34:24.746 request_id=F7VKPjZ2zGYfcqkAAAZh [info] Sent 200 in 27ms
+api01-1  | 14:34:24.747 request_id=F7VKPjZp3AayVVIAAAXB [info] Sent 200 in 29ms
+api01-1  | 14:34:24.749 request_id=F7VKPjZlkxWXp6UAAAVB [info] Sent 200 in 31ms
+api02-1  | 14:34:24.750 request_id=F7VKPjZzDSj1qGEAAAYh [info] Sent 200 in 31ms
+api01-1  | 14:34:24.752 request_id=F7VKPjWk6hckNLMAAASh [info] Sent 200 in 46ms
+api01-1  | 14:34:24.753 request_id=F7VKPjW8je6wlowAAATB [info] Sent 200 in 46ms
+api01-1  | 14:34:24.755 request_id=F7VKPjWg9sb0t9UAAASB [info] Sent 200 in 50ms
+api01-1  | 14:34:24.756 request_id=F7VKPjYkmaeJ5XQAAAUh [info] Sent 200 in 42ms
+api01-1  | 14:34:24.758 request_id=F7VKPjYgn2B5HKMAAATh [info] Sent 200 in 44ms
+api01-1  | 14:34:24.759 request_id=F7VKPjZo9cV1_pgAAAWB [info] Sent 200 in 41ms
+api02-1  | 14:34:24.761 request_id=F7VKPjZ3WSmafTsAAAaB [info] Sent 200 in 42ms
+api02-1  | 14:34:24.762 request_id=F7VKPjZ11ByWYdAAAAZB [info] Sent 200 in 43ms
+api01-1  | 14:34:24.763 request_id=F7VKPjZpa1FqMj0AAAWh [info] Sent 200 in 45ms
+api01-1  | 14:34:25.702 request_id=F7VKPnESkFDVKYcAAAYB [info] GET /clientes/1/extrato
+api01-1  | 14:34:25.705 request_id=F7VKPnESkFDVKYcAAAYB [info] Sent 200 in 2ms
+api02-1  | 14:34:26.704 request_id=F7VKPqzOytirsYUAAAch [info] GET /clientes/6/extrato
+api02-1  | 14:34:26.704 request_id=F7VKPqzOytirsYUAAAch [info] Sent 404 in 137µs
+api02-1  | 14:34:26.708 request_id=F7VKPq0O7NwpvhMAAAdB [info] GET /clientes/1/extrato
+api01-1  | 14:34:26.708 request_id=F7VKPq0LcfnisxoAAAYh [info] GET /clientes/5/extrato
+api01-1  | 14:34:26.708 request_id=F7VKPq0PTBp04VIAAAZB [info] GET /clientes/3/extrato
+api02-1  | 14:34:26.709 request_id=F7VKPq0SVducaAwAAAdh [info] GET /clientes/2/extrato
+api02-1  | 14:34:26.712 request_id=F7VKPq0O7NwpvhMAAAdB [info] Sent 200 in 3ms
+api01-1  | 14:34:26.711 request_id=F7VKPq00TodbSnMAAAZh [info] GET /clientes/4/extrato
+api01-1  | 14:34:26.715 request_id=F7VKPq0LcfnisxoAAAYh [info] Sent 200 in 6ms
+api01-1  | 14:34:26.717 request_id=F7VKPq00TodbSnMAAAZh [info] Sent 200 in 6ms
+api01-1  | 14:34:26.720 request_id=F7VKPq0PTBp04VIAAAZB [info] Sent 200 in 11ms
+api01-1  | 14:34:26.727 request_id=F7VKPq4viALsB6sAAAaB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:26.727 request_id=F7VKPq4y0wUXlCwAAAah [info] POST /clientes/3/transacoes
+api02-1  | 14:34:26.720 request_id=F7VKPq3EuUr5lxcAAAeB [info] POST /clientes/5/transacoes
+api02-1  | 14:34:26.725 request_id=F7VKPq4TMGM_E-4AAAeh [info] POST /clientes/4/transacoes
+api02-1  | 14:34:26.728 request_id=F7VKPq0SVducaAwAAAdh [info] Sent 200 in 19ms
+api02-1  | 14:34:26.731 request_id=F7VKPq5qPf9vw4UAAAfB [info] POST /clientes/2/transacoes
+api02-1  | 14:34:26.732 request_id=F7VKPq4TMGM_E-4AAAeh [info] Sent 200 in 6ms
+api02-1  | 14:34:26.735 request_id=F7VKPq3EuUr5lxcAAAeB [info] Sent 200 in 14ms
+api01-1  | 14:34:26.734 request_id=F7VKPq4y0wUXlCwAAAah [info] Sent 200 in 6ms
+api02-1  | 14:34:26.738 request_id=F7VKPq7R-75FodQAAAfh [info] POST /clientes/4/transacoes
+api01-1  | 14:34:26.737 request_id=F7VKPq7FQP9lFfMAAAbB [info] POST /clientes/5/transacoes
+api01-1  | 14:34:26.739 request_id=F7VKPq7kYYCb7EgAAAbh [info] POST /clientes/3/transacoes
+api01-1  | 14:34:26.741 request_id=F7VKPq4viALsB6sAAAaB [info] Sent 200 in 13ms
+api02-1  | 14:34:26.740 request_id=F7VKPq5qPf9vw4UAAAfB [info] Sent 200 in 8ms
+api02-1  | 14:34:26.742 request_id=F7VKPq8Q8YsvRVAAAAgB [info] POST /clientes/2/transacoes
+api02-1  | 14:34:26.744 request_id=F7VKPq7R-75FodQAAAfh [info] Sent 200 in 5ms
+api01-1  | 14:34:26.744 request_id=F7VKPq7FQP9lFfMAAAbB [info] Sent 200 in 6ms
+api02-1  | 14:34:26.746 request_id=F7VKPq9UJY-_YMIAAAgh [info] GET /clientes/5/extrato
+api01-1  | 14:34:26.746 request_id=F7VKPq7kYYCb7EgAAAbh [info] Sent 200 in 6ms
+api02-1  | 14:34:26.747 request_id=F7VKPq8Q8YsvRVAAAAgB [info] Sent 200 in 4ms
+api02-1  | 14:34:26.748 request_id=F7VKPq9r34zcgbQAAAhB [info] GET /clientes/3/extrato
+api01-1  | 14:34:26.746 request_id=F7VKPq9LVUwOkfkAAAcB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:26.751 request_id=F7VKPq9UJY-_YMIAAAgh [info] Sent 200 in 4ms
+api01-1  | 14:34:26.748 request_id=F7VKPq9u-DG-TeUAAAch [info] GET /clientes/4/extrato
+api01-1  | 14:34:26.753 request_id=F7VKPq-0iRxh2MoAAAdB [info] GET /clientes/2/extrato
+api02-1  | 14:34:26.755 request_id=F7VKPq9r34zcgbQAAAhB [info] Sent 200 in 6ms
+api01-1  | 14:34:26.755 request_id=F7VKPq9LVUwOkfkAAAcB [info] Sent 200 in 8ms
+api01-1  | 14:34:26.759 request_id=F7VKPq9u-DG-TeUAAAch [info] Sent 200 in 10ms
+api01-1  | 14:34:26.763 request_id=F7VKPrBS39pR4hYAAAdh [info] POST /clientes/5/transacoes
+api01-1  | 14:34:26.763 request_id=F7VKPrBVzJ7oENoAAAeB [info] POST /clientes/4/transacoes
+api01-1  | 14:34:26.764 request_id=F7VKPq-0iRxh2MoAAAdB [info] Sent 200 in 10ms
+api02-1  | 14:34:26.760 request_id=F7VKPrAd8DUYMC0AAAhh [info] GET /clientes/1/extrato
+api02-1  | 14:34:26.765 request_id=F7VKPrBzUcvTiHwAAAiB [info] POST /clientes/3/transacoes
+api02-1  | 14:34:26.767 request_id=F7VKPrCMl7AkkHkAAAih [info] POST /clientes/2/transacoes
+api02-1  | 14:34:26.769 request_id=F7VKPrBzUcvTiHwAAAiB [info] Sent 200 in 3ms
+api01-1  | 14:34:26.768 request_id=F7VKPrBVzJ7oENoAAAeB [info] Sent 200 in 4ms
+api01-1  | 14:34:26.775 request_id=F7VKPrBS39pR4hYAAAdh [info] Sent 200 in 11ms
+api02-1  | 14:34:26.774 request_id=F7VKPrAd8DUYMC0AAAhh [info] Sent 200 in 14ms
+api02-1  | 14:34:26.777 request_id=F7VKPrCMl7AkkHkAAAih [info] Sent 200 in 10ms
+api01-1  | 14:34:26.783 request_id=F7VKPrGFVe1kMKgAAAeh [info] POST /clientes/1/transacoes
+api01-1  | 14:34:26.791 request_id=F7VKPrGFVe1kMKgAAAeh [info] Sent 200 in 8ms
+api02-1  | 14:34:26.791 request_id=F7VKPrH3cuPqRa0AAAjB [info] GET /clientes/2/extrato
+api02-1  | 14:34:26.797 request_id=F7VKPrJZrcMq8bQAAAjh [info] GET /clientes/2/extrato
+api01-1  | 14:34:26.797 request_id=F7VKPrJRv8dj85QAAAfB [info] GET /clientes/5/extrato
+api01-1  | 14:34:26.798 request_id=F7VKPrJpHRxatBsAAAfh [info] GET /clientes/5/extrato
+api02-1  | 14:34:26.797 request_id=F7VKPrJdZJ1xfOkAAAkB [info] GET /clientes/2/extrato
+api01-1  | 14:34:26.798 request_id=F7VKPrJto0URCOAAAAgB [info] GET /clientes/2/extrato
+api02-1  | 14:34:26.797 request_id=F7VKPrJeQ550LN0AAAkh [info] GET /clientes/5/extrato
+api02-1  | 14:34:26.800 request_id=F7VKPrKHEPG-0dcAAAlB [info] GET /clientes/1/extrato
+api01-1  | 14:34:26.798 request_id=F7VKPrJuhcL5mlUAAAgh [info] GET /clientes/5/extrato
+api01-1  | 14:34:26.802 request_id=F7VKPrKdaXyOEVgAAAhB [info] GET /clientes/4/extrato
+api01-1  | 14:34:26.806 request_id=F7VKPrLckdsmqHMAAAhh [info] GET /clientes/4/extrato
+api02-1  | 14:34:26.802 request_id=F7VKPrH3cuPqRa0AAAjB [info] Sent 200 in 11ms
+api01-1  | 14:34:26.806 request_id=F7VKPrLfVP8Cc_gAAAiB [info] GET /clientes/1/extrato
+api01-1  | 14:34:26.809 request_id=F7VKPrJRv8dj85QAAAfB [info] Sent 200 in 11ms
+api02-1  | 14:34:26.805 request_id=F7VKPrLXl2-mRb8AAAlh [info] GET /clientes/3/extrato
+api02-1  | 14:34:26.809 request_id=F7VKPrMLDCW5ZrgAAAmB [info] GET /clientes/1/extrato
+api02-1  | 14:34:26.809 request_id=F7VKPrMN74qpjaEAAAmh [info] GET /clientes/1/extrato
+api02-1  | 14:34:26.809 request_id=F7VKPrJdZJ1xfOkAAAkB [info] Sent 200 in 11ms
+api02-1  | 14:34:26.813 request_id=F7VKPrKHEPG-0dcAAAlB [info] Sent 200 in 12ms
+api02-1  | 14:34:26.815 request_id=F7VKPrNtvjDy6rgAAAnB [info] GET /clientes/4/extrato
+api01-1  | 14:34:26.811 request_id=F7VKPrLckdsmqHMAAAhh [info] Sent 200 in 5ms
+api01-1  | 14:34:26.811 request_id=F7VKPrJto0URCOAAAAgB [info] Sent 200 in 12ms
+api02-1  | 14:34:26.819 request_id=F7VKPrMLDCW5ZrgAAAmB [info] Sent 200 in 10ms
+api01-1  | 14:34:26.815 request_id=F7VKPrNtkoZBSWEAAAih [info] GET /clientes/4/extrato
+api01-1  | 14:34:26.816 request_id=F7VKPrLfVP8Cc_gAAAiB [info] Sent 200 in 10ms
+api01-1  | 14:34:26.822 request_id=F7VKPrJpHRxatBsAAAfh [info] Sent 200 in 24ms
+api01-1  | 14:34:26.823 request_id=F7VKPrJuhcL5mlUAAAgh [info] Sent 200 in 24ms
+api02-1  | 14:34:26.822 request_id=F7VKPrJZrcMq8bQAAAjh [info] Sent 200 in 24ms
+api02-1  | 14:34:26.822 request_id=F7VKPrJeQ550LN0AAAkh [info] Sent 200 in 24ms
+api01-1  | 14:34:26.824 request_id=F7VKPrKdaXyOEVgAAAhB [info] Sent 200 in 21ms
+api01-1  | 14:34:26.825 request_id=F7VKPrQJqLMGTxQAAAjB [info] POST /clientes/2/transacoes
+api01-1  | 14:34:26.826 request_id=F7VKPrQJqLMGTxQAAAjB [info] Sent 422 in 139µs
+api02-1  | 14:34:26.826 request_id=F7VKPrLXl2-mRb8AAAlh [info] Sent 200 in 21ms
+api01-1  | 14:34:26.827 request_id=F7VKPrNtkoZBSWEAAAih [info] Sent 200 in 12ms
+api01-1  | 14:34:26.833 request_id=F7VKPrR77WCum30AAAjh [info] GET /clientes/3/extrato
+api01-1  | 14:34:26.834 request_id=F7VKPrSK95ttj50AAAkB [info] GET /clientes/3/extrato
+api02-1  | 14:34:26.833 request_id=F7VKPrR_KQJmq5AAAAnh [info] POST /clientes/5/transacoes
+api02-1  | 14:34:26.833 request_id=F7VKPrR_KQJmq5AAAAnh [info] Sent 422 in 162µs
+api02-1  | 14:34:26.833 request_id=F7VKPrSC7bNCoA0AAAoB [info] GET /clientes/3/extrato
+api01-1  | 14:34:26.839 request_id=F7VKPrTYIh52JAIAAAkh [info] POST /clientes/4/transacoes
+api02-1  | 14:34:26.835 request_id=F7VKPrNtvjDy6rgAAAnB [info] Sent 200 in 19ms
+api01-1  | 14:34:26.839 request_id=F7VKPrTYIh52JAIAAAkh [info] Sent 422 in 151µs
+api01-1  | 14:34:26.841 request_id=F7VKPrT8gyemDb0AAAlB [info] POST /clientes/2/transacoes
+api01-1  | 14:34:26.842 request_id=F7VKPrT8gyemDb0AAAlB [info] Sent 422 in 126µs
+api01-1  | 14:34:26.842 request_id=F7VKPrT_i367SkcAAAlh [info] POST /clientes/5/transacoes
+api01-1  | 14:34:26.842 request_id=F7VKPrT_i367SkcAAAlh [info] Sent 422 in 194µs
+api02-1  | 14:34:26.835 request_id=F7VKPrMN74qpjaEAAAmh [info] Sent 200 in 26ms
+api02-1  | 14:34:26.837 request_id=F7VKPrS2e_JHTfkAAAoh [info] POST /clientes/2/transacoes
+api01-1  | 14:34:26.845 request_id=F7VKPrUtvu1MPMMAAAmB [info] POST /clientes/2/transacoes
+api01-1  | 14:34:26.845 request_id=F7VKPrUtvu1MPMMAAAmB [info] Sent 422 in 114µs
+api01-1  | 14:34:26.848 request_id=F7VKPrSK95ttj50AAAkB [info] Sent 200 in 14ms
+api02-1  | 14:34:26.837 request_id=F7VKPrS2e_JHTfkAAAoh [info] Sent 422 in 120µs
+api01-1  | 14:34:26.849 request_id=F7VKPrR77WCum30AAAjh [info] Sent 200 in 15ms
+api01-1  | 14:34:26.850 request_id=F7VKPrV5COBjvI8AAAmh [info] POST /clientes/2/transacoes
+api02-1  | 14:34:26.837 request_id=F7VKPrSC7bNCoA0AAAoB [info] Sent 200 in 3ms
+api02-1  | 14:34:26.842 request_id=F7VKPrUCx3p9f90AAApB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:26.850 request_id=F7VKPrV5COBjvI8AAAmh [info] Sent 422 in 109µs
+api01-1  | 14:34:26.853 request_id=F7VKPrWylspaD4kAAAnB [info] POST /clientes/5/transacoes
+api01-1  | 14:34:26.853 request_id=F7VKPrWylspaD4kAAAnB [info] Sent 422 in 126µs
+api01-1  | 14:34:26.856 request_id=F7VKPrXYdXMz2HEAAAnh [info] POST /clientes/4/transacoes
+api01-1  | 14:34:26.856 request_id=F7VKPrXYdXMz2HEAAAnh [info] Sent 422 in 121µs
+api01-1  | 14:34:26.856 request_id=F7VKPrXbgZivdz4AAAoB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:26.856 request_id=F7VKPrXbgZivdz4AAAoB [info] Sent 422 in 271µs
+api02-1  | 14:34:26.842 request_id=F7VKPrUCx3p9f90AAApB [info] Sent 422 in 138µs
+api02-1  | 14:34:26.845 request_id=F7VKPrUtIFtupgcAAAph [info] POST /clientes/4/transacoes
+api02-1  | 14:34:26.845 request_id=F7VKPrUtIFtupgcAAAph [info] Sent 422 in 134µs
+api01-1  | 14:34:26.859 request_id=F7VKPrYGiEou1LAAAAoh [info] POST /clientes/4/transacoes
+api01-1  | 14:34:26.859 request_id=F7VKPrYGiEou1LAAAAoh [info] Sent 422 in 95µs
+api02-1  | 14:34:26.849 request_id=F7VKPrVtRO4Y1RsAAAqB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:26.849 request_id=F7VKPrVtRO4Y1RsAAAqB [info] Sent 422 in 135µs
+api02-1  | 14:34:26.849 request_id=F7VKPrVwePuaiRUAAAqh [info] POST /clientes/5/transacoes
+api02-1  | 14:34:26.849 request_id=F7VKPrVwePuaiRUAAAqh [info] Sent 422 in 271µs
+api02-1  | 14:34:26.853 request_id=F7VKPrWtN8BG9KoAAArB [info] POST /clientes/4/transacoes
+api02-1  | 14:34:26.853 request_id=F7VKPrWtN8BG9KoAAArB [info] Sent 422 in 122µs
+api02-1  | 14:34:26.854 request_id=F7VKPrW_ZUxLjLYAAArh [info] POST /clientes/3/transacoes
+api02-1  | 14:34:26.854 request_id=F7VKPrW_ZUxLjLYAAArh [info] Sent 422 in 138µs
+api02-1  | 14:34:26.859 request_id=F7VKPrYP-t7a6_QAAAsB [info] POST /clientes/5/transacoes
+api02-1  | 14:34:26.860 request_id=F7VKPrYP-t7a6_QAAAsB [info] Sent 422 in 132µs
+api02-1  | 14:34:26.860 request_id=F7VKPrYTI6_uS1oAAAsh [info] POST /clientes/3/transacoes
+api02-1  | 14:34:26.860 request_id=F7VKPrYTI6_uS1oAAAsh [info] Sent 422 in 196µs
+api01-1  | 14:34:26.866 request_id=F7VKPrZuA513PmgAAApB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:26.865 request_id=F7VKPrZfFEnuk0oAAAtB [info] POST /clientes/3/transacoes
+api02-1  | 14:34:26.865 request_id=F7VKPrZfFEnuk0oAAAtB [info] Sent 422 in 125µs
+api02-1  | 14:34:26.868 request_id=F7VKPraSpFcPoIYAAAth [info] POST /clientes/3/transacoes
+api02-1  | 14:34:26.868 request_id=F7VKPraSpFcPoIYAAAth [info] Sent 422 in 212µs
+api01-1  | 14:34:26.866 request_id=F7VKPrZuA513PmgAAApB [info] Sent 422 in 127µs
+api01-1  | 14:34:26.868 request_id=F7VKPraPpnEgsTUAAAph [info] POST /clientes/1/transacoes
+api01-1  | 14:34:26.868 request_id=F7VKPraPpnEgsTUAAAph [info] Sent 422 in 111µs
+api02-1  | 14:34:26.870 request_id=F7VKPra29n1koeYAAAuB [info] POST /clientes/3/transacoes
+api02-1  | 14:34:26.870 request_id=F7VKPra29n1koeYAAAuB [info] Sent 422 in 107µs
+api01-1  | 14:34:27.713 request_id=F7VKPuj0jVjzCvUAAAqB [info] GET /clientes/3/extrato
+api02-1  | 14:34:27.714 request_id=F7VKPukFNWLpFPgAAAuh [info] POST /clientes/2/transacoes
+api02-1  | 14:34:27.716 request_id=F7VKPukFNWLpFPgAAAuh [info] Sent 200 in 1ms
+api01-1  | 14:34:27.715 request_id=F7VKPukNA80TmdAAAAqh [info] POST /clientes/2/transacoes
+api01-1  | 14:34:27.715 request_id=F7VKPuj0jVjzCvUAAAqB [info] Sent 200 in 1ms
+api01-1  | 14:34:27.717 request_id=F7VKPukNA80TmdAAAAqh [info] Sent 200 in 2ms
+api02-1  | 14:34:28.704 request_id=F7VKPyP-RmWDJosAAAvB [info] POST /clientes/4/transacoes
+api01-1  | 14:34:28.704 request_id=F7VKPyP_EFhthDUAAArB [info] POST /clientes/4/transacoes
+api01-1  | 14:34:28.705 request_id=F7VKPyP_EFhthDUAAArB [info] Sent 200 in 1ms
+api02-1  | 14:34:28.706 request_id=F7VKPyP-RmWDJosAAAvB [info] Sent 200 in 2ms
+api02-1  | 14:34:28.710 request_id=F7VKPyRWLILCwKIAAAvh [info] GET /clientes/4/extrato
+api02-1  | 14:34:28.711 request_id=F7VKPyRWLILCwKIAAAvh [info] Sent 200 in 1ms
+api01-1  | 14:34:28.953 request_id=F7VKPzLVOaWL6BoAAArh [info] POST /clientes/3/transacoes
+api01-1  | 14:34:28.954 request_id=F7VKPzLVOaWL6BoAAArh [info] Sent 200 in 1ms
+api01-1  | 14:34:29.203 request_id=F7VKP0G9nDVGyP4AAAsB [info] POST /clientes/2/transacoes
+api02-1  | 14:34:29.203 request_id=F7VKP0G7SbCiHSMAAAwB [info] POST /clientes/5/transacoes
+api02-1  | 14:34:29.204 request_id=F7VKP0G7SbCiHSMAAAwB [info] Sent 200 in 1ms
+api01-1  | 14:34:29.205 request_id=F7VKP0G9nDVGyP4AAAsB [info] Sent 200 in 1ms
+api02-1  | 14:34:29.453 request_id=F7VKP1Crru6QeEIAAAwh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:29.455 request_id=F7VKP1Crru6QeEIAAAwh [info] Sent 200 in 1ms
+api01-1  | 14:34:29.702 request_id=F7VKP1-AIeAfWGIAAAsh [info] POST /clientes/4/transacoes
+api01-1  | 14:34:29.704 request_id=F7VKP1-Y1FhsMH4AAAtB [info] POST /clientes/4/transacoes
+api02-1  | 14:34:29.703 request_id=F7VKP1-RNwb6dqYAAAxB [info] GET /clientes/3/extrato
+api01-1  | 14:34:29.705 request_id=F7VKP1-AIeAfWGIAAAsh [info] Sent 200 in 2ms
+api01-1  | 14:34:29.708 request_id=F7VKP1-Y1FhsMH4AAAtB [info] Sent 200 in 3ms
+api02-1  | 14:34:29.711 request_id=F7VKP1-RNwb6dqYAAAxB [info] Sent 200 in 7ms
+api02-1  | 14:34:29.868 request_id=F7VKP2lmR9C2kD4AAAxh [info] POST /clientes/3/transacoes
+api02-1  | 14:34:29.870 request_id=F7VKP2lmR9C2kD4AAAxh [info] Sent 200 in 1ms
+api01-1  | 14:34:29.952 request_id=F7VKP25fl4KJUR8AAAth [info] POST /clientes/2/transacoes
+api01-1  | 14:34:29.953 request_id=F7VKP25fl4KJUR8AAAth [info] Sent 200 in 1ms
+api02-1  | 14:34:30.036 request_id=F7VKP3NheW4DDr4AAAyB [info] POST /clientes/3/transacoes
+api02-1  | 14:34:30.037 request_id=F7VKP3NheW4DDr4AAAyB [info] Sent 200 in 1ms
+api02-1  | 14:34:30.203 request_id=F7VKP31TPS_lmn8AAAyh [info] POST /clientes/5/transacoes
+api01-1  | 14:34:30.202 request_id=F7VKP31SwMWlvoEAAAuB [info] POST /clientes/4/transacoes
+api02-1  | 14:34:30.204 request_id=F7VKP31TPS_lmn8AAAyh [info] Sent 200 in 1ms
+api01-1  | 14:34:30.204 request_id=F7VKP31SwMWlvoEAAAuB [info] Sent 200 in 1ms
+api01-1  | 14:34:30.369 request_id=F7VKP4dAaCO-HPoAAAuh [info] POST /clientes/1/transacoes
+api01-1  | 14:34:30.371 request_id=F7VKP4dAaCO-HPoAAAuh [info] Sent 200 in 1ms
+api02-1  | 14:34:30.453 request_id=F7VKP4w61ix0URsAAAzB [info] POST /clientes/5/transacoes
+api02-1  | 14:34:30.454 request_id=F7VKP4w61ix0URsAAAzB [info] Sent 200 in 1ms
+api01-1  | 14:34:30.536 request_id=F7VKP5E6DXrFBisAAAvB [info] POST /clientes/2/transacoes
+api01-1  | 14:34:30.538 request_id=F7VKP5E6DXrFBisAAAvB [info] Sent 200 in 1ms
+api02-1  | 14:34:30.702 request_id=F7VKP5sZb4TEtJEAAAzh [info] POST /clientes/5/transacoes
+api01-1  | 14:34:30.702 request_id=F7VKP5savRCE85gAAAvh [info] POST /clientes/3/transacoes
+api02-1  | 14:34:30.703 request_id=F7VKP5spIJXWOBwAAA0B [info] GET /clientes/1/extrato
+api01-1  | 14:34:30.704 request_id=F7VKP5savRCE85gAAAvh [info] Sent 200 in 2ms
+api02-1  | 14:34:30.704 request_id=F7VKP5sZb4TEtJEAAAzh [info] Sent 200 in 2ms
+api02-1  | 14:34:30.704 request_id=F7VKP5spIJXWOBwAAA0B [info] Sent 200 in 1ms
+api01-1  | 14:34:30.844 request_id=F7VKP6OVBIQcnsAAAAwB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:30.846 request_id=F7VKP6OVBIQcnsAAAAwB [info] Sent 200 in 1ms
+api02-1  | 14:34:30.952 request_id=F7VKP6n-_TIMmL4AAA0h [info] POST /clientes/1/transacoes
+api02-1  | 14:34:30.953 request_id=F7VKP6n-_TIMmL4AAA0h [info] Sent 200 in 1ms
+api01-1  | 14:34:30.987 request_id=F7VKP6wcLV9SIQcAAAwh [info] POST /clientes/5/transacoes
+api01-1  | 14:34:30.989 request_id=F7VKP6wcLV9SIQcAAAwh [info] Sent 200 in 1ms
+api02-1  | 14:34:31.131 request_id=F7VKP7So78zwJQMAAA1B [info] POST /clientes/1/transacoes
+api02-1  | 14:34:31.132 request_id=F7VKP7So78zwJQMAAA1B [info] Sent 200 in 1ms
+api01-1  | 14:34:31.202 request_id=F7VKP7joA5hsLcsAAAxB [info] POST /clientes/4/transacoes
+api01-1  | 14:34:31.205 request_id=F7VKP7joA5hsLcsAAAxB [info] Sent 200 in 3ms
+api02-1  | 14:34:31.274 request_id=F7VKP70uDTVNk9AAAA1h [info] POST /clientes/1/transacoes
+api02-1  | 14:34:31.275 request_id=F7VKP70uDTVNk9AAAA1h [info] Sent 200 in 1ms
+api01-1  | 14:34:31.417 request_id=F7VKP8W5zeu_09sAAAxh [info] POST /clientes/1/transacoes
+api01-1  | 14:34:31.419 request_id=F7VKP8W5zeu_09sAAAxh [info] Sent 200 in 1ms
+api02-1  | 14:34:31.452 request_id=F7VKP8fTOrZMTsoAAA2B [info] POST /clientes/5/transacoes
+api02-1  | 14:34:31.454 request_id=F7VKP8fTOrZMTsoAAA2B [info] Sent 200 in 1ms
+api01-1  | 14:34:31.560 request_id=F7VKP85Bgm4m_QQAAAyB [info] POST /clientes/1/transacoes
+api01-1  | 14:34:31.564 request_id=F7VKP85Bgm4m_QQAAAyB [info] Sent 200 in 3ms
+api01-1  | 14:34:31.703 request_id=F7VKP9a8mLed4V0AAAyh [info] POST /clientes/1/transacoes
+api02-1  | 14:34:31.702 request_id=F7VKP9a1-sjeJ1wAAA2h [info] POST /clientes/1/transacoes
+api02-1  | 14:34:31.703 request_id=F7VKP9bBAaLux5IAAA3B [info] GET /clientes/2/extrato
+api02-1  | 14:34:31.704 request_id=F7VKP9a1-sjeJ1wAAA2h [info] Sent 200 in 1ms
+api01-1  | 14:34:31.705 request_id=F7VKP9a8mLed4V0AAAyh [info] Sent 200 in 2ms
+api02-1  | 14:34:31.707 request_id=F7VKP9bBAaLux5IAAA3B [info] Sent 200 in 3ms
+api01-1  | 14:34:31.813 request_id=F7VKP91S9VLUpqkAAAzB [info] POST /clientes/2/transacoes
+api01-1  | 14:34:31.815 request_id=F7VKP91S9VLUpqkAAAzB [info] Sent 200 in 1ms
+api02-1  | 14:34:31.901 request_id=F7VKP-KUuh8Tp7AAAA3h [info] POST /clientes/5/transacoes
+api02-1  | 14:34:31.903 request_id=F7VKP-KUuh8Tp7AAAA3h [info] Sent 200 in 1ms
+api01-1  | 14:34:31.924 request_id=F7VKP-PyZqk7520AAAzh [info] POST /clientes/5/transacoes
+api01-1  | 14:34:31.926 request_id=F7VKP-PyZqk7520AAAzh [info] Sent 200 in 1ms
+api02-1  | 14:34:32.035 request_id=F7VKP-qTgZM44A4AAA4B [info] POST /clientes/4/transacoes
+api02-1  | 14:34:32.037 request_id=F7VKP-qTgZM44A4AAA4B [info] Sent 200 in 1ms
+api01-1  | 14:34:32.101 request_id=F7VKP-6B9AOd01YAAA0B [info] POST /clientes/5/transacoes
+api01-1  | 14:34:32.103 request_id=F7VKP-6B9AOd01YAAA0B [info] Sent 200 in 1ms
+api02-1  | 14:34:32.146 request_id=F7VKP_EwE2pgUNoAAA4h [info] POST /clientes/1/transacoes
+api02-1  | 14:34:32.148 request_id=F7VKP_EwE2pgUNoAAA4h [info] Sent 200 in 1ms
+api01-1  | 14:34:32.258 request_id=F7VKP_fSE05Nh0gAAA0h [info] POST /clientes/5/transacoes
+api01-1  | 14:34:32.259 request_id=F7VKP_fSE05Nh0gAAA0h [info] Sent 200 in 1ms
+api02-1  | 14:34:32.302 request_id=F7VKP_pw4ipxj3QAAA5B [info] POST /clientes/3/transacoes
+api02-1  | 14:34:32.303 request_id=F7VKP_pw4ipxj3QAAA5B [info] Sent 200 in 1ms
+api01-1  | 14:34:32.369 request_id=F7VKP_5vfJqavygAAA1B [info] POST /clientes/4/transacoes
+api01-1  | 14:34:32.370 request_id=F7VKP_5vfJqavygAAA1B [info] Sent 200 in 1ms
+api02-1  | 14:34:32.480 request_id=F7VKQAUPWXb46DUAAA5h [info] POST /clientes/1/transacoes
+api02-1  | 14:34:32.481 request_id=F7VKQAUPWXb46DUAAA5h [info] Sent 200 in 1ms
+api01-1  | 14:34:32.502 request_id=F7VKQAZd0gZJ130AAA1h [info] POST /clientes/5/transacoes
+api01-1  | 14:34:32.503 request_id=F7VKQAZd0gZJ130AAA1h [info] Sent 200 in 1ms
+api02-1  | 14:34:32.591 request_id=F7VKQAu1_lyaQ7QAAA6B [info] POST /clientes/5/transacoes
+api02-1  | 14:34:32.593 request_id=F7VKQAu1_lyaQ7QAAA6B [info] Sent 200 in 1ms
+api01-1  | 14:34:32.702 request_id=F7VKQBJKddzhS8YAAA2B [info] POST /clientes/3/transacoes
+api01-1  | 14:34:32.703 request_id=F7VKQBJgB1a_dVYAAA2h [info] GET /clientes/2/extrato
+api01-1  | 14:34:32.704 request_id=F7VKQBJKddzhS8YAAA2B [info] Sent 200 in 2ms
+api02-1  | 14:34:32.702 request_id=F7VKQBJPAPBpxpEAAA6h [info] POST /clientes/1/transacoes
+api02-1  | 14:34:32.704 request_id=F7VKQBJPAPBpxpEAAA6h [info] Sent 200 in 2ms
+api01-1  | 14:34:32.706 request_id=F7VKQBJgB1a_dVYAAA2h [info] Sent 200 in 2ms
+api02-1  | 14:34:32.792 request_id=F7VKQBet5NJnXJYAAA7B [info] POST /clientes/1/transacoes
+api02-1  | 14:34:32.794 request_id=F7VKQBet5NJnXJYAAA7B [info] Sent 200 in 1ms
+api01-1  | 14:34:32.867 request_id=F7VKQBwn2InhW7MAAA3B [info] POST /clientes/5/transacoes
+api01-1  | 14:34:32.869 request_id=F7VKQBwn2InhW7MAAA3B [info] Sent 200 in 1ms
+api02-1  | 14:34:32.883 request_id=F7VKQB0epCNCY4AAAA7h [info] POST /clientes/3/transacoes
+api02-1  | 14:34:32.885 request_id=F7VKQB0epCNCY4AAAA7h [info] Sent 200 in 1ms
+api01-1  | 14:34:32.974 request_id=F7VKQCKKARC6OgkAAA3h [info] POST /clientes/4/transacoes
+api01-1  | 14:34:32.976 request_id=F7VKQCKKARC6OgkAAA3h [info] Sent 200 in 1ms
+api02-1  | 14:34:33.035 request_id=F7VKQCYmdc0SFDsAAA8B [info] POST /clientes/3/transacoes
+api02-1  | 14:34:33.037 request_id=F7VKQCYmdc0SFDsAAA8B [info] Sent 200 in 1ms
+api01-1  | 14:34:33.065 request_id=F7VKQCfw3tCE6kkAAA4B [info] POST /clientes/4/transacoes
+api01-1  | 14:34:33.069 request_id=F7VKQCfw3tCE6kkAAA4B [info] Sent 200 in 3ms
+api02-1  | 14:34:33.156 request_id=F7VKQC1hopxUDG8AAA8h [info] POST /clientes/3/transacoes
+api02-1  | 14:34:33.158 request_id=F7VKQC1hopxUDG8AAA8h [info] Sent 200 in 1ms
+api01-1  | 14:34:33.201 request_id=F7VKQDARi-D8A6QAAA4h [info] GET /clientes/3/extrato
+api02-1  | 14:34:33.201 request_id=F7VKQDAR7E1s1l8AAA9B [info] POST /clientes/4/transacoes
+api01-1  | 14:34:33.203 request_id=F7VKQDARi-D8A6QAAA4h [info] Sent 200 in 1ms
+api02-1  | 14:34:33.203 request_id=F7VKQDAR7E1s1l8AAA9B [info] Sent 200 in 1ms
+api01-1  | 14:34:33.247 request_id=F7VKQDLPfrxTJN0AAA5B [info] POST /clientes/4/transacoes
+api01-1  | 14:34:33.249 request_id=F7VKQDLPfrxTJN0AAA5B [info] Sent 200 in 1ms
+api02-1  | 14:34:33.339 request_id=F7VKQDhD2tKdbgwAAA9h [info] POST /clientes/2/transacoes
+api02-1  | 14:34:33.340 request_id=F7VKQDhD2tKdbgwAAA9h [info] Sent 200 in 1ms
+api01-1  | 14:34:33.367 request_id=F7VKQDn2ik81SjkAAA5h [info] POST /clientes/3/transacoes
+api01-1  | 14:34:33.369 request_id=F7VKQDn2ik81SjkAAA5h [info] Sent 200 in 1ms
+api02-1  | 14:34:33.430 request_id=F7VKQD2rgXTlfpgAAA-B [info] POST /clientes/4/transacoes
+api02-1  | 14:34:33.431 request_id=F7VKQD2rgXTlfpgAAA-B [info] Sent 200 in 1ms
+api01-1  | 14:34:33.520 request_id=F7VKQEMS7QTM4_sAAA6B [info] POST /clientes/3/transacoes
+api01-1  | 14:34:33.522 request_id=F7VKQEMS7QTM4_sAAA6B [info] Sent 200 in 1ms
+api02-1  | 14:34:33.534 request_id=F7VKQEPrqx4ieDMAAA-h [info] POST /clientes/3/transacoes
+api02-1  | 14:34:33.536 request_id=F7VKQEPrqx4ieDMAAA-h [info] Sent 200 in 1ms
+api01-1  | 14:34:33.612 request_id=F7VKQEiLfRgxKK0AAA6h [info] POST /clientes/5/transacoes
+api01-1  | 14:34:33.614 request_id=F7VKQEiLfRgxKK0AAA6h [info] Sent 200 in 1ms
+api02-1  | 14:34:33.702 request_id=F7VKQE3mxIR2heAAAA_B [info] GET /clientes/3/extrato
+api01-1  | 14:34:33.702 request_id=F7VKQE3nSDk7CLEAAA7B [info] POST /clientes/1/transacoes
+api02-1  | 14:34:33.702 request_id=F7VKQE3v4MPpNMkAAA_h [info] POST /clientes/3/transacoes
+api02-1  | 14:34:33.704 request_id=F7VKQE3mxIR2heAAAA_B [info] Sent 200 in 1ms
+api01-1  | 14:34:33.704 request_id=F7VKQE3nSDk7CLEAAA7B [info] Sent 200 in 2ms
+api02-1  | 14:34:33.704 request_id=F7VKQE3v4MPpNMkAAA_h [info] Sent 200 in 1ms
+api01-1  | 14:34:33.778 request_id=F7VKQFJsZSumbeEAAA7h [info] POST /clientes/4/transacoes
+api01-1  | 14:34:33.779 request_id=F7VKQFJsZSumbeEAAA7h [info] Sent 200 in 1ms
+api02-1  | 14:34:33.843 request_id=F7VKQFZPN1RkkSgAABAB [info] POST /clientes/1/transacoes
+api02-1  | 14:34:33.844 request_id=F7VKQFZPN1RkkSgAABAB [info] Sent 200 in 1ms
+api01-1  | 14:34:33.854 request_id=F7VKQFb_Mk6FF3oAAA8B [info] POST /clientes/4/transacoes
+api01-1  | 14:34:33.856 request_id=F7VKQFb_Mk6FF3oAAA8B [info] Sent 200 in 1ms
+api02-1  | 14:34:33.932 request_id=F7VKQFua5O6w5LIAABAh [info] POST /clientes/2/transacoes
+api02-1  | 14:34:33.933 request_id=F7VKQFua5O6w5LIAABAh [info] Sent 200 in 1ms
+api01-1  | 14:34:33.986 request_id=F7VKQF7bhfDr6yEAAA8h [info] POST /clientes/4/transacoes
+api01-1  | 14:34:33.988 request_id=F7VKQF7bhfDr6yEAAA8h [info] Sent 200 in 1ms
+api02-1  | 14:34:34.009 request_id=F7VKQGAzU38IMjEAABBB [info] POST /clientes/3/transacoes
+api02-1  | 14:34:34.010 request_id=F7VKQGAzU38IMjEAABBB [info] Sent 200 in 1ms
+api01-1  | 14:34:34.086 request_id=F7VKQGTLC_MC5eoAAA9B [info] POST /clientes/3/transacoes
+api01-1  | 14:34:34.088 request_id=F7VKQGTLC_MC5eoAAA9B [info] Sent 200 in 1ms
+api02-1  | 14:34:34.129 request_id=F7VKQGdkBFW8ioMAABBh [info] POST /clientes/3/transacoes

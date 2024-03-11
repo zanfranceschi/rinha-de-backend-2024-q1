@@ -1,0 +1,71 @@
+services:
+  api1:
+    image: wosteimer/rinha2024-api
+    expose:
+      - "8000"
+    volumes:
+      - ./src:/usr/app/src
+    env_file:
+      - .env
+    depends_on:
+      psql:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+  api2:
+    image: wosteimer/rinha2024-api
+    expose:
+      - "8000"
+    volumes:
+      - ./src:/usr/app/src
+    env_file:
+      - .env
+    depends_on:
+      psql:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+
+  nginx:
+    image: nginx:bookworm
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+  psql:
+    image: postgres:16.2-bookworm
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    env_file:
+      - .env
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "400MB"

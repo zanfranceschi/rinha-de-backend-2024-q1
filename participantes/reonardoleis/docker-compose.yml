@@ -1,14 +1,16 @@
 version: '3.5'
 services:
   api1:
+    network_mode: host
     environment:
-      DB_HOST: db
+      DB_HOST: localhost
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_NAME: banky
-      MANAGER_ADDR: manager:65000
-    image: rxonvrdo/banky:latest
+      MANAGER_ADDR: localhost:65000
+      APP_PORT: 8080
+    image: rxonvrdo/banky
     entrypoint: /bin/sh -c
     command: -c "./app http"
     hostname: api1
@@ -20,18 +22,20 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.35'
-          memory: '112MB'
+          cpus: '0.20'
+          memory: '100MB'
 
   api2:
+    network_mode: host
     environment:
-      DB_HOST: db
+      DB_HOST: localhost
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_NAME: banky
-      MANAGER_ADDR: manager:65000
-    image: rxonvrdo/banky:latest
+      MANAGER_ADDR: localhost:65000
+      APP_PORT: 8081
+    image: rxonvrdo/banky
     entrypoint: /bin/sh -c
     command: -c "./app http"
     hostname: api2
@@ -39,23 +43,24 @@ services:
       db:
         condition: service_healthy
     expose:
-      - "8080"
+      - "8081"
     deploy:
       resources:
         limits:
-          cpus: '0.35'
-          memory: '113MB'
+          cpus: '0.20'
+          memory: '100MB'
 
   manager:
+    network_mode: host
     environment:
       IS_QUEUE: "false"
-      DB_HOST: db
+      DB_HOST: localhost
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_NAME: banky
       CACHE_DURATION_SECONDS: 3600
-    image: rxonvrdo/banky:latest
+    image: rxonvrdo/banky
     entrypoint: /bin/sh -c
     command: -c "./app tcp"
     hostname: manager
@@ -67,10 +72,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.6'
-          memory: '145MB'
+          cpus: '0.7'
+          memory: '155MB'
 
   nginx:
+    network_mode: host
     image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
@@ -82,9 +88,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.1'
-          memory: '80MB'
+          cpus: '0.3'
+          memory: '115MB'
   db:
+   network_mode: host
    healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
       interval: 5s
@@ -99,6 +106,6 @@ services:
       resources:
         limits:
           cpus: '0.1'
-          memory: '100MB'
+          memory: '80MB'
    volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql

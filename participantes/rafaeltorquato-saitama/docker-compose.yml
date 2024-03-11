@@ -1,0 +1,106 @@
+services:
+  database:
+    image: postgres:16
+    container_name: database
+    mem_swappiness: 0
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=postgres'
+      - 'POSTGRES_DB=rinha'
+      - 'TZ=America/Sao_Paulo'
+    deploy:
+      resources:
+        limits:
+          cpus: "0.65"
+          memory: "150MB"
+    volumes:
+      - ./sql/postgres-init-script.sql:/docker-entrypoint-initdb.d/postgres-init-script.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
+    network_mode: host
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d rinha'"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+      core:
+        soft: -1
+        hard: -1
+    ports:
+      - 5432:5432
+
+  app1: &api
+    container_name: app1
+    image: rafaeltorquato/rinha-backend-2024-q1-saitama:latest
+    environment:
+      - 'QUARKUS_LOG_LEVEL=WARN'
+      - 'QUARKUS_LOG_FILE_ENABLE=false'
+      - 'QUARKUS_DATASOURCE_JDBC_INITIAL_SIZE=7'
+      - 'QUARKUS_DATASOURCE_JDBC_MIN_SIZE=7'
+      - 'QUARKUS_DATASOURCE_JDBC_MAX_SIZE=7'
+      - 'QUARKUS_DATASOURCE_JDBC_DETECT_STATEMENT_LEAKS=false'
+      - 'QUARKUS_DATASOURCE_JDBC_ACQUISITION_TIMEOUT=10S'
+      - 'QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://localhost:5432/rinha?cachePrepStmts=true&useServerPrepStmts=false&prepStmtCacheSize=500&prepStmtCacheSqlLimit=1024'
+      - 'QUARKUS_DATASOURCE_USERNAME=postgres'
+      - 'QUARKUS_DATASOURCE_PASSWORD=postgres'
+      - 'TZ=America/Sao_Paulo'
+      - 'QUARKUS_HTTP_PORT=8080'
+    deploy:
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "170MB"
+    depends_on:
+      database:
+        condition: service_healthy
+    network_mode: host
+    ulimits:
+      nofile:
+        soft: 98304
+        hard: 98304
+
+  app2:
+    <<: *api
+    container_name: app2
+    environment:
+      - 'QUARKUS_LOG_LEVEL=WARN'
+      - 'QUARKUS_LOG_FILE_ENABLE=false'
+      - 'QUARKUS_DATASOURCE_JDBC_INITIAL_SIZE=7'
+      - 'QUARKUS_DATASOURCE_JDBC_MIN_SIZE=7'
+      - 'QUARKUS_DATASOURCE_JDBC_MAX_SIZE=7'
+      - 'QUARKUS_DATASOURCE_JDBC_DETECT_STATEMENT_LEAKS=false'
+      - 'QUARKUS_DATASOURCE_JDBC_ACQUISITION_TIMEOUT=10S'
+      - 'QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://localhost:5432/rinha?cachePrepStmts=true&useServerPrepStmts=false&prepStmtCacheSize=500&prepStmtCacheSqlLimit=1024'
+      - 'QUARKUS_DATASOURCE_USERNAME=postgres'
+      - 'QUARKUS_DATASOURCE_PASSWORD=postgres'
+      - 'TZ=America/Sao_Paulo'
+      - 'QUARKUS_HTTP_PORT=8081'
+
+  haproxy:
+    container_name: haproxy
+    image: haproxy:2.9
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    environment:
+      - 'TZ=America/Sao_Paulo'
+      - 'USETHREAD=1'
+    ports:
+      - 9999:9999
+    depends_on:
+      - app1
+      - app2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "60MB"
+    ulimits:
+      nofile:
+        soft: 100000
+        hard: 100000
+    network_mode: host

@@ -2,7 +2,7 @@ version: "3.6"
 
 services:
   api01: &api
-    image: bgskurono/rinha-gogin:1.2
+    image: bgskurono/rinha-gogin:1.3
     hostname: api01
     environment:
       - DB_HOSTNAME=127.0.0.1
@@ -49,7 +49,7 @@ services:
           memory: "20MB"
 
   db:
-    image: postgres:15.5
+    image: postgres:16.2
     hostname: db
     environment:
       - POSTGRES_PASSWORD=pass
@@ -59,7 +59,7 @@ services:
       - "5432:5432"
     volumes:
       - ./import.sql:/docker-entrypoint-initdb.d/script.sql
-    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c log_min_messages='panic' -c log_min_messages='panic' -c log_min_error_statement='panic' -c synchronous_commit=off
     network_mode: host
     deploy:
       resources:

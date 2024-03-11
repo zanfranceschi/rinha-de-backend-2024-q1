@@ -1,0 +1,49 @@
+version: "3"
+services:
+  app1: &app
+    image: jndavidx/rinha-24-q1:latest
+    container_name: app1
+    depends_on:
+      - pg
+    environment:
+      - PG_CONNECTION_STRING=postgres://postgres:)@pg:5432/postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "0.51"
+          memory: 125M
+
+  app2:
+    <<: *app
+    container_name: app2
+
+  nginx:
+    image: nginx:1.25.4-alpine3.18-slim
+    container_name: nginx
+    depends_on:
+      - app1
+      - app2
+    ports:
+      - 9999:9999
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.16"
+          memory: 30M
+
+  pg:
+    image: postgres:16.2-alpine3.19
+    container_name: pg
+    restart: always
+    command: postgres -c checkpoint_timeout=1h -c fsync=off -c full_page_writes=off -c synchronous_commit=off
+    environment:
+      - POSTGRES_PASSWORD=)
+    volumes:
+      - ./sql.sql:/docker-entrypoint-initdb.d/sql.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.32"
+          memory: 270M
