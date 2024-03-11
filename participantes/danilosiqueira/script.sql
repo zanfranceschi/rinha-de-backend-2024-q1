@@ -1,7 +1,8 @@
 CREATE TABLE clientes (
   id serial not null primary key,
   nome varchar(100) not null,
-  limite bigint not null
+  limite bigint not null default 0,
+  saldo bigint not null default 0
 );
 
 CREATE TABLE transacoes (
@@ -9,6 +10,7 @@ CREATE TABLE transacoes (
   valor bigint not null,
   tipo char(1) not null,
   descricao varchar(10),
+  realizada_em timestamp not null default CURRENT_TIMESTAMP,
   cliente_id integer not null references clientes (id)
 );
 
