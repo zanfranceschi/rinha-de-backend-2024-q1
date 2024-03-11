@@ -20,6 +20,6 @@
 #### Repositório
 - https://github.com/francoggm/RinhaBackend2024_1-Go
 
-[Twitter](https://twitter.com/zanfranceschi)
+[Twitter](https://twitter.com/franco_ggm)
 
 [Linkedin](https://www.linkedin.com/in/francoggm/)
