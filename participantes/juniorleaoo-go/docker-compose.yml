@@ -1,0 +1,64 @@
+version: '3.5'
+
+services:
+  api1: &api
+    image: juniorleaoo/rinha-go:latest
+    hostname: api1
+    platform: linux/amd64
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgres://admin:123456@localhost:5432/app
+      - MAX_CONNECTION_POOL_SIZE=50
+      - SERVER_PORT=3000
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '50MB'
+
+  api2:
+    <<: *api
+    hostname: api2
+    environment:
+      - DATABASE_URL=postgres://admin:123456@localhost:5432/app
+      - MAX_CONNECTION_POOL_SIZE=50
+      - SERVER_PORT=3001
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx-host.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '80MB'
+
+  db:
+    image: postgres:16.2-alpine
+    command: 'postgres -c synchronous_commit=off -c max_connections=120 -c fsync=off -c full_page_writes=off'
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123456
+    network_mode: host
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U admin -d app'" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: '370MB'
