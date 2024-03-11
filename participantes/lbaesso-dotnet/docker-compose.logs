@@ -2,8 +2,8 @@
  Container postgres  Created
  Container app2  Creating
  Container app1  Creating
- Container app1  Created
  Container app2  Created
+ Container app1  Created
  Container gateway  Creating
  Container gateway  Created
 Attaching to app1, app2, gateway, postgres
@@ -34,10 +34,10 @@ postgres  | Success. You can now start the database server using:
 postgres  | 
 postgres  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 postgres  | 
-postgres  | waiting for server to start....2024-03-05 17:10:50.734 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres  | 2024-03-05 17:10:50.738 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres  | 2024-03-05 17:10:50.748 UTC [52] LOG:  database system was shut down at 2024-03-05 17:10:50 UTC
-postgres  | 2024-03-05 17:10:50.763 UTC [49] LOG:  database system is ready to accept connections
+postgres  | waiting for server to start....2024-03-10 20:45:28.865 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-03-10 20:45:28.868 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-03-10 20:45:28.884 UTC [51] LOG:  database system was shut down at 2024-03-10 20:45:28 UTC
+postgres  | 2024-03-10 20:45:28.898 UTC [48] LOG:  database system is ready to accept connections
 postgres  |  done
 postgres  | server started
 postgres  | CREATE DATABASE
@@ -45,56 +45,34 @@ postgres  |
 postgres  | 
 postgres  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
 postgres  | psql:/docker-entrypoint-initdb.d/script.sql:3: NOTICE:  table "transacoes" does not exist, skipping
-postgres  | DROP TABLE
-postgres  | DROP TABLE
 postgres  | psql:/docker-entrypoint-initdb.d/script.sql:4: NOTICE:  table "clientes" does not exist, skipping
+postgres  | DROP TABLE
+postgres  | DROP TABLE
 postgres  | CREATE TABLE
-postgres  | CREATE INDEX
 postgres  | CREATE TABLE
-postgres  | CREATE INDEX
 postgres  | CREATE INDEX
 postgres  | INSERT 0 5
 postgres  | INSERT 0 5
 postgres  | 
 postgres  | 
-postgres  | waiting for server to shut down...2024-03-05 17:10:50.984 UTC [49] LOG:  received fast shutdown request
-postgres  | .2024-03-05 17:10:51.014 UTC [49] LOG:  aborting any active transactions
-postgres  | 2024-03-05 17:10:51.016 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-postgres  | 2024-03-05 17:10:51.016 UTC [50] LOG:  shutting down
-postgres  | 2024-03-05 17:10:51.020 UTC [50] LOG:  checkpoint starting: shutdown immediate
-postgres  | 2024-03-05 17:10:51.514 UTC [50] LOG:  checkpoint complete: wrote 947 buffers (2.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.375 s, sync=0.105 s, total=0.498 s; sync files=317, longest=0.063 s, average=0.001 s; distance=4288 kB, estimate=4288 kB; lsn=0/191AAC8, redo lsn=0/191AAC8
-postgres  | 2024-03-05 17:10:51.520 UTC [49] LOG:  database system is shut down
+postgres  | waiting for server to shut down...2024-03-10 20:45:29.142 UTC [48] LOG:  received fast shutdown request
+postgres  | .2024-03-10 20:45:29.146 UTC [48] LOG:  aborting any active transactions
+postgres  | 2024-03-10 20:45:29.148 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres  | 2024-03-10 20:45:29.148 UTC [49] LOG:  shutting down
+postgres  | 2024-03-10 20:45:29.156 UTC [49] LOG:  checkpoint starting: shutdown immediate
+postgres  | 2024-03-10 20:45:29.637 UTC [49] LOG:  checkpoint complete: wrote 941 buffers (2.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.383 s, sync=0.087 s, total=0.490 s; sync files=313, longest=0.055 s, average=0.001 s; distance=4283 kB, estimate=4283 kB; lsn=0/19198A8, redo lsn=0/19198A8
+postgres  | 2024-03-10 20:45:29.644 UTC [48] LOG:  database system is shut down
 postgres  |  done
 postgres  | server stopped
 postgres  | 
 postgres  | PostgreSQL init process complete; ready for start up.
 postgres  | 
-postgres  | 2024-03-05 17:10:51.612 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres  | 2024-03-05 17:10:51.612 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres  | 2024-03-05 17:10:51.612 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-postgres  | 2024-03-05 17:10:51.618 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres  | 2024-03-05 17:10:51.628 UTC [67] LOG:  database system was shut down at 2024-03-05 17:10:51 UTC
-postgres  | 2024-03-05 17:10:51.636 UTC [1] LOG:  database system is ready to accept connections
-app2      | warn: Microsoft.AspNetCore.Server.Kestrel[0]
-app2      |       Overriding address(es) 'http://*:8080'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
-app2      | info: Microsoft.Hosting.Lifetime[14]
-app2      |       Now listening on: http://[::]:9002
-app2      | info: Microsoft.Hosting.Lifetime[0]
-app2      |       Application started. Press Ctrl+C to shut down.
-app2      | info: Microsoft.Hosting.Lifetime[0]
-app2      |       Hosting environment: Production
-app2      | info: Microsoft.Hosting.Lifetime[0]
-app2      |       Content root path: /app
-app1      | warn: Microsoft.AspNetCore.Server.Kestrel[0]
-app1      |       Overriding address(es) 'http://*:8080'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
-app1      | info: Microsoft.Hosting.Lifetime[14]
-app1      |       Now listening on: http://[::]:9001
-app1      | info: Microsoft.Hosting.Lifetime[0]
-app1      |       Application started. Press Ctrl+C to shut down.
-app1      | info: Microsoft.Hosting.Lifetime[0]
-app1      |       Hosting environment: Production
-app1      | info: Microsoft.Hosting.Lifetime[0]
-app1      |       Content root path: /app
+postgres  | 2024-03-10 20:45:29.771 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-03-10 20:45:29.771 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres  | 2024-03-10 20:45:29.771 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres  | 2024-03-10 20:45:29.777 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-03-10 20:45:29.784 UTC [66] LOG:  database system was shut down at 2024-03-10 20:45:29 UTC
+postgres  | 2024-03-10 20:45:29.791 UTC [1] LOG:  database system is ready to accept connections
 gateway   | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 gateway   | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 gateway   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -104,21 +82,19 @@ gateway   | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolv
 gateway   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 gateway   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 gateway   | /docker-entrypoint.sh: Configuration complete; ready for start up
+gateway   | 2024/03/10 20:45:33 [alert] 31#31: sched_setaffinity() failed (22: Invalid argument)
+gateway   | 2024/03/10 20:45:33 [alert] 32#32: sched_setaffinity() failed (22: Invalid argument)
 gateway exited with code 0
 gateway exited with code 0
-app1      | info: Microsoft.Hosting.Lifetime[0]
-app1      |       Application is shutting down...
-app2      | info: Microsoft.Hosting.Lifetime[0]
-app2      |       Application is shutting down...
 app2 exited with code 0
 app2 exited with code 0
 app1 exited with code 0
 app1 exited with code 0
-postgres  | 2024-03-05 17:15:08.764 UTC [1] LOG:  received fast shutdown request
-postgres  | 2024-03-05 17:15:08.770 UTC [1] LOG:  aborting any active transactions
-postgres  | 2024-03-05 17:15:08.772 UTC [1] LOG:  background worker "logical replication launcher" (PID 70) exited with exit code 1
-postgres  | 2024-03-05 17:15:08.772 UTC [65] LOG:  shutting down
-postgres  | 2024-03-05 17:15:08.776 UTC [65] LOG:  checkpoint starting: shutdown immediate
-postgres  | 2024-03-05 17:15:08.965 UTC [65] LOG:  checkpoint complete: wrote 1189 buffers (3.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.014 s, sync=0.157 s, total=0.193 s; sync files=32, longest=0.145 s, average=0.005 s; distance=2113 kB, estimate=2113 kB; lsn=0/1B2B168, redo lsn=0/1B2B168
-postgres  | 2024-03-05 17:15:08.971 UTC [1] LOG:  database system is shut down
+postgres  | 2024-03-10 20:49:46.571 UTC [1] LOG:  received fast shutdown request
+postgres  | 2024-03-10 20:49:46.575 UTC [1] LOG:  aborting any active transactions
+postgres  | 2024-03-10 20:49:46.614 UTC [1] LOG:  background worker "logical replication launcher" (PID 69) exited with exit code 1
+postgres  | 2024-03-10 20:49:46.615 UTC [64] LOG:  shutting down
+postgres  | 2024-03-10 20:49:46.618 UTC [64] LOG:  checkpoint starting: shutdown immediate
+postgres  | 2024-03-10 20:49:46.760 UTC [64] LOG:  checkpoint complete: wrote 797 buffers (2.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.012 s, sync=0.081 s, total=0.146 s; sync files=29, longest=0.074 s, average=0.003 s; distance=2112 kB, estimate=2112 kB; lsn=0/1B29B60, redo lsn=0/1B29B60
+postgres  | 2024-03-10 20:49:46.766 UTC [1] LOG:  database system is shut down
 postgres exited with code 0

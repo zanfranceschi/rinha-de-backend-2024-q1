@@ -1,0 +1,91 @@
+version: '3.5'
+
+services:
+  api01: &api
+    image: suricat/rinha-2024-q1:latest
+    restart: always
+    network_mode: "host"
+    environment:
+      PORT: '8080'
+      DATABASE_SELECTED: postgresql
+      PREFORK_ENABLED: 'false'
+      LOG_LEVEL: '2'
+      DATABASE_HOST: 'localhost'
+      CACHE_HOST: 'localhost'
+      PROFILING_ENABLED: 'false'
+      PROFILING_CPU_FILEPATH: '/app/prof/cpu-1.prof'
+      PROFILING_MEMORY_FILEPATH: '/app/prof/memory-1.prof'
+    volumes:
+      - ./prof:/app/prof
+    depends_on:
+      - db_postgres
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '0.05'
+          memory: '85MB'
+
+  api02:
+    <<: *api
+    environment:
+      PORT: '8081'
+      DATABASE_SELECTED: postgresql
+      PREFORK_ENABLED: 'false'
+      LOG_LEVEL: '2'
+      DATABASE_HOST: 'localhost'
+      CACHE_HOST: 'localhost'
+      PROFILING_ENABLED: 'false'
+      PROFILING_CPU_FILEPATH: '/app/prof/cpu-2.prof'
+      PROFILING_MEMORY_FILEPATH: '/app/prof/memory-2.prof'
+
+  nginx: # Load Balancer
+    image: nginx:latest
+    network_mode: "host"
+    volumes:
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.05'
+          memory: '30MB'
+
+  db_postgres: # Banco de dados
+    image: postgres
+    hostname: db
+    network_mode: host
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: rinha2024q1
+    volumes:
+      - ./conf/init-postgres.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./conf/postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: '1.3'
+          memory: '330MB'
+
+  redis:
+    image: redis
+    hostname: redis
+    network_mode: host
+    command: redis-server /etc/redis/redis.conf --save "" --appendonly no --maxclients 20000 
+    volumes:
+      - ./conf/redis.conf:/etc/redis/redis.conf
+    deploy:
+      resources:
+        limits:
+          cpus: '0.05'
+          memory: '20MB'

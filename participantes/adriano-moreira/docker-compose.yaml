@@ -1,0 +1,66 @@
+version: "3.9"
+
+services:
+  api01: &api
+    image: docker.io/adrianomoreira86/rinha2024q1quarkus:latest
+    hostname: api01
+    environment:
+      - QUARKUS_HTTP_LIMITS_MAX_CONNECTIONS=5000
+    ports:
+      - "8081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.43"
+          memory: "150MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - "8082:8080"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: ".14"
+          memory: "60MB"
+
+  db:
+    image: postgres:13
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "rinha", "-U", "admin" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "190MB"
+
+networks:
+  default:
+    driver: bridge

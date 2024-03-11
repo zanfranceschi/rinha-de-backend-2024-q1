@@ -1,0 +1,433 @@
+ Volume "carloseduard0_sockets"  Creating
+ Volume "carloseduard0_sockets"  Created
+ Container carloseduard0-postgres-1  Creating
+ Container carloseduard0-postgres-1  Created
+ Container carloseduard0-api1-1  Creating
+ Container carloseduard0-api2-1  Creating
+ Container carloseduard0-api1-1  Created
+ Container carloseduard0-api2-1  Created
+ Container carloseduard0-nginx-1  Creating
+ Container carloseduard0-nginx-1  Created
+Attaching to api1-1, api2-1, nginx-1, postgres-1
+postgres-1  | The files belonging to this database system will be owned by user "postgres".
+postgres-1  | This user must also own the server process.
+postgres-1  | 
+postgres-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgres-1  | The default database encoding has accordingly been set to "UTF8".
+postgres-1  | The default text search configuration will be set to "english".
+postgres-1  | 
+postgres-1  | Data page checksums are disabled.
+postgres-1  | 
+postgres-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres-1  | creating subdirectories ... ok
+postgres-1  | selecting dynamic shared memory implementation ... posix
+postgres-1  | selecting default max_connections ... 100
+postgres-1  | selecting default shared_buffers ... 128MB
+postgres-1  | selecting default time zone ... Etc/UTC
+postgres-1  | creating configuration files ... ok
+api2-1      | [Database] Loading...
+api2-1      | Unhandled Exception: Npgsql.NpgsqlException (0x80004005): Failed to connect to /sockets/.s.PGSQL.30003
+api2-1      |  ---> System.Net.Sockets.SocketException (99): Address not available
+api2-1      |    at System.Exception.SetCurrentStackTrace() + 0x63
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.SetCurrentStackTrace(Exception) + 0x18
+api2-1      |    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError, Boolean) + 0xec
+api2-1      |    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ConnectAsync(Socket) + 0xc9
+api2-1      |    at System.Net.Sockets.Socket.ConnectAsync(EndPoint, CancellationToken) + 0x98
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.<>c__DisplayClass220_0.<ConnectAsync>g__ConnectAsync|2(CancellationToken ct) + 0x29
+api2-1      |    at Npgsql.TaskTimeoutAndCancellation.<ExecuteAsync>d__1.MoveNext() + 0x89
+api2-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api2-1      |    at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2, NpgsqlTimeout, CancellationToken) + 0x44
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.<ConnectAsync>d__220.MoveNext() + 0x407
+api2-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout, CancellationToken) + 0x51
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.<RawOpen>d__217.MoveNext() + 0x9f
+api2-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode, NpgsqlTimeout, Boolean, CancellationToken, Boolean) + 0x4d
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x90
+api2-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x1c3
+api2-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout, Boolean, CancellationToken) + 0x41
+api2-1      |    at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x13f
+api2-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api2-1      |    at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0xd6
+api2-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api2-1      |    at Npgsql.PoolingDataSource.Get(NpgsqlConnection, NpgsqlTimeout, Boolean, CancellationToken) + 0xb6
+api2-1      |    at Npgsql.NpgsqlConnection.<>c__DisplayClass161_0.<<StartBindingScope>g__StartBindingScopeAsync|0>d.MoveNext() + 0x6c
+api2-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api2-1      |    at Npgsql.NpgsqlConnection.<>c__DisplayClass161_0.<StartBindingScope>g__StartBindingScopeAsync|0() + 0x3b
+api2-1      |    at Npgsql.NpgsqlConnection.<<Open>g__PerformMultiplexingStartupCheck|42_1>d.MoveNext() + 0x131
+api2-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api2-1      |    at Npgsql.NpgsqlConnection.<Open>g__PerformMultiplexingStartupCheck|42_1(Boolean, CancellationToken) + 0x3f
+api2-1      |    at Npgsql.NpgsqlDataSource.<OpenConnectionAsync>d__71.MoveNext() + 0x75
+api2-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api2-1      |    at Npgsql.NpgsqlDataSource.OpenConnectionAsync(CancellationToken) + 0x49
+api2-1      |    at RinhaBackend.RinhaBackendDatabase.<Load>d__2.MoveNext() + 0xbe
+api2-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api2-1      |    at RinhaBackend.RinhaBackendDatabase.Load() + 0x37
+api2-1      |    at Program.<<Main>$>d__0.MoveNext() + 0x29
+api2-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api2-1      |    at Program.<Main>$(String[]) + 0x2c
+api2-1      |    at Program.<Main>(String[] args) + 0x9
+api2-1      |    at RinhaBackend!<BaseAddress>+0x64292c
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at Npgsql.TaskTimeoutAndCancellation.<ExecuteAsync>d__1.MoveNext() + 0x49e
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.<ConnectAsync>d__220.MoveNext() + 0x508
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.<ConnectAsync>d__220.MoveNext() + 0x8b5
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.<RawOpen>d__217.MoveNext() + 0x991
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x1d5
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x8b5
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x683
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0x212
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at Npgsql.NpgsqlConnection.<>c__DisplayClass161_0.<<StartBindingScope>g__StartBindingScopeAsync|0>d.MoveNext() + 0x36f
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at Npgsql.NpgsqlConnection.<<Open>g__PerformMultiplexingStartupCheck|42_1>d.MoveNext() + 0x3d5
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at Npgsql.NpgsqlDataSource.<OpenConnectionAsync>d__71.MoveNext() + 0x12a
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at Npgsql.NpgsqlDataSource.<OpenConnectionAsync>d__71.MoveNext() + 0x286
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at RinhaBackend.RinhaBackendDatabase.<Load>d__2.MoveNext() + 0x1ff
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at Program.<<Main>$>d__0.MoveNext() + 0x21c
+api2-1      | --- End of stack trace from previous location ---
+api2-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api2-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api2-1      |    at Program.<Main>(String[] args) + 0x26
+api2-1      |    at RinhaBackend!<BaseAddress>+0x64292c
+api1-1      | [Database] Loading...
+api1-1      | Unhandled Exception: Npgsql.NpgsqlException (0x80004005): Failed to connect to /sockets/.s.PGSQL.30003
+api1-1      |  ---> System.Net.Sockets.SocketException (99): Address not available
+api1-1      |    at System.Exception.SetCurrentStackTrace() + 0x63
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.SetCurrentStackTrace(Exception) + 0x18
+api1-1      |    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError, Boolean) + 0xec
+api1-1      |    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ConnectAsync(Socket) + 0xc9
+api1-1      |    at System.Net.Sockets.Socket.ConnectAsync(EndPoint, CancellationToken) + 0x98
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<>c__DisplayClass220_0.<ConnectAsync>g__ConnectAsync|2(CancellationToken ct) + 0x29
+api1-1      |    at Npgsql.TaskTimeoutAndCancellation.<ExecuteAsync>d__1.MoveNext() + 0x89
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2, NpgsqlTimeout, CancellationToken) + 0x44
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<ConnectAsync>d__220.MoveNext() + 0x407
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout, CancellationToken) + 0x51
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<RawOpen>d__217.MoveNext() + 0x9f
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode, NpgsqlTimeout, Boolean, CancellationToken, Boolean) + 0x4d
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x90
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x1c3
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout, Boolean, CancellationToken) + 0x41
+api1-1      |    at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x13f
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0xd6
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.PoolingDataSource.Get(NpgsqlConnection, NpgsqlTimeout, Boolean, CancellationToken) + 0xb6
+api1-1      |    at Npgsql.NpgsqlConnection.<>c__DisplayClass161_0.<<StartBindingScope>g__StartBindingScopeAsync|0>d.MoveNext() + 0x6c
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.NpgsqlConnection.<>c__DisplayClass161_0.<StartBindingScope>g__StartBindingScopeAsync|0() + 0x3b
+api1-1      |    at Npgsql.NpgsqlConnection.<<Open>g__PerformMultiplexingStartupCheck|42_1>d.MoveNext() + 0x131
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.NpgsqlConnection.<Open>g__PerformMultiplexingStartupCheck|42_1(Boolean, CancellationToken) + 0x3f
+api1-1      |    at Npgsql.NpgsqlDataSource.<OpenConnectionAsync>d__71.MoveNext() + 0x75
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.NpgsqlDataSource.OpenConnectionAsync(CancellationToken) + 0x49
+api1-1      |    at RinhaBackend.RinhaBackendDatabase.<Load>d__2.MoveNext() + 0xbe
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at RinhaBackend.RinhaBackendDatabase.Load() + 0x37
+api1-1      |    at Program.<<Main>$>d__0.MoveNext() + 0x29
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Program.<Main>$(String[]) + 0x2c
+api1-1      |    at Program.<Main>(String[] args) + 0x9
+api1-1      |    at RinhaBackend!<BaseAddress>+0x64292c
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.TaskTimeoutAndCancellation.<ExecuteAsync>d__1.MoveNext() + 0x49e
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<ConnectAsync>d__220.MoveNext() + 0x508
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<ConnectAsync>d__220.MoveNext() + 0x8b5
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<RawOpen>d__217.MoveNext() + 0x991
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x1d5
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x8b5
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x683
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0x212
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.NpgsqlConnection.<>c__DisplayClass161_0.<<StartBindingScope>g__StartBindingScopeAsync|0>d.MoveNext() + 0x36f
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.NpgsqlConnection.<<Open>g__PerformMultiplexingStartupCheck|42_1>d.MoveNext() + 0x3d5
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.NpgsqlDataSource.<OpenConnectionAsync>d__71.MoveNext() + 0x12a
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at Npgsql.NpgsqlDataSource.<OpenConnectionAsync>d__71.MoveNext() + 0x286
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at RinhaBackend.RinhaBackendDatabase.<Load>d__2.MoveNext() + 0x1ff
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Program.<<Main>$>d__0.MoveNext() + 0x21c
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Program.<Main>(String[] args) + 0x26
+api1-1      |    at RinhaBackend!<BaseAddress>+0x64292c
+postgres-1  | running bootstrap script ... ok
+nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
+api2-1 exited with code 0
+api1-1 exited with code 0
+postgres-1  | performing post-bootstrap initialization ... ok
+api1-1 exited with code 0
+api2-1 exited with code 0
+api1-1      | Unhandled Exception: Npgsql.NpgsqlException (0x80004005): Failed to connect to /sockets/.s.PGSQL.30003
+api1-1      |  ---> System.Net.Sockets.SocketException (99): Address not available
+api1-1      |    at System.Exception.SetCurrentStackTrace() + 0x63
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.SetCurrentStackTrace(Exception) + 0x18
+api1-1      |    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError, Boolean) + 0xec
+api1-1      |    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ConnectAsync(Socket) + 0xc9
+api1-1      |    at System.Net.Sockets.Socket.ConnectAsync(EndPoint, CancellationToken) + 0x98
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<>c__DisplayClass220_0.<ConnectAsync>g__ConnectAsync|2(CancellationToken ct) + 0x29
+api1-1      |    at Npgsql.TaskTimeoutAndCancellation.<ExecuteAsync>d__1.MoveNext() + 0x89
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2, NpgsqlTimeout, CancellationToken) + 0x44
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<ConnectAsync>d__220.MoveNext() + 0x407
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout, CancellationToken) + 0x51
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<RawOpen>d__217.MoveNext() + 0x9f
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode, NpgsqlTimeout, Boolean, CancellationToken, Boolean) + 0x4d
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x90
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x1c3
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout, Boolean, CancellationToken) + 0x41
+api1-1      |    at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x13f
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0xd6
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.PoolingDataSource.Get(NpgsqlConnection, NpgsqlTimeout, Boolean, CancellationToken) + 0xb6
+api1-1      |    at Npgsql.NpgsqlConnection.<>c__DisplayClass161_0.<<StartBindingScope>g__StartBindingScopeAsync|0>d.MoveNext() + 0x6c
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.NpgsqlConnection.<>c__DisplayClass161_0.<StartBindingScope>g__StartBindingScopeAsync|0() + 0x3b
+api1-1      |    at Npgsql.NpgsqlConnection.<<Open>g__PerformMultiplexingStartupCheck|42_1>d.MoveNext() + 0x131
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.NpgsqlConnection.<Open>g__PerformMultiplexingStartupCheck|42_1(Boolean, CancellationToken) + 0x3f
+api1-1      |    at Npgsql.NpgsqlDataSource.<OpenConnectionAsync>d__71.MoveNext() + 0x75
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Npgsql.NpgsqlDataSource.OpenConnectionAsync(CancellationToken) + 0x49
+api1-1      |    at RinhaBackend.RinhaBackendDatabase.<Load>d__2.MoveNext() + 0xbe
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at RinhaBackend.RinhaBackendDatabase.Load() + 0x37
+api1-1      |    at Program.<<Main>$>d__0.MoveNext() + 0x29
+api1-1      |    at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&) + 0x47
+api1-1      |    at Program.<Main>$(String[]) + 0x2c
+api1-1      |    at Program.<Main>(String[] args) + 0x9
+api1-1      |    at RinhaBackend!<BaseAddress>+0x64292c
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.TaskTimeoutAndCancellation.<ExecuteAsync>d__1.MoveNext() + 0x49e
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<ConnectAsync>d__220.MoveNext() + 0x508
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<ConnectAsync>d__220.MoveNext() + 0x8b5
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<RawOpen>d__217.MoveNext() + 0x991
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<<Open>g__OpenCore|213_1>d.MoveNext() + 0x1d5
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.Internal.NpgsqlConnector.<Open>d__213.MoveNext() + 0x8b5
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.PoolingDataSource.<OpenNewConnector>d__37.MoveNext() + 0x683
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.PoolingDataSource.<<Get>g__RentAsync|34_0>d.MoveNext() + 0x212
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.NpgsqlConnection.<>c__DisplayClass161_0.<<StartBindingScope>g__StartBindingScopeAsync|0>d.MoveNext() + 0x36f
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.NpgsqlConnection.<<Open>g__PerformMultiplexingStartupCheck|42_1>d.MoveNext() + 0x3d5
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Npgsql.NpgsqlDataSource.<OpenConnectionAsync>d__71.MoveNext() + 0x12a
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at Npgsql.NpgsqlDataSource.<OpenConnectionAsync>d__71.MoveNext() + 0x286
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at RinhaBackend.RinhaBackendDatabase.<Load>d__2.MoveNext() + 0x1ff
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Program.<<Main>$>d__0.MoveNext() + 0x21c
+api1-1      | --- End of stack trace from previous location ---
+api1-1      |    at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() + 0x1c
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task) + 0x6a
+api1-1      |    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task, ConfigureAwaitOptions) + 0x4e
+api1-1      |    at Program.<Main>(String[] args) + 0x26
+api1-1      |    at RinhaBackend!<BaseAddress>+0x64292c
+postgres-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres-1  | syncing data to disk ... ok
+postgres-1  | 
+postgres-1  | 
+postgres-1  | Success. You can now start the database server using:
+postgres-1  | 
+postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres-1  | 
+postgres-1  | waiting for server to start.... done
+postgres-1  | server started
+api2-1 exited with code 139
+postgres-1  | 
+postgres-1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
+nginx-1     | 2024/03/10 20:38:16 [crit] 30#30: *1 connect() to unix:/sockets/api1.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/sockets/api1.sock:/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/03/10 20:38:16 [crit] 30#30: *1 connect() to unix:/sockets/api2.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/sockets/api2.sock:/clientes/1/extrato", host: "localhost:9999"
+postgres-1  | psql:/docker-entrypoint-initdb.d/init.sql:1: NOTICE:  table "Transactions" does not exist, skipping
+postgres-1  | DROP TABLE
+postgres-1  | psql:/docker-entrypoint-initdb.d/init.sql:2: NOTICE:  table "Clients" does not exist, skipping
+postgres-1  | DROP TABLE
+postgres-1  | CREATE TABLE
+postgres-1  | INSERT 0 5
+postgres-1  | CREATE TABLE
+postgres-1  | 
+postgres-1  | 
+api1-1 exited with code 139
+postgres-1  | waiting for server to shut down.... done
+postgres-1  | server stopped
+postgres-1  | 
+postgres-1  | PostgreSQL init process complete; ready for start up.
+postgres-1  | 
+api2-1      | [Database] loaded
+api2-1      | Listening on unix socket: /sockets/api2.sock
+api1-1      | [Database] loaded
+api1-1      | Listening on unix socket: /sockets/api1.sock
+nginx-1     | 2024/03/10 20:38:18 [error] 30#30: *4 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://backend/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/03/10 20:38:20 [error] 30#30: *5 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://backend/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/03/10 20:38:22 [error] 30#30: *6 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://backend/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/03/10 20:38:24 [error] 30#30: *7 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://backend/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/03/10 20:38:26 [error] 30#30: *8 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://backend/clientes/1/extrato", host: "localhost:9999"
+nginx-1 exited with code 0
+nginx-1 exited with code 0
+api2-1 exited with code 0
+api2-1 exited with code 0
+api1-1 exited with code 0
+api1-1 exited with code 0
+postgres-1 exited with code 0

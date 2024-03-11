@@ -1,0 +1,42 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: arthurcteixeira/rinha-backend:1.0
+    network_mode: host
+    depends_on:
+      - db
+    environment:
+      - PORT=3001
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "100MB"
+
+  api02:
+    <<: *api
+    environment:
+      - PORT=3000
+    hostname: api2
+
+  load-balancer:
+    image: arthurcteixeira/rinha-load-balancer:1.0
+    network_mode: host
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "50MB"
+
+  db:
+    image: arthurcteixeira/rinha-db:1.0
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "300MB"

@@ -19,10 +19,11 @@ CREATE UNLOGGED TABLE backend.transacoes (
 	valor  INTEGER NOT NULL,
 	tipo   VARCHAR(1) NOT NULL,
 	descricao   VARCHAR(10) NOT NULL,
+	saldo_rmsc INTEGER NOT NULL,
 	realizada_em   VARCHAR(200) NOT NULL
 );
 
-CREATE INDEX idx_extrato ON backend.transacoes (id DESC);
+CREATE INDEX idx_extrato ON backend.transacoes (id desc, cliente_id);
 
 INSERT INTO backend.clientes (nome, limite)
 VALUES
@@ -52,8 +53,8 @@ BEGIN
 		RETURNING saldo, limite
 	),
 	INSERT_TRANSACAO AS (
-		INSERT INTO backend.transacoes (cliente_id, valor, tipo, descricao, realizada_em)
-		SELECT p_id_cliente, p_valor, 'd', p_descricao, p_realizada_em
+		INSERT INTO backend.transacoes (cliente_id, valor, tipo, descricao, saldo_rmsc, realizada_em)
+		SELECT p_id_cliente, p_valor, 'd', p_descricao, saldo, p_realizada_em
 		from UPDATE_CLIENTES
 	)
 	SELECT saldo, limite
@@ -81,8 +82,8 @@ BEGIN
 		RETURNING saldo, limite
 	),
 	INSERT_TRANSACAO AS (
-		INSERT INTO backend.transacoes (cliente_id, valor, tipo, descricao, realizada_em)
-		SELECT p_id_cliente, p_valor, 'c', p_descricao, p_realizada_em
+		INSERT INTO backend.transacoes (cliente_id, valor, tipo, descricao, saldo_rmsc, realizada_em)
+		SELECT p_id_cliente, p_valor, 'c', p_descricao, saldo, p_realizada_em
 		from UPDATE_CLIENTES
 	)
 	
@@ -91,10 +92,3 @@ BEGIN
 	FROM UPDATE_CLIENTES;
 END;
 $$;
-
---select * from backend.clientes;
---												select * from backend.transacoes;
-
---call INSERIR_TRANSACAO_D(2, 10000, 'descricao', 'realizada_em');
---call INSERIR_TRANSACAO_D(2, 100000, 'descricao', '111111111');
---call INSERIR_TRANSACAO_C(2, 100000, 'descricao', '111111111');

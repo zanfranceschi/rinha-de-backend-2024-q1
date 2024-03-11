@@ -1,6 +1,6 @@
 # Descrição
 
-Submissão para rinha de backend feita em C com banco de dados próprio em file system.
+Submissão para rinha de backend feita em C com gravação de arquivos em disco.
 
 # Autor
 
@@ -9,9 +9,9 @@ maxwell.monteiro@gmail.com
 
 # Stack
 
-- bando de dado em C
+- File System
 - NGINX
-- api em C (llhttp, jansson)
+- C (llhttp, jansson)
 
 # Como Executar
 
@@ -21,10 +21,10 @@ maxwell.monteiro@gmail.com
 docker-compose up
 ```
 
-# Verificação de integridade das transações
+# Teste de Integridade das transações
 
-- Dump em json de todas as transações de um cliente: http://localhost:9999/clientes/{id}/dump 
-- Somatório de todas as transações de um cliente: http://localhost:9999/clientes/{id}/saldo 
+- Dump de todas as transações de um cliente: http://localhost:9999/clientes/{id}/dump 
+- Saldo de todas as transações de um cliente: http://localhost:9999/clientes/{id}/saldo
 
 # Repositório
 
