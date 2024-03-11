@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Mon Mar 11 04:44:46 UTC 2024** com **754** submissões.
+Atualizada **Mon Mar 11 04:57:25 UTC 2024** com **755** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -309,6 +309,7 @@ Atualizada **Mon Mar 11 04:44:46 UTC 2024** com **754** submissões.
 | [guiestimo](./participantes/guiestimo) | ok | 2 |
 | [guihbc](./participantes/guihbc) | ok | 277 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
+| [guimadev-kotlin](./participantes/guimadev-kotlin) | ok | 1 |
 | [gusinacio](./participantes/gusinacio) | ok | 4 |
 | [gustavo-node-v2](./participantes/gustavo-node-v2) | ok | 22 |
 | [gustavo-node](./participantes/gustavo-node) | ok | 1 |
