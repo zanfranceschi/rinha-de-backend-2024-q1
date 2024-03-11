@@ -12,7 +12,8 @@ services:
     ports:
       - "8081:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -49,6 +50,7 @@ services:
   db:
     image: postgres:latest
     hostname: db
+    command: 'postgres -c max_connections=20'
     networks:
       - rinha-network
     environment:
@@ -64,6 +66,12 @@ services:
         limits:
           cpus: "0.5"
           memory: "400MB"
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "admin", "--dbname", "Rinha"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
 
 # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
 # A edição anterior se beneficiou do modo host pois o volume de requisições
