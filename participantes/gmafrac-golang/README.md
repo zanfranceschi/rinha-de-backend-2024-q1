@@ -12,7 +12,7 @@ Submissão feita com:
 - `nginx` como load balancer
 - `postgres` como banco de dados
 - `golang` utilizando somente os pacotes `pgx` e `net/http` 
-- [repositório da api](https://github.com/gmafrac/crebitoapi)
+- [Repositório da api](https://github.com/gmafrac/crebitoapi)
 
 [@Twitter](https://twitter.com/gmafrac)
 [@Linkedin](https://www.linkedin.com/in/guilherme--mafra/)

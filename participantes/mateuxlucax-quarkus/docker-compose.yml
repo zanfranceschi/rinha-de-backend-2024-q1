@@ -1,0 +1,71 @@
+version: "3.5"
+
+services:
+  rinha-api01: &api
+    image: mateuxlucax/rinha-de-backend-2024-q1:quarkus
+    container_name: rinha-api01
+    hostname: rinha-api01
+    depends_on:
+      rinha-db:
+        condition: service_healthy
+    network_mode: "host"
+    environment:
+      - QUARKUS_HTTP_PORT=8080
+      - DATABASE_URL=jdbc:postgresql://127.0.0.1:5432/rinha
+      - QUARKUS_DATASOURCE_JDBC_MAX_SIZE=32
+      - QUARKUS_DATASOURCE_JDBC_INITIAL_SIZE=12
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "50MB"
+
+  rinha-api02:
+    <<: *api
+    hostname: rinha-api02
+    container_name: rinha-api02
+    environment:
+      - QUARKUS_HTTP_PORT=8081
+      - DATABASE_URL=jdbc:postgresql://127.0.0.1:5432/rinha
+      - QUARKUS_DATASOURCE_JDBC_MAX_SIZE=32
+      - QUARKUS_DATASOURCE_JDBC_INITIAL_SIZE=12
+
+  rinha-nginx:
+    image: nginx:latest
+    container_name: rinha-nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    network_mode: "host"
+    depends_on:
+      - rinha-api01
+      - rinha-api02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: "50MB"
+
+  rinha-db:
+    image: postgres:latest
+    container_name: rinha-db
+    hostname: rinha-db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    command: [ "postgres", "-c", "config_file=/etc/postgresql/postgresql.conf", "-c", "fsync=off" ]
+    network_mode: "host"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: "400MB"
