@@ -1,0 +1,68 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - .docker/config/postgresql.conf:/etc/postgresql/postgresql.conf
+    environment:
+      - POSTGRES_PASSWORD=RinhaMaster123
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=default_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rinha -d default_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.55"
+          memory: "250MB"
+  service-01: &service
+    image: richhh7g/rinha-2024:latest
+    restart: unless-stopped
+    environment:
+      - APP_PORT=3000
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://rinha:RinhaMaster123@db:5432/default_db
+    expose:
+      - "3000:3000"
+    hostname: service-01
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+      resources:
+        limits:
+          cpus: "0.35"
+          memory: "112MB"
+  service-02:
+    <<: *service
+    hostname: service-02
+  load-balancer:
+    image: haproxy:alpine
+    restart: unless-stopped
+    hostname: load-balancer
+    ports:
+      - "9999:9999"
+    volumes:
+      - .docker/config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - service-01
+      - service-02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "75MB"
+networks:
+  default:
+    driver: bridge

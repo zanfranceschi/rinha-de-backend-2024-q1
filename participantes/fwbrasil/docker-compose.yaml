@@ -30,10 +30,15 @@ services:
       retries: 999
 
   warmup:
-    image: grafana/k6:latest
+    image: registry.access.redhat.com/ubi9/ubi:9.3-1610
     volumes:
-      - ./warmup/warmup.js:/opt/warmup.js
-    command: run /opt/warmup.js
+      - ./warmup/warmup.sh:/opt/warmup.sh
+    command: ./opt/warmup.sh
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "10MB"
     network_mode: host
     depends_on:
       api01:
