@@ -1,3 +1,5 @@
+ Network rinha  Creating
+ Network rinha  Created
  Container deno-cassiogangrel-postgres-1  Creating
  Container deno-cassiogangrel-postgres-1  Created
  Container deno-cassiogangrel-api01-1  Creating
@@ -5,7 +7,6 @@
  Container deno-cassiogangrel-api02-1  Creating
  Container deno-cassiogangrel-api02-1  Created
  Container deno-cassiogangrel-nginx-1  Creating
- nginx Published ports are discarded when using host network mode 
  Container deno-cassiogangrel-nginx-1  Created
 Attaching to api01-1, api02-1, nginx-1, postgres-1
 postgres-1  | The files belonging to this database system will be owned by user "postgres".
@@ -38,18 +39,9 @@ api01-1     |     at async [0m[1m[3mPoolClient.connect[0m ([0m[36mhttps://
 api01-1     |     at async [0m[36mhttps://deno.land/x/postgres@v.0.18.1/pool.ts[0m:[0m[33m191[0m:[0m[33m9[0m
 api01-1     |     at async [0m[1m[3mPromise.all (index 0)[0m
 api01-1     |     at async [0m[1m[3mPool.#initialize[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/pool.ts[0m:[0m[33m198[0m:[0m[33m7[0m)
-nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
-nginx-1     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
-nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-api02-1     | Listening on http://localhost:8081/
-api02-1     | Server ouvindo na porta: 8081
 postgres-1  | performing post-bootstrap initialization ... ok
-nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
-nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
-nginx-1     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
-nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
-nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
+api02-1     | Listening on http://localhost:8080/
+api02-1     | Server ouvindo na porta: 8080
 api02-1     | [0m[1m[31merror[0m: Uncaught (in promise) ConnectionRefused: Connection refused (os error 111)
 api02-1     |     this.#conn = await Deno.connect(options);
 api02-1     | [0m[31m                 ^[0m
@@ -61,7 +53,6 @@ api02-1     |     at async [0m[1m[3mPoolClient.connect[0m ([0m[36mhttps://
 api02-1     |     at async [0m[36mhttps://deno.land/x/postgres@v.0.18.1/pool.ts[0m:[0m[33m191[0m:[0m[33m9[0m
 api02-1     |     at async [0m[1m[3mPromise.all (index 0)[0m
 api02-1     |     at async [0m[1m[3mPool.#initialize[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/pool.ts[0m:[0m[33m198[0m:[0m[33m7[0m)
-api01-1 exited with code 0
 postgres-1  | syncing data to disk ... ok
 postgres-1  | 
 postgres-1  | 
@@ -71,26 +62,23 @@ postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 postgres-1  | 
 postgres-1  | initdb: warning: enabling "trust" authentication for local connections
 postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-api02-1 exited with code 0
-postgres-1  | waiting for server to start....2024-02-19 03:35:58.671 UTC [49] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres-1  | 2024-02-19 03:35:58.674 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres-1  | 2024-02-19 03:35:58.684 UTC [52] LOG:  database system was shut down at 2024-02-19 03:35:57 UTC
-postgres-1  | 2024-02-19 03:35:58.689 UTC [49] LOG:  database system is ready to accept connections
+nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+postgres-1  | waiting for server to start....2024-03-11 03:22:16.470 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres-1  | 2024-03-11 03:22:16.481 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
+postgres-1  | 2024-03-11 03:22:16.539 UTC [51] LOG:  database system was shut down at 2024-03-11 03:22:13 UTC
+postgres-1  | 2024-03-11 03:22:16.547 UTC [48] LOG:  database system is ready to accept connections
 postgres-1  |  done
 postgres-1  | server started
-api02-1     | Listening on http://localhost:8081/
-api02-1     | Server ouvindo na porta: 8081
-api02-1     | [0m[1m[31merror[0m: Uncaught (in promise) ConnectionRefused: Connection refused (os error 111)
-api02-1     |     this.#conn = await Deno.connect(options);
-api02-1     | [0m[31m                 ^[0m
-api02-1     |     at async [0m[1m[3mObject.connect[0m ([0m[36mext:deno_net/01_net.js[0m:[0m[33m579[0m:[0m[33m55[0m)
-api02-1     |     at async [0m[1m[3mConnection.#openConnection[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/connection/connection.ts[0m:[0m[33m246[0m:[0m[33m18[0m)
-api02-1     |     at async [0m[1m[3mConnection.#startup[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/connection/connection.ts[0m:[0m[33m322[0m:[0m[33m7[0m)
-api02-1     |     at async [0m[1m[3mConnection.startup[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/connection/connection.ts[0m:[0m[33m474[0m:[0m[33m11[0m)
-api02-1     |     at async [0m[1m[3mPoolClient.connect[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/client.ts[0m:[0m[33m233[0m:[0m[33m7[0m)
-api02-1     |     at async [0m[36mhttps://deno.land/x/postgres@v.0.18.1/pool.ts[0m:[0m[33m191[0m:[0m[33m9[0m
-api02-1     |     at async [0m[1m[3mPromise.all (index 0)[0m
-api02-1     |     at async [0m[1m[3mPool.#initialize[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/pool.ts[0m:[0m[33m198[0m:[0m[33m7[0m)
+api01-1 exited with code 0
+nginx-1     | 2024/03/11 03:22:16 [error] 28#28: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.21.0.3:8080/clientes/1/extrato", host: "localhost:9999"
 postgres-1  | CREATE DATABASE
 postgres-1  | 
 postgres-1  | 
@@ -103,398 +91,410 @@ postgres-1  | CREATE TRIGGER
 postgres-1  | DO
 postgres-1  | 
 postgres-1  | 
-postgres-1  | waiting for server to shut down....2024-02-19 03:35:59.368 UTC [49] LOG:  received fast shutdown request
-postgres-1  | 2024-02-19 03:35:59.378 UTC [49] LOG:  aborting any active transactions
-postgres-1  | 2024-02-19 03:35:59.380 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-postgres-1  | 2024-02-19 03:35:59.381 UTC [50] LOG:  shutting down
-postgres-1  | 2024-02-19 03:35:59.418 UTC [50] LOG:  checkpoint starting: shutdown immediate
-api01-1 exited with code 0
-api02-1 exited with code 1
-postgres-1  | .2024-02-19 03:36:00.466 UTC [50] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.255 s, sync=0.743 s, total=1.085 s; sync files=306, longest=0.245 s, average=0.003 s; distance=4295 kB, estimate=4295 kB; lsn=0/191C790, redo lsn=0/191C790
-postgres-1  | 2024-02-19 03:36:00.470 UTC [49] LOG:  database system is shut down
+postgres-1  | 2024-03-11 03:22:16.797 UTC [48] LOG:  received fast shutdown request
+postgres-1  | waiting for server to shut down....2024-03-11 03:22:16.801 UTC [48] LOG:  aborting any active transactions
+api02-1 exited with code 0
+postgres-1  | 2024-03-11 03:22:16.815 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres-1  | 2024-03-11 03:22:16.816 UTC [49] LOG:  shutting down
+postgres-1  | 2024-03-11 03:22:16.819 UTC [49] LOG:  checkpoint starting: shutdown immediate
+api01-1     | Listening on http://localhost:8080/
+api01-1     | Server ouvindo na porta: 8080
+api01-1     | [0m[1m[31merror[0m: Uncaught (in promise) ConnectionRefused: Connection refused (os error 111)
+api01-1     |     this.#conn = await Deno.connect(options);
+api01-1     | [0m[31m                 ^[0m
+api01-1     |     at async [0m[1m[3mObject.connect[0m ([0m[36mext:deno_net/01_net.js[0m:[0m[33m579[0m:[0m[33m55[0m)
+api01-1     |     at async [0m[1m[3mConnection.#openConnection[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/connection/connection.ts[0m:[0m[33m246[0m:[0m[33m18[0m)
+api01-1     |     at async [0m[1m[3mConnection.#startup[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/connection/connection.ts[0m:[0m[33m322[0m:[0m[33m7[0m)
+api01-1     |     at async [0m[1m[3mConnection.startup[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/connection/connection.ts[0m:[0m[33m474[0m:[0m[33m11[0m)
+api01-1     |     at async [0m[1m[3mPoolClient.connect[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/client.ts[0m:[0m[33m233[0m:[0m[33m7[0m)
+api01-1     |     at async [0m[36mhttps://deno.land/x/postgres@v.0.18.1/pool.ts[0m:[0m[33m191[0m:[0m[33m9[0m
+api01-1     |     at async [0m[1m[3mPromise.all (index 0)[0m
+api01-1     |     at async [0m[1m[3mPool.#initialize[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/pool.ts[0m:[0m[33m198[0m:[0m[33m7[0m)
+api02-1     | Listening on http://localhost:8080/
+api02-1     | Server ouvindo na porta: 8080
+nginx-1     | 2024/03/11 03:22:17 [error] 28#28: *1 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.21.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/03/11 03:22:17 [error] 28#28: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.21.0.4:8080/clientes/1/extrato", host: "localhost:9999"
+api02-1     | [0m[1m[31merror[0m: Uncaught (in promise) ConnectionRefused: Connection refused (os error 111)
+api02-1     |     this.#conn = await Deno.connect(options);
+api02-1     | [0m[31m                 ^[0m
+api02-1     |     at async [0m[1m[3mObject.connect[0m ([0m[36mext:deno_net/01_net.js[0m:[0m[33m579[0m:[0m[33m55[0m)
+api02-1     |     at async [0m[1m[3mConnection.#openConnection[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/connection/connection.ts[0m:[0m[33m246[0m:[0m[33m18[0m)
+api02-1     |     at async [0m[1m[3mConnection.#startup[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/connection/connection.ts[0m:[0m[33m322[0m:[0m[33m7[0m)
+api02-1     |     at async [0m[1m[3mConnection.startup[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/connection/connection.ts[0m:[0m[33m474[0m:[0m[33m11[0m)
+api02-1     |     at async [0m[1m[3mPoolClient.connect[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/client.ts[0m:[0m[33m233[0m:[0m[33m7[0m)
+api02-1     |     at async [0m[36mhttps://deno.land/x/postgres@v.0.18.1/pool.ts[0m:[0m[33m191[0m:[0m[33m9[0m
+api02-1     |     at async [0m[1m[3mPromise.all (index 0)[0m
+api02-1     |     at async [0m[1m[3mPool.#initialize[0m ([0m[36mhttps://deno.land/x/postgres@v.0.18.1/pool.ts[0m:[0m[33m198[0m:[0m[33m7[0m)
+postgres-1  | 2024-03-11 03:22:17.320 UTC [49] LOG:  checkpoint complete: wrote 937 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.282 s, sync=0.200 s, total=0.505 s; sync files=306, longest=0.159 s, average=0.001 s; distance=4295 kB, estimate=4295 kB; lsn=0/191C790, redo lsn=0/191C790
+postgres-1  | 2024-03-11 03:22:17.327 UTC [48] LOG:  database system is shut down
 postgres-1  |  done
 postgres-1  | server stopped
 postgres-1  | 
 postgres-1  | PostgreSQL init process complete; ready for start up.
 postgres-1  | 
-postgres-1  | 2024-02-19 03:36:00.597 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-postgres-1  | 2024-02-19 03:36:00.597 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-postgres-1  | 2024-02-19 03:36:00.597 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2024-03-11 03:22:17.424 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres-1  | 2024-03-11 03:22:17.467 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2024-03-11 03:22:17.467 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2024-03-11 03:22:17.477 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2024-03-11 03:22:17.486 UTC [66] LOG:  database system was shut down at 2024-03-11 03:22:17 UTC
+postgres-1  | 2024-03-11 03:22:17.494 UTC [1] LOG:  database system is ready to accept connections
 api02-1 exited with code 0
 api01-1 exited with code 0
-postgres-1  | 2024-02-19 03:36:00.604 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-postgres-1  | 2024-02-19 03:36:00.613 UTC [67] LOG:  database system was shut down at 2024-02-19 03:36:00 UTC
-postgres-1  | 2024-02-19 03:36:00.620 UTC [1] LOG:  database system is ready to accept connections
-nginx-1     | 2024/02/19 03:36:00 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:8080/clientes/1/extrato", host: "localhost:9999"
-nginx-1     | 2024/02/19 03:36:00 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:8081/clientes/1/extrato", host: "localhost:9999"
-api02-1     | Listening on http://localhost:8081/
-api02-1     | Listening on http://localhost:8081/
-api02-1     | Server ouvindo na porta: 8081
-api02-1     | Server ouvindo na porta: 8081
-api01-1     | Listening on http://localhost:8080/
+api02-1     | Listening on http://localhost:8080/
+api02-1     | Server ouvindo na porta: 8080
 api01-1     | Listening on http://localhost:8080/
 api01-1     | Server ouvindo na porta: 8080
-api01-1     | Server ouvindo na porta: 8080
-nginx-1     | 2024/02/19 03:36:02 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1     | 2024/02/19 03:36:04 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1     | 2024/02/19 03:36:06 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1     | 2024/02/19 03:36:08 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-nginx-1     | 2024/02/19 03:36:10 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
-postgres-1  | 2024-02-19 03:36:32.938 UTC [81] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:32.938 UTC [81] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:32.938 UTC [81] STATEMENT:  
+nginx-1     | 2024/03/11 03:22:19 [error] 28#28: *7 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/03/11 03:22:21 [error] 28#28: *8 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/03/11 03:22:23 [error] 28#28: *9 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1     | 2024/03/11 03:22:25 [error] 28#28: *10 no live upstreams while connecting to upstream, client: 172.21.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+postgres-1  | 2024-03-11 03:22:48.066 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:48.066 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:48.066 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:34.382 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:34.382 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:34.382 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:48.202 UTC [84] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:48.202 UTC [84] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:48.202 UTC [84] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:34.746 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:34.746 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:34.746 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:48.293 UTC [84] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:48.293 UTC [84] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:48.293 UTC [84] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:34.838 UTC [120] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:34.838 UTC [120] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:34.838 UTC [120] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:48.339 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:48.339 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:48.339 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:34.928 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:34.928 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:34.928 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:49.761 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:49.761 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:49.761 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:37.083 UTC [120] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:37.083 UTC [120] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:37.083 UTC [120] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:50.161 UTC [84] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:50.161 UTC [84] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:50.161 UTC [84] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:37.487 UTC [120] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:37.487 UTC [120] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:37.487 UTC [120] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:50.555 UTC [84] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:50.555 UTC [84] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:50.555 UTC [84] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:37.630 UTC [120] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:37.630 UTC [120] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:37.630 UTC [120] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:51.831 UTC [126] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:51.831 UTC [126] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:51.831 UTC [126] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:37.809 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:37.809 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:37.809 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:52.522 UTC [126] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:52.522 UTC [126] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:52.522 UTC [126] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:37.880 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:37.880 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:37.880 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:52.941 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:52.941 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:52.941 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:38.305 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:38.305 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:38.305 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:53.004 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:53.004 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:53.004 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:38.477 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:38.477 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:38.477 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:53.037 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:53.037 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:53.037 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:38.614 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:38.614 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:38.614 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:53.295 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:53.295 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:53.295 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:38.650 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:38.650 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:38.650 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:53.456 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:53.456 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:53.456 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:38.857 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:38.857 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:38.857 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:54.036 UTC [98] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:54.036 UTC [98] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:54.036 UTC [98] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:38.891 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:38.891 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:38.891 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:54.692 UTC [98] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:54.692 UTC [98] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:54.692 UTC [98] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:38.994 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:38.994 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:38.994 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:54.719 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:54.719 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:54.719 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:39.133 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:39.133 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:39.133 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:54.834 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:54.834 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:54.834 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:39.911 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:39.911 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:39.911 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:55.319 UTC [98] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:55.319 UTC [98] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:55.319 UTC [98] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:40.321 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:40.321 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:40.321 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:55.491 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:55.491 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:55.491 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:40.381 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:40.381 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:40.381 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:55.547 UTC [126] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:55.547 UTC [126] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:55.547 UTC [126] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:40.685 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:40.685 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:40.685 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:55.628 UTC [98] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:55.628 UTC [98] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:55.628 UTC [98] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:40.837 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:40.837 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:40.837 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:55.763 UTC [126] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:55.763 UTC [126] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:55.763 UTC [126] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:41.019 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:41.019 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:41.019 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:55.817 UTC [126] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:55.817 UTC [126] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:55.817 UTC [126] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:41.049 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:41.049 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:41.049 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:55.952 UTC [126] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:55.952 UTC [126] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:55.952 UTC [126] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:41.079 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:41.079 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:41.079 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:56.060 UTC [98] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:56.060 UTC [98] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:56.060 UTC [98] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:41.457 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:41.457 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:41.457 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:56.625 UTC [126] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:56.625 UTC [126] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:56.625 UTC [126] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:41.542 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:41.542 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:41.542 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:56.651 UTC [126] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:56.651 UTC [126] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:56.651 UTC [126] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:41.686 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:41.686 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:41.686 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:56.678 UTC [126] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:56.678 UTC [126] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:56.678 UTC [126] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:42.115 UTC [119] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:42.115 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:42.115 UTC [119] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:56.705 UTC [126] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:56.705 UTC [126] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:56.705 UTC [126] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:42.310 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:42.310 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:42.310 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:56.731 UTC [126] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:56.731 UTC [126] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:56.731 UTC [126] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:42.363 UTC [120] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:42.363 UTC [120] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:42.363 UTC [120] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:56.757 UTC [126] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:56.757 UTC [126] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:56.757 UTC [126] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:42.768 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:42.768 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:42.768 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:57.284 UTC [98] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:57.284 UTC [98] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:57.284 UTC [98] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:42.795 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:42.795 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:42.795 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:57.720 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:57.720 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:57.720 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:42.930 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:42.930 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:42.930 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:57.746 UTC [98] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:57.746 UTC [98] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:57.746 UTC [98] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:43.411 UTC [81] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:43.411 UTC [81] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:43.411 UTC [81] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:57.896 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:57.896 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:57.896 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:43.543 UTC [120] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:43.543 UTC [120] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:43.543 UTC [120] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:59.702 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:59.702 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:59.702 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:43.622 UTC [81] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:43.622 UTC [81] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:43.622 UTC [81] STATEMENT:  
+postgres-1  | 2024-03-11 03:22:59.748 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:22:59.748 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:22:59.748 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:43.753 UTC [120] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:43.753 UTC [120] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:43.753 UTC [120] STATEMENT:  
+postgres-1  | 2024-03-11 03:23:00.157 UTC [87] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:23:00.157 UTC [87] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:23:00.157 UTC [87] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:43.779 UTC [120] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:43.779 UTC [120] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:43.779 UTC [120] STATEMENT:  
+postgres-1  | 2024-03-11 03:23:00.407 UTC [116] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:23:00.407 UTC [116] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:23:00.407 UTC [116] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:43.806 UTC [120] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:43.806 UTC [120] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:43.806 UTC [120] STATEMENT:  
+postgres-1  | 2024-03-11 03:23:00.452 UTC [116] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:23:00.452 UTC [116] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:23:00.452 UTC [116] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:44.501 UTC [120] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:44.501 UTC [120] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:44.501 UTC [120] STATEMENT:  
+postgres-1  | 2024-03-11 03:23:00.521 UTC [116] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:23:00.521 UTC [116] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:23:00.521 UTC [116] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:44.525 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:44.525 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:44.525 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:23:00.564 UTC [87] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:23:00.564 UTC [87] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:23:00.564 UTC [87] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES
 postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
 postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:44.551 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:44.551 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:44.551 UTC [82] STATEMENT:  
-postgres-1  | 	        INSERT INTO transactions 
-postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
-postgres-1  | 	        VALUES
-postgres-1  | 	        ($1, $2, $3, $4, $5, $6)
-postgres-1  | 	        
-postgres-1  | 2024-02-19 03:36:44.851 UTC [82] ERROR:  Saldo insuficiente para esta transação!
-postgres-1  | 2024-02-19 03:36:44.851 UTC [82] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
-postgres-1  | 2024-02-19 03:36:44.851 UTC [82] STATEMENT:  
+postgres-1  | 2024-03-11 03:23:00.694 UTC [119] ERROR:  Saldo insuficiente para esta transação!
+postgres-1  | 2024-03-11 03:23:00.694 UTC [119] CONTEXT:  PL/pgSQL function update_balance() line 7 at RAISE
+postgres-1  | 2024-03-11 03:23:00.694 UTC [119] STATEMENT:  
 postgres-1  | 	        INSERT INTO transactions 
 postgres-1  | 	        (transaction_id, customer_id, value, type, description, created_at)
 postgres-1  | 	        VALUES

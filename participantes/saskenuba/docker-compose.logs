@@ -1,0 +1,49 @@
+ Network rinha-de-backend_default  Creating
+ Network rinha-de-backend_default  Created
+ Volume "rinha-de-backend_db-volume"  Creating
+ Volume "rinha-de-backend_db-volume"  Created
+ Container rinha-de-backend-tmp-1  Creating
+ Container rinha-de-backend-tmp-1  Created
+ Container rinha-de-backend-redis-1  Creating
+ Container rinha-de-backend-redis-1  Created
+ Container rinha-de-backend-sv-02-1  Creating
+ Container rinha-de-backend-sv-01-1  Creating
+ Container rinha-de-backend-sv-01-1  Created
+ Container rinha-de-backend-sv-02-1  Created
+ Container rinha-de-backend-load-balancer-1  Creating
+ Container rinha-de-backend-load-balancer-1  Created
+Attaching to load-balancer-1, redis-1, sv-01-1, sv-02-1, tmp-1
+tmp-1            | mkdir: can't create directory '/tmp/docker': File exists
+redis-1          | 1:C 11 Mar 2024 04:32:44.059 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+redis-1          | 1:C 11 Mar 2024 04:32:44.059 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1          | 1:C 11 Mar 2024 04:32:44.059 * Redis version=7.2.4, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-1          | 1:C 11 Mar 2024 04:32:44.059 * Configuration loaded
+redis-1          | 1:M 11 Mar 2024 04:32:44.059 * monotonic clock: POSIX clock_gettime
+redis-1          | 1:M 11 Mar 2024 04:32:44.059 * Running mode=standalone, port=0.
+redis-1          | 1:M 11 Mar 2024 04:32:44.059 # Failed opening Unix socket: bind: Permission denied
+tmp-1 exited with code 1
+redis-1 exited with code 1
+load-balancer-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+load-balancer-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+load-balancer-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+load-balancer-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+load-balancer-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+load-balancer-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+load-balancer-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+load-balancer-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+load-balancer-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+sv-02-1          | thread 'main' panicked at src/bin/main.rs:78:39:
+sv-02-1          | called `Result::unwrap()` on an `Err` value: No such file or directory (os error 2)
+sv-02-1          | 
+sv-02-1          | Location:
+sv-02-1          |     src/bin/main.rs:52:16
+sv-02-1          | note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+sv-02-1 exited with code 101
+sv-01-1          | thread 'main' panicked at src/bin/main.rs:78:39:
+sv-01-1          | called `Result::unwrap()` on an `Err` value: No such file or directory (os error 2)
+sv-01-1          | 
+sv-01-1          | Location:
+sv-01-1          |     src/bin/main.rs:52:16
+sv-01-1          | note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+sv-01-1 exited with code 101
+load-balancer-1 exited with code 0
