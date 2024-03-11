@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  api1:
+    image: rodrigopizzi/rinha-2024-q1:latest
+    hostname: api1
+    environment:
+      - PORT=8080
+      - DB_HOST=mongo
+    depends_on:
+      - mongo
+    deploy:
+      resources:
+        limits:
+          cpus: "0.55"
+          memory: "200MB"
+
+  api2:
+    image: rodrigopizzi/rinha-2024-q1:latest
+    hostname: api2
+    environment:
+      - PORT=8081
+      - DB_HOST=mongo
+    depends_on:
+      - mongo
+    deploy:
+      resources:
+        limits:
+          cpus: "0.55"
+          memory: "200MB"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: "20MB"
+
+  mongo:
+    image: docker.io/bitnami/mongodb:6.0.13@sha256:2a8f4610f02c2f39c7608981d2895253206897c49dcd957c78b0a26956361e50
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./docker/mongo:/docker-entrypoint-initdb.d
+    environment:
+      - MONGODB_ROOT_PASSWORD=123456
+      - MONGODB_USERNAME=user
+      - MONGODB_PASSWORD=123456
+      - MONGODB_DATABASE=rinha
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: "130MB"
