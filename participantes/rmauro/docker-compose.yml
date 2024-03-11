@@ -1,0 +1,102 @@
+version: '3.9'
+
+services:
+  api1:
+    image: ricardomauro/rinha-2024q1-dotnet:latest
+    container_name: rapi1
+    network_mode: host
+    environment: 
+      ConnectionStrings__Default: Server=127.0.0.1;Port=3306;Database=rinha;Uid=rinha;Pwd=password.123;
+      DOTNET_URLS: http://*:9997
+      ASPNETCORE_ENVIRONMENT: Production
+    depends_on:
+      db:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '80MB'
+
+  api2:
+    image: ricardomauro/rinha-2024q1-dotnet:latest
+    container_name: rapi2
+    network_mode: host
+    environment: 
+      ConnectionStrings__Default: Server=127.0.0.1;Port=3306;Database=rinha;Uid=rinha;Pwd=password.123;
+      DOTNET_URLS: http://*:9998
+      ASPNETCORE_ENVIRONMENT: Production
+    depends_on:
+      db:
+        condition: service_healthy
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '80MB'
+
+  envoy:
+    image: envoyproxy/envoy:v1.29-latest
+    container_name: rproxy
+    network_mode: host
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '134MB'
+
+  db:
+    image: mariadb:lts-jammy
+    container_name: rdb
+    network_mode: host
+    command: --skip-log-bin
+    volumes:
+      - ./mysql/dump/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./mysql/my.cnf:/etc/mysql/my.cnf:ro
+    tmpfs:
+      - /var/lib/mysql
+    restart: always
+    environment:
+      MARIADB_ROOT_USER: root
+      MARIADB_ROOT_PASSWORD: password.123
+      MARIADB_DATABASE: rinha
+      MARIADB_USER: rinha
+      MARIADB_PASSWORD: password.123
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 1
+
+    healthcheck:
+      test: 
+        [
+          "CMD",
+          "healthcheck.sh",
+          "--su-mysql",
+          "--connect",
+          "--innodb_initialized"
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '256MB'

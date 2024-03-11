@@ -3,40 +3,33 @@ version: '3.0'
 services:
 
   rinha-db:
-    image: mysql:8.0
+    image: mariadb:11.2.3
     container_name: rinha-db
     restart: always
     network_mode: host
     environment:
-      - MYSQL_DATABASE=rinha-db
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=qwerty
-      - MYSQL_ROOT_PASSWORD=qwerty
-      - MYSQL_TCP_PORT=9930
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-P", "9930", "-u", "admin", "-p", "qwerty"]
-      timeout: 20s
-      retries: 10
-    # ports:
-    #   - 3306:3306
+      - MARIADB_DATABASE=rinha-db
+      - MARIADB_USER=admin
+      - MARIADB_PASSWORD=qwerty
+      - MARIADB_ROOT_PASSWORD=qwerty
     volumes:
+      - ./configs/mysql.conf:/etc/my.cnf
       - ./scripts/init_mysql.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./configs/mysql.conf:/etc/mysql/my.cnf
     deploy:
       resources:
         limits:
           cpus: '1.05'
-          memory: 350M       
+          memory: 350M 
   
   rinha-api-1:
-    image: jhonatanrs/rinha-backend-2024-q1-mysql:latest
+    image: jhonatanrs/los-alamos:latest
     container_name: rinha-api-1
     restart: always
     network_mode: host
     environment:
       - API_PORT=9910
       - DB_HOST=127.0.0.1
-      - DB_PORT=9930
+      - DB_PORT=3306
       - DB_USER=admin
       - DB_PASSWORD=qwerty
       - DB_NAME=rinha-db
@@ -46,17 +39,17 @@ services:
       resources:
         limits:
           cpus: '0.15'
-          memory: 75M
+          memory: 50M
 
   rinha-api-2:
-    image: jhonatanrs/rinha-backend-2024-q1-mysql:latest
+    image: jhonatanrs/los-alamos:latest
     container_name: rinha-api-2
     restart: always
     network_mode: host
     environment:
       - API_PORT=9920
       - DB_HOST=127.0.0.1
-      - DB_PORT=9930
+      - DB_PORT=3306
       - DB_USER=admin
       - DB_PASSWORD=qwerty
       - DB_NAME=rinha-db
@@ -66,7 +59,7 @@ services:
       resources:
         limits:
           cpus: '0.15'
-          memory: 75M
+          memory: 50M
   
   nginx:
     image: nginx:latest
@@ -78,10 +71,8 @@ services:
     depends_on:
       - rinha-api-1
       - rinha-api-2
-    # ports:
-    #   - "9999:9999" 
     deploy:
       resources:
         limits:
           cpus: '0.15'
-          memory: 50M
+          memory: 100M

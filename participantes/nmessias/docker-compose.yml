@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    network_mode: host
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d rinha -U admin"]
+      interval: 5s
+      retries: 10
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "180MB"
+
+  app1: &app
+    image: nicomcode/rinha-2024-1-frankenphp:latest
+    environment: 
+      - SERVER_NAME=:3000
+    network_mode: host
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "170MB"    
+
+  app2:
+    <<: *app
+    environment: 
+      - SERVER_NAME=:3001
+
+  nginx:
+    image: nginx:latest
+    network_mode: host
+    volumes:
+      - ./ngnix.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app1
+      - app2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "30MB"

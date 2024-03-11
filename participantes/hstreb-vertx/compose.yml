@@ -1,0 +1,52 @@
+version: "3.8"
+services:
+  api1: &api
+    image: hstreb/rinha-2024-q1-vertx:0.0.2-native
+    depends_on:
+      db:
+        condition: service_healthy
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: '165MB'
+
+  api2:
+    <<: *api
+    environment:
+      - HTTP_PORT=8081
+
+  nginx:
+    image: nginx:1.25.4
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: '70MB'
+
+  db:
+    image: postgres:16.2
+    hostname: db
+    command: -p 5432
+    network_mode: "host"
+    volumes:
+      - ./docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker/db/postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    environment:
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha123
+      - POSTGRES_DB=rinha
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: '150MB'
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U rinha" ]
+      interval: 2s
+      timeout: 1s
+      retries: 30

@@ -1,0 +1,76 @@
+version: '3.9'
+name: 'rinha-cleidiano'
+
+services:
+  api1: &api
+    image: cleidianosouza/rinha-backend-2024-q1:202403081143
+    hostname: api1
+    container_name: rinhaapi1
+    environment:
+      - DATASOURCE_DB_URL=jdbc:postgresql://postgres-db:5432/rinha
+      - DATASOURCE_MAX_CONNECTIONS=5
+      - JAVA_OPTS=-Dio.ktor.development=false -Xmx160m -Xms160m
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: '195MB'
+
+  api2:
+    <<: *api
+    hostname: api2
+    container_name: rinhaapi2
+    ports:
+      - "8081:8080"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "10MB"
+
+  postgres-db:
+    image: postgres:latest
+    container_name: rinhadb
+    command: 'postgres -c max_connections=12 -c shared_buffers=50MB -c synchronous_commit=off -c fsync=off -c full_page_writes=off'
+    hostname: postgres
+    environment:
+      - POSTGRES_PASSWORD=rinha
+      - POSTGRES_USER=rinha
+      - POSTGRES_DB=rinha
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/ddl.sql:/docker-entrypoint-initdb.d/01-ddl.sql:ro
+      - ./sql/criartransacao.sql:/docker-entrypoint-initdb.d/11-criartransacao.sql:ro
+      - ./sql/resetdb.sql:/docker-entrypoint-initdb.d/21-resetdb.sql:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '100MB'
+    healthcheck:
+      test: [ "CMD", "pg_isready", "--username", "rinha" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-2024q1

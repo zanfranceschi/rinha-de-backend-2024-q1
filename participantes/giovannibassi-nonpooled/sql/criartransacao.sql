@@ -12,23 +12,20 @@ BEGIN
   WHERE id = idcliente;
 
   IF not found THEN
-    --raise notice'Id do Cliente % não encontrado.', idcliente;
-    select -1 into ret;
+    SELECT -1 INTO ret;
     RETURN ret;
   END IF;
 
-  --raise notice'Criando transacao para cliente %.', idcliente;
-  INSERT INTO transacao (valor, descricao, realizadaem, idcliente)
-    VALUES (valor, descricao, now() at time zone 'utc', idcliente);
   UPDATE cliente
     SET saldo = saldo + valor
     WHERE id = idcliente AND (valor > 0 OR saldo + valor >= limite)
     RETURNING saldo, limite
     INTO ret;
-  raise notice'Ret: %', ret;
   IF ret.limite is NULL THEN
-    --raise notice'Id do Cliente % não encontrado.', idcliente;
-    select -2 into ret;
+    SELECT -2 INTO ret;
+    RETURN ret;
   END IF;
+  INSERT INTO transacao (valor, descricao, idcliente)
+    VALUES (valor, descricao, idcliente);
   RETURN ret;
 END;$$ LANGUAGE plpgsql;

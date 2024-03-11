@@ -1,0 +1,58 @@
+services:
+  api1: &api
+    image: v1t4o/my_way:latest
+    container_name: api1
+    hostname: api1
+    environment:
+      - DB_POOL_SIZE=15
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "100MB"
+
+  api2:
+    <<: *api 
+    hostname: api2
+    container_name: api2
+    ports:
+      - "8082:8080"
+ 
+  nginx:
+    image: nginx
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    ports:
+        # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999" 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "50MB"
+
+  postgres:
+    image: postgres
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=sinatra
+      - POSTGRES_USER=frank
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./config/script.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./config/postgresql.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "300MB"

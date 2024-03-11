@@ -1,0 +1,61 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: ddanielsantos/rinha-2024-q1
+    hostname: api01
+    environment:
+      - DATABASE_URL=postgres://u_rinha_24:myawesomepass@db:5432/rinha_db
+
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "140MB"
+
+  api02:
+    <<: *api
+    hostname: api02
+    environment:
+      - DATABASE_URL=postgres://u_rinha_24:myawesomepass@db:5432/rinha_db
+    ports:
+      - "8002:8000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "60MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=myawesomepass
+      - POSTGRES_USER=u_rinha_24
+      - POSTGRES_DB=rinha_db
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "210MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

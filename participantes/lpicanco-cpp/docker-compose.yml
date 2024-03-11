@@ -2,15 +2,17 @@ version: "3.5"
 
 services:
   api01: &api
-    image: ghcr.io/lpicanco/backend-dogfight-cpp-24-q1:latest
+    image: ghcr.io/lpicanco/backend-dogfight-cpp-24-q1:v2
     hostname: api01
+    network_mode: host
     restart: unless-stopped
     environment:
-      DATABASE_HOST: db
+      DATABASE_HOST: localhost
       DATABASE_NAME: dogfight
       DATABASE_USER: dogfight_user
       DATABASE_PORT: 5432
       DATABASE_PASSWORD: dogfight_pass
+      PORT: 3042
     depends_on:
       - db
     deploy:
@@ -22,25 +24,32 @@ services:
   api02:
     <<: *api
     hostname: api02
+    environment:
+      DATABASE_HOST: localhost
+      DATABASE_NAME: dogfight
+      DATABASE_USER: dogfight_user
+      DATABASE_PORT: 5432
+      DATABASE_PASSWORD: dogfight_pass
+      PORT: 3043
   nginx:
     image: nginx:1.25.3
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    network_mode: host
     restart: unless-stopped
     depends_on:
       - api01
       - api02
-    ports:
-      - "9999:9999"
     deploy:
       resources:
         limits:
-          cpus: "0.15"
+          cpus: "0.20"
           memory: "50MB"
 
   db:
     image: postgres:16.1
     hostname: db
+    network_mode: host
     restart: unless-stopped
     environment:
       POSTGRES_DB: dogfight
@@ -52,5 +61,5 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.15'
+          cpus: '1.10'
           memory: "400MB"

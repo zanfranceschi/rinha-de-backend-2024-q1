@@ -1,0 +1,62 @@
+services:
+
+  api01: &api
+    image: devluisedu/camelo-de-rinha:latest
+    hostname: api01
+    container_name: api01
+    environment:
+      - PERL_HTTP_PORT=8081
+    depends_on:
+      postgres:
+        condition: service_healthy
+    network_mode: host
+    deploy:
+     resources:
+       limits:
+         cpus: "0.55"
+         memory: "200MB"
+
+  api02: 
+    <<: *api
+    hostname: api02
+    container_name: api02
+    environment:
+      - PERL_HTTP_PORT=8082
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rinha
+    network_mode: host
+    volumes:
+      - ./db/import.sql:/docker-entrypoint-initdb.d/0_init.sql
+      - ./db/postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: "140MB"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d rinha" ]
+      interval: 3s
+      timeout: 1s
+      retries: 5
+
+  nginx:
+    image: nginx 
+    container_name: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    network_mode: host
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "10MB"

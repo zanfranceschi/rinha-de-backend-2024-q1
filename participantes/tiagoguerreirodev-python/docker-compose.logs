@@ -1,0 +1,500 @@
+ Container tiagoguerreirodev-python-db-1  Creating
+ db Published ports are discarded when using host network mode 
+ Container tiagoguerreirodev-python-db-1  Created
+ Container tiagoguerreirodev-python-api02-1  Creating
+ Container tiagoguerreirodev-python-api01-1  Creating
+ api01 Published ports are discarded when using host network mode 
+ api02 Published ports are discarded when using host network mode 
+ Container tiagoguerreirodev-python-api01-1  Created
+ Container tiagoguerreirodev-python-api02-1  Created
+ Container tiagoguerreirodev-python-nginx-1  Creating
+ Container tiagoguerreirodev-python-nginx-1  Created
+Attaching to api01-1, api02-1, db-1, nginx-1
+db-1     | The files belonging to this database system will be owned by user "postgres".
+db-1     | This user must also own the server process.
+db-1     | 
+db-1     | The database cluster will be initialized with locale "en_US.utf8".
+db-1     | The default database encoding has accordingly been set to "UTF8".
+db-1     | The default text search configuration will be set to "english".
+db-1     | 
+db-1     | Data page checksums are disabled.
+db-1     | 
+db-1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1     | creating subdirectories ... ok
+db-1     | selecting dynamic shared memory implementation ... posix
+db-1     | selecting default max_connections ... 100
+db-1     | selecting default shared_buffers ... 128MB
+db-1     | selecting default time zone ... Etc/UTC
+db-1     | creating configuration files ... ok
+db-1     | running bootstrap script ... ok
+db-1     | performing post-bootstrap initialization ... ok
+db-1     | syncing data to disk ... ok
+db-1     | 
+db-1     | 
+db-1     | Success. You can now start the database server using:
+db-1     | 
+db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1     | 
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1     | waiting for server to start.... done
+db-1     | server started
+db-1     | CREATE DATABASE
+db-1     | 
+db-1     | 
+db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/script.sql
+db-1     | CREATE TABLE
+db-1     | CREATE INDEX
+db-1     | ALTER TABLE
+db-1     | CREATE TABLE
+db-1     | CREATE INDEX
+db-1     | CREATE INDEX
+db-1     | CREATE FUNCTION
+db-1     | DO
+db-1     | 
+db-1     | 
+db-1     | waiting for server to shut down.... done
+db-1     | server stopped
+db-1     | 
+db-1     | PostgreSQL init process complete; ready for start up.
+db-1     | 
+api01-1  | Checking for script in /app/prestart.sh
+api02-1  | Checking for script in /app/prestart.sh
+api02-1  | Running script /app/prestart.sh
+api02-1  | Running inside /app/prestart.sh, you could add migrations to this file, e.g.:
+api02-1  | 
+api01-1  | Running script /app/prestart.sh
+api02-1  | #! /usr/bin/env bash
+api02-1  | 
+api02-1  | # Let the DB start
+api02-1  | sleep 10;
+api02-1  | # Run migrations
+api02-1  | alembic upgrade head
+api02-1  | 
+api01-1  | Running inside /app/prestart.sh, you could add migrations to this file, e.g.:
+api01-1  | 
+api01-1  | #! /usr/bin/env bash
+api01-1  | 
+api01-1  | # Let the DB start
+api01-1  | sleep 10;
+api01-1  | # Run migrations
+api01-1  | alembic upgrade head
+api01-1  | 
+nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+nginx-1  | 2024/03/04 00:50:27 [crit] 30#30: *1 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/04 00:50:27 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:8081/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/04 00:50:27 [error] 30#30: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://127.0.0.1:8082/clientes/1/extrato", host: "localhost:9999"
+api01-1  | [2024-03-04 00:50:27 +0000] [1] [INFO] Starting gunicorn 20.1.0
+api01-1  | [2024-03-04 00:50:27 +0000] [1] [INFO] Listening at: http://0.0.0.0:8081 (1)
+api01-1  | [2024-03-04 00:50:27 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+api02-1  | [2024-03-04 00:50:27 +0000] [1] [INFO] Starting gunicorn 20.1.0
+api02-1  | [2024-03-04 00:50:27 +0000] [1] [INFO] Listening at: http://0.0.0.0:8082 (1)
+api02-1  | [2024-03-04 00:50:27 +0000] [1] [INFO] Using worker: uvicorn.workers.UvicornWorker
+api01-1  | [2024-03-04 00:50:27 +0000] [7] [INFO] Booting worker with pid: 7
+api02-1  | [2024-03-04 00:50:27 +0000] [7] [INFO] Booting worker with pid: 7
+api01-1  | [2024-03-04 00:50:27 +0000] [8] [INFO] Booting worker with pid: 8
+api02-1  | [2024-03-04 00:50:27 +0000] [8] [INFO] Booting worker with pid: 8
+nginx-1  | 2024/03/04 00:50:29 [crit] 30#30: *5 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/04 00:50:29 [error] 30#30: *5 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | [2024-03-04 00:50:31 +0000] [7] [INFO] Started server process [7]
+api02-1  | [2024-03-04 00:50:31 +0000] [7] [INFO] Waiting for application startup.
+api01-1  | [2024-03-04 00:50:31 +0000] [7] [INFO] Started server process [7]
+api01-1  | [2024-03-04 00:50:31 +0000] [7] [INFO] Waiting for application startup.
+api01-1  | [2024-03-04 00:50:31 +0000] [8] [INFO] Started server process [8]
+api01-1  | [2024-03-04 00:50:31 +0000] [8] [INFO] Waiting for application startup.
+api02-1  | [2024-03-04 00:50:31 +0000] [8] [INFO] Started server process [8]
+api02-1  | [2024-03-04 00:50:31 +0000] [8] [INFO] Waiting for application startup.
+api01-1  | [2024-03-04 00:50:31 +0000] [7] [INFO] Application startup complete.
+api02-1  | [2024-03-04 00:50:31 +0000] [8] [INFO] Application startup complete.
+api01-1  | [2024-03-04 00:50:31 +0000] [8] [INFO] Application startup complete.
+api02-1  | [2024-03-04 00:50:31 +0000] [7] [INFO] Application startup complete.
+nginx-1  | 2024/03/04 00:50:31 [crit] 30#30: *7 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/04 00:50:31 [error] 30#30: *7 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/04 00:50:33 [crit] 30#30: *9 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/04 00:50:33 [error] 30#30: *9 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/04 00:50:35 [crit] 30#30: *11 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/04 00:50:35 [error] 30#30: *11 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/04 00:50:37 [crit] 30#30: *13 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/1/extrato", host: "localhost:9999"
+nginx-1  | 2024/03/04 00:50:37 [error] 30#30: *13 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+api02-1  | {"loglevel": "info", "workers": 2, "bind": "0.0.0.0:8082", "graceful_timeout": 120, "timeout": 120, "keepalive": 5, "errorlog": "-", "accesslog": "-", "workers_per_core": 1.0, "use_max_workers": 2, "host": "0.0.0.0", "port": "8082"}
+api02-1  | 127.0.0.1:43576 - "GET /clientes/1/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:43590 - "GET /clientes/1/extrato HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:44 [crit] 30#30: *27 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/1/transacoes", host: "localhost:9999"
+api01-1  | {"loglevel": "info", "workers": 2, "bind": "0.0.0.0:8081", "graceful_timeout": 120, "timeout": 120, "keepalive": 5, "errorlog": "-", "accesslog": "-", "workers_per_core": 1.0, "use_max_workers": 2, "host": "0.0.0.0", "port": "8081"}
+api01-1  | 127.0.0.1:35692 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | {"loglevel": "info", "workers": 2, "bind": "0.0.0.0:8082", "graceful_timeout": 120, "timeout": 120, "keepalive": 5, "errorlog": "-", "accesslog": "-", "workers_per_core": 1.0, "use_max_workers": 2, "host": "0.0.0.0", "port": "8082"}
+api02-1  | 127.0.0.1:43598 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43604 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43618 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35698 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43620 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43630 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43642 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43634 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | {"loglevel": "info", "workers": 2, "bind": "0.0.0.0:8081", "graceful_timeout": 120, "timeout": 120, "keepalive": 5, "errorlog": "-", "accesslog": "-", "workers_per_core": 1.0, "use_max_workers": 2, "host": "0.0.0.0", "port": "8081"}
+api01-1  | 127.0.0.1:35720 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35724 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35708 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43644 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43680 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43666 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43652 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35726 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43690 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35758 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35722 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35748 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35774 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35734 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43660 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35766 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43706 - "GET /clientes/1/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:43720 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43710 - "POST /clientes/1/transacoes HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:46 [crit] 30#30: *73 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/1/transacoes", host: "localhost:9999"
+api02-1  | 127.0.0.1:43750 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35786 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35838 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35814 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35782 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35810 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35848 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35798 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43764 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43734 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43778 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35862 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35876 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35826 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35792 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35830 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43768 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43804 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43816 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43822 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43824 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35886 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43790 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43836 - "GET /clientes/1/extrato HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:48 [crit] 30#30: *128 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/3/extrato HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/3/extrato", host: "localhost:9999"
+api02-1  | 127.0.0.1:43848 - "GET /clientes/5/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:35900 - "GET /clientes/6/extrato HTTP/1.0" 404
+api01-1  | 127.0.0.1:35914 - "GET /clientes/3/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:35924 - "GET /clientes/1/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:43866 - "GET /clientes/2/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:43856 - "GET /clientes/4/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:35930 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35946 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43882 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35962 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43896 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43902 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35964 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35966 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43916 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43922 - "GET /clientes/5/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:35974 - "GET /clientes/2/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:43918 - "GET /clientes/3/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:35980 - "GET /clientes/4/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:43936 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:35992 - "GET /clientes/1/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:35994 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:36000 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43952 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43964 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:43974 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:36002 - "GET /clientes/5/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:43984 - "GET /clientes/2/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:36012 - "GET /clientes/3/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:43986 - "GET /clientes/2/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:43994 - "GET /clientes/2/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:36026 - "GET /clientes/4/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:36016 - "GET /clientes/2/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:36034 - "GET /clientes/1/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:36046 - "GET /clientes/3/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:36062 - "GET /clientes/5/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:36032 - "GET /clientes/1/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:36076 - "GET /clientes/5/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:36048 - "GET /clientes/3/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:43998 - "GET /clientes/1/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:44000 - "GET /clientes/1/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:44016 - "GET /clientes/4/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:44022 - "GET /clientes/4/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:44034 - "GET /clientes/5/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:44020 - "GET /clientes/4/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:44038 - "GET /clientes/3/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:36084 - "POST /clientes/4/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:44048 - "POST /clientes/2/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:36098 - "POST /clientes/2/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:44052 - "POST /clientes/3/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:36106 - "POST /clientes/2/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:44058 - "POST /clientes/4/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:36112 - "POST /clientes/1/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:44072 - "POST /clientes/3/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:36114 - "POST /clientes/5/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:44076 - "POST /clientes/2/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:36120 - "POST /clientes/1/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:44082 - "POST /clientes/3/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:36130 - "POST /clientes/4/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:44086 - "POST /clientes/1/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:36142 - "POST /clientes/5/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:36152 - "POST /clientes/2/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:44094 - "POST /clientes/1/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:36164 - "POST /clientes/4/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:44118 - "POST /clientes/1/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:36180 - "POST /clientes/5/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:44106 - "POST /clientes/3/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:44132 - "POST /clientes/5/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:36190 - "POST /clientes/4/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:44136 - "POST /clientes/5/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:36202 - "POST /clientes/3/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:50498 - "GET /clientes/5/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:50514 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32820 - "POST /clientes/1/transacoes HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:50 [crit] 30#30: *224 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /clientes/2/extrato HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/2/extrato", host: "localhost:9999"
+api01-1  | 127.0.0.1:32838 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32836 - "GET /clientes/2/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:50520 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50522 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50526 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32840 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32844 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50536 - "GET /clientes/2/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:50550 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32858 - "POST /clientes/1/transacoes HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:51 [crit] 30#30: *245 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/5/transacoes", host: "localhost:9999"
+api01-1  | 127.0.0.1:32866 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50558 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32876 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50570 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32892 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50578 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32896 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50588 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32902 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50596 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32916 - "GET /clientes/3/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:50604 - "POST /clientes/4/transacoes HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:52 [crit] 30#30: *270 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/3/transacoes", host: "localhost:9999"
+api01-1  | 127.0.0.1:32922 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50608 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32934 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50620 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32946 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50632 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32950 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50640 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50654 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32956 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32960 - "GET /clientes/4/extrato HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:53 [crit] 30#30: *293 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/1/transacoes HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/1/transacoes", host: "localhost:9999"
+api02-1  | 127.0.0.1:50668 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32962 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50678 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32974 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50694 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32980 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50708 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32994 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50714 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:32998 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50728 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33012 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50742 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33026 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50744 - "GET /clientes/5/extrato HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:54 [crit] 30#30: *324 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/3/transacoes", host: "localhost:9999"
+api01-1  | 127.0.0.1:33028 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50748 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33040 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50758 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33052 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50766 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33068 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50776 - "GET /clientes/5/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:33078 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50778 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33084 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50790 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33088 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50804 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33102 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50806 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33132 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33116 - "GET /clientes/3/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:50820 - "POST /clientes/2/transacoes HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:55 [crit] 30#30: *363 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/3/transacoes", host: "localhost:9999"
+api02-1  | 127.0.0.1:50828 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33138 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50844 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33148 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50848 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33164 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50852 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33174 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50860 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33186 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50874 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33190 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50878 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33204 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50888 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33220 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50894 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33230 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33234 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50902 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50914 - "GET /clientes/3/extrato HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:56 [crit] 30#30: *406 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/3/transacoes HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/3/transacoes", host: "localhost:9999"
+api01-1  | 127.0.0.1:33248 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50924 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33250 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50930 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33260 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50936 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33262 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50946 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33278 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50962 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33286 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50974 - "GET /clientes/4/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:33294 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50982 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33304 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:50996 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33312 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51000 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33316 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51004 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33320 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51020 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33332 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51036 - "GET /clientes/5/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:33336 - "POST /clientes/3/transacoes HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:57 [crit] 30#30: *457 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/4/transacoes", host: "localhost:9999"
+api02-1  | 127.0.0.1:51038 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33338 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51050 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33350 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51054 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33362 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51068 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33364 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51078 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33372 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51082 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51086 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33376 - "GET /clientes/2/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:33378 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51088 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33394 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51098 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51104 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33406 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33410 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51112 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33426 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51116 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51132 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33438 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33440 - "GET /clientes/3/extrato HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:58 [crit] 30#30: *510 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/5/transacoes", host: "localhost:9999"
+api02-1  | 127.0.0.1:51140 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33456 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51156 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33460 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51170 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33466 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51180 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33468 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51194 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33482 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51204 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33498 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51208 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33500 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51210 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33516 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51224 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33532 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51226 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33540 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51232 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:33554 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:51246 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50198 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36484 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50206 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36498 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50222 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36502 - "GET /clientes/5/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:50232 - "POST /clientes/4/transacoes HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:50:59 [crit] 30#30: *571 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/4/transacoes HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/4/transacoes", host: "localhost:9999"
+api02-1  | 127.0.0.1:36506 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36510 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50242 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50250 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50254 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36518 - "POST /clientes/1/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:36526 - "POST /clientes/2/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:36530 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50264 - "POST /clientes/1/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:50272 - "POST /clientes/1/transacoes HTTP/1.0" 422
+api02-1  | 127.0.0.1:36534 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50278 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36536 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50284 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36552 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50290 - "GET /clientes/2/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:36562 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50292 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36570 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50298 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36576 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50306 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36586 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50316 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36588 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50330 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36592 - "POST /clientes/1/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:50338 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36608 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50356 - "GET /clientes/3/extrato HTTP/1.0" 200
+api01-1  | 127.0.0.1:50346 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36610 - "POST /clientes/3/transacoes HTTP/1.0" 200
+nginx-1  | 2024/03/04 00:51:00 [crit] 30#30: *636 connect() to unix:/tmp/api.sock failed (2: No such file or directory) while connecting to upstream, client: 127.0.0.1, server: , request: "POST /clientes/5/transacoes HTTP/1.1", upstream: "http://unix:/tmp/api.sock:/clientes/5/transacoes", host: "localhost:9999"
+api02-1  | 127.0.0.1:36616 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50370 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36628 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50374 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36644 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50384 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36658 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50386 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36666 - "POST /clientes/1/transacoes HTTP/1.0" 422
+api01-1  | 127.0.0.1:50400 - "POST /clientes/3/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36678 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50406 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36690 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50416 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36704 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36706 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50430 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50434 - "GET /clientes/2/extrato HTTP/1.0" 200
+api02-1  | 127.0.0.1:36720 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50444 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36726 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50450 - "POST /clientes/4/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36738 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50462 - "POST /clientes/2/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36750 - "POST /clientes/5/transacoes HTTP/1.0" 200
+api01-1  | 127.0.0.1:50470 - "POST /clientes/1/transacoes HTTP/1.0" 200
+api02-1  | 127.0.0.1:36760 - "POST /clientes/1/transacoes HTTP/1.0" 200

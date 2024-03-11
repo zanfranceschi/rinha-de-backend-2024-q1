@@ -1,0 +1,73 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: mydb
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=rinha
+      - POSTGRES_PASSWORD=rinha
+    restart: unless-stopped      
+    ports:
+      - "5432:5432"
+    networks:
+      - default      
+    volumes:      
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf      
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "300MB"      
+
+  api01: &api
+      image: danilosoftwares/rinha-backedn-nodejs-2024-q1:latest   
+      # build:
+      #     context: .
+      restart: unless-stopped    
+      ulimits:
+        nproc: 1000000
+        nofile:
+          soft: 1000000
+          hard: 1000000            
+      environment:
+          POSTGRES_USER: rinha
+          POSTGRES_PASSWORD: rinha
+          POSTGRES_DATABASE: rinha     
+          POSTGRES_HOST: mydb   
+          DIRECTORY_SCRIPT: script.sql     
+      links:
+        - "postgres"
+      depends_on:
+        - postgres   
+      networks:
+        - default           
+      deploy:
+        resources:
+          limits:
+            cpus: "0.3"
+            memory: "100MB"                    
+  api02:
+    <<: *api 
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - '9999:9999'
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '50MB'
+
+networks:
+  default:
+    driver: bridge
+    name: my-network    
