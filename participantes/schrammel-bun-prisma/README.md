@@ -1,4 +1,6 @@
 
+Nome: David Schrammel
+
 # Rinha Backend 2ª Edição
   * Repositorio do projeto: https://github.com/Schrammel/rinha-backend
 
