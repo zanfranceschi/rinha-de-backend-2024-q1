@@ -1,7 +1,7 @@
 # Status da Execução dos Testes
 Tabela com os status das execuções de testes para cada submissão.
 
-Atualizada **Sun Mar 10 23:52:01 UTC 2024** com **701** submissões.
+Atualizada **Mon Mar 11 00:27:13 UTC 2024** com **707** submissões.
  
 | participante | status | p75 geral |
 | --           | --     | --        |
@@ -64,6 +64,7 @@ Atualizada **Sun Mar 10 23:52:01 UTC 2024** com **701** submissões.
 | [andrepiske-01](./participantes/andrepiske-01) | falha - [logs](./participantes/andrepiske-01/docker-compose.logs) | -- |
 | [andrepraeiro](./participantes/andrepraeiro) | ok | 2 |
 | [andresantos-tech-PHP](./participantes/andresantos-tech-PHP) | ok | 3 |
+| [andresantos-tech-PHP2](./participantes/andresantos-tech-PHP2) | ok | 2 |
 | [andretpc](./participantes/andretpc) | ok | 1 |
 | [andrew-vasco](./participantes/andrew-vasco) | ok | 3 |
 | [anibal.ferreira](./participantes/anibal.ferreira) | ok | 2 |
@@ -121,6 +122,7 @@ Atualizada **Sun Mar 10 23:52:01 UTC 2024** com **701** submissões.
 | [carloseduard0](./participantes/carloseduard0) | ok | 1 |
 | [carls-rodrigues](./participantes/carls-rodrigues) | ok | 1 |
 | [carlsonsantana-springboot](./participantes/carlsonsantana-springboot) | ok | 2 |
+| [carolinejk-fastapi](./participantes/carolinejk-fastapi) | falha - [logs](./participantes/carolinejk-fastapi/docker-compose.logs) | -- |
 | [casanje](./participantes/casanje) | falha - [logs](./participantes/casanje/docker-compose.logs) | -- |
 | [cassiano-manuelzinho-golang](./participantes/cassiano-manuelzinho-golang) | ok | 2 |
 | [cassiano-matheuszinho-java](./participantes/cassiano-matheuszinho-java) | falha - [logs](./participantes/cassiano-matheuszinho-java/docker-compose.logs) | -- |
@@ -192,6 +194,7 @@ Atualizada **Sun Mar 10 23:52:01 UTC 2024** com **701** submissões.
 | [emanuel-xavier](./participantes/emanuel-xavier) | ok | 2 |
 | [emiliosheinz-fumegalli-node](./participantes/emiliosheinz-fumegalli-node) | ok | 4 |
 | [engylemure](./participantes/engylemure) | ok | 3 |
+| [erick-lucca-nodejs](./participantes/erick-lucca-nodejs) | ok | 6 |
 | [erickcestari](./participantes/erickcestari) | ok | 5 |
 | [erickmarx](./participantes/erickmarx) | ok | 2 |
 | [erickreis](./participantes/erickreis) | ok | 3 |
@@ -289,6 +292,7 @@ Atualizada **Sun Mar 10 23:52:01 UTC 2024** com **701** submissões.
 | [guihbc](./participantes/guihbc) | ok | 277 |
 | [guilherme-dotnet8](./participantes/guilherme-dotnet8) | ok | 1 |
 | [gusinacio](./participantes/gusinacio) | falha - [logs](./participantes/gusinacio/docker-compose.logs) | -- |
+| [gustavo-node-v2](./participantes/gustavo-node-v2) | ok | 22 |
 | [gustavo-node](./participantes/gustavo-node) | ok | 1 |
 | [gustavofbreunig](./participantes/gustavofbreunig) | ok | 3 |
 | [gustavonovaes-go](./participantes/gustavonovaes-go) | ok | 2 |
@@ -335,6 +339,7 @@ Atualizada **Sun Mar 10 23:52:01 UTC 2024** com **701** submissões.
 | [jhonnyboy](./participantes/jhonnyboy) | ok | 1 |
 | [jjeanjacques10](./participantes/jjeanjacques10) | ok | 2 |
 | [jnariai](./participantes/jnariai) | falha - [logs](./participantes/jnariai/docker-compose.logs) | -- |
+| [jndavidx](./participantes/jndavidx) | ok | 2 |
 | [joao0212](./participantes/joao0212) | ok | 1 |
 | [joaobittencourt-php](./participantes/joaobittencourt-php) | falha - [logs](./participantes/joaobittencourt-php/docker-compose.logs) | -- |
 | [joaojr13](./participantes/joaojr13) | ok | 3 |
@@ -571,6 +576,7 @@ Atualizada **Sun Mar 10 23:52:01 UTC 2024** com **701** submissões.
 | [rhsobr-bun](./participantes/rhsobr-bun) | ok | 2 |
 | [rhsobr-go](./participantes/rhsobr-go) | ok | 1 |
 | [ricardovhz](./participantes/ricardovhz) | ok | 2 |
+| [richardnfag-vernal](./participantes/richardnfag-vernal) | ok | 40492 |
 | [rigottig](./participantes/rigottig) | ok | 6 |
 | [ritilopes](./participantes/ritilopes) | ok | 1 |
 | [rizzo-nodejs](./participantes/rizzo-nodejs) | falha - [logs](./participantes/rizzo-nodejs/docker-compose.logs) | -- |
