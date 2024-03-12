@@ -12,5 +12,9 @@ Solução controle de concorrência de créditos e débitos usando Pessimistic L
 
 # Repositório API:
 
-- https://github.com/ramilani12/rinhabackend2024q1-balance-account 
+- https://github.com/ramilani12/rinhabackend2024q1-balance-account
+
+# Contato
+
+- Twitter(X): https://twitter.com/ramilani12 
 
