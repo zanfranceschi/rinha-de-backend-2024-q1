@@ -16,15 +16,15 @@ Submissão feita com:
   - [mummy](https://github.com/guzba/mummy) para o servidor
   - [waterpark](https://github.com/guzba/waterpark) para pool de conexões com o BD
   - [jsony](https://github.com/treeform/jsony) para serialização/deserialização de JSON
-- [repositório da api](https://github.com/guaracy)
+- [repositório da api](https://github.com/guaracy/rinha-de-backend-2024-nim)
 
-[@zanfranceschi](https://twitter.com/guaracybm) @ twitter
+[@guaracybm](https://twitter.com/guaracybm) @ twitter
 
 ## Considerações
 
 - A utilização de **Nim** é para sair um pouco do convencional. Uma linguagem compilada com sintaxe semelhante ao Python.
 
-- A escolha por **Mummy** se deve a facilidade além de ser relativamente rápido. Não se preocupar com  `{.async.}`, `Future[]` e `await` é muito legal para quem não gosta de se preocupar com as [cores das funções](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/). 
+- A escolha por **Mummy** se deve a facilidade além de ser relativamente rápido. Não se preocupar com  `{.async.}`, `Future[]` e `await` é muito legal para quem não gosta de se preocupar com as [cores das funções](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/).
 
 - Da mesma forma, **Waterpark** fornece facilidades para trabalhar com um pool de conexões com um BD (MySQL, PostgreSQL e SQlite).
 
@@ -51,13 +51,13 @@ Ao executar os testes no Docker, provavelmente por restrições da rinha ou desc
 - Para o problema de concorrência no saldo, utilizei `SELECT ... FOR UPDATE` com um `COMMIT` logo após a gravação do saldo para liberar nova leitura da linha. A movimentação e feita logo após, não se preocupando com a concorrência.
 
 - O programa tratou **61503** requisições e todas as respostas foram abaixo de 800ms. Alterando um pouco as configurações (memória e cpu), obtive os seguintes resultados (quanto mais rápido melhor mas, um usuário real não veria muita diferença entre 0,097s e 0,036s):
-  
+
   - sem alterar as configurações, o tempo máximo para resposta foi de **97ms**(0,81%) e 64,2% foram completadas em até **5ms**.
-  
+
   - tirando 20M dos aplicativos e colocando 40M para a base de dados o tempo máximo de resposta caiu para **43ms** (1,62%) e 63,39% foram completadas em até 5ms.
-  
+
   - tirando 0.05 de CPU para os aplicativos e e colocando 0.1CPU na base de dados, o tempo máximo de resposta caiu para **36ms** (0,81%) e o percentual de requisições atendidas em até 5ms foi de 64,21%.
 
 - Em vez de MVC e outras coisas parecidas, como o assunto me lembou bancos e, consequentemente COBOL, resolvi fazer um programa monolítico com DATA DIVISION, PROCEDURE DIVISION, etc.
 
-- `docker-compose build` `docker-compose up` `docker-compose down` 
+- `docker-compose build` `docker-compose up` `docker-compose down`
