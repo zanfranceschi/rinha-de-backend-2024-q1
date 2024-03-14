@@ -2,6 +2,8 @@
 
 ## [RESULTADOS AQUI](./RESULTADOS.md)
 
+#### [GRAVAÇÃO DA LIVE AQUI](https://www.youtube.com/watch?v=2OonGBGcl5k)
+
 A Rinha de Backend é um desafio que tem como principal objetivo compartilhar conhecimento em formato de desafio! Esta é a segunda edição. A data limite para enviar sua submissão é **10 de Março de 2024 às 23:59:59** e em **14 de Março de 2024 às 19:00** os resultados serão anunciados [numa live](https://www.youtube.com/watch?v=2OonGBGcl5k) no YouTube.
 
 O principal assunto dessa Rinha trata de controle de concorrência com o tema créditos e débitos (crébitos) e foi inspirado pelos colegas [@lucascs](https://twitter.com/lucascs) e [@kmyokoyama](https://twitter.com/kmyokoyama), [nesse](https://twitter.com/lucascs/status/1744014270331769000) e [nesse](https://twitter.com/kmyokoyama/status/1744018208082760133) comentário [dessa](https://twitter.com/zanfranceschi/status/1743876243815059738) tweet.
