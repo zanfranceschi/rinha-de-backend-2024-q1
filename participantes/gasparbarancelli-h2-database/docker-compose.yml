@@ -13,8 +13,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.25"
-          memory: "90MB"
+          cpus: "0.3"
+          memory: "100MB"
 
   api2:
     container_name: api2
@@ -28,24 +28,22 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.25"
-          memory: "90MB"
+          cpus: "0.3"
+          memory: "100MB"
 
-  envoy:
-    container_name: envoy
-    image: envoyproxy/envoy:v1.29.1
+  nginx:
+    image: nginx:latest
     network_mode: host
     volumes:
-      - ./envoy.yaml:/etc/envoy/envoy.yaml
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
     deploy:
       resources:
         limits:
           cpus: "0.2"
           memory: "50MB"
-    depends_on:
-      - api1
-      - api2
-    command: ["envoy", "-c", "/etc/envoy/envoy.yaml"]
 
   db:
     container_name: db
@@ -54,5 +52,5 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.8"
-          memory: "270MB"
+          cpus: "0.7"
+          memory: "300MB"

@@ -6,12 +6,14 @@ version: "3.5"
 
 services:
   api01: &api
+    container_name: rinha-api-01
     image: fabionaspolini/rinha-backend-2024-q1-aot-dapper:sync
-    hostname: api01
-    environment:
-      - ConnectionStrings__Rinha=Server=db;Port=5432;Database=rinha;User Id=rinha;Password=rinha;Maximum Pool Size=3500;Minimum Pool Size=15;Application Name=rinha;
-    ports:
-      - "5201:9999"
+    network_mode: host
+    environment: &env
+      ASPNETCORE_URLS: http://*:9997
+      ConnectionStrings__Rinha: Server=127.0.0.1;Port=5433;Database=rinha;User Id=rinha;Password=rinha;Maximum Pool Size=3500;Minimum Pool Size=15;Application Name=rinha;
+    # ports:
+      # - "5201:9999"
     depends_on:
       - db
     deploy:
@@ -22,12 +24,17 @@ services:
 
   api02:
     <<: *api
-    hostname: api02
-    ports:
-      - "5202:9999"
+    container_name: rinha-api-02
+    environment:
+      <<: *env
+      ASPNETCORE_URLS: http://*:9998
+    # ports:
+      # - "5202:9999"
 
   nginx:
+    container_name: rinha-nginx
     image: nginx:1.25.4-alpine
+    network_mode: host
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
@@ -42,22 +49,23 @@ services:
           memory: "50MB"
 
   db:
+    container_name: rinha-db
     image: postgres:16.2-alpine3.19
-    hostname: db
+    network_mode: host
     environment:
-      - POSTGRES_PASSWORD=rinha
-      - POSTGRES_USER=rinha
-      - POSTGRES_DB=rinha
+      POSTGRES_PASSWORD: rinha
+      POSTGRES_USER: rinha
+      POSTGRES_DB: rinha
     ports:
-      - "5433:5432"
+      - "5433:5433"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
-    command: postgres -c max_connections=7000 -c checkpoint_timeout=600 -c max_wal_size=4096 -c shared_buffers=256MB
+    command: postgres -p 5433 -c max_connections=7000 -c checkpoint_timeout=600 -c max_wal_size=4096 -c shared_buffers=256MB
     deploy:
       resources:
         limits:
           cpus: "0.7"
-          memory: "370MB"
+          memory: "380MB"
 
 # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
 # A edição anterior se beneficiou do modo host pois o volume de requisições

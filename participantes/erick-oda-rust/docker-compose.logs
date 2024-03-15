@@ -1,0 +1,500 @@
+ Network erick-oda-rust_default  Creating
+ Network erick-oda-rust_default  Created
+ Container postgres  Creating
+ Container postgres  Created
+ Container erick-oda-rust-api02-1  Creating
+ Container erick-oda-rust-api01-1  Creating
+ Container erick-oda-rust-api02-1  Created
+ Container erick-oda-rust-api01-1  Created
+ Container erick-oda-rust-nginx-1  Creating
+ Container erick-oda-rust-nginx-1  Created
+Attaching to api01-1, api02-1, nginx-1, postgres
+postgres  | The files belonging to this database system will be owned by user "postgres".
+postgres  | This user must also own the server process.
+postgres  | 
+postgres  | The database cluster will be initialized with locale "en_US.utf8".
+postgres  | The default database encoding has accordingly been set to "UTF8".
+postgres  | The default text search configuration will be set to "english".
+postgres  | 
+postgres  | Data page checksums are disabled.
+postgres  | 
+postgres  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres  | creating subdirectories ... ok
+postgres  | selecting dynamic shared memory implementation ... posix
+postgres  | selecting default max_connections ... 100
+api02-1   | 80
+postgres  | selecting default shared_buffers ... 128MB
+api01-1   | 80
+postgres  | selecting default time zone ... Etc/UTC
+postgres  | creating configuration files ... ok
+nginx-1   | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1   | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1   | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1   | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1   | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1   | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1   | /docker-entrypoint.sh: Configuration complete; ready for start up
+postgres  | running bootstrap script ... ok
+nginx-1   | 2024/03/11 00:49:09 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.4:80/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 00:49:09 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://172.25.0.3:80/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:09 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+postgres  | performing post-bootstrap initialization ... ok
+postgres  | initdb: warning: enabling "trust" authentication for local connections
+postgres  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres  | syncing data to disk ... ok
+postgres  | 
+postgres  | 
+postgres  | Success. You can now start the database server using:
+postgres  | 
+postgres  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres  | 
+postgres  | waiting for server to start....2024-03-11 00:49:10.117 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-03-11 00:49:10.120 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-03-11 00:49:10.129 UTC [51] LOG:  database system was shut down at 2024-03-11 00:49:09 UTC
+postgres  | 2024-03-11 00:49:10.135 UTC [48] LOG:  database system is ready to accept connections
+postgres  |  done
+postgres  | server started
+postgres  | CREATE DATABASE
+postgres  | 
+postgres  | 
+postgres  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/v0001__create_client.sql
+nginx-1   | 2024/03/11 00:49:11 [error] 29#29: *4 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:11 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+postgres  | CREATE TABLE
+postgres  | INSERT 0 1
+postgres  | INSERT 0 1
+postgres  | INSERT 0 1
+postgres  | INSERT 0 1
+postgres  | INSERT 0 1
+postgres  | 
+postgres  | 
+postgres  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/v0001__create_transaction.sql
+postgres  | CREATE TABLE
+postgres  | CREATE INDEX
+postgres  | 
+postgres  | 
+postgres  | waiting for server to shut down....2024-03-11 00:49:11.333 UTC [48] LOG:  received fast shutdown request
+postgres  | 2024-03-11 00:49:11.414 UTC [48] LOG:  aborting any active transactions
+postgres  | 2024-03-11 00:49:11.416 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres  | 2024-03-11 00:49:11.417 UTC [49] LOG:  shutting down
+postgres  | 2024-03-11 00:49:11.421 UTC [49] LOG:  checkpoint starting: shutdown immediate
+postgres  | 2024-03-11 00:49:11.893 UTC [49] LOG:  checkpoint complete: wrote 936 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.380 s, sync=0.081 s, total=0.476 s; sync files=312, longest=0.051 s, average=0.001 s; distance=4305 kB, estimate=4305 kB; lsn=0/191EE30, redo lsn=0/191EE30
+postgres  | 2024-03-11 00:49:11.898 UTC [48] LOG:  database system is shut down
+postgres  |  done
+postgres  | server stopped
+postgres  | 
+postgres  | PostgreSQL init process complete; ready for start up.
+postgres  | 
+postgres  | 2024-03-11 00:49:12.018 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres  | 2024-03-11 00:49:12.018 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres  | 2024-03-11 00:49:12.018 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres  | 2024-03-11 00:49:12.025 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres  | 2024-03-11 00:49:12.033 UTC [68] LOG:  database system was shut down at 2024-03-11 00:49:11 UTC
+postgres  | 2024-03-11 00:49:12.039 UTC [1] LOG:  database system is ready to accept connections
+nginx-1   | 2024/03/11 00:49:13 [error] 29#29: *5 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:13 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:15 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1   | 2024/03/11 00:49:15 [error] 29#29: *6 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:17 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1   | 2024/03/11 00:49:17 [error] 29#29: *7 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 2024/03/11 00:49:19 [error] 29#29: *8 no live upstreams while connecting to upstream, client: 172.25.0.1, server: , request: "GET /clientes/1/extrato HTTP/1.1", upstream: "http://api/clientes/1/extrato", host: "localhost:9999"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:19 +0000] "GET /clientes/1/extrato HTTP/1.1" 502 157 "-" "curl/7.81.0"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:21 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 109 "-" "curl/7.81.0"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:21 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 109 "-" "curl/7.81.0"
+api02-1   | limit: 100000, balance: 1
+api02-1   | limit: 100000, balance: 1
+api01-1   | limit: 100000, balance: 1
+api02-1   | limit: 100000, balance: 1
+api02-1   | limit: 100000, balance: 1
+api02-1   | limit: 100000, balance: 1
+api02-1   | limit: 100000, balance: 1
+api02-1   | limit: 100000, balance: 1
+api02-1   | limit: 100000, balance: 1
+api02-1   | limit: 100000, balance: 1
+api02-1   | limit: 100000, balance: 1
+api02-1   | limit: 100000, balance: 1
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 100000, balance: 2
+api02-1   | limit: 100000, balance: 2
+api02-1   | limit: 100000, balance: 2
+api02-1   | limit: 100000, balance: 2
+api02-1   | limit: 100000, balance: 2
+api02-1   | limit: 100000, balance: 2
+api02-1   | limit: 100000, balance: 2
+api02-1   | limit: 100000, balance: 2
+api02-1   | limit: 100000, balance: 2
+api02-1   | limit: 100000, balance: 2
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 100000, balance: 3
+api02-1   | limit: 100000, balance: 3
+api02-1   | limit: 100000, balance: 3
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 28 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:25 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:26 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1029 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:27 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:28 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1029 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/6/extrato HTTP/1.1" 404 25 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 111 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 111 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1029 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 108 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 108 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 2
+api01-1   | limit: 10000000, balance: 2
+api01-1   | limit: 80000, balance: 2
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 2
+api02-1   | limit: 100000, balance: 52
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 287 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 284 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 376 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 287 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1022 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 376 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 376 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 376 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 400 92 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 284 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 400 84 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 373 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1019 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 376 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 373 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 373 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 373 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 373 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 373 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 376 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1019 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 376 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 376 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 373 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1019 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1019 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 373 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/5/transacoes HTTP/1.1" 400 81 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/2/transacoes HTTP/1.1" 400 92 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/1/transacoes HTTP/1.1" 400 92 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/4/transacoes HTTP/1.1" 400 92 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/3/transacoes HTTP/1.1" 400 92 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/4/transacoes HTTP/1.1" 400 84 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/1/transacoes HTTP/1.1" 400 84 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/3/transacoes HTTP/1.1" 400 84 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/2/transacoes HTTP/1.1" 400 84 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/1/transacoes HTTP/1.1" 400 81 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 27 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/4/transacoes HTTP/1.1" 400 81 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/3/transacoes HTTP/1.1" 400 81 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:29 +0000] "POST /clientes/2/transacoes HTTP/1.1" 400 81 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:30 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 564 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 5819
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:30 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:30 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 6662
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:31 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 663 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:31 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:31 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 6421
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:31 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 19954
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:32 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:32 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 28904
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:32 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 100000, balance: 8766
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:32 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 666 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:32 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:32 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 18364
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:32 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:32 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 15630
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:32 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 35807
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:33 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 29 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:33 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 14999
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:33 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:33 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 19076
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:33 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 100000, balance: 25717
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:33 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 1057 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:33 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:33 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 26645
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:33 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:33 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 36456
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:33 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 40751
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:33 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 25555
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 28178
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 31855
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 50305
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 1065 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 60119
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 30 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 42481
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 44182
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 43045
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:34 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 69797
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 50742
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 43246
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 56097
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 46028
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 1074 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 66944
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 57600
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 55214
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 17827
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 70981
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:35 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "GET /clientes/1/extrato HTTP/1.1" 200 1069 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 74487
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 18724
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 71467
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 22480
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 26554
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 27079
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "GET /clientes/5/extrato HTTP/1.1" 200 1074 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 64672
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 78241
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 81029
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 84631
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 87473
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:36 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 31832
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 101981
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 70983
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 110398
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 114197
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 87493
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 80526
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 123307
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 1071 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 98510
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 32 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 84003
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 83871
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 93228
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 87222
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 128965
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:37 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 39957
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 1068 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 43240
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 132834
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 99330
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 34 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 106192
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 88676
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 100000, balance: 103541
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 121667
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 89969
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "GET /clientes/4/extrato HTTP/1.1" 200 1075 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 63165
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 88084
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 109943
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 87036
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 147491
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 100000, balance: 109087
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 91515
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:38 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 68263
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "GET /clientes/2/extrato HTTP/1.1" 200 1069 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 72443
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 111615
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 80147
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/2/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 89320
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 10000000, balance: 131914
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/5/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 93289
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 200 33 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 156964
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 120378
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "GET /clientes/3/extrato HTTP/1.1" 200 1071 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 80000, balance: 77283
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 100000, balance: 125580
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 88068
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/2/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 80000, balance: 93270
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/3/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 10000000, balance: 168040
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/4/transacoes HTTP/1.1" 200 35 "-" "Agente do Caos - 2024/Q1"
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/3/transacoes HTTP/1.1" 200 31 "-" "Agente do Caos - 2024/Q1"
+api02-1   | limit: 100000, balance: 117235
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"
+api01-1   | limit: 100000, balance: 115970
+nginx-1   | 172.25.0.1 - - [11/Mar/2024:00:49:39 +0000] "POST /clientes/1/transacoes HTTP/1.1" 422 17 "-" "Agente do Caos - 2024/Q1"

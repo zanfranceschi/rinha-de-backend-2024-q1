@@ -1,0 +1,47 @@
+version: "1.0"
+
+
+
+services:
+  apiend: &api
+    image: mateusmoutinho/rinha_de_back_end_oui2:0.1 
+    hostname: apiend
+    environment:
+      #isso totaliza 80 processos simultaneos, já que ambas as rotas
+      ## vão forkear até 35 processos
+       PROCESSOS: "100"
+    ports:
+      - "3001:3001"
+      - "3002:3002"
+  
+    volumes:
+      - ./start.sh:/start.sh
+
+    deploy:
+      resources:
+        limits:
+          cpus: "1.20"
+          memory: "350MB"
+
+
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./ngnix.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - apiend
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "200MB"
+
+
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

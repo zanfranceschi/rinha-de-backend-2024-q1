@@ -25,6 +25,8 @@ db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
 db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -32,12 +34,10 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-16 15:10:50.502 UTC [49] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 15:10:50.502 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 15:10:50.504 UTC [52] LOG:  database system was shut down at 2024-02-16 15:10:49 UTC
-db-1     | 2024-02-16 15:10:50.506 UTC [49] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-03-05 14:40:37.874 UTC [49] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-05 14:40:37.874 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-05 14:40:37.876 UTC [52] LOG:  database system was shut down at 2024-03-05 14:40:37 UTC
+db-1     | 2024-03-05 14:40:37.879 UTC [49] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -53,42 +53,37 @@ db-1     | INSERT 0 5
 db-1     | INSERT 0 5
 db-1     | 
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-16 15:10:50.754 UTC [49] LOG:  received fast shutdown request
-db-1     | .2024-02-16 15:10:50.754 UTC [49] LOG:  aborting any active transactions
-db-1     | 2024-02-16 15:10:50.815 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
-db-1     | 2024-02-16 15:10:50.816 UTC [50] LOG:  shutting down
-db-1     | 2024-02-16 15:10:50.817 UTC [50] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 15:10:50.822 UTC [50] LOG:  checkpoint complete: wrote 942 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=7496 kB, estimate=7496 kB; lsn=0/1C3CA60, redo lsn=0/1C3CA60
-db-1     | 2024-02-16 15:10:50.827 UTC [49] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-03-05 14:40:38.128 UTC [49] LOG:  received fast shutdown request
+db-1     | .2024-03-05 14:40:38.128 UTC [49] LOG:  aborting any active transactions
+db-1     | 2024-03-05 14:40:38.129 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+db-1     | 2024-03-05 14:40:38.131 UTC [50] LOG:  shutting down
+db-1     | 2024-03-05 14:40:38.131 UTC [50] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-03-05 14:40:38.136 UTC [50] LOG:  checkpoint complete: wrote 942 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=7496 kB, estimate=7496 kB; lsn=0/1C3CA60, redo lsn=0/1C3CA60
+db-1     | 2024-03-05 14:40:38.140 UTC [49] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-16 15:10:50.868 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 15:10:50.868 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 15:10:50.868 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 15:10:50.868 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 15:10:50.870 UTC [67] LOG:  database system was shut down at 2024-02-16 15:10:50 UTC
-db-1     | 2024-02-16 15:10:50.942 UTC [1] LOG:  database system is ready to accept connections
-api01-1  | __  ____  __  _____   ___  __ ____  ______ 
-api01-1  |  --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
-api01-1  |  -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
-api01-1  | --\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
-api01-1  | 2024-02-16 15:10:59,257 INFO  [org.acm.ClientesResource] (main) Apagando transacoes
+db-1     | 2024-03-05 14:40:38.242 UTC [1] LOG:  starting PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-03-05 14:40:38.242 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-03-05 14:40:38.242 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-03-05 14:40:38.242 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-03-05 14:40:38.244 UTC [67] LOG:  database system was shut down at 2024-03-05 14:40:38 UTC
+db-1     | 2024-03-05 14:40:38.348 UTC [1] LOG:  database system is ready to accept connections
 api02-1  | __  ____  __  _____   ___  __ ____  ______ 
 api02-1  |  --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
 api02-1  |  -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
 api02-1  | --\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
-api02-1  | 2024-02-16 15:10:59,260 INFO  [org.acm.ClientesResource] (main) Apagando transacoes
-api02-1  | 2024-02-16 15:10:59,264 INFO  [org.acm.ClientesResource] (main) Banco OK
-api01-1  | 2024-02-16 15:10:59,264 INFO  [org.acm.ClientesResource] (main) Banco OK
-api02-1  | 2024-02-16 15:10:59,265 INFO  [io.quarkus] (main) viniciusfcf 1.0.0-SNAPSHOT native (powered by Quarkus 3.7.1) started in 0.056s. Listening on: http://0.0.0.0:8082
-api02-1  | 2024-02-16 15:10:59,265 INFO  [io.quarkus] (main) Profile prod activated. 
-api02-1  | 2024-02-16 15:10:59,265 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, hibernate-orm-panache, jdbc-postgresql, narayana-jta, resteasy-reactive, resteasy-reactive-jackson, smallrye-context-propagation, vertx]
-api01-1  | 2024-02-16 15:10:59,265 INFO  [io.quarkus] (main) viniciusfcf 1.0.0-SNAPSHOT native (powered by Quarkus 3.7.1) started in 0.056s. Listening on: http://0.0.0.0:8081
-api01-1  | 2024-02-16 15:10:59,265 INFO  [io.quarkus] (main) Profile prod activated. 
-api01-1  | 2024-02-16 15:10:59,266 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, hibernate-orm-panache, jdbc-postgresql, narayana-jta, resteasy-reactive, resteasy-reactive-jackson, smallrye-context-propagation, vertx]
+api02-1  | 2024-03-05 14:40:47,038 INFO  [org.acm.ClientesResource] (main) Apagando transacoes
+api02-1  | 2024-03-05 14:40:47,046 INFO  [org.acm.ClientesResource] (main) Banco OK
+api02-1  | 2024-03-05 14:40:47,049 INFO  [org.acm.ClientesResource] (main) rollback1 ok
+api02-1  | 2024-03-05 14:40:47,049 WARN  [org.hib.eng.jdb.spi.SqlExceptionHelper] (main) SQL Error: 0, SQLState: null
+api02-1  | 2024-03-05 14:40:47,049 ERROR [org.hib.eng.jdb.spi.SqlExceptionHelper] (main) Exception in association of connection to existing transaction
+api02-1  | 2024-03-05 14:40:47,049 INFO  [org.acm.ClientesResource] (main) rollback2 ok
+api02-1  | 2024-03-05 14:40:47,051 INFO  [io.quarkus] (main) viniciusfcf 1.0.0-SNAPSHOT native (powered by Quarkus 3.8.1) started in 0.100s. Listening on: http://0.0.0.0:8082
+api02-1  | 2024-03-05 14:40:47,051 INFO  [io.quarkus] (main) Profile prod activated. 
+api02-1  | 2024-03-05 14:40:47,051 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, hibernate-orm-panache, jdbc-postgresql, narayana-jta, resteasy-reactive, resteasy-reactive-jackson, smallrye-context-propagation, vertx]
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -100,16 +95,16 @@ nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api02-1  | 2024-02-16 15:15:13,674 INFO  [io.quarkus] (Shutdown thread) viniciusfcf stopped in 0.005s
-api01-1  | 2024-02-16 15:15:13,677 INFO  [io.quarkus] (main) viniciusfcf stopped in 0.004s
-api02-1 exited with code 0
+api02-1  | 2024-03-05 14:45:00,710 INFO  [io.quarkus] (main) viniciusfcf stopped in 0.007s
 api01-1 exited with code 0
 api01-1 exited with code 143
-db-1     | 2024-02-16 15:15:14.119 UTC [1] LOG:  received fast shutdown request
-db-1     | 2024-02-16 15:15:14.119 UTC [1] LOG:  aborting any active transactions
-db-1     | 2024-02-16 15:15:14.121 UTC [1] LOG:  background worker "logical replication launcher" (PID 70) exited with exit code 1
-db-1     | 2024-02-16 15:15:14.121 UTC [65] LOG:  shutting down
-db-1     | 2024-02-16 15:15:14.121 UTC [65] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 15:15:14.126 UTC [65] LOG:  checkpoint complete: wrote 1345 buffers (8.2%); 0 WAL file(s) added, 0 removed, 2 recycled; write=0.006 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=24169 kB, estimate=24169 kB; lsn=0/33D7150, redo lsn=0/33D7150
-db-1     | 2024-02-16 15:15:14.130 UTC [1] LOG:  database system is shut down
+api02-1 exited with code 0
+api02-1 exited with code 143
+db-1     | 2024-03-05 14:45:01.113 UTC [1] LOG:  received fast shutdown request
+db-1     | 2024-03-05 14:45:01.113 UTC [1] LOG:  aborting any active transactions
+db-1     | 2024-03-05 14:45:01.115 UTC [1] LOG:  background worker "logical replication launcher" (PID 70) exited with exit code 1
+db-1     | 2024-03-05 14:45:01.115 UTC [65] LOG:  shutting down
+db-1     | 2024-03-05 14:45:01.115 UTC [65] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-03-05 14:45:01.121 UTC [65] LOG:  checkpoint complete: wrote 1340 buffers (8.2%); 0 WAL file(s) added, 0 removed, 2 recycled; write=0.006 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=24098 kB, estimate=24098 kB; lsn=0/33C5360, redo lsn=0/33C5360
+db-1     | 2024-03-05 14:45:01.125 UTC [1] LOG:  database system is shut down
 db-1 exited with code 0

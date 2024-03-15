@@ -2,13 +2,12 @@ version: "3.5"
 
 services:
   api01: &api 
-    image: gmessiasc/activej-crebito
+    image: gmessiasc/activej-crebito-native
     hostname: api01
     environment:
       - HOSTNAME=0.0.0.0
-      - PORT=8080
-    ports: 
-       - "8081:8080"
+      - PORT=8081
+    network_mode: host
     volumes: 
        - pg-volume:/var/run/postgresql
     depends_on:
@@ -17,39 +16,24 @@ services:
     deploy:
       resources:
        limits:
-         cpus: "0.25"
-         memory: "150MB"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "-s", "-o", "/dev/null", "http://localhost:8080/health-check"]
-      start_period: 2s
-      interval: 2s
-      timeout: 5s
-      retries: 15
+         cpus: "0.2"
+         memory: "90MB"
 
   api02:
     <<: *api 
     hostname: api02
+    network_mode: host
     environment:
       - HOSTNAME=0.0.0.0
-      - PORT=8080
-    ports:
-      - "8082:8080"
+      - PORT=8082
     depends_on:
       db:
          condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "-s", "-o", "/dev/null", "http://localhost:8080/health-check"]
-      start_period: 2s
-      interval: 2s
-      timeout: 5s
-      retries: 15
-
 
   db:
     image: postgres:latest
     hostname: db
-    ports:
-      - "5432:5432"
+    network_mode: host
     environment:
       - POSTGRES_PASSWORD=rinha
       - POSTGRES_USER=rinha
@@ -69,30 +53,23 @@ services:
     deploy:
        resources:
          limits:
-           cpus: "0.8"
-           memory: "230MB"
+           cpus: "0.9"
+           memory: "330MB"
 
   nginx:
     image: nginx:latest
-    ports:
-      - "9999:9999"
+    network_mode: host
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      api01:
-        condition: service_healthy
-      api02:
-        condition: service_healthy
+      - api01
+      - api02
     deploy:
       resources:
         limits:
           cpus: "0.2"
-          memory: "20MB"
+          memory: "40MB"
 
 volumes:
   pg-volume: 
 
-networks:
-  default:
-    driver: bridge
-    name: rinha-nginx-2024q1

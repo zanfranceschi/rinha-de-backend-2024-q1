@@ -1,14 +1,15 @@
 # Rinha de Backend - 2024/Q1
 
+## [RESULTADOS AQUI](./RESULTADOS.md)
+
+#### [GRAVAÇÃO DA LIVE AQUI](https://www.youtube.com/watch?v=2OonGBGcl5k)
+
 A Rinha de Backend é um desafio que tem como principal objetivo compartilhar conhecimento em formato de desafio! Esta é a segunda edição. A data limite para enviar sua submissão é **10 de Março de 2024 às 23:59:59** e em **14 de Março de 2024 às 19:00** os resultados serão anunciados [numa live](https://www.youtube.com/watch?v=2OonGBGcl5k) no YouTube.
 
 O principal assunto dessa Rinha trata de controle de concorrência com o tema créditos e débitos (crébitos) e foi inspirado pelos colegas [@lucascs](https://twitter.com/lucascs) e [@kmyokoyama](https://twitter.com/kmyokoyama), [nesse](https://twitter.com/lucascs/status/1744014270331769000) e [nesse](https://twitter.com/kmyokoyama/status/1744018208082760133) comentário [dessa](https://twitter.com/zanfranceschi/status/1743876243815059738) tweet.
 
 ![arte](./misc/arte.jpg)
 Se quiser entender mais sobre o espírito das Rinhas, confira o [repositório da primeira edição](https://github.com/zanfranceschi/rinha-de-backend-2023-q3).
-
-
-Ah! E antes de continuar, é importante dizer que a [Cubos Academy](https://cubos.academy/) disponibilizou o cupom `RINHADEV` que te dá 20% de desconto **PARA QUALQUER CURSO**! Vai lá no site deles e dá uma olhada – têm muitos cursos bem legais!
 
 ## O Que Precisa Ser Feito?
 
@@ -51,7 +52,7 @@ Onde
 **Regras**
 Uma transação de débito **nunca** pode deixar o saldo do cliente menor que seu limite disponível. Por exemplo, um cliente com limite de 1000 (R\$ 10) nunca deverá ter o saldo menor que -1000 (R\$ -10). Nesse caso, um saldo de -1001 ou menor significa inconsistência na Rinha de Backend!
 
-Se uma requisição para débito for deixar o saldo inconsistente, a API deve retornar HTTP Status Code 422 sem completar a transação! O corpo da resposta nesse caso não será testado e você pode escolher como o representar.
+Se uma requisição para débito for deixar o saldo inconsistente, a API deve retornar HTTP Status Code 422 sem completar a transação! O corpo da resposta nesse caso não será testado e você pode escolher como o representar. HTTP 422 também deve ser retornado caso os campos do payload estejam fora das especificações como, por exemplo, uma string maior do que 10 caracteres para o campo `descricao` ou algo diferente de `c` ou `d` para o campo `tipo`. Se para o campo `valor` um número não inteiro for especificado, você poderá retornar HTTP 422 ou 400. 
 
 Se o atributo `[id]` da URL for de uma identificação não existente de cliente, a API deve retornar HTTP Status Code 404. O corpo da resposta nesse caso não será testado e você pode escolher como o representar. Se a API retornar algo como HTTP 200 informando que o cliente não foi encontrado no corpo da resposta ou HTTP 204 sem corpo, ficarei extremamente deprimido e a Rinha será cancelada para sempre.
 
@@ -384,20 +385,3 @@ Surpresa! :)
 
 [Link do status parcial da Rinha de Backend](./STATUS-TESTES.md).
  
- 
-https://github.com/zanfranceschi/rinha-de-backend-2024-q1
- 
- 
-https://github.com/zanfranceschi/rinha-de-backend-2024-q1
- 
- 
-https://github.com/zanfranceschi/rinha-de-backend-2024-q1
- 
- 
-https://github.com/zanfranceschi/rinha-de-backend-2024-q1
- 
- 
-https://github.com/zanfranceschi/rinha-de-backend-2024-q1
- 
- 
-https://github.com/zanfranceschi/rinha-de-backend-2024-q1

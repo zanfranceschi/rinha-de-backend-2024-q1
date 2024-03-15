@@ -2,30 +2,24 @@ version: "3.5"
 
 services:
   api01: &api
-    image: gldmelo/rinhabackendcrebito:1.2
+    image: gldmelo/rinhabackendcrebito:1.5-aot
     hostname: api01
     environment:
-      - DB_HOSTNAME=db
-      - PORT=8080
-    ports:
-      - "3001:8080"
+      - ASPNETCORE_URLS=http://*:8080
     depends_on:
       - db
     deploy:
       resources:
         limits:
-          cpus: "0.3"
-          memory: "120MB"
+          cpus: "0.30"
+          memory: "45MB"
 
   api02:
     <<: *api
     hostname: api02
     environment:
-      - DB_HOSTNAME=db
-      - PORT=8080
-    ports:
-      - "3002:8080"
-  
+      - ASPNETCORE_URLS=http://*:8080
+      
   nginx:
     image: nginx:latest
     volumes:
@@ -38,8 +32,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.3"
-          memory: "60MB"
+          cpus: "0.2"
+          memory: "90MB"
     
   db:
     image: postgres:latest
@@ -51,16 +45,18 @@ services:
     ports:
       - "5432:5432"
     volumes:
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./postgres.conf:/docker-entrypoint-initdb.d/postgresql.conf
-    #command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096
+    command: [ "postgres", "-c", "config_file=/etc/postgresql/postgresql.conf" ]
     deploy:
       resources:
         limits:
-          cpus: "0.6"
-          memory: "250MB"
+          cpus: "0.7"
+          memory: "370MB"
 
 networks:
   default:
     driver: bridge
     name: rinha-nginx-2024q1
+    driver_opts:
+      com.docker.network.driver.mtu: 1024

@@ -4,10 +4,10 @@
  Volume "itujo-minimal-node-uws_pg-volume"  Created
  Container itujo-minimal-node-uws-db-1  Creating
  Container itujo-minimal-node-uws-db-1  Created
- Container itujo-minimal-node-uws-api01-1  Creating
  Container itujo-minimal-node-uws-api02-1  Creating
- Container itujo-minimal-node-uws-api01-1  Created
+ Container itujo-minimal-node-uws-api01-1  Creating
  Container itujo-minimal-node-uws-api02-1  Created
+ Container itujo-minimal-node-uws-api01-1  Created
  Container itujo-minimal-node-uws-nginx-1  Creating
  Container itujo-minimal-node-uws-nginx-1  Created
 Attaching to api01-1, api02-1, db-1, nginx-1
@@ -38,6 +38,8 @@ nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
 db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -45,8 +47,6 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | waiting for server to start.... done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -61,11 +61,6 @@ db-1     |
 db-1     | 
 db-1     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/postgresql.conf
 db-1     | 
-db-1     | waiting for server to shut down.... done
-db-1     | server stopped
-db-1     | 
-db-1     | PostgreSQL init process complete; ready for start up.
-db-1     | 
 api02-1  | 
 api02-1  | > rinha-backend@1.0.0 start /app
 api02-1  | > node dist/server.js
@@ -74,14 +69,19 @@ api01-1  |
 api01-1  | > rinha-backend@1.0.0 start /app
 api01-1  | > node dist/server.js
 api01-1  | 
-api02-1  | [🚀]: Worker server running on port 3000 [External: 620a5d0]
-api01-1  | [🚀]: Worker server running on port 3000 [External: 58f52e0]
+api02-1  | [🚀]: Worker server running on port 3000 [External: 683b130]
+api01-1  | [🚀]: Worker server running on port 3000 [External: 715d650]
+db-1     | waiting for server to shut down.... done
+db-1     | server stopped
+db-1     | 
+db-1     | PostgreSQL init process complete; ready for start up.
+db-1     | 
 nginx-1 exited with code 0
 nginx-1 exited with code 0
-api02-1  |  ELIFECYCLE  Command failed.
 api01-1  |  ELIFECYCLE  Command failed.
-api01-1 exited with code 0
-api01-1 exited with code 1
+api02-1  |  ELIFECYCLE  Command failed.
 api02-1 exited with code 0
 api02-1 exited with code 1
+api01-1 exited with code 0
+api01-1 exited with code 1
 db-1 exited with code 0

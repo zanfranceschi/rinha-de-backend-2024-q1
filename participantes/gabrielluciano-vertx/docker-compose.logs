@@ -2,8 +2,8 @@
  Container gabrielluciano-vertx-database-1  Created
  Container gabrielluciano-vertx-api2-1  Creating
  Container gabrielluciano-vertx-api1-1  Creating
- Container gabrielluciano-vertx-api2-1  Created
  Container gabrielluciano-vertx-api1-1  Created
+ Container gabrielluciano-vertx-api2-1  Created
  Container gabrielluciano-vertx-nginx-1  Creating
  Container gabrielluciano-vertx-nginx-1  Created
 Attaching to api1-1, api2-1, database-1, nginx-1
@@ -40,10 +40,10 @@ database-1  | CREATE DATABASE
 database-1  | 
 database-1  | 
 database-1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
-database-1  | DROP TABLE
 database-1  | psql:/docker-entrypoint-initdb.d/init.sql:1: NOTICE:  table "clientes" does not exist, skipping
-database-1  | psql:/docker-entrypoint-initdb.d/init.sql:2: NOTICE:  table "transacoes" does not exist, skipping
 database-1  | DROP TABLE
+database-1  | DROP TABLE
+database-1  | psql:/docker-entrypoint-initdb.d/init.sql:2: NOTICE:  table "transacoes" does not exist, skipping
 database-1  | CREATE TABLE
 database-1  | CREATE TABLE
 database-1  | CREATE INDEX
@@ -51,19 +51,19 @@ database-1  | INSERT 0 5
 database-1  | CREATE FUNCTION
 database-1  | 
 database-1  | 
+api2-1      | Feb 24, 2024 1:06:21 AM com.gabrielluciano.rinha.RinhaApplication
+api2-1      | INFO: HTTP Verticle deployed
+api2-1      | Feb 24, 2024 1:06:21 AM com.gabrielluciano.rinha.verticles.HTTPVerticle
+api2-1      | INFO: Application started on port: 8081
+api1-1      | Feb 24, 2024 1:06:21 AM com.gabrielluciano.rinha.RinhaApplication
+api1-1      | INFO: HTTP Verticle deployed
+api1-1      | Feb 24, 2024 1:06:21 AM com.gabrielluciano.rinha.verticles.HTTPVerticle
+api1-1      | INFO: Application started on port: 8080
 database-1  | waiting for server to shut down.... done
 database-1  | server stopped
 database-1  | 
 database-1  | PostgreSQL init process complete; ready for start up.
 database-1  | 
-api1-1      | Feb 16, 2024 7:37:47 AM com.gabrielluciano.rinha.verticles.HTTPVerticle
-api1-1      | INFO: Application started on port: 8080
-api1-1      | Feb 16, 2024 7:37:47 AM com.gabrielluciano.rinha.RinhaApplication
-api1-1      | INFO: HTTP Verticle deployed
-api2-1      | Feb 16, 2024 7:37:47 AM com.gabrielluciano.rinha.RinhaApplication
-api2-1      | INFO: HTTP Verticle deployed
-api2-1      | Feb 16, 2024 7:37:47 AM com.gabrielluciano.rinha.verticles.HTTPVerticle
-api2-1      | INFO: Application started on port: 8081
 nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -75,6 +75,8 @@ nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-work
 nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up
 nginx-1 exited with code 0
 nginx-1 exited with code 0
+api2-1 exited with code 0
+api2-1 exited with code 137
 api1-1 exited with code 0
 api1-1 exited with code 137
 database-1 exited with code 0

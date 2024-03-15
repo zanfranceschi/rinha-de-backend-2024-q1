@@ -2,10 +2,11 @@ version: "3.5"
 
 services:
   api-1:  &api-1
+    # build: .
     restart: always
     # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
     # publicamente acessível! Ex.: hub.docker.com
-    container_name: deno-api-1
+    container_name: bun-api-1
     image: arrudaricardo/rinha-de-backend-2024-q1:latest
     # Não é necessário expor qualquer porta além da porta do load balancer,
     # mas é comum as pessoas o fazerem para testaremsuas APIs e conectarem
@@ -19,33 +20,30 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.60"
-          memory: "195MB"
+          cpus: "0.55"
+          memory: "90MB"
 
   api-2:
       <<: *api-1
-      container_name: deno-api-2
+      container_name: bun-api-2
       expose:
         - 8082
 
-  caddy:
-    image: caddy:2.7.6-alpine
-    restart: unless-stopped
-    ports:
-        # Obrigatório expor/usar a porta 9999 no load balancer!
-      - "9999:8000" 
+  nginx:
+    container_name: nginx
+    image: nginx:1.25.4-alpine-slim
     volumes:
-        - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - api-1
       - api-2
-      - db
+    ports:
+      - "9999:8000" 
     deploy:
       resources:
         limits:
-          cpus: "0.10"
-          memory: "60MB"
-  
+          cpus: "0.20"
+          memory: "150MB"
 
   db:
     image: postgres
@@ -67,7 +65,7 @@ services:
           # de memória. A distribuição feita aqui é apenas
           # um exemplo – distribua como quiser.
           cpus: "0.20"
-          memory: "100MB"
+          memory: "220MB"
 
 
 # O uso do modo `bridge` deve ser adequado à carga que será usada no teste.

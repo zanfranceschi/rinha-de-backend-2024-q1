@@ -2,8 +2,8 @@
  Network jpaf_rinha  Created
  Container jpaf-db-1  Creating
  Container jpaf-db-1  Created
- Container jpaf-api02-1  Creating
  Container jpaf-api01-1  Creating
+ Container jpaf-api02-1  Creating
  Container jpaf-api02-1  Created
  Container jpaf-api01-1  Created
  Container jpaf-nginx-1  Creating
@@ -27,6 +27,8 @@ db-1     | selecting default time zone ... Etc/UTC
 db-1     | creating configuration files ... ok
 db-1     | running bootstrap script ... ok
 db-1     | performing post-bootstrap initialization ... ok
+db-1     | initdb: warning: enabling "trust" authentication for local connections
+db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
 db-1     | syncing data to disk ... ok
 db-1     | 
 db-1     | 
@@ -34,12 +36,10 @@ db-1     | Success. You can now start the database server using:
 db-1     | 
 db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 db-1     | 
-db-1     | initdb: warning: enabling "trust" authentication for local connections
-db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-db-1     | waiting for server to start....2024-02-16 10:24:26.042 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 10:24:26.043 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 10:24:26.044 UTC [51] LOG:  database system was shut down at 2024-02-16 10:24:25 UTC
-db-1     | 2024-02-16 10:24:26.047 UTC [48] LOG:  database system is ready to accept connections
+db-1     | waiting for server to start....2024-02-19 09:13:33.158 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 09:13:33.159 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 09:13:33.160 UTC [51] LOG:  database system was shut down at 2024-02-19 09:13:32 UTC
+db-1     | 2024-02-19 09:13:33.163 UTC [48] LOG:  database system is ready to accept connections
 db-1     |  done
 db-1     | server started
 db-1     | CREATE DATABASE
@@ -53,38 +53,25 @@ db-1     |
 db-1     | 
 db-1     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/postgresql.conf
 db-1     | 
-db-1     | waiting for server to shut down...2024-02-16 10:24:26.322 UTC [48] LOG:  received fast shutdown request
-db-1     | .2024-02-16 10:24:26.322 UTC [48] LOG:  aborting any active transactions
-db-1     | 2024-02-16 10:24:26.324 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-db-1     | 2024-02-16 10:24:26.324 UTC [49] LOG:  shutting down
-db-1     | 2024-02-16 10:24:26.324 UTC [49] LOG:  checkpoint starting: shutdown immediate
-db-1     | 2024-02-16 10:24:26.329 UTC [49] LOG:  checkpoint complete: wrote 934 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4286 kB, estimate=4286 kB; lsn=0/191A3B8, redo lsn=0/191A3B8
-db-1     | 2024-02-16 10:24:26.337 UTC [48] LOG:  database system is shut down
+db-1     | waiting for server to shut down...2024-02-19 09:13:33.430 UTC [48] LOG:  received fast shutdown request
+db-1     | .2024-02-19 09:13:33.430 UTC [48] LOG:  aborting any active transactions
+db-1     | 2024-02-19 09:13:33.432 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1     | 2024-02-19 09:13:33.433 UTC [49] LOG:  shutting down
+db-1     | 2024-02-19 09:13:33.433 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2024-02-19 09:13:33.438 UTC [49] LOG:  checkpoint complete: wrote 934 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=4286 kB, estimate=4286 kB; lsn=0/191A3B8, redo lsn=0/191A3B8
+db-1     | 2024-02-19 09:13:33.445 UTC [48] LOG:  database system is shut down
 db-1     |  done
 db-1     | server stopped
 db-1     | 
 db-1     | PostgreSQL init process complete; ready for start up.
 db-1     | 
-db-1     | 2024-02-16 10:24:26.449 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-db-1     | 2024-02-16 10:24:26.449 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db-1     | 2024-02-16 10:24:26.449 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db-1     | 2024-02-16 10:24:26.449 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db-1     | 2024-02-16 10:24:26.451 UTC [66] LOG:  database system was shut down at 2024-02-16 10:24:26 UTC
-db-1     | 2024-02-16 10:24:26.454 UTC [1] LOG:  database system is ready to accept connections
-api02-1  | INFO: 2024/02/16 10:24:30 Config initialized successfully
-api02-1  | [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
-api02-1  | 
-api02-1  | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
-api02-1  |  - using env:	export GIN_MODE=release
-api02-1  |  - using code:	gin.SetMode(gin.ReleaseMode)
-api02-1  | 
-api02-1  | [GIN-debug] POST   /clientes/:id/transacoes  --> github.com/jpalvesfernandes/rinha-backend-2024-q1/handler.CreateTransaction (3 handlers)
-api02-1  | [GIN-debug] GET    /clientes/:id/extrato     --> github.com/jpalvesfernandes/rinha-backend-2024-q1/handler.GetStatement (3 handlers)
-api02-1  | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
-api02-1  | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
-api02-1  | [GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
-api02-1  | [GIN-debug] Listening and serving HTTP on :8080
-api01-1  | INFO: 2024/02/16 10:24:30 Config initialized successfully
+db-1     | 2024-02-19 09:13:33.557 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1     | 2024-02-19 09:13:33.557 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1     | 2024-02-19 09:13:33.557 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1     | 2024-02-19 09:13:33.558 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1     | 2024-02-19 09:13:33.559 UTC [66] LOG:  database system was shut down at 2024-02-19 09:13:33 UTC
+db-1     | 2024-02-19 09:13:33.562 UTC [1] LOG:  database system is ready to accept connections
+api01-1  | INFO: 2024/02/19 09:13:37 Config initialized successfully
 api01-1  | [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
 api01-1  | 
 api01-1  | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
@@ -97,6 +84,19 @@ api01-1  | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We r
 api01-1  | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 api01-1  | [GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
 api01-1  | [GIN-debug] Listening and serving HTTP on :8080
+api02-1  | INFO: 2024/02/19 09:13:37 Config initialized successfully
+api02-1  | [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+api02-1  | 
+api02-1  | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+api02-1  |  - using env:	export GIN_MODE=release
+api02-1  |  - using code:	gin.SetMode(gin.ReleaseMode)
+api02-1  | 
+api02-1  | [GIN-debug] POST   /clientes/:id/transacoes  --> github.com/jpalvesfernandes/rinha-backend-2024-q1/handler.CreateTransaction (3 handlers)
+api02-1  | [GIN-debug] GET    /clientes/:id/extrato     --> github.com/jpalvesfernandes/rinha-backend-2024-q1/handler.GetStatement (3 handlers)
+api02-1  | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+api02-1  | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+api02-1  | [GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
+api02-1  | [GIN-debug] Listening and serving HTTP on :8080
 nginx-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
 nginx-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
@@ -106,395 +106,395 @@ nginx-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolve
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 nginx-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 nginx-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-api01-1  | INFO: 2024/02/16 10:24:32 Account details fetched successfully:  id 1
-api01-1  | [GIN] 2024/02/16 - 10:24:32 | 200 |    3.534668ms |      172.20.0.5 | GET      "/clientes/1/extrato"
-api02-1  | INFO: 2024/02/16 10:24:32 Account details fetched successfully:  id 1
-api02-1  | [GIN] 2024/02/16 - 10:24:32 | 200 |    2.740954ms |      172.20.0.5 | GET      "/clientes/1/extrato"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |    5.496094ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |    8.310507ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   10.619551ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |     930.678µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |    2.149342ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |     792.115µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |    1.036397ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |      940.12µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |    1.307329ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |    2.248559ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |    8.242601ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |    9.194007ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   22.889453ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   23.198947ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   25.978969ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   29.455642ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   29.217133ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   31.941117ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   81.225786ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   73.750495ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   74.905447ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   76.645922ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |    78.05078ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   79.029537ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:37 Transaction created: id: 1 amount: 1 type: d description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:37 | 200 |   79.775371ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:38 Account details fetched successfully:  id 1
-api02-1  | [GIN] 2024/02/16 - 10:24:38 | 200 |    2.209648ms |      172.20.0.5 | GET      "/clientes/1/extrato"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |    5.136165ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |    3.544779ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |    4.847054ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |    7.938993ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |     6.43284ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |    10.75622ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |    9.303595ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |   13.498096ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |   13.344816ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |   17.492795ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |   17.363406ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |   19.339184ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |   20.335168ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |   20.413184ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |   20.842614ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |    17.96287ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |   15.444138ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |    3.215467ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |   24.874251ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |     4.10583ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |    6.318459ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |    7.109871ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |    7.487396ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api01-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |    8.367254ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:39 Transaction created: id: 1 amount: 1 type: c description: validacao
-api02-1  | [GIN] 2024/02/16 - 10:24:39 | 200 |   23.013123ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:40 Account details fetched successfully:  id 1
-api02-1  | [GIN] 2024/02/16 - 10:24:40 | 200 |    2.187813ms |      172.20.0.5 | GET      "/clientes/1/extrato"
+api01-1  | INFO: 2024/02/19 09:13:39 Account details fetched successfully:  id 1
+api01-1  | [GIN] 2024/02/19 - 09:13:39 | 200 |    3.538968ms |      172.31.0.5 | GET      "/clientes/1/extrato"
+api02-1  | INFO: 2024/02/19 09:13:39 Account details fetched successfully:  id 1
+api02-1  | [GIN] 2024/02/19 - 09:13:39 | 200 |    2.900133ms |      172.31.0.5 | GET      "/clientes/1/extrato"
+api02-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |    6.026406ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |     8.05402ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |    8.293427ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |    2.569486ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |    3.562087ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |    6.469811ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |   23.034544ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |   32.384634ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |   35.650636ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |   37.069889ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |   41.665411ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |   43.436496ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |   45.560991ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |   102.09252ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |  108.022087ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |  113.726547ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |     114.379ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |  114.494633ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |  116.328443ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |  120.021863ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |  119.376864ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |  121.400775ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |  122.104041ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |   122.40393ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:44 Transaction created: id: 1 amount: 1 type: d description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:44 | 200 |  125.129042ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:45 Account details fetched successfully:  id 1
+api02-1  | [GIN] 2024/02/19 - 09:13:45 | 200 |    2.679371ms |      172.31.0.5 | GET      "/clientes/1/extrato"
+api02-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |    1.501085ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |    5.475866ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |     5.25012ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |    8.351002ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |     9.51073ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   10.216887ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   11.391762ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   12.904391ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   11.760534ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   10.036427ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |    18.03863ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   15.181604ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   14.161775ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   18.100062ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   21.247955ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   22.159721ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   27.060366ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   27.516586ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   25.520459ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   20.023497ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   31.625889ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   21.842459ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api02-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |    29.98285ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   25.734894ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:46 Transaction created: id: 1 amount: 1 type: c description: validacao
+api01-1  | [GIN] 2024/02/19 - 09:13:46 | 200 |   24.360988ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:47 Account details fetched successfully:  id 1
+api02-1  | [GIN] 2024/02/19 - 09:13:47 | 200 |    1.124301ms |      172.31.0.5 | GET      "/clientes/1/extrato"
 api01-1  | 
-api01-1  | 2024/02/16 10:24:41 [31;1m/app/handler/getStatement.go:28 [35;1mrecord not found
-api01-1  | [0m[33m[2.324ms] [34;1m[rows:0][0m SELECT * FROM "accounts" WHERE "accounts"."id" = '6' ORDER BY "accounts"."id" LIMIT 1
-api01-1  | WARNING: 2024/02/16 10:24:41 Account not found: id 6
-api01-1  | ERROR: 2024/02/16 10:24:41 Failed to fetch account details:  id 6
+api01-1  | 2024/02/19 09:13:48 [31;1m/app/handler/getStatement.go:28 [35;1mrecord not found
+api01-1  | [0m[33m[2.219ms] [34;1m[rows:0][0m SELECT * FROM "accounts" WHERE "accounts"."id" = '6' ORDER BY "accounts"."id" LIMIT 1
+api01-1  | WARNING: 2024/02/19 09:13:48 Account not found: id 6
+api01-1  | ERROR: 2024/02/19 09:13:48 Failed to fetch account details:  id 6
 api01-1  | [GIN-debug] [WARNING] Headers were already written. Wanted to override status code 404 with 500
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 404 |    2.543425ms |      172.20.0.5 | GET      "/clientes/6/extrato"
-api01-1  | INFO: 2024/02/16 10:24:41 Account details fetched successfully:  id 1
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |    1.220147ms |      172.20.0.5 | GET      "/clientes/1/extrato"
-api01-1  | INFO: 2024/02/16 10:24:41 Account details fetched successfully:  id 5
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |    2.503184ms |      172.20.0.5 | GET      "/clientes/5/extrato"
-api02-1  | INFO: 2024/02/16 10:24:41 Account details fetched successfully:  id 2
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |    3.286893ms |      172.20.0.5 | GET      "/clientes/2/extrato"
-api02-1  | INFO: 2024/02/16 10:24:41 Account details fetched successfully:  id 3
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |    3.738181ms |      172.20.0.5 | GET      "/clientes/3/extrato"
-api02-1  | INFO: 2024/02/16 10:24:41 Account details fetched successfully:  id 4
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |    5.206626ms |      172.20.0.5 | GET      "/clientes/4/extrato"
-api02-1  | INFO: 2024/02/16 10:24:41 Transaction created: id: 5 amount: 1 type: c description: toma
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |     966.673µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:41 Transaction created: id: 1 amount: 1 type: c description: toma
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |     1.54284ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:41 Transaction created: id: 2 amount: 1 type: c description: toma
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |     1.70347ms |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:41 Transaction created: id: 4 amount: 1 type: c description: toma
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |    1.048944ms |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:41 Transaction created: id: 3 amount: 1 type: c description: toma
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |     1.12172ms |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:41 Transaction created: id: 1 amount: 1 type: d description: devolve
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |     854.723µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:41 Transaction created: id: 3 amount: 1 type: d description: devolve
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |     1.33695ms |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:41 Transaction created: id: 4 amount: 1 type: d description: devolve
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |    1.479179ms |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:41 Transaction created: id: 5 amount: 1 type: d description: devolve
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |    1.505003ms |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:41 Transaction created: id: 2 amount: 1 type: d description: devolve
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |    2.314946ms |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:41 Account details fetched successfully:  id 5
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |     527.784µs |      172.20.0.5 | GET      "/clientes/5/extrato"
-api02-1  | INFO: 2024/02/16 10:24:41 Account details fetched successfully:  id 1
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |      688.84µs |      172.20.0.5 | GET      "/clientes/1/extrato"
-api02-1  | INFO: 2024/02/16 10:24:41 Account details fetched successfully:  id 2
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |      496.04µs |      172.20.0.5 | GET      "/clientes/2/extrato"
-api01-1  | INFO: 2024/02/16 10:24:41 Account details fetched successfully:  id 3
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |    1.717097ms |      172.20.0.5 | GET      "/clientes/3/extrato"
-api01-1  | INFO: 2024/02/16 10:24:41 Account details fetched successfully:  id 4
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 200 |    1.639564ms |      172.20.0.5 | GET      "/clientes/4/extrato"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error binding json: json: cannot unmarshal number 1.2 into Go struct field NewTransaction.valor of type int
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     478.987µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api01-1  | ERROR: 2024/02/16 10:24:41 Error binding json: json: cannot unmarshal number 1.2 into Go struct field NewTransaction.valor of type int
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     374.518µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error binding json: json: cannot unmarshal number 1.2 into Go struct field NewTransaction.valor of type int
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     451.948µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error binding json: json: cannot unmarshal number 1.2 into Go struct field NewTransaction.valor of type int
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     486.325µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: tipo must be 'd' or 'c'
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     595.624µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error binding json: json: cannot unmarshal number 1.2 into Go struct field NewTransaction.valor of type int
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     458.681µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: tipo must be 'd' or 'c'
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     395.377µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: tipo must be 'd' or 'c'
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     442.803µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: tipo must be 'd' or 'c'
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     423.764µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     470.178µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     431.417µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api01-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     474.538µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     441.983µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: tipo must be 'd' or 'c'
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     475.261µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |      431.58µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     460.749µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     432.169µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     473.399µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |      437.84µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     464.743µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     480.358µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     403.999µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     457.139µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api01-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api01-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     499.794µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | ERROR: 2024/02/16 10:24:41 Error validating transaction: descricao must have between 1 to 10 characters
-api02-1  | [GIN] 2024/02/16 - 10:24:41 | 422 |     454.697µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:42 Account details fetched successfully:  id 2
-api01-1  | [GIN] 2024/02/16 - 10:24:42 | 200 |     806.749µs |      172.20.0.5 | GET      "/clientes/2/extrato"
-api01-1  | INFO: 2024/02/16 10:24:42 Transaction created: id: 3 amount: 2139 type: c description: epR6jeHqBa
-api01-1  | [GIN] 2024/02/16 - 10:24:42 | 200 |     1.69049ms |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:42 Transaction created: id: 5 amount: 5195 type: d description: JnezAGab00
-api02-1  | [GIN] 2024/02/16 - 10:24:42 | 200 |     995.543µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:43 Transaction created: id: 1 amount: 241 type: c description: G6WAXIzt6K
-api02-1  | [GIN] 2024/02/16 - 10:24:43 | 200 |     1.46475ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:43 Transaction created: id: 2 amount: 4114 type: d description: fZxHs8XfGg
-api01-1  | [GIN] 2024/02/16 - 10:24:43 | 200 |     779.492µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:43 Account details fetched successfully:  id 4
-api02-1  | [GIN] 2024/02/16 - 10:24:43 | 200 |    2.508591ms |      172.20.0.5 | GET      "/clientes/4/extrato"
-api01-1  | INFO: 2024/02/16 10:24:43 Transaction created: id: 5 amount: 1868 type: d description: IBphmHBDpG
-api01-1  | [GIN] 2024/02/16 - 10:24:43 | 200 |    1.034519ms |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:43 Transaction created: id: 4 amount: 5094 type: d description: 6qQ45bAPc6
-api01-1  | [GIN] 2024/02/16 - 10:24:43 | 200 |     867.523µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:43 Transaction created: id: 3 amount: 2235 type: c description: peWvEuXxw6
-api02-1  | [GIN] 2024/02/16 - 10:24:43 | 200 |    1.141801ms |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:43 Transaction created: id: 3 amount: 1778 type: d description: Uez91p7HVX
-api02-1  | [GIN] 2024/02/16 - 10:24:43 | 200 |    1.122641ms |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:44 Transaction created: id: 1 amount: 2924 type: c description: umRnHDh84z
-api01-1  | [GIN] 2024/02/16 - 10:24:44 | 200 |     1.29875ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:44 Transaction created: id: 1 amount: 7371 type: d description: N7BkXnLj80
-api02-1  | [GIN] 2024/02/16 - 10:24:44 | 200 |    1.368116ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:44 Account details fetched successfully:  id 3
-api01-1  | [GIN] 2024/02/16 - 10:24:44 | 200 |     2.43926ms |      172.20.0.5 | GET      "/clientes/3/extrato"
-api02-1  | INFO: 2024/02/16 10:24:44 Transaction created: id: 4 amount: 6544 type: d description: nEFw5gFv0k
-api02-1  | [GIN] 2024/02/16 - 10:24:44 | 200 |     940.609µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:44 Transaction created: id: 3 amount: 8908 type: c description: flE8fkf5GM
-api01-1  | [GIN] 2024/02/16 - 10:24:44 | 200 |    1.064892ms |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:44 Transaction created: id: 3 amount: 5747 type: d description: QKbxf62YUf
-api02-1  | [GIN] 2024/02/16 - 10:24:44 | 200 |     889.305µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:44 Transaction created: id: 5 amount: 4431 type: d description: XsfPacOuLs
-api01-1  | [GIN] 2024/02/16 - 10:24:44 | 200 |      1.1184ms |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:44 Transaction created: id: 4 amount: 4119 type: c description: ahjvhjPPIb
-api02-1  | [GIN] 2024/02/16 - 10:24:44 | 200 |     998.807µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:44 Transaction created: id: 1 amount: 1031 type: d description: H4cOsOuPAw
-api01-1  | [GIN] 2024/02/16 - 10:24:44 | 200 |     925.868µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:44 Transaction created: id: 3 amount: 7424 type: c description: hIo3TIZ6Cg
-api02-1  | [GIN] 2024/02/16 - 10:24:44 | 200 |    1.016551ms |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:45 Transaction created: id: 4 amount: 4359 type: d description: U7hzxEmJks
-api01-1  | [GIN] 2024/02/16 - 10:24:45 | 200 |     942.635µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:45 Account details fetched successfully:  id 5
-api01-1  | [GIN] 2024/02/16 - 10:24:45 | 200 |     683.221µs |      172.20.0.5 | GET      "/clientes/5/extrato"
-api02-1  | INFO: 2024/02/16 10:24:45 Transaction created: id: 3 amount: 6019 type: d description: NO1aDYDJrM
-api02-1  | [GIN] 2024/02/16 - 10:24:45 | 200 |    1.348391ms |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:45 Transaction created: id: 1 amount: 3372 type: c description: mNN4bckFk2
-api02-1  | [GIN] 2024/02/16 - 10:24:45 | 200 |    2.051931ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:45 Transaction created: id: 3 amount: 4429 type: d description: Pxr0xbEOkl
-api01-1  | [GIN] 2024/02/16 - 10:24:45 | 200 |     944.181µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:45 Transaction created: id: 2 amount: 5174 type: c description: YpPkptwlvB
-api02-1  | [GIN] 2024/02/16 - 10:24:45 | 200 |    1.041425ms |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:45 Transaction created: id: 2 amount: 3872 type: d description: GGfO5uDOYw
-api01-1  | [GIN] 2024/02/16 - 10:24:45 | 200 |    1.049252ms |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:45 Transaction created: id: 1 amount: 6038 type: d description: dWFlsPNGo9
-api02-1  | [GIN] 2024/02/16 - 10:24:45 | 200 |    1.290914ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:45 Transaction created: id: 2 amount: 2567 type: c description: exCGMmXESq
-api01-1  | [GIN] 2024/02/16 - 10:24:45 | 200 |     810.376µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:45 Transaction created: id: 1 amount: 2898 type: d description: mvC9fRjhTc
-api02-1  | [GIN] 2024/02/16 - 10:24:45 | 200 |     810.461µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:45 Transaction created: id: 4 amount: 1061 type: d description: oH32WQs6Vj
-api01-1  | [GIN] 2024/02/16 - 10:24:45 | 200 |     968.862µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:45 Transaction created: id: 2 amount: 5227 type: c description: qWppce4EUZ
-api02-1  | [GIN] 2024/02/16 - 10:24:45 | 200 |     936.349µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 2 amount: 4489 type: d description: 85l8pRo8Q2
-api01-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |     861.856µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:46 Account details fetched successfully:  id 2
-api02-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |     830.987µs |      172.20.0.5 | GET      "/clientes/2/extrato"
-api01-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 1 amount: 6697 type: c description: 6dPwKmm4yw
-api01-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |    1.002508ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 3 amount: 2106 type: d description: 5r18lmnopr
-api02-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |     1.08377ms |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 3 amount: 9911 type: d description: CuaHLEl8ZI
-api01-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |     837.325µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 3 amount: 2576 type: c description: Axw49qlzx2
-api02-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |     961.106µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 5 amount: 6566 type: d description: zj5GneBuRj
-api01-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |     922.747µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 4 amount: 3796 type: d description: DZvdMA44Gs
-api02-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |     821.897µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 5 amount: 7670 type: c description: jArvGxR3oJ
-api01-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |    1.447731ms |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 1 amount: 7214 type: d description: 1mngcZOTns
-api02-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |      886.94µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 5 amount: 9752 type: d description: JrEZtb4ZOO
-api01-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |     904.313µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 3 amount: 3830 type: c description: YhCyLS6eKl
-api02-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |     833.104µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 1 amount: 3631 type: d description: RsmBtJmEGl
-api01-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |     896.095µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 4 amount: 3096 type: d description: IJPpvbGXai
-api02-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |    1.034101ms |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:46 Transaction created: id: 3 amount: 6733 type: c description: FqeUj18Oph
-api01-1  | [GIN] 2024/02/16 - 10:24:46 | 200 |     847.876µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 4 amount: 6241 type: d description: u7BzBPeG4R
-api02-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     885.097µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:47 Account details fetched successfully:  id 1
-api01-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     694.912µs |      172.20.0.5 | GET      "/clientes/1/extrato"
-api02-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 1 amount: 1887 type: c description: NbesH1SFvx
-api02-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     869.885µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 3 amount: 5200 type: d description: nUKXQ8p58C
-api01-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     818.471µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 5 amount: 8023 type: d description: lFFdvNo0Co
-api02-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     970.985µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 5 amount: 6559 type: c description: r3LbZU6bzV
-api01-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     961.679µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 5 amount: 9253 type: d description: RnHVzo8w1G
-api02-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     845.079µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 2 amount: 7033 type: d description: NLavFulXVt
-api01-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     987.956µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 5 amount: 6284 type: c description: xV7oxVrrqi
-api02-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     899.499µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 5 amount: 8593 type: d description: iCcd8yxxgK
-api01-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     870.314µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 1 amount: 7350 type: d description: JQBhZzOWqd
-api02-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     865.518µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:47 Account details fetched successfully:  id 5
-api01-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     655.827µs |      172.20.0.5 | GET      "/clientes/5/extrato"
-api02-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 4 amount: 6434 type: c description: S7Jd7k8nYH
-api02-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |    1.000103ms |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 5 amount: 7599 type: d description: VwifRIO6rM
-api01-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     881.666µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 3 amount: 27 type: d description: izBEqWb9kb
-api02-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     859.086µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 4 amount: 9832 type: c description: qScuEXecWX
-api01-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     732.811µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 1 amount: 5795 type: d description: t0TkggUtqa
-api02-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     917.077µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:47 Transaction created: id: 2 amount: 5466 type: d description: QYWreDAW4B
-api01-1  | [GIN] 2024/02/16 - 10:24:47 | 200 |     944.112µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 3 amount: 1283 type: c description: O8cHdmScri
-api02-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     793.351µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 1 amount: 2624 type: d description: sxlQ6Axp2Z
-api01-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     899.086µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:48 Account details fetched successfully:  id 5
-api02-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     965.051µs |      172.20.0.5 | GET      "/clientes/5/extrato"
-api01-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 4 amount: 516 type: c description: O6d9vQuaKz
-api01-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |    1.026828ms |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 5 amount: 7372 type: d description: kDN1ZPyJcy
-api02-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     2.59677ms |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 5 amount: 9709 type: d description: udjGF5jjOy
-api01-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     872.909µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 1 amount: 7086 type: c description: 2qRf5YrrKD
-api02-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     861.048µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 2 amount: 2337 type: d description: s5vDOuJA6J
-api01-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     906.778µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 3 amount: 9359 type: d description: Ic7UuiHCSk
-api02-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     897.068µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 3 amount: 8903 type: c description: XMXG509u01
-api01-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     989.644µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 2 amount: 7375 type: d description: UWg279nlub
-api02-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |      832.62µs |      172.20.0.5 | POST     "/clientes/2/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 5 amount: 9219 type: d description: SH9O3h3Smk
-api01-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     947.523µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 4 amount: 896 type: c description: 4yx7kjErSH
-api02-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     953.039µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 1 amount: 4117 type: d description: OVvLVMUAzF
-api01-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     744.744µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 5 amount: 1150 type: d description: cIKTEmkHPi
-api02-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     900.814µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 4 amount: 454 type: c description: pJnzcGZ3I8
-api01-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     870.762µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 5 amount: 6447 type: d description: F36SnJ24j8
-api02-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     958.887µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 3 amount: 5224 type: d description: lPyyY3bewn
-api01-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     955.272µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 4 amount: 6563 type: c description: zzONvDoVee
-api02-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     846.347µs |      172.20.0.5 | POST     "/clientes/4/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:48 Transaction created: id: 1 amount: 4680 type: d description: JARfR8LSkV
-api01-1  | [GIN] 2024/02/16 - 10:24:48 | 200 |     840.212µs |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:49 Transaction created: id: 3 amount: 6883 type: d description: hVbFi9C3hd
-api02-1  | [GIN] 2024/02/16 - 10:24:49 | 200 |     935.278µs |      172.20.0.5 | POST     "/clientes/3/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:49 Transaction created: id: 5 amount: 2222 type: c description: xko16J5hus
-api01-1  | [GIN] 2024/02/16 - 10:24:49 | 200 |     866.477µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:49 Transaction created: id: 5 amount: 6116 type: d description: OrUNokw02N
-api02-1  | [GIN] 2024/02/16 - 10:24:49 | 200 |     937.984µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:49 Account details fetched successfully:  id 4
-api01-1  | [GIN] 2024/02/16 - 10:24:49 | 200 |     761.324µs |      172.20.0.5 | GET      "/clientes/4/extrato"
-api01-1  | INFO: 2024/02/16 10:24:49 Transaction created: id: 5 amount: 209 type: c description: 1CmdlW2V68
-api01-1  | [GIN] 2024/02/16 - 10:24:49 | 200 |     765.972µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:49 Transaction created: id: 1 amount: 715 type: d description: JQFdVuJDii
-api02-1  | [GIN] 2024/02/16 - 10:24:49 | 200 |    1.088558ms |      172.20.0.5 | POST     "/clientes/1/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:49 Transaction created: id: 5 amount: 9258 type: d description: KxibYVyANe
-api02-1  | [GIN] 2024/02/16 - 10:24:49 | 200 |     955.164µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api01-1  | INFO: 2024/02/16 10:24:49 Transaction created: id: 5 amount: 9256 type: c description: qFKQq61Z25
-api01-1  | [GIN] 2024/02/16 - 10:24:49 | 200 |     952.894µs |      172.20.0.5 | POST     "/clientes/5/transacoes"
-api02-1  | INFO: 2024/02/16 10:24:49 Transaction created: id: 2 amount: 3542 type: d description: Wr7IVm44fs
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 404 |    2.486061ms |      172.31.0.5 | GET      "/clientes/6/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 5
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |      871.19µs |      172.31.0.5 | GET      "/clientes/5/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 2
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     2.43205ms |      172.31.0.5 | GET      "/clientes/2/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 3
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    2.754642ms |      172.31.0.5 | GET      "/clientes/3/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 4
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    4.091114ms |      172.31.0.5 | GET      "/clientes/4/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 1
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     5.36041ms |      172.31.0.5 | GET      "/clientes/1/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 5 amount: 1 type: c description: toma
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     2.33616ms |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 2 amount: 1 type: c description: toma
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    2.917696ms |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 3 amount: 1 type: c description: toma
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    3.175749ms |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 4 amount: 1 type: c description: toma
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    2.057803ms |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 1 amount: 1 type: c description: toma
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    1.703553ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 1 amount: 1 type: d description: devolve
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    1.577664ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 2 amount: 1 type: d description: devolve
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    1.389976ms |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 2
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     848.047µs |      172.31.0.5 | GET      "/clientes/2/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 4 amount: 1 type: d description: devolve
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    3.370193ms |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 3 amount: 1 type: d description: devolve
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    4.087452ms |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 5 amount: 1 type: d description: devolve
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    4.112785ms |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 1
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |      831.91µs |      172.31.0.5 | GET      "/clientes/1/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 5
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |      622.04µs |      172.31.0.5 | GET      "/clientes/5/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 3
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    3.165873ms |      172.31.0.5 | GET      "/clientes/3/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 4
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    2.547492ms |      172.31.0.5 | GET      "/clientes/4/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 5 amount: 1 type: c description: danada
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     954.641µs |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 4 amount: 1 type: c description: danada
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     930.341µs |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 1 amount: 1 type: c description: danada
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     747.035µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 2 amount: 1 type: c description: danada
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |      936.26µs |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:48 Transaction created: id: 3 amount: 1 type: c description: danada
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |      842.96µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 1
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    1.136776ms |      172.31.0.5 | GET      "/clientes/1/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 4
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    2.315652ms |      172.31.0.5 | GET      "/clientes/4/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 2
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    2.318356ms |      172.31.0.5 | GET      "/clientes/2/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 5
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    2.890977ms |      172.31.0.5 | GET      "/clientes/5/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 2
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     704.669µs |      172.31.0.5 | GET      "/clientes/2/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 3
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    2.667662ms |      172.31.0.5 | GET      "/clientes/3/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 2
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     721.766µs |      172.31.0.5 | GET      "/clientes/2/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 5
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     546.988µs |      172.31.0.5 | GET      "/clientes/5/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 2
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    1.446292ms |      172.31.0.5 | GET      "/clientes/2/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 4
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    1.148639ms |      172.31.0.5 | GET      "/clientes/4/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 5
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    1.031178ms |      172.31.0.5 | GET      "/clientes/5/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 5
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     561.786µs |      172.31.0.5 | GET      "/clientes/5/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 3
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     495.862µs |      172.31.0.5 | GET      "/clientes/3/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 3
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     496.223µs |      172.31.0.5 | GET      "/clientes/3/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 1
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     631.974µs |      172.31.0.5 | GET      "/clientes/1/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 4
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     506.938µs |      172.31.0.5 | GET      "/clientes/4/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 4
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |    1.332085ms |      172.31.0.5 | GET      "/clientes/4/extrato"
+api02-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 1
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     589.058µs |      172.31.0.5 | GET      "/clientes/1/extrato"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 3
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     491.898µs |      172.31.0.5 | GET      "/clientes/3/extrato"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error binding json: json: cannot unmarshal number 1.2 into Go struct field NewTransaction.valor of type int
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     480.738µs |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:48 Account details fetched successfully:  id 1
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 200 |     522.565µs |      172.31.0.5 | GET      "/clientes/1/extrato"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: tipo must be 'd' or 'c'
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     491.054µs |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error binding json: json: cannot unmarshal number 1.2 into Go struct field NewTransaction.valor of type int
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     454.695µs |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api01-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |      525.34µs |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error binding json: json: cannot unmarshal number 1.2 into Go struct field NewTransaction.valor of type int
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     481.631µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |    3.154959ms |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: tipo must be 'd' or 'c'
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     874.448µs |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api01-1  | ERROR: 2024/02/19 09:13:48 Error binding json: json: cannot unmarshal number 1.2 into Go struct field NewTransaction.valor of type int
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |      1.4298ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | ERROR: 2024/02/19 09:13:48 Error binding json: json: cannot unmarshal number 1.2 into Go struct field NewTransaction.valor of type int
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |    1.878041ms |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api01-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     804.116µs |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     466.432µs |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api01-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: tipo must be 'd' or 'c'
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     1.05786ms |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: tipo must be 'd' or 'c'
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     450.702µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: tipo must be 'd' or 'c'
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     579.548µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     390.536µs |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api01-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     607.744µs |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api01-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     397.852µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |      519.76µs |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     435.409µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     368.027µs |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     605.923µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |    1.163105ms |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     387.076µs |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api02-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api02-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     543.487µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | ERROR: 2024/02/19 09:13:48 Error validating transaction: descricao must have between 1 to 10 characters
+api01-1  | [GIN] 2024/02/19 - 09:13:48 | 422 |     566.155µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:49 Account details fetched successfully:  id 1
+api01-1  | [GIN] 2024/02/19 - 09:13:49 | 200 |     857.009µs |      172.31.0.5 | GET      "/clientes/1/extrato"
+api02-1  | INFO: 2024/02/19 09:13:49 Transaction created: id: 1 amount: 6440 type: c description: XerrZ5aw0s
+api02-1  | INFO: 2024/02/19 09:13:49 Transaction created: id: 4 amount: 6096 type: d description: IWBkdROUyl
+api02-1  | [GIN] 2024/02/19 - 09:13:49 | 200 |     1.54071ms |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api02-1  | [GIN] 2024/02/19 - 09:13:49 | 200 |    1.181358ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:50 Account details fetched successfully:  id 3
+api01-1  | [GIN] 2024/02/19 - 09:13:50 | 200 |     913.726µs |      172.31.0.5 | GET      "/clientes/3/extrato"
+api02-1  | INFO: 2024/02/19 09:13:50 Transaction created: id: 2 amount: 1346 type: c description: ypWI0egQYv
+api02-1  | [GIN] 2024/02/19 - 09:13:50 | 200 |    1.412537ms |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:50 Transaction created: id: 5 amount: 3917 type: d description: vI9H5StWz0
+api01-1  | [GIN] 2024/02/19 - 09:13:50 | 200 |    2.444259ms |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:50 Transaction created: id: 1 amount: 869 type: d description: ua6tWMTD3j
+api02-1  | [GIN] 2024/02/19 - 09:13:50 | 200 |     965.791µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:51 Transaction created: id: 3 amount: 5353 type: c description: ucRJ46WgcR
+api01-1  | [GIN] 2024/02/19 - 09:13:51 | 200 |    1.090779ms |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:51 Transaction created: id: 4 amount: 429 type: d description: YpjsGIQFvr
+api02-1  | [GIN] 2024/02/19 - 09:13:51 | 200 |     912.267µs |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:51 Transaction created: id: 5 amount: 5126 type: d description: c3qe3gyPcN
+api01-1  | [GIN] 2024/02/19 - 09:13:51 | 200 |     970.984µs |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:51 Account details fetched successfully:  id 4
+api02-1  | [GIN] 2024/02/19 - 09:13:51 | 200 |     710.379µs |      172.31.0.5 | GET      "/clientes/4/extrato"
+api02-1  | INFO: 2024/02/19 09:13:51 Transaction created: id: 4 amount: 2910 type: c description: doOpjtYMk5
+api02-1  | [GIN] 2024/02/19 - 09:13:51 | 200 |     997.838µs |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:51 Transaction created: id: 4 amount: 4176 type: d description: Xxhcbtl5ug
+api01-1  | [GIN] 2024/02/19 - 09:13:51 | 200 |    1.633502ms |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:51 Transaction created: id: 5 amount: 3403 type: d description: 8vSM4NTY4a
+api01-1  | [GIN] 2024/02/19 - 09:13:51 | 200 |     974.045µs |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:51 Transaction created: id: 3 amount: 695 type: c description: SOvMlqaTR4
+api02-1  | [GIN] 2024/02/19 - 09:13:51 | 200 |     979.102µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:51 Transaction created: id: 5 amount: 1687 type: d description: 6c5K85NM7M
+api01-1  | [GIN] 2024/02/19 - 09:13:51 | 200 |     804.386µs |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:52 Transaction created: id: 2 amount: 6264 type: c description: W7h4rCl2Ru
+api01-1  | [GIN] 2024/02/19 - 09:13:52 | 200 |    1.000124ms |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:52 Transaction created: id: 4 amount: 7115 type: d description: mTlcUxmUls
+api02-1  | [GIN] 2024/02/19 - 09:13:52 | 200 |    1.095733ms |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:52 Transaction created: id: 1 amount: 5746 type: d description: RP7XkTVhZx
+api02-1  | [GIN] 2024/02/19 - 09:13:52 | 200 |     959.432µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:52 Transaction created: id: 1 amount: 3572 type: c description: nL09LErBOH
+api01-1  | [GIN] 2024/02/19 - 09:13:52 | 200 |     811.865µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:52 Transaction created: id: 2 amount: 8050 type: d description: KMHx6B9Maq
+api02-1  | [GIN] 2024/02/19 - 09:13:52 | 200 |    1.004944ms |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:52 Transaction created: id: 3 amount: 9213 type: d description: An7Zt4JfQk
+api01-1  | [GIN] 2024/02/19 - 09:13:52 | 200 |     1.07821ms |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:52 Transaction created: id: 1 amount: 2637 type: c description: AlB5ubB6pF
+api02-1  | [GIN] 2024/02/19 - 09:13:52 | 200 |    1.103647ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:52 Account details fetched successfully:  id 3
+api01-1  | [GIN] 2024/02/19 - 09:13:52 | 200 |    2.768495ms |      172.31.0.5 | GET      "/clientes/3/extrato"
+api02-1  | INFO: 2024/02/19 09:13:52 Transaction created: id: 1 amount: 5661 type: d description: oUD11Ab06F
+api02-1  | [GIN] 2024/02/19 - 09:13:52 | 200 |     880.897µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:52 Transaction created: id: 3 amount: 6322 type: c description: DABKFal8Yw
+api01-1  | [GIN] 2024/02/19 - 09:13:52 | 200 |     976.824µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:52 Transaction created: id: 4 amount: 9583 type: d description: xRojPEWsdE
+api02-1  | [GIN] 2024/02/19 - 09:13:52 | 200 |    1.051896ms |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:52 Transaction created: id: 3 amount: 7953 type: d description: Zttn5tX229
+api01-1  | [GIN] 2024/02/19 - 09:13:52 | 200 |     920.447µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:53 Transaction created: id: 2 amount: 4491 type: c description: B1SZo3anJ7
+api02-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |     888.675µs |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:53 Transaction created: id: 4 amount: 9673 type: d description: PaxhJV1rwe
+api01-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |    1.004452ms |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:53 Transaction created: id: 3 amount: 7528 type: d description: T2AdKysudO
+api02-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |     957.582µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:53 Transaction created: id: 2 amount: 601 type: c description: uetzvf7mN0
+api01-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |    1.201854ms |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:53 Transaction created: id: 4 amount: 8589 type: d description: jdSQtle4hg
+api02-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |    1.026941ms |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:53 Account details fetched successfully:  id 4
+api01-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |    1.057984ms |      172.31.0.5 | GET      "/clientes/4/extrato"
+api02-1  | INFO: 2024/02/19 09:13:53 Transaction created: id: 2 amount: 7075 type: d description: ua4XPtyktz
+api02-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |    1.177605ms |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:53 Transaction created: id: 3 amount: 3018 type: c description: bHL8ktILHk
+api01-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |    2.672833ms |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:53 Transaction created: id: 5 amount: 554 type: d description: l76w3LRhqB
+api02-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |     971.523µs |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:53 Transaction created: id: 4 amount: 844 type: c description: kXA3KhLyIh
+api01-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |     937.165µs |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:53 Transaction created: id: 1 amount: 5595 type: d description: jJYtc8Gurl
+api02-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |     889.504µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:53 Transaction created: id: 2 amount: 764 type: d description: AN5urEYirm
+api01-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |     859.967µs |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:53 Transaction created: id: 1 amount: 9171 type: c description: LT2a0h3Roz
+api02-1  | [GIN] 2024/02/19 - 09:13:53 | 200 |     908.172µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 4 amount: 1724 type: d description: gqt9YNjETY
+api01-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     828.362µs |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 3 amount: 5068 type: d description: Q3Za4ezi2x
+api02-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     895.095µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 4 amount: 4877 type: c description: fNVzFFlmXZ
+api01-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     824.282µs |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 1 amount: 5418 type: d description: gbmElyEBvD
+api02-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     910.186µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 1 amount: 4197 type: d description: lUHXu8rpkm
+api01-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     865.233µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 3 amount: 5307 type: c description: NTrV8AKFHF
+api02-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     838.944µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 1 amount: 2536 type: d description: V2gI8zX1Up
+api01-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     919.332µs |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:54 Account details fetched successfully:  id 1
+api02-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     722.094µs |      172.31.0.5 | GET      "/clientes/1/extrato"
+api01-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 3 amount: 8420 type: d description: eDemCD5tnX
+api01-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     995.142µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 3 amount: 3884 type: c description: ElxlGcl31U
+api02-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |    2.740633ms |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 4 amount: 2074 type: d description: FXcO36W9xg
+api01-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     858.818µs |      172.31.0.5 | POST     "/clientes/4/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 3 amount: 5344 type: c description: VI2HD1o57a
+api02-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |    1.038251ms |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 3 amount: 2726 type: d description: tLFJ1xpfkj
+api01-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     775.054µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 2 amount: 5523 type: d description: w6t3JQDrWR
+api02-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     989.916µs |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 5 amount: 8100 type: c description: NyIT1DfJVU
+api01-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     916.264µs |      172.31.0.5 | POST     "/clientes/5/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:54 Transaction created: id: 3 amount: 5397 type: d description: 4aZ75Rz90C
+api02-1  | [GIN] 2024/02/19 - 09:13:54 | 200 |     771.272µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:55 Transaction created: id: 2 amount: 4789 type: d description: 7BM1BeKq5k
+api01-1  | [GIN] 2024/02/19 - 09:13:55 | 200 |     905.107µs |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:55 Transaction created: id: 2 amount: 4331 type: c description: 21V3huqMan
+api02-1  | [GIN] 2024/02/19 - 09:13:55 | 200 |    1.171574ms |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:55 Account details fetched successfully:  id 4
+api01-1  | [GIN] 2024/02/19 - 09:13:55 | 200 |    1.015805ms |      172.31.0.5 | GET      "/clientes/4/extrato"
+api02-1  | INFO: 2024/02/19 09:13:55 Transaction created: id: 2 amount: 7016 type: d description: JsPtXhsAbm
+api02-1  | [GIN] 2024/02/19 - 09:13:55 | 200 |     837.085µs |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:55 Transaction created: id: 3 amount: 2390 type: d description: WPrJ2urd0F
+api01-1  | [GIN] 2024/02/19 - 09:13:55 | 200 |     904.527µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:55 Transaction created: id: 3 amount: 4593 type: c description: rrB9mvQCw7
+api02-1  | [GIN] 2024/02/19 - 09:13:55 | 200 |     917.803µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:55 Transaction created: id: 1 amount: 4180 type: d description: dyaLkVQSkC
+api01-1  | [GIN] 2024/02/19 - 09:13:55 | 200 |    1.003732ms |      172.31.0.5 | POST     "/clientes/1/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:55 Transaction created: id: 3 amount: 4341 type: d description: EEvwH8C4lZ
+api02-1  | [GIN] 2024/02/19 - 09:13:55 | 200 |     854.978µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:55 Transaction created: id: 3 amount: 7311 type: c description: fmXmU0rX3G
+api01-1  | [GIN] 2024/02/19 - 09:13:55 | 200 |     760.147µs |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:55 Transaction created: id: 2 amount: 9410 type: d description: 1YUuMh8GvE
+api02-1  | [GIN] 2024/02/19 - 09:13:55 | 200 |     924.607µs |      172.31.0.5 | POST     "/clientes/2/transacoes"
+api01-1  | INFO: 2024/02/19 09:13:55 Transaction created: id: 3 amount: 8241 type: c description: FNezJ63jI9
+api01-1  | [GIN] 2024/02/19 - 09:13:55 | 200 |    1.004968ms |      172.31.0.5 | POST     "/clientes/3/transacoes"
+api02-1  | INFO: 2024/02/19 09:13:55 Transaction created: id: 3 amount: 6419 type: d description: 1dYfOCnEh1

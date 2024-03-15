@@ -1,0 +1,70 @@
+version: "3.5"
+services:
+  api1: # API - Instância 01
+    image: matheusgomesa/dipedro-rinha-de-backend-2024-q1:1.0
+    network_mode: host
+    hostname: api1
+    command: sh -c "npm start"
+    depends_on:
+      - db
+    expose:
+      - "3000"
+    environment:
+      - NODE_PORT=3000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "150MB"
+
+  api2: # API - Instância 02
+    image: matheusgomesa/dipedro-rinha-de-backend-2024-q1:1.0
+    hostname: api2
+    network_mode: host
+    command: sh -c "npm start"
+    depends_on:
+      - db
+    expose:
+      - "3001"
+    environment:
+      - NODE_PORT=3001
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "150MB"
+
+  nginx: # Load Balancer
+    image: nginx:latest
+    network_mode: host
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api1
+      - api2
+      - db
+    ulimits:
+      nproc: 1000000
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "100MB"
+  db: # Banco de dados
+    image: postgres:14.1-alpine
+    network_mode: host
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rinhadb
+    volumes:
+      - ./ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+    command: postgres -c 'max_connections=35'
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: "150MB"

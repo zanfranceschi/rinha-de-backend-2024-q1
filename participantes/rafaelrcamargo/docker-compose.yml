@@ -1,0 +1,49 @@
+name: "rinha"
+
+services:
+  loadbalancer:
+    image: "rafaelrcmrg/rinha-2024-q1-loadbalancer"
+    depends_on:
+      - server1
+      - server2
+    network_mode: "host"
+    restart: unless-stopped
+    stdin_open: false
+    tty: false
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 50M
+
+  server1: &server
+    image: "rafaelrcmrg/rinha-2024-q1-server"
+    depends_on:
+      - database
+    network_mode: "host"
+    restart: unless-stopped
+    stdin_open: false
+    tty: false
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 50M
+
+  server2:
+    <<: *server
+    environment:
+      - TCP_PORT=8081
+      - UDP_PORT=4041
+
+  database:
+    image: "rafaelrcmrg/rinha-2024-q1-database"
+    network_mode: "host"
+    restart: unless-stopped
+    stdin_open: false
+    tty: false
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 50M

@@ -1,0 +1,78 @@
+version: '3.9'
+
+services:
+
+  api01: &api
+    image: rogerbu/rinhabueno:latest
+    hostname: api01
+    environment:
+      - DB_URL=jdbc:postgresql://db:5432/rinha-db
+      - DB_USER=rinha
+      - DB_PASSWORD=rinha
+      - THREADS=130
+      - HIKARI_POOL_SIZE=90
+      - HIKARI_POOL_MIN_IDLE=60
+      - SERVER_PORT=8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "130MB"
+
+  api02:
+    <<: *api
+    image: rogerbu/rinhabueno:latest
+    hostname: api02
+    ports:
+      - "8081:8080"
+
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: rinha
+      POSTGRES_USER: rinha
+      POSTGRES_DB: rinha-db
+    restart: always
+    healthcheck:
+      test: pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB
+      interval: 5s
+      timeout: 10s
+      retries: 10
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+      - ./postgresql.conf:/docker-entrypoint-initdb.d/postgresql.conf
+    command: postgres -c config_file=/docker-entrypoint-initdb.d/postgresql.conf
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "270MB"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "20MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha

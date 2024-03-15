@@ -2,23 +2,24 @@ version: "3.5"
 
 services:
   api01: &api
-    image: lucianovilela/rinha-backend-2024-q1:latest
+    image: lucianovilela/rinha-backend-2024-q1-fastify:latest
     hostname: api01
     environment:
       - USERDB=admin
       - HOSTDB=localhost
       - DB=rinha
       - PASSWORDDB=123
-      - PORT=9000
+      - PORTS=9000,9001
+#      - UV_THREADPOOL_SIZE=5
+      - MAX=10
     network_mode: host
     depends_on:
       - db
-    restart: on-failure
     deploy:
       resources:
         limits:
           cpus: "0.50"
-          memory: "125MB"
+          memory: "150MB"
 
   api02:
     <<: *api
@@ -28,7 +29,9 @@ services:
       - HOSTDB=localhost
       - DB=rinha
       - PASSWORDDB=123
-      - PORT=9001
+      - PORTS=9003,9004
+#      - UV_THREADPOOL_SIZE=5
+      - MAX=10
 
   nginx:
     image: nginx:latest
@@ -54,10 +57,11 @@ services:
     network_mode: host
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'  
     deploy:
       resources:
         limits:
           cpus: "0.35"
-          memory: "200MB"
+          memory: "150MB"
 

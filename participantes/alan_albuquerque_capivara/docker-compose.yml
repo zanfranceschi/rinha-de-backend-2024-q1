@@ -1,0 +1,67 @@
+version: "3.5"
+
+services:
+  api01: &api
+    image: alanlopes/rinha-2024q1-dotnet-capivara
+    hostname: api01
+    depends_on:
+      - capivara
+    ports:
+      - '3001:3000'
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Kestrel__Endpoints__Http__Url: http://0.0.0.0:3000
+      MAX_CONCURRENT_CONNECTIONS: 2000
+      VIRTUAL_DB: capivara
+      W_BASE_PORT: 50000
+      R_BASE_PORT: 55000
+      LISTENERS: 150
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "100MB"
+  api02:
+    <<: *api
+    hostname: api02
+    ports:
+      - '3002:3000'
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Kestrel__Endpoints__Http__Url: http://0.0.0.0:3000
+      MAX_CONCURRENT_CONNECTIONS: 2000
+      VIRTUAL_DB: capivara
+      R_BASE_PORT: 55150
+      W_BASE_PORT: 50150
+      LISTENERS: 150
+  capivara:
+    image: alanlopes/vdb-rinha-2024q1-dotnet
+    hostname: capivara
+    environment:
+      W_BASE_PORT: 50000
+      R_BASE_PORT: 55000
+      LISTENERS: 300
+    deploy:
+      resources: 
+        limits:
+          cpus: "0.5"
+          memory: "150MB"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "200MB"
+
+networks: 
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1

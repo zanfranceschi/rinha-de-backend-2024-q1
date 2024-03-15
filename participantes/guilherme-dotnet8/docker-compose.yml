@@ -1,9 +1,9 @@
-version: '3.5'
+version: "3.5"
 services:
   db:
     image: postgres:latest
     hostname: db
-    command: 'postgres -c shared_buffers=256MB -c fsync=off -c full_page_writes=off -c max_connections=1000'
+    command: "postgres -c shared_buffers=256MB -c fsync=off -c full_page_writes=off -c max_connections=1000"
     environment:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
@@ -12,35 +12,38 @@ services:
       - "5432:5432"
     volumes:
       - ./ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+    network_mode: host
     deploy:
       resources:
         limits:
-          cpus: '0.4'
-          memory: '220MB'
+          cpus: "0.4"
+          memory: "220MB"
   api01:
     container_name: rinha-api01
     image: guilhermesouzaaraujo/rinha-api-2024-q1:latest
     depends_on:
       - db
     environment:
-      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_URLS=http://*:8080
+    network_mode: host
     deploy:
       resources:
         limits:
-          cpus: '0.4'
-          memory: '75MB'
+          cpus: "0.4"
+          memory: "115MB"
   api02:
     container_name: rinha-api02
     image: guilhermesouzaaraujo/rinha-api-2024-q1:latest
     depends_on:
       - db
     environment:
-      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_URLS=http://*:8081
+    network_mode: host
     deploy:
       resources:
         limits:
-          cpus: '0.4'
-          memory: '75MB'
+          cpus: "0.4"
+          memory: "115MB"
   nginx:
     image: nginx:latest
     volumes:
@@ -50,12 +53,9 @@ services:
       - api02
     ports:
       - "9999:9999"
+    network_mode: host
     deploy:
       resources:
         limits:
-          cpus: '0.3'
-          memory: '180MB'
-networks:
-  default:
-    driver: bridge
-    name: rinha
+          cpus: "0.3"
+          memory: "100MB"

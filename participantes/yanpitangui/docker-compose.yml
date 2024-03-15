@@ -8,47 +8,36 @@ services:
     container_name: rinhaapi1
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - Cluster__Ip=api1
+      - Cluster__Ip=localhost
       - Cluster__Port=5213
-      - Cluster__Seeds__0=akka.tcp://Rinha@api1:5213
+      - Cluster__Seeds__0=akka.tcp://Rinha@localhost:5213
       - ASPNETCORE_URLS=http://+:8080
-      - ConnectionStrings__Db=Host=db;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=2000;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
+      - ConnectionStrings__Db=Host=localhost;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Maximum Pool Size=128;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
     depends_on:
       db:
         condition: service_healthy
-    ports:
-      - "8080:8080"
-      - "5213:5213"
     ulimits:
       nofile:
         soft: 1000000
         hard: 1000000
+    network_mode: host
     deploy:
       resources:
         limits:
           cpus: '0.4'
           memory: '130MB'
-    networks:
-      - app-network
-    volumes:
-      - app1:/tmp
 
   api2:
     <<: *api
     hostname: api2
     container_name: rinhaapi2
-    ports:
-      - "8081:8080"
-      - "5214:5213"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - Cluster__Ip=api2
-      - Cluster__Port=5213
-      - Cluster__Seeds__0=akka.tcp://Rinha@api1:5213
-      - ASPNETCORE_URLS=http://+:8080
-      - ConnectionStrings__Db=Host=db;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Minimum Pool Size=50;Maximum Pool Size=2000;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
-    volumes:
-      - app2:/tmp
+      - Cluster__Ip=localhost
+      - Cluster__Port=5214
+      - Cluster__Seeds__0=akka.tcp://Rinha@localhost:5213
+      - ASPNETCORE_URLS=http://+:8081
+      - ConnectionStrings__Db=Host=localhost;Database=rinha;Username=rinha;Password=rinha;Pooling=true;Maximum Pool Size=128;Multiplexing=true;Timeout=15;Command Timeout=15;Cancellation Timeout=-1;No Reset On Close=true;Max Auto Prepare=20;Auto Prepare Min Usages=1;
 
   nginx:
     image: nginx:latest
@@ -57,10 +46,7 @@ services:
     depends_on:
       - api1
       - api2
-    ports:
-      - "9999:9999"
-    networks:
-      - app-network
+    network_mode: host
     deploy:
       resources:
         limits:
@@ -76,8 +62,6 @@ services:
       - POSTGRES_PASSWORD=rinha
       - POSTGRES_USER=rinha
       - POSTGRES_DB=rinha
-    ports:
-      - "5432:5432"
     volumes:
       - ./db.sql:/docker-entrypoint-initdb.d/db.sql:ro
     deploy:
@@ -85,18 +69,10 @@ services:
         limits:
           cpus: '0.5'
           memory: '270MB'
-    networks:
-      - app-network
+    network_mode: host
     healthcheck:
       test: ["CMD", "pg_isready", "--username", "rinha"]
       interval: 5s
       timeout: 5s
       retries: 20
       start_period: 10s
-
-networks:
-  app-network:
-volumes:
-  app1:
-  app2:
-

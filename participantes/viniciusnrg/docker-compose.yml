@@ -1,0 +1,102 @@
+version: "3.9"
+
+services:
+  api01: &api
+    # Lembre-se de que seu serviço HTTP deve estar hospedado num repositório
+    # publicamente acessível! Ex.: hub.docker.com
+    image: vnrg/rinha-backend-2024-q1:latest
+    hostname: api01
+    #    network_mode: "host"
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://db:5432/rinhadb?useSSL=false
+    #      - SERVER_PORT=8081
+    #      - DB_HOSTNAME=db
+
+    # Não é necessário expor qualquer porta além da porta do load balancer,
+    # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
+    # ao banco de dados na fase de desenvolvimento.
+    ports:
+      - "8081:8080"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 10s
+      timeout: 20s
+      retries: 3
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: "135MB"
+
+  api02:
+    # Essa sintaxe reusa o que foi declarado em 'api01'.
+    <<: *api
+    hostname: api02
+    ports:
+      - "8082:8080"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      # Obrigatório expor/usar a porta 9999 no load balancer!
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "40MB"
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinhadb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    #  - ./database.conf:/etc/database.conf
+    # command: postgres -c config_file="/etc/database.conf"
+    # command: postgres -c 'max_connections=100' -c 'shared_buffers=200MB' -c 'fsync=off' -c 'effective_cache_size=512MB' -c 'synchronous_commit=off' -c 'checkpoint_timeout=1d' -c 'max_wal_size=1GB' -c 'full_page_writes=false'
+    command: postgres -c checkpoint_timeout=600 -c max_wal_size=4096 -c synchronous_commit=0 -c fsync=0 -c full_page_writes=0
+    deploy:
+      resources:
+        limits:
+          # Note que a soma de todos os limites dos serviços
+          # aqui declarados é de 1.5 unidades de CPU e 550MB
+          # de memória. A distribuição feita aqui é apenas
+          # um exemplo – distribua como quiser.
+          cpus: "1.00"
+          memory: "240MB"
+    #    networks:
+    #      - app-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d rinhadb" ]
+      # test: [ "CMD", "pg_isready", "--username", "admin" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+# O uso do modo `bridge` deve ser adequado à carga que será usada no teste.
+# A edição anterior se beneficiou do modo host pois o volume de requisições
+# era relativamente alto e a virtualização da rede se tornou um gargalo, mas
+# este modo é mais complexo de ser configurado. Fique à vontade para usar o
+# modo que quiser desde que não conflite com portas trivialmente usadas em um
+# SO.
+networks:
+  default:
+    driver: bridge
+    name: rinha-nginx-2024q1
+#
+#networks:
+#  app-network:

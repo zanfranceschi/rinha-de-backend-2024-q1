@@ -1,0 +1,71 @@
+version: "3.7"
+
+services:
+  traefik:
+    image: "traefik:v2.5"
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:9999"
+    ports:
+      - "9999:9999"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "174M"
+
+  web1: &web_template
+    image: "oswaldolinhares/rinha-api:latest"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.web1.rule=Host(`localhost`)"
+      - "traefik.http.services.web1.loadbalancer.server.port=9292"
+      - "traefik.http.routers.web1.entrypoints=web"
+    depends_on:
+      - db
+    environment:
+      RACK_ENV: "production"
+      DATABASE_URL: "postgres://paulao:segredosagrado@db:5432/vempropau"
+      PORT: "9292"
+      MAX_THREADS: "5"
+      EXECUTE_DB_SETUP: "true"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "117M"
+    restart: always
+
+  web2:
+    <<: *web_template
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.web2.rule=Host(`localhost`)"
+      - "traefik.http.services.web2.loadbalancer.server.port=9292"
+      - "traefik.http.routers.web2.entrypoints=web"
+    environment:
+      RACK_ENV: "production"
+      EXECUTE_DB_SETUP: "false"
+
+  db:
+    image: "postgres:14"
+    environment:
+      POSTGRES_DB: "vempropau"
+      POSTGRES_USER: "paulao"
+      POSTGRES_PASSWORD: "segredosagrado"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "140M"
+
+volumes:
+  postgres_data:

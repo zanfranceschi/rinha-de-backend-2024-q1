@@ -1,0 +1,79 @@
+version: "3.4"
+
+services:
+  api01: &api
+    image: rafaelporto/rinha-2024q1:latest
+    hostname: api-01
+    environment: &env
+      ClusterConfig__ConnectionString: "server=rinhadb; port=3306; database=rinhadb; user=rinha; password=rinha; Persist Security Info=False; Connect Timeout=300"
+      ASPNETCORE_URLS: http://*:9997
+      ASPETCORE_ENVIRONMENT: Production
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: "100MB"
+
+  api02:
+    <<: *api
+    hostname: api-02
+    environment:
+      <<: *env
+      ASPNETCORE_URLS: http://*:9998
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    ports:
+      - "9999:9999"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "10MB"
+
+  db:
+    image: mysql
+    hostname: rinhadb
+    environment:
+      MYSQL_ROOT_USER: "root"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_USER: "rinha"
+      MYSQL_PASSWORD: "rinha"
+      MYSQL_DATABASE: rinhadb
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-p$$MYSQL_ROOT_PASSWORD",
+        ]
+      timeout: 5s
+      retries: 10
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "340MB"
+
+networks:
+  default:
+    driver: bridge
+    name: rinha-2024q1
